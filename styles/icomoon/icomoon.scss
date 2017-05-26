@@ -1,0 +1,346 @@
+@font-face {
+  font-family: 'icomoon';
+  src: url('fonts/icomoon.eot');
+  src: url('fonts/icomoon.eot#iefix') format('embedded-opentype'),
+  url('fonts/icomoon.woff2') format('woff2'),
+  url('fonts/icomoon.ttf') format('truetype'),
+  url('fonts/icomoon.woff') format('woff'),
+  url('fonts/icomoon.svg#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-arrow-down:before {
+  content: "\e900";
+}
+
+.icon-arrow-left:before {
+  content: "\e901";
+}
+
+.icon-calendar:before {
+  content: "\e902";
+}
+
+.icon-checkmark:before {
+  content: "\e903";
+}
+
+.icon-close:before {
+  content: "\e904";
+}
+
+.icon-email:before {
+  content: "\e905";
+}
+
+.icon-feed-podcast:before {
+  content: "\e906";
+}
+
+.icon-feed-rehab:before {
+  content: "\e907";
+}
+
+.icon-feed-video:before {
+  content: "\e908";
+}
+
+.icon-filter:before {
+  content: "\e909";
+}
+
+.icon-gender:before {
+  content: "\e90a";
+}
+
+.icon-information:before {
+  content: "\e90b";
+}
+
+.icon-meal-planning:before {
+  content: "\e90c";
+}
+
+.icon-nav-feed:before {
+  content: "\e90d";
+}
+
+.icon-nav-home:before {
+  content: "\e90e";
+}
+
+.icon-nav-links:before {
+  content: "\e90f";
+}
+
+.icon-nav-nutrition:before {
+  content: "\e910";
+}
+
+.icon-nav-programming:before {
+  content: "\e911";
+}
+
+.icon-nutrition-blog:before {
+  content: "\e912";
+}
+
+.icon-nutrition-calculator:before {
+  content: "\e913";
+}
+
+.icon-nutrition-found:before {
+  content: "\e914";
+}
+
+.icon-nutrition:before {
+  content: "\e915";
+}
+
+.icon-play:before {
+  content: "\e916";
+}
+
+.icon-register-password:before {
+  content: "\e917";
+}
+
+.icon-search:before {
+  content: "\e918";
+}
+
+.icon-track-dynamic .path1:before {
+  content: "\e919";
+  color: rgb(90, 198, 211);
+}
+
+.icon-track-dynamic .path2:before {
+  content: "\e91a";
+  margin-left: -1.2021484375em;
+  color: rgb(90, 198, 211);
+}
+
+.icon-track-dynamic .path3:before {
+  content: "\e91b";
+  margin-left: -1.2021484375em;
+  color: rgb(90, 198, 211);
+}
+
+.icon-track-dynamic .path4:before {
+  content: "\e91c";
+  margin-left: -1.2021484375em;
+  color: rgb(90, 198, 211);
+}
+
+.icon-track-dynamic .path5:before {
+  content: "\e91d";
+  margin-left: -1.2021484375em;
+  color: rgb(90, 198, 211);
+}
+
+.icon-track-dynamic .path6:before {
+  content: "\e91e";
+  margin-left: -1.2021484375em;
+  color: rgb(90, 198, 211);
+}
+
+.icon-track-dynamic .path7:before {
+  content: "\e91f";
+  margin-left: -1.2021484375em;
+  color: rgb(210, 32, 39);
+}
+
+.icon-track-dynamic .path8:before {
+  content: "\e920";
+  margin-left: -1.2021484375em;
+  color: rgb(210, 32, 39);
+}
+
+.icon-track-hyper .path1:before {
+  content: "\e921";
+  color: rgb(90, 198, 211);
+}
+
+.icon-track-hyper .path2:before {
+  content: "\e922";
+  margin-left: -1.2021484375em;
+  color: rgb(90, 198, 211);
+}
+
+.icon-track-hyper .path3:before {
+  content: "\e923";
+  margin-left: -1.2021484375em;
+  color: rgb(90, 198, 211);
+}
+
+.icon-track-hyper .path4:before {
+  content: "\e924";
+  margin-left: -1.2021484375em;
+  color: rgb(90, 198, 211);
+}
+
+.icon-track-hyper .path5:before {
+  content: "\e925";
+  margin-left: -1.2021484375em;
+  color: rgb(90, 198, 211);
+}
+
+.icon-track-hyper .path6:before {
+  content: "\e926";
+  margin-left: -1.2021484375em;
+  color: rgb(90, 198, 211);
+}
+
+.icon-track-hyper .path7:before {
+  content: "\e927";
+  margin-left: -1.2021484375em;
+  color: rgb(210, 32, 39);
+}
+
+.icon-track-hyper .path8:before {
+  content: "\e928";
+  margin-left: -1.2021484375em;
+  color: rgb(210, 32, 39);
+}
+
+.icon-track-hyper .path9:before {
+  content: "\e929";
+  margin-left: -1.2021484375em;
+  color: rgb(210, 32, 39);
+}
+
+.icon-track-hyper .path10:before {
+  content: "\e92a";
+  margin-left: -1.2021484375em;
+  color: rgb(210, 32, 39);
+}
+
+.icon-track-lifestyle .path1:before {
+  content: "\e92b";
+  color: rgb(90, 198, 211);
+}
+
+.icon-track-lifestyle .path2:before {
+  content: "\e92c";
+  margin-left: -1.2021484375em;
+  color: rgb(90, 198, 211);
+}
+
+.icon-track-lifestyle .path3:before {
+  content: "\e92d";
+  margin-left: -1.2021484375em;
+  color: rgb(90, 198, 211);
+}
+
+.icon-track-lifestyle .path4:before {
+  content: "\e92e";
+  margin-left: -1.2021484375em;
+  color: rgb(90, 198, 211);
+}
+
+.icon-track-lifestyle .path5:before {
+  content: "\e92f";
+  margin-left: -1.2021484375em;
+  color: rgb(90, 198, 211);
+}
+
+.icon-track-lifestyle .path6:before {
+  content: "\e930";
+  margin-left: -1.2021484375em;
+  color: rgb(90, 198, 211);
+}
+
+.icon-track-lifestyle .path7:before {
+  content: "\e931";
+  margin-left: -1.2021484375em;
+  color: rgb(210, 32, 39);
+}
+
+.icon-track-strength .path1:before {
+  content: "\e932";
+  color: rgb(90, 198, 211);
+}
+
+.icon-track-strength .path2:before {
+  content: "\e933";
+  margin-left: -1.2021484375em;
+  color: rgb(90, 198, 211);
+}
+
+.icon-track-strength .path3:before {
+  content: "\e934";
+  margin-left: -1.2021484375em;
+  color: rgb(90, 198, 211);
+}
+
+.icon-track-strength .path4:before {
+  content: "\e935";
+  margin-left: -1.2021484375em;
+  color: rgb(90, 198, 211);
+}
+
+.icon-track-strength .path5:before {
+  content: "\e936";
+  margin-left: -1.2021484375em;
+  color: rgb(90, 198, 211);
+}
+
+.icon-track-strength .path6:before {
+  content: "\e937";
+  margin-left: -1.2021484375em;
+  color: rgb(90, 198, 211);
+}
+
+.icon-track-strength .path7:before {
+  content: "\e938";
+  margin-left: -1.2021484375em;
+  color: rgb(210, 32, 39);
+}
+
+.icon-trash:before {
+  content: "\e939";
+}
+
+.icon-update-sub:before {
+  content: "\e93a";
+}
+
+.icon-user-edit:before {
+  content: "\e93b";
+}
+
+.icon-user-mentality:before {
+  content: "\e93c";
+}
+
+.icon-user-picture:before {
+  content: "\e93d";
+}
+
+.icon-user-profile-filled:before {
+  content: "\e93e";
+}
+
+.icon-user-profile:before {
+  content: "\e93f";
+}
+
+.icon-workout-mode:before {
+  content: "\e940";
+}

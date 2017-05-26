@@ -1,0 +1,164 @@
+// colors
+$turquoise-color: #67C5CE;
+$input-border-color: #383838;
+
+// buttons
+.btn:focus, .btn.focus, .btn:active:focus, .btn:active.focus, .btn.active:focus, .btn.active.focus {
+  outline: none;
+}
+
+.btn:active, .btn.active {
+  box-shadow: none;
+}
+
+.btn-lg, .btn-group-lg > .btn {
+  font-size: 14px;
+  padding: 14px 16px;
+}
+
+// icon
+[class^="icon-"], [class*=" icon-"] {
+  color: #65C4D7;
+}
+
+// input
+.form-control {
+  height: 42px;
+  border: none;
+  border-bottom: 1px solid $input-border-color;
+  box-shadow: none;
+  padding-left: 0;
+  padding-right: 0;
+
+  &:focus {
+    border-bottom: 1px solid $input-border-color;
+    outline: 0;
+    box-shadow: none;
+  }
+}
+
+.input-group-addon {
+  border: none;
+  padding-left: 2px;
+  background: transparent;
+  border-bottom: 1px solid $input-border-color;
+}
+
+// wrappers
+.app-wrapper {
+  padding-bottom: 60px;
+}
+
+.form-submit-btn-wrapper {
+  margin-top: 25px;
+}
+
+.forgot-password--check-spam-folder-wrapper {
+  margin-top: 35px;
+  text-align: center;
+  font-size: 12px;
+}
+
+.login-page--forgot-password-link-wrapper {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  text-align: center;
+}
+
+.login-page--register-link-wrapper {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+
+  a {
+    color: $turquoise-color;
+    text-decoration: underline;
+  }
+}
+
+.login-page--login-form {
+  .icon-register-password {
+    font-size: 9px;
+  }
+}
+
+.restore-password-page--restore-password-form {
+  .icon-register-password {
+    font-size: 9px;
+  }
+}
+
+.register-page--register-form {
+  .icon-register-password {
+    font-size: 9px;
+  }
+  .icon-user-profile-filled {
+    font-size: 20px;
+  }
+
+  .upload-avatar-wrapper {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 10px;
+
+    img {
+      width: 80px;
+    }
+  }
+}
+
+// positioning
+.btn-fixed-top {
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  top: 0;
+}
+
+.btn-fixed-bottom {
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  bottom: 0;
+}
+
+// pretty select
+.pretty-select {
+  .Select-control {
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #383838;
+  }
+  .Select-placeholder, .Select-input {
+    color: #383838;
+    padding-left: 6px;
+  }
+  &.Select--single > .Select-control .Select-value {
+    padding-left: 6px;
+    padding-right: 0;
+  }
+  .Select-arrow-zone {
+    padding-right: 0;
+    .icon-arrow-down {
+      font-size: 9px;
+      color: #666;
+    }
+  }
+  .Select-control:hover {
+    box-shadow: none;
+  }
+  .Select-menu-outer {
+    border-radius: 0;
+    z-index: 2000;
+    max-height: 102px;
+  }
+  .Select-menu {
+    max-height: 100px;
+  }
+  &.is-focused:not(.is-open) > .Select-control {
+    border-color: #383838;
+    box-shadow: none;
+  }
+}

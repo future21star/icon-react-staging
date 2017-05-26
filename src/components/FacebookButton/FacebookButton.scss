@@ -1,0 +1,15 @@
+$fb-color: #3C5A96;
+
+.btn-fb {
+  background: $fb-color;
+  color: #ffffff;
+
+  &:hover, &:focus {
+    background-color: $fb-color;
+    color: #ffffff;
+  }
+
+  i {
+    margin-right: 10px;
+  }
+}
