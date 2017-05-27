@@ -13,14 +13,14 @@ export default class Login extends Component {
 		user: PropTypes.object,
 		login: PropTypes.func,
 		logout: PropTypes.func
-	}
+	};
 
 	handleSubmit = (event) => {
 		event.preventDefault();
 		const input = this.refs.email;
 		this.props.login(input.value);
 		input.value = '';
-	}
+	};
 
 	render() {
 		const {user, logout} = this.props;
@@ -64,15 +64,6 @@ export default class Login extends Component {
 								Don't have an account? <Link to="register">Create one</Link>
 							</div>
 						</div>
-
-						{user &&
-						<div>
-							<p>You are currently logged in as {user.name}.</p>
-							<div>
-								<button className="btn btn-danger" onClick={logout}>Log Out</button>
-							</div>
-						</div>
-						}
 					</div>
 				</div>
 			</div>

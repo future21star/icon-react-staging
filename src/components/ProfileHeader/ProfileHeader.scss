@@ -1,0 +1,61 @@
+.profile-header {
+
+  .profile-jumbotron {
+    background: #5DC6D2;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+    color: #ffffff;;
+
+    .full-name {
+      text-transform: uppercase;
+      font-size: 21px;
+      padding-top: 10px;
+      padding-bottom: 5px;
+      margin: 0;
+    }
+
+    .email {
+      font-weight: 300;
+      padding-bottom: 4px;
+    }
+
+    .member-since {
+      font-size: 9px;
+      text-transform: uppercase;
+    }
+    .avatar {
+      img {
+        width: 90px;
+        border-radius: 50%;
+        border: 5px solid #52a2ad;
+      }
+    }
+  }
+
+  .profile-information {
+    background: #ffffff;
+    padding-top: 18px;
+    padding-bottom: 18px;
+
+    .information-item {
+      border-right: 1px solid #dddddd;
+
+      &.last-item {
+        border-right: none;
+      }
+
+      .information-title {
+        font-weight: 100;
+        font-size: 13px;
+      }
+
+      .information-value {
+        font-family: Oswald, sans-serif;
+        text-transform: uppercase;
+        font-size: 21px;
+        color: #5DC6D2;
+      }
+    }
+  }
+}

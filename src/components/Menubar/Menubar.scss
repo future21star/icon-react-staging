@@ -3,22 +3,44 @@
   padding-top: 12px;
   padding-bottom: 12px;
 
+  .menu-bar-left-side-content {
+    text-align: left;
+  }
+  .menu-bar-title {
+    text-align: center;
+    font-weight: 700;
+  }
+  .menu-bar-right-side-content {
+    text-align: right;
+    a {
+      font-weight: 700;
+    }
+  }
+
   &.menu-bar-white {
     background: white;
     border-bottom: 1px solid #000000;
+  }
+
+  &.menu-bar-turquoise {
+    background: #5DC6D2;
 
     .menu-bar-left-side-content {
-      text-align: left;
+      color: #fff;
+      a, [class^="icon-"], [class*=" icon-"] {
+        color: #fff;
+      }
     }
     .menu-bar-title {
-      text-align: center;
-      font-weight: 700;
+      color: #fff;
     }
     .menu-bar-right-side-content {
-      text-align: right;
+      color: #fff;
       a {
-        font-weight: 700;
+        color: #fff;
       }
     }
   }
+
+
 }

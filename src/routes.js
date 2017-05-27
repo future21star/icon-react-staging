@@ -21,19 +21,41 @@ export default (store) => {
 		}
 	};
 
+	const requiresGuest = (nextState, replace, cb) => {
+		function checkGuest() {
+			const {auth: {user}} = store.getState();
+			if (user) {
+				// oops, logged in, so can't be here!
+				replace('/');
+			}
+			cb();
+		}
+
+		if (!isAuthLoaded(store.getState())) {
+			store.dispatch(loadAuth()).then(checkGuest);
+		} else {
+			checkGuest();
+		}
+	};
+
+
 	return (
 		<Route path="/" component={containers.App}>
 			<IndexRoute component={containers.Home} onEnter={requiresAuth}/>
 
 			<Route onEnter={requiresAuth}>
 				<Route path="loginSuccess" component={containers.LoginSuccess}/>
+				<Route path="profile" component={containers.Profile}/>
+				<Route path="edit-profile" component={containers.EditProfile}/>
 			</Route>
 
-			<Route path="login" component={containers.Login}/>
-			<Route path="register" component={containers.Register}/>
-			<Route path="verified-account" component={containers.VerifiedAccount}/>
-			<Route path="forgot-password" component={containers.ForgotPassword}/>
-			<Route path="restore-password" component={containers.RestorePassword}/>
+			<Route onEnter={requiresGuest}>
+				<Route path="login" component={containers.Login}/>
+				<Route path="register" component={containers.Register}/>
+				<Route path="verified-account" component={containers.VerifiedAccount}/>
+				<Route path="forgot-password" component={containers.ForgotPassword}/>
+				<Route path="restore-password" component={containers.RestorePassword}/>
+			</Route>
 
 			<Route path="*" component={containers.NotFound} status={404}/>
 		</Route>

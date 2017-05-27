@@ -35,6 +35,7 @@
         "APIPORT": 3030
       }
     },
+
     "start-dev": {
       "command": "node ./bin/server.js",
       "env": {

@@ -40,10 +40,11 @@ export default class App extends Component {
 	componentWillReceiveProps(nextProps) {
 		if (!this.props.user && nextProps.user) {
 			// login
-			this.props.pushState('/loginSuccess');
+			//this.props.pushState('/loginSuccess');
+			this.props.pushState('/');
 		} else if (this.props.user && !nextProps.user) {
 			// logout
-			this.props.pushState('/');
+			this.props.pushState('/login');
 		}
 	}
 
@@ -56,18 +57,18 @@ export default class App extends Component {
 		const {user} = this.props;
 
 		return (
-			<div>
+			<div className="test">
 				<Helmet {...config.app.head}/>
 
-				{user &&
-				<button onClick={this.handleLogout} className="btn btn-block btn-lg btn-primary btn-fixed-top">
-					Logout
-				</button>}
+				{/*{user &&*/}
+				{/*<button onClick={this.handleLogout} className="btn btn-block btn-lg btn-primary btn-fixed-top">*/}
+				{/*Logout*/}
+				{/*</button>}*/}
 
-				<div className="container">
-					{user &&
-					<p className='navbar-text'>Logged in as <strong>{user.name}</strong></p>}
-				</div>
+				{/*<div className="container">*/}
+				{/*{user &&*/}
+				{/*<p className='navbar-text'>Logged in as <strong>{user.name}</strong></p>}*/}
+				{/*</div>*/}
 
 				<div className="app-wrapper">
 					{this.props.children}

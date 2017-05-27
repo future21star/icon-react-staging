@@ -16,6 +16,10 @@ $input-border-color: #383838;
   padding: 14px 16px;
 }
 
+.btn-rounded {
+  border-radius: 30px;
+}
+
 // icon
 [class^="icon-"], [class*=" icon-"] {
   color: #65C4D7;
@@ -46,7 +50,7 @@ $input-border-color: #383838;
 
 // wrappers
 .app-wrapper {
-  padding-bottom: 60px;
+  padding-bottom: 46px;
 }
 
 .form-submit-btn-wrapper {
@@ -105,6 +109,11 @@ $input-border-color: #383838;
       width: 80px;
     }
   }
+}
+
+.profile-page-wrapper {
+  background: #eeeeee;
+  height: 100vh;
 }
 
 // positioning
