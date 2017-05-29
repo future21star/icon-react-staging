@@ -16,6 +16,7 @@ export default function createStore(history, client, data) {
 		finalCreateStore = compose(
 			applyMiddleware(...middleware),
 			//window.devToolsExtension ? window.devToolsExtension() : DevTools.instrument(),
+			window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 			persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
 		)(_createStore);
 	} else {

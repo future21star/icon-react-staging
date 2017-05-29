@@ -10,17 +10,19 @@ export default class ShowPasswordInput extends Component {
 			mode: 'password',
 			text: 'Show'
 		};
-
-		this.toggleMode = this.toggleMode.bind(this);
 	}
 
-	toggleMode() {
+	getValue() {
+		return this.refs.password.value;
+	}
+
+	toggleMode = () => {
 		let prevModeIsPassword = this.state.mode === 'password';
 		this.setState({
 			mode: prevModeIsPassword ? 'text' : 'password',
 			text: prevModeIsPassword ? 'Hide' : 'Show',
 		})
-	}
+	};
 
 	render() {
 		return (
@@ -29,7 +31,7 @@ export default class ShowPasswordInput extends Component {
 					<div className="input-group-addon">
 						<span className="icon-register-password"/>
 					</div>
-					<input type={this.state.mode} ref="password" className="form-control" placeholder="Password" {...this.props}/>
+					<input ref="password" type={this.state.mode} className="form-control" placeholder="Password" {...this.props}/>
 					<span className="input-group-btn">
 						<button className="btn btn-hide-show" type="button" onClick={this.toggleMode}>
 							{this.state.text}
