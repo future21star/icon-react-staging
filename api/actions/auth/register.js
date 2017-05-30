@@ -16,7 +16,7 @@ export default function register(req) {
 
 		axios.post('http://54.148.236.111/wp-json/wp/v2/users', {
 			...req.body
-		}, config).then((wpResponse) => {
+		}).then((wpResponse) => {
 			return resolve({
 				wpUsers: wpResponse.data,
 				message: 'We sent you a verification email. Please check your inbox.'
