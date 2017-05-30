@@ -17,6 +17,8 @@ export default class Profile extends Component {
 	};
 
 	render() {
+		const {user} = this.props;
+
 		const leftSideContent = (
 			<Link to="edit-profile">
 				<span className="icon-user-edit"/>
@@ -43,7 +45,7 @@ export default class Profile extends Component {
 					rightSideContent={rightSideContent}
 				/>
 
-				<ProfileHeader/>
+				<ProfileHeader user={user}/>
 
 				<div className="container">
 

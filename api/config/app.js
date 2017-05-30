@@ -1,0 +1,1 @@
+export const WP_API_URL = 'http://54.148.236.111/';

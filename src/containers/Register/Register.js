@@ -1,20 +1,38 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
+import {connect} from 'react-redux';
 import Helmet from 'react-helmet';
-import {MenubarWhite, ShowPasswordInput} from '../../components';
+import {MenubarWhite, ShowPasswordInput, Loader, SuccessMessage, ErrorMessage} from '../../components';
 import {Link} from "react-router";
 import Select from 'react-select';
+import {register} from '../../redux/modules/auth';
+
+@connect(
+	state => ({
+		auth: state.auth
+	}),
+	{register}
+)
 
 export default class Register extends Component {
+	static propTypes = {
+		auth: PropTypes.object,
+		register: PropTypes.func,
+	};
 
 	constructor(props) {
 		super(props);
 
-		this.logChange = this.logChange.bind(this);
+		this.state = {
+			gender: null,
+			height: null,
+			weight: null,
+			subscription: null
+		}
 	}
 
 	genderOptions = [
-		{value: 'male', label: 'Male'},
-		{value: 'female', label: 'Female'}
+		{value: 'Male', label: 'Male'},
+		{value: 'Female', label: 'Female'}
 	];
 
 	heightOptions = [
@@ -24,15 +42,15 @@ export default class Register extends Component {
 
 	weightOptions = [
 		{value: '1', label: '1'},
-		{value: '2', label: '3'}
+		{value: '2', label: '2'}
 	];
 
 	subscriptionOptions = [
-		{value: 'base', label: 'Base'},
-		{value: 'rx', label: 'Rx'},
-		{value: 'max', label: 'Mxx'},
-		{value: 'nutrition', label: 'Nutrition'},
-		{value: 'masters', label: 'Masters'},
+		{value: 'Base', label: 'Base'},
+		{value: 'Rx', label: 'Rx'},
+		{value: 'Max', label: 'Max'},
+		{value: 'Nutrition', label: 'Nutrition'},
+		{value: 'Masters', label: 'Masters'},
 	];
 
 	static arrowRenderer() {
@@ -41,18 +59,57 @@ export default class Register extends Component {
 		)
 	};
 
-	logChange(val) {
-		console.dir(val);
-	}
+	changeGender = (gender) => {
+		this.setState({
+			gender: gender.value
+		});
+	};
+
+	changeHeight = (height) => {
+		this.setState({
+			height: height.value
+		});
+	};
+
+	changeWeight = (weight) => {
+		this.setState({
+			weight: weight.value
+		});
+	};
+
+	changeSubscription = (subscription) => {
+		this.setState({
+			subscription: subscription.value
+		});
+	};
+
+	handleSubmit = (event) => {
+		event.preventDefault();
+		const {username, full_name, email, password} = this.refs;
+		const {gender, height, weight, subscription} = this.state;
+
+		const data = {
+			username: username.value,
+			full_name: full_name.value,
+			email: email.value,
+			password: password.getValue(),
+			gender,
+			height,
+			weight,
+			subscription
+		};
+		this.props.register(data);
+	};
 
 
 	render() {
+		const {auth} = this.props;
+
 		const rightSideContent = (
 			<Link to="login" className="text-danger">Cancel</Link>
 		);
 
 		const uploadAvatar = require('../../../static/upload-avatar.png');
-
 
 		return (
 			<div>
@@ -60,7 +117,7 @@ export default class Register extends Component {
 
 				<MenubarWhite title="Create Account" rightSideContent={rightSideContent}/>
 
-				<form className="register-page--register-form">
+				<form className="register-page--register-form" onSubmit={this.handleSubmit}>
 					<div className="container">
 
 						<div className="row">
@@ -69,6 +126,19 @@ export default class Register extends Component {
 								<div className="upload-avatar-wrapper">
 									<img src={uploadAvatar}/>
 								</div>
+
+								<SuccessMessage success={auth.success}/>
+								<ErrorMessage error={auth.error}/>
+
+								<div className="form-group">
+									<div className="input-group">
+										<div className="input-group-addon">
+											<span className="icon-user-profile-filled"/>
+										</div>
+										<input type="text" ref="username" className="form-control" placeholder="Username"/>
+									</div>
+								</div>
+
 								<div className="form-group">
 									<div className="input-group">
 										<div className="input-group-addon">
@@ -87,7 +157,7 @@ export default class Register extends Component {
 									</div>
 								</div>
 
-								<ShowPasswordInput/>
+								<ShowPasswordInput ref="password"/>
 
 								<div className="form-group">
 									<div className="input-group">
@@ -96,9 +166,10 @@ export default class Register extends Component {
 										</div>
 										<Select
 											name="gender"
+											value={this.state.gender}
 											placeholder="Gender"
 											options={this.genderOptions}
-											onChange={this.logChange}
+											onChange={this.changeGender}
 											clearable={false}
 											arrowRenderer={Register.arrowRenderer}
 											className="pretty-select"
@@ -111,9 +182,10 @@ export default class Register extends Component {
 										<div className="col-xs-6">
 											<Select
 												name="height"
+												value={this.state.height}
 												placeholder="Height"
 												options={this.heightOptions}
-												onChange={this.logChange}
+												onChange={this.changeHeight}
 												clearable={false}
 												arrowRenderer={Register.arrowRenderer}
 												className="pretty-select"
@@ -122,9 +194,10 @@ export default class Register extends Component {
 										<div className="col-xs-6">
 											<Select
 												name="weight"
+												value={this.state.weight}
 												placeholder="Weight"
 												options={this.weightOptions}
-												onChange={this.logChange}
+												onChange={this.changeWeight}
 												clearable={false}
 												arrowRenderer={Register.arrowRenderer}
 												className="pretty-select"
@@ -136,14 +209,17 @@ export default class Register extends Component {
 								<div className="form-group">
 									<Select
 										name="subscription"
+										value={this.state.subscription}
 										placeholder="Select your subscription"
 										options={this.subscriptionOptions}
-										onChange={this.logChange}
+										onChange={this.changeSubscription}
 										clearable={false}
 										arrowRenderer={Register.arrowRenderer}
 										className="pretty-select"
 									/>
 								</div>
+								{auth.loading ? <Loader/> : undefined}
+
 
 								<button className="btn btn-primary btn-block btn-lg btn-fixed-bottom" type="submit">Create Account
 								</button>

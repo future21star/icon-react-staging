@@ -10,6 +10,10 @@ const LOGOUT = 'auth/LOGOUT';
 const LOGOUT_SUCCESS = 'auth/LOGOUT_SUCCESS';
 const LOGOUT_FAIL = 'auth/LOGOUT_FAIL';
 
+const REGISTER = 'auth/REGISTER';
+const REGISTER_SUCCESS = 'auth/REGISTER_SUCCESS';
+const REGISTER_FAIL = 'auth/REGISTER_FAIL';
+
 const initialState = {
 	loaded: false,
 	loading: false,
@@ -75,6 +79,25 @@ export default function reducer(state = initialState, action = {}) {
 				loading: false,
 				error: action.error
 			};
+		case REGISTER:
+			return {
+				...state,
+				loading: true,
+			};
+		case REGISTER_SUCCESS:
+			return {
+				...state,
+				loading: false,
+				success: action.result,
+				error: null
+			};
+		case REGISTER_FAIL:
+			return {
+				...state,
+				loading: false,
+				success: null,
+				error: action.error
+			};
 		default:
 			return state;
 	}
@@ -104,5 +127,14 @@ export function logout() {
 	return {
 		types: [LOGOUT, LOGOUT_SUCCESS, LOGOUT_FAIL],
 		promise: (client) => client.get('/logout')
+	};
+}
+
+export function register(options) {
+	return {
+		types: [REGISTER, REGISTER_SUCCESS, REGISTER_FAIL],
+		promise: (client) => client.post('/register', {
+			data: {...options}
+		})
 	};
 }

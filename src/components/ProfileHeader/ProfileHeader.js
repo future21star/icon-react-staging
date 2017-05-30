@@ -2,8 +2,12 @@ import React, {Component, PropTypes} from 'react';
 import './ProfileHeader.scss';
 
 export default class ProfileHeader extends Component {
+	static propTypes = {
+		user: PropTypes.object.isRequired,
+	};
 
 	render() {
+		const {user} = this.props;
 		const profileAvatar = require('../../../static/profile-avatar.jpg');
 
 		return (
@@ -13,8 +17,8 @@ export default class ProfileHeader extends Component {
 						<img src={profileAvatar}/>
 					</div>
 
-					<h4 className="full-name">Chris Thomas</h4>
-					<div className="email">christhomas@gmail.com</div>
+					<h4 className="full-name">{user.user_display_name}</h4>
+					<div className="email">{user.user_email}</div>
 					<div className="member-since">member since 2016</div>
 				</div>
 				<div className="profile-information">
