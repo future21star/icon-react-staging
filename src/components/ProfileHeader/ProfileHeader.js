@@ -3,14 +3,14 @@ import './ProfileHeader.scss';
 
 export default class ProfileHeader extends Component {
 	static propTypes = {
-		user: PropTypes.object.isRequired,
+		user: PropTypes.object,
 	};
 
 	render() {
 		const {user} = this.props;
 		const profileAvatar = require('../../../static/profile-avatar.jpg');
 
-		return (
+		return user ? (
 			<div className="profile-header">
 				<div className="profile-jumbotron">
 					<div className="avatar">
@@ -39,7 +39,6 @@ export default class ProfileHeader extends Component {
 						</div>
 					</div>
 				</div>
-			</div>
-		);
+			</div>) : <div/>;
 	}
 }
