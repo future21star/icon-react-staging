@@ -27,7 +27,7 @@ $input-border-color: #383838;
 
 // input
 .form-control {
-  height: 42px;
+  height: 36px;
   border: none;
   border-bottom: 1px solid $input-border-color;
   box-shadow: none;
@@ -150,8 +150,10 @@ $input-border-color: #383838;
   }
   .Select-arrow-zone {
     padding-right: 0;
+    text-align: right;
+
     .icon-arrow-down {
-      font-size: 9px;
+      font-size: 8px;
       color: #666;
     }
   }

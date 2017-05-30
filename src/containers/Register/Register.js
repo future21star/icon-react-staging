@@ -5,6 +5,7 @@ import {MenubarWhite, ShowPasswordInput, Loader, SuccessMessage, ErrorMessage} f
 import {Link} from "react-router";
 import Select from 'react-select';
 import {register} from '../../redux/modules/auth';
+import {range} from 'lodash';
 
 @connect(
 	state => ({
@@ -24,26 +25,24 @@ export default class Register extends Component {
 
 		this.state = {
 			gender: null,
-			height: null,
+			heightFt: null,
+			heightIn: null,
 			weight: null,
 			subscription: null
 		}
 	}
 
-	genderOptions = [
-		{value: 'Male', label: 'Male'},
-		{value: 'Female', label: 'Female'}
-	];
+	genderOptions = ['Male', 'Female'].map(val => {
+		return {value: val, label: val};
+	});
 
-	heightOptions = [
-		{value: '1', label: '1'},
-		{value: '2', label: '2'}
-	];
+	heightFeetOptions = range(1, 8).map(val => {
+		return {value: val, label: `${val} Ft`};
+	});
 
-	weightOptions = [
-		{value: '1', label: '1'},
-		{value: '2', label: '2'}
-	];
+	heightInchesOptions = range(1, 13).map(val => {
+		return {value: val, label: `${val} In`};
+	});
 
 	subscriptionOptions = [
 		{value: 'Base', label: 'Base'},
@@ -65,15 +64,15 @@ export default class Register extends Component {
 		});
 	};
 
-	changeHeight = (height) => {
+	changeHeightFt = (heightFt) => {
 		this.setState({
-			height: height.value
+			heightFt: heightFt.value
 		});
 	};
 
-	changeWeight = (weight) => {
+	changeHeightIn = (heightIn) => {
 		this.setState({
-			weight: weight.value
+			heightIn: heightIn.value
 		});
 	};
 
@@ -85,8 +84,8 @@ export default class Register extends Component {
 
 	handleSubmit = (event) => {
 		event.preventDefault();
-		const {username, full_name, email, password} = this.refs;
-		const {gender, height, weight, subscription} = this.state;
+		const {username, full_name, email, password, weight} = this.refs;
+		const {gender, heightFt, heightIn, subscription} = this.state;
 
 		const data = {
 			username: username.value,
@@ -94,8 +93,9 @@ export default class Register extends Component {
 			email: email.value,
 			password: password.getValue(),
 			gender,
-			height,
-			weight,
+			heightFt,
+			heightIn,
+			weight: weight.value,
 			subscription
 		};
 		this.props.register(data);
@@ -179,29 +179,32 @@ export default class Register extends Component {
 
 								<div className="form-group">
 									<div className="row">
-										<div className="col-xs-6">
+										<div className="col-xs-4">
 											<Select
-												name="height"
-												value={this.state.height}
-												placeholder="Height"
-												options={this.heightOptions}
-												onChange={this.changeHeight}
+												name="heightFt"
+												value={this.state.heightFt}
+												placeholder="Height (Ft)"
+												options={this.heightFeetOptions}
+												onChange={this.changeHeightFt}
 												clearable={false}
 												arrowRenderer={Register.arrowRenderer}
 												className="pretty-select"
 											/>
 										</div>
-										<div className="col-xs-6">
+										<div className="col-xs-4">
 											<Select
-												name="weight"
-												value={this.state.weight}
-												placeholder="Weight"
-												options={this.weightOptions}
-												onChange={this.changeWeight}
+												name="heightIn"
+												value={this.state.heightIn}
+												placeholder="Height (In)"
+												options={this.heightInchesOptions}
+												onChange={this.changeHeightIn}
 												clearable={false}
 												arrowRenderer={Register.arrowRenderer}
 												className="pretty-select"
 											/>
+										</div>
+										<div className="col-xs-4">
+											<input type="number" ref="weight" className="form-control" placeholder="Weight (Kg)"/>
 										</div>
 									</div>
 								</div>

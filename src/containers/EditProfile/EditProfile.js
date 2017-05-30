@@ -3,28 +3,24 @@ import Helmet from 'react-helmet';
 import {MenubarWhite} from '../../components';
 import {Link} from "react-router";
 import Select from 'react-select';
+import {range} from "lodash";
 
 export default class EditProfile extends Component {
 	constructor(props) {
 		super(props);
-
-		this.logChange = this.logChange.bind(this);
 	}
 
-	genderOptions = [
-		{value: 'male', label: 'Male'},
-		{value: 'female', label: 'Female'}
-	];
+	genderOptions = ['Male', 'Female'].map(val => {
+		return {value: val, label: val};
+	});
 
-	heightOptions = [
-		{value: '1', label: '1'},
-		{value: '2', label: '2'}
-	];
+	heightFeetOptions = range(1, 8).map(val => {
+		return {value: val, label: `${val} Ft`};
+	});
 
-	weightOptions = [
-		{value: '1', label: '1'},
-		{value: '2', label: '3'}
-	];
+	heightInchesOptions = range(1, 13).map(val => {
+		return {value: val, label: `${val} In`};
+	});
 
 	static arrowRenderer() {
 		return (
@@ -32,9 +28,23 @@ export default class EditProfile extends Component {
 		)
 	};
 
-	logChange(val) {
-		console.dir(val);
-	}
+	changeGender = (gender) => {
+		this.setState({
+			gender: gender.value
+		});
+	};
+
+	changeHeightFt = (heightFt) => {
+		this.setState({
+			heightFt: heightFt.value
+		});
+	};
+
+	changeHeightIn = (heightIn) => {
+		this.setState({
+			heightIn: heightIn.value
+		});
+	};
 
 	render() {
 		const rightSideContent = (
@@ -85,7 +95,7 @@ export default class EditProfile extends Component {
 											name="gender"
 											placeholder="Gender"
 											options={this.genderOptions}
-											onChange={this.logChange}
+											onChange={this.changeGender}
 											clearable={false}
 											arrowRenderer={EditProfile.arrowRenderer}
 											className="pretty-select"
@@ -95,27 +105,30 @@ export default class EditProfile extends Component {
 
 								<div className="form-group">
 									<div className="row">
-										<div className="col-xs-6">
+										<div className="col-xs-4">
 											<Select
-												name="height"
-												placeholder="Height"
-												options={this.heightOptions}
-												onChange={this.logChange}
+												name="heightFt"
+												placeholder="Height (Ft)"
+												options={this.heightFeetOptions}
+												onChange={this.changeHeightFt}
 												clearable={false}
 												arrowRenderer={EditProfile.arrowRenderer}
 												className="pretty-select"
 											/>
 										</div>
-										<div className="col-xs-6">
+										<div className="col-xs-4">
 											<Select
-												name="weight"
-												placeholder="Weight"
-												options={this.weightOptions}
-												onChange={this.logChange}
+												name="heightIn"
+												placeholder="Height (In)"
+												options={this.heightInchesOptions}
+												onChange={this.changeHeightIn}
 												clearable={false}
 												arrowRenderer={EditProfile.arrowRenderer}
 												className="pretty-select"
 											/>
+										</div>
+										<div className="col-xs-4">
+											<input type="number" ref="weight" className="form-control" placeholder="Weight (Kg)"/>
 										</div>
 									</div>
 								</div>
