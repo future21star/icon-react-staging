@@ -6,6 +6,7 @@ import * as actions from './actions/index';
 import {mapUrl} from 'utils/url.js';
 import PrettyError from 'pretty-error';
 import http from 'http';
+import expressValidator from 'express-validator';
 
 const pretty = new PrettyError();
 const app = express();
@@ -19,6 +20,7 @@ app.use(session({
 	cookie: {maxAge: 60000}
 }));
 app.use(bodyParser.json());
+app.use(expressValidator());
 
 
 app.use((req, res) => {

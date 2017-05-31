@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import Helmet from 'react-helmet';
 import {login} from '../../redux/modules/auth';
-import {Loader, Logo, FacebookButton, ShowPasswordInput, ErrorMessage} from '../../components';
+import {Loader, Logo, FacebookButton, ShowPasswordInput, ErrorMessage, SuccessMessage} from '../../components';
 import {Link} from "react-router";
 
 @connect(
@@ -48,6 +48,7 @@ export default class Login extends Component {
 		return (
 			<div>
 				<ErrorMessage error={auth.error}/>
+				<SuccessMessage success={auth.success}/>
 				<form className="login-page--login-form" onSubmit={this.handleSubmit}>
 					<div className="form-group">
 						<FacebookButton/>

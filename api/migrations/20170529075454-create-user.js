@@ -8,14 +8,35 @@ module.exports = {
 				primaryKey: true,
 				type: Sequelize.INTEGER
 			},
-			first_name: {
-				type: Sequelize.STRING
+			wpUserId: {
+				allowNull: false,
+				primaryKey: true,
+				type: Sequelize.INTEGER
 			},
-			last_name: {
-				type: Sequelize.STRING
+			gender: {
+				allowNull: true,
+				type: Sequelize.STRING(10),
+				defaultValue: null
 			},
-			bio: {
-				type: Sequelize.TEXT
+			heightFt: {
+				allowNull: true,
+				type: Sequelize.INTEGER,
+				defaultValue: null
+			},
+			heightIn: {
+				allowNull: true,
+				type: Sequelize.INTEGER,
+				defaultValue: null
+			},
+			weight: {
+				allowNull: true,
+				type: Sequelize.INTEGER,
+				defaultValue: null
+			},
+			accessToken: {
+				allowNull: true,
+				type: Sequelize.STRING,
+				defaultValue: null
 			},
 			createdAt: {
 				allowNull: false,

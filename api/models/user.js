@@ -1,9 +1,37 @@
 'use strict';
+
 module.exports = function (sequelize, DataTypes) {
-	var User = sequelize.define('User', {
-		first_name: DataTypes.STRING,
-		last_name: DataTypes.STRING,
-		bio: DataTypes.TEXT
+	return sequelize.define('User', {
+		wpUserId: {
+			allowNull: false,
+			primaryKey: true,
+			type: DataTypes.INTEGER
+		},
+		gender: {
+			allowNull: true,
+			type: DataTypes.STRING(10),
+			defaultValue: null
+		},
+		heightFt: {
+			allowNull: true,
+			type: DataTypes.INTEGER,
+			defaultValue: null
+		},
+		heightIn: {
+			allowNull: true,
+			type: DataTypes.INTEGER,
+			defaultValue: null
+		},
+		weight: {
+			allowNull: true,
+			type: DataTypes.INTEGER,
+			defaultValue: null
+		},
+		accessToken: {
+			allowNull: true,
+			type: DataTypes.STRING,
+			defaultValue: null
+		},
 	}, {
 		classMethods: {
 			associate: function (models) {
@@ -11,5 +39,4 @@ module.exports = function (sequelize, DataTypes) {
 			}
 		}
 	});
-	return User;
 };
