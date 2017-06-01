@@ -42,5 +42,26 @@
     }
   }
 
+  &.menu-bar-blue {
+    background: #5bc6f7;
+
+    .menu-bar-left-side-content {
+      color: #fff;
+      a, [class^="icon-"], [class*=" icon-"] {
+        color: #fff;
+      }
+    }
+    .menu-bar-title {
+      color: #fff;
+    }
+    .menu-bar-right-side-content {
+      color: #fff;
+      margin-top: -4px;
+      a, [class^="icon-"], [class*=" icon-"] {
+        color: #fff;
+        font-size: 20px;
+      }
+    }
+  }
 
 }

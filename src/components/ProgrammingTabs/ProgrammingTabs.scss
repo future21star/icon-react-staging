@@ -1,0 +1,25 @@
+.programming-tabs{
+  .nav{
+    li{
+      a{
+        padding: 8px 4px;
+        font-size: 12px;
+        margin-right: 10px;
+      }
+    }
+  }
+  .nav-tabs {
+    border-bottom: none;
+    background: #e2e2e2;
+    margin-top: -10px;
+  }
+  .nav-justified > li {
+    display: table-cell;
+    width: 1%;
+    color: #fff;
+    min-width: 35px;
+  }
+  .nav-justified > li:not(:last-child){
+    border-right: 1px solid #EEEDEB;
+  }
+}
