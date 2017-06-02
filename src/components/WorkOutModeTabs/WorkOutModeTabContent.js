@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
-import './WorkoutModeTabs.scss';
+import './WorkOutModeTabs.scss';
 import WorkOutModeTabsListItem from './WorkOutModeTabsListItem';
 import WorkOutModeTimer from './WorkOutModeTimer';
 
