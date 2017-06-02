@@ -1,3 +1,4 @@
+import {EDIT_PROFILE_SUCCESS} from "./editProfileStore";
 const LOAD = 'auth/LOAD';
 const LOAD_SUCCESS = 'auth/LOAD_SUCCESS';
 const LOAD_FAIL = 'auth/LOAD_FAIL';
@@ -102,6 +103,11 @@ export default function reducer(state = initialState, action = {}) {
 				loading: false,
 				success: null,
 				error: action.error
+			};
+		case EDIT_PROFILE_SUCCESS:
+			return {
+				...state,
+				user: action.result.user
 			};
 		default:
 			return state;

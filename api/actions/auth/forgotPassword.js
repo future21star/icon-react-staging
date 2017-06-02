@@ -1,8 +1,9 @@
 import * as models from '../../models';
-import axios from 'axios';
 import randToken from 'rand-token';
-import {successMessage, generalError, validationError} from '../../utils/message'
-import forgotPasswordRules from '../../validators/forgotPassword'
+import {successMessage, generalError, validationError} from '../../utils/message';
+import forgotPasswordRules from '../../validators/forgotPassword';
+import mailer, {createEmail} from '../../utils/mailer';
+
 
 export default function forgotPassword(request) {
 	return new Promise(async (resolve, reject) => {
@@ -12,7 +13,6 @@ export default function forgotPassword(request) {
 		request.checkBody(forgotPasswordRules);
 		let errors = request.validationErrors();
 		if (errors) return reject(validationError(errors));
-
 
 		// todo: validate email from WP
 
@@ -45,10 +45,32 @@ export default function forgotPassword(request) {
 			return reject(generalError(e.message));
 		}
 
-		// todo: send email
+		// todo: change the send email
+		// let emailObj = createEmail(
+		// 	'anindya.dhruba@gmail.com',
+		// 	'Reset your password',
+		// 	`<p>
+		// 		Hi,<br>
+		// 		Please, click the following link to reset your password: <br>
+		// 	</p>
+		// 	<p>
+		// 		<a href="${BASE_URL}/reset-password/${user.accessToken}">Click here </a> to reset your account
+		// 	</p>
+		// 	<p>${APP_NAME}</p>`
+		// );
+		// try {
+		// 	await mailer.sendMail(emailObj, (err, res) => {
+		// 		if (err) {
+		// 			return reject('error');
+		// 		}
+		// 	});
+		// } catch (err) {
+		// 	return reject('error');
+		// }
 
 
-		// success response
+		//////
+
 		return resolve({
 			...successMessage('We have send you a recovery link to your email.'),
 			token: token

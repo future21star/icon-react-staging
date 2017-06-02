@@ -72,11 +72,11 @@ export default class Login extends Component {
 
 				</form>
 				<div className="login-page--forgot-password-link-wrapper">
-					<Link to="forgot-password">Forgot?</Link>
+					<Link to="/">Forgot?</Link>
 				</div>
 
 				<div className="login-page--register-link-wrapper">
-					Don't have an account? <Link to="register">Create one</Link>
+					Don't have an account? <Link to="/">Create one</Link>
 				</div>
 			</div>
 		);

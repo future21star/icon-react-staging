@@ -14,10 +14,10 @@ const app = express();
 const server = new http.Server(app);
 
 app.use(session({
-	secret: 'react and redux rule!!!!',
+	secret: 'K2381N3H8N8ND83979510LLMMHAOQ',
 	resave: false,
 	saveUninitialized: false,
-	cookie: {maxAge: 60000}
+	cookie: {maxAge: 60000000}
 }));
 app.use(bodyParser.json());
 app.use(expressValidator());
