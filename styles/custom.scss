@@ -116,6 +116,12 @@ $input-border-color: #383838;
   height: 100vh;
 }
 
+@media(min-width: 768px){
+  .container{
+    width:738px;
+  }
+}
+
 // positioning
 .btn-fixed-top {
   position: fixed;

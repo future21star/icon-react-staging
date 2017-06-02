@@ -38,7 +38,7 @@ export default class Programming extends Component {
 		);
 
 		return (
-			<div className="profile-page-wrapper">
+			<div className="programming-page-wrapper">
 				<Helmet title="Profile"/>
 				<MenubarBlue
 					title="Programming"
