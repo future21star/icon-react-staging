@@ -26,7 +26,7 @@ export default class Programming extends Component {
 		);
 
 		const rightSideContent = (
-			<Link to="edit-profile">
+			<Link to="/workout-mode">
 				<span className="icon-workout-mode"/>
 			</Link>
 		);
@@ -38,7 +38,7 @@ export default class Programming extends Component {
 		);
 
 		return (
-			<div className="programming-page-wrapper">
+			<div className="programming-page-wrapper bottom-padding">
 				<Helmet title="Profile"/>
 				<MenubarBlue
 					title="Programming"

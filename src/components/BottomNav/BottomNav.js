@@ -25,7 +25,7 @@ export default class BottomNav extends Component {
 				{BottomNav.linkItemRender('#', 'icon-nav-feed', currentUri)}
 				<li><a href="#" className="helpful-links-item"><span className="icon-nav-links"/></a></li>
 				{BottomNav.linkItemRender('#', 'icon-nav-nutrition', currentUri)}
-				{BottomNav.linkItemRender('#', 'icon-nav-programming', currentUri)}
+				{BottomNav.linkItemRender('/programming', 'icon-nav-programming', currentUri)}
 			</ul>
 		);
 	}

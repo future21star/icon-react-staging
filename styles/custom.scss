@@ -49,9 +49,9 @@ $input-border-color: #383838;
 }
 
 // wrappers
-.app-wrapper {
+/*.app-wrapper {
   padding-bottom: 46px;
-}
+}*/
 
 .form-submit-btn-wrapper {
   margin-top: 25px;
@@ -178,4 +178,7 @@ $input-border-color: #383838;
     border-color: #383838;
     box-shadow: none;
   }
+}
+.bottom-padding{
+  padding-bottom: 50px;
 }
