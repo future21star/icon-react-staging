@@ -16,3 +16,4 @@ export InfoBar from './InfoBar/InfoBar';
 export DailyBrief from './DailyBrief/DailyBrief';
 export ProgrammingBanner from './ProgrammingBanner/ProgrammingBanner';
 export ProgrammingTabs from './ProgrammingTabs/ProgrammingTabs';
+export WorkOutModeTabs from './WorkOutModeTabs/WorkOutModeTabs';

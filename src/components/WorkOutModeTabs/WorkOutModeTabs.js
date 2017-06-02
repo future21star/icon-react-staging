@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import ProgrammingTabsListContainer from './ProgrammingTabsListContainer';
-import './ProgrammingTabs.scss';
+import WorkoutModeTabContent from './WorkoutModeTabContent';
+import './WorkOutModeTabs.scss';
 
-export default class ProgrammingTabs extends Component {
+export default class WorkOutModeTabs extends Component {
 
 	constructor(props){
 		super(props);
@@ -19,8 +19,8 @@ export default class ProgrammingTabs extends Component {
 
 	render() {
 		return (
-			<div className="programming-tabs">
-				<ul className="nav nav-tabs nav-justified">
+			<div className="workout-mode-tabs">
+				<ul className="nav nav-tabs nav-justified navbar-fixed-top">
 					<li>
 						<a
 							href="#"
@@ -51,13 +51,13 @@ export default class ProgrammingTabs extends Component {
 				</ul>
 				<div className="tab-content">
 					<div className={`tab-pane ${this.state.activeTab === 'warmUp' ? 'active' : ''}`}>
-						<ProgrammingTabsListContainer/>
+						<WorkoutModeTabContent/>
 					</div>
 					<div className={`tab-pane ${this.state.activeTab === 'mainWorkout' ? 'active' : ''}`}>
-						<ProgrammingTabsListContainer/>
+						<WorkoutModeTabContent/>
 					</div>
 					<div className={`tab-pane ${this.state.activeTab === 'coolDown' ? 'active' : ''}`}>
-						<ProgrammingTabsListContainer/>
+						<WorkoutModeTabContent/>
 					</div>
 				</div>
 			</div>
