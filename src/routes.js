@@ -47,6 +47,7 @@ export default (store) => {
 				<Route path="loginSuccess" component={containers.LoginSuccess}/>
 				<Route path="profile" component={containers.Profile}/>
 				<Route path="edit-profile" component={containers.EditProfile}/>
+				<Route path="programming" component={containers.Programming}/>
 			</Route>
 
 			<Route onEnter={requiresGuest}>
