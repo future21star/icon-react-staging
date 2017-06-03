@@ -33,11 +33,6 @@ module.exports = {
 				type: Sequelize.INTEGER,
 				defaultValue: null
 			},
-			accessToken: {
-				allowNull: true,
-				type: Sequelize.STRING,
-				defaultValue: null
-			},
 			createdAt: {
 				allowNull: false,
 				type: Sequelize.DATE

@@ -26,12 +26,7 @@ module.exports = function (sequelize, DataTypes) {
 			allowNull: true,
 			type: DataTypes.INTEGER,
 			defaultValue: null
-		},
-		accessToken: {
-			allowNull: true,
-			type: DataTypes.STRING,
-			defaultValue: null
-		},
+		}
 	}, {
 		classMethods: {
 			associate: function (models) {
