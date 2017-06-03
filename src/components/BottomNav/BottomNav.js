@@ -12,13 +12,14 @@ export default class BottomNav extends Component {
 		super(props);
 
 		this.state = {
-			helpfulLinksActive: true
+			helpfulLinksActive: false
 		}
 	}
 
-	toggleHelpfulLinks = () => {
+	toggleHelpfulLinks = (e) => {
+		e.preventDefault();
 		this.setState({
-			helpfulLinksActive: !this.helpfulLinksActive
+			helpfulLinksActive: !this.state.helpfulLinksActive
 		});
 	};
 
@@ -30,20 +31,23 @@ export default class BottomNav extends Component {
 
 	render() {
 		const {routing} = this.props;
-
 		const currentUri = routing.locationBeforeTransitions.pathname;
 
 		return (
-			<div className="test">
-				<div className="popover top" role="tooltip">
+			<div className="bottom-nav-wrapper">
+				<div className={`${this.state.helpfulLinksActive ? 'helpful-links-overlay' : ''}`}/>
+				<div className={`popover top helpful-links-wrapper ${this.state.helpfulLinksActive ? 'show' : ''}`}>
 					<div className="arrow"/>
-					<h3 className="popover-title">Popover title</h3>
+					<div className="popover-title">Helpful Links</div>
 					<div className="popover-content">
 						<div className="list-group">
-							<li className="list-group-item"><a href="/">TEST</a></li>
-							<li className="list-group-item"><a href="/">TEST</a></li>
-							<li className="list-group-item"><a href="/">TEST</a></li>
-							<li className="list-group-item"><a href="/">TEST</a></li>
+							<a href="/" className="list-group-item">Icon Assessment</a>
+							<a href="/" className="list-group-item">Travel WOD's</a>
+							<a href="/" className="list-group-item">FAQ's</a>
+							<a href="/" className="list-group-item">Facebook Group</a>
+							<a href="/" className="list-group-item">Athletes Worldwide</a>
+							<a href="/" className="list-group-item">Gear</a>
+							<a href="/" className="list-group-item">Events</a>
 						</div>
 					</div>
 				</div>
