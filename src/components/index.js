@@ -17,3 +17,6 @@ export DailyBrief from './DailyBrief/DailyBrief';
 export ProgrammingBanner from './ProgrammingBanner/ProgrammingBanner';
 export ProgrammingTabs from './ProgrammingTabs/ProgrammingTabs';
 export WorkOutModeTabs from './WorkOutModeTabs/WorkOutModeTabs';
+export EditTracksDotsContainer from './EditTracksDotsContainer/EditTracksDotsContainer';
+export EditTracksBanner from './EditTracksBanner/EditTracksBanner';
+export EditTracksMidSection from './EditTracksMidSection/EditTracksMidSection';

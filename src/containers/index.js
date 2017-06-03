@@ -8,6 +8,7 @@ export Profile from './Profile/Profile';
 export EditProfile from './EditProfile/EditProfile';
 export Programming from './Programming/Programming';
 export WorkOutMode from './WorkOutMode/WorkOutMode';
+export EditTracks from './EditTracks/EditTracks';
 
 export App from './App/App';
 export Home from './Home/Home';

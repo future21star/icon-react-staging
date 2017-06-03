@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
-import './WorkoutModeTabs.scss';
+import './WorkOutModeTabs.scss';
 import WorkOutModeTabsListItem from './WorkOutModeTabsListItem';
 import WorkOutModeTimer from './WorkOutModeTimer';
 
-export default class WorkoutModeTabsListContainer extends Component {
+export default class WorkOutModeTabsContent extends Component {
 
 	render() {
 		return (

@@ -49,6 +49,7 @@ export default (store) => {
 				<Route path="edit-profile" component={containers.EditProfile}/>
 				<Route path="programming" component={containers.Programming}/>
 				<Route path="workout-mode" component={containers.WorkOutMode}/>
+				<Route path="edit-tracks" component={containers.EditTracks}/>
 			</Route>
 
 			<Route onEnter={requiresGuest}>

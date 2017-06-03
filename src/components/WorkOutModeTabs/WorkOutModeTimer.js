@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './WorkoutModeTabs.scss';
+import './WorkOutModeTabs.scss';
 
 export default class WorkOutModeTimer extends Component {
 

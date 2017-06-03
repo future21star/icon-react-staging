@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import WorkoutModeTabContent from './WorkoutModeTabContent';
+import WorkoutModeTabsContent from './WorkOutModeTabsContent';
 import './WorkOutModeTabs.scss';
 
 export default class WorkOutModeTabs extends Component {
@@ -51,13 +51,13 @@ export default class WorkOutModeTabs extends Component {
 				</ul>
 				<div className="tab-content">
 					<div className={`tab-pane ${this.state.activeTab === 'warmUp' ? 'active' : ''}`}>
-						<WorkoutModeTabContent/>
+						<WorkoutModeTabsContent/>
 					</div>
 					<div className={`tab-pane ${this.state.activeTab === 'mainWorkout' ? 'active' : ''}`}>
-						<WorkoutModeTabContent/>
+						<WorkoutModeTabsContent/>
 					</div>
 					<div className={`tab-pane ${this.state.activeTab === 'coolDown' ? 'active' : ''}`}>
-						<WorkoutModeTabContent/>
+						<WorkoutModeTabsContent/>
 					</div>
 				</div>
 			</div>
