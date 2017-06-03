@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import WorkOutModeTabContent from './WorkOutModeTabContent';
+import WorkOutModeTabContent from './WorkOutModeTabsContent';
 import './WorkOutModeTabs.scss';
 
 export default class WorkOutModeTabs extends Component {

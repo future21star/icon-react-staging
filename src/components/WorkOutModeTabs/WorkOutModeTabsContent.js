@@ -4,7 +4,7 @@ import './WorkOutModeTabs.scss';
 import WorkOutModeTabsListItem from './WorkOutModeTabsListItem';
 import WorkOutModeTimer from './WorkOutModeTimer';
 
-export default class WorkOutModeTabContent extends Component {
+export default class WorkOutModeTabsContent extends Component {
 
 	render() {
 		return (
