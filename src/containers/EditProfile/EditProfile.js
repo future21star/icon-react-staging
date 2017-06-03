@@ -1,13 +1,31 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
-import {MenubarWhite} from '../../components';
+import {MenubarWhite, Loader, SuccessMessage, ErrorMessage} from '../../components';
 import {Link} from "react-router";
 import Select from 'react-select';
 import {range} from "lodash";
+import {connect} from "react-redux";
+import {setAuthUserAsEditingUser, changeEditProfileField, editProfile} from "../../redux/modules/editProfileStore";
+
+@connect(
+	state => ({
+		user: state.auth.user,
+		editProfileStore: state.editProfileStore,
+	}),
+	{setAuthUserAsEditingUser, changeEditProfileField, editProfile}
+)
 
 export default class EditProfile extends Component {
-	constructor(props) {
-		super(props);
+	static propTypes = {
+		user: PropTypes.object.isRequired,
+		editProfileStore: PropTypes.object.isRequired,
+		setAuthUserAsEditingUser: PropTypes.func.isRequired,
+		changeEditProfileField: PropTypes.func.isRequired,
+		editProfile: PropTypes.func.isRequired
+	};
+
+	componentDidMount() {
+		this.props.setAuthUserAsEditingUser(this.props.user);
 	}
 
 	genderOptions = ['Male', 'Female'].map(val => {
@@ -29,51 +47,67 @@ export default class EditProfile extends Component {
 	};
 
 	changeGender = (gender) => {
-		this.setState({
-			gender: gender.value
-		});
+		this.props.changeEditProfileField('gender', gender.value);
 	};
 
 	changeHeightFt = (heightFt) => {
-		this.setState({
-			heightFt: heightFt.value
-		});
+		this.props.changeEditProfileField('heightFt', heightFt.value);
 	};
 
 	changeHeightIn = (heightIn) => {
-		this.setState({
-			heightIn: heightIn.value
+		this.props.changeEditProfileField('heightIn', heightIn.value);
+	};
+
+	handleSubmit = (event) => {
+		event.preventDefault();
+		const {editProfileStore} = this.props;
+		this.props.editProfile({
+			name: editProfileStore.editingUser.name,
+			email: editProfileStore.editingUser.email,
+			gender: editProfileStore.editingUser.gender,
+			heightFt: editProfileStore.editingUser.heightFt,
+			heightIn: editProfileStore.editingUser.heightIn,
+			weight: editProfileStore.editingUser.weight
 		});
 	};
 
 	render() {
+		const {editProfileStore, changeEditProfileField} = this.props;
+
 		const rightSideContent = (
 			<Link to="profile" className="text-danger">Cancel</Link>
 		);
 
-		const uploadAvatar = require('../../../static/upload-avatar.png');
-
-		return (
+		return editProfileStore.editingUser ? (
 			<div>
 				<Helmet title="Edit Profile"/>
 
 				<MenubarWhite title="Edit Profile" rightSideContent={rightSideContent}/>
 
-				<form className="register-page--register-form">
+				<form className="register-page--register-form" onSubmit={this.handleSubmit}>
 					<div className="container">
 
 						<div className="row">
 							<div className="col-xs-12">
 
 								<div className="upload-avatar-wrapper">
-									<img src={uploadAvatar}/>
+									<img src={editProfileStore.editingUser.avatar_urls[96]}/>
 								</div>
+
+								<ErrorMessage error={editProfileStore.error}/>
+								<SuccessMessage success={editProfileStore.success}/>
+
 								<div className="form-group">
 									<div className="input-group">
 										<div className="input-group-addon">
 											<span className="icon-user-profile-filled"/>
 										</div>
-										<input type="text" ref="full_name" className="form-control" placeholder="Full Name"/>
+										<input type="text"
+													 name="name"
+													 value={editProfileStore.editingUser.name}
+													 onChange={e => changeEditProfileField(e.target.name, e.target.value)}
+													 className="form-control"
+													 placeholder="Full Name"/>
 									</div>
 								</div>
 
@@ -82,7 +116,12 @@ export default class EditProfile extends Component {
 										<div className="input-group-addon">
 											<span className="icon-email"/>
 										</div>
-										<input type="email" ref="email" className="form-control" placeholder="Your Email"/>
+										<input type="email"
+													 name="email"
+													 value={editProfileStore.editingUser.email}
+													 onChange={e => changeEditProfileField(e.target.name, e.target.value)}
+													 className="form-control"
+													 placeholder="Your Email"/>
 									</div>
 								</div>
 
@@ -91,55 +130,56 @@ export default class EditProfile extends Component {
 										<div className="input-group-addon">
 											<span className="icon-gender"/>
 										</div>
-										<Select
-											name="gender"
-											placeholder="Gender"
-											options={this.genderOptions}
-											onChange={this.changeGender}
-											clearable={false}
-											arrowRenderer={EditProfile.arrowRenderer}
-											className="pretty-select"
-										/>
+										<Select className="pretty-select"
+														value={editProfileStore.editingUser.gender}
+														placeholder="Gender"
+														options={this.genderOptions}
+														onChange={this.changeGender}
+														clearable={false}
+														arrowRenderer={EditProfile.arrowRenderer}/>
 									</div>
 								</div>
 
 								<div className="form-group">
 									<div className="row">
 										<div className="col-xs-4">
-											<Select
-												name="heightFt"
-												placeholder="Height (Ft)"
-												options={this.heightFeetOptions}
-												onChange={this.changeHeightFt}
-												clearable={false}
-												arrowRenderer={EditProfile.arrowRenderer}
-												className="pretty-select"
-											/>
+											<Select placeholder="Height (Ft)"
+															value={editProfileStore.editingUser.heightFt}
+															options={this.heightFeetOptions}
+															onChange={this.changeHeightFt}
+															clearable={false}
+															arrowRenderer={EditProfile.arrowRenderer}
+															className="pretty-select"/>
 										</div>
 										<div className="col-xs-4">
-											<Select
-												name="heightIn"
-												placeholder="Height (In)"
-												options={this.heightInchesOptions}
-												onChange={this.changeHeightIn}
-												clearable={false}
-												arrowRenderer={EditProfile.arrowRenderer}
-												className="pretty-select"
-											/>
+											<Select placeholder="Height (In)"
+															value={editProfileStore.editingUser.heightIn}
+															options={this.heightInchesOptions}
+															onChange={this.changeHeightIn}
+															clearable={false}
+															arrowRenderer={EditProfile.arrowRenderer}
+															className="pretty-select"/>
 										</div>
 										<div className="col-xs-4">
-											<input type="number" ref="weight" className="form-control" placeholder="Weight (Kg)"/>
+											<input name="weight"
+														 type="number"
+														 value={editProfileStore.editingUser.weight}
+														 onChange={e => changeEditProfileField(e.target.name, e.target.value)}
+														 className="form-control"
+														 placeholder="Weight (Kg)"/>
 										</div>
 									</div>
 								</div>
 
 								<button className="btn btn-primary btn-block btn-lg btn-fixed-bottom" type="submit">Save Changes
 								</button>
+
+								{editProfileStore.loading ? <Loader/> : undefined}
 							</div>
 						</div>
 					</div>
 				</form>
 			</div>
-		);
+		) : <Loader/>;
 	}
 }

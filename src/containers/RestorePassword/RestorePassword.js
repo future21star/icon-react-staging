@@ -1,11 +1,25 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
 import {JumbotronWhite, MenubarWhite, ShowPasswordInput} from '../../components';
-import {Link} from "react-router";
+import {Link, withRouter} from "react-router";
+import {connect} from "react-redux";
+import {restorePassword} from "../../redux/modules/restorePasswordStore";
 
+@connect(
+	state => ({
+		restorePasswordStore: state.restorePasswordStore,
+		routing: state.routing
+	}),
+	{restorePassword}
+)
 export default class RestorePassword extends Component {
 
+	static contextTypes = {
+		router: PropTypes.object.isRequired
+	}
+
 	render() {
+		console.log(this.props.params.token);
 		const description = (
 			<div>
 				Write a new password that you will <br/> remember for your account.
@@ -13,7 +27,7 @@ export default class RestorePassword extends Component {
 		);
 
 		const rightSideContent = (
-			<Link to="login" className="text-danger">Cancel</Link>
+			<Link to="/login" className="text-danger">Cancel</Link>
 		);
 		return (
 			<div>

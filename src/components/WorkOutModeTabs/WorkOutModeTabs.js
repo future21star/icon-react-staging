@@ -1,15 +1,16 @@
 import React, {Component} from 'react';
-import WorkoutModeTabsContent from './WorkOutModeTabsContent';
+import WorkOutModeTabContent from './WorkOutModeTabsContent';
 import './WorkOutModeTabs.scss';
 
 export default class WorkOutModeTabs extends Component {
 
-	constructor(props){
+	constructor(props) {
 		super(props);
 		this.state = {
 			activeTab: 'warmUp',
 		};
 	}
+
 	changeTab = (e, tabName) => {
 		e.preventDefault();
 		this.setState({
@@ -51,13 +52,13 @@ export default class WorkOutModeTabs extends Component {
 				</ul>
 				<div className="tab-content">
 					<div className={`tab-pane ${this.state.activeTab === 'warmUp' ? 'active' : ''}`}>
-						<WorkoutModeTabsContent/>
+						<WorkOutModeTabContent/>
 					</div>
 					<div className={`tab-pane ${this.state.activeTab === 'mainWorkout' ? 'active' : ''}`}>
-						<WorkoutModeTabsContent/>
+						<WorkOutModeTabContent/>
 					</div>
 					<div className={`tab-pane ${this.state.activeTab === 'coolDown' ? 'active' : ''}`}>
-						<WorkoutModeTabsContent/>
+						<WorkOutModeTabContent/>
 					</div>
 				</div>
 			</div>

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
 import {MenubarTurquoise, ProfileHeader, SubscriptionUpgradeCard, BottomNav} from '../../components';
 import {Link} from "react-router";
@@ -10,6 +10,9 @@ import {connect} from "react-redux";
 	{logout}
 )
 export default class Profile extends Component {
+	static propTypes = {
+		user: PropTypes.object
+	};
 
 	handleLogout = (event) => {
 		event.preventDefault();
