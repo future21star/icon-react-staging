@@ -1,13 +1,13 @@
 import axios from 'axios';
-import {WP_API_URL} from "../config/app";
+import {WP_API_URL, WP_BASE_URL} from "../config/app";
 import * as models from "../models";
+import levels from '../levels.json';
 
-
-export default function loadAuth(req) {
+export default function loadAuth(request) {
 
 	return new Promise(async (resolve, reject) => {
 		// session does not have email/password
-		if (!req.session.user) return resolve(null);
+		if (!request.session.user) return resolve(null);
 
 		// session have email/password
 		let wpUser = null;
@@ -15,8 +15,8 @@ export default function loadAuth(req) {
 			wpUser = await
 				axios.post(WP_API_URL + '/users/me', {}, {
 					auth: {
-						username: req.session.user.email,
-						password: req.session.user.password
+						username: request.session.user.email,
+						password: request.session.user.password
 					}
 				});
 		} catch (e) {
@@ -44,9 +44,32 @@ export default function loadAuth(req) {
 			return resolve(null);
 		}
 
+		// load users levels
+		let wpSubscription = null;
+		try {
+			wpSubscription = await axios.get(WP_BASE_URL + '/wp-json/rcp/v1/members/' + wpUser.data.id, {
+				auth: {
+					username: request.session.user.email,
+					password: request.session.user.password
+				}
+			});
+		} catch (e) {
+			console.log(e);
+			return resolve(null);
+		}
+
+		let vaultAccess = levels.subscription_levels.filter((level) => {
+			return level.id ===  parseInt(wpSubscription.data.subscription_id)
+		})[0];
+
+		if (typeof vaultAccess === 'undefined') vaultAccess = [];
+		else vaultAccess = vaultAccess.vault_sections;
+
 		return resolve({
 			...wpUser.data,
-			...reactUser.dataValues
+			...reactUser.dataValues,
+			subscription: wpSubscription.data,
+			vaultAccess: vaultAccess
 		});
 	});
 }

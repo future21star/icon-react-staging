@@ -1,0 +1,44 @@
+{
+  "subscription_levels": [
+    {
+      "id": 1,
+      "name": "Base",
+      "vault_sections": [
+        "feed",
+        "programming-single"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Rx",
+      "vault_sections": [
+        "feed",
+        "programming-all"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Masters",
+      "vault_sections": [
+        "nutrition",
+        "programming-masters"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Max",
+      "vault_sections": [
+        "feed",
+        "nutrition",
+        "programming-all"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Nutrition",
+      "vault_sections": [
+        "nutrition"
+      ]
+    }
+  ]
+}
