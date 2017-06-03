@@ -22,9 +22,9 @@ export default class BottomNav extends Component {
 		return (
 			<ul className="nav nav-pills nav-justified navbar-fixed-bottom bottom-nav">
 				{BottomNav.linkItemRender('/', 'icon-nav-home', currentUri)}
-				{BottomNav.linkItemRender('#', 'icon-nav-feed', currentUri)}
+				{BottomNav.linkItemRender('/feed', 'icon-nav-feed', currentUri)}
 				<li><a href="#" className="helpful-links-item"><span className="icon-nav-links"/></a></li>
-				{BottomNav.linkItemRender('#', 'icon-nav-nutrition', currentUri)}
+				{BottomNav.linkItemRender('/nutrition', 'icon-nav-nutrition', currentUri)}
 				{BottomNav.linkItemRender('/programming', 'icon-nav-programming', currentUri)}
 			</ul>
 		);

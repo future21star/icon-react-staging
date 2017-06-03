@@ -11,4 +11,6 @@ export WorkOutMode from './WorkOutMode/WorkOutMode';
 
 export App from './App/App';
 export Home from './Home/Home';
+export Feed from './Feed/Feed';
+export Nutrition from './Nutrition/Nutrition';
 export LoginSuccess from './LoginSuccess/LoginSuccess';
