@@ -57,7 +57,7 @@ export default class WorkOutModeTabsContent extends Component {
 					</ul>
 					<WorkOutModeTimer/>
 					<div className="exit">
-						<Link to="/">Exit</Link>
+						<a href="javascript:history.back()">Exit</a>
 					</div>
 				</div>
 			</div>

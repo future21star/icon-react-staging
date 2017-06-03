@@ -20,7 +20,7 @@ export default class Programming extends Component {
 		const {user} = this.props;
 
 		const leftSideContent = (
-			<Link to="edit-profile">
+			<Link to="/edit-tracks">
 				<span className="icon-user-edit"/>
 			</Link>
 		);

@@ -36,6 +36,9 @@
   .nav-justified li:not(:last-child) a{
     border-right: 1px solid #9a9997!important;
   }
+  .nav > li > a:hover, .nav > li > a:focus {
+    background-color: transparent;
+  }
   .active-black{
     color: black!important;
   }

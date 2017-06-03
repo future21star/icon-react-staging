@@ -28,7 +28,9 @@ export default class DailyBrief extends Component {
 								<div className="daily-brief-header">
 									<h3 className="pull-left">Daily Brief</h3>
 									<span className="pull-right">
-										<i className="icon-arrow-up" onClick={this.toggleBrief}/>
+										<button className="btn btn-link btn-daily-brief-expand" onClick={this.toggleBrief}>
+											<i className="icon-arrow-up"/>
+										</button>
 									</span>
 								</div>
 							</div>

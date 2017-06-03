@@ -12,7 +12,7 @@ export default class EditTracks extends Component {
 			""
 		);
 		const rightSideContent = (
-			<Link to="/workout-mode" className="turquoise-color">
+			<Link to="/programming" className="turquoise-color">
 				Done
 			</Link>
 		);

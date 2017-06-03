@@ -1,32 +1,38 @@
-.daily-brief-wrapper{
+.daily-brief-wrapper {
   background: #fff;
-  .daily-brief-header{
 
-    .icon-arrow-up:before{
+  .btn-daily-brief-expand {
+    padding-right: 0;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  .daily-brief-header {
+
+    .icon-arrow-up:before {
       content: "\e900";
     }
-    .icon-arrow-up{
+    .icon-arrow-up {
       -ms-transform: rotate(180deg);
       -webkit-transform: rotate(180deg);
       transform: rotate(180deg);
     }
-    .icon-arrow-down, .icon-arrow-up{
+    .icon-arrow-down, .icon-arrow-up {
       color: #000;
-      position: relative;
-      top: 15px;
+      //position: relative;
+      //top: 15px;
       font-size: 12px;
-      cursor: pointer;
+      //cursor: pointer;
     }
-    h3{
+    h3 {
       margin-top: 10px;
     }
   }
-  .daily-brief{
+  .daily-brief {
     padding-left: 15px;
     padding-right: 15px;
   }
-  .daily-brief-body{
-    p{
+  .daily-brief-body {
+    p {
       margin-top: 10px;
       font-size: 19px;
       line-height: 27px;

@@ -7,6 +7,12 @@ $input-border-color: #383838;
   outline: none;
 }
 
+.text-white {
+  color: #ffffff;
+  i, span {
+    color: #ffffff;
+  }
+}
 .btn:active, .btn.active {
   box-shadow: none;
 }
