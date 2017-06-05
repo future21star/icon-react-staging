@@ -6,6 +6,7 @@ export default class WorkOutModeTabs extends Component {
 
 	constructor(props) {
 		super(props);
+
 		this.state = {
 			activeTab: 'warmUp',
 		};
@@ -16,7 +17,7 @@ export default class WorkOutModeTabs extends Component {
 		this.setState({
 			activeTab: tabName
 		});
-	}
+	};
 
 	render() {
 		return (

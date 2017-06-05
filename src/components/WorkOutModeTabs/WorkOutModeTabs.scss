@@ -1,17 +1,17 @@
-.workout-mode-tabs{
+.workout-mode-tabs {
   min-height: 100vh;
   background: url('../../../static/bg.jpg') no-repeat center;
   background-size: cover;
-  .overlay{
+  .overlay {
     position: absolute;
-    width:100%;
+    width: 100%;
     height: calc(100% - -40px);
     height: -webkit-calc(100% - -40px);
     background: rgba(0, 0, 0, .7);
   }
-  .nav{
-    li{
-      a{
+  .nav {
+    li {
+      a {
         padding: 0 4px;
         font-size: 14px;
         margin-right: 0;
@@ -23,9 +23,9 @@
   .nav-tabs {
     border-bottom: none;
     background: #f7f6f4;
-    margin-top: 0px;
-    li{
-      a:hover{
+    margin-top: 0;
+    li {
+      a:hover {
         border-color: transparent;
         background: transparent;
       }
@@ -43,25 +43,25 @@
     margin-bottom: 1px;
     border-bottom: none;
   }
-  .nav-justified li:not(:last-child) a{
-    border-right: 1px solid #9a9997!important;
+  .nav-justified li:not(:last-child) a {
+    border-right: 1px solid #9a9997 !important;
   }
   .nav > li > a:hover, .nav > li > a:focus {
     background-color: transparent;
   }
-  .active-black{
-    color: black!important;
+  .active-black {
+    color: black !important;
   }
-  .workout-mode-tabs-list{
+  .workout-mode-tabs-list {
     margin-bottom: 0;
-    li{
+    li {
       list-style-type: none;
       padding: 5px 10px 3px 20px;
       background: transparent;
       /*position: absolute;*/
       left: 0;
       width: 100%;
-      .list-number{
+      .list-number {
         font-family: 'Oswald', sans-serif;
         background: #5dc7d4;
         color: white;
@@ -69,76 +69,76 @@
         border-radius: 50%;
         margin-right: 15px;
       }
-      p{
+      p {
         font-size: 16px;
         margin-top: 5px;
         color: #fffefd;
       }
-      span::after{
+      span::after {
         clear: both;
       }
     }
   }
-  li.list-group-item:last-child{
+  li.list-group-item:last-child {
     border-bottom: none;
   }
-  .list-group-item{
+  .list-group-item {
     border: none;
-    div{
+    div {
       display: table;
     }
   }
-  .red-hyphen{
+  .red-hyphen {
     color: #d2221d;
   }
-  .title{
+  .title {
     color: #5DC6D2;
     position: relative;
     text-align: center;
     padding-top: 60px;
-    h3{
+    h3 {
       margin-top: 0;
       margin-bottom: 20px;
     }
   }
-  .workout-mode-banner-list{
+  .workout-mode-banner-list {
     display: block;
     max-width: 95%;
     margin-left: auto;
     /*margin-right: auto;*/
     padding-bottom: 60px;
-    li:not(:last-child){
+    li:not(:last-child) {
       border-right: 1px solid white;
     }
-    li{
+    li {
       margin-right: 7px;
       padding-right: 10px;
-      h3, p{
+      h3, p {
         color: #fff;
       }
-      p{
-        font-size:14px;
+      p {
+        font-size: 14px;
         font-weight: 300;
         margin-bottom: 0;
       }
-      h3{
+      h3 {
         margin-bottom: 3px;
         letter-spacing: 1px;
         font-size: 18px;
       }
     }
   }
-  .workout-mode-timer-wrapper{
+  .workout-mode-timer-wrapper {
     color: #fff;
     text-align: center;
   }
-  .workout-mode-timer{
+  .workout-mode-timer {
     position: relative;
     text-align: center;
     margin-top: 50px;
     font-size: 38px;
   }
-  .btn-timer{
+  .btn-timer {
     position: relative;
     background: #c02227;
     border: none;
@@ -147,21 +147,21 @@
     margin-top: 15px;
     margin-bottom: 100px;
     font-weight: 300;
-    i{
+    i {
       color: white;
     }
   }
-  .exit{
+  .exit {
     position: fixed;
     bottom: 10px;
     right: 8px;
-    a{
+    a {
       color: #fff;
       font-size: 18px;
       text-decoration: underline;
     }
   }
-  .workout-mode-tabs-content-container-wrapper{
+  .workout-mode-tabs-content-container-wrapper {
     margin-top: 45px;
   }
 }
