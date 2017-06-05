@@ -1,7 +1,11 @@
-.programming-tabs{
-  .nav{
-    li{
-      a{
+.programming-tabs {
+
+  .programming-tabs-list-wrapper {
+    background: #f7f6f4;
+  }
+  .nav {
+    li {
+      a {
         padding: 0 4px;
         font-size: 14px;
         margin-right: 0;
@@ -13,9 +17,8 @@
   .nav-tabs {
     border-bottom: none;
     background: #f7f6f4;
-    margin-top: -10px;
-    li{
-      a:hover{
+    li {
+      a:hover {
         border-color: transparent;
         background: transparent;
       }
@@ -33,25 +36,25 @@
     margin-bottom: 1px;
     border-bottom: none;
   }
-  .nav-justified li:not(:last-child) a{
-    border-right: 1px solid #9a9997!important;
+  .nav-justified li:not(:last-child) a {
+    border-right: 1px solid #9a9997 !important;
   }
   .nav > li > a:hover, .nav > li > a:focus {
     background-color: transparent;
   }
-  .active-black{
-    color: black!important;
+  .active-black {
+    color: black !important;
   }
-  .programming-tabs-list{
+  .programming-tabs-list {
     margin-bottom: 0;
-    li{
+    li {
       list-style-type: none;
-      padding: 20px 10px 12px 20px;
+      padding: 20px 10px 12px 0;
       background: white;
       /*position: absolute;*/
       left: 0;
       width: 100%;
-      .list-number{
+      .list-number {
         font-family: 'Oswald', sans-serif;
         background: #5dc7d4;
         color: white;
@@ -59,27 +62,34 @@
         border-radius: 50%;
         margin-right: 15px;
       }
-      p{
+      p {
         font-size: 16px;
         margin-top: 5px;
       }
-      span::after{
+      span::after {
         clear: both;
       }
     }
   }
-  li.list-group-item:not(:last-child){
+  li.list-group-item {
+    border-left: 0;
+    border-right: 0;
+  }
+  li.list-group-item:first-child {
+    border: none;
+  }
+  li.list-group-item:not(:last-child) {
     border-bottom: 1px solid #9A9A99;
   }
-  li.list-group-item:last-child{
+  li.list-group-item:last-child {
     border-bottom: none;
   }
-  .list-group-item{
-    div{
+  .list-group-item {
+    div {
       display: table;
     }
   }
-  .red-hyphen{
+  .red-hyphen {
     color: #d2221d;
   }
 }

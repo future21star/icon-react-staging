@@ -8,24 +8,24 @@ export default class ProgrammingHeader extends Component {
 
 	render() {
 		const {user} = this.props;
-		const profileAvatar = require('../../../static/profile-avatar.jpg');
 
 		return user ? (
-				<div className="programming-header">
-					<div className="container">
-						<div className="row">
+			<div className="programming-header-wrapper">
+				<div className="container">
+					<div className="row">
+						<div className="col-xs-12">
 							<ul className="nav nav-pills nav-justified">
-								<li role="presentation"><span>Su</span></li>
-								<li role="presentation"><span>Mo</span></li>
-								<li role="presentation"><span>Tu</span></li>
-								<li role="presentation"><span>We</span></li>
-								<li role="presentation"><span>Th</span></li>
-								<li role="presentation"><span className="active">Fr</span></li>
-								<li role="presentation"><span>Sa</span></li>
+								<li><span>Su</span></li>
+								<li><span>Mo</span></li>
+								<li><span>Tu</span></li>
+								<li><span>We</span></li>
+								<li><span>Th</span></li>
+								<li><span className="active">Fr</span></li>
+								<li><span>Sa</span></li>
 							</ul>
-							<div className="title">
-								<p>Lifestyle Track</p>
-							</div>
+						</div>
+						<div className="col-xs-12">
+							<div className="title">Lifestyle Track</div>
 							<ul className="list-inline dot-list">
 								<li><span className="dot active"/></li>
 								<li><span className="dot"/></li>
@@ -33,7 +33,7 @@ export default class ProgrammingHeader extends Component {
 							</ul>
 						</div>
 					</div>
-
-				</div>) : <div/>;
+				</div>
+			</div>) : <div/>;
 	}
 }

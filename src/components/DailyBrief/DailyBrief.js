@@ -10,48 +10,38 @@ export default class DailyBrief extends Component {
 		};
 		this.toggleBrief = this.toggleBrief.bind(this);
 	}
+
 	static propTypes = {
 		user: PropTypes.object,
 	};
-	toggleBrief(){
+
+	toggleBrief() {
 		this.setState({
 			isExpanded: !this.state.isExpanded
 		});
 	}
+
 	render() {
 		const {user} = this.props;
+
 		return user ? (
-				<div className="daily-brief-wrapper">
-					<div className="container">
-						<div className="daily-brief">
-							<div className="row">
-								<div className="daily-brief-header">
-									<h3 className="pull-left">Daily Brief</h3>
-									<span className="pull-right">
-										<button className="btn btn-link btn-daily-brief-expand" onClick={this.toggleBrief}>
-											<i className="icon-arrow-up"/>
-										</button>
-									</span>
-								</div>
-							</div>
-
-							<div className="row">
-								{
-									this.state.isExpanded ?
-
-									<div className="daily-brief-body">
-										<p>
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-											Sed vel quam ac quam scelerisque imperdiet ut sit amet sapien.
-										</p>
-									</div> :
-
-									<div/>
-								}
-
+			<div className="daily-brief-wrapper">
+				<div className="container">
+					<div className="daily-brief-header" onClick={this.toggleBrief}>
+						<span className="daily-brief-header-text">Daily Brief</span>
+						<div className="pull-right">
+							<div className={`daily-brief-expand-btn ${this.state.isExpanded ? 'active' : ''}`}>
+								<span className="icon-arrow-down"/>
 							</div>
 						</div>
 					</div>
-				</div>) : <div/>;
+					{ this.state.isExpanded ? (
+						<div className="daily-brief-body">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+							Sed vel quam ac quam scelerisque imperdiet ut sit amet sapien.
+						</div>)
+						: undefined}
+				</div>
+			</div>) : <div/>;
 	}
 }

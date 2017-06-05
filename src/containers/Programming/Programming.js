@@ -1,20 +1,21 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
-import {MenubarBlue, ProgrammingHeader, BottomNav, DailyBrief, ProgrammingBanner, ProgrammingTabs} from '../../components';
+import {
+	MenubarBlue,
+	ProgrammingHeader,
+	BottomNav,
+	DailyBrief,
+	ProgrammingBanner,
+	ProgrammingTabs
+} from '../../components';
 import {Link} from "react-router";
-import {logout} from "../../redux/modules/auth";
 import {connect} from "react-redux";
 
 @connect(
 	state => ({user: state.auth.user}),
-	{logout}
+	{}
 )
 export default class Programming extends Component {
-
-	handleLogout = (event) => {
-		event.preventDefault();
-		this.props.logout();
-	};
 
 	render() {
 		const {user} = this.props;
@@ -31,15 +32,9 @@ export default class Programming extends Component {
 			</Link>
 		);
 
-		const subscribeCardDescription = (
-			<div>
-				Lorem ispum demo content
-			</div>
-		);
-
 		return (
 			<div className="programming-page-wrapper bottom-padding">
-				<Helmet title="Profile"/>
+				<Helmet title="Programming"/>
 				<MenubarBlue
 					title="Programming"
 					leftSideContent={leftSideContent}

@@ -7,7 +7,7 @@ export default class ProgrammingBanner extends Component {
 		return (
 			<div className="programming-banner-wrapper">
 				<div className="programming-banner">
-					<div className="overlay"></div>
+					<div className="overlay"/>
 					<div className="title">
 						<h3>EMOM</h3>
 
