@@ -139,6 +139,7 @@
     font-size: 38px;
   }
   .btn-timer {
+    outline: none;
     position: relative;
     background: #c02227;
     border: none;
@@ -147,6 +148,7 @@
     margin-top: 15px;
     margin-bottom: 100px;
     font-weight: 300;
+    cursor: pointer;
     i {
       color: white;
     }
