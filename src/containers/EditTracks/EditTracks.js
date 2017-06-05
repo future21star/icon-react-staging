@@ -3,25 +3,23 @@ import Helmet from 'react-helmet';
 import {MenubarWhite, EditTracksDotsContainer, EditTracksBanner, EditTracksMidSection} from '../../components';
 import {Link} from "react-router";
 import './EditTracks.scss';
-import binImg from '../../../static/bin.png';
 
 export default class EditTracks extends Component {
 
 	render() {
-		const leftSideContent = (
-			""
-		);
+		const binImg = require('../../../static/bin.png');
+
 		const rightSideContent = (
 			<Link to="/programming" className="turquoise-color">
 				Done
 			</Link>
 		);
+
 		return (
 			<div className="edit-tracks-wrapper">
 				<Helmet title="Edit Tracks"/>
 				<MenubarWhite
 					title="Edit Tracks"
-					leftSideContent={leftSideContent}
 					rightSideContent={rightSideContent}
 				/>
 				<EditTracksDotsContainer/>
