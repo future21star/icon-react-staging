@@ -1,49 +1,9 @@
 .programming-header-wrapper {
   background: #5bc6f7;
-
-  .nav-justified {
-    text-align: center;
-    .active {
-      border-radius: 50%;
-      border: 1px solid #fff;
-      padding: 8px 10px 8px 10px;
-    }
-  }
-  .nav-justified > li {
-    display: table-cell;
-    width: 1%;
-    color: #fff;
-    min-width: 35px;
-  }
-  .programming-day-list li {
-    padding-left: 13px;
-    padding-right: 12px;
-    width: 14%;
-    color: #fff;
-    font-weight: 300;
-  }
   .title {
     text-align: center;
     margin-top: 15px;
     font-size: 16px;
     color: #fff;
-  }
-  .dot-list {
-    text-align: center;
-    padding-top: 5px;
-
-    .dot {
-      width: 5px;
-      height: 5px;
-      margin: 5px -1px;
-      background: transparent;
-      display: block;
-      transition: opacity .2s ease;
-      border-radius: 30px;
-      border: 1px solid white;
-    }
-    .active {
-      background: #fff;
-    }
   }
 }

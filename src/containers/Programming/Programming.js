@@ -5,11 +5,12 @@ import {
 	ProgrammingHeader,
 	BottomNav,
 	DailyBrief,
-	ProgrammingBanner,
+	TrackBanner,
 	ProgrammingTabs
 } from '../../components';
 import {Link} from "react-router";
 import {connect} from "react-redux";
+import gymBodyImg from '../../../static/gym-body.jpg';
 
 @connect(
 	state => ({user: state.auth.user}),
@@ -42,7 +43,11 @@ export default class Programming extends Component {
 				/>
 				<ProgrammingHeader user={user}/>
 				<DailyBrief user={user}/>
-				<ProgrammingBanner/>
+				<TrackBanner
+					midContent=""
+					title="emom"
+					bgImg={gymBodyImg}
+				/>
 				<ProgrammingTabs/>
 				<BottomNav/>
 			</div>

@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
-import {BottomNav, MenubarTurquoise} from '../../components'
+import {BottomNav, MenubarTurquoise, DailyBrief, TrackBanner, ProgrammingTabs} from '../../components';
 import {Link} from "react-router";
 import {connect} from "react-redux";
-
+import gymBodyImg from '../../../static/gym-body.jpg';
 @connect(
 	state => ({user: state.auth.user}),
 	{}
@@ -23,19 +23,47 @@ export default class Home extends Component {
 			</Link>
 		);
 
+		const midContent = (
+			<div className="mid-content-section">
+				<span className="icon-track-dynamic">
+					<span className="path1"/>
+					<span className="path2"/>
+					<span className="path3"/>
+					<span className="path4"/>
+					<span className="path5"/>
+					<span className="path6"/>
+					<span className="path7"/>
+					<span className="path8"/>
+				</span>
+				<h1>Dynamic</h1>
+			</div>
+		);
+
 		return (
 			<div >
 				<Helmet title="Home"/>
 
-				<MenubarTurquoise title="Today's Workout"
-													leftSideContent={leftSideContent}
-													rightSideContent={rightSideContent}/>
+				<MenubarTurquoise
+					title="Today's Workout"
+					leftSideContent={leftSideContent}
+					rightSideContent={rightSideContent}
+				/>
+
+				<DailyBrief user={user}/>
+
+				<TrackBanner
+					midContent = {midContent}
+					title="Amrap 7 min."
+					bgImg={gymBodyImg}
+				/>
+
+				<ProgrammingTabs/>
+
 				<div className="container">
-					<h1>Home page</h1>
 
 					<br/>
 					<br/>
-					<div className="panel panel-default">
+					<div className="panel panel-default panel-home">
 						<div className="panel-heading">
 							<h3 className="panel-title">You subscription status (for demo only)</h3>
 						</div>
