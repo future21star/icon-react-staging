@@ -1,18 +1,26 @@
 import React, {Component} from 'react';
 import './EditTracksDotsContainer.scss';
+import DotList from '../DotList/DotList';
 
 export default class EditTracksDotsContainer extends Component {
 
 	render() {
+		const {selectedTrack, allTracks} = this.props;
+		const allTracksTitle = [];
+
+		allTracks.map((track, i) => {
+			allTracksTitle.push(track.title);
+		});
+
+		//console.log(allTracksTitle);
+
 		return (
 			<div className="edit-tracks-dots-container-wrapper">
 				<div className="edit-tracks-dots-container">
-					<ul className="list-inline dot-list">
-						<li><span className="dot active"/></li>
-						<li><span className="dot"/></li>
-						<li><span className="dot"/></li>
-						<li><span className="dot"/></li>
-					</ul>
+					<DotList
+						selectedTrack={selectedTrack}
+						allTracks={allTracksTitle}
+					/>
 				</div>
 			</div>
 		);
