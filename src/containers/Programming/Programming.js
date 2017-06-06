@@ -68,8 +68,6 @@ export default class Programming extends Component {
 					rightSideContent={rightSideContent}
 				/>
 				<ProgrammingHeader user={user}/>
-
-
 				<ReactSwipe className="carousel" swipeOptions={swipeConfig}>
 					{Programming.allTracks.map((track, i) => {
 						return (
@@ -85,7 +83,6 @@ export default class Programming extends Component {
 						);
 					})}
 				</ReactSwipe>
-
 				<BottomNav/>
 			</div>
 		);
