@@ -11,12 +11,34 @@ import {
 import {Link} from "react-router";
 import {connect} from "react-redux";
 import gymBodyImg from '../../../static/gym-body.jpg';
+import ReactSwipe from 'react-swipe';
 
 @connect(
 	state => ({user: state.auth.user}),
 	{}
 )
 export default class Programming extends Component {
+
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			selectedTrack: "Lifestyle"
+		}
+	}
+
+	static allTracks = [
+		'Lifestyle',
+		'Dynamic',
+		'Hyper',
+		'Strength'
+	];
+
+	selectTrack = (newSelectedTrack) => {
+		this.setState({
+			selectedTrack: newSelectedTrack
+		})
+	};
 
 	render() {
 		const {user} = this.props;
@@ -33,6 +55,10 @@ export default class Programming extends Component {
 			</Link>
 		);
 
+		const swipeConfig = {
+			callback: (index, elem) => this.selectTrack(elem.getAttribute('name'))
+		};
+
 		return (
 			<div className="programming-page-wrapper bottom-padding">
 				<Helmet title="Programming"/>
@@ -42,13 +68,24 @@ export default class Programming extends Component {
 					rightSideContent={rightSideContent}
 				/>
 				<ProgrammingHeader user={user}/>
-				<DailyBrief user={user}/>
-				<TrackBanner
-					midContent=""
-					title="emom"
-					bgImg={gymBodyImg}
-				/>
-				<ProgrammingTabs/>
+
+
+				<ReactSwipe className="carousel" swipeOptions={swipeConfig}>
+					{Programming.allTracks.map((track, i) => {
+						return (
+							<div name={track} key={i}>
+								<DailyBrief user={user}/>
+								<TrackBanner
+									midContent=""
+									title="emom"
+									bgImg={gymBodyImg}
+								/>
+								<ProgrammingTabs/>
+							</div>
+						);
+					})}
+				</ReactSwipe>
+
 				<BottomNav/>
 			</div>
 		);
