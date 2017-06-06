@@ -7,8 +7,23 @@ import dynamicBG from '../../../static/dynamicBG.jpg';
 import strengthBG from '../../../static/strengthBG.jpg';
 import lifestyleBG from '../../../static/lifestyleBG.jpg';
 import hyperBG from '../../../static/hyperBG.jpg';
+import ReactSwipe from 'react-swipe';
+
 
 export default class EditTracks extends Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			selectedTrack: "dynamic"
+		}
+	}
+
+	selectTrack = (newSelectedTrack) => {
+		this.setState({
+			selectedTrack: newSelectedTrack
+		})
+	};
 
 	render() {
 		const rightSideContent = (
@@ -65,35 +80,67 @@ export default class EditTracks extends Component {
 									<span className="path10"/>
 								</span>);
 
+		const swipeConfig = {
+			callback: (index, elem) => this.selectTrack(elem.getAttribute('name'))
+		};
+
+		const allTracks  = [
+			{
+				bgImg: dynamicBG,
+				title: "Dynamic",
+				trackIcon: trackIconDynamic,
+				isSubscribed: true
+			},
+			{
+				bgImg: strengthBG,
+				title: "Strength",
+				trackIcon: trackIconStrength,
+				isSubscribed: false
+			},
+			{
+				bgImg: lifestyleBG,
+				title: "Lifestyle",
+				trackIcon: trackIconLifestyle,
+				isSubscribed: true
+			},
+			{
+				bgImg: lifestyleBG,
+				title: "Hyper",
+				trackIcon: trackIconHyper,
+				isSubscribed: false
+			}
+		];
+
 		return (
 			<div className="edit-tracks-wrapper">
 				<Helmet title="Edit Tracks"/>
+
 				<MenubarWhite
 					title="Edit Tracks"
 					rightSideContent={rightSideContent}
 				/>
-				<EditTracksDotsContainer/>
-				<EditTracksBanner
-					bgImg={dynamicBG}
-					title="Dynamic"
-					trackIcon={trackIconDynamic}
+
+				<EditTracksDotsContainer
+					selectedTrack={this.state.selectedTrack}
+					allTracks={allTracks}
 				/>
-				{/*<EditTracksBanner
-					bgImg={strengthBG}
-					title="Strength"
-					trackIcon={trackIconStrength}
-				/>
-				<EditTracksBanner
-					bgImg={lifestyleBG}
-					title="Lifestyle"
-					trackIcon={trackIconLifestyle}
-				/>
-				<EditTracksBanner
-					bgImg={lifestyleBG}
-					title="Hyper"
-					trackIcon={trackIconHyper}
-				/>*/}
-				<EditTracksMidSection/>
+
+				<ReactSwipe className="carousel" swipeOptions={swipeConfig}>
+					{allTracks.map((track, i) => {
+						return (
+							<div name={track.title} key={track.title}>
+								<EditTracksBanner
+									bgImg={track.bgImg}
+									title={track.title}
+									trackIcon={track.trackIcon}
+									isSubscribed={track.isSubscribed}
+								/>
+								<EditTracksMidSection/>
+							</div>
+						);
+					})}
+				</ReactSwipe>
+
 				<BtnBottom
 					classNames="btn btn-block btn-lg btn-fixed-bottom btn-danger btn-font-lg"
 					title="Delete This Track"
