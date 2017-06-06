@@ -9,7 +9,7 @@ export default class ProgrammingHeader extends Component {
 	};
 
 	render() {
-		const {user} = this.props;
+		const {user, selectedTrack, allTracks} = this.props;
 
 		return user ? (
 			<div className="programming-header-wrapper">
@@ -20,7 +20,10 @@ export default class ProgrammingHeader extends Component {
 						</div>
 						<div className="col-xs-12">
 							<div className="title">Lifestyle Track</div>
-							<DotList/>
+							<DotList
+								selectedTrack={selectedTrack}
+								allTracks={allTracks}
+							/>
 						</div>
 					</div>
 				</div>

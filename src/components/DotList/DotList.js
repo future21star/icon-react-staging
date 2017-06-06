@@ -4,12 +4,17 @@ import './DotList.scss';
 export default class DotList extends Component {
 
 	render() {
+		const {selectedTrack, allTracks} = this.props;
 		return (
 			<div className="dotlist-wrapper">
 				<ul className="list-inline dot-list">
-					<li><span className="dot active"/></li>
-					<li><span className="dot"/></li>
-					<li><span className="dot"/></li>
+					{allTracks.map((track, i) => {
+						return (
+							<li key={track}>
+								<span className={`dot ${selectedTrack.toLowerCase() == track.toLowerCase() ? 'active' : ''}`}/>
+							</li>
+						);
+					})}
 				</ul>
 			</div>
 		);

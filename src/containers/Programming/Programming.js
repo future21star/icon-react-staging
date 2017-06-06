@@ -67,7 +67,11 @@ export default class Programming extends Component {
 					leftSideContent={leftSideContent}
 					rightSideContent={rightSideContent}
 				/>
-				<ProgrammingHeader user={user}/>
+				<ProgrammingHeader
+					user={user}
+					selectedTrack={this.state.selectedTrack}
+					allTracks={Programming.allTracks}
+				/>
 				<ReactSwipe className="carousel" swipeOptions={swipeConfig}>
 					{Programming.allTracks.map((track, i) => {
 						return (

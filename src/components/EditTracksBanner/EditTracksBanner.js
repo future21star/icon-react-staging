@@ -1,12 +1,17 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import './EditTracksBanner.scss';
 
 export default class EditTracksBanner extends Component {
 
+	static propTypes = {
+		bgImg: PropTypes.string,
+		title: PropTypes.string,
+		trackIcon: PropTypes.object,
+		isSubscribed: PropTypes.bool
+	};
+
 	render() {
-		const cycleImg = require('./../../../static/bicycle.png');
-		const checkImg = require('./../../../static/checked.png');
-		const {bgImg, title, trackIcon} = this.props;
+		const {bgImg, title, trackIcon, isSubscribed} = this.props;
 		return (
 			<div className="edit-tracks-banner-wrapper">
 				<div className="edit-tracks-banner" style={{backgroundImage: 'url(' + bgImg + ')',}}>
@@ -14,7 +19,7 @@ export default class EditTracksBanner extends Component {
 					<div className="title">
 						{trackIcon}
 						<h1>{title}</h1>
-						<span className="icon-checkmark"/>
+						{isSubscribed? <span className="icon-checkmark"/> : undefined}
 					</div>
 				</div>
 			</div>
