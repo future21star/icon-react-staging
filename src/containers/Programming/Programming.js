@@ -5,11 +5,12 @@ import {
 	ProgrammingHeader,
 	BottomNav,
 	DailyBrief,
-	ProgrammingBanner,
+	TrackBanner,
 	ProgrammingTabs
 } from '../../components';
 import {Link} from "react-router";
 import {connect} from "react-redux";
+import gymBodyImg from '../../../static/gym-body.jpg';
 import ReactSwipe from 'react-swipe';
 
 @connect(
@@ -72,7 +73,11 @@ export default class Programming extends Component {
 						return (
 							<div name={track} key={i}>
 								<DailyBrief user={user}/>
-								<ProgrammingBanner/>
+								<TrackBanner
+									midContent=""
+									title="emom"
+									bgImg={gymBodyImg}
+								/>
 								<ProgrammingTabs/>
 							</div>
 						);

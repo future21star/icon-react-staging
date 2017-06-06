@@ -1,5 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import './ProgrammingHeader.scss';
+import DayPicker from '../DayPicker/DayPicker';
+import DotList from '../DotList/DotList';
 
 export default class ProgrammingHeader extends Component {
 	static propTypes = {
@@ -14,23 +16,11 @@ export default class ProgrammingHeader extends Component {
 				<div className="container">
 					<div className="row">
 						<div className="col-xs-12">
-							<ul className="nav nav-pills nav-justified">
-								<li><span>Su</span></li>
-								<li><span>Mo</span></li>
-								<li><span>Tu</span></li>
-								<li><span>We</span></li>
-								<li><span>Th</span></li>
-								<li><span className="active">Fr</span></li>
-								<li><span>Sa</span></li>
-							</ul>
+							<DayPicker/>
 						</div>
 						<div className="col-xs-12">
 							<div className="title">Lifestyle Track</div>
-							<ul className="list-inline dot-list">
-								<li><span className="dot active"/></li>
-								<li><span className="dot"/></li>
-								<li><span className="dot"/></li>
-							</ul>
+							<DotList/>
 						</div>
 					</div>
 				</div>

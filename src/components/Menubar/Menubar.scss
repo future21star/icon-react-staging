@@ -40,6 +40,12 @@
         color: #fff;
       }
     }
+    &.menu-bar-with-dot-list{
+      padding-bottom: 5px!important;
+      ul{
+        margin-bottom:0;
+      }
+    }
   }
 
   &.menu-bar-blue {
@@ -63,5 +69,4 @@
       }
     }
   }
-
 }
