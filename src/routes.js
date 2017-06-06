@@ -44,7 +44,6 @@ export default (store) => {
 			<IndexRoute component={containers.Home} onEnter={requiresAuth}/>
 
 			<Route onEnter={requiresAuth}>
-				<Route path="loginSuccess" component={containers.LoginSuccess}/>
 				<Route path="profile" component={containers.Profile}/>
 				<Route path="edit-profile" component={containers.EditProfile}/>
 				<Route path="programming" component={containers.Programming}/>
@@ -56,10 +55,6 @@ export default (store) => {
 
 			<Route onEnter={requiresGuest}>
 				<Route path="login" component={containers.Login}/>
-				<Route path="register" component={containers.Register}/>
-				<Route path="verified-account" component={containers.VerifiedAccount}/>
-				<Route path="forgot-password" component={containers.ForgotPassword}/>
-				<Route path="restore-password" component={containers.RestorePassword}/>
 			</Route>
 
 			<Route path="*" component={containers.NotFound} status={404}/>

@@ -60,7 +60,7 @@ export default function login(request) {
 			return reject(generalError("Error in email or password"));
 		}
 		let vaultAccess = levels.subscription_levels.filter((level) => {
-			return level.id ===  parseInt(wpSubscription.data.subscription_id)
+			return level.id === parseInt(wpSubscription.data.subscription_id)
 		})[0];
 
 		if (typeof vaultAccess === 'undefined') vaultAccess = [];
