@@ -1,18 +1,20 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import Helmet from 'react-helmet';
-import {login} from '../../redux/modules/auth';
+import {login} from '../../redux/modules/loginStore';
 import {Loader, Logo, FacebookButton, ShowPasswordInput, ErrorMessage, SuccessMessage} from '../../components';
 import {Link} from "react-router";
 
 @connect(
 	state => ({
-		auth: state.auth
+		loginStore: state.loginStore
 	}),
-	{login})
+	{login}
+)
+
 export default class Login extends Component {
 	static propTypes = {
-		auth: PropTypes.object,
+		loginStore: PropTypes.object,
 		login: PropTypes.func,
 	};
 
@@ -43,12 +45,12 @@ export default class Login extends Component {
 	}
 
 	renderLoginForm() {
-		const {auth} = this.props;
+		const {loginStore} = this.props;
 
 		return (
 			<div>
-				<ErrorMessage error={auth.error}/>
-				<SuccessMessage success={auth.success}/>
+				<ErrorMessage error={loginStore.error}/>
+				<SuccessMessage success={loginStore.success}/>
 				<form className="login-page--login-form" onSubmit={this.handleSubmit}>
 					<div className="form-group">
 						<FacebookButton/>
@@ -68,7 +70,7 @@ export default class Login extends Component {
 						<button className="btn btn-danger btn-block btn-lg" type="submit">Log In</button>
 					</div>
 
-					{auth.loading ? <Loader/> : undefined}
+					{loginStore.loading ? <Loader/> : undefined}
 
 				</form>
 				<div className="login-page--forgot-password-link-wrapper">

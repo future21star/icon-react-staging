@@ -2,7 +2,7 @@ import * as models from '../../models';
 import axios from 'axios';
 import {generalError, validationError} from "../../utils/message";
 import loginRules from '../../validators/loginRules';
-import {WP_API_URL, WP_BASE_URL} from '../../config/app';
+import {WP_API_URL} from '../../config/app';
 import levels from '../../levels.json';
 
 export default function login(request) {
@@ -17,7 +17,7 @@ export default function login(request) {
 		// find wp user
 		let wpUser = null;
 		try {
-			wpUser = await axios.post(WP_API_URL + '/users/me', {}, {
+			wpUser = await axios.post(WP_API_URL + '/wp/v2/users/me', {}, {
 				auth: {
 					username: email,
 					password: password
@@ -49,7 +49,7 @@ export default function login(request) {
 		// load users levels
 		let wpSubscription = null;
 		try {
-			wpSubscription = await axios.get(WP_BASE_URL + '/wp-json/rcp/v1/members/' + wpUser.data.id, {
+			wpSubscription = await axios.get(WP_API_URL + '/rcp/v1/members/' + wpUser.data.id, {
 				auth: {
 					username: email,
 					password: password
@@ -77,10 +77,12 @@ export default function login(request) {
 
 		// response
 		return resolve({
-			...wpUser.data,
-			...reactUser.dataValues,
-			subscription: wpSubscription.data,
-			vaultAccess: vaultAccess,
+			user: {
+				...wpUser.data,
+				...reactUser.dataValues,
+				subscription: wpSubscription.data,
+				vaultAccess: vaultAccess
+			}
 		});
 	})
 }
