@@ -1,13 +1,24 @@
 .workout-mode-tabs {
   min-height: 100vh;
-  background: url('../../../static/bg.jpg') no-repeat center;
+  background: url('../../../static/workout_mode.jpg') no-repeat center;
   background-size: cover;
-  .overlay {
+  /*.overlay {
     position: absolute;
     width: 100%;
     height: calc(100% - -40px);
     height: -webkit-calc(100% - -40px);
     background: rgba(0, 0, 0, .7);
+  }*/
+  .overlay{
+    background-image: -moz-linear-gradient( 90deg, rgb(93,199,211) 0%, rgb(163,8,55) 99%);
+    background-image: -webkit-linear-gradient( 90deg, rgb(93,199,211) 0%, rgb(163,8,55) 99%);
+    background-image: -ms-linear-gradient( 90deg, rgb(93,199,211) 0%, rgb(163,8,55) 99%);
+    opacity: 0.9;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
   }
   .nav {
     li {
@@ -16,13 +27,13 @@
         font-size: 14px;
         margin-right: 0;
         font-family: 'Oswald', sans-serif;
-        color: #847f7f;
+        color: #cecfc9;
       }
     }
   }
   .nav-tabs {
     border-bottom: none;
-    background: #f7f6f4;
+    background: transparent;
     margin-top: 0;
     li {
       a:hover {
@@ -49,8 +60,8 @@
   .nav > li > a:hover, .nav > li > a:focus {
     background-color: transparent;
   }
-  .active-black {
-    color: black !important;
+  .active {
+    color: #fffbff !important;
   }
   .workout-mode-tabs-list {
     margin-bottom: 0;
@@ -61,6 +72,7 @@
       /*position: absolute;*/
       left: 0;
       width: 100%;
+      margin-bottom: 0;
       .list-number {
         font-family: 'Oswald', sans-serif;
         background: #5dc7d4;
@@ -95,7 +107,7 @@
     color: #5DC6D2;
     position: relative;
     text-align: center;
-    padding-top: 60px;
+    padding-top: 25px;
     h3 {
       margin-top: 0;
       margin-bottom: 20px;
@@ -106,7 +118,7 @@
     max-width: 95%;
     margin-left: auto;
     /*margin-right: auto;*/
-    padding-bottom: 60px;
+    padding-bottom: 10px;
     li:not(:last-child) {
       border-right: 1px solid white;
     }
@@ -126,6 +138,11 @@
         letter-spacing: 1px;
         font-size: 18px;
       }
+    }
+  }
+  @media(min-width: 768px){
+    .workout-mode-banner-list{
+      margin-right: auto;
     }
   }
   .workout-mode-timer-wrapper {
@@ -164,6 +181,6 @@
     }
   }
   .workout-mode-tabs-content-container-wrapper {
-    margin-top: 45px;
+    margin-top: 15px;
   }
 }
