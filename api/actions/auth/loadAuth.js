@@ -6,19 +6,17 @@ import levels from '../../levels.json';
 export default function loadAuth(request) {
 
 	return new Promise(async (resolve, reject) => {
-		// session does not have email/password
+		// session does not have token
 		if (!request.session.user) return resolve({user: null});
 
-		// session have email/password
+		// session have token
 		let wpUser = null;
 		try {
-			wpUser = await
-				axios.post(WP_API_URL + '/wp/v2/users/me', {}, {
-					auth: {
-						username: request.session.user.email,
-						password: request.session.user.password
-					}
-				});
+			wpUser = await axios.post(WP_API_URL + '/wp/v2/users/me', {}, {
+				headers: {
+					Authorization: 'Bearer ' + request.session.user.token
+				}
+			});
 		} catch (e) {
 			console.log(e);
 			return resolve({user: null});
@@ -30,13 +28,13 @@ export default function loadAuth(request) {
 			reactUser = await
 				models.User.findOne({
 					where: {
-						wpUserId: wpUser.data.id
+						wpUserId: request.session.user.id
 					}
 				});
 			if (!reactUser) {
 				reactUser = await
 					models.User.create({
-						wpUserId: wpUser.data.id
+						wpUserId: request.session.user.id
 					});
 			}
 		} catch (e) {
@@ -47,10 +45,9 @@ export default function loadAuth(request) {
 		// load users levels
 		let wpSubscription = null;
 		try {
-			wpSubscription = await axios.get(WP_API_URL + '/rcp/v1/members/' + wpUser.data.id, {
-				auth: {
-					username: request.session.user.email,
-					password: request.session.user.password
+			wpSubscription = await axios.get(WP_API_URL + '/rcp/v1/members/' + request.session.user.id, {
+				headers: {
+					Authorization: 'Bearer ' + request.session.user.token
 				}
 			});
 		} catch (e) {

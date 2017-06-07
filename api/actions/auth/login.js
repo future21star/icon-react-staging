@@ -14,14 +14,12 @@ export default function login(request) {
 		let errors = request.validationErrors();
 		if (errors) return reject(validationError(errors));
 
-		// find wp user
-		let wpUser = null;
+		// get JWT Token
+		let jwtResponse = null;
 		try {
-			wpUser = await axios.post(WP_API_URL + '/wp/v2/users/me', {}, {
-				auth: {
-					username: email,
-					password: password
-				}
+			jwtResponse = await axios.post(WP_API_URL + '/jwt-auth/v1/token', {
+				username: email,
+				password: password
 			});
 		} catch (e) {
 			console.log(e);
@@ -33,12 +31,12 @@ export default function login(request) {
 		try {
 			reactUser = await models.User.findOne({
 				where: {
-					wpUserId: wpUser.data.id
+					wpUserId: jwtResponse.data.user_id
 				}
 			});
 			if (!reactUser) {
 				reactUser = await models.User.create({
-					wpUserId: wpUser.data.id
+					wpUserId: jwtResponse.data.user_id
 				});
 			}
 		} catch (e) {
@@ -46,18 +44,29 @@ export default function login(request) {
 			return reject(generalError("Error in email or password"));
 		}
 
-		// load users levels
-		let wpSubscription = null;
+		// find wp user
+		let wpUser = null;
 		try {
-			wpSubscription = await axios.get(WP_API_URL + '/rcp/v1/members/' + wpUser.data.id, {
-				auth: {
-					username: email,
-					password: password
+			wpUser = await axios.post(WP_API_URL + '/wp/v2/users/me', {}, {
+				headers: {
+					Authorization: 'Bearer ' + jwtResponse.data.token
 				}
 			});
 		} catch (e) {
 			console.log(e);
-			return reject(generalError("Error in email or password"));
+			return reject(generalError(e.response.data.message));
+		}
+
+		// load users levels
+		let wpSubscription = null;
+		try {
+			wpSubscription = await axios.get(WP_API_URL + '/rcp/v1/members/' + jwtResponse.data.user_id, {
+				headers: {
+					Authorization: 'Bearer ' + jwtResponse.data.token
+				}
+			});
+		} catch (e) {
+			return reject(generalError(e.response.data.message));
 		}
 		let vaultAccess = levels.subscription_levels.filter((level) => {
 			return level.id === parseInt(wpSubscription.data.subscription_id)
@@ -69,9 +78,8 @@ export default function login(request) {
 
 		// save login credentials in session
 		request.session.user = {
-			id: wpUser.data.id,
-			email,
-			password,
+			id: jwtResponse.data.user_id,
+			token: jwtResponse.data.token,
 			vaultAccess
 		};
 

@@ -18,9 +18,8 @@ export default function editProfile(request) {
 		let wpUser = null;
 		try {
 			wpUser = await axios.patch(WP_API_URL + '/wp/v2/users/me', {name, email}, {
-				auth: {
-					username: request.session.user.email,
-					password: request.session.user.password
+				headers: {
+					Authorization: 'Bearer ' + request.session.user.token
 				}
 			});
 		} catch (e) {
