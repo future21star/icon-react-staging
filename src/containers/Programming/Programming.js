@@ -59,6 +59,20 @@ export default class Programming extends Component {
 			callback: (index, elem) => this.selectTrack(elem.getAttribute('name'))
 		};
 
+		const noteContent = (
+
+			<div>
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et felis varius,
+					lobortis sapien a, vestibulum ex. Nunc interdum lobortis nulla a semper. Praesent rutrum dolor
+					aliquam massa gravida.
+				</p>
+				<p>
+					Donec ut lobortis erat, quis volutpat sapien. Nam sed dolor vitae lacus tincidunt dignissim eu at lacus.
+				</p>
+			</div>
+		);
+
 		return (
 			<div className="programming-page-wrapper bottom-padding">
 				<Helmet title="Programming"/>
@@ -81,6 +95,7 @@ export default class Programming extends Component {
 									midContent=""
 									title="emom"
 									bgImg={gymBodyImg}
+									noteContent={noteContent}
 								/>
 								<ProgrammingTabs/>
 							</div>
