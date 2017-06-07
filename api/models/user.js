@@ -1,7 +1,11 @@
-'use strict';
-
 module.exports = function (sequelize, DataTypes) {
-	return sequelize.define('User', {
+	const User = sequelize.define('User', {
+		id: {
+			allowNull: false,
+			autoIncrement: true,
+			primaryKey: true,
+			type: DataTypes.INTEGER
+		},
 		wpUserId: {
 			allowNull: false,
 			primaryKey: true,
@@ -28,10 +32,16 @@ module.exports = function (sequelize, DataTypes) {
 			defaultValue: null
 		}
 	}, {
+		tableName: 'users',
 		classMethods: {
 			associate: function (models) {
-				// associations can be defined here
+				User.hasMany(models.UserTrack, {
+					foreignKey: 'userId',
+					as: 'userTracks',
+				});
 			}
 		}
 	});
+
+	return User;
 };

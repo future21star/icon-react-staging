@@ -1,6 +1,11 @@
-'use strict';
 module.exports = function (sequelize, DataTypes) {
-	return sequelize.define('Wod', {
+	const Wod = sequelize.define('Wod', {
+		id: {
+			allowNull: false,
+			autoIncrement: true,
+			primaryKey: true,
+			type: DataTypes.INTEGER
+		},
 		date: {
 			allowNull: false,
 			type: DataTypes.DATEONLY
@@ -34,10 +39,13 @@ module.exports = function (sequelize, DataTypes) {
 			type: DataTypes.TEXT
 		}
 	}, {
+		tableName: 'wods',
 		classMethods: {
 			associate: function (models) {
 				// associations can be defined here
 			}
 		}
 	});
+
+	return Wod;
 };
