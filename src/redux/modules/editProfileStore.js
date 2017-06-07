@@ -1,9 +1,9 @@
-export const EDIT_PROFILE = 'EDIT_PROFILE';
-export const EDIT_PROFILE_SUCCESS = 'EDIT_PROFILE_SUCCESS';
-export const EDIT_PROFILE_FAIL = 'EDIT_PROFILE_FAIL';
+export const EDIT_PROFILE = 'editProfile/EDIT_PROFILE';
+export const EDIT_PROFILE_SUCCESS = 'editProfile/EDIT_PROFILE_SUCCESS';
+export const EDIT_PROFILE_FAIL = 'editProfile/EDIT_PROFILE_FAIL';
 
-export const SET_EDITING_USER = 'SET_EDITING_USER';
-export const CHANGE_EDIT_PROFILE_FIELD = 'CHANGE_EDIT_PROFILE_FIELD';
+export const SET_EDITING_USER = 'editProfile/SET_EDITING_USER';
+export const CHANGE_EDIT_PROFILE_FIELD = 'editProfile/CHANGE_EDIT_PROFILE_FIELD';
 
 const initialState = {
 	loading: false,

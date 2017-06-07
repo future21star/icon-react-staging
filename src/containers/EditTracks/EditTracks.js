@@ -1,14 +1,35 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
-import {MenubarWhite, EditTracksDotsContainer, EditTracksBanner, EditTracksMidSection, BtnBottom} from '../../components';
-import {Link} from "react-router";
-import './EditTracks.scss';
-import dynamicBG from '../../../static/dynamicBG.jpg';
-import strengthBG from '../../../static/strengthBG.jpg';
-import lifestyleBG from '../../../static/lifestyleBG.jpg';
-import hyperBG from '../../../static/hyperBG.jpg';
 import ReactSwipe from 'react-swipe';
+import {connect} from "react-redux";
+import {Link} from "react-router";
+import {asyncConnect} from 'redux-async-connect';
+import {isLoaded as isTracksLoaded, load as loadTracks, add as addTrack, remove as removeTrack} from '../../redux/modules/userTracks';
+import {
+	MenubarWhite,
+	EditTracksDotsContainer,
+	EditTracksBanner,
+	EditTracksMidSection,
+	BtnBottom
+} from '../../components';
+import './EditTracks.scss';
 
+@asyncConnect([{
+	promise: ({store: {dispatch, getState}}) => {
+		const promises = [];
+
+		if (!isTracksLoaded(getState())) {
+			promises.push(dispatch(loadTracks()));
+		}
+
+		return Promise.all(promises);
+	}
+}])
+
+@connect(
+	state => ({userTracks: state.userTracks}),
+	{addTrack, removeTrack}
+)
 
 export default class EditTracks extends Component {
 	constructor(props) {
@@ -22,94 +43,30 @@ export default class EditTracks extends Component {
 	selectTrack = (newSelectedTrack) => {
 		this.setState({
 			selectedTrack: newSelectedTrack
-		})
+		});
+	};
+
+	addTrack = (track) => {
+		this.props.addTrack(track.title);
+	};
+
+	removeTrack = (track) => {
+		this.props.removeTrack(track.title);
 	};
 
 	render() {
+		const {userTracks} = this.props;
+
 		const rightSideContent = (
 			<Link to="/programming" className="turquoise-color">
 				Done
 			</Link>
 		);
 
-		const iconTrash = (<span className="icon-trash"/>);
-		const iconUpdate = (<span className="icon-update-sub"/>);
-		const iconNavLinks = (<span className="icon-nav-links"/>);
-
-		const trackIconDynamic = (<span className="icon-track-dynamic">
-									<span className="path1"/>
-									<span className="path2"/>
-									<span className="path3"/>
-									<span className="path4"/>
-									<span className="path5"/>
-									<span className="path6"/>
-									<span className="path7"/>
-									<span className="path8"/>
-								</span>);
-
-		const trackIconStrength = (<span className="icon-track-strength">
-									<span className="path1"/>
-									<span className="path2"/>
-									<span className="path3"/>
-									<span className="path4"/>
-									<span className="path5"/>
-									<span className="path6"/>
-									<span className="path7"/>
-								</span>);
-
-		const trackIconLifestyle = (<span className="icon-track-lifestyle">
-									<span className="path1"/>
-									<span className="path2"/>
-									<span className="path3"/>
-									<span className="path4"/>
-									<span className="path5"/>
-									<span className="path6"/>
-									<span className="path7"/>
-								</span>);
-
-		const trackIconHyper = (<span className="icon-track-hyper">
-									<span className="path1"/>
-									<span className="path2"/>
-									<span className="path3"/>
-									<span className="path4"/>
-									<span className="path5"/>
-									<span className="path6"/>
-									<span className="path7"/>
-									<span className="path8"/>
-									<span className="path9"/>
-									<span className="path10"/>
-								</span>);
-
 		const swipeConfig = {
-			callback: (index, elem) => this.selectTrack(elem.getAttribute('name'))
+			callback: (index, elem) => this.selectTrack(elem.getAttribute('name')),
+			continuous: false
 		};
-
-		const allTracks  = [
-			{
-				bgImg: dynamicBG,
-				title: "Dynamic",
-				trackIcon: trackIconDynamic,
-				isSubscribed: true
-			},
-			{
-				bgImg: strengthBG,
-				title: "Strength",
-				trackIcon: trackIconStrength,
-				isSubscribed: false
-			},
-			{
-				bgImg: lifestyleBG,
-				title: "Lifestyle",
-				trackIcon: trackIconLifestyle,
-				isSubscribed: true
-			},
-			{
-				bgImg: lifestyleBG,
-				title: "Hyper",
-				trackIcon: trackIconHyper,
-				isSubscribed: false
-			}
-		];
 
 		return (
 			<div className="edit-tracks-wrapper">
@@ -122,40 +79,48 @@ export default class EditTracks extends Component {
 
 				<EditTracksDotsContainer
 					selectedTrack={this.state.selectedTrack}
-					allTracks={allTracks}
+					allTracks={userTracks.allTracks}
 				/>
 
 				<ReactSwipe className="carousel" swipeOptions={swipeConfig}>
-					{allTracks.map((track, i) => {
+					{userTracks.allTracks.map((track, i) => {
 						return (
-							<div name={track.title} key={track.title}>
+							<div name={track.title} key={i}>
 								<EditTracksBanner
 									bgImg={track.bgImg}
 									title={track.title}
-									trackIcon={track.trackIcon}
+									trackIconClassName={track.trackIconClassName}
 									isSubscribed={track.isSubscribed}
 								/>
 								<EditTracksMidSection/>
+
+								{track.isSubscribed ?
+									<BtnBottom
+										classNames="btn btn-block btn-lg btn-fixed-bottom btn-danger btn-font-lg"
+										title="Delete This Track"
+										icon={<span className="icon-trash"/>}
+										onClick={e => this.removeTrack(track)}
+									/> : undefined }
+
+								{!track.isSubscribed ?
+									<BtnBottom
+										classNames="btn btn-block btn-lg btn-fixed-bottom btn-turquoise btn-font-lg"
+										title="Add This Track"
+										icon={<span className="icon-nav-links"/>}
+										onClick={e => this.addTrack(track)}
+									/> : undefined }
 							</div>
 						);
 					})}
 				</ReactSwipe>
 
-				<BtnBottom
-					classNames="btn btn-block btn-lg btn-fixed-bottom btn-danger btn-font-lg"
-					title="Delete This Track"
-					icon={iconTrash}
-				/>
+
+				{/* TODO: need to add update subscription button*/}
 				{/*<BtnBottom
-					classNames="btn btn-block btn-lg btn-fixed-bottom btn-turquoise btn-font-lg"
-					title="Update Subscription"
-					icon={iconUpdate}
-				/>*/}
-				{/*<BtnBottom
-					classNames="btn btn-block btn-lg btn-fixed-bottom btn-turquoise btn-font-lg"
-					title="Add This Track"
-					icon={iconNavLinks}
-				/>*/}
+				 classNames="btn btn-block btn-lg btn-fixed-bottom btn-turquoise btn-font-lg"
+				 title="Update Subscription"
+				 icon={iconUpdate}
+				 />*/}
 			</div>
 		);
 	}

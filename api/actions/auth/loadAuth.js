@@ -28,13 +28,13 @@ export default function loadAuth(request) {
 			reactUser = await
 				models.User.findOne({
 					where: {
-						wpUserId: request.session.user.id
+						wpUserId: request.session.user.wpUserId
 					}
 				});
 			if (!reactUser) {
 				reactUser = await
 					models.User.create({
-						wpUserId: request.session.user.id
+						wpUserId: request.session.user.wpUserId
 					});
 			}
 		} catch (e) {
@@ -45,7 +45,7 @@ export default function loadAuth(request) {
 		// load users levels
 		let wpSubscription = null;
 		try {
-			wpSubscription = await axios.get(WP_API_URL + '/rcp/v1/members/' + request.session.user.id, {
+			wpSubscription = await axios.get(WP_API_URL + '/rcp/v1/members/' + request.session.user.wpUserId, {
 				headers: {
 					Authorization: 'Bearer ' + request.session.user.token
 				}
