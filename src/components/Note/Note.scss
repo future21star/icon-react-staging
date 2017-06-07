@@ -1,0 +1,40 @@
+.note-wrapper{
+  position: relative;
+  .note{
+    background: rgba(255, 255, 255, 0.7);
+    padding: 1px 10px 1px 10px;
+    max-width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    .note-header{
+      .icon-nav-links{
+        color: black;
+        font-size: 16px;
+        position: relative;
+        top: 2px;
+      }
+    }
+    h3{
+      margin-top: 10px;
+      font-size: 18px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .note-body{
+      p{
+        font-size: 10px;
+        font-weight: 700;
+        font-family: "Oswald", sans-serif;
+        text-transform: uppercase;
+      }
+    }
+  }
+  .note-has-margin-bottom{
+    margin-bottom: 35px;
+  }
+  .note-white{
+    background: #fff;
+  }
+}
