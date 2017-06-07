@@ -1,15 +1,15 @@
-const EDIT_PROFILE = 'EDIT_PROFILE';
+export const EDIT_PROFILE = 'EDIT_PROFILE';
 export const EDIT_PROFILE_SUCCESS = 'EDIT_PROFILE_SUCCESS';
-const EDIT_PROFILE_FAIL = 'EDIT_PROFILE_FAIL';
+export const EDIT_PROFILE_FAIL = 'EDIT_PROFILE_FAIL';
 
 export const SET_EDITING_USER = 'SET_EDITING_USER';
 export const CHANGE_EDIT_PROFILE_FIELD = 'CHANGE_EDIT_PROFILE_FIELD';
 
 const initialState = {
 	loading: false,
+	editingUser: null,
 	error: null,
-	success: null,
-	editingUser: null
+	success: null
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -36,7 +36,7 @@ export default function reducer(state = initialState, action = {}) {
 			return {
 				...state,
 				loading: false,
-				success: action.result,
+				success: action.result.success,
 				error: null
 			};
 		case EDIT_PROFILE_FAIL:
