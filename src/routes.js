@@ -49,8 +49,8 @@ export default (store) => {
 				<Route path="feed" component={containers.Feed}/>
 				<Route path="nutrition" component={containers.Nutrition}/>
 				<Route path="programming" component={containers.Programming}/>
-				<Route path="workout-mode" component={containers.WorkOutMode}/>
 				<Route path="edit-tracks" component={containers.EditTracks}/>
+				<Route path="workout-mode" component={containers.WorkOutMode}/>
 			</Route>
 
 			<Route onEnter={requiresGuest}>
