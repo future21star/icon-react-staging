@@ -38,7 +38,6 @@ import ReactSwipe from 'react-swipe';
 	{}
 )
 export default class Programming extends Component {
-
 	constructor(props) {
 		super(props);
 		const {selectedTracks} = this.props;
@@ -86,7 +85,6 @@ export default class Programming extends Component {
 	}
 
 	renderNoTracksFound() {
-
 		const noTracksDescription = (
 			<div>
 				You have not selected any track yet.

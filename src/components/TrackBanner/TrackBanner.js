@@ -5,14 +5,85 @@ import gymBodyImg from '../../../static/gym-body.jpg';
 
 export default class TrackBanner extends Component {
 
+	getIcon() {
+		const {midContent} = this.props;
+
+		if (midContent === 'icon-track-dynamic') {
+			return (
+				<span className="icon-track-dynamic">
+					<span className="path1"/>
+					<span className="path2"/>
+					<span className="path3"/>
+					<span className="path4"/>
+					<span className="path5"/>
+					<span className="path6"/>
+					<span className="path7"/>
+					<span className="path8"/>
+				</span>
+			);
+		}
+
+		else if (midContent === 'icon-track-strength') {
+			return (
+				<span className="icon-track-strength">
+					<span className="path1"/>
+					<span className="path2"/>
+					<span className="path3"/>
+					<span className="path4"/>
+					<span className="path5"/>
+					<span className="path6"/>
+					<span className="path7"/>
+				</span>);
+		}
+
+		else if (midContent === 'icon-track-lifestyle') {
+			return (
+				<span className="icon-track-lifestyle">
+					<span className="path1"/>
+					<span className="path2"/>
+					<span className="path3"/>
+					<span className="path4"/>
+					<span className="path5"/>
+					<span className="path6"/>
+					<span className="path7"/>
+				</span>);
+		}
+
+		else if (midContent === 'icon-track-hyper') {
+			return (
+				<span className="icon-track-hyper">
+				<span className="path1"/>
+				<span className="path2"/>
+				<span className="path3"/>
+				<span className="path4"/>
+				<span className="path5"/>
+				<span className="path6"/>
+				<span className="path7"/>
+				<span className="path8"/>
+				<span className="path9"/>
+				<span className="path10"/>
+			</span>);
+		}
+
+
+		return (
+			<span className="fa fa-circle-o"/>
+		)
+	}
+
 	render() {
-		const {midContent, title, bgImg, noteContent} = this.props;
+		const {trackName, title, bgImg, midContent, noteContent} = this.props;
 		return (
 			<div className="track-banner-wrapper">
 				<div className="track-banner" style={{backgroundImage: 'url(' + bgImg + ')',}}>
 					<div className="overlay"/>
 					<div className="mid-content">
-						{midContent}
+						{midContent || trackName ?
+							<div className="mid-content-section">
+								{this.getIcon()}
+								<h1>{trackName}</h1>
+							</div> : undefined
+						}
 					</div>
 					<div className={`title ${!midContent ? 'title-padding' : ''}`}>
 						<h3>{title}</h3>
@@ -34,11 +105,11 @@ export default class TrackBanner extends Component {
 					</div>
 					{
 						noteContent ?
-						<Note
-							noteContent={noteContent}
-							classNames="note note-white"
-						/> :
-						undefined
+							<Note
+								noteContent={noteContent}
+								classNames="note note-white"
+							/> :
+							undefined
 					}
 				</div>
 			</div>
