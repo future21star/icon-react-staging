@@ -10,6 +10,7 @@ export logout from './auth/logout';
 
 export editProfile from './profile/editProfile';
 export loadAuthTracks from './tracks/loadAuthTracks';
-export addTrack from './tracks/addTrack';
+export addAsOnlyTrack from './tracks/addAsOnlyTrack';
+export addToTrackList from './tracks/addToTrackList';
 export removeTrack from './tracks/removeTrack';
 

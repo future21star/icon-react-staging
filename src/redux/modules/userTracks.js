@@ -107,10 +107,21 @@ export function load() {
 	};
 }
 
-export function add(name) {
+export function addAsOnlyTrack(name) {
 	return {
 		types: [ADD, ADD_SUCCESS, ADD_FAIL],
-		promise: (client) => client.post('/addTrack', {
+		promise: (client) => client.post('/addAsOnlyTrack', {
+			data: {
+				name
+			}
+		})
+	};
+}
+
+export function addToTrackList(name) {
+	return {
+		types: [ADD, ADD_SUCCESS, ADD_FAIL],
+		promise: (client) => client.post('/addToTrackList', {
 			data: {
 				name
 			}
