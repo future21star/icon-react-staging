@@ -1,5 +1,7 @@
 // for generating new admin JWT
 export refreshAdminJWT from './admin/refreshAdminJWT';
+// for getting and storing wods
+export getWods from './admin/getWods';
 
 
 export loadAuth from './auth/loadAuth';
