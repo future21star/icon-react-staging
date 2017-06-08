@@ -39,6 +39,12 @@ const initialState = {
 			title: "hyper",
 			trackIconClassName: "icon-track-hyper",
 			isSubscribed: false
+		},
+		{
+			bgImg: require('../../../static/hyperBG.jpg'),
+			title: "masters",
+			trackIconClassName: "icon-track-hyper",
+			isSubscribed: false
 		}
 	]
 };
