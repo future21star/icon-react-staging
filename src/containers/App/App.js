@@ -50,7 +50,7 @@ export default class App extends Component {
 
 	render() {
 		return (
-			<div className="test">
+			<div>
 				<Helmet {...config.app.head}/>
 
 				<div className="app-wrapper">

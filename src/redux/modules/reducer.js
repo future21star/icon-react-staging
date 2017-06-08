@@ -5,11 +5,13 @@ import {reducer as reduxAsyncConnect} from 'redux-async-connect';
 import auth from './auth';
 import loginStore from './loginStore';
 import editProfileStore from './editProfileStore';
+import userTracks from './userTracks';
 
 export default combineReducers({
 	routing: routerReducer,
 	reduxAsyncConnect,
 	auth,
 	loginStore,
-	editProfileStore
+	editProfileStore,
+	userTracks
 });

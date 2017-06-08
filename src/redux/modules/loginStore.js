@@ -1,8 +1,8 @@
 import {LOGOUT_SUCCESS} from './auth'
 
-export const LOGIN = 'auth/LOGIN';
-export const LOGIN_SUCCESS = 'auth/LOGIN_SUCCESS';
-export const LOGIN_FAIL = 'auth/LOGIN_FAIL';
+export const LOGIN = 'login/LOGIN';
+export const LOGIN_SUCCESS = 'login/LOGIN_SUCCESS';
+export const LOGIN_FAIL = 'login/LOGIN_FAIL';
 
 const initialState = {
 	loading: false,

@@ -78,7 +78,8 @@ export default function login(request) {
 
 		// save login credentials in session
 		request.session.user = {
-			id: jwtResponse.data.user_id,
+			reactUserId: reactUser.id,
+			wpUserId: jwtResponse.data.user_id,
 			token: jwtResponse.data.token,
 			vaultAccess
 		};

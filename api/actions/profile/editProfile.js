@@ -32,7 +32,7 @@ export default function editProfile(request) {
 		try {
 			reactUser = await models.User.findOne({
 				where: {
-					wpUserId: request.session.user.id
+					wpUserId: request.session.user.wpUserId
 				}
 			});
 			if (!reactUser) {
