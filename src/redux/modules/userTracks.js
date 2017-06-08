@@ -46,7 +46,8 @@ const initialState = {
 			trackIconClassName: "icon-track-hyper",
 			isSubscribed: false
 		}
-	]
+	],
+	selectedTracks: [] // this will be automatically generated from allTracks
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -61,6 +62,7 @@ export default function reducer(state = initialState, action = {}) {
 		case ADD_SUCCESS:
 		case REMOVE_SUCCESS:
 			let newAllTracks = {...state}.allTracks;
+			let newSelectedTracks = [];
 
 			state.allTracks.map(allTrack => {
 				// mark all as false
@@ -75,6 +77,7 @@ export default function reducer(state = initialState, action = {}) {
 
 						if (trackIndex >= 0) {
 							newAllTracks[trackIndex].isSubscribed = true;
+							newSelectedTracks.push(newAllTracks[trackIndex]);
 						}
 					}
 				})
@@ -82,7 +85,8 @@ export default function reducer(state = initialState, action = {}) {
 
 			return {
 				...state,
-				allTracks: newAllTracks
+				allTracks: newAllTracks,
+				selectedTracks: newSelectedTracks
 			};
 		case LOAD_FAIL:
 			return {

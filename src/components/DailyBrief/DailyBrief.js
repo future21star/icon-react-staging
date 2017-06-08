@@ -8,18 +8,17 @@ export default class DailyBrief extends Component {
 		this.state = {
 			isExpanded: false,
 		};
-		this.toggleBrief = this.toggleBrief.bind(this);
 	}
 
 	static propTypes = {
 		user: PropTypes.object,
 	};
 
-	toggleBrief() {
+	toggleBrief = () => {
 		this.setState({
 			isExpanded: !this.state.isExpanded
 		});
-	}
+	};
 
 	render() {
 		const {user} = this.props;
