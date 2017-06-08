@@ -2,6 +2,7 @@ export Login from './Login/Login';
 export NotFound from './NotFound/NotFound';
 export Profile from './Profile/Profile';
 export EditProfile from './EditProfile/EditProfile';
+export ProgrammingDesktop from './Programming/ProgrammingDesktop';
 export Programming from './Programming/Programming';
 export WorkOutMode from './WorkOutMode/WorkOutMode';
 export EditTracks from './EditTracks/EditTracks';

@@ -204,3 +204,243 @@ $input-border-color: #383838;
   background: #5dc7d4;
   color: #fff;
 }
+
+/********** Programming desktop starts 06/07/17 **********/
+
+.programming-page-wrapper-desktop{
+  .menu-bar-desktop{
+    padding-top: 24px;
+    padding-bottom: 16px;
+    .container-fluid{
+      max-width: 95%;
+    }
+    &.menu-bar-desktop-blue{
+      background: #5bc6f7;
+      h3{
+        font-family: 'Lato', sans-serif;
+        color: #fff;
+        font-size: 24px;
+        font-weight: 400;
+        margin-top: 5px;
+      }
+      [class^="icon-"], [class*=" icon-"] {
+        color: #fff;
+        font-size: 18px;
+        margin-right: 15px;
+      }
+      .menu-bar-right-side-content-desktop{
+        text-align: right;
+        p{
+          color: white;
+          margin-top: 5px;
+          font-size: 16px;
+          font-weight: 300;
+          i{
+            margin-left: 15px;
+          }
+        }
+      }
+      .menu-bar-title-desktop{
+        text-align: center;
+        ul.nav-justified{
+          margin: -3px auto 8px auto;
+          max-width: 450px;
+          li{
+            color: #fff;
+            font-size: 16px;
+            font-weight: 300;
+            min-width: 60px;
+          }
+          .active {
+            border-radius: 50%;
+            border: 2px solid #fff;
+            padding: 6px 10px 8px 10px;
+          }
+        }
+        p{
+          color: #fff;
+          margin-bottom:0;
+          margin-top:5px;
+          font-weight: 300;
+          text-transform: uppercase;
+          span.year{
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+  .track-banner-wrapper-desktop{
+    .track-banner-desktop{
+      background: url(../static/dynamicBG.jpg) no-repeat;
+      position: relative;
+      background-size: 100%;
+      /*min-height: 350px;*/
+      .overlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, .7);
+      }
+      .title-desktop{
+        position: relative;
+        text-align: center;
+        padding-top: 60px;
+        h3, h1, h2 {
+          color: #5DC6D2;
+          margin-top: 0;
+          margin-bottom: 20px;
+          text-transform: uppercase;
+        }
+        .next-track{
+          position: absolute;
+          color: #9a9b9f;
+          top: 50%;
+          right: 30px;
+          font-size: 16px;
+          i{
+            margin-left: 15px;
+            color: #d12022;
+            position: relative;
+            top: 5px;
+            font-size: 24px;
+          }
+        }
+        ul.track-banner-list-desktop{
+          display: block;
+          max-width: 95%;
+          margin-left: auto;
+          /*margin-right: auto;*/
+          padding-bottom: 70px;
+          margin-bottom: 0;
+          li:not(:last-child) {
+            border-right: 1px solid white;
+          }
+          li {
+            margin-right: 20px;
+            padding-right: 25px;
+            h3, p {
+              color: #fff;
+            }
+            p {
+              font-size: 18px;
+              font-weight: 300;
+              margin-bottom: 0;
+            }
+            h3 {
+              margin-bottom: 3px;
+              letter-spacing: 1px;
+              font-size: 21px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .programming-tabs-wrapper-desktop{
+    .tab-nav-desktop{
+      background: #83dbe5;
+      min-height: 500px;
+      padding: 40px 0 20px 0;
+      .nav{
+        li:hover{
+          background: rgba(0, 0, 0, 0.15);
+        }
+        .active{
+          background: rgba(0, 0, 0, 0.15);
+          a{
+            color: black;
+          }
+        }
+      }
+      .nav > li > a{
+        color: #fff;
+        font-size: 21px;
+        text-transform: uppercase;
+        font-family: 'Oswald', sans-serif;
+        margin-left: 40px;
+      }
+      .nav > li > a:hover, .nav > li > a:focus, .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+        text-decoration: none;
+        background-color: transparent;
+        outline: none;
+      }
+      .nav-stacked > li + li {
+        margin-top: 0;
+      }
+    }
+    .tab-contents-area-desktop{
+      background: #f5f5f5;
+      min-height: 500px;
+      max-height: 500px;
+      overflow-y: scroll;
+      .tab-item-desktop{
+        padding: 20px 20px 20px 45px;
+        .daily-brief-wrapper-desktop{
+          .daily-brief-desktop{
+            padding-bottom: 20px;
+            border-bottom: 1px solid #cecece;
+            h2, h3{
+              font-family: 'Lato', sans-serif;
+            }
+            p{
+              font-size: 16px;
+              margin-top: 15px;
+              color: #5a5a5a;
+              text-align: justify;
+            }
+          }
+        }
+        .tab-list-item-desktop-wrapper{
+          margin-top: 30px;
+          .tab-list-item-desktop{
+            h2{
+              font-family: 'Lato', sans-serif;
+              margin-bottom: 20px;
+            }
+            .tab-item-container-desktop{
+              .item-desktop{
+                background: #edebec;
+                padding: 23px 10px 3px 0;
+                position: relative;
+                margin-bottom: 20px;
+                div{
+                  display: inline-block;
+                  margin-left: 80px;
+                  position: relative;
+                  top: -6px;
+                  p{
+                    font-size: 16px;
+                    margin-bottom: 6px;
+                  }
+                  ul{
+                    li{
+                      list-style-type: none;
+                      font-size: 16px;
+                      margin-bottom:6px;
+                      .red-hyphen{
+                        color: #d12022;
+                      }
+                    }
+                  }
+                }
+                .item-number-desktop {
+                  background: #5dc7d4;
+                  margin-right: 20px;
+                  padding: 15px 20px 14px 20px;
+                  color: white;
+                  font-family: 'Oswald', sans-serif;
+                  font-size: 18px;
+                  position: absolute;
+                  top: 0;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/********** End of Programming desktop starts 06/07/17 **********/
