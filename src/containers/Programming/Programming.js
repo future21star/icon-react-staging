@@ -6,33 +6,47 @@ import {
 	BottomNav,
 	DailyBrief,
 	TrackBanner,
+	JumbotronWhite,
 	ProgrammingTabs
 } from '../../components';
+import {
+	isLoaded as isTracksLoaded,
+	load as loadTracks
+} from '../../redux/modules/userTracks';
 import {Link} from "react-router";
 import {connect} from "react-redux";
-import gymBodyImg from '../../../static/gym-body.jpg';
+import {asyncConnect} from 'redux-async-connect';
 import ReactSwipe from 'react-swipe';
 
+@asyncConnect([{
+	promise: ({store: {dispatch, getState}}) => {
+		const promises = [];
+
+		if (!isTracksLoaded(getState())) {
+			promises.push(dispatch(loadTracks()));
+		}
+
+		return Promise.all(promises);
+	}
+}])
+
 @connect(
-	state => ({user: state.auth.user}),
+	state => ({
+		user: state.auth.user,
+		selectedTracks: state.userTracks.selectedTracks
+	}),
 	{}
 )
 export default class Programming extends Component {
 
 	constructor(props) {
 		super(props);
+		const {selectedTracks} = this.props;
 
 		this.state = {
-			selectedTrack: "Lifestyle"
+			selectedTrack: selectedTracks.length ? selectedTracks[0].title : null
 		}
 	}
-
-	static allTracks = [
-		'Lifestyle',
-		'Dynamic',
-		'Hyper',
-		'Strength'
-	];
 
 	selectTrack = (newSelectedTrack) => {
 		this.setState({
@@ -41,7 +55,7 @@ export default class Programming extends Component {
 	};
 
 	render() {
-		const {user} = this.props;
+		const {user, selectedTracks} = this.props;
 
 		const leftSideContent = (
 			<Link to="/edit-tracks">
@@ -55,24 +69,6 @@ export default class Programming extends Component {
 			</Link>
 		);
 
-		const swipeConfig = {
-			callback: (index, elem) => this.selectTrack(elem.getAttribute('name'))
-		};
-
-		const noteContent = (
-
-			<div>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et felis varius,
-					lobortis sapien a, vestibulum ex. Nunc interdum lobortis nulla a semper. Praesent rutrum dolor
-					aliquam massa gravida.
-				</p>
-				<p>
-					Donec ut lobortis erat, quis volutpat sapien. Nam sed dolor vitae lacus tincidunt dignissim eu at lacus.
-				</p>
-			</div>
-		);
-
 		return (
 			<div className="programming-page-wrapper bottom-padding">
 				<Helmet title="Programming"/>
@@ -81,20 +77,63 @@ export default class Programming extends Component {
 					leftSideContent={leftSideContent}
 					rightSideContent={rightSideContent}
 				/>
+
+				{!selectedTracks.length ? this.renderNoTracksFound() : this.renderSelectedTracks()}
+
+				<BottomNav/>
+			</div>
+		);
+	}
+
+	renderNoTracksFound() {
+
+		const noTracksDescription = (
+			<div>
+				You have not selected any track yet.
+				<br/>
+				<br/>
+				<Link className="btn btn-lg btn-primary btn-rounded" to="/edit-tracks">Select track</Link>
+			</div>
+		);
+		return (
+			<div>
+				<JumbotronWhite title="No tracks found"
+												description={noTracksDescription}/>
+			</div>
+		)
+	}
+
+	renderSelectedTracks() {
+		const {user, selectedTracks} = this.props;
+
+		const noteContent = (
+			<div>
+				Lorem ipsum dolor sit amet
+			</div>
+		);
+
+		const swipeConfig = {
+			callback: (index, elem) => this.selectTrack(elem.getAttribute('name')),
+			continuous: false
+		};
+
+		return (
+			<div>
 				<ProgrammingHeader
 					user={user}
 					selectedTrack={this.state.selectedTrack}
-					allTracks={Programming.allTracks}
+					allTracks={selectedTracks}
 				/>
+
 				<ReactSwipe className="carousel" swipeOptions={swipeConfig}>
-					{Programming.allTracks.map((track, i) => {
+					{selectedTracks.map((track, i) => {
 						return (
-							<div name={track} key={i}>
+							<div name={track.title} key={i}>
 								<DailyBrief user={user}/>
 								<TrackBanner
 									midContent=""
 									title="emom"
-									bgImg={gymBodyImg}
+									bgImg={track.bgImg}
 									noteContent={noteContent}
 								/>
 								<ProgrammingTabs/>
@@ -102,8 +141,7 @@ export default class Programming extends Component {
 						);
 					})}
 				</ReactSwipe>
-				<BottomNav/>
 			</div>
-		);
+		)
 	}
 }

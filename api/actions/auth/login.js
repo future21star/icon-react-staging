@@ -57,12 +57,25 @@ export default function login(request) {
 			return reject(generalError(e.response.data.message));
 		}
 
+		// load admin jwt
+		let adminJWT = null;
+		try {
+			adminJWT = await models.AppMeta.findOne({
+				where: {
+					key: 'admin_jwt'
+				}
+			});
+		} catch (e) {
+			console.log(e);
+			return reject(generalError(e.response.data.message));
+		}
+
 		// load users levels
 		let wpSubscription = null;
 		try {
 			wpSubscription = await axios.get(WP_API_URL + '/rcp/v1/members/' + jwtResponse.data.user_id, {
 				headers: {
-					Authorization: 'Bearer ' + jwtResponse.data.token
+					Authorization: 'Bearer ' + adminJWT.value
 				}
 			});
 		} catch (e) {

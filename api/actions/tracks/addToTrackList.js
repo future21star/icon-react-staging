@@ -1,7 +1,7 @@
 import * as models from "../../models";
 import {generalError} from '../../utils/message'
 
-export default function addTrack(request) {
+export default function addToTrackList(request) {
 
 	return new Promise(async (resolve, reject) => {
 

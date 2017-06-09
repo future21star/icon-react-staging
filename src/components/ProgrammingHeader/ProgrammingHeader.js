@@ -19,7 +19,7 @@ export default class ProgrammingHeader extends Component {
 							<DayPicker/>
 						</div>
 						<div className="col-xs-12">
-							<div className="title">Lifestyle Track</div>
+							<div className="title">{selectedTrack} Track</div>
 							<DotList
 								selectedTrack={selectedTrack}
 								allTracks={allTracks}

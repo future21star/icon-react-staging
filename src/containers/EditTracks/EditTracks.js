@@ -4,9 +4,18 @@ import ReactSwipe from 'react-swipe';
 import {connect} from "react-redux";
 import {Link} from "react-router";
 import {asyncConnect} from 'redux-async-connect';
-import {isLoaded as isTracksLoaded, load as loadTracks, add as addTrack, remove as removeTrack} from '../../redux/modules/userTracks';
+import {includes} from 'lodash';
+
+import {
+	isLoaded as isTracksLoaded,
+	load as loadTracks,
+	addAsOnlyTrack,
+	addToTrackList,
+	remove as removeTrack
+} from '../../redux/modules/userTracks';
 import {
 	MenubarWhite,
+	JumbotronWhite,
 	EditTracksDotsContainer,
 	EditTracksBanner,
 	EditTracksMidSection,
@@ -27,8 +36,11 @@ import './EditTracks.scss';
 }])
 
 @connect(
-	state => ({userTracks: state.userTracks}),
-	{addTrack, removeTrack}
+	state => ({
+		userTracks: state.userTracks,
+		vaultAccess: state.auth.user.vaultAccess
+	}),
+	{addAsOnlyTrack, addToTrackList, removeTrack}
 )
 
 export default class EditTracks extends Component {
@@ -46,16 +58,20 @@ export default class EditTracks extends Component {
 		});
 	};
 
-	addTrack = (track) => {
-		this.props.addTrack(track.title);
+	addAsOnlyTrack = () => {
+		this.props.addAsOnlyTrack(this.state.selectedTrack);
 	};
 
-	removeTrack = (track) => {
-		this.props.removeTrack(track.title);
+	addToTrackList = () => {
+		this.props.addToTrackList(this.state.selectedTrack);
+	};
+
+	removeTrack = () => {
+		this.props.removeTrack(this.state.selectedTrack);
 	};
 
 	render() {
-		const {userTracks} = this.props;
+		const {vaultAccess} = this.props;
 
 		const rightSideContent = (
 			<Link to="/programming" className="turquoise-color">
@@ -63,10 +79,10 @@ export default class EditTracks extends Component {
 			</Link>
 		);
 
-		const swipeConfig = {
-			callback: (index, elem) => this.selectTrack(elem.getAttribute('name')),
-			continuous: false
-		};
+		let accessOfProgrammingType = null;
+		if (includes(vaultAccess, 'programming-all')) accessOfProgrammingType = 'all';
+		else if (includes(vaultAccess, 'programming-single')) accessOfProgrammingType = 'single';
+		else if (includes(vaultAccess, 'programming-masters')) accessOfProgrammingType = 'masters';
 
 		return (
 			<div className="edit-tracks-wrapper">
@@ -77,6 +93,26 @@ export default class EditTracks extends Component {
 					rightSideContent={rightSideContent}
 				/>
 
+				{accessOfProgrammingType ? this.renderEditTracks(accessOfProgrammingType) : this.renderNoVaultAccess()}
+
+			</div>
+		);
+	}
+
+	renderEditTracks(accessOfProgrammingType) {
+		const {userTracks} = this.props;
+
+		const swipeConfig = {
+			callback: (index, elem) => this.selectTrack(elem.getAttribute('name')),
+			continuous: false
+		};
+
+		const selectedTrackIsSubscribed = userTracks.allTracks.filter(track => {
+			return track.title === this.state.selectedTrack;
+		})[0].isSubscribed;
+
+		return (
+			<div>
 				<EditTracksDotsContainer
 					selectedTrack={this.state.selectedTrack}
 					allTracks={userTracks.allTracks}
@@ -93,35 +129,117 @@ export default class EditTracks extends Component {
 									isSubscribed={track.isSubscribed}
 								/>
 								<EditTracksMidSection/>
-
-								{track.isSubscribed ?
-									<BtnBottom
-										classNames="btn btn-block btn-lg btn-fixed-bottom btn-danger btn-font-lg"
-										title="Delete This Track"
-										icon={<span className="icon-trash"/>}
-										onClick={e => this.removeTrack(track)}
-									/> : undefined }
-
-								{!track.isSubscribed ?
-									<BtnBottom
-										classNames="btn btn-block btn-lg btn-fixed-bottom btn-turquoise btn-font-lg"
-										title="Add This Track"
-										icon={<span className="icon-nav-links"/>}
-										onClick={e => this.addTrack(track)}
-									/> : undefined }
 							</div>
 						);
 					})}
 				</ReactSwipe>
 
+				{accessOfProgrammingType === 'all' ? this.renderButtonsForProgrammingAll(selectedTrackIsSubscribed) : undefined}
+				{accessOfProgrammingType === 'single' ? this.renderButtonsForProgrammingSingle(selectedTrackIsSubscribed) : undefined}
+				{accessOfProgrammingType === 'masters' ? this.renderButtonsForProgrammingMasters(selectedTrackIsSubscribed) : undefined}
 
-				{/* TODO: need to add update subscription button*/}
-				{/*<BtnBottom
-				 classNames="btn btn-block btn-lg btn-fixed-bottom btn-turquoise btn-font-lg"
-				 title="Update Subscription"
-				 icon={iconUpdate}
-				 />*/}
 			</div>
 		);
+	}
+
+	renderNoVaultAccess() {
+		return (
+			<div>
+				<JumbotronWhite title="No Access"
+												description={<span>You do not have access to edit track</span>}
+												logo={true}/>
+			</div>
+		);
+	}
+
+	renderButtonsForProgrammingSingle(selectedTrackIsSubscribed) {
+		return (
+			<div>
+				{selectedTrackIsSubscribed ?
+					<BtnBottom
+						classNames="btn btn-block btn-lg btn-fixed-bottom btn-danger btn-font-lg"
+						title="Delete This Track"
+						icon={<span className="icon-trash"/>}
+						onClick={this.removeTrack}
+					/> : undefined }
+
+				{!selectedTrackIsSubscribed && this.state.selectedTrack === 'masters' ?
+					<BtnBottom
+						classNames="btn btn-block btn-lg btn-fixed-bottom btn-turquoise btn-font-lg"
+						title="Update Subscription"
+						onClick={e => console.log('subscription update')}
+						icon={<span className="icon-update-sub"/>}
+					/> : undefined
+				}
+
+				{!selectedTrackIsSubscribed && this.state.selectedTrack !== 'masters' ?
+					<BtnBottom
+						classNames="btn btn-block btn-lg btn-fixed-bottom btn-turquoise btn-font-lg"
+						title="Add This Track"
+						icon={<span className="icon-nav-links"/>}
+						onClick={this.addAsOnlyTrack}
+					/> : undefined
+				}
+			</div>
+		)
+	}
+
+	renderButtonsForProgrammingAll(selectedTrackIsSubscribed) {
+		return (
+			<div>
+				{selectedTrackIsSubscribed ?
+					<BtnBottom
+						classNames="btn btn-block btn-lg btn-fixed-bottom btn-danger btn-font-lg"
+						title="Delete This Track"
+						icon={<span className="icon-trash"/>}
+						onClick={this.removeTrack}
+					/> : undefined }
+
+				{!selectedTrackIsSubscribed && this.state.selectedTrack === 'masters' ?
+					<BtnBottom
+						classNames="btn btn-block btn-lg btn-fixed-bottom btn-turquoise btn-font-lg"
+						title="Update Subscription"
+						onClick={e => console.log('subscription update')}
+						icon={<span className="icon-update-sub"/>}
+					/> : undefined
+				}
+
+				{!selectedTrackIsSubscribed && this.state.selectedTrack !== 'masters' ?
+					<BtnBottom
+						classNames="btn btn-block btn-lg btn-fixed-bottom btn-turquoise btn-font-lg"
+						title="Add This Track"
+						icon={<span className="icon-nav-links"/>}
+						onClick={this.addToTrackList}
+					/> : undefined
+				}
+			</div>
+		)
+	}
+
+	renderButtonsForProgrammingMasters(selectedTrackIsSubscribed) {
+		return (
+			<div>
+				{selectedTrackIsSubscribed ?
+					<BtnBottom
+						classNames="btn btn-block btn-lg btn-fixed-bottom btn-danger btn-font-lg"
+						title="Delete This Track"
+						icon={<span className="icon-trash"/>}
+						onClick={this.removeTrack}
+					/> : undefined }
+
+				{!selectedTrackIsSubscribed && this.state.selectedTrack === 'masters' ?
+					<BtnBottom
+						classNames="btn btn-block btn-lg btn-fixed-bottom btn-turquoise btn-font-lg"
+						title="Add This Track"
+						icon={<span className="icon-nav-links"/>}
+						onClick={this.addAsOnlyTrack}
+					/> : undefined
+				}
+
+				{!selectedTrackIsSubscribed && this.state.selectedTrack !== 'masters' ?
+					undefined : undefined
+				}
+			</div>
+		)
 	}
 }
