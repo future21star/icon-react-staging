@@ -24,3 +24,7 @@ export DotList from './DotList/DotList';
 export HomeHeader from './HomeHeader/HomeHeader';
 export BtnBottom from './BtnBottom/BtnBottom';
 export Note from './Note/Note';
+export MenuBarBlueDesktop from './Desktop/MenuBarDesktop/MenuBarBlueDesktop';
+export TrackBannerDesktop from './Desktop/TrackBannerDesktop/TrackBannerDesktop';
+export ProgrammingTabsDesktop from './Desktop/ProgrammingTabsDesktop/ProgrammingTabsDesktop';
+export BottomNavDesktop from './Desktop/BottomNavDesktop/BottomNavDesktop';
