@@ -1,6 +1,9 @@
 .track-banner-wrapper {
   .track-banner {
     /*background: url("../../../static/gym-body.jpg");*/
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     position: relative;
     .overlay {
       position: absolute;
