@@ -24,3 +24,4 @@ export DotList from './DotList/DotList';
 export HomeHeader from './HomeHeader/HomeHeader';
 export BtnBottom from './BtnBottom/BtnBottom';
 export Note from './Note/Note';
+export RestDay from './RestDay/RestDay';
