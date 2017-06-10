@@ -8,6 +8,10 @@ import {
 	TrackBanner,
 	JumbotronWhite,
 	ProgrammingTabs,
+	MenuBarBlueDesktop,
+	TrackBannerDesktop,
+	ProgrammingTabsDesktop,
+	BottomNavDesktop
 	RestDay
 } from '../../components';
 import {
@@ -41,6 +45,7 @@ import {
 	state => ({
 		user: state.auth.user,
 		selectedTracks: state.userTracks.selectedTracks,
+		routing: state.routing
 		wods: state.wods
 	}),
 	{}
@@ -99,15 +104,30 @@ export default class Programming extends Component {
 		return (
 			<div className="programming-page-wrapper bottom-padding">
 				<Helmet title="Programming"/>
-				<MenubarBlue
-					title="Programming"
-					leftSideContent={leftSideContent}
-					rightSideContent={rightSideContent}
-				/>
 
-				{!selectedTracks.length ? this.renderNoTracksFound() : this.renderSelectedTracks()}
+				<div className="hidden-md hidden-lg">
+					<MenubarBlue
+						title="Programming"
+						leftSideContent={leftSideContent}
+						rightSideContent={rightSideContent}
+					/>
 
-				<BottomNav/>
+					{!selectedTracks.length ? this.renderNoTracksFound() : this.renderSelectedTracks()}
+
+					<BottomNav/>
+				</div>
+
+				<div className="hidden-xs hidden-sm">
+					<MenuBarBlueDesktop/>
+
+					<TrackBannerDesktop/>
+
+					<ProgrammingTabsDesktop/>
+
+					<BottomNavDesktop
+						routing={this.props.routing}
+					/>
+				</div>
 			</div>
 		);
 	}
@@ -123,8 +143,10 @@ export default class Programming extends Component {
 		);
 		return (
 			<div>
-				<JumbotronWhite title="No tracks found"
-												description={noTracksDescription}/>
+				<JumbotronWhite
+					title="No tracks found"
+					description={noTracksDescription}
+				/>
 			</div>
 		)
 	}

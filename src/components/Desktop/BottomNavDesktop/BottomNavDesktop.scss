@@ -1,0 +1,48 @@
+.bottom-nav-wrapper-desktop{
+  .bottom-nav-desktop{
+    padding-left: 25px;
+    padding-right: 25px;
+    background: #fff;
+    margin-bottom: 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    .bottom-nav-logo-desktop{
+      max-width: 80px;
+      margin-top: 18px;
+    }
+    .copyright{
+      margin-left: 20px;
+      font-weight: 700;
+      position: relative;
+      top: 10px;
+    }
+    .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+      color: #fff;
+      background-color: transparent;
+    }
+    .nav > li > a:hover, .nav > li > a:focus {
+      background-color: transparent;
+    }
+    .nav-pills{
+      li{
+        padding-bottom: 24px;
+        padding-top: 25px;
+        margin-right: 20px;
+        margin-left: 20px;
+        border-top: 5px solid transparent;
+        &.active{
+          border-top: 5px solid #5bc8d4;
+          [class^="icon-"], [class*=" icon-"] {
+            color: black;
+          }
+        }
+        [class^="icon-"], [class*=" icon-"] {
+          color: #939391;
+          font-size: 24px;
+          /*margin-right: 40px;*/
+        }
+      }
+    }
+  }
+}

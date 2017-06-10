@@ -27,7 +27,7 @@ export default function refreshAdminJWT(request) {
 					key: 'admin_jwt'
 				}
 			});
-
+			console.log(jwtResponse);
 			// update
 			if (adminJWT) {
 				await adminJWT.update({

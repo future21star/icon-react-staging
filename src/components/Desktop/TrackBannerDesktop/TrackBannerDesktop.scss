@@ -1,0 +1,67 @@
+.track-banner-wrapper-desktop{
+  .track-banner-desktop{
+    background: url(../../../../static/dynamicBG.jpg) no-repeat;
+    position: relative;
+    background-size: 100%;
+    /*min-height: 350px;*/
+    .overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, .7);
+    }
+    .title-desktop{
+      position: relative;
+      text-align: center;
+      padding-top: 60px;
+      h3, h1, h2 {
+        color: #5DC6D2;
+        margin-top: 0;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+      }
+      .next-track{
+        position: absolute;
+        color: #9a9b9f;
+        top: 50%;
+        right: 30px;
+        font-size: 16px;
+        i{
+          margin-left: 15px;
+          color: #d12022;
+          position: relative;
+          top: 5px;
+          font-size: 24px;
+        }
+      }
+      ul.track-banner-list-desktop{
+        display: block;
+        max-width: 95%;
+        margin-left: auto;
+        /*margin-right: auto;*/
+        padding-bottom: 70px;
+        margin-bottom: 0;
+        li:not(:last-child) {
+          border-right: 1px solid white;
+        }
+        li {
+          margin-right: 20px;
+          padding-right: 25px;
+          h3, p {
+            color: #fff;
+          }
+          p {
+            font-size: 18px;
+            font-weight: 300;
+            margin-bottom: 0;
+          }
+          h3 {
+            margin-bottom: 3px;
+            letter-spacing: 1px;
+            font-size: 21px;
+          }
+        }
+      }
+    }
+  }
+}
