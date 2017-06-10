@@ -3,7 +3,7 @@ import './ProgrammingTabs.scss';
 import ProgrammingTabsListItem from './ProgrammingTabsListItem';
 import {padStart} from 'lodash';
 
-export default class ProgrammingtabsListContainer extends Component {
+export default class ProgrammingTabsListContainer extends Component {
 
 	render() {
 		const {content} = this.props;

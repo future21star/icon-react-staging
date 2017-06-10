@@ -12,6 +12,8 @@ import {
 	TrackBannerDesktop,
 	ProgrammingTabsDesktop,
 	BottomNavDesktop,
+	MenuBarRedDesktop,
+	TracksListItemDesktop,
 	RestDay
 } from '../../components';
 import {
@@ -58,7 +60,8 @@ export default class Programming extends Component {
 
 		this.state = {
 			selectedTrack: selectedTracks.length ? selectedTracks[0].title : null,
-			activeDay: moment().format('YYYY-MM-DD')
+			activeDay: moment().format('YYYY-MM-DD'),
+			listView: false,
 		}
 	}
 
@@ -97,6 +100,8 @@ export default class Programming extends Component {
 
 	render() {
 		const {user, selectedTracks} = this.props;
+		
+		const bgImg = require('../../../static/strengthBG.jpg');
 
 		const leftSideContent = (
 			<Link to="/edit-tracks">
@@ -108,6 +113,40 @@ export default class Programming extends Component {
 			<Link to="/workout-mode">
 				<span className="icon-workout-mode"/>
 			</Link>
+		);
+
+		const leftSideContentDesktop = (
+			<h3>
+				<span className="icon-user-edit"/>
+				Lifestyle Track
+			</h3>
+		);
+
+		const rightSideContentDesktop = (
+			<Link to="/programming/list-view">
+				<p>
+					List View
+					<span>
+					<i className="fa fa-list-ul" aria-hidden="true"/>
+				</span>
+				</p>
+			</Link>
+		);
+
+		const listViewLeftSideContentDesktop = (
+			<h4>
+				<span>
+					<i className="fa fa-list-ul" aria-hidden="true"/>
+				</span>
+				List View
+			</h4>
+		);
+
+		const listViewRightSideContentDesktop = (
+			<p>
+				Lifestyle Track
+				<Link to="/edit-tracks"><span className="icon-user-edit"/></Link>
+			</p>
 		);
 
 		return (
@@ -127,15 +166,20 @@ export default class Programming extends Component {
 				</div>
 
 				<div className="hidden-xs hidden-sm">
-					<MenuBarBlueDesktop/>
+					<div>
+						<MenuBarBlueDesktop
+							leftSideContentDesktop={leftSideContentDesktop}
+							rightSideContentDesktop={rightSideContentDesktop}
+						/>
 
-					<TrackBannerDesktop/>
+						<TrackBannerDesktop/>
 
-					<ProgrammingTabsDesktop/>
+						<ProgrammingTabsDesktop/>
 
-					<BottomNavDesktop
-						routing={this.props.routing}
-					/>
+						<BottomNavDesktop
+							routing={this.props.routing}
+						/>
+					</div>
 				</div>
 			</div>
 		);
