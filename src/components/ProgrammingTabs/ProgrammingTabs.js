@@ -19,6 +19,8 @@ export default class ProgrammingTabs extends Component {
 	};
 
 	render() {
+		const {track} = this.props;
+
 		return (
 			<div className="programming-tabs">
 				<div className="programming-tabs-list-wrapper">
@@ -56,13 +58,13 @@ export default class ProgrammingTabs extends Component {
 				</div>
 				<div className="tab-content">
 					<div className={`tab-pane ${this.state.activeTab === 'warmUp' ? 'active' : ''}`}>
-						<ProgrammingTabsListContainer/>
+						<ProgrammingTabsListContainer content={track.warmUp}/>
 					</div>
 					<div className={`tab-pane ${this.state.activeTab === 'mainWorkout' ? 'active' : ''}`}>
-						<ProgrammingTabsListContainer/>
+						<ProgrammingTabsListContainer content={track.mainWorkout}/>
 					</div>
 					<div className={`tab-pane ${this.state.activeTab === 'coolDown' ? 'active' : ''}`}>
-						<ProgrammingTabsListContainer/>
+						<ProgrammingTabsListContainer content={track.coolDown}/>
 					</div>
 				</div>
 			</div>

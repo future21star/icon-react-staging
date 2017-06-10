@@ -7,7 +7,8 @@ import {
 	DailyBrief,
 	TrackBanner,
 	JumbotronWhite,
-	ProgrammingTabs
+	ProgrammingTabs,
+	RestDay
 } from '../../components';
 import {
 	isLoaded as isTracksLoaded,
@@ -17,6 +18,12 @@ import {Link} from "react-router";
 import {connect} from "react-redux";
 import {asyncConnect} from 'redux-async-connect';
 import ReactSwipe from 'react-swipe';
+import moment from 'moment';
+
+import {
+	isLoaded as isWodsLoaded,
+	load as loadWods
+} from '../../redux/modules/wods';
 
 @asyncConnect([{
 	promise: ({store: {dispatch, getState}}) => {
@@ -33,7 +40,8 @@ import ReactSwipe from 'react-swipe';
 @connect(
 	state => ({
 		user: state.auth.user,
-		selectedTracks: state.userTracks.selectedTracks
+		selectedTracks: state.userTracks.selectedTracks,
+		wods: state.wods
 	}),
 	{}
 )
@@ -43,13 +51,33 @@ export default class Programming extends Component {
 		const {selectedTracks} = this.props;
 
 		this.state = {
-			selectedTrack: selectedTracks.length ? selectedTracks[0].title : null
+			selectedTrack: selectedTracks.length ? selectedTracks[0].title : null,
+			today: moment().format('YYYY-MM-DD')
 		}
 	}
+
+	componentDidMount() {
+		const {selectedTracks} = this.props;
+
+		if (selectedTracks.length) {
+			let trackName = selectedTracks[0].title;
+			this.loadTodaysWod(trackName);
+		}
+	}
+
+	loadTodaysWod = (trackName) => {
+		const {wods, dispatch} = this.props;
+
+		if (!isWodsLoaded(wods, trackName, this.state.today)) {
+			dispatch(loadWods(trackName, this.state.today));
+		}
+	};
 
 	selectTrack = (newSelectedTrack) => {
 		this.setState({
 			selectedTrack: newSelectedTrack
+		}, () => {
+			this.loadTodaysWod(newSelectedTrack);
 		})
 	};
 
@@ -102,7 +130,7 @@ export default class Programming extends Component {
 	}
 
 	renderSelectedTracks() {
-		const {user, selectedTracks} = this.props;
+		const {user, selectedTracks, wods} = this.props;
 
 		const noteContent = (
 			<div>
@@ -127,14 +155,18 @@ export default class Programming extends Component {
 					{selectedTracks.map((track, i) => {
 						return (
 							<div name={track.title} key={i}>
-								<DailyBrief user={user}/>
-								<TrackBanner
-									midContent=""
-									title="emom"
-									bgImg={track.bgImg}
-									noteContent={noteContent}
-								/>
-								<ProgrammingTabs/>
+								{wods[track.title] && wods[track.title][this.state.today] ? (
+									<div>
+										<DailyBrief user={user}/>
+										<TrackBanner
+											midContent=""
+											bgImg={track.bgImg}
+											track={wods[track.title][this.state.today]}
+										/>
+										<ProgrammingTabs track={wods[track.title][this.state.today]}/>
+									</div>) : undefined}
+								{wods[track.title] && wods[track.title][this.state.today] === null ? (
+									<RestDay/>) : undefined }
 							</div>
 						);
 					})}

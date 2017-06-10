@@ -6,16 +6,23 @@ import {
 	DailyBrief,
 	TrackBanner,
 	ProgrammingTabs,
-	JumbotronWhite
+	JumbotronWhite,
+	RestDay
 } from '../../components';
 import {Link} from "react-router";
 import {connect} from "react-redux";
 import {asyncConnect} from 'redux-async-connect';
 import ReactSwipe from 'react-swipe';
+import moment from 'moment';
 import {
 	isLoaded as isTracksLoaded,
 	load as loadTracks
 } from '../../redux/modules/userTracks';
+
+import {
+	isLoaded as isWodsLoaded,
+	load as loadWods
+} from '../../redux/modules/wods';
 
 @asyncConnect([{
 	promise: ({store: {dispatch, getState}}) => {
@@ -32,7 +39,8 @@ import {
 @connect(
 	state => ({
 		user: state.auth.user,
-		selectedTracks: state.userTracks.selectedTracks
+		selectedTracks: state.userTracks.selectedTracks,
+		wods: state.wods
 	}),
 	{}
 )
@@ -42,17 +50,33 @@ export default class Home extends Component {
 		const {selectedTracks} = this.props;
 
 		this.state = {
-			selectedTrack: selectedTracks.length ? selectedTracks[0].title : null
+			selectedTrack: selectedTracks.length ? selectedTracks[0].title : null,
+			today: moment().format('YYYY-MM-DD')
 		}
 	}
 
 	componentDidMount() {
+		const {selectedTracks} = this.props;
 
+		if (selectedTracks.length) {
+			let trackName = selectedTracks[0].title;
+			this.loadTodaysWod(trackName);
+		}
 	}
+
+	loadTodaysWod = (trackName) => {
+		const {wods, dispatch} = this.props;
+
+		if (!isWodsLoaded(wods, trackName, this.state.today)) {
+			dispatch(loadWods(trackName, this.state.today));
+		}
+	};
 
 	selectTrack = (newSelectedTrack) => {
 		this.setState({
 			selectedTrack: newSelectedTrack
+		}, () => {
+			this.loadTodaysWod(newSelectedTrack);
 		})
 	};
 
@@ -71,7 +95,7 @@ export default class Home extends Component {
 		);
 
 		return (
-			<div >
+			<div className="bottom-padding">
 				<Helmet title="Home"/>
 
 				<MenubarTurquoise
@@ -107,13 +131,7 @@ export default class Home extends Component {
 	}
 
 	renderSelectedTracks() {
-		const {user, selectedTracks} = this.props;
-
-		const noteContent = (
-			<div>
-				Lorem ipsum dolor sit amet
-			</div>
-		);
+		const {user, selectedTracks, wods} = this.props;
 
 		const swipeConfig = {
 			callback: (index, elem) => this.selectTrack(elem.getAttribute('name')),
@@ -126,15 +144,19 @@ export default class Home extends Component {
 					{selectedTracks.map((track, i) => {
 						return (
 							<div name={track.title} key={i}>
-								<DailyBrief user={user}/>
-								<TrackBanner
-									trackName={track.title}
-									midContent={track.trackIconClassName}
-									title="emom"
-									bgImg={track.bgImg}
-									noteContent={noteContent}
-								/>
-								<ProgrammingTabs/>
+								{wods[track.title] && wods[track.title][this.state.today] ? (
+									<div>
+										<DailyBrief user={user}/>
+										<TrackBanner
+											trackName={track.title}
+											midContent={track.trackIconClassName}
+											bgImg={track.bgImg}
+											track={wods[track.title][this.state.today]}
+										/>
+										<ProgrammingTabs track={wods[track.title][this.state.today]}/>
+									</div>) : undefined }
+								{wods[track.title] && wods[track.title][this.state.today] === null ? (
+									<RestDay/>) : undefined }
 							</div>
 						);
 					})}

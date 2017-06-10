@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import Note from '../Note/Note';
 import './TrackBanner.scss';
-import gymBodyImg from '../../../static/gym-body.jpg';
 
 export default class TrackBanner extends Component {
 
@@ -72,7 +71,8 @@ export default class TrackBanner extends Component {
 	}
 
 	render() {
-		const {trackName, title, bgImg, midContent, noteContent} = this.props;
+		const {trackName, bgImg, midContent, track} = this.props;
+		let noteContent = track.notes;
 		return (
 			<div className="track-banner-wrapper">
 				<div className="track-banner" style={{backgroundImage: 'url(' + bgImg + ')',}}>
@@ -86,31 +86,28 @@ export default class TrackBanner extends Component {
 						}
 					</div>
 					<div className={`title ${!midContent ? 'title-padding' : ''}`}>
-						<h3>{title}</h3>
+						<h3>{track.format}</h3>
 
 						<ul className={`track-banner-list list-inline ${noteContent ? 'track-banner-list-with-note' : ''}`}>
 							<li>
-								<h3>15 MIN.</h3>
+								<h3>{`${track.duration} min` || '--'}</h3>
 								<p>Duration</p>
 							</li>
 							<li>
-								<h3>MODERATE</h3>
+								<h3>{track.intensity}</h3>
 								<p>Intensity</p>
 							</li>
 							<li>
-								<h3>SHOULDERS</h3>
+								<h3>{track.focus}</h3>
 								<p>Focus</p>
 							</li>
 						</ul>
 					</div>
-					{
-						noteContent ?
-							<Note
-								noteContent={noteContent}
-								classNames="note note-white"
-							/> :
-							undefined
-					}
+					{noteContent ?
+						<Note
+							noteContent={noteContent}
+							classNames="note note-white"
+						/> : undefined}
 				</div>
 			</div>
 		);
