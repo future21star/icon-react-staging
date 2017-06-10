@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import {Link} from "react-router";
 import {asyncConnect} from 'redux-async-connect';
 import {includes} from 'lodash';
+import {startsWith} from 'lodash';
 
 import {
 	isLoaded as isTracksLoaded,
@@ -103,8 +104,7 @@ export default class EditTracks extends Component {
 		const {userTracks} = this.props;
 
 		const swipeConfig = {
-			callback: (index, elem) => this.selectTrack(elem.getAttribute('name')),
-			continuous: false
+			callback: (index, elem) => this.selectTrack(elem.getAttribute('name'))
 		};
 
 		const selectedTrackIsSubscribed = userTracks.allTracks.filter(track => {
@@ -153,6 +153,9 @@ export default class EditTracks extends Component {
 	}
 
 	renderButtonsForProgrammingSingle(selectedTrackIsSubscribed) {
+
+		let visibleTrackStartsWithMasters = startsWith(this.state.selectedTrack, 'masters');
+
 		return (
 			<div>
 				{selectedTrackIsSubscribed ?
@@ -163,7 +166,7 @@ export default class EditTracks extends Component {
 						onClick={this.removeTrack}
 					/> : undefined }
 
-				{!selectedTrackIsSubscribed && this.state.selectedTrack === 'masters' ?
+				{!selectedTrackIsSubscribed && visibleTrackStartsWithMasters ?
 					<BtnBottom
 						classNames="btn btn-block btn-lg btn-fixed-bottom btn-turquoise btn-font-lg"
 						title="Update Subscription"
@@ -172,7 +175,7 @@ export default class EditTracks extends Component {
 					/> : undefined
 				}
 
-				{!selectedTrackIsSubscribed && this.state.selectedTrack !== 'masters' ?
+				{!selectedTrackIsSubscribed && !visibleTrackStartsWithMasters ?
 					<BtnBottom
 						classNames="btn btn-block btn-lg btn-fixed-bottom btn-turquoise btn-font-lg"
 						title="Add This Track"
@@ -185,6 +188,9 @@ export default class EditTracks extends Component {
 	}
 
 	renderButtonsForProgrammingAll(selectedTrackIsSubscribed) {
+
+		let visibleTrackStartsWithMasters = startsWith(this.state.selectedTrack, 'masters');
+
 		return (
 			<div>
 				{selectedTrackIsSubscribed ?
@@ -195,7 +201,7 @@ export default class EditTracks extends Component {
 						onClick={this.removeTrack}
 					/> : undefined }
 
-				{!selectedTrackIsSubscribed && this.state.selectedTrack === 'masters' ?
+				{!selectedTrackIsSubscribed && visibleTrackStartsWithMasters ?
 					<BtnBottom
 						classNames="btn btn-block btn-lg btn-fixed-bottom btn-turquoise btn-font-lg"
 						title="Update Subscription"
@@ -204,7 +210,7 @@ export default class EditTracks extends Component {
 					/> : undefined
 				}
 
-				{!selectedTrackIsSubscribed && this.state.selectedTrack !== 'masters' ?
+				{!selectedTrackIsSubscribed && !visibleTrackStartsWithMasters ?
 					<BtnBottom
 						classNames="btn btn-block btn-lg btn-fixed-bottom btn-turquoise btn-font-lg"
 						title="Add This Track"
@@ -217,6 +223,8 @@ export default class EditTracks extends Component {
 	}
 
 	renderButtonsForProgrammingMasters(selectedTrackIsSubscribed) {
+
+		let visibleTrackStartsWithMasters = startsWith(this.state.selectedTrack, 'masters');
 		return (
 			<div>
 				{selectedTrackIsSubscribed ?
@@ -227,7 +235,7 @@ export default class EditTracks extends Component {
 						onClick={this.removeTrack}
 					/> : undefined }
 
-				{!selectedTrackIsSubscribed && this.state.selectedTrack === 'masters' ?
+				{!selectedTrackIsSubscribed && visibleTrackStartsWithMasters ?
 					<BtnBottom
 						classNames="btn btn-block btn-lg btn-fixed-bottom btn-turquoise btn-font-lg"
 						title="Add This Track"
@@ -236,7 +244,7 @@ export default class EditTracks extends Component {
 					/> : undefined
 				}
 
-				{!selectedTrackIsSubscribed && this.state.selectedTrack !== 'masters' ?
+				{!selectedTrackIsSubscribed && !visibleTrackStartsWithMasters ?
 					undefined : undefined
 				}
 			</div>
