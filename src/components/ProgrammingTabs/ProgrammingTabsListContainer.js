@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './ProgrammingTabs.scss';
 import ProgrammingTabsListItem from './ProgrammingTabsListItem';
 
-export default class ProgrammingtabsListContainer extends Component {
+export default class ProgrammingTabsListContainer extends Component {
 
 	render() {
 		return (

@@ -30,7 +30,7 @@ export default class BottomNavDesktop extends Component {
 								{BottomNavDesktop.linkItemRender('/feed', 'icon-nav-feed', currentUri)}
 								{BottomNavDesktop.linkItemRender('/nutrition', 'icon-nav-nutrition', currentUri)}
 								{BottomNavDesktop.linkItemRender('/programming', 'icon-nav-programming', currentUri)}
-								{BottomNavDesktop.linkItemRender('/programming-desktop', 'icon-information', currentUri)}
+								{BottomNavDesktop.linkItemRender('/programming/list-view', 'icon-information', currentUri)}
 							</ul>
 						</div>
 					</div>

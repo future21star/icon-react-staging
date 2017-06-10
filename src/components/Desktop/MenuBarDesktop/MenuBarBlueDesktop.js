@@ -5,15 +5,14 @@ export default class MenuBarBlueDesktop extends Component {
 
 	render() {
 
+		const {leftSideContentDesktop, rightSideContentDesktop} = this.props;
+
 		return (
 			<div className="menu-bar-desktop menu-bar-desktop-blue">
 				<div className="container-fluid">
 					<div className="row">
 						<div className="col-sm-3 col-md-3 col-lg-3 menu-bar-left-side-content-desktop">
-							<h3>
-								<span className="icon-user-edit"/>
-								Lifestyle Track
-							</h3>
+							{leftSideContentDesktop}
 						</div>
 						<div className="col-sm-6 col-md-6 col-lg-6 menu-bar-title-desktop">
 							<ul className="nav nav-pills nav-justified">
@@ -30,12 +29,7 @@ export default class MenuBarBlueDesktop extends Component {
 							</p>
 						</div>
 						<div className="col-sm-3 col-md-3 col-lg-3 menu-bar-right-side-content-desktop">
-							<p>
-								List View
-								<span>
-									<i className="fa fa-list-ul" aria-hidden="true"/>
-								</span>
-							</p>
+							{rightSideContentDesktop}
 						</div>
 					</div>
 				</div>
