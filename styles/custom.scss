@@ -205,8 +205,13 @@ $input-border-color: #383838;
   color: #fff;
 }
 
-/********** Programming desktop starts 06/07/17 **********/
+/********** Programming desktop **********/
 
+.tracks-list-view-container-desktop{
+  min-height: calc(100vh - 167px);
+  min-height: -webkit-calc(100vh - 167px);
+  background: #f6f4f5;
+  padding: 80px 50px 50px 50px;
+}
 
-
-/********** End of Programming desktop starts 06/07/17 **********/
+/********** End of Programming desktop  **********/
