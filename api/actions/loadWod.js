@@ -5,7 +5,7 @@ export default function loadWod(request) {
 	return new Promise(async (resolve, reject) => {
 		const {trackName, date} = request.body;
 
-		// get all wods TODO: for now
+		// get wod TODO: for now
 		let wod = null;
 		try {
 			wod = await models.Wod.findOne({
@@ -19,10 +19,12 @@ export default function loadWod(request) {
 			return reject(generalError(e.response));
 		}
 
-		return resolve({
-			wod: wod,
-			date: date,
-			trackName: trackName
-		});
+		// setTimeout(() => {
+			return resolve({
+				wod: wod,
+				date: date,
+				trackName: trackName
+			});
+		// }, 4000);
 	});
 }

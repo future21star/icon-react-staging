@@ -94,11 +94,11 @@ export default class TrackBanner extends Component {
 								<p>Duration</p>
 							</li>
 							<li>
-								<h3>{track.intensity}</h3>
+								<h3>{track.intensity || '--'}</h3>
 								<p>Intensity</p>
 							</li>
 							<li>
-								<h3>{track.focus}</h3>
+								<h3>{track.focus || '--'}</h3>
 								<p>Focus</p>
 							</li>
 						</ul>

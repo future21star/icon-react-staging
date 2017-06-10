@@ -6,17 +6,18 @@ import DotList from '../DotList/DotList';
 export default class ProgrammingHeader extends Component {
 	static propTypes = {
 		user: PropTypes.object,
+		onDayPickerDateChange: PropTypes.func.isRequired
 	};
 
 	render() {
-		const {user, selectedTrack, allTracks} = this.props;
+		const {user, selectedTrack, allTracks, onDayPickerDateChange} = this.props;
 
 		return user ? (
 			<div className="programming-header-wrapper">
 				<div className="container">
 					<div className="row">
 						<div className="col-xs-12">
-							<DayPicker/>
+							<DayPicker onDateChange={onDayPickerDateChange}/>
 						</div>
 						<div className="col-xs-12">
 							<div className="title">{selectedTrack} Track</div>

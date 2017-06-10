@@ -1,10 +1,13 @@
-.daypicker-wrapper{
+.daypicker-wrapper {
   .nav-justified {
     text-align: center;
-    .active {
+    span {
       border-radius: 50%;
-      border: 1px solid #fff;
       padding: 8px 10px 8px 10px;
+      border: 1px solid transparent;
+      &.active {
+        border-color: #ffffff;
+      }
     }
   }
   .nav-justified > li {
@@ -12,5 +15,6 @@
     width: 1%;
     color: #fff;
     min-width: 35px;
+    cursor: pointer;
   }
 }

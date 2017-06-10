@@ -28,6 +28,7 @@ import {
 	isLoaded as isWodsLoaded,
 	load as loadWods
 } from '../../redux/modules/wods';
+import Loader from "../../components/Loader/Loader";
 
 @asyncConnect([{
 	promise: ({store: {dispatch, getState}}) => {
@@ -57,7 +58,7 @@ export default class Programming extends Component {
 
 		this.state = {
 			selectedTrack: selectedTracks.length ? selectedTracks[0].title : null,
-			today: moment().format('YYYY-MM-DD')
+			activeDay: moment().format('YYYY-MM-DD')
 		}
 	}
 
@@ -66,15 +67,15 @@ export default class Programming extends Component {
 
 		if (selectedTracks.length) {
 			let trackName = selectedTracks[0].title;
-			this.loadTodaysWod(trackName);
+			this.loadActiveDaysWod(trackName);
 		}
 	}
 
-	loadTodaysWod = (trackName) => {
+	loadActiveDaysWod = () => {
 		const {wods, dispatch} = this.props;
 
-		if (!isWodsLoaded(wods, trackName, this.state.today)) {
-			dispatch(loadWods(trackName, this.state.today));
+		if (!isWodsLoaded(wods, this.state.selectedTrack, this.state.activeDay)) {
+			dispatch(loadWods(this.state.selectedTrack, this.state.activeDay));
 		}
 	};
 
@@ -82,7 +83,15 @@ export default class Programming extends Component {
 		this.setState({
 			selectedTrack: newSelectedTrack
 		}, () => {
-			this.loadTodaysWod(newSelectedTrack);
+			this.loadActiveDaysWod();
+		})
+	};
+
+	dayChanged = (activeDay) => {
+		this.setState({
+			activeDay: activeDay
+		}, () => {
+			this.loadActiveDaysWod();
 		})
 	};
 
@@ -154,12 +163,6 @@ export default class Programming extends Component {
 	renderSelectedTracks() {
 		const {user, selectedTracks, wods} = this.props;
 
-		const noteContent = (
-			<div>
-				Lorem ipsum dolor sit amet
-			</div>
-		);
-
 		const swipeConfig = {
 			callback: (index, elem) => this.selectTrack(elem.getAttribute('name')),
 			continuous: false
@@ -171,23 +174,26 @@ export default class Programming extends Component {
 					user={user}
 					selectedTrack={this.state.selectedTrack}
 					allTracks={selectedTracks}
+					onDayPickerDateChange={this.dayChanged}
 				/>
 
 				<ReactSwipe className="carousel" swipeOptions={swipeConfig}>
 					{selectedTracks.map((track, i) => {
 						return (
 							<div name={track.title} key={i}>
-								{wods[track.title] && wods[track.title][this.state.today] ? (
+								{wods[track.title] && wods[track.title][this.state.activeDay] ? (
 									<div>
 										<DailyBrief user={user}/>
 										<TrackBanner
 											midContent=""
 											bgImg={track.bgImg}
-											track={wods[track.title][this.state.today]}
+											track={wods[track.title][this.state.activeDay]}
 										/>
-										<ProgrammingTabs track={wods[track.title][this.state.today]}/>
+										<ProgrammingTabs track={wods[track.title][this.state.activeDay]}/>
 									</div>) : undefined}
-								{wods[track.title] && wods[track.title][this.state.today] === null ? (
+								{wods[track.title] && typeof wods[track.title][this.state.activeDay] === 'undefined' ? (
+									<Loader/>) : undefined }
+								{wods[track.title] && wods[track.title][this.state.activeDay] === null ? (
 									<RestDay track={track}/>) : undefined }
 							</div>
 						);

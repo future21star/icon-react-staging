@@ -23,6 +23,7 @@ import {
 	isLoaded as isWodsLoaded,
 	load as loadWods
 } from '../../redux/modules/wods';
+import Loader from "../../components/Loader/Loader";
 
 @asyncConnect([{
 	promise: ({store: {dispatch, getState}}) => {
@@ -157,6 +158,7 @@ export default class Home extends Component {
 									</div>) : undefined }
 								{wods[track.title] && wods[track.title][this.state.today] === null ? (
 									<RestDay track={track}/>) : undefined }
+								{wods.loading ? <Loader/> : undefined}
 							</div>
 						);
 					})}
