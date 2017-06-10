@@ -156,7 +156,7 @@ export default class Home extends Component {
 										<ProgrammingTabs track={wods[track.title][this.state.today]}/>
 									</div>) : undefined }
 								{wods[track.title] && wods[track.title][this.state.today] === null ? (
-									<RestDay/>) : undefined }
+									<RestDay track={track}/>) : undefined }
 							</div>
 						);
 					})}

@@ -48,7 +48,7 @@ import {
 	state => ({
 		user: state.auth.user,
 		selectedTracks: state.userTracks.selectedTracks,
-		routing: state.routing
+		routing: state.routing,
 		wods: state.wods
 	}),
 	{}
@@ -60,7 +60,7 @@ export default class Programming extends Component {
 
 		this.state = {
 			selectedTrack: selectedTracks.length ? selectedTracks[0].title : null,
-			listView: false
+			listView: false,
 			today: moment().format('YYYY-MM-DD')
 		}
 	}
@@ -235,7 +235,7 @@ export default class Programming extends Component {
 										<ProgrammingTabs track={wods[track.title][this.state.today]}/>
 									</div>) : undefined}
 								{wods[track.title] && wods[track.title][this.state.today] === null ? (
-									<RestDay/>) : undefined }
+									<RestDay track={track}/>) : undefined }
 							</div>
 						);
 					})}
