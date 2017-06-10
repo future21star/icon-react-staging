@@ -6,6 +6,7 @@ import auth from './auth';
 import loginStore from './loginStore';
 import editProfileStore from './editProfileStore';
 import userTracks from './userTracks';
+import wods from './wods';
 
 export default combineReducers({
 	routing: routerReducer,
@@ -13,5 +14,6 @@ export default combineReducers({
 	auth,
 	loginStore,
 	editProfileStore,
-	userTracks
+	userTracks,
+	wods
 });
