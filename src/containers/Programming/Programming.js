@@ -11,7 +11,7 @@ import {
 	MenuBarBlueDesktop,
 	TrackBannerDesktop,
 	ProgrammingTabsDesktop,
-	BottomNavDesktop
+	BottomNavDesktop,
 	RestDay
 } from '../../components';
 import {
