@@ -15,6 +15,7 @@ module.exports = function (sequelize, DataTypes) {
 			type: DataTypes.STRING
 		},
 	}, {
+		tableName: 'appMeta',
 		classMethods: {
 			associate: function (models) {
 				// associations can be defined here
