@@ -45,7 +45,7 @@ import {
 	state => ({
 		user: state.auth.user,
 		selectedTracks: state.userTracks.selectedTracks,
-		routing: state.routing
+		routing: state.routing,
 		wods: state.wods
 	}),
 	{}
