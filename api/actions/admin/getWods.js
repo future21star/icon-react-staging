@@ -30,6 +30,7 @@ export default function getWods(request) {
 				if (trackName) {
 					wods.push({
 						trackName: trackName,
+						format: singleWpWod.workout_format[0],
 						date: singleWpWod.wod_date,
 						notes: singleWpWod.notes,
 						duration: singleWpWod.duration,
