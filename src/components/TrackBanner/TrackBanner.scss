@@ -1,6 +1,9 @@
 .track-banner-wrapper {
   .track-banner {
     /*background: url("../../../static/gym-body.jpg");*/
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     position: relative;
     .overlay {
       position: absolute;
@@ -18,7 +21,7 @@
         text-transform: uppercase;
       }
     }
-    .title-padding{
+    .title-padding {
       padding-top: 60px;
     }
     .track-banner-list {
@@ -48,19 +51,19 @@
         }
       }
     }
-    .track-banner-list-with-note{
+    .track-banner-list-with-note {
       padding-bottom: 15px;
     }
-    .mid-content{
+    .mid-content {
       text-align: center;
       position: relative;
-      h1{
+      h1 {
         margin-top: 10px;
         color: #fff;
         text-transform: uppercase;
         margin-bottom: 40px;
       }
-      .icon-track-dynamic{
+      [class^="icon-"], [class*=" icon-"] {
         font-size: 50px;
         margin-top: 30px;
         .path1:before {

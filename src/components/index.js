@@ -28,3 +28,4 @@ export MenuBarBlueDesktop from './Desktop/MenuBarDesktop/MenuBarBlueDesktop';
 export TrackBannerDesktop from './Desktop/TrackBannerDesktop/TrackBannerDesktop';
 export ProgrammingTabsDesktop from './Desktop/ProgrammingTabsDesktop/ProgrammingTabsDesktop';
 export BottomNavDesktop from './Desktop/BottomNavDesktop/BottomNavDesktop';
+export RestDay from './RestDay/RestDay';

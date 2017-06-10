@@ -86,7 +86,10 @@ export default function reducer(state = initialState, action = {}) {
 			return {
 				...state,
 				allTracks: newAllTracks,
-				selectedTracks: newSelectedTracks
+				selectedTracks: newSelectedTracks,
+				loading: false,
+				loaded: true,
+				error: null
 			};
 		case LOAD_FAIL:
 			return {
