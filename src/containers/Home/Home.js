@@ -89,11 +89,6 @@ export default class Home extends Component {
 				<Link to="profile"><span className="icon-user-profile"/></Link>
 			</div>
 		);
-		const rightSideContent = (
-			<Link to="/workout-mode" className="text-white">
-				<span className="icon-workout-mode"/>
-			</Link>
-		);
 
 		return (
 			<div className="bottom-padding">
@@ -102,7 +97,6 @@ export default class Home extends Component {
 				<MenubarTurquoise
 					title="Today's Workout"
 					leftSideContent={leftSideContent}
-					rightSideContent={rightSideContent}
 					dotSelectedItem={this.state.selectedTrack}
 					dotItemsList={selectedTracks}
 				/>

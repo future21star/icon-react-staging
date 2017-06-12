@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Note from '../Note/Note';
+import {Link} from 'react-router';
 import './TrackBanner.scss';
 
 export default class TrackBanner extends Component {
@@ -77,6 +78,11 @@ export default class TrackBanner extends Component {
 			<div className="track-banner-wrapper">
 				<div className="track-banner" style={{backgroundImage: 'url(' + bgImg + ')',}}>
 					<div className="overlay"/>
+					<div className="workout-button">
+						<Link to={`/workout/${track.trackName}/${track.id}`} className="text-white">
+							<span className="icon-workout-mode"/>
+						</Link>
+					</div>
 					<div className="mid-content">
 						{midContent || trackName ?
 							<div className="mid-content-section">

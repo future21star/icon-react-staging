@@ -48,7 +48,6 @@ export default class ProgrammingTabsListContainer extends Component {
 								</ProgrammingTabsListItem>
 							)
 						})}
-
 					</ul>
 				</div>
 			</div>

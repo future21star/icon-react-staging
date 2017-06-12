@@ -7,6 +7,7 @@ import loginStore from './loginStore';
 import editProfileStore from './editProfileStore';
 import userTracks from './userTracks';
 import wods from './wods';
+import workoutItem from './workoutItem';
 
 export default combineReducers({
 	routing: routerReducer,
@@ -15,5 +16,6 @@ export default combineReducers({
 	loginStore,
 	editProfileStore,
 	userTracks,
-	wods
+	wods,
+	workoutItem
 });
