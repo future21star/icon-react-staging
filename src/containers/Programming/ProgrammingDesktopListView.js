@@ -2,12 +2,43 @@ import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import {Link} from "react-router";
 import {connect} from "react-redux";
+import {asyncConnect} from 'redux-async-connect';
 import {MenuBarRedDesktop, BottomNavDesktop, TracksListItemDesktop} from '../../components';
+import {
+	isLoaded as isWodsLoaded,
+	load as loadWods
+} from '../../redux/modules/wods';
+import {
+	isLoaded as isTracksLoaded,
+	load as loadTracks
+} from '../../redux/modules/userTracks';
+import {
+	isLoaded as isDailyBriefLoaded,
+	load as loadDailyBrief
+} from '../../redux/modules/dailyBrief';
 
+@asyncConnect([{
+	promise: ({store: {dispatch, getState}}) => {
+		const promises = [];
+
+		if (!isTracksLoaded(getState())) {
+			promises.push(dispatch(loadTracks()));
+		}
+
+		if (!isDailyBriefLoaded(getState())) {
+			promises.push(dispatch(loadDailyBrief()));
+		}
+
+		return Promise.all(promises);
+	}
+}])
 @connect(
 	state => ({
 		user: state.auth.user,
-		routing: state.routing
+		selectedTracks: state.userTracks.selectedTracks,
+		routing: state.routing,
+		wods: state.wods,
+		dailyBrief: state.dailyBrief
 	}),
 	{}
 )
@@ -21,6 +52,7 @@ export default class ProgrammingDesktopListView extends Component {
 	];
 
 	render() {
+		const {selectedTracks} = this.props;
 
 		const leftSideContentDesktop = (
 			<h4>
@@ -48,7 +80,7 @@ export default class ProgrammingDesktopListView extends Component {
 				<MenuBarRedDesktop
 					leftSideContentDesktop={leftSideContentDesktop}
 					rightSideContentDesktop={rightSideContentDesktop}
-					tracks={ProgrammingDesktopListView.allTracks}
+					tracks={selectedTracks}
 				/>
 
 				<div className="tracks-list-view-container-wrapper-desktop">

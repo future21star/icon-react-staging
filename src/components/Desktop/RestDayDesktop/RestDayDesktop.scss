@@ -1,0 +1,41 @@
+.rest-day-desktop-wrapper {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../../../../static/lifestyleBG.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  .rest-day-container {
+    padding-top: 40px;
+    padding-bottom: 116px;
+
+    .track-name {
+      margin-top: 10px;
+      color: #fff;
+      text-transform: uppercase;
+      margin-bottom: 25px;
+
+      text-align: center;
+      font-size: 36px;
+      font-family: Oswald, sans-serif;
+    }
+
+    .track-status {
+      color: #5DC6D2;
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 24px;
+      font-family: Oswald, sans-serif;
+    }
+    .track-icon {
+      text-align: center;
+      [class^="icon-"], [class*=" icon-"] {
+        font-size: 50px;
+
+        span:before {
+          color: #ffffff;
+        }
+      }
+    }
+
+  }
+}

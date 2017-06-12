@@ -15,18 +15,18 @@ import {
 	MenuBarRedDesktop,
 	TracksListItemDesktop,
 	RestDay,
+	RestDayDesktop,
 	Loader
 } from '../../components';
-import {
-	isLoaded as isTracksLoaded,
-	load as loadTracks
-} from '../../redux/modules/userTracks';
 import {Link} from "react-router";
 import {connect} from "react-redux";
 import {asyncConnect} from 'redux-async-connect';
 import ReactSwipe from 'react-swipe';
 import moment from 'moment';
-
+import {
+	isLoaded as isTracksLoaded,
+	load as loadTracks
+} from '../../redux/modules/userTracks';
 import {
 	isLoaded as isWodsLoaded,
 	load as loadWods
@@ -117,7 +117,7 @@ export default class Programming extends Component {
 	};
 
 	render() {
-		const {user, selectedTracks} = this.props;
+		const {wods, user, selectedTracks, dailyBrief} = this.props;
 
 		const bgImg = require('../../../static/strengthBG.jpg');
 
@@ -149,9 +149,9 @@ export default class Programming extends Component {
 		);
 
 		const leftSideContentDesktop = (
-			<h3>
+			<h3 className="text-capitalize">
 				<span className="icon-user-edit"/>
-				Lifestyle Track
+				{this.state.selectedTrack} Track
 			</h3>
 		);
 
@@ -160,7 +160,7 @@ export default class Programming extends Component {
 				<p>
 					List View
 					<span>
-					<i className="fa fa-list-ul" aria-hidden="true"/>
+					<i className="icon-desktop-menu" aria-hidden="true"/>
 				</span>
 				</p>
 			</Link>
@@ -205,15 +205,41 @@ export default class Programming extends Component {
 						<MenuBarBlueDesktop
 							leftSideContentDesktop={leftSideContentDesktop}
 							rightSideContentDesktop={rightSideContentDesktop}
+							activeWeek={this.state.activeWeek}
+							onDateChange={this.dayChanged}
 						/>
-
-						<TrackBannerDesktop/>
-
-						<ProgrammingTabsDesktop/>
-
-						<BottomNavDesktop
-							routing={this.props.routing}
-						/>
+						{selectedTracks.map((track, i) => {
+								return (
+									<div name={track.title} key={i}>
+										{this.state.selectedTrack === track.title ? (
+											<div>
+												{wods[track.title] && wods[track.title][this.state.activeDay] ? (
+													<div>
+														<TrackBannerDesktop
+															track={wods[track.title][this.state.activeDay]}
+															nextTrack={selectedTracks[i + 1] ? selectedTracks[i + 1].title : null}
+															prevTrack={selectedTracks[i - 1] ? selectedTracks[i - 1].title : null}
+															bgImg={track.bgImg}
+															onSelectTrack={this.selectTrack}
+														/>
+														{this.state.today === this.state.activeDay
+															? <ProgrammingTabsDesktop track={wods[track.title][this.state.activeDay]}
+																												dailyBriefContent={dailyBrief.dailyBriefs[track.title]}/>
+															: <ProgrammingTabsDesktop track={wods[track.title][this.state.activeDay]}/>
+														}
+													</div>
+												) : <RestDayDesktop track={track}
+																						nextTrack={selectedTracks[i + 1] ? selectedTracks[i + 1].title : null}
+																						prevTrack={selectedTracks[i - 1] ? selectedTracks[i - 1].title : null}
+																						onSelectTrack={this.selectTrack}/>}
+											</div>) : undefined}
+									</div>
+								)
+							}
+						)}
+						{/*<BottomNavDesktop*/}
+						{/*routing={this.props.routing}*/}
+						{/*/>*/}
 					</div>
 				</div>
 			</div>
@@ -262,8 +288,7 @@ export default class Programming extends Component {
 						return (
 							<div name={track.title} key={i}>
 								{this.state.today === this.state.activeDay ?
-									<DailyBrief user={user} content={dailyBrief.dailyBriefs[track.title]}/> : undefined
-								}
+									<DailyBrief user={user} content={dailyBrief.dailyBriefs[track.title]}/> : undefined}
 								{wods[track.title] && wods[track.title][this.state.activeDay] ? (
 									<div>
 										<TrackBanner
