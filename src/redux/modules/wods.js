@@ -1,3 +1,4 @@
+import {LOGOUT_SUCCESS} from "./auth";
 const LOAD = 'wods/LOAD';
 const LOAD_SUCCESS = 'wods/LOAD_SUCCESS';
 const LOAD_FAIL = 'wods/LOAD_FAIL';
@@ -33,6 +34,10 @@ export default function reducer(state = initialState, action = {}) {
 				...state,
 				loading: false,
 				error: action.error
+			};
+		case LOGOUT_SUCCESS:
+			return {
+				...initialState
 			};
 		default:
 			return state;

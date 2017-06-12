@@ -1,3 +1,4 @@
+import {LOGOUT_SUCCESS} from "./auth";
 const LOAD = 'workoutItems/LOAD';
 const LOAD_SUCCESS = 'workoutItems/LOAD_SUCCESS';
 const LOAD_FAIL = 'workoutItems/LOAD_FAIL';
@@ -27,6 +28,10 @@ export default function reducer(state = initialState, action = {}) {
 				...state,
 				loading: false,
 				error: action.error
+			};
+		case LOGOUT_SUCCESS:
+			return {
+				...initialState
 			};
 		default:
 			return state;

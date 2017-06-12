@@ -1,3 +1,4 @@
+import {LOGOUT_SUCCESS} from "./auth";
 const LOAD = 'dailyBrief/LOAD';
 const LOAD_SUCCESS = 'dailyBrief/LOAD_SUCCESS';
 const LOAD_FAIL = 'dailyBrief/LOAD_FAIL';
@@ -30,6 +31,10 @@ export default function reducer(state = initialState, action = {}) {
 				loading: false,
 				loaded: true,
 				error: action.error
+			};
+		case LOGOUT_SUCCESS:
+			return {
+				...initialState
 			};
 		default:
 			return state;
