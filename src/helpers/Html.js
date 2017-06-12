@@ -45,6 +45,8 @@ export default class Html extends Component {
 				{/*rel="stylesheet" type="text/css" charSet="UTF-8"/>*/}
 				{/*)}*/}
 
+				{/*Temp*/}
+				<link rel="stylesheet" href="https://i.icomoon.io/public/2aac31bad8/IconAthlete-Vault/style.css"/>
 				<link href={assets.styles.vendors} rel="stylesheet" type="text/css" charSet="UTF-8"/>
 				<link href={assets.styles.main} rel="stylesheet" type="text/css" charSet="UTF-8"/>
 
