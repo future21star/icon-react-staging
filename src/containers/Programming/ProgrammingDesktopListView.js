@@ -5,7 +5,10 @@ import {connect} from "react-redux";
 import {MenuBarRedDesktop, BottomNavDesktop, TracksListItemDesktop} from '../../components';
 
 @connect(
-	state => ({user: state.auth.user}, {routing: state.routing}),
+	state => ({
+		user: state.auth.user,
+		routing: state.routing
+	}),
 	{}
 )
 export default class ProgrammingDesktopListView extends Component {
@@ -15,7 +18,7 @@ export default class ProgrammingDesktopListView extends Component {
 		'Lifestyle',
 		'Strength',
 		'Hyper'
-	]
+	];
 
 	render() {
 
@@ -35,7 +38,7 @@ export default class ProgrammingDesktopListView extends Component {
 			</p>
 		);
 
-		const bgImg = require('../../../static/gym-body.jpg');
+		const bgImg = require('../../../static/strengthBG.jpg');
 
 		return (
 			<div className="programming-page-list-view-wrapper-desktop hidden-xs hidden-sm">

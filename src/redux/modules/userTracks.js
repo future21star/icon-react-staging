@@ -42,7 +42,37 @@ const initialState = {
 		},
 		{
 			bgImg: require('../../../static/hyperBG.jpg'),
-			title: "masters",
+			title: "masters-35-39",
+			trackIconClassName: "icon-track-hyper",
+			isSubscribed: false
+		},
+		{
+			bgImg: require('../../../static/hyperBG.jpg'),
+			title: "masters-40-44",
+			trackIconClassName: "icon-track-hyper",
+			isSubscribed: false
+		},
+		{
+			bgImg: require('../../../static/hyperBG.jpg'),
+			title: "masters-45-49",
+			trackIconClassName: "icon-track-hyper",
+			isSubscribed: false
+		},
+		{
+			bgImg: require('../../../static/hyperBG.jpg'),
+			title: "masters-50-54",
+			trackIconClassName: "icon-track-hyper",
+			isSubscribed: false
+		},
+		{
+			bgImg: require('../../../static/hyperBG.jpg'),
+			title: "masters-55-59",
+			trackIconClassName: "icon-track-hyper",
+			isSubscribed: false
+		},
+		{
+			bgImg: require('../../../static/hyperBG.jpg'),
+			title: "masters-60+",
 			trackIconClassName: "icon-track-hyper",
 			isSubscribed: false
 		}
