@@ -61,6 +61,7 @@ export default class Programming extends Component {
 		this.state = {
 			selectedTrack: selectedTracks.length ? selectedTracks[0].title : null,
 			activeDay: moment().format('YYYY-MM-DD'),
+			activeWeek: 'current',
 			listView: false,
 		}
 	}
@@ -73,6 +74,12 @@ export default class Programming extends Component {
 			this.loadActiveDaysWod(trackName);
 		}
 	}
+
+	changeWeek = () => {
+		this.setState({
+			activeWeek: this.state.activeWeek === 'current' ? 'next' : 'current'
+		})
+	};
 
 	loadActiveDaysWod = () => {
 		const {wods, dispatch} = this.props;
@@ -100,13 +107,28 @@ export default class Programming extends Component {
 
 	render() {
 		const {user, selectedTracks} = this.props;
-		
+
 		const bgImg = require('../../../static/strengthBG.jpg');
 
 		const leftSideContent = (
 			<Link to="/edit-tracks">
 				<span className="icon-user-edit"/>
 			</Link>
+		);
+
+		const rightSideContentMobileView = (
+			<a href="javascript:;" onClick={this.changeWeek}>
+				{this.state.activeWeek === 'current' ? (
+					<span className="icon-next-week">
+					<span className="path1"/>
+					<span className="path2"/>
+				</span>) : (
+					<span className="icon-prev-week">
+					<span className="path1"/>
+					<span className="path2"/>
+				</span>
+				)}
+			</a>
 		);
 
 		const rightSideContent = (
@@ -153,11 +175,12 @@ export default class Programming extends Component {
 			<div className="programming-page-wrapper bottom-padding">
 				<Helmet title="Programming"/>
 
+				{/*mobile*/}
 				<div className="hidden-md hidden-lg">
 					<MenubarBlue
 						title="Programming"
 						leftSideContent={leftSideContent}
-						rightSideContent={rightSideContent}
+						rightSideContent={rightSideContentMobileView}
 					/>
 
 					{!selectedTracks.length ? this.renderNoTracksFound() : this.renderSelectedTracks()}
@@ -165,6 +188,7 @@ export default class Programming extends Component {
 					<BottomNav/>
 				</div>
 
+				{/*desktop*/}
 				<div className="hidden-xs hidden-sm">
 					<div>
 						<MenuBarBlueDesktop
@@ -219,6 +243,7 @@ export default class Programming extends Component {
 					selectedTrack={this.state.selectedTrack}
 					allTracks={selectedTracks}
 					onDayPickerDateChange={this.dayChanged}
+					activeWeek={this.state.activeWeek}
 				/>
 
 				<ReactSwipe className="carousel" swipeOptions={swipeConfig}>

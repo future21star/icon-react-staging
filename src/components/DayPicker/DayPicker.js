@@ -4,7 +4,8 @@ import './DayPicker.scss';
 
 export default class DayPicker extends Component {
 	static propTypes = {
-		onDateChange: PropTypes.func.isRequired
+		onDateChange: PropTypes.func.isRequired,
+		activeWeek: PropTypes.string.isRequired
 	};
 
 	constructor(props) {
@@ -16,7 +17,6 @@ export default class DayPicker extends Component {
 				next: DayPicker.getNextWeekDays()
 			},
 			activeDate: moment().format('YYYY-MM-DD'),
-			activeWeek: 'current'
 		}
 	}
 
@@ -56,14 +56,10 @@ export default class DayPicker extends Component {
 		})
 	};
 
-	changeWeek = () => {
-		this.setState({
-			activeWeek: this.state.activeWeek === 'current' ? 'next' : 'current'
-		})
-	};
-
 	render() {
-		const {week, activeDate, activeWeek} = this.state;
+		const {week, activeDate} = this.state;
+		const {activeWeek} = this.props;
+
 
 		return (
 			<div className="daypicker-wrapper">
@@ -76,8 +72,6 @@ export default class DayPicker extends Component {
 						);
 					})}
 				</ul>
-				{/*TODO: design UI*/}
-				<button onClick={this.changeWeek}>Change Week</button>
 			</div>
 		);
 	}
