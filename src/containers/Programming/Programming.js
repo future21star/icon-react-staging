@@ -14,7 +14,8 @@ import {
 	BottomNavDesktop,
 	MenuBarRedDesktop,
 	TracksListItemDesktop,
-	RestDay
+	RestDay,
+	Loader
 } from '../../components';
 import {
 	isLoaded as isTracksLoaded,
@@ -30,7 +31,11 @@ import {
 	isLoaded as isWodsLoaded,
 	load as loadWods
 } from '../../redux/modules/wods';
-import Loader from "../../components/Loader/Loader";
+
+import {
+	isLoaded as isDailyBriefLoaded,
+	load as loadDailyBrief
+} from '../../redux/modules/dailyBrief';
 
 @asyncConnect([{
 	promise: ({store: {dispatch, getState}}) => {
@@ -38,6 +43,10 @@ import Loader from "../../components/Loader/Loader";
 
 		if (!isTracksLoaded(getState())) {
 			promises.push(dispatch(loadTracks()));
+		}
+
+		if (!isDailyBriefLoaded(getState())) {
+			promises.push(dispatch(loadDailyBrief()));
 		}
 
 		return Promise.all(promises);
@@ -49,7 +58,8 @@ import Loader from "../../components/Loader/Loader";
 		user: state.auth.user,
 		selectedTracks: state.userTracks.selectedTracks,
 		routing: state.routing,
-		wods: state.wods
+		wods: state.wods,
+		dailyBrief: state.dailyBrief
 	}),
 	{}
 )
@@ -63,6 +73,7 @@ export default class Programming extends Component {
 			activeDay: moment().format('YYYY-MM-DD'),
 			activeWeek: 'current',
 			listView: false,
+			today: moment().format('YYYY-MM-DD')
 		}
 	}
 
@@ -229,7 +240,7 @@ export default class Programming extends Component {
 	}
 
 	renderSelectedTracks() {
-		const {user, selectedTracks, wods} = this.props;
+		const {user, selectedTracks, wods, dailyBrief} = this.props;
 
 		const swipeConfig = {
 			callback: (index, elem) => this.selectTrack(elem.getAttribute('name')),
@@ -250,9 +261,11 @@ export default class Programming extends Component {
 					{selectedTracks.map((track, i) => {
 						return (
 							<div name={track.title} key={i}>
+								{this.state.today === this.state.activeDay ?
+									<DailyBrief user={user} content={dailyBrief.dailyBriefs[track.title]}/> : undefined
+								}
 								{wods[track.title] && wods[track.title][this.state.activeDay] ? (
 									<div>
-										<DailyBrief user={user}/>
 										<TrackBanner
 											midContent=""
 											bgImg={track.bgImg}
