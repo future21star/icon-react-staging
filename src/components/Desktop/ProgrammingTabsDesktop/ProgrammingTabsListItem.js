@@ -34,7 +34,7 @@ export default class ProgrammingTabsListItem extends Component {
 						{parsedContentObj.map((chunk, i) => {
 							let number = padStart((i + 1).toString(), 2, '0');
 							return (
-								<div>
+								<div key={i}>
 									<div className="item-desktop">
 										<span className="item-number-desktop">{number}</span>
 										<div>
@@ -42,7 +42,7 @@ export default class ProgrammingTabsListItem extends Component {
 											<ul className="list-group">
 												{chunk.lines.map((line, j) => {
 													return (
-														<li>
+														<li key={j}>
 															<span className="red-hyphen">&#8212; </span>
 															{line}
 														</li>
