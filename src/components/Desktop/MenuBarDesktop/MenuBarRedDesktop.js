@@ -39,12 +39,17 @@ export default class MenuBarRedDesktop extends Component {
 							{leftSideContentDesktop}
 						</div>
 						<div className="col-sm-6 col-md-6 col-lg-6 menu-bar-title-desktop">
-							<div className={`popover top track-popover-wrapper ${this.state.trackPopOverActive ? 'show' : ''}`}>
+							<div className={`popover top track-popover-wrapper ${this.state.trackPopOverActive ? 'show-popover' : 'hide-popover'}`}>
 								<div className="popover-content">
 									<div className="list-group">
 										{
 											tracks.map((track, index) => {
-												return (<a href="#" className="list-group-item" onClick={(e) => {this.hidePopOverAndSetDisplayName(e, track)}}>{track + "Track"}</a>);
+												return (<a
+															href="#"
+															className="list-group-item"
+															key={track}
+															onClick={(e) => {this.hidePopOverAndSetDisplayName(e, track)}}>{track + "Track"}
+														</a>);
 											})
 										}
 									</div>

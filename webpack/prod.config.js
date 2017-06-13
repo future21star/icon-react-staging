@@ -22,9 +22,9 @@ module.exports = {
 		'vendors': vendors,
 		'main': [
 			'./src/client.js',
-			'./styles/custom.scss'
+			'./styles/custom.scss',
+			'./styles/animations.scss'
 		]
-
 	},
 	output: {
 		path: assetsPath,
