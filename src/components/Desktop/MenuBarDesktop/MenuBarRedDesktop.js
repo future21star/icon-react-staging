@@ -45,12 +45,9 @@ export default class MenuBarRedDesktop extends Component {
 										{
 											tracks.map((track, index) => {
 
-												return (<a
-															href="#"
-															className="list-group-item"
-															key={track}
-															onClick={(e) => {this.hidePopOverAndSetDisplayName(e, track)}}>{track + "Track"}
-														</a>);
+												return (<a key={index} href="#" className="list-group-item text-capitalize" onClick={(e) => {
+													this.hidePopOverAndSetDisplayName(e, track.title)
+												}}>{track.title + " Track"}</a>);
 
 											})
 										}
