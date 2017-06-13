@@ -44,18 +44,11 @@ export default class MenuBarRedDesktop extends Component {
 									<div className="list-group">
 										{
 											tracks.map((track, index) => {
-<<<<<<< HEAD
+
 												return (<a key={index} href="#" className="list-group-item text-capitalize" onClick={(e) => {
 													this.hidePopOverAndSetDisplayName(e, track.title)
 												}}>{track.title + " Track"}</a>);
-=======
-												return (<a
-															href="#"
-															className="list-group-item"
-															key={track}
-															onClick={(e) => {this.hidePopOverAndSetDisplayName(e, track)}}>{track + "Track"}
-														</a>);
->>>>>>> feature-programming-desktop
+
 											})
 										}
 									</div>
