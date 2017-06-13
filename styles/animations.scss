@@ -1,0 +1,25 @@
+.show-popover{
+  display: block;
+  opacity: 0;
+  -webkit-animation: fadeIn .3s ease .2s forwards;
+}
+
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.hide-popover{
+  //display: none!important;
+  opacity: 1;
+  -webkit-animation: fadeOut 2s ease .5s forwards;
+}
+
+@-webkit-keyframes fadeOut {
+  from {opacity: 1;}
+  to {opacity: 0;}
+  /*
+    from {display: block;}
+    to {display: none;}
+  */
+}

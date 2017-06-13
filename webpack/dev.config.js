@@ -68,7 +68,8 @@ module.exports = {
 		'main': [
 			'webpack-hot-middleware/client?path=http://' + host + ':' + port + '/__webpack_hmr',
 			'./src/client.js',
-			'./styles/custom.scss'
+			'./styles/custom.scss',
+			'./styles/animations.scss'
 		],
 		'vendors': vendors
 	},
