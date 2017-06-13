@@ -7,7 +7,46 @@
   .rest-day-container {
     padding-top: 40px;
     padding-bottom: 116px;
-
+    position: relative;
+    .next-track{
+      position: absolute;
+      color: #9a9b9f;
+      top: 47%;
+      right: 30px;
+      font-size: 16px;
+      i{
+        margin-left: 15px;
+        color: #d12022;
+        position: relative;
+        top: 2px;
+        font-size: 14px;
+      }
+    }
+    .prev-track{
+      position: absolute;
+      color: #9a9b9f;
+      top: 47%;
+      left: 30px;
+      font-size: 16px;
+      span.mirror-icon{
+        transform: rotate(180deg);
+        display: inline-block;
+        margin-right: 10px;
+        position: relative;
+        top: 2px;
+      }
+      i{
+        margin-right: 15px;
+        color: #d12022;
+        position: relative;
+        top: 1px;
+        font-size: 14px;
+      }
+    }
+    .prev-track, .next-track, .prev-track:hover, .next-track:hover{
+      text-decoration: none;
+      outline: none;
+    }
     .track-name {
       margin-top: 10px;
       color: #fff;
