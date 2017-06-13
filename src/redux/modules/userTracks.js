@@ -1,3 +1,4 @@
+import {LOGOUT_SUCCESS} from "./auth";
 const LOAD = 'userTracks/LOAD';
 const LOAD_SUCCESS = 'userTracks/LOAD_SUCCESS';
 const LOAD_FAIL = 'userTracks/LOAD_FAIL';
@@ -127,6 +128,10 @@ export default function reducer(state = initialState, action = {}) {
 				loading: false,
 				loaded: false,
 				error: action.error
+			};
+		case LOGOUT_SUCCESS:
+			return {
+				...initialState
 			};
 		default:
 			return state;

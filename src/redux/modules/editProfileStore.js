@@ -1,3 +1,4 @@
+import {LOGOUT_SUCCESS} from "./auth";
 export const EDIT_PROFILE = 'editProfile/EDIT_PROFILE';
 export const EDIT_PROFILE_SUCCESS = 'editProfile/EDIT_PROFILE_SUCCESS';
 export const EDIT_PROFILE_FAIL = 'editProfile/EDIT_PROFILE_FAIL';
@@ -45,6 +46,10 @@ export default function reducer(state = initialState, action = {}) {
 				loading: false,
 				success: null,
 				error: action.error
+			};
+		case LOGOUT_SUCCESS:
+			return {
+				...initialState
 			};
 		default:
 			return state;

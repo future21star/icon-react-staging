@@ -2,6 +2,8 @@
 export refreshAdminJWT from './admin/refreshAdminJWT';
 // for getting and storing wods
 export getWods from './admin/getWods';
+// get daily brief
+export getDailyBrief from './getDailyBrief';
 
 
 export loadAuth from './auth/loadAuth';
@@ -15,4 +17,5 @@ export addToTrackList from './tracks/addToTrackList';
 export removeTrack from './tracks/removeTrack';
 
 export loadWod from './loadWod';
+export loadWodByTrackAndId from './loadWodByTrackAndId';
 

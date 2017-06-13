@@ -21,7 +21,7 @@ export default class DailyBrief extends Component {
 	};
 
 	render() {
-		const {user} = this.props;
+		const {user, content} = this.props;
 
 		return user ? (
 			<div className="daily-brief-wrapper">
@@ -35,10 +35,7 @@ export default class DailyBrief extends Component {
 						</div>
 					</div>
 					{ this.state.isExpanded ? (
-						<div className="daily-brief-body">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Sed vel quam ac quam scelerisque imperdiet ut sit amet sapien.
-						</div>)
+						<div className="daily-brief-body">{content || 'No daily brief found'}</div>)
 						: undefined}
 				</div>
 			</div>) : <div/>;

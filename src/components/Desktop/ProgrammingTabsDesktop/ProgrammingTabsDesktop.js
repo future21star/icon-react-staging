@@ -20,6 +20,7 @@ export default class ProgrammingTabsDesktop extends Component {
 	};
 
 	render() {
+		const {track, dailyBriefContent} = this.props;
 
 		return (
 			<div className="programming-tabs-wrapper-desktop">
@@ -60,24 +61,27 @@ export default class ProgrammingTabsDesktop extends Component {
 									<div className="tab-content tab-content-desktop">
 
 										<div className={`tab-pane tab-item-desktop ${this.state.activeTab === 'warmUp' ? 'active' : ''}`}>
-											<DailyBriefDesktop/>
+											{dailyBriefContent ? <DailyBriefDesktop content={dailyBriefContent}/> : undefined}
 											<ProgrammingTabsListItem
 												title="Warm Up"
+												content={track.warmUp}
 											/>
 										</div>
 
-										<div className={`tab-pane tab-item-desktop ${this.state.activeTab === 'mainWorkout' ? 'active' : ''}`}>
-											<DailyBriefDesktop/>
+										<div
+											className={`tab-pane tab-item-desktop ${this.state.activeTab === 'mainWorkout' ? 'active' : ''}`}>
+											{dailyBriefContent ? <DailyBriefDesktop content={dailyBriefContent}/> : undefined}
 											<ProgrammingTabsListItem
 												title="Main Workout"
+												content={track.mainWorkout}
 											/>
 										</div>
 
 										<div className={`tab-pane tab-item-desktop ${this.state.activeTab === 'coolDown' ? 'active' : ''}`}>
-
-											<DailyBriefDesktop/>
+											{dailyBriefContent ? <DailyBriefDesktop content={dailyBriefContent}/> : undefined}
 											<ProgrammingTabsListItem
 												title="Cool Down"
+												content={track.coolDown}
 											/>
 										</div>
 									</div>

@@ -18,6 +18,10 @@ import {
 	isLoaded as isTracksLoaded,
 	load as loadTracks
 } from '../../redux/modules/userTracks';
+import {
+	isLoaded as isDailyBriefLoaded,
+	load as loadDailyBrief
+} from '../../redux/modules/dailyBrief';
 
 import {
 	isLoaded as isWodsLoaded,
@@ -33,6 +37,10 @@ import Loader from "../../components/Loader/Loader";
 			promises.push(dispatch(loadTracks()));
 		}
 
+		if (!isDailyBriefLoaded(getState())) {
+			promises.push(dispatch(loadDailyBrief()));
+		}
+
 		return Promise.all(promises);
 	}
 }])
@@ -41,7 +49,8 @@ import Loader from "../../components/Loader/Loader";
 	state => ({
 		user: state.auth.user,
 		selectedTracks: state.userTracks.selectedTracks,
-		wods: state.wods
+		wods: state.wods,
+		dailyBrief: state.dailyBrief
 	}),
 	{}
 )
@@ -89,11 +98,6 @@ export default class Home extends Component {
 				<Link to="profile"><span className="icon-user-profile"/></Link>
 			</div>
 		);
-		const rightSideContent = (
-			<Link to="/workout-mode" className="text-white">
-				<span className="icon-workout-mode"/>
-			</Link>
-		);
 
 		return (
 			<div className="bottom-padding">
@@ -102,7 +106,6 @@ export default class Home extends Component {
 				<MenubarTurquoise
 					title="Today's Workout"
 					leftSideContent={leftSideContent}
-					rightSideContent={rightSideContent}
 					dotSelectedItem={this.state.selectedTrack}
 					dotItemsList={selectedTracks}
 				/>
@@ -132,7 +135,7 @@ export default class Home extends Component {
 	}
 
 	renderSelectedTracks() {
-		const {user, selectedTracks, wods} = this.props;
+		const {user, selectedTracks, wods, dailyBrief} = this.props;
 
 		const swipeConfig = {
 			callback: (index, elem) => this.selectTrack(elem.getAttribute('name')),
@@ -145,9 +148,9 @@ export default class Home extends Component {
 					{selectedTracks.map((track, i) => {
 						return (
 							<div name={track.title} key={i}>
+								<DailyBrief user={user} content={dailyBrief.dailyBriefs[track.title]}/>
 								{wods[track.title] && wods[track.title][this.state.today] ? (
 									<div>
-										<DailyBrief user={user}/>
 										<TrackBanner
 											trackName={track.title}
 											midContent={track.trackIconClassName}

@@ -4,53 +4,40 @@ import './TrackBannerDesktop.scss';
 export default class TrackBannerDesktop extends Component {
 
 	render() {
+		const {track, bgImg, onSelectTrack, prevTrack, nextTrack} = this.props;
 
 		return (
 			<div className="track-banner-wrapper-desktop">
-				<div className="track-banner-desktop">
-					<div className="overlay"></div>
+				<div className="track-banner-desktop" style={{backgroundImage: 'url(' + bgImg + ')',}}>
+					<div className="overlay"/>
 					<div className="title-desktop">
-						<h1>Emom</h1>
-						{/*<div className="container-fluid">
-						 <div className="row">
-						 <div className="col-sm-4 col-sm-offset-4">
-						 <div className="row">
-						 <div className="col-sm-4">
-						 <h3>15 MIN.</h3>
-						 <p>Duration</p>
-						 </div>
-						 <div className="col-sm-4">
-						 <h3>MODERATE</h3>
-						 <p>Intensity</p>
-						 </div>
-						 <div className="col-sm-4">
-						 <h3>SHOULDERS</h3>
-						 <p>Focus</p>
-						 </div>
-						 </div>
-						 </div>
-						 </div>
-						 </div>*/}
+						<h1>{track.format}</h1>
 
 						<ul className="track-banner-list-desktop list-inline">
 							<li>
-								<h3>15 MIN.</h3>
+								<h3>{`${track.duration} min` || '--'}</h3>
 								<p>Duration</p>
 							</li>
 							<li>
-								<h3>MODERATE</h3>
+								<h3>{track.intensity || '--'}</h3>
 								<p>Intensity</p>
 							</li>
 							<li>
-								<h3>SHOULDERS</h3>
+								<h3>{track.focus || '--'}</h3>
 								<p>Focus</p>
 							</li>
 						</ul>
 
-						<a href="#" className="pull-right next-track">
-							Next Track
-							<i className="fa fa-long-arrow-right" aria-hidden="true"/>
-						</a>
+						{nextTrack ?
+							<a href="#" onClick={e => onSelectTrack(nextTrack)} className="pull-right next-track">
+								Next Track
+								<i className="icon-arrow-next" aria-hidden="true"/>
+							</a> : undefined}
+						{prevTrack ?
+							<a href="#" onClick={e => onSelectTrack(prevTrack)} className="pull-left">
+								Prev Track
+								<i className="icon-arrow-prev" aria-hidden="true"/>
+							</a> : undefined}
 					</div>
 				</div>
 			</div>

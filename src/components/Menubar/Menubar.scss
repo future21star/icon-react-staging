@@ -40,10 +40,10 @@
         color: #fff;
       }
     }
-    &.menu-bar-with-dot-list{
-      padding-bottom: 5px!important;
-      ul{
-        margin-bottom:0;
+    &.menu-bar-with-dot-list {
+      padding-bottom: 5px !important;
+      ul {
+        margin-bottom: 0;
       }
     }
   }
@@ -66,6 +66,11 @@
       a, [class^="icon-"], [class*=" icon-"] {
         color: #fff;
         //font-size: 16px;
+        [class^="path"] {
+          &:before {
+            color: #fff;
+          }
+        }
       }
     }
   }

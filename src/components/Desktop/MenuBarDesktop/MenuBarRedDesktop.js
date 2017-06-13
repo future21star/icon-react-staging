@@ -9,7 +9,7 @@ export default class MenuBarRedDesktop extends Component {
 
 		this.state = {
 			trackPopOverActive: false,
-			displayName: 'Dynamic'
+			selectedTrack: this.props.tracks[0].title
 		}
 	}
 
@@ -24,9 +24,9 @@ export default class MenuBarRedDesktop extends Component {
 		event.preventDefault();
 		this.setState({
 			trackPopOverActive: false,
-			displayName: track
+			selectedTrack: track.charAt(0).toUpperCase() + track.slice(1)
 		});
-	}
+	};
 
 	render() {
 
@@ -44,19 +44,21 @@ export default class MenuBarRedDesktop extends Component {
 									<div className="list-group">
 										{
 											tracks.map((track, index) => {
+
 												return (<a
 															href="#"
 															className="list-group-item"
 															key={track}
 															onClick={(e) => {this.hidePopOverAndSetDisplayName(e, track)}}>{track + "Track"}
 														</a>);
+
 											})
 										}
 									</div>
 								</div>
 							</div>
-							<a href="/" onClick={this.toggleTracks}>
-								{this.state.displayName + 'Track'}
+							<a href="/" onClick={this.toggleTracks} className="text-capitalize">
+								{this.state.selectedTrack + ' Track'}
 								<span className="icon icon-arrow-down"/>
 							</a>
 						</div>

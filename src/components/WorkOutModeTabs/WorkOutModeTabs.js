@@ -22,47 +22,35 @@ export default class WorkOutModeTabs extends Component {
 	};
 
 	render() {
-
-		const noteContent = (
-
-			<div>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et felis varius,
-					lobortis sapien a, vestibulum ex. Nunc interdum lobortis nulla a semper. Praesent rutrum dolor
-					aliquam massa gravida.
-				</p>
-				<p>
-					Donec ut lobortis erat, quis volutpat sapien. Nam sed dolor vitae lacus tincidunt dignissim eu at lacus.
-				</p>
-			</div>
-		);
+		const {workout} = this.props;
 
 		return (
 			<div className="workout-mode-tabs">
-				<div className="overlay"></div>
+				<div className="overlay"/>
 				<div className="title">
-					<h3>AMRAP 7 MIN.</h3>
+					<h3 className="text-uppercase">{workout.item.format}</h3>
 
 					<ul className="workout-mode-banner-list list-inline">
 						<li>
-							<h3>7 MIN.</h3>
+							<h3 className="text-uppercase">{`${workout.item.duration} min` || '--'}</h3>
 							<p>Duration</p>
 						</li>
 						<li>
-							<h3>MODERATE</h3>
+							<h3 className="text-uppercase">{workout.item.intensity || '--'}</h3>
 							<p>Intensity</p>
 						</li>
 						<li>
-							<h3>SHOULDERS</h3>
+							<h3 className="text-uppercase">{workout.item.focus || '--'}</h3>
 							<p>Focus</p>
 						</li>
 					</ul>
 				</div>
 
-				<Note
-					noteContent={noteContent}
-					classNames="note note-has-margin-bottom"
-				/>
+				{workout.item.notes ?
+					<Note
+						noteContent={workout.item.notes}
+						classNames="note note-has-margin-bottom"
+					/> : undefined}
 
 				<div className="container">
 					<ul className="nav nav-tabs nav-justified">
@@ -98,13 +86,13 @@ export default class WorkOutModeTabs extends Component {
 
 				<div className="tab-content">
 					<div className={`tab-pane ${this.state.activeTab === 'warmUp' ? 'active' : ''}`}>
-						<WorkOutModeTabContent/>
+						<WorkOutModeTabContent content={workout.item.warmUp}/>
 					</div>
 					<div className={`tab-pane ${this.state.activeTab === 'mainWorkout' ? 'active' : ''}`}>
-						<WorkOutModeTabContent/>
+						<WorkOutModeTabContent content={workout.item.mainWorkout}/>
 					</div>
 					<div className={`tab-pane ${this.state.activeTab === 'coolDown' ? 'active' : ''}`}>
-						<WorkOutModeTabContent/>
+						<WorkOutModeTabContent content={workout.item.coolDown}/>
 					</div>
 				</div>
 				<WorkOutModeTimer/>
