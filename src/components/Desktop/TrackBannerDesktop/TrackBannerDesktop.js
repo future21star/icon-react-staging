@@ -28,16 +28,20 @@ export default class TrackBannerDesktop extends Component {
 							</li>
 						</ul>
 
-						{nextTrack ?
+						{
+							nextTrack ?
 							<a href="#" onClick={e => onSelectTrack(nextTrack)} className="pull-right next-track">
 								Next Track
 								<i className="icon-arrow-next" aria-hidden="true"/>
-							</a> : undefined}
-						{prevTrack ?
-							<a href="#" onClick={e => onSelectTrack(prevTrack)} className="pull-left">
+							</a> : undefined
+						}
+						{
+							prevTrack ?
+							<a href="#" onClick={e => onSelectTrack(prevTrack)} className="pull-left prev-track">
+								<span className="mirror-icon"><i className="icon-arrow-next" aria-hidden="true"/></span>
 								Prev Track
-								<i className="icon-arrow-prev" aria-hidden="true"/>
-							</a> : undefined}
+							</a> : undefined
+						}
 					</div>
 				</div>
 			</div>
