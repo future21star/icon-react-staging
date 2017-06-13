@@ -1,7 +1,13 @@
+import moment from 'moment';
+
 import {LOGOUT_SUCCESS} from "./auth";
 const LOAD = 'wods/LOAD';
 const LOAD_SUCCESS = 'wods/LOAD_SUCCESS';
 const LOAD_FAIL = 'wods/LOAD_FAIL';
+
+const LOAD_LIST = 'wods/LOAD_LIST';
+const LOAD_LIST_SUCCESS = 'wods/LOAD_LIST_SUCCESS';
+const LOAD_LIST_FAIL = 'wods/LOAD_LIST_FAIL';
 
 const initialState = {
 	loading: false,
@@ -35,6 +41,33 @@ export default function reducer(state = initialState, action = {}) {
 				loading: false,
 				error: action.error
 			};
+		case LOAD_LIST:
+			return {
+				...state,
+				loading: true,
+			};
+		case LOAD_LIST_SUCCESS:
+			const listTrackName = action.result.trackName;
+			const listWods = action.result.wods;
+			let listNewTrackData = {...state[trackName]};
+
+			listWods.map((wodOfList) => {
+				listNewTrackData[moment(wodOfList.date).format('YYYY-MM-DD')] = wodOfList;
+			});
+
+			return {
+				...state,
+				loading: false,
+				[action.result.trackName]: listNewTrackData,
+				error: null
+			};
+			return state;
+		case LOAD_LIST_FAIL:
+			return {
+				...state,
+				loading: false,
+				error: action.error
+			};
 		case LOGOUT_SUCCESS:
 			return {
 				...initialState
@@ -58,6 +91,17 @@ export function load(trackName, date) {
 			data: {
 				trackName,
 				date
+			}
+		})
+	};
+}
+
+export function loadListView(trackName) {
+	return {
+		types: [LOAD_LIST, LOAD_LIST_SUCCESS, LOAD_LIST_FAIL],
+		promise: (client) => client.post('/loadListViewWods', {
+			data: {
+				trackName
 			}
 		})
 	};

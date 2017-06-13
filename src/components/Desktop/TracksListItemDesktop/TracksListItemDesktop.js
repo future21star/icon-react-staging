@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import './TracksListItemDesktop.scss';
+import moment from 'moment';
 import TracksListTabsDesktop from '../TracksListTabsDesktop/TracksListTabsDesktop';
 
 export default class TracksListItemDesktop extends Component {
 
 	render() {
 
-		const {bgImg} = this.props;
+		const {bgImg, track} = this.props;
 
 		return (
 			<div className="track-list-item-desktop">
@@ -15,20 +16,20 @@ export default class TracksListItemDesktop extends Component {
 					<div className="col-md-4 track-list-banner-desktop" style={{backgroundImage: 'url(' + bgImg + ')',}}>
 						<div className="overlay-desktop"/>
 						<div className="title-desktop">
-							<span className="day pull-left">Mo</span>
-							<h3>Emom</h3>
+							<span className="day pull-left">{moment(track.date).format('dd')}</span>
+							<h3>{track.format}</h3>
 
 							<ul className="track-data-list-desktop list-inline">
 								<li>
-									<p>15 MIN.</p>
+									<p>{`${track.duration} min` || '--'}</p>
 									<p>Duration</p>
 								</li>
 								<li>
-									<p>MODERATE</p>
+									<p>{track.intensity || '--'}</p>
 									<p>Intensity</p>
 								</li>
 								<li>
-									<p>Loremp</p>
+									<p>{track.focus || '--'}</p>
 									<p>Focus</p>
 								</li>
 							</ul>
@@ -36,7 +37,7 @@ export default class TracksListItemDesktop extends Component {
 					</div>
 
 					<div className="col-md-8 track-list-tabs-area-desktop">
-						<TracksListTabsDesktop/>
+						<TracksListTabsDesktop track={track}/>
 					</div>
 				</div>
 			</div>

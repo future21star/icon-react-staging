@@ -21,6 +21,7 @@ export default class TracksListTabsDesktop extends Component {
 	};
 
 	render() {
+		const {track} = this.props;
 
 		return (
 			<div className="track-list-tabs-desktop">
@@ -60,16 +61,22 @@ export default class TracksListTabsDesktop extends Component {
 					<div className={`tab-pane ${this.state.activeTab === 'warmUp' ? 'active' : ''}`}>
 						<TabContentSectionDesktop
 							title="Warm-Up"
+							track={track}
+							content={track.warmUp}
 						/>
 					</div>
 					<div className={`tab-pane ${this.state.activeTab === 'mainWorkout' ? 'active' : ''}`}>
 						<TabContentSectionDesktop
 							title="Main Workout"
+							track={track}
+							content={track.mainWorkout}
 						/>
 					</div>
 					<div className={`tab-pane ${this.state.activeTab === 'coolDown' ? 'active' : ''}`}>
 						<TabContentSectionDesktop
 							title="Cool Down"
+							track={track}
+							content={track.coolDown}
 						/>
 					</div>
 				</div>

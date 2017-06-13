@@ -18,4 +18,5 @@ export removeTrack from './tracks/removeTrack';
 
 export loadWod from './loadWod';
 export loadWodByTrackAndId from './loadWodByTrackAndId';
+export loadListViewWods from './loadListViewWods';
 

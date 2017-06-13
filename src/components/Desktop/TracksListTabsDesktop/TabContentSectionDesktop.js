@@ -1,12 +1,30 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
+import {padStart} from 'lodash';
 import './TracksListTabsDesktop.scss';
 
 export default class TabContentSectionDesktop extends Component {
 
 	render() {
 
-		const {title} = this.props;
+		const {title, track, content} = this.props;
+
+		let chunks = content.split('@@');
+		chunks = chunks.filter(chunk => {
+			return chunk.trim() !== '';
+		});
+
+		let parsedContentObj = [];
+
+		chunks.map(chunk => {
+			let parsedChunks = chunk.split('--');
+			let title = parsedChunks[0];
+			parsedChunks.splice(0, 1);
+			parsedContentObj.push({
+				title,
+				lines: parsedChunks
+			});
+		});
 
 		return (
 			<div className="tab-content-section-desktop">
@@ -14,7 +32,7 @@ export default class TabContentSectionDesktop extends Component {
 					<h2>
 						{title}
 						<span className="pull-right">
-							<Link to="/workout-mode">
+							<Link to={`/workout/${track.trackName}/${track.id}`}>
 								<p>
 									Workout Mode
 									<span className="icon icon-workout-mode"/>
@@ -28,58 +46,29 @@ export default class TabContentSectionDesktop extends Component {
 						<div className="tab-list-item-desktop-wrapper">
 							<div className="tab-list-item-desktop">
 								<div className="tab-item-container-desktop">
-									<div className="item-desktop">
-										<span className="item-number-desktop">01</span>
-										<div>
-											<p>Deadlifts and Deficit Handstand PushUps</p>
-										</div>
-									</div>
-									<div className="item-desktop">
-										<span className="item-number-desktop">02</span>
-										<div>
-											<p>Deadlifts and Deficit Handstand PushUps:</p>
-											<ul className="list-group">
-												<li>
-													<span className="red-hyphen">&#8212; </span>
-													Deadlift, 315/217 lbs
-												</li>
-												<li>
-													<span className="red-hyphen">&#8212; </span>
-													Deficit Handstand Push Up, 4/2 in
-												</li>
-											</ul>
-										</div>
-									</div>
-									<div className="item-desktop">
-										<span className="item-number-desktop">03</span>
-										<div>
-											<p>Deadlifts and Deficit Handstand PushUps</p>
-										</div>
-									</div>
-									<div className="item-desktop">
-										<span className="item-number-desktop">04</span>
-										<div>
-											<p>Deadlifts and Deficit Handstand PushUps:</p>
-											<ul className="list-group">
-												<li>
-													<span className="red-hyphen">&#8212; </span>
-													Deadlift, 315/217 lbs
-												</li>
-												<li>
-													<span className="red-hyphen">&#8212; </span>
-													Deficit Handstand Push Up, 4/2 in
-												</li>
-												<li>
-													<span className="red-hyphen">&#8212; </span>
-													Deadlift, 315/217 lbs
-												</li>
-												<li>
-													<span className="red-hyphen">&#8212; </span>
-													Deficit Handstand Push Up, 4/2 in
-												</li>
-											</ul>
-										</div>
-									</div>
+									{!content ? <p>No Task</p> : undefined }
+									{parsedContentObj.map((chunk, i) => {
+										let number = padStart((i + 1).toString(), 2, '0');
+										return (
+											<div className="item-desktop" key={i}>
+												<span className="item-number-desktop">{number}</span>
+
+												<div>
+													<p>{chunk.title}</p>
+													<ul className="list-group">
+														{chunk.lines.map((line, j) => {
+															return (
+																<li key={j}>
+																	<span className="red-hyphen">&#8212; </span>
+																	{line}
+																</li>
+															)
+														})}
+													</ul>
+												</div>
+											</div>
+										)
+									})}
 								</div>
 							</div>
 						</div>
