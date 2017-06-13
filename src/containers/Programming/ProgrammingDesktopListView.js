@@ -74,8 +74,10 @@ export default class ProgrammingDesktopListView extends Component {
 
 		const rightSideContentDesktop = (
 			<p>
-				Lifestyle Track
-				<Link to="/edit-tracks"><span className="icon-user-edit"/></Link>
+				<Link to="/edit-tracks" className="text-white">
+					Edit Tracks
+					<span className="icon-user-edit"/>
+				</Link>
 			</p>
 		);
 
@@ -117,9 +119,9 @@ export default class ProgrammingDesktopListView extends Component {
 					</div>
 				</div>
 
-				{/*<BottomNavDesktop*/}
-				{/*routing={this.props.routing}*/}
-				{/*/>*/}
+				<BottomNavDesktop
+					routing={this.props.routing}
+				/>
 
 			</div>
 		);

@@ -237,9 +237,9 @@ export default class Programming extends Component {
 								)
 							}
 						)}
-						{/*<BottomNavDesktop*/}
-						{/*routing={this.props.routing}*/}
-						{/*/>*/}
+						<BottomNavDesktop
+							routing={this.props.routing}
+						/>
 					</div>
 				</div>
 			</div>
