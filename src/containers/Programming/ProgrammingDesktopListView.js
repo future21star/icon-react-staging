@@ -66,7 +66,7 @@ export default class ProgrammingDesktopListView extends Component {
 		const leftSideContentDesktop = (
 			<h4>
 				<span>
-					<i className="fa fa-list-ul" aria-hidden="true"/>
+					<i className="icon-desktop-menu" aria-hidden="true"/>
 				</span>
 				List View
 			</h4>

@@ -81,16 +81,32 @@ export default class RestDayDesktop extends Component {
 					<div className="track-name">{track.title}</div>
 					<div className="track-status">Rest Day</div>
 
-					{nextTrack ?
-						<button onClick={e => onSelectTrack(nextTrack)} className="btn btn-default">
-							Next Track
-							<i className="icon-arrow-next" aria-hidden="true"/>
-						</button> : undefined}
-					{prevTrack ?
-						<button onClick={e => onSelectTrack(prevTrack)} className="btn btn-default">
-							Prev Track
-							<i className="icon-arrow-prev" aria-hidden="true"/>
-						</button> : undefined}
+					{/*{nextTrack ?*/}
+						{/*<button onClick={e => onSelectTrack(nextTrack)} className="btn btn-default">*/}
+							{/*Next Track*/}
+							{/*<i className="icon-arrow-next" aria-hidden="true"/>*/}
+						{/*</button> : undefined}*/}
+					{/*{prevTrack ?*/}
+						{/*<button onClick={e => onSelectTrack(prevTrack)} className="btn btn-default">*/}
+							{/*Prev Track*/}
+							{/*<i className="icon-arrow-prev" aria-hidden="true"/>*/}
+						{/*</button> : undefined}*/}
+
+					{
+						nextTrack ?
+							<a href="#" onClick={e => onSelectTrack(nextTrack)} className="pull-right next-track">
+								Next Track
+								<i className="icon-arrow-next" aria-hidden="true"/>
+							</a> : undefined
+					}
+
+					{
+						prevTrack ?
+							<a href="#" onClick={e => onSelectTrack(prevTrack)} className="pull-left prev-track">
+								<span className="mirror-icon"><i className="icon-arrow-next" aria-hidden="true"/></span>
+								Prev Track
+							</a> : undefined
+					}
 				</div>
 			</div>
 		);
