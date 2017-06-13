@@ -1,6 +1,6 @@
-import * as models from "../models";
+import * as models from "../../models";
 import moment from 'moment';
-import {generalError} from '../utils/message'
+import {generalError} from '../../utils/message'
 
 export default function loadListViewWods(request) {
 	return new Promise(async (resolve, reject) => {

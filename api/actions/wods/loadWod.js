@@ -1,5 +1,5 @@
-import * as models from "../models";
-import {generalError} from '../utils/message'
+import * as models from "../../models";
+import {generalError} from '../../utils/message'
 
 export default function loadWod(request) {
 	return new Promise(async (resolve, reject) => {
