@@ -4,7 +4,10 @@ import {connect} from "react-redux";
 import './BottomNav.scss';
 
 @connect(
-	state => ({routing: state.routing})
+	state => ({
+		routing: state.routing,
+		helpfulLinks: state.helpfulLinksStore.links
+	})
 )
 
 export default class BottomNav extends Component {
@@ -29,8 +32,12 @@ export default class BottomNav extends Component {
 		)
 	}
 
+	createMarkup = (html) => {
+		return {__html: html};
+	};
+
 	render() {
-		const {routing} = this.props;
+		const {routing, helpfulLinks} = this.props;
 		const currentUri = routing.locationBeforeTransitions.pathname;
 
 		return (
@@ -40,14 +47,12 @@ export default class BottomNav extends Component {
 					<div className="arrow"/>
 					<div className="popover-title">Helpful Links</div>
 					<div className="popover-content">
-						<div className="list-group">
-							<a href="/" className="list-group-item">Icon Assessment</a>
-							<a href="/" className="list-group-item">Travel WOD's</a>
-							<a href="/" className="list-group-item">FAQ's</a>
-							<a href="/" className="list-group-item">Facebook Group</a>
-							<a href="/" className="list-group-item">Athletes Worldwide</a>
-							<a href="/" className="list-group-item">Gear</a>
-							<a href="/" className="list-group-item">Events</a>
+						<div className="list-group" onClick={this.toggleHelpfulLinks}>
+							{helpfulLinks.map((item, i) => {
+								return (
+									<Link key={i} to={`/help/${item.slug}`} className="list-group-item" dangerouslySetInnerHTML={this.createMarkup(item.title)}/>
+								);
+							})}
 						</div>
 					</div>
 				</div>

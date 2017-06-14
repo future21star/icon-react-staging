@@ -124,6 +124,10 @@ $input-border-color: #383838;
   height: 100vh;
 }
 
+.help-page-wrapper {
+  // styles for help page goes here
+}
+
 @media(min-width: 768px) {
   .container {
     width: 738px;
@@ -189,7 +193,7 @@ $input-border-color: #383838;
 }
 
 .bottom-padding {
-  padding-bottom: 50px;
+  padding-bottom: 60px;
 }
 
 .mid-content-section {

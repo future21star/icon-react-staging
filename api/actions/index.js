@@ -19,3 +19,5 @@ export loadWod from './wods/loadWod';
 export loadWodByTrackAndId from './wods/loadWodByTrackAndId';
 export loadListViewWods from './wods/loadListViewWods';
 
+export loadHelpfulLinks from './helpfulLinks/loadHelpfulLinks';
+
