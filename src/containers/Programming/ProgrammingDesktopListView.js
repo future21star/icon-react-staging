@@ -4,13 +4,11 @@ import {Link} from "react-router";
 import {connect} from "react-redux";
 import {asyncConnect} from 'redux-async-connect';
 import {MenuBarRedDesktop, BottomNavDesktop, TracksListItemDesktop} from '../../components';
-import {
-	loadListView
-} from '../../redux/modules/wods';
+import {loadListView} from '../../redux/modules/wodsStore';
 import {
 	isLoaded as isTracksLoaded,
 	load as loadTracks
-} from '../../redux/modules/userTracks';
+} from '../../redux/modules/selectedTracksStore';
 
 @asyncConnect([{
 	promise: ({store: {dispatch, getState}}) => {
@@ -25,10 +23,10 @@ import {
 }])
 @connect(
 	state => ({
-		user: state.auth.user,
-		selectedTracks: state.userTracks.selectedTracks,
+		user: state.authStore.user,
+		selectedTracks: state.selectedTracksStore.selectedTracks,
 		routing: state.routing,
-		wods: state.wods,
+		wods: state.wodsStore.wods,
 	}),
 	{}
 )
@@ -61,7 +59,7 @@ export default class ProgrammingDesktopListView extends Component {
 	};
 
 	render() {
-		const {selectedTracks, wods} = this.props;
+		const {selectedTracks, wods, wodsStore} = this.props;
 
 		const leftSideContentDesktop = (
 			<h4>
@@ -96,7 +94,7 @@ export default class ProgrammingDesktopListView extends Component {
 				<div className="tracks-list-view-container-wrapper-desktop">
 					<div className="tracks-list-view-container-desktop">
 
-						{wods.loading || !wods[this.state.selectedTrack] ? undefined :
+						{wodsStore.loading || !wods[this.state.selectedTrack] ? undefined :
 							<div className="container-fluid">
 								{Object.keys(wods[this.state.selectedTrack]).map((key, index) => {
 									return (

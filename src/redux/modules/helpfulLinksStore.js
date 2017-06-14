@@ -8,10 +8,8 @@ const UNSET_ACTIVE_LINK = 'helpfulLinks/UNSET_ACTIVE_LINK';
 const initialState = {
 	loaded: false,
 	loading: false,
-	links: [],
-	activeLink: null,
-	error: null,
-	success: null
+	helpfulLinks: [],
+	activeHelpfulLink: null
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -24,7 +22,7 @@ export default function reducer(state = initialState, action = {}) {
 		case LOAD_SUCCESS:
 			return {
 				...state,
-				links: action.result.links,
+				helpfulLinks: action.result.links,
 				loading: false,
 				loaded: true
 			};
@@ -32,8 +30,7 @@ export default function reducer(state = initialState, action = {}) {
 			return {
 				...state,
 				loading: false,
-				loaded: true,
-				error: action.error
+				loaded: true
 			};
 		case SET_ACTIVE_LINK:
 			let activeLink = state.links.filter(item => {
@@ -42,12 +39,12 @@ export default function reducer(state = initialState, action = {}) {
 
 			return {
 				...state,
-				activeLink: activeLink
+				activeHelpfulLink: activeLink
 			};
 		case UNSET_ACTIVE_LINK:
 			return {
 				...state,
-				activeLink: null
+				activeHelpfulLink: null
 			};
 		default:
 			return state;

@@ -1,13 +1,12 @@
-import {LOGOUT_SUCCESS} from "./auth";
-const LOAD = 'workoutItems/LOAD';
-const LOAD_SUCCESS = 'workoutItems/LOAD_SUCCESS';
-const LOAD_FAIL = 'workoutItems/LOAD_FAIL';
+import {LOGOUT_SUCCESS} from "./authStore";
+
+const LOAD = 'workout/LOAD';
+const LOAD_SUCCESS = 'workout/LOAD_SUCCESS';
+const LOAD_FAIL = 'workout/LOAD_FAIL';
 
 const initialState = {
 	loading: false,
-	item: null,
-	error: null,
-	success: null
+	workout: null
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -20,14 +19,13 @@ export default function reducer(state = initialState, action = {}) {
 		case LOAD_SUCCESS:
 			return {
 				...state,
-				item: action.result.wod,
+				workout: action.result.wod,
 				loading: false
 			};
 		case LOAD_FAIL:
 			return {
 				...state,
-				loading: false,
-				error: action.error
+				loading: false
 			};
 		case LOGOUT_SUCCESS:
 			return {

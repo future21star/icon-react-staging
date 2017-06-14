@@ -2,11 +2,11 @@ import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
 import {MenubarTurquoise, ProfileHeader, SubscriptionUpgradeCard, BottomNav} from '../../components';
 import {Link} from "react-router";
-import {logout} from "../../redux/modules/auth";
+import {logout} from "../../redux/modules/authStore";
 import {connect} from "react-redux";
 
 @connect(
-	state => ({user: state.auth.user}),
+	state => ({user: state.authStore.user}),
 	{logout}
 )
 export default class Profile extends Component {

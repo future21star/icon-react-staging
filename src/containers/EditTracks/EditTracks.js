@@ -13,7 +13,7 @@ import {
 	addAsOnlyTrack,
 	addToTrackList,
 	remove as removeTrack
-} from '../../redux/modules/userTracks';
+} from '../../redux/modules/selectedTracksStore';
 import {
 	MenubarWhite,
 	JumbotronWhite,
@@ -38,8 +38,8 @@ import './EditTracks.scss';
 
 @connect(
 	state => ({
-		userTracks: state.userTracks,
-		vaultAccess: state.auth.user.vaultAccess
+		selectedTracksStore: state.selectedTracksStore,
+		vaultAccess: state.authStore.user.vaultAccess
 	}),
 	{addAsOnlyTrack, addToTrackList, removeTrack}
 )
@@ -101,13 +101,13 @@ export default class EditTracks extends Component {
 	}
 
 	renderEditTracks(accessOfProgrammingType) {
-		const {userTracks} = this.props;
+		const {selectedTracksStore} = this.props;
 
 		const swipeConfig = {
 			callback: (index, elem) => this.selectTrack(elem.getAttribute('name'))
 		};
 
-		const selectedTrackIsSubscribed = userTracks.allTracks.filter(track => {
+		const selectedTrackIsSubscribed = selectedTracksStore.allTracks.filter(track => {
 			return track.title === this.state.selectedTrack;
 		})[0].isSubscribed;
 
@@ -115,11 +115,11 @@ export default class EditTracks extends Component {
 			<div>
 				<EditTracksDotsContainer
 					selectedTrack={this.state.selectedTrack}
-					allTracks={userTracks.allTracks}
+					allTracks={selectedTracksStore.allTracks}
 				/>
 
 				<ReactSwipe className="carousel" swipeOptions={swipeConfig}>
-					{userTracks.allTracks.map((track, i) => {
+					{selectedTracksStore.allTracks.map((track, i) => {
 						return (
 							<div name={track.title} key={i}>
 								<EditTracksBanner

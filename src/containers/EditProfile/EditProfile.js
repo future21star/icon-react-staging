@@ -9,7 +9,7 @@ import {setAuthUserAsEditingUser, changeEditProfileField, editProfile} from "../
 
 @connect(
 	state => ({
-		user: state.auth.user,
+		user: state.authStore.user,
 		editProfileStore: state.editProfileStore,
 	}),
 	{setAuthUserAsEditingUser, changeEditProfileField, editProfile}

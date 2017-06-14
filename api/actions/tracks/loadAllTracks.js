@@ -1,17 +1,11 @@
 import * as models from "../../models";
 import {generalError} from '../../utils/message'
-export default function loadAuthTracks(request) {
 
+export default function loadAllTracks(request) {
 	return new Promise(async (resolve, reject) => {
-
 		let tracks = null;
 		try {
-			tracks = await
-				models.UserTrack.findAll({
-					where: {
-						userId: request.session.user.reactUserId
-					}
-				});
+			tracks = await models.Track.findAll();
 		} catch (e) {
 			console.log(e);
 			return reject(generalError(e.response));

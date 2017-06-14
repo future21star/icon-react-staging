@@ -12,8 +12,6 @@ import {
 	TrackBannerDesktop,
 	ProgrammingTabsDesktop,
 	BottomNavDesktop,
-	MenuBarRedDesktop,
-	TracksListItemDesktop,
 	RestDay,
 	RestDayDesktop,
 	Loader
@@ -26,16 +24,16 @@ import moment from 'moment';
 import {
 	isLoaded as isTracksLoaded,
 	load as loadTracks
-} from '../../redux/modules/userTracks';
+} from '../../redux/modules/selectedTracksStore';
 import {
 	isLoaded as isWodsLoaded,
 	load as loadWods
-} from '../../redux/modules/wods';
+} from '../../redux/modules/wodsStore';
 
 import {
 	isLoaded as isDailyBriefLoaded,
 	load as loadDailyBrief
-} from '../../redux/modules/dailyBrief';
+} from '../../redux/modules/dailyBriefStore';
 
 @asyncConnect([{
 	promise: ({store: {dispatch, getState}}) => {
@@ -55,11 +53,11 @@ import {
 
 @connect(
 	state => ({
-		user: state.auth.user,
-		selectedTracks: state.userTracks.selectedTracks,
+		user: state.authStore.user,
+		selectedTracks: state.selectedTracksStore.selectedTracks,
 		routing: state.routing,
-		wods: state.wods,
-		dailyBrief: state.dailyBrief
+		wods: state.wodsStore.wods,
+		dailyBriefStore: state.dailyBriefStore
 	}),
 	{}
 )
@@ -93,9 +91,9 @@ export default class Programming extends Component {
 	};
 
 	loadActiveDaysWod = () => {
-		const {wods, dispatch} = this.props;
+		const {wodsStore, dispatch} = this.props;
 
-		if (!isWodsLoaded(wods, this.state.selectedTrack, this.state.activeDay)) {
+		if (!isWodsLoaded(wodsStore, this.state.selectedTrack, this.state.activeDay)) {
 			dispatch(loadWods(this.state.selectedTrack, this.state.activeDay));
 		}
 	};
@@ -117,9 +115,7 @@ export default class Programming extends Component {
 	};
 
 	render() {
-		const {wods, user, selectedTracks, dailyBrief} = this.props;
-
-		const bgImg = require('../../../static/strengthBG.jpg');
+		const {wods, user, selectedTracks, dailyBriefStore} = this.props;
 
 		const leftSideContent = (
 			<Link to="/edit-tracks">
@@ -224,7 +220,7 @@ export default class Programming extends Component {
 														/>
 														{this.state.today === this.state.activeDay
 															? <ProgrammingTabsDesktop track={wods[track.title][this.state.activeDay]}
-																												dailyBriefContent={dailyBrief.dailyBriefs[track.title]}/>
+																												dailyBriefContent={dailyBriefStore.dailyBriefs[track.title]}/>
 															: <ProgrammingTabsDesktop track={wods[track.title][this.state.activeDay]}/>
 														}
 													</div>
@@ -266,7 +262,7 @@ export default class Programming extends Component {
 	}
 
 	renderSelectedTracks() {
-		const {user, selectedTracks, wods, dailyBrief} = this.props;
+		const {user, selectedTracks, wods, dailyBriefStore} = this.props;
 
 		const swipeConfig = {
 			callback: (index, elem) => this.selectTrack(elem.getAttribute('name')),
@@ -288,7 +284,7 @@ export default class Programming extends Component {
 						return (
 							<div name={track.title} key={i}>
 								{this.state.today === this.state.activeDay ?
-									<DailyBrief user={user} content={dailyBrief.dailyBriefs[track.title]}/> : undefined}
+									<DailyBrief user={user} content={dailyBriefStore.dailyBriefs[track.title]}/> : undefined}
 								{wods[track.title] && wods[track.title][this.state.activeDay] ? (
 									<div>
 										<TrackBanner

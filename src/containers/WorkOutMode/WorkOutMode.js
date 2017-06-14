@@ -3,13 +3,13 @@ import Helmet from 'react-helmet';
 import {WorkOutModeTabs, Loader} from '../../components';
 import {asyncConnect} from 'redux-async-connect';
 import {connect} from "react-redux";
-import {load as loadWorkoutItem} from '../../redux/modules/workoutItem';
+import {load as loadWorkout} from '../../redux/modules/workoutStore';
 
 @asyncConnect([{
 	promise: ({store: {dispatch, getState}, params}) => {
 		const promises = [];
 
-		promises.push(dispatch(loadWorkoutItem(params.trackName, params.id)));
+		promises.push(dispatch(loadWorkout(params.trackName, params.id)));
 
 		return Promise.all(promises);
 	}
@@ -17,20 +17,21 @@ import {load as loadWorkoutItem} from '../../redux/modules/workoutItem';
 
 @connect(
 	state => ({
-		workoutItem: state.workoutItem,
+		workoutStore: state.workoutStore,
+		workout: state.workoutStore.workout,
 	})
 )
 export default class WorkOutMode extends Component {
 
 	render() {
-		const {workoutItem} = this.props;
+		const {workout, workoutStore} = this.props;
 
 		return (
 			<div className="workout-mode-page-wrapper">
 				<Helmet title="Workout Mode"/>
-				{workoutItem.loading ? <Loader/> : undefined}
-				{workoutItem.item === null ? <h1>Not found</h1> :
-					<WorkOutModeTabs workout={workoutItem}/>
+				{workoutStore.loading ? <Loader/> : undefined}
+				{workout.item === null ? <h1>Not found</h1> :
+					<WorkOutModeTabs workout={workout}/>
 				}
 			</div>
 		);

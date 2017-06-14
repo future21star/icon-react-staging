@@ -1,4 +1,4 @@
-import {LOGOUT_SUCCESS} from './auth'
+import {LOGOUT_SUCCESS} from './authStore'
 
 export const LOGIN = 'login/LOGIN';
 export const LOGIN_SUCCESS = 'login/LOGIN_SUCCESS';
@@ -12,16 +12,16 @@ const initialState = {
 
 export default function reducer(state = initialState, action = {}) {
 	switch (action.type) {
-
 		case LOGIN:
 			return {
 				...state,
-				loading: true,
+				loading: true
 			};
 		case LOGIN_SUCCESS:
 			return {
 				...state,
 				loading: false,
+				success: null,
 				error: null
 			};
 		case LOGIN_FAIL:

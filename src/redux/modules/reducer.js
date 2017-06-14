@@ -2,24 +2,30 @@ import {combineReducers} from 'redux';
 import {routerReducer} from 'react-router-redux';
 import {reducer as reduxAsyncConnect} from 'redux-async-connect';
 
-import auth from './auth';
+import authStore from './authStore';
 import loginStore from './loginStore';
 import editProfileStore from './editProfileStore';
-import userTracks from './userTracks';
-import wods from './wods';
-import workoutItem from './workoutItem';
-import dailyBrief from './dailyBrief';
+import selectedTracksStore from './selectedTracksStore';
+import wodsStore from './wodsStore';
+import workoutStore from './workoutStore';
+import dailyBriefStore from './dailyBriefStore';
+import allTracksStore from './allTracksStore';
 import helpfulLinksStore from './helpfulLinksStore';
+import dayPickerStore from './dayPickerStore';
+import SwipeStore from './SwipeStore';
 
 export default combineReducers({
 	routing: routerReducer,
 	reduxAsyncConnect,
-	auth,
+	authStore,
 	loginStore,
 	editProfileStore,
-	userTracks,
-	wods,
-	workoutItem,
-	dailyBrief,
-	helpfulLinksStore
+	selectedTracksStore,
+	wodsStore,
+	workoutStore,
+	dailyBriefStore,
+	helpfulLinksStore,
+	allTracksStore,
+	dayPickerStore,
+	SwipeStore
 });

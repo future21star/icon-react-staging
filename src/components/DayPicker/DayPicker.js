@@ -1,10 +1,17 @@
 import React, {Component, PropTypes} from 'react';
 import moment from 'moment';
+import {connect} from "react-redux";
 import './DayPicker.scss';
 
+@connect(
+	state => ({
+		activeDate: state.dayPickerStore.activeDate,
+		activeWeek: state.dayPickerStore.activeWeek,
+	})
+)
 export default class DayPicker extends Component {
 	static propTypes = {
-		onDateChange: PropTypes.func.isRequired,
+		activeDate: PropTypes.string.isRequired,
 		activeWeek: PropTypes.string.isRequired
 	};
 

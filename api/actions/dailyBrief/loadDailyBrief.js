@@ -1,9 +1,9 @@
 import axios from "axios";
 import {WP_API_URL} from "../../config/app";
 import moment from 'moment';
-import {generalError, successMessage} from "../../utils/message";
+import {generalError} from "../../utils/message";
 
-export default function getDailyBrief(request) {
+export default function loadDailyBrief(request) {
 	return new Promise(async (resolve, reject) => {
 
 		let yesterday = moment().days(-1).toISOString();
@@ -19,11 +19,13 @@ export default function getDailyBrief(request) {
 
 		if (!wpDailyBriefs.data.length) {
 			return resolve({
-				lifestyle: null,
-				dynamic: null,
-				hyper: null,
-				masters: null,
-				strength: null
+				dailyBriefs: {
+					lifestyle: null,
+					dynamic: null,
+					hyper: null,
+					masters: null,
+					strength: null
+				}
 			})
 		}
 		else {
@@ -35,21 +37,25 @@ export default function getDailyBrief(request) {
 			// no brief found
 			if (!todayBrief) {
 				return resolve({
-					lifestyle: null,
-					dynamic: null,
-					hyper: null,
-					masters: null,
-					strength: null
+					dailyBriefs: {
+						lifestyle: null,
+						dynamic: null,
+						hyper: null,
+						masters: null,
+						strength: null
+					}
 				})
 			}
 
 			// return
 			return resolve({
-				lifestyle: todayBrief.brief_lifestyle,
-				dynamic: todayBrief.brief_dynamic,
-				hyper: todayBrief.brief_hyper,
-				masters: todayBrief.brief_masters,
-				strength: todayBrief.brief_strength,
+				dailyBriefs: {
+					lifestyle: todayBrief.brief_lifestyle,
+					dynamic: todayBrief.brief_dynamic,
+					hyper: todayBrief.brief_hyper,
+					masters: todayBrief.brief_masters,
+					strength: todayBrief.brief_strength
+				}
 			});
 		}
 

@@ -17,16 +17,16 @@ import moment from 'moment';
 import {
 	isLoaded as isTracksLoaded,
 	load as loadTracks
-} from '../../redux/modules/userTracks';
+} from '../../redux/modules/selectedTracksStore';
 import {
 	isLoaded as isDailyBriefLoaded,
 	load as loadDailyBrief
-} from '../../redux/modules/dailyBrief';
+} from '../../redux/modules/dailyBriefStore';
 
 import {
 	isLoaded as isWodsLoaded,
 	load as loadWods
-} from '../../redux/modules/wods';
+} from '../../redux/modules/wodsStore';
 import Loader from "../../components/Loader/Loader";
 
 @asyncConnect([{
@@ -47,10 +47,11 @@ import Loader from "../../components/Loader/Loader";
 
 @connect(
 	state => ({
-		user: state.auth.user,
-		selectedTracks: state.userTracks.selectedTracks,
-		wods: state.wods,
-		dailyBrief: state.dailyBrief
+		user: state.authStore.user,
+		selectedTracks: state.selectedTracksStore.selectedTracks,
+		wodsStore: state.wodsStore,
+		wods: state.wodsStore.wods,
+		dailyBriefStore: state.dailyBriefStore
 	}),
 	{}
 )
@@ -75,9 +76,9 @@ export default class Home extends Component {
 	}
 
 	loadTodaysWod = (trackName) => {
-		const {wods, dispatch} = this.props;
+		const {wodsStore, dispatch} = this.props;
 
-		if (!isWodsLoaded(wods, trackName, this.state.today)) {
+		if (!isWodsLoaded(wodsStore, trackName, this.state.today)) {
 			dispatch(loadWods(trackName, this.state.today));
 		}
 	};
@@ -135,7 +136,7 @@ export default class Home extends Component {
 	}
 
 	renderSelectedTracks() {
-		const {user, selectedTracks, wods, dailyBrief} = this.props;
+		const {user, selectedTracks, wods, wodsStore, dailyBriefStore} = this.props;
 
 		const swipeConfig = {
 			callback: (index, elem) => this.selectTrack(elem.getAttribute('name')),
@@ -148,7 +149,7 @@ export default class Home extends Component {
 					{selectedTracks.map((track, i) => {
 						return (
 							<div name={track.title} key={i}>
-								<DailyBrief user={user} content={dailyBrief.dailyBriefs[track.title]}/>
+								<DailyBrief user={user} content={dailyBriefStore.dailyBriefs[track.title]}/>
 								{wods[track.title] && wods[track.title][this.state.today] ? (
 									<div>
 										<TrackBanner
@@ -161,7 +162,7 @@ export default class Home extends Component {
 									</div>) : undefined }
 								{wods[track.title] && wods[track.title][this.state.today] === null ? (
 									<RestDay track={track}/>) : undefined }
-								{wods.loading ? <Loader/> : undefined}
+								{wodsStore.loading ? <Loader/> : undefined}
 							</div>
 						);
 					})}

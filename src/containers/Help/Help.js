@@ -1,12 +1,12 @@
 import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
-import {MenubarWhite, BottomNav} from '../../components';
+import {MenubarWhite, BottomNav, Loader} from '../../components';
 import {setActiveLink, unsetActiveLink} from '../../redux/modules/helpfulLinksStore';
 import {connect} from "react-redux";
 
 @connect(
 	state => ({
-		activeHelpfulLink: state.helpfulLinksStore.activeLink
+		activeHelpfulLink: state.helpfulLinksStore.activeHelpfulLink
 	}),
 	{setActiveLink, unsetActiveLink}
 )
@@ -46,7 +46,7 @@ export default class Help extends Component {
 									<hr/>
 									<div dangerouslySetInnerHTML={this.createMarkup(activeHelpfulLink.content)}/>
 								</div>
-							) : undefined}
+							) : <Loader/>}
 						</div>
 					</div>
 				</div>

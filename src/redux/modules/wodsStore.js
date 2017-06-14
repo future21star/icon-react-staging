@@ -1,6 +1,7 @@
 import moment from 'moment';
 
-import {LOGOUT_SUCCESS} from "./auth";
+import {LOGOUT_SUCCESS} from "./authStore";
+
 const LOAD = 'wods/LOAD';
 const LOAD_SUCCESS = 'wods/LOAD_SUCCESS';
 const LOAD_FAIL = 'wods/LOAD_FAIL';
@@ -11,8 +12,7 @@ const LOAD_LIST_FAIL = 'wods/LOAD_LIST_FAIL';
 
 const initialState = {
 	loading: false,
-	success: null,
-	error: null
+	wods: []
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -20,7 +20,7 @@ export default function reducer(state = initialState, action = {}) {
 		case LOAD:
 			return {
 				...state,
-				loading: true,
+				loading: true
 			};
 		case LOAD_SUCCESS:
 			const {trackName, date, wod} = action.result;
@@ -29,17 +29,18 @@ export default function reducer(state = initialState, action = {}) {
 			if (wod) newTrackData[date] = wod;
 			else newTrackData[date] = null;
 
+			let wods = {...state.wods};
+			wods.push({trackName: newTrackData});
+
 			return {
 				...state,
 				loading: false,
-				[trackName]: newTrackData,
-				error: null
+				wods: wods
 			};
 		case LOAD_FAIL:
 			return {
 				...state,
-				loading: false,
-				error: action.error
+				loading: false
 			};
 		case LOAD_LIST:
 			return {
@@ -58,15 +59,13 @@ export default function reducer(state = initialState, action = {}) {
 			return {
 				...state,
 				loading: false,
-				[action.result.trackName]: listNewTrackData,
-				error: null
+				[action.result.trackName]: listNewTrackData
 			};
 			return state;
 		case LOAD_LIST_FAIL:
 			return {
 				...state,
-				loading: false,
-				error: action.error
+				loading: false
 			};
 		case LOGOUT_SUCCESS:
 			return {
@@ -78,9 +77,9 @@ export default function reducer(state = initialState, action = {}) {
 }
 
 export function isLoaded(wodsStore, trackName, date) {
-	let isTrackAvailable = wodsStore[trackName];
+	let isTrackAvailable = wodsStore.wods[trackName];
 	if (typeof isTrackAvailable === 'undefined') return false;
-	let isDateAvailable = wodsStore[trackName][date];
+	let isDateAvailable = wodsStore.wods[trackName][date];
 	return typeof isDateAvailable !== 'undefined';
 }
 
