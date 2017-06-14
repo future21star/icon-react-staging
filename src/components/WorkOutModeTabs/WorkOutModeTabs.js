@@ -9,10 +9,21 @@ export default class WorkOutModeTabs extends Component {
 	constructor(props) {
 		super(props);
 
+		const {workout} = this.props;
+
 		this.state = {
-			activeTab: 'warmUp',
+			activeTab: this.getActiveTabName(workout.item),
 		};
 	}
+
+	getActiveTabName = (track) => {
+		let activeTab = null;
+		if (track.warmUp) activeTab = 'warmUp';
+		else if (track.mainWorkout) activeTab = 'mainWorkout';
+		else if (track.coolDown) activeTab = 'coolDown';
+
+		return activeTab;
+	};
 
 	changeTab = (e, tabName) => {
 		e.preventDefault();
@@ -54,33 +65,36 @@ export default class WorkOutModeTabs extends Component {
 
 				<div className="container">
 					<ul className="nav nav-tabs nav-justified">
-						<li>
-							<a
-								href="#"
-								onClick={e => this.changeTab(e, 'warmUp')}
-								className={this.state.activeTab === 'warmUp' ? 'active' : ''}
-							>
-								WARM-UP
-							</a>
-						</li>
-						<li>
-							<a
-								href="#"
-								onClick={e => this.changeTab(e, 'mainWorkout')}
-								className={this.state.activeTab === 'mainWorkout' ? 'active' : ''}
-							>
-								MAIN-WORKOUT
-							</a>
-						</li>
-						<li>
-							<a
-								href="#"
-								onClick={e => this.changeTab(e, 'coolDown')}
-								className={this.state.activeTab === 'coolDown' ? 'active' : ''}
-							>
-								COOL DOWN
-							</a>
-						</li>
+						{workout.item.warmUp ? (
+							<li>
+								<a
+									href="#"
+									onClick={e => this.changeTab(e, 'warmUp')}
+									className={this.state.activeTab === 'warmUp' ? 'active' : ''}
+								>
+									WARM-UP
+								</a>
+							</li>) : undefined }
+						{workout.item.mainWorkout ? (
+							<li>
+								<a
+									href="#"
+									onClick={e => this.changeTab(e, 'mainWorkout')}
+									className={this.state.activeTab === 'mainWorkout' ? 'active' : ''}
+								>
+									MAIN-WORKOUT
+								</a>
+							</li>) : undefined }
+						{workout.item.coolDown ? (
+							<li>
+								<a
+									href="#"
+									onClick={e => this.changeTab(e, 'coolDown')}
+									className={this.state.activeTab === 'coolDown' ? 'active' : ''}
+								>
+									COOL DOWN
+								</a>
+							</li>) : undefined}
 					</ul>
 				</div>
 
