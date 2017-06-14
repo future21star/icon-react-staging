@@ -124,6 +124,13 @@ $input-border-color: #383838;
   height: 100vh;
 }
 
+.react-swipe-container {
+  height: 90vh;
+  & > div {
+    height: 100%;
+  }
+}
+
 .help-page-wrapper {
   // styles for help page goes here
 }
@@ -204,14 +211,14 @@ $input-border-color: #383838;
   margin-bottom: 100px;
 }
 
-.btn-turquoise{
+.btn-turquoise {
   background: #5dc7d4;
   color: #fff;
 }
 
 /********** Programming desktop **********/
 
-.tracks-list-view-container-desktop{
+.tracks-list-view-container-desktop {
   min-height: calc(100vh - 167px);
   min-height: -webkit-calc(100vh - 167px);
   background: #f6f4f5;
