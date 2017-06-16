@@ -98,8 +98,8 @@ export default class BottomNav extends Component {
 									{BottomNav.linkItemRender('/feed', 'icon-nav-feed', currentUri)}
 									{BottomNav.linkItemRender('/nutrition', 'icon-nav-nutrition', currentUri)}
 									{BottomNav.linkItemRender('/programming', 'icon-nav-programming', currentUri)}
-									<li><a href="#" onClick={this.toggleHelpfulLinks} className="helpful-links-item"><span
-										className="icon-information"/></a></li>
+									<li className="helpful-links-desktop-li"><a href="#" onClick={this.toggleHelpfulLinks} className="helpful-links-item"><span
+										className="icon-nav-links"/></a></li>
 								</ul>
 							</div>
 						</div>

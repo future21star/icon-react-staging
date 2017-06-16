@@ -234,4 +234,25 @@
     left: 0;
     right: 0;
   }
+
+  .helpful-links-desktop-li {
+    padding: 15px 0!important;
+  }
+  .helpful-links-item {
+    background: #D1252E;
+    border-radius: 50%;
+    padding: 16px 18px;
+    color: #ffffff!important;
+    span {
+      color: #ffffff!important;
+    }
+
+    &:hover, &:focus {
+      background: #D1252E!important;
+      color: #ffffff!important;
+      span {
+        color: #ffffff!important;
+      }
+    }
+  }
 }
