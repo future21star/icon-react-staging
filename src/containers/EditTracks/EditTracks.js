@@ -41,9 +41,9 @@ export default class EditTracks extends Component {
 		const {vaultAccess} = this.props;
 
 		const rightSideContent = (
-			<Link to="/programming" className="turquoise-color">
+			<a href="javascript:history.back();" className="turquoise-color">
 				Done
-			</Link>
+			</a>
 		);
 
 		let accessOfProgrammingType = null;
