@@ -72,8 +72,9 @@ export default class TrackBanner extends Component {
 	}
 
 	render() {
-		const {trackName, bgImg, midContent, track} = this.props;
+		const {trackName, bgImg, midContent, track, nextTrack, prevTrack, selectNextTrack, selectPrevTrack} = this.props;
 		let noteContent = track.notes;
+
 		return (
 			<div className="track-banner-wrapper">
 				<div className="track-banner" style={{backgroundImage: 'url(' + bgImg + ')',}}>
@@ -114,6 +115,24 @@ export default class TrackBanner extends Component {
 							noteContent={noteContent}
 							classNames="note note-white"
 						/> : undefined}
+
+					<div className="hidden-xs hidden-sm">
+						{
+							nextTrack ?
+								<a href="#" onClick={e => selectNextTrack(nextTrack)} className="pull-right next-track">
+									Next Track
+									<i className="icon-arrow-next" aria-hidden="true"/>
+								</a> : undefined
+						}
+
+						{
+							prevTrack ?
+								<a href="#" onClick={e => selectPrevTrack(prevTrack)} className="pull-left prev-track">
+									<span className="mirror-icon"><i className="icon-arrow-next" aria-hidden="true"/></span>
+									Prev Track
+								</a> : undefined
+						}
+					</div>
 				</div>
 			</div>
 		);
