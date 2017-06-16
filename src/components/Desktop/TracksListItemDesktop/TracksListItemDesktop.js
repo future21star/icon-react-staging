@@ -18,7 +18,7 @@ export default class TracksListItemDesktop extends Component {
 							<div className="overlay-desktop"/>
 							<div className="title-desktop">
 								<span className="day pull-left">{moment(track.date).format('dd')}</span>
-								<h3>{track.format}</h3>
+								<h3>{track.trackName}</h3>
 
 								<ul className="track-data-list-desktop list-inline">
 									<li>

@@ -39,7 +39,7 @@ export default class WorkOutModeTabs extends Component {
 			<div className="workout-mode-tabs">
 				<div className="overlay"/>
 				<div className="title">
-					<h3 className="text-uppercase">{workout.item.format}</h3>
+					<h3 className="text-uppercase">{workout.item.trackName}</h3>
 
 					<ul className="workout-mode-banner-list list-inline">
 						<li>

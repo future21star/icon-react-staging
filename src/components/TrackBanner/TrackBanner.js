@@ -93,7 +93,7 @@ export default class TrackBanner extends Component {
 						}
 					</div>
 					<div className={`title ${!midContent ? 'title-padding' : ''}`}>
-						<h3>{track.format}</h3>
+						<h3>{track.trackName}</h3>
 
 						<ul className={`track-banner-list list-inline ${noteContent ? 'track-banner-list-with-note' : ''}`}>
 							<li>
