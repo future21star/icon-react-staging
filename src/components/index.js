@@ -1,6 +1,6 @@
 export MenubarWhite from './Menubar/MenubarWhite';
 export MenubarTurquoise from './Menubar/MenubarTurquoise';
-export MenubarBlue from './Menubar/MenubarBlue';
+export MenubarTransparent from './Menubar/MenubarTransparent';
 export JumbotronWhite from './Jumbotron/JumbotronWhite';
 export Loader from './Loader/Loader';
 export ErrorMessage from './ErrorMessage/ErrorMessage';

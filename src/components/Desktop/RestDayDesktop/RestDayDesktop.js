@@ -75,12 +75,12 @@ export default class RestDayDesktop extends Component {
 		const {track, nextTrack, prevTrack, onSelectTrack} = this.props;
 
 		return (
-			<div className="rest-day-desktop-wrapper">
+			<div className="rest-day-wrapper">
 				<div className="rest-day-container">
 					<div className="track-icon">{this.getIcon()}</div>
 					<div className="track-name">{track.title}</div>
 					<div className="track-status">Rest Day</div>
-
+					<div className="rest-day-bg"></div>
 					{/*{nextTrack ?*/}
 						{/*<button onClick={e => onSelectTrack(nextTrack)} className="btn btn-default">*/}
 							{/*Next Track*/}

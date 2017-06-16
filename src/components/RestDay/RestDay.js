@@ -78,9 +78,10 @@ export default class RestDay extends Component {
 			<div className="rest-day-wrapper">
 				<div className="rest-day-container">
 					<div className="track-icon">{this.getIcon()}</div>
-					<div className="track-name">{track.title}</div>
-					<div className="track-status">Rest Day</div>
+					<h2 className="track-name">{track.title}</h2>
+					<h1 className="track-status">Rest Day</h1>
 				</div>
+				<div className="rest-day-bg"></div>
 			</div>
 		);
 	}

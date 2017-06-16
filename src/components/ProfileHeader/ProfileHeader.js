@@ -10,7 +10,7 @@ export default class ProfileHeader extends Component {
 		const {user} = this.props;
 
 		return user ? (
-			<div className="profile-header">
+			<div className="profile-header gradient-blue menu-head-buffer">
 				<div className="profile-jumbotron">
 					<div className="avatar">
 						<img src={user.avatar_urls[96]}/>

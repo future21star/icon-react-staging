@@ -37,7 +37,7 @@ export default class WorkOutModeTabs extends Component {
 
 		return (
 			<div className="workout-mode-tabs">
-				<div className="overlay"/>
+				<div className="overlay-gradient"/>
 				<div className="title">
 					<h3 className="text-uppercase">{workout.item.format}</h3>
 

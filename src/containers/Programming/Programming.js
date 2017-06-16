@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import {
-	MenubarBlue,
+	MenubarTransparent,
 	ProgrammingHeader,
 	BottomNav,
 	DailyBrief,
@@ -151,7 +151,7 @@ export default class Programming extends Component {
 		const leftSideContentDesktop = (
 			<h3 className="text-capitalize">
 				<span className="icon-user-edit"/>
-				{this.state.selectedTrack} Track
+				{this.state.selectedTrack}
 			</h3>
 		);
 
@@ -188,10 +188,11 @@ export default class Programming extends Component {
 
 				{/*mobile*/}
 				<div className="hidden-md hidden-lg">
-					<MenubarBlue
+					<MenubarTransparent
 						title="Programming"
 						leftSideContent={leftSideContent}
 						rightSideContent={rightSideContentMobileView}
+						isWhite={true}
 					/>
 
 					{!selectedTracks.length ? this.renderNoTracksFound() : this.renderSelectedTracks()}
