@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {asyncConnect} from 'redux-async-connect';
 import {includes} from 'lodash';
 import {startsWith} from 'lodash';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import {
 	isLoaded as isTracksLoaded,
@@ -69,17 +70,27 @@ export default class ViewTrack extends Component {
 		else if (includes(vaultAccess, 'programming-masters')) accessOfProgrammingType = 'masters';
 
 		return (
-			<div className="view-track-wrapper">
-				<Helmet title="View Track"/>
+			<ReactCSSTransitionGroup
+				transitionName="react-anime"
+				transitionAppear = {true}
+				transitionAppearTimeout = {5000}
+				transitionEnter = {true}
+				transitionEnterTimeout={500}
+				transitionLeave = {true}
+				transitionLeaveTimeout={500}
+			>
+				<div className="view-track-wrapper">
+					<Helmet title="View Track"/>
 
-				<MenubarWhite
-					title="View Track"
-					rightSideContent={rightSideContent}
-				/>
+					<MenubarWhite
+						title="View Track"
+						rightSideContent={rightSideContent}
+					/>
 
-				{accessOfProgrammingType ? this.renderViewTrack(accessOfProgrammingType) : this.renderNoVaultAccess()}
+					{accessOfProgrammingType ? this.renderViewTrack(accessOfProgrammingType) : this.renderNoVaultAccess()}
 
-			</div>
+				</div>
+			</ReactCSSTransitionGroup>
 		);
 	}
 

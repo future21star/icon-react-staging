@@ -11,8 +11,6 @@ import {
 	MenuBarBlueDesktop,
 	TrackBannerDesktop,
 	ProgrammingTabsDesktop,
-	MenuBarRedDesktop,
-	TracksListItemDesktop,
 	RestDay,
 	RestDayDesktop,
 	Loader
@@ -22,6 +20,7 @@ import {connect} from "react-redux";
 import {asyncConnect} from 'redux-async-connect';
 import ReactSwipe from 'react-swipe';
 import moment from 'moment';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {
 	isLoaded as isTracksLoaded,
 	load as loadTracks
@@ -182,65 +181,75 @@ export default class Programming extends Component {
 		);
 
 		return (
-			<div className="programming-page-wrapper bottom-padding">
-				<Helmet title="Programming"/>
+			<ReactCSSTransitionGroup
+				transitionName="react-anime"
+				transitionAppear = {true}
+				transitionAppearTimeout = {5000}
+				transitionEnter = {true}
+				transitionEnterTimeout={500}
+				transitionLeave = {true}
+				transitionLeaveTimeout={500}
+			>
+				<div className="programming-page-wrapper bottom-padding">
+					<Helmet title="Programming"/>
 
-				{/*mobile*/}
-				<div className="hidden-md hidden-lg">
-					<MenubarBlue
-						title="Programming"
-						leftSideContent={leftSideContent}
-						rightSideContent={rightSideContentMobileView}
-					/>
-
-					{!selectedTracks.length ? this.renderNoTracksFound() : this.renderSelectedTracks()}
-
-					<BottomNav/>
-				</div>
-
-				{/*desktop*/}
-				<div className="hidden-xs hidden-sm">
-					<div>
-						<MenuBarBlueDesktop
-							leftSideContentDesktop={leftSideContentDesktop}
-							rightSideContentDesktop={rightSideContentDesktop}
-							activeWeek={this.state.activeWeek}
-							onDateChange={this.dayChanged}
+					{/*mobile*/}
+					<div className="hidden-md hidden-lg">
+						<MenubarBlue
+							title="Programming"
+							leftSideContent={leftSideContent}
+							rightSideContent={rightSideContentMobileView}
 						/>
-						{selectedTracks.map((track, i) => {
-								return (
-									<div name={track.title} key={i}>
-										{this.state.selectedTrack === track.title ? (
-											<div>
-												{wods[track.title] && wods[track.title][this.state.activeDay] ? (
-													<div>
-														<TrackBannerDesktop
-															track={wods[track.title][this.state.activeDay]}
-															nextTrack={selectedTracks[i + 1] ? selectedTracks[i + 1].title : null}
-															prevTrack={selectedTracks[i - 1] ? selectedTracks[i - 1].title : null}
-															bgImg={track.bgImg}
-															onSelectTrack={this.selectTrack}
-														/>
-														{this.state.today === this.state.activeDay
-															? <ProgrammingTabsDesktop track={wods[track.title][this.state.activeDay]}
-																												dailyBriefContent={dailyBrief.dailyBriefs[track.title]}/>
-															: <ProgrammingTabsDesktop track={wods[track.title][this.state.activeDay]}/>
-														}
-													</div>
-												) : <RestDayDesktop track={track}
-																						nextTrack={selectedTracks[i + 1] ? selectedTracks[i + 1].title : null}
-																						prevTrack={selectedTracks[i - 1] ? selectedTracks[i - 1].title : null}
-																						onSelectTrack={this.selectTrack}/>}
-											</div>) : undefined}
-									</div>
-								)
-							}
-						)}
+
+						{!selectedTracks.length ? this.renderNoTracksFound() : this.renderSelectedTracks()}
 
 						<BottomNav/>
 					</div>
+
+					{/*desktop*/}
+					<div className="hidden-xs hidden-sm">
+						<div>
+							<MenuBarBlueDesktop
+								leftSideContentDesktop={leftSideContentDesktop}
+								rightSideContentDesktop={rightSideContentDesktop}
+								activeWeek={this.state.activeWeek}
+								onDateChange={this.dayChanged}
+							/>
+							{selectedTracks.map((track, i) => {
+									return (
+										<div name={track.title} key={i}>
+											{this.state.selectedTrack === track.title ? (
+												<div>
+													{wods[track.title] && wods[track.title][this.state.activeDay] ? (
+														<div>
+															<TrackBannerDesktop
+																track={wods[track.title][this.state.activeDay]}
+																nextTrack={selectedTracks[i + 1] ? selectedTracks[i + 1].title : null}
+																prevTrack={selectedTracks[i - 1] ? selectedTracks[i - 1].title : null}
+																bgImg={track.bgImg}
+																onSelectTrack={this.selectTrack}
+															/>
+															{this.state.today === this.state.activeDay
+																? <ProgrammingTabsDesktop track={wods[track.title][this.state.activeDay]}
+																													dailyBriefContent={dailyBrief.dailyBriefs[track.title]}/>
+																: <ProgrammingTabsDesktop track={wods[track.title][this.state.activeDay]}/>
+															}
+														</div>
+													) : <RestDayDesktop track={track}
+																							nextTrack={selectedTracks[i + 1] ? selectedTracks[i + 1].title : null}
+																							prevTrack={selectedTracks[i - 1] ? selectedTracks[i - 1].title : null}
+																							onSelectTrack={this.selectTrack}/>}
+												</div>) : undefined}
+										</div>
+									)
+								}
+							)}
+
+							<BottomNav/>
+						</div>
+					</div>
 				</div>
-			</div>
+			</ReactCSSTransitionGroup>
 		);
 	}
 

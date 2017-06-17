@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {connect} from "react-redux";
 import {Link} from "react-router";
 import {asyncConnect} from 'redux-async-connect';
@@ -52,17 +53,27 @@ export default class EditTracks extends Component {
 		else if (includes(vaultAccess, 'programming-masters')) accessOfProgrammingType = 'masters';
 
 		return (
-			<div className="edit-tracks-wrapper">
-				<Helmet title="Edit Tracks"/>
+			<ReactCSSTransitionGroup
+				transitionName="react-anime"
+				transitionAppear = {true}
+				transitionAppearTimeout = {5000}
+				transitionEnter = {true}
+				transitionEnterTimeout={500}
+				transitionLeave = {true}
+				transitionLeaveTimeout={500}
+			>
+				<div className="edit-tracks-wrapper">
+					<Helmet title="Edit Tracks"/>
 
-				<MenubarWhite
-					title="Edit Tracks"
-					rightSideContent={rightSideContent}
-				/>
+					<MenubarWhite
+						title="Edit Tracks"
+						rightSideContent={rightSideContent}
+					/>
 
-				{accessOfProgrammingType ? this.renderEditTracks() : this.renderNoVaultAccess()}
+					{accessOfProgrammingType ? this.renderEditTracks() : this.renderNoVaultAccess()}
 
-			</div>
+				</div>
+			</ReactCSSTransitionGroup>
 		);
 	}
 
