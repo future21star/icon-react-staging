@@ -30,8 +30,8 @@ module.exports = function (sequelize, DataTypes) {
 				});
 				UserTrack.belongsTo(models.Track, {
 					foreignKey: 'trackName',
-					sourceKey: 'name',
-					as: 'userTracks',
+					targetKey: 'name',
+					as: 'track',
 				});
 			}
 		}

@@ -6,9 +6,9 @@ import './TrackBanner.scss';
 export default class TrackBanner extends Component {
 
 	getIcon() {
-		const {midContent} = this.props;
+		const {wod} = this.props;
 
-		if (midContent === 'icon-track-dynamic') {
+		if (wod.track.iconUrl === 'icon-track-dynamic') {
 			return (
 				<span className="icon-track-dynamic">
 					<span className="path1"/>
@@ -23,7 +23,7 @@ export default class TrackBanner extends Component {
 			);
 		}
 
-		else if (midContent === 'icon-track-strength') {
+		else if (wod.track.iconUrl === 'icon-track-strength') {
 			return (
 				<span className="icon-track-strength">
 					<span className="path1"/>
@@ -36,7 +36,7 @@ export default class TrackBanner extends Component {
 				</span>);
 		}
 
-		else if (midContent === 'icon-track-lifestyle') {
+		else if (wod.track.iconUrl === 'icon-track-lifestyle') {
 			return (
 				<span className="icon-track-lifestyle">
 					<span className="path1"/>
@@ -49,7 +49,7 @@ export default class TrackBanner extends Component {
 				</span>);
 		}
 
-		else if (midContent === 'icon-track-hyper') {
+		else if (wod.track.iconUrl === 'icon-track-hyper') {
 			return (
 				<span className="icon-track-hyper">
 				<span className="path1"/>
@@ -72,66 +72,59 @@ export default class TrackBanner extends Component {
 	}
 
 	render() {
-		const {trackName, bgImg, midContent, track, nextTrack, prevTrack, selectNextTrack, selectPrevTrack} = this.props;
-		let noteContent = track.notes;
+		const {nextTrack, prevTrack, onSelectNextTrack, onSelectPrevTrack, wod} = this.props;
 
 		return (
 			<div className="track-banner-wrapper">
-				<div className="track-banner" style={{backgroundImage: 'url(' + bgImg + ')',}}>
+				<div className="track-banner" style={{backgroundImage: 'url(' + wod.track.bgImgUrl + ')',}}>
 					<div className="overlay"/>
 					<div className="workout-button">
-						<Link to={`/workout/${track.trackName}/${track.id}`} className="text-white">
+						<Link to={`/workout/${wod.track.name}/${wod.track.id}`} className="text-white">
 							<span className="icon-workout-mode"/>
 						</Link>
 					</div>
 					<div className="mid-content">
-						{midContent || trackName ?
-							<div className="mid-content-section">
-								{this.getIcon()}
-								<h1>{trackName}</h1>
-							</div> : undefined
-						}
+						<div className="mid-content-section">
+							{this.getIcon()}
+							<h1>{wod.track.name}</h1>
+						</div>
 					</div>
-					<div className={`title ${!midContent ? 'title-padding' : ''}`}>
-						<h3>{track.trackName}</h3>
+					<div className="title">
+						<h3>{wod.format}</h3>
 
-						<ul className={`track-banner-list list-inline ${noteContent ? 'track-banner-list-with-note' : ''}`}>
+						<ul className={`track-banner-list list-inline ${wod.notes ? 'track-banner-list-with-note' : ''}`}>
 							<li>
-								<h3>{`${track.duration} min` || '--'}</h3>
+								<h3>{`${wod.duration} min` || '--'}</h3>
 								<p>Duration</p>
 							</li>
 							<li>
-								<h3>{track.intensity || '--'}</h3>
+								<h3>{wod.intensity || '--'}</h3>
 								<p>Intensity</p>
 							</li>
 							<li>
-								<h3>{track.focus || '--'}</h3>
+								<h3>{wod.focus || '--'}</h3>
 								<p>Focus</p>
 							</li>
 						</ul>
 					</div>
-					{noteContent ?
+
+					{wod.notes ? (
 						<Note
-							noteContent={noteContent}
+							noteContent={wod.notes}
 							classNames="note note-white"
-						/> : undefined}
+						/>) : undefined}
 
 					<div className="hidden-xs hidden-sm">
-						{
-							nextTrack ?
-								<a href="#" onClick={e => selectNextTrack(nextTrack)} className="pull-right next-track">
-									Next Track
-									<i className="icon-arrow-next" aria-hidden="true"/>
-								</a> : undefined
-						}
+						{nextTrack ? (
+							<a href="#" onClick={e => onSelectNextTrack(nextTrack)} className="pull-right next-track">
+								Next Track <i className="icon-arrow-next"/>
+							</a>) : undefined}
 
-						{
-							prevTrack ?
-								<a href="#" onClick={e => selectPrevTrack(prevTrack)} className="pull-left prev-track">
-									<span className="mirror-icon"><i className="icon-arrow-next" aria-hidden="true"/></span>
-									Prev Track
-								</a> : undefined
-						}
+						{prevTrack ? (
+							<a href="#" onClick={e => onSelectPrevTrack(prevTrack)} className="pull-left prev-track">
+								<span className="mirror-icon"><i className="icon-arrow-next"/></span>
+								Prev Track
+							</a>) : undefined}
 					</div>
 				</div>
 			</div>

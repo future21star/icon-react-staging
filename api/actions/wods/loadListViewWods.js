@@ -19,7 +19,11 @@ export default function loadListViewWods(request) {
 				},
 				order: [
 					['date', 'ASC']
-				]
+				],
+				include: [{
+					model: models.Track,
+					as: 'track',
+				}]
 			});
 		} catch (e) {
 			console.log(e);

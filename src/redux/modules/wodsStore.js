@@ -12,7 +12,7 @@ const LOAD_LIST_FAIL = 'wods/LOAD_LIST_FAIL';
 
 const initialState = {
 	loading: false,
-	wods: []
+	wods: {}
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -24,13 +24,16 @@ export default function reducer(state = initialState, action = {}) {
 			};
 		case LOAD_SUCCESS:
 			const {trackName, date, wod} = action.result;
-			let newTrackData = {...state[trackName]};
-
-			if (wod) newTrackData[date] = wod;
-			else newTrackData[date] = null;
 
 			let wods = {...state.wods};
-			wods.push({trackName: newTrackData});
+
+			let tracks = state.wods[trackName];
+			if (!tracks)
+				tracks = state.wods[trackName] = {};
+
+			tracks[date] = wod;
+
+			wods[trackName] = tracks;
 
 			return {
 				...state,

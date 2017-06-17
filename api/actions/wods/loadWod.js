@@ -12,7 +12,11 @@ export default function loadWod(request) {
 				where: {
 					trackName: trackName,
 					date: date
-				}
+				},
+				include: [{
+					model: models.Track,
+					as: 'track',
+				}]
 			});
 		} catch (e) {
 			console.log(e);

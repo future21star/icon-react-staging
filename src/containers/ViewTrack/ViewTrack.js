@@ -11,7 +11,7 @@ import {
 	addAsOnlyTrack,
 	addToTrackList,
 	remove as removeTrack
-} from '../../redux/modules/userTracks';
+} from '../../redux/modules/selectedTracksStore';
 import {
 	MenubarWhite,
 	JumbotronWhite,

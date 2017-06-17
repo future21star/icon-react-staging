@@ -5,24 +5,20 @@ import './DotList.scss';
 @connect(
 	state => ({
 		selectedTracks: state.selectedTracksStore.selectedTracks,
-		swipedActiveTrack: state.swipeStore.swipedActiveTrack
+		swipedActiveTrackName: state.swipeStore.swipedActiveTrackName
 	})
 )
 export default class DotList extends Component {
-	static propTypes = {
-		selectedTracks: PropTypes.array.isRequired,
-		swipedActiveTrack: PropTypes.func
-	};
-
 	render() {
-		const {selectedTracks, swipedActiveTrack} = this.props;
+		const {selectedTracks, swipedActiveTrackName} = this.props;
+
 		return (
 			<div className="dotlist-wrapper">
 				<ul className="list-inline dot-list">
 					{selectedTracks.map((track, i) => {
 						return (
 							<li key={i}>
-								<span className={`dot ${swipedActiveTrack === track.trackName ? 'active' : ''}`}/>
+								<span className={`dot ${swipedActiveTrackName === track.trackName ? 'active' : ''}`}/>
 							</li>
 						);
 					})}

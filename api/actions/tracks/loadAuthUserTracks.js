@@ -10,7 +10,11 @@ export default function loadAuthUserTracks(request) {
 				models.UserTrack.findAll({
 					where: {
 						userId: request.session.user.reactUserId
-					}
+					},
+					include: [{
+						model: models.Track,
+						as: 'track',
+					}]
 				});
 		} catch (e) {
 			console.log(e);
