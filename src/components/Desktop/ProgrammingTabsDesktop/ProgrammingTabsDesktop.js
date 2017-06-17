@@ -7,9 +7,27 @@ export default class ProgrammingTabsDesktop extends Component {
 
 	constructor(props) {
 		super(props);
+
+		const {track} = this.props;
+
 		this.state = {
-			activeTab: 'warmUp',
+			activeTab: this.getActiveTabName(track),
 		};
+	}
+
+	getActiveTabName = (track) => {
+		let activeTab = null;
+		if (track.warmUp) activeTab = 'warmUp';
+		else if (track.mainWorkout) activeTab = 'mainWorkout';
+		else if (track.coolDown) activeTab = 'coolDown';
+
+		return activeTab;
+	};
+
+	componentWillReceiveProps(nextProps) {
+		this.setState({
+			activeTab: this.getActiveTabName(nextProps.track)
+		});
 	}
 
 	changeTab = (e, tabName) => {
@@ -29,30 +47,33 @@ export default class ProgrammingTabsDesktop extends Component {
 						<div className="row">
 							<div className="col-sm-3 tab-nav-desktop">
 								<ul className="nav nav-pills nav-stacked">
-									<li
-										onClick={e => this.changeTab(e, 'warmUp')}
-										className={this.state.activeTab === 'warmUp' ? 'active' : ''}
-									>
-										<a href="#">
-											WARM-UP
-										</a>
-									</li>
-									<li
-										onClick={e => this.changeTab(e, 'mainWorkout')}
-										className={this.state.activeTab === 'mainWorkout' ? 'active' : ''}
-									>
-										<a href="#">
-											MAIN-WORKOUT
-										</a>
-									</li>
-									<li
-										onClick={e => this.changeTab(e, 'coolDown')}
-										className={this.state.activeTab === 'coolDown' ? 'active' : ''}
-									>
-										<a href="#">
-											COOL DOWN
-										</a>
-									</li>
+									{track.warmUp ? (
+										<li
+											onClick={e => this.changeTab(e, 'warmUp')}
+											className={this.state.activeTab === 'warmUp' ? 'active' : ''}
+										>
+											<a href="#">
+												WARM-UP
+											</a>
+										</li>) : undefined}
+									{track.mainWorkout ? (
+										<li
+											onClick={e => this.changeTab(e, 'mainWorkout')}
+											className={this.state.activeTab === 'mainWorkout' ? 'active' : ''}
+										>
+											<a href="#">
+												MAIN-WORKOUT
+											</a>
+										</li> ) : undefined }
+									{track.coolDown ? (
+										<li
+											onClick={e => this.changeTab(e, 'coolDown')}
+											className={this.state.activeTab === 'coolDown' ? 'active' : ''}
+										>
+											<a href="#">
+												COOL DOWN
+											</a>
+										</li>) : undefined }
 								</ul>
 							</div>
 

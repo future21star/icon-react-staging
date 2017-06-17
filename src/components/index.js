@@ -29,7 +29,6 @@ export MenuBarBlueDesktop from './Desktop/MenuBarDesktop/MenuBarBlueDesktop';
 export MenuBarRedDesktop from './Desktop/MenuBarDesktop/MenuBarRedDesktop';
 export TrackBannerDesktop from './Desktop/TrackBannerDesktop/TrackBannerDesktop';
 export ProgrammingTabsDesktop from './Desktop/ProgrammingTabsDesktop/ProgrammingTabsDesktop';
-export BottomNavDesktop from './Desktop/BottomNavDesktop/BottomNavDesktop';
 export TracksListItemDesktop from './Desktop/TracksListItemDesktop/TracksListItemDesktop';
 export RestDayDesktop from './Desktop/RestDayDesktop/RestDayDesktop';
 

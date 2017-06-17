@@ -7,9 +7,14 @@ export default class MenuBarRedDesktop extends Component {
 	constructor(props) {
 		super(props);
 
+		let selectedTrack = null;
+		if (this.props.tracks[0]) {
+			selectedTrack = this.props.tracks[0].title;
+		}
+
 		this.state = {
 			trackPopOverActive: false,
-			selectedTrack: this.props.tracks[0].title
+			selectedTrack: (selectedTrack) ? selectedTrack.charAt(0).toUpperCase() + selectedTrack.slice(1) : null
 		}
 	}
 
@@ -25,6 +30,8 @@ export default class MenuBarRedDesktop extends Component {
 		this.setState({
 			trackPopOverActive: false,
 			selectedTrack: track.charAt(0).toUpperCase() + track.slice(1)
+		}, () => {
+			this.props.onSelectTrack(track);
 		});
 	};
 
@@ -39,7 +46,8 @@ export default class MenuBarRedDesktop extends Component {
 							{leftSideContentDesktop}
 						</div>
 						<div className="col-sm-6 col-md-6 col-lg-6 menu-bar-title-desktop">
-							<div className={`popover top track-popover-wrapper ${this.state.trackPopOverActive ? 'show-popover' : ''}`}>
+							<div
+								className={`popover top track-popover-wrapper ${this.state.trackPopOverActive ? 'show-popover' : 'hide-popover'}`}>
 								<div className="popover-content">
 									<div className="list-group">
 										{

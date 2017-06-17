@@ -90,6 +90,13 @@ export default class Home extends Component {
 		})
 	};
 
+	selectNextTrack = () => {
+		this.refs.swipeRef.next();
+	};
+	selectPrevTrack = () => {
+		this.refs.swipeRef.prev();
+	};
+
 	render() {
 		const {selectedTracks} = this.props;
 
@@ -139,12 +146,12 @@ export default class Home extends Component {
 
 		const swipeConfig = {
 			callback: (index, elem) => this.selectTrack(elem.getAttribute('name')),
-			continuous: false
+			continuous: true
 		};
 
 		return (
 			<div>
-				<ReactSwipe className="carousel" swipeOptions={swipeConfig}>
+				<ReactSwipe className="carousel" swipeOptions={swipeConfig} ref="swipeRef">
 					{selectedTracks.map((track, i) => {
 						return (
 							<div name={track.title} key={i}>
@@ -156,11 +163,20 @@ export default class Home extends Component {
 											midContent={track.trackIconClassName}
 											bgImg={track.bgImg}
 											track={wods[track.title][this.state.today]}
+											nextTrack={selectedTracks[i + 1] ? selectedTracks[i + 1].title : null}
+											prevTrack={selectedTracks[i - 1] ? selectedTracks[i - 1].title : null}
+											selectNextTrack={this.selectNextTrack}
+											selectPrevTrack={this.selectPrevTrack}
 										/>
 										<ProgrammingTabs track={wods[track.title][this.state.today]}/>
 									</div>) : undefined }
 								{wods[track.title] && wods[track.title][this.state.today] === null ? (
-									<RestDay track={track}/>) : undefined }
+									<RestDay track={track}
+													 nextTrack={selectedTracks[i + 1] ? selectedTracks[i + 1].title : null}
+													 prevTrack={selectedTracks[i - 1] ? selectedTracks[i - 1].title : null}
+													 selectNextTrack={this.selectNextTrack}
+													 selectPrevTrack={this.selectPrevTrack}/>
+								) : undefined }
 								{wods.loading ? <Loader/> : undefined}
 							</div>
 						);

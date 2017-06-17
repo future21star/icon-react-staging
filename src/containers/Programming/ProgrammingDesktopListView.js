@@ -3,19 +3,14 @@ import Helmet from 'react-helmet';
 import {Link} from "react-router";
 import {connect} from "react-redux";
 import {asyncConnect} from 'redux-async-connect';
-import {MenuBarRedDesktop, BottomNavDesktop, TracksListItemDesktop} from '../../components';
+import {MenuBarRedDesktop, TracksListItemDesktop, BottomNav} from '../../components';
 import {
-	isLoaded as isWodsLoaded,
-	load as loadWods
+	loadListView
 } from '../../redux/modules/wods';
 import {
 	isLoaded as isTracksLoaded,
 	load as loadTracks
 } from '../../redux/modules/userTracks';
-import {
-	isLoaded as isDailyBriefLoaded,
-	load as loadDailyBrief
-} from '../../redux/modules/dailyBrief';
 
 @asyncConnect([{
 	promise: ({store: {dispatch, getState}}) => {
@@ -23,10 +18,6 @@ import {
 
 		if (!isTracksLoaded(getState())) {
 			promises.push(dispatch(loadTracks()));
-		}
-
-		if (!isDailyBriefLoaded(getState())) {
-			promises.push(dispatch(loadDailyBrief()));
 		}
 
 		return Promise.all(promises);
@@ -38,39 +29,61 @@ import {
 		selectedTracks: state.userTracks.selectedTracks,
 		routing: state.routing,
 		wods: state.wods,
-		dailyBrief: state.dailyBrief
 	}),
 	{}
 )
 export default class ProgrammingDesktopListView extends Component {
 
-	static allTracks = [
-		'Dynamic',
-		'Lifestyle',
-		'Strength',
-		'Hyper'
-	];
-
-	render() {
+	constructor(props) {
+		super(props);
 		const {selectedTracks} = this.props;
 
+		this.state = {
+			selectedTrack: selectedTracks.length ? selectedTracks[0].title : null
+		};
+	}
+
+	componentDidMount() {
+		this.loadListViewWods();
+	}
+
+	selectTrack = (newSelectedTrack) => {
+		this.setState({
+			selectedTrack: newSelectedTrack
+		}, () => {
+			this.loadListViewWods();
+		});
+	};
+
+	loadListViewWods = () => {
+		const {dispatch} = this.props;
+		dispatch(loadListView(this.state.selectedTrack));
+	};
+
+	render() {
+		const {selectedTracks, wods} = this.props;
+
 		const leftSideContentDesktop = (
-			<h4>
-				<span>
-					<i className="icon-desktop-menu" aria-hidden="true"/>
-				</span>
-				List View
-			</h4>
+			<div className="edit-tracks-link">
+				<Link to="/edit-tracks" className="text-white">
+					<span>
+						<i className="icon-user-edit" aria-hidden="true"/>
+					</span>
+					<span style={{'position': 'relative', 'top': '-3px'}}>Edit Track</span>
+				</Link>
+			</div>
 		);
 
 		const rightSideContentDesktop = (
 			<p>
-				Lifestyle Track
-				<Link to="/edit-tracks"><span className="icon-user-edit"/></Link>
+				<Link to="/programming" className="text-white">
+					<span style={{'position': 'relative', 'top': '-3px'}}>Exit List View</span>
+					<span>
+						<i className="icon-desktop-menu" aria-hidden="true"/>
+					</span>
+				</Link>
 			</p>
 		);
-
-		const bgImg = require('../../../static/strengthBG.jpg');
 
 		return (
 			<div className="programming-page-list-view-wrapper-desktop hidden-xs hidden-sm">
@@ -81,25 +94,36 @@ export default class ProgrammingDesktopListView extends Component {
 					leftSideContentDesktop={leftSideContentDesktop}
 					rightSideContentDesktop={rightSideContentDesktop}
 					tracks={selectedTracks}
+					onSelectTrack={this.selectTrack}
 				/>
 
 				<div className="tracks-list-view-container-wrapper-desktop">
 					<div className="tracks-list-view-container-desktop">
-						<div className="container-fluid">
 
-							<TracksListItemDesktop
-								bgImg={bgImg}
-							/>
-
-							<TracksListItemDesktop
-								bgImg={bgImg}
-							/>
-
-						</div>
+						{wods.loading || !wods[this.state.selectedTrack] ? undefined :
+							<div className="container-fluid">
+								{Object.keys(wods[this.state.selectedTrack]).map((key, index) => {
+									return (
+										<div key={index}>
+											<TracksListItemDesktop
+												bgImg={selectedTracks.filter((track) => {
+													return track.title === this.state.selectedTrack;
+												})[0].bgImg}
+												track={wods[this.state.selectedTrack][key]}
+											/>
+										</div>
+									)
+								})}
+							</div>
+						}
+						{wods[this.state.selectedTrack] && Object.keys(wods[this.state.selectedTrack]).length === 0
+							? <p>Nothing found</p>
+							: undefined
+						}
 					</div>
 				</div>
 
-				<BottomNavDesktop
+				<BottomNav
 					routing={this.props.routing}
 				/>
 

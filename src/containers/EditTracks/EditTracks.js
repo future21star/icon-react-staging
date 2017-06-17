@@ -1,26 +1,18 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
-import ReactSwipe from 'react-swipe';
 import {connect} from "react-redux";
 import {Link} from "react-router";
 import {asyncConnect} from 'redux-async-connect';
 import {includes} from 'lodash';
-import {startsWith} from 'lodash';
 
 import {
 	isLoaded as isTracksLoaded,
 	load as loadTracks,
-	addAsOnlyTrack,
-	addToTrackList,
-	remove as removeTrack
 } from '../../redux/modules/userTracks';
 import {
 	MenubarWhite,
 	JumbotronWhite,
-	EditTracksDotsContainer,
-	EditTracksBanner,
-	EditTracksMidSection,
-	BtnBottom
+	EditTracksBanner
 } from '../../components';
 import './EditTracks.scss';
 
@@ -40,44 +32,18 @@ import './EditTracks.scss';
 	state => ({
 		userTracks: state.userTracks,
 		vaultAccess: state.auth.user.vaultAccess
-	}),
-	{addAsOnlyTrack, addToTrackList, removeTrack}
+	})
 )
 
 export default class EditTracks extends Component {
-	constructor(props) {
-		super(props);
-
-		this.state = {
-			selectedTrack: "dynamic"
-		}
-	}
-
-	selectTrack = (newSelectedTrack) => {
-		this.setState({
-			selectedTrack: newSelectedTrack
-		});
-	};
-
-	addAsOnlyTrack = () => {
-		this.props.addAsOnlyTrack(this.state.selectedTrack);
-	};
-
-	addToTrackList = () => {
-		this.props.addToTrackList(this.state.selectedTrack);
-	};
-
-	removeTrack = () => {
-		this.props.removeTrack(this.state.selectedTrack);
-	};
 
 	render() {
 		const {vaultAccess} = this.props;
 
 		const rightSideContent = (
-			<Link to="/programming" className="turquoise-color">
+			<a href="javascript:history.back();" className="turquoise-color">
 				Done
-			</Link>
+			</a>
 		);
 
 		let accessOfProgrammingType = null;
@@ -94,50 +60,36 @@ export default class EditTracks extends Component {
 					rightSideContent={rightSideContent}
 				/>
 
-				{accessOfProgrammingType ? this.renderEditTracks(accessOfProgrammingType) : this.renderNoVaultAccess()}
+				{accessOfProgrammingType ? this.renderEditTracks() : this.renderNoVaultAccess()}
 
 			</div>
 		);
 	}
 
-	renderEditTracks(accessOfProgrammingType) {
+	renderEditTracks() {
 		const {userTracks} = this.props;
 
-		const swipeConfig = {
-			callback: (index, elem) => this.selectTrack(elem.getAttribute('name'))
-		};
-
-		const selectedTrackIsSubscribed = userTracks.allTracks.filter(track => {
-			return track.title === this.state.selectedTrack;
-		})[0].isSubscribed;
-
 		return (
-			<div>
-				<EditTracksDotsContainer
-					selectedTrack={this.state.selectedTrack}
-					allTracks={userTracks.allTracks}
-				/>
-
-				<ReactSwipe className="carousel" swipeOptions={swipeConfig}>
-					{userTracks.allTracks.map((track, i) => {
-						return (
-							<div name={track.title} key={i}>
-								<EditTracksBanner
-									bgImg={track.bgImg}
-									title={track.title}
-									trackIconClassName={track.trackIconClassName}
-									isSubscribed={track.isSubscribed}
-								/>
-								<EditTracksMidSection/>
-							</div>
-						);
-					})}
-				</ReactSwipe>
-
-				{accessOfProgrammingType === 'all' ? this.renderButtonsForProgrammingAll(selectedTrackIsSubscribed) : undefined}
-				{accessOfProgrammingType === 'single' ? this.renderButtonsForProgrammingSingle(selectedTrackIsSubscribed) : undefined}
-				{accessOfProgrammingType === 'masters' ? this.renderButtonsForProgrammingMasters(selectedTrackIsSubscribed) : undefined}
-
+			<div className="edit-tracks-list-wrapper">
+				<div className="container">
+					<div className="row">
+						{userTracks.allTracks.map((track, i) => {
+							return (
+								<div className="col-xs-12 col-sm-6 col-md-4" key={i}>
+									<div className="thumbnail">
+										<EditTracksBanner
+											bgImg={track.bgImg}
+											title={track.title}
+											trackIconClassName={track.trackIconClassName}
+											isSubscribed={track.isSubscribed}
+										/>
+										<Link to={`/edit-tracks/${track.title}`} className="btn btn-block btn-primary">Details</Link>
+									</div>
+								</div>
+							);
+						})}
+					</div>
+				</div>
 			</div>
 		);
 	}
@@ -150,104 +102,5 @@ export default class EditTracks extends Component {
 												logo={true}/>
 			</div>
 		);
-	}
-
-	renderButtonsForProgrammingSingle(selectedTrackIsSubscribed) {
-
-		let visibleTrackStartsWithMasters = startsWith(this.state.selectedTrack, 'masters');
-
-		return (
-			<div>
-				{selectedTrackIsSubscribed ?
-					<BtnBottom
-						classNames="btn btn-block btn-lg btn-fixed-bottom btn-danger btn-font-lg"
-						title="Delete This Track"
-						icon={<span className="icon-trash"/>}
-						onClick={this.removeTrack}
-					/> : undefined }
-
-				{!selectedTrackIsSubscribed && visibleTrackStartsWithMasters ?
-					<BtnBottom
-						classNames="btn btn-block btn-lg btn-fixed-bottom btn-turquoise btn-font-lg"
-						title="Update Subscription"
-						onClick={e => console.log('subscription update')}
-						icon={<span className="icon-update-sub"/>}
-					/> : undefined
-				}
-
-				{!selectedTrackIsSubscribed && !visibleTrackStartsWithMasters ?
-					<BtnBottom
-						classNames="btn btn-block btn-lg btn-fixed-bottom btn-turquoise btn-font-lg"
-						title="Add This Track"
-						icon={<span className="icon-nav-links"/>}
-						onClick={this.addAsOnlyTrack}
-					/> : undefined
-				}
-			</div>
-		)
-	}
-
-	renderButtonsForProgrammingAll(selectedTrackIsSubscribed) {
-
-		let visibleTrackStartsWithMasters = startsWith(this.state.selectedTrack, 'masters');
-
-		return (
-			<div>
-				{selectedTrackIsSubscribed ?
-					<BtnBottom
-						classNames="btn btn-block btn-lg btn-fixed-bottom btn-danger btn-font-lg"
-						title="Delete This Track"
-						icon={<span className="icon-trash"/>}
-						onClick={this.removeTrack}
-					/> : undefined }
-
-				{!selectedTrackIsSubscribed && visibleTrackStartsWithMasters ?
-					<BtnBottom
-						classNames="btn btn-block btn-lg btn-fixed-bottom btn-turquoise btn-font-lg"
-						title="Update Subscription"
-						onClick={e => console.log('subscription update')}
-						icon={<span className="icon-update-sub"/>}
-					/> : undefined
-				}
-
-				{!selectedTrackIsSubscribed && !visibleTrackStartsWithMasters ?
-					<BtnBottom
-						classNames="btn btn-block btn-lg btn-fixed-bottom btn-turquoise btn-font-lg"
-						title="Add This Track"
-						icon={<span className="icon-nav-links"/>}
-						onClick={this.addToTrackList}
-					/> : undefined
-				}
-			</div>
-		)
-	}
-
-	renderButtonsForProgrammingMasters(selectedTrackIsSubscribed) {
-
-		let visibleTrackStartsWithMasters = startsWith(this.state.selectedTrack, 'masters');
-		return (
-			<div>
-				{selectedTrackIsSubscribed ?
-					<BtnBottom
-						classNames="btn btn-block btn-lg btn-fixed-bottom btn-danger btn-font-lg"
-						title="Delete This Track"
-						icon={<span className="icon-trash"/>}
-						onClick={this.removeTrack}
-					/> : undefined }
-
-				{!selectedTrackIsSubscribed && visibleTrackStartsWithMasters ?
-					<BtnBottom
-						classNames="btn btn-block btn-lg btn-fixed-bottom btn-turquoise btn-font-lg"
-						title="Add This Track"
-						icon={<span className="icon-nav-links"/>}
-						onClick={this.addAsOnlyTrack}
-					/> : undefined
-				}
-
-				{!selectedTrackIsSubscribed && !visibleTrackStartsWithMasters ?
-					undefined : undefined
-				}
-			</div>
-		)
 	}
 }

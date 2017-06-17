@@ -6,9 +6,26 @@ export default class ProgrammingTabs extends Component {
 
 	constructor(props) {
 		super(props);
+		const {track} = this.props;
+
 		this.state = {
-			activeTab: 'warmUp',
+			activeTab: this.getActiveTabName(track),
 		};
+	}
+
+	getActiveTabName = (track) => {
+		let activeTab = null;
+		if (track.warmUp) activeTab = 'warmUp';
+		else if (track.mainWorkout) activeTab = 'mainWorkout';
+		else if (track.coolDown) activeTab = 'coolDown';
+
+		return activeTab;
+	};
+
+	componentWillReceiveProps(nextProps) {
+		this.setState({
+			activeTab: this.getActiveTabName(nextProps.track)
+		});
 	}
 
 	changeTab = (e, tabName) => {
@@ -26,33 +43,36 @@ export default class ProgrammingTabs extends Component {
 				<div className="programming-tabs-list-wrapper">
 					<div className="container">
 						<ul className="nav nav-tabs nav-justified">
-							<li>
-								<a
-									href="#"
-									onClick={e => this.changeTab(e, 'warmUp')}
-									className={this.state.activeTab === 'warmUp' ? 'active-black' : ''}
-								>
-									WARM-UP
-								</a>
-							</li>
-							<li>
-								<a
-									href="#"
-									onClick={e => this.changeTab(e, 'mainWorkout')}
-									className={this.state.activeTab === 'mainWorkout' ? 'active-black' : ''}
-								>
-									MAIN-WORKOUT
-								</a>
-							</li>
-							<li>
-								<a
-									href="#"
-									onClick={e => this.changeTab(e, 'coolDown')}
-									className={this.state.activeTab === 'coolDown' ? 'active-black' : ''}
-								>
-									COOL DOWN
-								</a>
-							</li>
+							{track.warmUp ? (
+								<li>
+									<a
+										href="#"
+										onClick={e => this.changeTab(e, 'warmUp')}
+										className={this.state.activeTab === 'warmUp' ? 'active-black' : ''}
+									>
+										WARM-UP
+									</a>
+								</li>) : undefined }
+							{track.mainWorkout ? (
+								<li>
+									<a
+										href="#"
+										onClick={e => this.changeTab(e, 'mainWorkout')}
+										className={this.state.activeTab === 'mainWorkout' ? 'active-black' : ''}
+									>
+										MAIN-WORKOUT
+									</a>
+								</li>) : undefined }
+							{track.coolDown ? (
+								<li>
+									<a
+										href="#"
+										onClick={e => this.changeTab(e, 'coolDown')}
+										className={this.state.activeTab === 'coolDown' ? 'active-black' : ''}
+									>
+										COOL DOWN
+									</a>
+								</li>) : undefined }
 						</ul>
 					</div>
 				</div>

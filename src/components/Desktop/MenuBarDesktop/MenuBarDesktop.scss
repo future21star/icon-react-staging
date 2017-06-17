@@ -26,6 +26,7 @@
         font-size: 16px;
         font-weight: 300;
         min-width: 60px;
+        cursor: pointer;
       }
       .active {
         border-radius: 50%;
@@ -170,6 +171,13 @@
           top: -2px;
         }
       }
+    }
+  }
+
+  .edit-tracks-link {
+    font-size: 18px;
+    a:hover {
+      text-decoration: none;
     }
   }
 }

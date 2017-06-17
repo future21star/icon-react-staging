@@ -1,18 +1,17 @@
 import axios from "axios";
-import {WP_API_URL} from "../config/app";
+import {WP_API_URL} from "../../config/app";
 import moment from 'moment';
-import {generalError, successMessage} from "../utils/message";
+import {generalError, successMessage} from "../../utils/message";
 
 export default function getDailyBrief(request) {
 	return new Promise(async (resolve, reject) => {
 
-		// TODO: remove day(-5)
-		let now = moment().day(-5).toISOString();
+		let yesterday = moment().days(-1).toISOString();
 
 		// get daily Brief
 		let wpDailyBriefs = null;
 		try {
-			wpDailyBriefs = await axios.get(WP_API_URL + '/wp/v2/daily_brief?after=' + now);
+			wpDailyBriefs = await axios.get(WP_API_URL + '/wp/v2/daily_brief?after=' + yesterday);
 		} catch (e) {
 			console.log(e);
 			return reject(generalError(e.response.data.message));
@@ -28,7 +27,7 @@ export default function getDailyBrief(request) {
 			})
 		}
 		else {
-			let now = moment().day(-3).format('YYYY-MM-DD');
+			let now = moment().format('YYYY-MM-DD');
 			let todayBrief = wpDailyBriefs.data.filter((dailyBrief) => {
 				return moment(now).isSame(moment(dailyBrief.date).format('YYYY-MM-DD'));
 			})[0];

@@ -51,7 +51,9 @@ export default (store) => {
 				<Route path="programming" component={containers.Programming}/>
 				<Route path="programming/list-view" component={containers.ProgrammingDesktopListView}/>
 				<Route path="edit-tracks" component={containers.EditTracks}/>
+				<Route path="edit-tracks/:name" component={containers.ViewTrack}/>
 				<Route path="workout/:trackName/:id" component={containers.WorkOutMode}/>
+				<Route path="help/:slug" component={containers.Help}/>
 			</Route>
 
 			<Route onEnter={requiresGuest}>

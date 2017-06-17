@@ -9,6 +9,7 @@ import userTracks from './userTracks';
 import wods from './wods';
 import workoutItem from './workoutItem';
 import dailyBrief from './dailyBrief';
+import helpfulLinksStore from './helpfulLinksStore';
 
 export default combineReducers({
 	routing: routerReducer,
@@ -19,5 +20,6 @@ export default combineReducers({
 	userTracks,
 	wods,
 	workoutItem,
-	dailyBrief
+	dailyBrief,
+	helpfulLinksStore
 });
