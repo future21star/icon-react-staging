@@ -73,7 +73,8 @@ export default class Programming extends Component {
 		if (selectedTracks.length) {
 			// if user has a track in swipe store, show it
 			if (swipedActiveTrackIndex) {
-				this.refs.programmingSwipeRef.slide(swipedActiveTrackIndex);
+				this.refs.programmingSwipeMobileRef.slide(swipedActiveTrackIndex);
+				this.refs.programmingSwipeDesktopRef.slide(swipedActiveTrackIndex);
 			}
 			// set the first one if not available
 			else {
@@ -97,17 +98,21 @@ export default class Programming extends Component {
 	};
 
 	componentWillReceiveProps(nextProps) {
-		const {wodsStore, dispatch, swipedActiveTrackName, activeDate} = this.props;
+		const {wodsStore, dispatch, swipedActiveTrackName, swipedActiveTrackIndex, activeDate} = this.props;
 
-		if(nextProps.activeDate !== activeDate) {
+		if (nextProps.activeDate !== activeDate) {
 			if (!isWodsLoaded(wodsStore, swipedActiveTrackName, nextProps.activeDate)) {
 				dispatch(loadWods(swipedActiveTrackName, nextProps.activeDate));
 			}
 		}
+		if (nextProps.swipedActiveTrackIndex !== swipedActiveTrackIndex) {
+			this.refs.programmingSwipeMobileRef.slide(nextProps.swipedActiveTrackIndex);
+			this.refs.programmingSwipeDesktopRef.slide(nextProps.swipedActiveTrackIndex);
+		}
 	}
 
 	render() {
-		const {selectedTracks, activeWeek, toggleActiveWeek} = this.props;
+		const {selectedTracks, activeWeek, toggleActiveWeek, swipedActiveTrackName} = this.props;
 
 		const rightSideContentMobileView = (
 			<a href="javascript:;" onClick={toggleActiveWeek}>
@@ -139,13 +144,28 @@ export default class Programming extends Component {
 					{selectedTracks.length ? this.renderSelectedTracksForMobile() : this.renderNoTracksFound()}
 				</div>
 
+				{/*desktop*/}
+				<div className="hidden-xs hidden-sm">
+					<MenuBarBlueDesktop
+						leftSideContentDesktop={(<h3 className="text-capitalize">
+							<span className="icon-user-edit"/>
+							{swipedActiveTrackName} Track
+						</h3>)}
+						rightSideContentDesktop={(<Link to="/programming/list-view">
+							<p>List View <span><i className="icon-desktop-menu"/></span></p>
+						</Link>)}
+					/>
+
+					{selectedTracks.length ? this.renderSelectedTracksForDesktop() : this.renderNoTracksFound()}
+				</div>
+
 				<BottomNav/>
 			</div>
 		)
 	}
 
 	renderSelectedTracksForMobile() {
-		const {user, selectedTracks, wods, dailyBriefStore} = this.props;
+		const {selectedTracks} = this.props;
 
 		const swipeConfig = {
 			callback: (index, elem) => this.selectTrack(elem.getAttribute('name'), index),
@@ -156,9 +176,28 @@ export default class Programming extends Component {
 			<div>
 				<ProgrammingHeader/>
 
-				<ReactSwipe className="carousel" swipeOptions={swipeConfig} ref="programmingSwipeRef">
+				<ReactSwipe className="carousel" swipeOptions={swipeConfig} ref="programmingSwipeMobileRef">
 					{selectedTracks.map((selectedTrack, i) => {
 						return this.renderEachTrackForMobile(selectedTrack, i);
+					})}
+				</ReactSwipe>
+			</div>
+		);
+	}
+
+	renderSelectedTracksForDesktop() {
+		const {selectedTracks} = this.props;
+
+		const swipeConfig = {
+			callback: (index, elem) => this.selectTrack(elem.getAttribute('name'), index),
+			continuous: false
+		};
+
+		return (
+			<div>
+				<ReactSwipe className="carousel" swipeOptions={swipeConfig} ref="programmingSwipeDesktopRef">
+					{selectedTracks.map((selectedTrack, i) => {
+						return this.renderEachTrackForDesktop(selectedTrack, i);
 					})}
 				</ReactSwipe>
 			</div>
@@ -184,8 +223,8 @@ export default class Programming extends Component {
 							wod={wodForThisTrackAndDate}
 							nextTrack={nextTrackName}
 							prevTrack={prevTrackName}
-							onSelectNextTrack={e => this.refs.programmingSwipeRef.next()}
-							onSelectPrevTrack={e => this.refs.programmingSwipeRef.prev()}
+							onSelectNextTrack={e => this.refs.programmingSwipeMobileRef.next()}
+							onSelectPrevTrack={e => this.refs.programmingSwipeMobileRef.prev()}
 						/>
 						<ProgrammingTabs track={wodForThisTrackAndDate}/>
 					</div>) : undefined}
@@ -197,13 +236,49 @@ export default class Programming extends Component {
 					<RestDay track={track}
 									 nextTrack={nextTrackName}
 									 prevTrack={prevTrackName}
-									 onSelectNextTrack={e => this.refs.programmingSwipeRef.next()}
-									 onSelectPrevTrack={e => this.refs.programmingSwipeRef.prev()}/>
+									 onSelectNextTrack={e => this.refs.programmingSwipeMobileRef.next()}
+									 onSelectPrevTrack={e => this.refs.programmingSwipeMobileRef.prev()}/>
 				) : undefined }
 			</div>
 		);
 	}
 
+	renderEachTrackForDesktop(selectedTrack, i) {
+		const {user, selectedTracks, wods, activeDate, currentDate, dailyBriefs} = this.props;
+
+		let track = selectedTrack.track;
+		let wodForThisTrack = wods[track.name];
+		let wodForThisTrackAndDate = wodForThisTrack ? wods[track.name][activeDate] : null;
+		let nextTrackName = selectedTracks[i + 1] ? selectedTracks[i + 1].trackName : null;
+		let prevTrackName = selectedTracks[i - 1] ? selectedTracks[i - 1].trackName : null;
+
+		return (
+			<div name={track.name} key={i}>
+				<div>
+					{wodForThisTrack && wodForThisTrackAndDate ? (
+						<div>
+							<TrackBannerDesktop
+								wod={wodForThisTrackAndDate}
+								nextTrack={nextTrackName}
+								prevTrack={prevTrackName}
+								onSelectNextTrack={e => this.refs.programmingSwipeDesktopRef.next()}
+								onSelectPrevTrack={e => this.refs.programmingSwipeDesktopRef.prev()}
+							/>
+							{currentDate === activeDate
+								? <ProgrammingTabsDesktop track={wodForThisTrackAndDate}
+																					dailyBriefContent={dailyBriefs[track.name]}/>
+								: <ProgrammingTabsDesktop track={wodForThisTrackAndDate}/>
+							}
+						</div>
+					) : <RestDayDesktop track={track}
+															nextTrack={nextTrackName}
+															prevTrack={prevTrackName}
+															onSelectNextTrack={e => this.refs.programmingSwipeDesktopRef.next()}
+															onSelectPrevTrack={e => this.refs.programmingSwipeDesktopRef.prev()}/>}
+				</div>
+			</div>
+		);
+	}
 
 	renderNoTracksFound() {
 		const noTracksDescription = (
@@ -223,77 +298,5 @@ export default class Programming extends Component {
 			</div>
 		)
 	}
-
-	renderTest() {
-		const {wods, user, selectedTracks, dailyBriefStore} = this.props;
-
-		const leftSideContentDesktop = (
-			<h3 className="text-capitalize">
-				<span className="icon-user-edit"/>
-				{this.state.selectedTrack} Track
-			</h3>
-		);
-
-		const rightSideContentDesktop = (
-			<Link to="/programming/list-view">
-				<p>
-					List View
-					<span>
-					<i className="icon-desktop-menu" aria-hidden="true"/>
-				</span>
-				</p>
-			</Link>
-		);
-
-		return (
-			<div className="programming-page-wrapper bottom-padding">
-				<Helmet title="Programming"/>
-
-				{/*desktop*/}
-				<div className="hidden-xs hidden-sm">
-					<div>
-						<MenuBarBlueDesktop
-							leftSideContentDesktop={leftSideContentDesktop}
-							rightSideContentDesktop={rightSideContentDesktop}
-							activeWeek={this.state.activeWeek}
-							onDateChange={this.dayChanged}
-						/>
-						{selectedTracks.map((track, i) => {
-								return (
-									<div name={track.title} key={i}>
-										{this.state.selectedTrack === track.title ? (
-											<div>
-												{wods[track.title] && wods[track.title][this.state.activeDay] ? (
-													<div>
-														<TrackBannerDesktop
-															track={wods[track.title][this.state.activeDay]}
-															nextTrack={selectedTracks[i + 1] ? selectedTracks[i + 1].title : null}
-															prevTrack={selectedTracks[i - 1] ? selectedTracks[i - 1].title : null}
-															bgImg={track.bgImg}
-															onSelectTrack={this.selectTrack}
-														/>
-														{this.state.today === this.state.activeDay
-															? <ProgrammingTabsDesktop track={wods[track.title][this.state.activeDay]}
-																												dailyBriefContent={dailyBriefStore.dailyBriefs[track.title]}/>
-															: <ProgrammingTabsDesktop track={wods[track.title][this.state.activeDay]}/>
-														}
-													</div>
-												) : <RestDayDesktop track={track}
-																						nextTrack={selectedTracks[i + 1] ? selectedTracks[i + 1].title : null}
-																						prevTrack={selectedTracks[i - 1] ? selectedTracks[i - 1].title : null}
-																						onSelectTrack={this.selectTrack}/>}
-											</div>) : undefined}
-									</div>
-								)
-							}
-						)}
-
-						<BottomNav/>
-					</div>
-				</div>
-			</div>
-		);
-	}
-
 
 }

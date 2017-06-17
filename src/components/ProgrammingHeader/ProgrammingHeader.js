@@ -3,7 +3,6 @@ import {connect} from "react-redux";
 import {DayPicker, DotList} from '../../components';
 import './ProgrammingHeader.scss';
 
-
 @connect(
 	state => ({
 		user: state.authStore.user,
