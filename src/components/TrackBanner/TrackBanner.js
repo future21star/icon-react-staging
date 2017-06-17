@@ -77,7 +77,7 @@ export default class TrackBanner extends Component {
 
 		return (
 			<div className="track-banner-wrapper">
-				<div className="track-banner" style={{backgroundImage: 'url(' + bgImg + ')',}}>
+				<div className={`track-banner ${track.format}`} style={{backgroundImage: 'url(' + bgImg + ')',}}>
 					<div className="overlay"/>
 					<div className="workout-button">
 						<Link to={`/workout/${track.trackName}/${track.id}`} className="text-white">
@@ -93,7 +93,7 @@ export default class TrackBanner extends Component {
 						}
 					</div>
 					<div className={`title ${!midContent ? 'title-padding' : ''}`}>
-						<h3>{track.trackName}</h3>
+						<h3>{track.title}</h3>
 
 						<ul className={`track-banner-list list-inline ${noteContent ? 'track-banner-list-with-note' : ''}`}>
 							<li>

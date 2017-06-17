@@ -10,6 +10,10 @@ module.exports = function (sequelize, DataTypes) {
 			allowNull: false,
 			type: DataTypes.STRING(30)
 		},
+		title: {
+			allowNull: false,
+			type: DataTypes.STRING
+		},
 		format: {
 			allowNull: false,
 			type: DataTypes.STRING(30)
