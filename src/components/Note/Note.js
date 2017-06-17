@@ -27,7 +27,7 @@ export default class Note extends Component {
 				<div className="container">
 					<div className={classNames}>
 						<div className="note-header" onClick={this.toggleExpand}>
-							<h3>
+							<h3 className="note-title">
 								Workout Notes
 								{
 									this.state.isOpened ?
