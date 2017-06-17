@@ -12,7 +12,7 @@ import dailyBriefStore from './dailyBriefStore';
 import allTracksStore from './allTracksStore';
 import helpfulLinksStore from './helpfulLinksStore';
 import dayPickerStore from './dayPickerStore';
-import SwipeStore from './SwipeStore';
+import swipeStore from './swipeStore';
 
 export default combineReducers({
 	routing: routerReducer,
@@ -27,5 +27,5 @@ export default combineReducers({
 	helpfulLinksStore,
 	allTracksStore,
 	dayPickerStore,
-	SwipeStore
+	swipeStore
 });
