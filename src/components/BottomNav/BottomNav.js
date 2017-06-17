@@ -44,8 +44,8 @@ export default class BottomNav extends Component {
 		return (
 			<div>
 				<div className="bottom-nav-wrapper hidden-md hidden-lg">
-					<div className={`${this.state.helpfulLinksActive ? 'helpful-links-overlay' : ''}`}/>
-					<div className={`popover top helpful-links-wrapper ${this.state.helpfulLinksActive ? 'show' : ''}`}>
+					<div className={`${this.state.helpfulLinksActive ? 'helpful-links-overlay show-transition-backdrop' : ''}`}/>
+					<div className={`popover top helpful-links-wrapper ${this.state.helpfulLinksActive ? 'show show-transition' : ''}`}>
 						<div className="arrow"/>
 						<div className="popover-title">Helpful Links</div>
 						<div className="popover-content">
@@ -70,8 +70,8 @@ export default class BottomNav extends Component {
 				</div>
 
 				<div className="bottom-nav-wrapper-desktop hidden-xs hidden-sm">
-					<div className={`${this.state.helpfulLinksActive ? 'helpful-links-overlay' : ''}`}/>
-					<div className={`popover top helpful-links-desktop-wrapper ${this.state.helpfulLinksActive ? 'show' : ''}`}>
+					<div className={`${this.state.helpfulLinksActive ? 'helpful-links-overlay show-transition-backdrop' : ''}`}/>
+					<div className={`popover top helpful-links-desktop-wrapper ${this.state.helpfulLinksActive ? 'show show-transition' : ''}`}>
 						<div className="arrow"/>
 						<div className="popover-title">Helpful Links</div>
 						<div className="popover-content">

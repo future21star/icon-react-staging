@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import {Collapse} from 'react-collapse';
 import './DailyBrief.scss';
 
 export default class DailyBrief extends Component {
@@ -6,7 +7,7 @@ export default class DailyBrief extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			isExpanded: false,
+			isOpened: false,
 		};
 	}
 
@@ -16,7 +17,7 @@ export default class DailyBrief extends Component {
 
 	toggleBrief = () => {
 		this.setState({
-			isExpanded: !this.state.isExpanded
+			isOpened: !this.state.isOpened
 		});
 	};
 
@@ -29,14 +30,16 @@ export default class DailyBrief extends Component {
 					<div className="daily-brief-header" onClick={this.toggleBrief}>
 						<span className="daily-brief-header-text">Daily Brief</span>
 						<div className="pull-right">
-							<div className={`daily-brief-expand-btn ${this.state.isExpanded ? 'active' : ''}`}>
+							<div className={`daily-brief-expand-btn ${this.state.isOpened ? 'active' : ''}`}>
 								<span className="icon-arrow-down"/>
 							</div>
 						</div>
 					</div>
-					{ this.state.isExpanded ? (
-						<div className="daily-brief-body">{content || 'No daily brief found'}</div>)
-						: undefined}
+
+					<Collapse isOpened={this.state.isOpened}>
+						<div className="daily-brief-body">{content || 'No daily brief found'}</div>
+					</Collapse>
+
 				</div>
 			</div>) : <div/>;
 	}
