@@ -72,7 +72,7 @@ export default class RestDay extends Component {
 	}
 
 	render() {
-		const {track} = this.props;
+		const {track, nextTrack, prevTrack, selectNextTrack, selectPrevTrack} = this.props;
 
 		return (
 			<div className="rest-day-wrapper">
@@ -80,6 +80,24 @@ export default class RestDay extends Component {
 					<div className="track-icon">{this.getIcon()}</div>
 					<div className="track-name">{track.title}</div>
 					<div className="track-status">Rest Day</div>
+
+					<div className="hidden-sm hidden-xs">
+						{
+							nextTrack ?
+								<a href="#" onClick={e => selectNextTrack(nextTrack)} className="pull-right next-track">
+									Next Track
+									<i className="icon-arrow-next" aria-hidden="true"/>
+								</a> : undefined
+						}
+
+						{
+							prevTrack ?
+								<a href="#" onClick={e => selectPrevTrack(prevTrack)} className="pull-left prev-track">
+									<span className="mirror-icon"><i className="icon-arrow-next" aria-hidden="true"/></span>
+									Prev Track
+								</a> : undefined
+						}
+					</div>
 				</div>
 			</div>
 		);

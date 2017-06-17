@@ -11,7 +11,8 @@ import {
 	MenuBarBlueDesktop,
 	TrackBannerDesktop,
 	ProgrammingTabsDesktop,
-	BottomNavDesktop,
+	MenuBarRedDesktop,
+	TracksListItemDesktop,
 	RestDay,
 	RestDayDesktop,
 	Loader
@@ -233,9 +234,8 @@ export default class Programming extends Component {
 								)
 							}
 						)}
-						<BottomNavDesktop
-							routing={this.props.routing}
-						/>
+
+						<BottomNav/>
 					</div>
 				</div>
 			</div>

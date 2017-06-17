@@ -3,8 +3,8 @@ import Helmet from 'react-helmet';
 import {Link} from "react-router";
 import {connect} from "react-redux";
 import {asyncConnect} from 'redux-async-connect';
-import {MenuBarRedDesktop, BottomNavDesktop, TracksListItemDesktop} from '../../components';
 import {loadListView} from '../../redux/modules/wodsStore';
+import {MenuBarRedDesktop, TracksListItemDesktop, BottomNav} from '../../components';
 import {
 	isLoaded as isTracksLoaded,
 	load as loadTracks
@@ -62,19 +62,23 @@ export default class ProgrammingDesktopListView extends Component {
 		const {selectedTracks, wods, wodsStore} = this.props;
 
 		const leftSideContentDesktop = (
-			<h4>
-				<span>
-					<i className="icon-desktop-menu" aria-hidden="true"/>
-				</span>
-				List View
-			</h4>
+			<div className="edit-tracks-link">
+				<Link to="/edit-tracks" className="text-white">
+					<span>
+						<i className="icon-user-edit" aria-hidden="true"/>
+					</span>
+					<span style={{'position': 'relative', 'top': '-3px'}}>Edit Track</span>
+				</Link>
+			</div>
 		);
 
 		const rightSideContentDesktop = (
 			<p>
-				<Link to="/edit-tracks" className="text-white">
-					Edit Tracks
-					<span className="icon-user-edit"/>
+				<Link to="/programming" className="text-white">
+					<span style={{'position': 'relative', 'top': '-3px'}}>Exit List View</span>
+					<span>
+						<i className="icon-desktop-menu" aria-hidden="true"/>
+					</span>
 				</Link>
 			</p>
 		);
@@ -117,7 +121,7 @@ export default class ProgrammingDesktopListView extends Component {
 					</div>
 				</div>
 
-				<BottomNavDesktop
+				<BottomNav
 					routing={this.props.routing}
 				/>
 

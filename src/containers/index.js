@@ -6,6 +6,7 @@ export ProgrammingDesktopListView from './Programming/ProgrammingDesktopListView
 export Programming from './Programming/Programming';
 export WorkOutMode from './WorkOutMode/WorkOutMode';
 export EditTracks from './EditTracks/EditTracks';
+export ViewTrack from './ViewTrack/ViewTrack';
 export Help from './Help/Help';
 
 export App from './App/App';

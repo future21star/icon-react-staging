@@ -34,7 +34,7 @@ export default class Html extends Component {
 				{head.script.toComponent()}
 
 				<link rel="icon" href="/favicon.png" type="image/x-icon"/>
-				<meta name="viewport" content="width=device-width, initial-scale=1"/>
+				<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
 				{/* styles (will be present only in production with webpack extract text plugin) */}
 				{/*{Object.keys(assets.styles).sort((item1, item2) => {*/}
 				{/*if (item1 > item2) return -1;*/}
