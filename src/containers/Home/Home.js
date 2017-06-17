@@ -92,7 +92,7 @@ export default class Home extends Component {
 					<DotList/>
 				</MenubarTurquoise>
 
-				{!selectedTracks.length ? this.renderNoTracksFound() : this.renderSelectedTracks()}
+				{selectedTracks.length ? this.renderSelectedTracks() : this.renderNoTracksFound()}
 
 				<BottomNav/>
 			</div>
@@ -160,7 +160,6 @@ export default class Home extends Component {
 						<ProgrammingTabs track={wodForThisTrackAndDate}/>
 					</div>
 				) : undefined }
-
 
 				{wodForThisTrack && wodForThisTrackAndDate === null ? (
 					<RestDay track={track}

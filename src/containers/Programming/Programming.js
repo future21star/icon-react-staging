@@ -21,11 +21,9 @@ import {Link} from "react-router";
 import {connect} from "react-redux";
 import {asyncConnect} from 'redux-async-connect';
 import ReactSwipe from 'react-swipe';
-import moment from 'moment';
-import {
-	isLoaded as isTracksLoaded,
-	load as loadTracks
-} from '../../redux/modules/selectedTracksStore';
+import {isLoaded as isSelectedTracksLoaded, load as loadSelectedTracks} from '../../redux/modules/selectedTracksStore';
+import {setActiveTrack} from "../../redux/modules/swipeStore";
+import {setActiveDate, toggleActiveWeek} from "../../redux/modules/dayPickerStore";
 import {
 	isLoaded as isWodsLoaded,
 	load as loadWods
@@ -40,8 +38,8 @@ import {
 	promise: ({store: {dispatch, getState}}) => {
 		const promises = [];
 
-		if (!isTracksLoaded(getState())) {
-			promises.push(dispatch(loadTracks()));
+		if (!isSelectedTracksLoaded(getState())) {
+			promises.push(dispatch(loadSelectedTracks()));
 		}
 
 		if (!isDailyBriefLoaded(getState())) {
@@ -56,77 +54,64 @@ import {
 	state => ({
 		user: state.authStore.user,
 		selectedTracks: state.selectedTracksStore.selectedTracks,
-		routing: state.routing,
+		swipedActiveTrackName: state.swipeStore.swipedActiveTrackName,
+		swipedActiveTrackIndex: state.swipeStore.swipedActiveTrackIndex,
+		wodsStore: state.wodsStore,
 		wods: state.wodsStore.wods,
-		dailyBriefStore: state.dailyBriefStore
+		currentDate: state.swipeStore.currentDate,
+		activeDate: state.dayPickerStore.activeDate,
+		activeWeek: state.dayPickerStore.activeWeek,
+		dailyBriefs: state.dailyBriefStore.dailyBriefs
 	}),
-	{}
+	{setActiveTrack, setActiveDate, toggleActiveWeek}
 )
 export default class Programming extends Component {
-	constructor(props) {
-		super(props);
-		const {selectedTracks} = this.props;
-
-		this.state = {
-			selectedTrack: selectedTracks.length ? selectedTracks[0].title : null,
-			activeDay: moment().format('YYYY-MM-DD'),
-			activeWeek: 'current',
-			listView: false,
-			today: moment().format('YYYY-MM-DD')
-		}
-	}
-
 	componentDidMount() {
-		const {selectedTracks} = this.props;
+		const {dispatch, selectedTracks, swipedActiveTrackIndex, setActiveTrack} = this.props;
 
+		// if user has any selected track
 		if (selectedTracks.length) {
-			let trackName = selectedTracks[0].title;
-			this.loadActiveDaysWod(trackName);
+			// if user has a track in swipe store, show it
+			if (swipedActiveTrackIndex) {
+				this.refs.programmingSwipeRef.slide(swipedActiveTrackIndex);
+			}
+			// set the first one if not available
+			else {
+				dispatch(setActiveTrack(selectedTracks[0].trackName, 0));
+				this.loadActiveDaysWod(selectedTracks[0].trackName);
+			}
 		}
 	}
 
-	changeWeek = () => {
-		this.setState({
-			activeWeek: this.state.activeWeek === 'current' ? 'next' : 'current'
-		})
-	};
+	loadActiveDaysWod = (trackName) => {
+		const {wodsStore, dispatch, activeDate} = this.props;
 
-	loadActiveDaysWod = () => {
-		const {wodsStore, dispatch} = this.props;
-
-		if (!isWodsLoaded(wodsStore, this.state.selectedTrack, this.state.activeDay)) {
-			dispatch(loadWods(this.state.selectedTrack, this.state.activeDay));
+		if (!isWodsLoaded(wodsStore, trackName, activeDate)) {
+			dispatch(loadWods(trackName, activeDate));
 		}
 	};
 
-	selectTrack = (newSelectedTrack) => {
-		this.setState({
-			selectedTrack: newSelectedTrack
-		}, () => {
-			this.loadActiveDaysWod();
-		})
+	selectTrack = (trackName, trackIndex) => {
+		this.props.setActiveTrack(trackName, trackIndex);
+		this.loadActiveDaysWod(trackName);
 	};
 
-	dayChanged = (activeDay) => {
-		this.setState({
-			activeDay: activeDay
-		}, () => {
-			this.loadActiveDaysWod();
-		})
-	};
+	componentWillReceiveProps(nextProps) {
+		const {wodsStore, dispatch, swipedActiveTrackName, activeDate} = this.props;
+
+		if(nextProps.activeDate !== activeDate) {
+			if (!isWodsLoaded(wodsStore, swipedActiveTrackName, nextProps.activeDate)) {
+				dispatch(loadWods(swipedActiveTrackName, nextProps.activeDate));
+			}
+		}
+	}
 
 	render() {
-		const {wods, user, selectedTracks, dailyBriefStore} = this.props;
-
-		const leftSideContent = (
-			<Link to="/edit-tracks">
-				<span className="icon-user-edit"/>
-			</Link>
-		);
+		const {selectedTracks, activeWeek, toggleActiveWeek} = this.props;
 
 		const rightSideContentMobileView = (
-			<a href="javascript:;" onClick={this.changeWeek}>
-				{this.state.activeWeek === 'current' ? (
+			<a href="javascript:;" onClick={toggleActiveWeek}>
+				{activeWeek === 'current' ? (
 					<span className="icon-next-week">
 					<span className="path1"/>
 					<span className="path2"/>
@@ -139,11 +124,108 @@ export default class Programming extends Component {
 			</a>
 		);
 
-		const rightSideContent = (
-			<Link to="/workout-mode">
-				<span className="icon-workout-mode"/>
-			</Link>
+		return (
+			<div className="programming-page-wrapper bottom-padding">
+				<Helmet title="Programming"/>
+
+				{/*mobile*/}
+				<div className="hidden-md hidden-lg">
+					<MenubarBlue
+						title="Programming"
+						leftSideContent={<Link to="/edit-tracks"><span className="icon-user-edit"/></Link>}
+						rightSideContent={rightSideContentMobileView}
+					/>
+
+					{selectedTracks.length ? this.renderSelectedTracksForMobile() : this.renderNoTracksFound()}
+				</div>
+
+				<BottomNav/>
+			</div>
+		)
+	}
+
+	renderSelectedTracksForMobile() {
+		const {user, selectedTracks, wods, dailyBriefStore} = this.props;
+
+		const swipeConfig = {
+			callback: (index, elem) => this.selectTrack(elem.getAttribute('name'), index),
+			continuous: false
+		};
+
+		return (
+			<div>
+				<ProgrammingHeader/>
+
+				<ReactSwipe className="carousel" swipeOptions={swipeConfig} ref="programmingSwipeRef">
+					{selectedTracks.map((selectedTrack, i) => {
+						return this.renderEachTrackForMobile(selectedTrack, i);
+					})}
+				</ReactSwipe>
+			</div>
 		);
+	}
+
+	renderEachTrackForMobile(selectedTrack, i) {
+		const {user, selectedTracks, wods, activeDate, currentDate, dailyBriefs} = this.props;
+
+		let track = selectedTrack.track;
+		let wodForThisTrack = wods[track.name];
+		let wodForThisTrackAndDate = wodForThisTrack ? wods[track.name][activeDate] : null;
+		let nextTrackName = selectedTracks[i + 1] ? selectedTracks[i + 1].trackName : null;
+		let prevTrackName = selectedTracks[i - 1] ? selectedTracks[i - 1].trackName : null;
+
+		return (
+			<div name={track.name} key={i}>
+				{currentDate === activeDate ? <DailyBrief user={user} content={dailyBriefs[track.name]}/> : undefined}
+
+				{wodForThisTrack && wodForThisTrackAndDate ? (
+					<div>
+						<TrackBanner
+							wod={wodForThisTrackAndDate}
+							nextTrack={nextTrackName}
+							prevTrack={prevTrackName}
+							onSelectNextTrack={e => this.refs.programmingSwipeRef.next()}
+							onSelectPrevTrack={e => this.refs.programmingSwipeRef.prev()}
+						/>
+						<ProgrammingTabs track={wodForThisTrackAndDate}/>
+					</div>) : undefined}
+
+				{wodForThisTrack && typeof wodForThisTrackAndDate === 'undefined' ? (
+					<Loader/>) : undefined }
+
+				{wodForThisTrack && wodForThisTrackAndDate === null ? (
+					<RestDay track={track}
+									 nextTrack={nextTrackName}
+									 prevTrack={prevTrackName}
+									 onSelectNextTrack={e => this.refs.programmingSwipeRef.next()}
+									 onSelectPrevTrack={e => this.refs.programmingSwipeRef.prev()}/>
+				) : undefined }
+			</div>
+		);
+	}
+
+
+	renderNoTracksFound() {
+		const noTracksDescription = (
+			<div>
+				You have not selected any track yet.
+				<br/>
+				<br/>
+				<Link className="btn btn-lg btn-primary btn-rounded" to="/edit-tracks">Select track</Link>
+			</div>
+		);
+		return (
+			<div>
+				<JumbotronWhite
+					title="No tracks found"
+					description={noTracksDescription}
+				/>
+			</div>
+		)
+	}
+
+	renderTest() {
+		const {wods, user, selectedTracks, dailyBriefStore} = this.props;
 
 		const leftSideContentDesktop = (
 			<h3 className="text-capitalize">
@@ -163,38 +245,9 @@ export default class Programming extends Component {
 			</Link>
 		);
 
-		const listViewLeftSideContentDesktop = (
-			<h4>
-				<span>
-					<i className="fa fa-list-ul" aria-hidden="true"/>
-				</span>
-				List View
-			</h4>
-		);
-
-		const listViewRightSideContentDesktop = (
-			<p>
-				Lifestyle Track
-				<Link to="/edit-tracks"><span className="icon-user-edit"/></Link>
-			</p>
-		);
-
 		return (
 			<div className="programming-page-wrapper bottom-padding">
 				<Helmet title="Programming"/>
-
-				{/*mobile*/}
-				<div className="hidden-md hidden-lg">
-					<MenubarBlue
-						title="Programming"
-						leftSideContent={leftSideContent}
-						rightSideContent={rightSideContentMobileView}
-					/>
-
-					{!selectedTracks.length ? this.renderNoTracksFound() : this.renderSelectedTracks()}
-
-					<BottomNav/>
-				</div>
 
 				{/*desktop*/}
 				<div className="hidden-xs hidden-sm">
@@ -242,67 +295,5 @@ export default class Programming extends Component {
 		);
 	}
 
-	renderNoTracksFound() {
-		const noTracksDescription = (
-			<div>
-				You have not selected any track yet.
-				<br/>
-				<br/>
-				<Link className="btn btn-lg btn-primary btn-rounded" to="/edit-tracks">Select track</Link>
-			</div>
-		);
-		return (
-			<div>
-				<JumbotronWhite
-					title="No tracks found"
-					description={noTracksDescription}
-				/>
-			</div>
-		)
-	}
 
-	renderSelectedTracks() {
-		const {user, selectedTracks, wods, dailyBriefStore} = this.props;
-
-		const swipeConfig = {
-			callback: (index, elem) => this.selectTrack(elem.getAttribute('name')),
-			continuous: false
-		};
-
-		return (
-			<div>
-				<ProgrammingHeader
-					user={user}
-					selectedTrack={this.state.selectedTrack}
-					allTracks={selectedTracks}
-					onDayPickerDateChange={this.dayChanged}
-					activeWeek={this.state.activeWeek}
-				/>
-
-				<ReactSwipe className="carousel" swipeOptions={swipeConfig}>
-					{selectedTracks.map((track, i) => {
-						return (
-							<div name={track.title} key={i}>
-								{this.state.today === this.state.activeDay ?
-									<DailyBrief user={user} content={dailyBriefStore.dailyBriefs[track.title]}/> : undefined}
-								{wods[track.title] && wods[track.title][this.state.activeDay] ? (
-									<div>
-										<TrackBanner
-											midContent=""
-											bgImg={track.bgImg}
-											track={wods[track.title][this.state.activeDay]}
-										/>
-										<ProgrammingTabs track={wods[track.title][this.state.activeDay]}/>
-									</div>) : undefined}
-								{wods[track.title] && typeof wods[track.title][this.state.activeDay] === 'undefined' ? (
-									<Loader/>) : undefined }
-								{wods[track.title] && wods[track.title][this.state.activeDay] === null ? (
-									<RestDay track={track}/>) : undefined }
-							</div>
-						);
-					})}
-				</ReactSwipe>
-			</div>
-		)
-	}
 }

@@ -2,19 +2,16 @@ import React, {Component, PropTypes} from 'react';
 import moment from 'moment';
 import {connect} from "react-redux";
 import './DayPicker.scss';
+import {setActiveDate} from "../../redux/modules/dayPickerStore";
 
 @connect(
 	state => ({
 		activeDate: state.dayPickerStore.activeDate,
 		activeWeek: state.dayPickerStore.activeWeek,
-	})
+	}),
+	{setActiveDate}
 )
 export default class DayPicker extends Component {
-	static propTypes = {
-		activeDate: PropTypes.string.isRequired,
-		activeWeek: PropTypes.string.isRequired
-	};
-
 	constructor(props) {
 		super(props);
 
@@ -22,8 +19,7 @@ export default class DayPicker extends Component {
 			week: {
 				current: DayPicker.getCurrentWeekDays(),
 				next: DayPicker.getNextWeekDays()
-			},
-			activeDate: moment().format('YYYY-MM-DD'),
+			}
 		}
 	}
 
@@ -55,25 +51,16 @@ export default class DayPicker extends Component {
 		return week2Days;
 	}
 
-	onDayClick = (selectedDate) => {
-		this.setState({
-			activeDate: selectedDate
-		}, () => {
-			this.props.onDateChange(selectedDate);
-		})
-	};
-
 	render() {
-		const {week, activeDate} = this.state;
-		const {activeWeek} = this.props;
-
+		const {week} = this.state;
+		const {activeWeek, activeDate, setActiveDate} = this.props;
 
 		return (
 			<div className="daypicker-wrapper">
 				<ul className="nav nav-pills nav-justified">
 					{week[activeWeek].map((dayObj, i) => {
 						return (
-							<li onClick={e => this.onDayClick(dayObj.date)} key={i}>
+							<li onClick={e => setActiveDate(dayObj.date)} key={i}>
 								<span className={`${activeDate === dayObj.date ? 'active' : '' }`}>{dayObj.day}</span>
 							</li>
 						);
