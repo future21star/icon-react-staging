@@ -102,7 +102,7 @@ export default class Home extends Component {
 
 		const leftSideContent = (
 			<div>
-				<Link to="profile"><span className="icon-user-profile"/></Link>
+				<Link to="profile"><span className="icon-user-profile"/><span className="mobile-hide">Profile</span></Link>
 			</div>
 		);
 

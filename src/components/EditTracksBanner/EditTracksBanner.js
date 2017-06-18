@@ -80,7 +80,7 @@ export default class EditTracksBanner extends Component {
 		const {bgImg, title, trackIcon, isSubscribed} = this.props;
 
 		return (
-			<div className="edit-tracks-banner-wrapper">
+			<div className="edit-tracks-banner-wrapper container-small">
 				<div className="edit-tracks-banner" style={{backgroundImage: 'url(' + bgImg + ')',}}>
 					<div className="overlay"/>
 					<div className="title">

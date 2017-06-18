@@ -124,7 +124,6 @@
 .bottom-nav-wrapper-desktop {
   .bottom-nav-desktop {
     padding-left: 25px;
-    padding-right: 25px;
     background: #fff;
     margin-bottom: 0;
     position: fixed;
@@ -173,7 +172,7 @@
   .helpful-links-desktop-wrapper {
     top: auto;
     bottom: 108px;
-    right: 70px;
+    right: 43px;
     left: auto;
     width: 100%;
     position: fixed;
@@ -236,7 +235,7 @@
   }
 
   .helpful-links-desktop-li {
-    padding: 15px 0!important;
+    padding: 23px 0 13px !important;
   }
   .helpful-links-item {
     background: #D1252E;
@@ -244,6 +243,7 @@
     padding: 14px 16px;
     color: #ffffff!important;
     span {
+      font-size: 20px !important;
       color: #ffffff!important;
     }
 

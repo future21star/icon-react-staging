@@ -6,7 +6,7 @@ export default class EditTracksMidSection extends Component {
 	render() {
 		return (
 			<div className="edit-tracks-mid-section--wrapper">
-				<div className="container">
+				<div className="container container-small">
 					<div className="edit-tracks-mid-section">
 						<h1 className="title">
 							Seeking for adventure out your door?

@@ -26,18 +26,19 @@ export default class ShowPasswordInput extends Component {
 
 	render() {
 		return (
-			<div className="form-group show-password-form-group">
-				<div className="input-group">
+			<div className="form-group show-password-form-group block">
+				<div className="input-group input-effect">
 					<div className="input-group-addon">
 						<span className="icon-register-password"/>
 					</div>
 					<input ref="password" type={this.state.mode} className="form-control" placeholder="Password" {...this.props}/>
+					<div className="underline"></div>
 					<span className="input-group-btn">
 						<button className="btn btn-hide-show" type="button" onClick={this.toggleMode}>
 							{this.state.text}
 						</button>
-					</span>
-				</div>
+					</span>				
+				</div>				
 			</div>
 		);
 	}

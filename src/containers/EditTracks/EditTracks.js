@@ -83,7 +83,7 @@ export default class EditTracks extends Component {
 											trackIconClassName={track.trackIconClassName}
 											isSubscribed={track.isSubscribed}
 										/>
-										<Link to={`/edit-tracks/${track.title}`} className="btn btn-block btn-primary">Details</Link>
+										<Link to={`/edit-tracks/${track.title}`} className="btn-absolute">Details</Link>
 									</div>
 								</div>
 							);

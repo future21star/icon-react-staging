@@ -3,75 +3,78 @@
   padding-top: 12px;
   padding-bottom: 12px;
 
+  
   .menu-bar-left-side-content {
     text-align: left;
+
+    .mobile-hide{
+      margin-left: 5px;
+    }
   }
   .menu-bar-title {
     text-align: center;
-    font-weight: 700;
+    font-weight: 500;
+    letter-spacing: 1px;
+    font-size: 1.2em;
+    line-height: 21px;
   }
+
+  [class^="icon-"]{
+    font-size: 1.3em;
+  }
+
   .menu-bar-right-side-content {
     text-align: right;
-    a {
-      font-weight: 700;
+    letter-spacing: 1px;
+
+    .mobile-hide{
+      margin-right: 5px;
     }
   }
+
+  a{
+    transition: opacity .3s ease;
+    -moz-transition: opacity .3s ease;
+    -webkit-transition: opacity .3s ease;
+
+    &:hover{
+      text-decoration: none;
+      opacity: .5;
+    }
+    & > span{
+      vertical-align: middle;
+    }
+  }
+
+  &.menu-bar-transparent{
+    position: absolute;
+    width: 100%;
+    height: 40px;
+    top: 0;
+    left: 0;
+  }
+
 
   &.menu-bar-white {
     background: white;
-    border-bottom: 1px solid #d9d9d9;
   }
 
-  &.menu-bar-turquoise {
-    background: #5DC6D2;
-
-    .menu-bar-left-side-content {
-      color: #fff;
+  &.menu-color-white{
+    color: rgba(255,255,255,.8);
+    .menu-bar-left-side-content, .menu-bar-right-side-content {
+      color: rgba(255,255,255,.8);
       a, [class^="icon-"], [class*=" icon-"] {
-        color: #fff;
-      }
-    }
-    .menu-bar-title {
-      color: #fff;
-    }
-    .menu-bar-right-side-content {
-      color: #fff;
-      a {
-        color: #fff;
-      }
-    }
-    &.menu-bar-with-dot-list {
-      padding-bottom: 5px !important;
-      ul {
-        margin-bottom: 0;
-      }
-    }
-  }
-
-  &.menu-bar-blue {
-    background: #5bc6f7;
-
-    .menu-bar-left-side-content {
-      color: #fff;
-      a, [class^="icon-"], [class*=" icon-"] {
-        color: #fff;
-      }
-    }
-    .menu-bar-title {
-      color: #fff;
-    }
-    .menu-bar-right-side-content {
-      color: #fff;
-      //margin-top: -4px;
-      a, [class^="icon-"], [class*=" icon-"] {
-        color: #fff;
-        //font-size: 16px;
+        color: rgba(255,255,255,.8);
         [class^="path"] {
           &:before {
-            color: #fff;
+            color: rgba(255,255,255,.8);
           }
         }
       }
     }
+    .menu-bar-title{
+      color: #ffffff;
+    }
   }
 }
+
