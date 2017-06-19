@@ -3,7 +3,6 @@ import Helmet from 'react-helmet';
 import {
 	MenubarTransparent,
 	ProgrammingHeader,
-	BottomNav,
 	DailyBrief,
 	TrackBanner,
 	JumbotronWhite,
@@ -184,11 +183,11 @@ export default class Programming extends Component {
 
 			<ReactCSSTransitionGroup
 				transitionName="react-anime"
-				transitionAppear = {true}
-				transitionAppearTimeout = {5000}
-				transitionEnter = {true}
+				transitionAppear={true}
+				transitionAppearTimeout={5000}
+				transitionEnter={true}
 				transitionEnterTimeout={500}
-				transitionLeave = {true}
+				transitionLeave={true}
 				transitionLeaveTimeout={500}
 			>
 				<div className="programming-page-wrapper bottom-padding">
@@ -197,15 +196,13 @@ export default class Programming extends Component {
 					{/*mobile*/}
 					<div className="hidden-md hidden-lg">
 						<MenubarTransparent
-						title="Programming"
-						leftSideContent={leftSideContent}
-						rightSideContent={rightSideContentMobileView}
-						isWhite={true}
+							title="Programming"
+							leftSideContent={leftSideContent}
+							rightSideContent={rightSideContentMobileView}
+							isWhite={true}
 						/>
 
 						{!selectedTracks.length ? this.renderNoTracksFound() : this.renderSelectedTracks()}
-
-						<BottomNav/>
 					</div>
 
 					{/*desktop*/}
@@ -247,7 +244,6 @@ export default class Programming extends Component {
 								}
 							)}
 
-							<BottomNav/>
 						</div>
 					</div>
 				</div>

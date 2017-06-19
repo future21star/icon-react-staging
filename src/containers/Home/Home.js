@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import {
-	BottomNav,
 	MenubarTurquoise,
 	DailyBrief,
 	TrackBanner,
@@ -110,11 +109,11 @@ export default class Home extends Component {
 		return (
 			<ReactCSSTransitionGroup
 				transitionName="react-anime"
-				transitionAppear = {true}
-				transitionAppearTimeout = {5000}
-				transitionEnter = {true}
+				transitionAppear={true}
+				transitionAppearTimeout={5000}
+				transitionEnter={true}
 				transitionEnterTimeout={500}
-				transitionLeave = {true}
+				transitionLeave={true}
 				transitionLeaveTimeout={500}
 			>
 				<div className="bottom-padding">
@@ -129,7 +128,6 @@ export default class Home extends Component {
 
 					{!selectedTracks.length ? this.renderNoTracksFound() : this.renderSelectedTracks()}
 
-					<BottomNav/>
 				</div>
 			</ReactCSSTransitionGroup>
 		);

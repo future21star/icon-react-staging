@@ -41,9 +41,9 @@ export default (store) => {
 
 	return (
 		<Route path="/" component={containers.App}>
-			<IndexRoute component={containers.Home} onEnter={requiresAuth}/>
 
-			<Route onEnter={requiresAuth}>
+			<Route component={containers.AuthLayout} onEnter={requiresAuth}>
+				<IndexRoute component={containers.Home}/>
 				<Route path="profile" component={containers.Profile}/>
 				<Route path="edit-profile" component={containers.EditProfile}/>
 				<Route path="feed" component={containers.Feed}/>
