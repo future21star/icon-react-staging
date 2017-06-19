@@ -48,16 +48,16 @@ export default (store) => {
 				<Route component={containers.AuthLayout}>
 					<IndexRoute component={containers.Home}/>
 					<Route path="profile" component={containers.Profile}/>
-					<Route path="edit-profile" component={containers.EditProfile}/>
 					<Route path="feed" component={containers.Feed}/>
 					<Route path="nutrition" component={containers.Nutrition}/>
 					<Route path="programming" component={containers.Programming}/>
 					<Route path="programming/list-view" component={containers.ProgrammingDesktopListView}/>
 					<Route path="edit-tracks" component={containers.EditTracks}/>
-					<Route path="workout/:trackName/:id" component={containers.WorkOutMode}/>
 					<Route path="help/:slug" component={containers.Help}/>
 				</Route>
 				{/*logged in view without bottom nav*/}
+				<Route path="workout/:trackName/:id" component={containers.WorkOutMode}/>
+				<Route path="edit-profile" component={containers.EditProfile}/>
 				<Route path="edit-tracks/:name" component={containers.ViewTrack}/>
 			</Route>
 
