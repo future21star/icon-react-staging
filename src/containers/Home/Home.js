@@ -14,6 +14,7 @@ import {connect} from "react-redux";
 import {asyncConnect} from 'redux-async-connect';
 import ReactSwipe from 'react-swipe';
 import moment from 'moment';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {
 	isLoaded as isTracksLoaded,
 	load as loadTracks
@@ -107,20 +108,30 @@ export default class Home extends Component {
 		);
 
 		return (
-			<div className="bottom-padding">
-				<Helmet title="Home"/>
+			<ReactCSSTransitionGroup
+				transitionName="react-anime"
+				transitionAppear = {true}
+				transitionAppearTimeout = {5000}
+				transitionEnter = {true}
+				transitionEnterTimeout={500}
+				transitionLeave = {true}
+				transitionLeaveTimeout={500}
+			>
+				<div className="bottom-padding">
+					<Helmet title="Home"/>
 
-				<MenubarTurquoise
-					title="Today's Workout"
-					leftSideContent={leftSideContent}
-					dotSelectedItem={this.state.selectedTrack}
-					dotItemsList={selectedTracks}
-				/>
+					<MenubarTurquoise
+						title="Today's Workout"
+						leftSideContent={leftSideContent}
+						dotSelectedItem={this.state.selectedTrack}
+						dotItemsList={selectedTracks}
+					/>
 
-				{!selectedTracks.length ? this.renderNoTracksFound() : this.renderSelectedTracks()}
+					{!selectedTracks.length ? this.renderNoTracksFound() : this.renderSelectedTracks()}
 
-				<BottomNav/>
-			</div>
+					<BottomNav/>
+				</div>
+			</ReactCSSTransitionGroup>
 		);
 	}
 

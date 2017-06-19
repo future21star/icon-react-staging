@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Collapse} from 'react-collapse';
 import './Note.scss';
 
 export default class Note extends Component {
@@ -6,14 +7,14 @@ export default class Note extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			isExpanded: false,
+			isOpened: false,
 		};
 		this.toggleExpand = this.toggleExpand.bind(this);
 	}
 
 	toggleExpand() {
 		this.setState({
-			isExpanded: !this.state.isExpanded
+			isOpened: !this.state.isOpened
 		});
 	}
 
@@ -26,10 +27,10 @@ export default class Note extends Component {
 				<div className="container">
 					<div className={classNames}>
 						<div className="note-header" onClick={this.toggleExpand}>
-							<h3>
+							<h3 className="note-title">
 								Workout Notes
 								{
-									this.state.isExpanded ?
+									this.state.isOpened ?
 
 									<i className="fa fa-minus pull-right" aria-hidden="true"/> :
 
@@ -37,15 +38,12 @@ export default class Note extends Component {
 								}
 							</h3>
 						</div>
-						{
-							this.state.isExpanded ?
 
+						<Collapse isOpened={this.state.isOpened}>
 							<div className="note-body">
 								{noteContent}
-							</div> :
-
-							<div/>
-						}
+							</div>
+						</Collapse>
 
 					</div>
 				</div>

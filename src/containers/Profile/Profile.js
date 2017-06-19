@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
 import {MenubarTransparent, ProfileHeader, SubscriptionUpgradeCard, BottomNav} from '../../components';
 import {Link} from "react-router";
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {logout} from "../../redux/modules/auth";
 import {connect} from "react-redux";
 
@@ -42,8 +43,17 @@ export default class Profile extends Component {
 		);
 
 		return (
-			<div className="profile-page-wrapper">
-				<Helmet title="Profile"/>
+			<ReactCSSTransitionGroup
+				transitionName="react-anime"
+				transitionAppear = {true}
+				transitionAppearTimeout = {5000}
+				transitionEnter = {true}
+				transitionEnterTimeout={500}
+				transitionLeave = {true}
+				transitionLeaveTimeout={500}
+			>
+				<div className="profile-page-wrapper">
+					<Helmet title="Profile"/>
 
 				<MenubarTransparent
 					title="Profile"
@@ -51,24 +61,23 @@ export default class Profile extends Component {
 					rightSideContent={rightSideContent}
 					isWhite={true}
 				/>
+					<ProfileHeader user={user}/>
 
-				<ProfileHeader user={user}/>
+					<div className="container">
 
-				<div className="container">
-
-					<div className="row">
-						<div className="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12">
-							<SubscriptionUpgradeCard
+						<div className="row">
+							<div className="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12">
+								<SubscriptionUpgradeCard
 								showStatus={true}
 								description={subscribeCardDescription}
 								showCancelButton={true}
-							/>
+								/>
+							</div>
 						</div>
 					</div>
+					<BottomNav/>
 				</div>
-
-				<BottomNav/>
-			</div>
+			</ReactCSSTransitionGroup>
 		);
 	}
 }

@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import Helmet from 'react-helmet';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {login} from '../../redux/modules/loginStore';
 import {Loader, Logo, FacebookButton, ShowPasswordInput, ErrorMessage, SuccessMessage} from '../../components';
 import {Link} from "react-router";
@@ -26,21 +27,29 @@ export default class Login extends Component {
 
 	render() {
 		return (
-			<div>
-				<Helmet title="Log In"/>
-
+			<ReactCSSTransitionGroup
+				transitionName="react-anime"
+				transitionAppear = {true}
+				transitionAppearTimeout = {5000}
+				transitionEnter = {true}
+				transitionEnterTimeout={500}
+				transitionLeave = {true}
+				transitionLeaveTimeout={500}
+			>
+				<div>
+					<Helmet title="Log In"/>
 				<div className="container login-container">
 					<div className="row">
 						<div className="col-xs-12">
 							<Logo/>
 						</div>
-
-						<div className="col-xs-12">
-							{this.renderLoginForm()}
+							<div className="col-xs-12">
+								{this.renderLoginForm()}
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+			</ReactCSSTransitionGroup>
 		);
 	}
 

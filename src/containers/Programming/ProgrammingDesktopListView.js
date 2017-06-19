@@ -3,6 +3,7 @@ import Helmet from 'react-helmet';
 import {Link} from "react-router";
 import {connect} from "react-redux";
 import {asyncConnect} from 'redux-async-connect';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {MenuBarRedDesktop, TracksListItemDesktop, BottomNav} from '../../components';
 import {
 	loadListView
@@ -86,48 +87,59 @@ export default class ProgrammingDesktopListView extends Component {
 		);
 
 		return (
-			<div className="programming-page-list-view-wrapper-desktop hidden-xs hidden-sm">
 
-				<Helmet title="Programming"/>
+			<ReactCSSTransitionGroup
+				transitionName="react-anime"
+				transitionAppear = {true}
+				transitionAppearTimeout = {5000}
+				transitionEnter = {true}
+				transitionEnterTimeout={500}
+				transitionLeave = {true}
+				transitionLeaveTimeout={500}
+			>
+				<div className="programming-page-list-view-wrapper-desktop hidden-xs hidden-sm" key="programming-list-view">
 
-				<MenuBarRedDesktop
-					leftSideContentDesktop={leftSideContentDesktop}
-					rightSideContentDesktop={rightSideContentDesktop}
-					tracks={selectedTracks}
-					onSelectTrack={this.selectTrack}
-				/>
+					<Helmet title="Programming"/>
 
-				<div className="tracks-list-view-container-wrapper-desktop">
-					<div className="tracks-list-view-container-desktop">
+					<MenuBarRedDesktop
+						leftSideContentDesktop={leftSideContentDesktop}
+						rightSideContentDesktop={rightSideContentDesktop}
+						tracks={selectedTracks}
+						onSelectTrack={this.selectTrack}
+					/>
 
-						{wods.loading || !wods[this.state.selectedTrack] ? undefined :
-							<div className="container-fluid">
-								{Object.keys(wods[this.state.selectedTrack]).map((key, index) => {
-									return (
-										<div key={index}>
-											<TracksListItemDesktop
-												bgImg={selectedTracks.filter((track) => {
-													return track.title === this.state.selectedTrack;
-												})[0].bgImg}
-												track={wods[this.state.selectedTrack][key]}
-											/>
-										</div>
-									)
-								})}
-							</div>
-						}
-						{wods[this.state.selectedTrack] && Object.keys(wods[this.state.selectedTrack]).length === 0
-							? <p>Nothing found</p>
-							: undefined
-						}
+					<div className="tracks-list-view-container-wrapper-desktop">
+						<div className="tracks-list-view-container-desktop">
+
+							{wods.loading || !wods[this.state.selectedTrack] ? undefined :
+								<div className="container-fluid">
+									{Object.keys(wods[this.state.selectedTrack]).map((key, index) => {
+										return (
+											<div key={index}>
+												<TracksListItemDesktop
+													bgImg={selectedTracks.filter((track) => {
+														return track.title === this.state.selectedTrack;
+													})[0].bgImg}
+													track={wods[this.state.selectedTrack][key]}
+												/>
+											</div>
+										)
+									})}
+								</div>
+							}
+							{wods[this.state.selectedTrack] && Object.keys(wods[this.state.selectedTrack]).length === 0
+								? <p>Nothing found</p>
+								: undefined
+							}
+						</div>
 					</div>
+
+					<BottomNav
+						routing={this.props.routing}
+					/>
+
 				</div>
-
-				<BottomNav
-					routing={this.props.routing}
-				/>
-
-			</div>
+			</ReactCSSTransitionGroup>
 		);
 	}
 }

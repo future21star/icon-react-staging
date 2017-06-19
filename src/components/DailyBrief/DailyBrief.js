@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import {Collapse} from 'react-collapse';
 import './DailyBrief.scss';
 
 export default class DailyBrief extends Component {
@@ -6,7 +7,7 @@ export default class DailyBrief extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			isExpanded: false,
+			isOpened: false,
 		};
 	}
 
@@ -16,7 +17,7 @@ export default class DailyBrief extends Component {
 
 	toggleBrief = () => {
 		this.setState({
-			isExpanded: !this.state.isExpanded
+			isOpened: !this.state.isOpened
 		});
 	};
 
@@ -34,9 +35,11 @@ export default class DailyBrief extends Component {
 							</div>
 						</div>
 					</div>
-					{ this.state.isExpanded ? (
-						<div className="daily-brief-body">{content || 'No daily brief found'}</div>)
-						: undefined}
+
+					<Collapse isOpened={this.state.isOpened}>
+						<div className="daily-brief-body">{content || 'No daily brief found'}</div>
+					</Collapse>
+
 				</div>
 			</div>) : <div/>;
 	}
