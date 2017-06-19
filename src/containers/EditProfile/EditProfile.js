@@ -5,6 +5,7 @@ import {Link} from "react-router";
 import Select from 'react-select';
 import {range} from "lodash";
 import {connect} from "react-redux";
+import {push} from 'react-router-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {setAuthUserAsEditingUser, changeEditProfileField, editProfile} from "../../redux/modules/editProfileStore";
 
@@ -13,7 +14,7 @@ import {setAuthUserAsEditingUser, changeEditProfileField, editProfile} from "../
 		user: state.auth.user,
 		editProfileStore: state.editProfileStore,
 	}),
-	{setAuthUserAsEditingUser, changeEditProfileField, editProfile}
+	{setAuthUserAsEditingUser, changeEditProfileField, editProfile, pushState: push}
 )
 
 export default class EditProfile extends Component {
@@ -58,6 +59,12 @@ export default class EditProfile extends Component {
 	changeHeightIn = (heightIn) => {
 		this.props.changeEditProfileField('heightIn', heightIn.value);
 	};
+
+	componentWillReceiveProps(nextProps) {
+		if(nextProps.editProfileStore.updated) {
+			this.props.pushState('/profile');
+		}
+	}
 
 	handleSubmit = (event) => {
 		event.preventDefault();

@@ -10,7 +10,8 @@ const initialState = {
 	loading: false,
 	editingUser: null,
 	error: null,
-	success: null
+	success: null,
+	updated: false
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -18,7 +19,8 @@ export default function reducer(state = initialState, action = {}) {
 		case SET_EDITING_USER:
 			return {
 				...state,
-				editingUser: action.payload.user
+				editingUser: action.payload.user,
+				updated: false
 			};
 		case CHANGE_EDIT_PROFILE_FIELD:
 			let editingUser = {...state.editingUser};
@@ -37,8 +39,9 @@ export default function reducer(state = initialState, action = {}) {
 			return {
 				...state,
 				loading: false,
-				success: action.result.success,
-				error: null
+				//success: action.result.success,
+				error: null,
+				updated: true
 			};
 		case EDIT_PROFILE_FAIL:
 			return {
