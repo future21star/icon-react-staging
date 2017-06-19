@@ -42,24 +42,31 @@ export default (store) => {
 	return (
 		<Route path="/" component={containers.App}>
 
-			<Route component={containers.AuthLayout} onEnter={requiresAuth}>
-				<IndexRoute component={containers.Home}/>
-				<Route path="profile" component={containers.Profile}/>
-				<Route path="edit-profile" component={containers.EditProfile}/>
-				<Route path="feed" component={containers.Feed}/>
-				<Route path="nutrition" component={containers.Nutrition}/>
-				<Route path="programming" component={containers.Programming}/>
-				<Route path="programming/list-view" component={containers.ProgrammingDesktopListView}/>
-				<Route path="edit-tracks" component={containers.EditTracks}/>
+			{/*logged in*/}
+			<Route onEnter={requiresAuth}>
+				{/*logged in view with bottom nav*/}
+				<Route component={containers.AuthLayout}>
+					<IndexRoute component={containers.Home}/>
+					<Route path="profile" component={containers.Profile}/>
+					<Route path="edit-profile" component={containers.EditProfile}/>
+					<Route path="feed" component={containers.Feed}/>
+					<Route path="nutrition" component={containers.Nutrition}/>
+					<Route path="programming" component={containers.Programming}/>
+					<Route path="programming/list-view" component={containers.ProgrammingDesktopListView}/>
+					<Route path="edit-tracks" component={containers.EditTracks}/>
+					<Route path="workout/:trackName/:id" component={containers.WorkOutMode}/>
+					<Route path="help/:slug" component={containers.Help}/>
+				</Route>
+				{/*logged in view without bottom nav*/}
 				<Route path="edit-tracks/:name" component={containers.ViewTrack}/>
-				<Route path="workout/:trackName/:id" component={containers.WorkOutMode}/>
-				<Route path="help/:slug" component={containers.Help}/>
 			</Route>
 
+			{/*logged out*/}
 			<Route onEnter={requiresGuest}>
 				<Route path="login" component={containers.Login}/>
 			</Route>
 
+			{/*404*/}
 			<Route path="*" component={containers.NotFound} status={404}/>
 		</Route>
 	);

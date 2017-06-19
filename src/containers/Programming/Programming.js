@@ -146,9 +146,11 @@ export default class Programming extends Component {
 		);
 
 		const leftSideContentDesktop = (
-			<h3 className="text-capitalize">
-				<span className="icon-user-edit"/>
-				{this.state.selectedTrack}
+			<h3 className="text-capitalize text-white">
+				<Link to="/edit-tracks">
+					<span className="icon-user-edit"/>
+					{this.state.selectedTrack}
+				</Link>
 			</h3>
 		);
 
