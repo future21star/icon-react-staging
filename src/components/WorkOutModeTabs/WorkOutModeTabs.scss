@@ -84,7 +84,8 @@
     color: #fffbff !important;
   }
   .workout-mode-tabs-list {
-    margin-bottom: 0;
+    margin: 0 auto 0;
+    max-width: 400px;
     li {
       list-style-type: none;
       padding: 5px 10px 3px 20px;
@@ -92,7 +93,7 @@
       /*position: absolute;*/
       left: 0;
       width: 100%;
-      margin-bottom: 0;
+      margin-bottom: 15px;
       .list-number {
         font-family: 'Oswald', sans-serif;
         background: #5dc7d4;
@@ -116,6 +117,7 @@
   }
   .list-group-item {
     border: none;
+    border-bottom: 1px solid rgba(255,255,255,.2);
     div {
       display: table;
     }
@@ -194,8 +196,8 @@
   }
   .exit {
     position: fixed;
-    bottom: 10px;
-    right: 8px;
+    top: 10px;
+    left: 8px;
     a {
       color: #fff;
       font-size: 18px;

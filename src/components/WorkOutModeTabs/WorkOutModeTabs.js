@@ -60,7 +60,7 @@ export default class WorkOutModeTabs extends Component {
 				{workout.item.notes ?
 					<Note
 						noteContent={workout.item.notes}
-						classNames="note note-has-margin-bottom"
+						classNames="note"
 					/> : undefined}
 
 				<div className="container">
@@ -82,7 +82,7 @@ export default class WorkOutModeTabs extends Component {
 									onClick={e => this.changeTab(e, 'mainWorkout')}
 									className={this.state.activeTab === 'mainWorkout' ? 'active' : ''}
 								>
-									MAIN-WORKOUT
+									MAIN WORKOUT
 								</a>
 							</li>) : undefined }
 						{workout.item.coolDown ? (

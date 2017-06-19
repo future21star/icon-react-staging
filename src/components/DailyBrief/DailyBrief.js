@@ -30,7 +30,7 @@ export default class DailyBrief extends Component {
 					<div className="daily-brief-header row" onClick={this.toggleBrief}>
 						<h3 className="daily-brief-header-text col-xs-10">Daily Brief</h3>
 						<div className="col-xs-2">
-							<div className={`daily-brief-expand-btn ${this.state.isExpanded ? 'active' : ''}`}>
+							<div className={`daily-brief-expand-btn ${this.state.isOpened ? 'active' : ''}`}>
 								<span className="icon-arrow-down"/>
 							</div>
 						</div>
