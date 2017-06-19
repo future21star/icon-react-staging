@@ -113,7 +113,7 @@ export default class TrackBanner extends Component {
 					{noteContent ?
 						<Note
 							noteContent={noteContent}
-							classNames="note note-white"
+							classNames="note note-has-margin-bottom"
 						/> : undefined}
 
 					<div className="hidden-xs hidden-sm">

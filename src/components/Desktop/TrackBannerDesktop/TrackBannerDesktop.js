@@ -33,7 +33,7 @@ export default class TrackBannerDesktop extends Component {
 						{noteContent ?
 							<Note
 								noteContent={noteContent}
-								classNames="note note-white"
+								classNames="note note-has-margin-bottom"
 							/> : undefined}
 
 						{

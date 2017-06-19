@@ -63,7 +63,7 @@ export default class ProgrammingTabs extends Component {
 										onClick={e => this.changeTab(e, 'mainWorkout')}
 										className={this.state.activeTab === 'mainWorkout' ? 'active-black' : ''}
 									>
-										MAIN-WORKOUT
+										MAIN WORKOUT
 									</a>
 								) : undefined }
 							</li>

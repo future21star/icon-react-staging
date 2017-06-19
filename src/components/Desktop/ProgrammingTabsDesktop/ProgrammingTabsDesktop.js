@@ -62,7 +62,7 @@ export default class ProgrammingTabsDesktop extends Component {
 											className={this.state.activeTab === 'mainWorkout' ? 'active' : ''}
 										>
 											<a href="#">
-												MAIN-WORKOUT
+												MAIN WORKOUT
 											</a>
 										</li> ) : undefined }
 									{track.coolDown ? (
