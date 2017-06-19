@@ -155,7 +155,7 @@ export default class Home extends Component {
 
 		const swipeConfig = {
 			callback: (index, elem) => this.selectTrack(elem.getAttribute('name')),
-			continuous: true
+			continuous: false
 		};
 
 		return (
