@@ -29,20 +29,20 @@ export default class Login extends Component {
 		return (
 			<ReactCSSTransitionGroup
 				transitionName="react-anime"
-				transitionAppear = {true}
-				transitionAppearTimeout = {5000}
-				transitionEnter = {true}
+				transitionAppear={true}
+				transitionAppearTimeout={5000}
+				transitionEnter={true}
 				transitionEnterTimeout={500}
-				transitionLeave = {true}
+				transitionLeave={true}
 				transitionLeaveTimeout={500}
 			>
 				<div>
 					<Helmet title="Log In"/>
-				<div className="container login-container">
-					<div className="row">
-						<div className="col-xs-12">
-							<Logo/>
-						</div>
+					<div className="container login-container">
+						<div className="row">
+							<div className="col-xs-12">
+								<Logo/>
+							</div>
 							<div className="col-xs-12">
 								{this.renderLoginForm()}
 							</div>
@@ -73,7 +73,7 @@ export default class Login extends Component {
 							<input type="email" ref="email" className="form-control" placeholder="Your Email"/>
 							<span className="underline"></span>
 						</div>
-						
+
 					</div>
 
 					<ShowPasswordInput ref="password"/>

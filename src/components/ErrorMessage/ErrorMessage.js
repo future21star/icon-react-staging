@@ -13,25 +13,21 @@ export default class ErrorMessage extends Component {
 		return (
 
 			<div>
-				{
-					error ?
-					(
-						<ReactCSSTransitionGroup
-							transitionName="react-anime"
-							transitionAppear = {true}
-							transitionAppearTimeout = {5000}
-							transitionEnter = {true}
-							transitionEnterTimeout={500}
-							transitionLeave = {true}
-							transitionLeaveTimeout={500}
-						>
-							<div className="alert alert-danger">
-								{error.message}
-							</div>
-						</ReactCSSTransitionGroup>
-					) :
-					undefined
-				}
+				{error ? (
+					<ReactCSSTransitionGroup
+						transitionName="react-anime"
+						transitionAppear={true}
+						transitionAppearTimeout={5000}
+						transitionEnter={true}
+						transitionEnterTimeout={500}
+						transitionLeave={true}
+						transitionLeaveTimeout={500}
+					>
+						<div className="alert alert-danger">
+							{error.message}
+						</div>
+					</ReactCSSTransitionGroup>
+				) : undefined}
 			</div>
 		);
 	}

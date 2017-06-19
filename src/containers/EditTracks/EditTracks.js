@@ -55,11 +55,11 @@ export default class EditTracks extends Component {
 		return (
 			<ReactCSSTransitionGroup
 				transitionName="react-anime"
-				transitionAppear = {true}
-				transitionAppearTimeout = {5000}
-				transitionEnter = {true}
+				transitionAppear={true}
+				transitionAppearTimeout={5000}
+				transitionEnter={true}
 				transitionEnterTimeout={500}
-				transitionLeave = {true}
+				transitionLeave={true}
 				transitionLeaveTimeout={500}
 			>
 				<div className="edit-tracks-wrapper">

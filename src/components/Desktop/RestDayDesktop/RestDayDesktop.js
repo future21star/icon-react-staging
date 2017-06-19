@@ -80,7 +80,7 @@ export default class RestDayDesktop extends Component {
 					<div className="track-icon">{this.getIcon()}</div>
 					<h2 className="track-name">{track.title}</h2>
 					<h1 className="track-status">Rest Day</h1>
-					<div className="rest-day-bg"></div>
+					<div className="rest-day-bg"/>
 					{/*{nextTrack ?*/}
 						{/*<button onClick={e => onSelectTrack(nextTrack)} className="btn btn-default">*/}
 							{/*Next Track*/}

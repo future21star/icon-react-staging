@@ -32,13 +32,13 @@ export default class ShowPasswordInput extends Component {
 						<span className="icon-register-password"/>
 					</div>
 					<input ref="password" type={this.state.mode} className="form-control" placeholder="Password" {...this.props}/>
-					<div className="underline"></div>
+					<div className="underline"/>
 					<span className="input-group-btn">
 						<button className="btn btn-hide-show" type="button" onClick={this.toggleMode}>
 							{this.state.text}
 						</button>
-					</span>				
-				</div>				
+					</span>
+				</div>
 			</div>
 		);
 	}
