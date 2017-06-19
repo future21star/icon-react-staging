@@ -27,10 +27,10 @@ export default class DailyBrief extends Component {
 		return user ? (
 			<div className="daily-brief-wrapper">
 				<div className="container">
-					<div className="daily-brief-header" onClick={this.toggleBrief}>
-						<span className="daily-brief-header-text">Daily Brief</span>
-						<div className="pull-right">
-							<div className={`daily-brief-expand-btn ${this.state.isOpened ? 'active' : ''}`}>
+					<div className="daily-brief-header row" onClick={this.toggleBrief}>
+						<h3 className="daily-brief-header-text col-xs-10">Daily Brief</h3>
+						<div className="col-xs-2">
+							<div className={`daily-brief-expand-btn ${this.state.isExpanded ? 'active' : ''}`}>
 								<span className="icon-arrow-down"/>
 							</div>
 						</div>

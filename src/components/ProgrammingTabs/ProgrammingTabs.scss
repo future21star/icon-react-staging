@@ -60,14 +60,18 @@
     min-width: 35px;
     padding-top: 12px;
     padding-bottom: 12px;
+
+    border-right: 1px solid #B4B4B3;
+
+    &:last-child{
+      border-right: none;
+    }
   }
   .nav-justified > li > a, .nav-tabs.nav-justified > li > a {
     margin-bottom: 1px;
     border-bottom: none;
   }
-  .nav-justified li:not(:last-child) a {
-    border-right: 1px solid #9a9997 !important;
-  }
+  .nav-justified 
   .nav > li > a:hover, .nav > li > a:focus {
     background-color: transparent;
   }

@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
-import {MenubarTurquoise, ProfileHeader, SubscriptionUpgradeCard, BottomNav} from '../../components';
+import {MenubarTransparent, ProfileHeader, SubscriptionUpgradeCard} from '../../components';
 import {Link} from "react-router";
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {logout} from "../../redux/modules/auth";
@@ -26,11 +26,14 @@ export default class Profile extends Component {
 		const leftSideContent = (
 			<Link to="edit-profile">
 				<span className="icon-user-edit"/>
+				<span className="mobile-hide">Edit Profile</span>
 			</Link>
 		);
 
 		const rightSideContent = (
-			<a href="#" onClick={this.handleLogout}>Log Out</a>
+			<a href="#" onClick={this.handleLogout}>
+				<span className="mobile-hide">Log Out</span><span className="icon-logout"></span>
+			</a>
 		);
 
 		const subscribeCardDescription = (
@@ -42,28 +45,28 @@ export default class Profile extends Component {
 		return (
 			<ReactCSSTransitionGroup
 				transitionName="react-anime"
-				transitionAppear = {true}
-				transitionAppearTimeout = {5000}
-				transitionEnter = {true}
+				transitionAppear={true}
+				transitionAppearTimeout={5000}
+				transitionEnter={true}
 				transitionEnterTimeout={500}
-				transitionLeave = {true}
+				transitionLeave={true}
 				transitionLeaveTimeout={500}
 			>
 				<div className="profile-page-wrapper">
 					<Helmet title="Profile"/>
 
-					<MenubarTurquoise
+					<MenubarTransparent
 						title="Profile"
 						leftSideContent={leftSideContent}
 						rightSideContent={rightSideContent}
+						isWhite={true}
 					/>
-
 					<ProfileHeader user={user}/>
 
 					<div className="container">
 
 						<div className="row">
-							<div className="col-xs-12">
+							<div className="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12">
 								<SubscriptionUpgradeCard
 									showStatus={true}
 									description={subscribeCardDescription}
@@ -72,8 +75,6 @@ export default class Profile extends Component {
 							</div>
 						</div>
 					</div>
-
-					<BottomNav/>
 				</div>
 			</ReactCSSTransitionGroup>
 		);

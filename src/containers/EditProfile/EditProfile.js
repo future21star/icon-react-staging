@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
-import {MenubarWhite, Loader, SuccessMessage, ErrorMessage} from '../../components';
+import {MenubarTransparent, Loader, SuccessMessage, ErrorMessage} from '../../components';
 import {Link} from "react-router";
 import Select from 'react-select';
 import {range} from "lodash";
@@ -80,22 +80,23 @@ export default class EditProfile extends Component {
 		);
 
 		return editProfileStore.editingUser ? (
+
 			<ReactCSSTransitionGroup
 				transitionName="react-anime"
-				transitionAppear = {true}
-				transitionAppearTimeout = {5000}
-				transitionEnter = {true}
+				transitionAppear={true}
+				transitionAppearTimeout={5000}
+				transitionEnter={true}
 				transitionEnterTimeout={500}
-				transitionLeave = {true}
+				transitionLeave={true}
 				transitionLeaveTimeout={500}
 			>
 				<div>
 					<Helmet title="Edit Profile"/>
 
-					<MenubarWhite title="Edit Profile" rightSideContent={rightSideContent}/>
+					<MenubarTransparent title="Edit Profile" rightSideContent={rightSideContent}/>
 
-					<form className="register-page--register-form" onSubmit={this.handleSubmit}>
-						<div className="container">
+					<form className="register-page--register-form menu-head-buffer" onSubmit={this.handleSubmit}>
+						<div className="container user-update-container">
 
 							<div className="row">
 								<div className="col-xs-12">
@@ -107,8 +108,8 @@ export default class EditProfile extends Component {
 									<ErrorMessage error={editProfileStore.error}/>
 									<SuccessMessage success={editProfileStore.success}/>
 
-									<div className="form-group">
-										<div className="input-group">
+									<div className="form-group block">
+										<div className="input-group input-effect">
 											<div className="input-group-addon">
 												<span className="icon-user-profile-filled"/>
 											</div>
@@ -118,11 +119,12 @@ export default class EditProfile extends Component {
 														 onChange={e => changeEditProfileField(e.target.name, e.target.value)}
 														 className="form-control"
 														 placeholder="Full Name"/>
+											<div className="underline"/>
+
 										</div>
 									</div>
-
-									<div className="form-group">
-										<div className="input-group">
+									<div className="form-group block">
+										<div className="input-group input-effect">
 											<div className="input-group-addon">
 												<span className="icon-email"/>
 											</div>
@@ -132,11 +134,11 @@ export default class EditProfile extends Component {
 														 onChange={e => changeEditProfileField(e.target.name, e.target.value)}
 														 className="form-control"
 														 placeholder="Your Email"/>
+											<div className="underline"/>
 										</div>
 									</div>
-
-									<div className="form-group">
-										<div className="input-group">
+									<div className="form-group block">
+										<div className="input-group input-effect">
 											<div className="input-group-addon">
 												<span className="icon-gender"/>
 											</div>
@@ -147,44 +149,53 @@ export default class EditProfile extends Component {
 															onChange={this.changeGender}
 															clearable={false}
 															arrowRenderer={EditProfile.arrowRenderer}/>
+											<div className="underline"/>
 										</div>
 									</div>
-
-									<div className="form-group">
+									<div className="form-group block">
 										<div className="row">
-											<div className="col-xs-4">
-												<Select placeholder="Height (Ft)"
-																value={editProfileStore.editingUser.heightFt}
-																options={this.heightFeetOptions}
-																onChange={this.changeHeightFt}
-																clearable={false}
-																arrowRenderer={EditProfile.arrowRenderer}
-																className="pretty-select"/>
+											<div className="col-xs-6">
+												<div className="input-effect">
+													<Select placeholder="Height (Ft)"
+																	value={editProfileStore.editingUser.heightFt}
+																	options={this.heightFeetOptions}
+																	onChange={this.changeHeightFt}
+																	clearable={false}
+																	arrowRenderer={EditProfile.arrowRenderer}
+																	className="pretty-select"/>
+													<div className="underline"/>
+												</div>
 											</div>
-											<div className="col-xs-4">
-												<Select placeholder="Height (In)"
-																value={editProfileStore.editingUser.heightIn}
-																options={this.heightInchesOptions}
-																onChange={this.changeHeightIn}
-																clearable={false}
-																arrowRenderer={EditProfile.arrowRenderer}
-																className="pretty-select"/>
+											<div className="col-xs-6">
+												<div className="input-effect">
+													<Select placeholder="Height (In)"
+																	value={editProfileStore.editingUser.heightIn}
+																	options={this.heightInchesOptions}
+																	onChange={this.changeHeightIn}
+																	clearable={false}
+																	arrowRenderer={EditProfile.arrowRenderer}
+																	className="pretty-select"/>
+													<div className="underline"/>
+												</div>
 											</div>
-											<div className="col-xs-4">
-												<input name="weight"
-															 type="number"
-															 value={editProfileStore.editingUser.weight}
-															 onChange={e => changeEditProfileField(e.target.name, e.target.value)}
-															 className="form-control"
-															 placeholder="Weight (Kg)"/>
+											<div className="col-xs-6 col-xs-offset-3">
+												<div className="input-number input-number-effect">
+													<input name="weight"
+																 type="number"
+																 value={editProfileStore.editingUser.weight}
+																 onChange={e => changeEditProfileField(e.target.name, e.target.value)}
+																 className="form-control"
+																 placeholder="Weight (Kg)"/>
+													<span className="icon-range"/>
+												</div>
 											</div>
 										</div>
+
+										<button className="btn btn-primary btn-block btn-lg btn-fixed-bottom" type="submit">Save Changes
+										</button>
+
+										{editProfileStore.loading ? <Loader/> : undefined}
 									</div>
-
-									<button className="btn btn-primary btn-block btn-lg btn-fixed-bottom" type="submit">Save Changes
-									</button>
-
-									{editProfileStore.loading ? <Loader/> : undefined}
 								</div>
 							</div>
 						</div>

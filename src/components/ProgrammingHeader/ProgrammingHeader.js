@@ -14,14 +14,14 @@ export default class ProgrammingHeader extends Component {
 		const {user, selectedTrack, allTracks, onDayPickerDateChange, activeWeek} = this.props;
 
 		return user ? (
-			<div className="programming-header-wrapper">
+			<div className="programming-header-wrapper menu-head-buffer">
 				<div className="container">
 					<div className="row">
 						<div className="col-xs-12">
 							<DayPicker onDateChange={onDayPickerDateChange} activeWeek={activeWeek}/>
 						</div>
 						<div className="col-xs-12">
-							<div className="title">{selectedTrack} Track</div>
+							<div className="title">{selectedTrack}</div>
 							<DotList
 								selectedTrack={selectedTrack}
 								allTracks={allTracks}

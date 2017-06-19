@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {MenubarWhite, BottomNav} from '../../components';
+import {MenubarWhite} from '../../components';
 import {setActiveLink, unsetActiveLink} from '../../redux/modules/helpfulLinksStore';
 import {connect} from "react-redux";
 
@@ -35,11 +35,11 @@ export default class Help extends Component {
 		return (
 			<ReactCSSTransitionGroup
 				transitionName="react-anime"
-				transitionAppear = {true}
-				transitionAppearTimeout = {5000}
-				transitionEnter = {true}
+				transitionAppear={true}
+				transitionAppearTimeout={5000}
+				transitionEnter={true}
 				transitionEnterTimeout={500}
-				transitionLeave = {true}
+				transitionLeave={true}
 				transitionLeaveTimeout={500}
 			>
 				<div className="help-page-wrapper bottom-padding">
@@ -60,8 +60,6 @@ export default class Help extends Component {
 							</div>
 						</div>
 					</div>
-
-					<BottomNav/>
 				</div>
 			</ReactCSSTransitionGroup>
 		);

@@ -12,7 +12,7 @@ export default class MenubarWhite extends Component {
 		const {title, leftSideContent, rightSideContent} = this.props;
 		return (
 			<div className="menu-bar menu-bar-white">
-				<div className="container">
+				<div className="container-fluid">
 					<div className="row">
 						<div className="col-xs-3 menu-bar-left-side-content">{leftSideContent}</div>
 						<div className="col-xs-6 menu-bar-title">{title}</div>

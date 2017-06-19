@@ -7,17 +7,20 @@
     cursor: pointer;
 
     .daily-brief-header-text {
-      font-family: Oswald, sans-serif;
       text-transform: uppercase;
-      font-size: 18px;
-      text-align: left;
+      margin: 0;
     }
 
     .daily-brief-expand-btn {
       padding: 3px 0;
+      float: right;
+      transition: all .5s ease;
+      -o-transition: all .5s ease;
+      -webkit-transition: all .5s ease;
 
-      &.active {
+      &.active{
         transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
       }
     }
 
@@ -31,6 +34,5 @@
     padding-top: 5px;
     padding-bottom: 15px;
     font-size: 17px;
-    font-weight: 300;
   }
 }
