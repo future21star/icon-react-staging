@@ -17,11 +17,18 @@ export default class ProgrammingTabsListContainer extends Component {
 
 		chunks.map(chunk => {
 			let parsedChunks = chunk.split('--');
+			let optional = false;
 			let title = parsedChunks[0];
+			let parsedTitle = title.split('OP '); // the space is important
+			if (parsedTitle.length === 2) {
+				title = parsedTitle[1];
+				optional = true;
+			}
 			parsedChunks.splice(0, 1);
 			parsedContentObj.push({
 				title,
-				lines: parsedChunks
+				lines: parsedChunks,
+				optional
 			});
 		});
 
@@ -34,7 +41,8 @@ export default class ProgrammingTabsListContainer extends Component {
 							let number = padStart((i + 1).toString(), 2, '0');
 							return (
 								<ProgrammingTabsListItem number={number} key={i}>
-									<div>
+									<div className={`${chunk.optional ? 'wod-optional' : ''}`}>
+										{chunk.optional ? <p className="text-danger">OPTIONAL</p> : undefined}
 										<p>{chunk.title}</p>
 										{chunk.lines.map((line, j) => {
 											return (

@@ -39,10 +39,11 @@
       &.helpful-links-item {
         span {
           color: #ffffff;
+
         }
 
         &:hover, &:focus{
-          border-color: transparent;
+          border-color: #bbbbbb;
         }
       }
 
