@@ -9,7 +9,10 @@ import {includes} from 'lodash';
 import {
 	isLoaded as isTracksLoaded,
 	load as loadTracks,
-} from '../../redux/modules/userTracks';
+	addAsOnlyTrack,
+	addToTrackList,
+	remove as removeTrack
+} from '../../redux/modules/selectedTracksStore';
 import {
 	MenubarWhite,
 	JumbotronWhite,
@@ -31,9 +34,11 @@ import './EditTracks.scss';
 
 @connect(
 	state => ({
-		userTracks: state.userTracks,
-		vaultAccess: state.auth.user.vaultAccess
-	})
+		allTracks: state.allTracksStore.allTracks,
+		selectedTracks: state.selectedTracksStore.selectedTracks,
+		vaultAccess: state.authStore.user.vaultAccess
+	}),
+	{addAsOnlyTrack, addToTrackList, removeTrack}
 )
 
 export default class EditTracks extends Component {
@@ -78,23 +83,21 @@ export default class EditTracks extends Component {
 	}
 
 	renderEditTracks() {
-		const {userTracks} = this.props;
+		const {selectedTracks, allTracks} = this.props;
 
 		return (
-			<div className="edit-tracks-list-wrapper">
+			<div className="edit-tracks-list-wrapper bottom-padding">
 				<div className="container">
 					<div className="row">
-						{userTracks.allTracks.map((track, i) => {
+						{allTracks.map((track, i) => {
 							return (
 								<div className="col-xs-12 col-sm-6 col-md-4" key={i}>
 									<div className="thumbnail">
 										<EditTracksBanner
-											bgImg={track.bgImg}
-											title={track.title}
-											trackIconClassName={track.trackIconClassName}
-											isSubscribed={track.isSubscribed}
+											track={track}
+											selectedTracks={selectedTracks}
 										/>
-										<Link to={`/edit-tracks/${track.title}`} className="btn-absolute">Details</Link>
+										<Link to={`/edit-tracks/${track.name}`} className="btn-absolute">Details</Link>
 									</div>
 								</div>
 							);

@@ -12,7 +12,7 @@ export default class MenubarTransparent extends Component {
 	render() {
 		const {title, leftSideContent, rightSideContent, isWhite} = this.props;
 
-		var containerClasses = "menu-bar menu-bar-transparent " + (isWhite ? 'menu-color-white' : '' );
+		let containerClasses = "menu-bar menu-bar-transparent " + (isWhite ? 'menu-color-white' : '' );
 
 		return (
 			<div className={containerClasses}>

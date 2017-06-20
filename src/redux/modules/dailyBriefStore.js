@@ -1,4 +1,5 @@
-import {LOGOUT_SUCCESS} from "./auth";
+import {LOGOUT_SUCCESS} from "./authStore";
+
 const LOAD = 'dailyBrief/LOAD';
 const LOAD_SUCCESS = 'dailyBrief/LOAD_SUCCESS';
 const LOAD_FAIL = 'dailyBrief/LOAD_FAIL';
@@ -6,9 +7,7 @@ const LOAD_FAIL = 'dailyBrief/LOAD_FAIL';
 const initialState = {
 	loaded: false,
 	loading: false,
-	dailyBriefs: null,
-	error: null,
-	success: null
+	dailyBriefs: null
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -21,7 +20,7 @@ export default function reducer(state = initialState, action = {}) {
 		case LOAD_SUCCESS:
 			return {
 				...state,
-				dailyBriefs: action.result,
+				dailyBriefs: action.result.dailyBriefs,
 				loading: false,
 				loaded: true
 			};
@@ -29,8 +28,7 @@ export default function reducer(state = initialState, action = {}) {
 			return {
 				...state,
 				loading: false,
-				loaded: true,
-				error: action.error
+				loaded: true
 			};
 		case LOGOUT_SUCCESS:
 			return {
@@ -42,12 +40,12 @@ export default function reducer(state = initialState, action = {}) {
 }
 
 export function isLoaded(globalState) {
-	return globalState.dailyBrief && globalState.dailyBrief.loaded;
+	return globalState.dailyBriefStore && globalState.dailyBriefStore.loaded;
 }
 
 export function load() {
 	return {
 		types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-		promise: (client) => client.get('/getDailyBrief')
+		promise: (client) => client.get('/loadDailyBrief')
 	};
 }

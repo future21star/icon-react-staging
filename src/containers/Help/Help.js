@@ -1,13 +1,13 @@
 import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {MenubarWhite} from '../../components';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {setActiveLink, unsetActiveLink} from '../../redux/modules/helpfulLinksStore';
 import {connect} from "react-redux";
 
 @connect(
 	state => ({
-		activeHelpfulLink: state.helpfulLinksStore.activeLink
+		activeHelpfulLink: state.helpfulLinksStore.activeHelpfulLink
 	}),
 	{setActiveLink, unsetActiveLink}
 )

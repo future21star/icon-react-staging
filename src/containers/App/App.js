@@ -1,8 +1,9 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import Helmet from 'react-helmet';
-import {isLoaded as isAuthLoaded, load as loadAuth} from '../../redux/modules/auth';
+import {isLoaded as isAuthLoaded, load as loadAuth} from '../../redux/modules/authStore';
 import {isLoaded as isHelpfulLinksLoaded, load as loadHelpfulLinks} from '../../redux/modules/helpfulLinksStore';
+import {isLoaded as isAllTrackLoaded, load as loadAllTracks} from '../../redux/modules/allTracksStore';
 import {push} from 'react-router-redux';
 import config from '../../config';
 import {asyncConnect} from 'redux-async-connect';
@@ -11,19 +12,20 @@ import {asyncConnect} from 'redux-async-connect';
 	promise: ({store: {dispatch, getState}}) => {
 		const promises = [];
 
-		if (!isAuthLoaded(getState())) {
-			promises.push(dispatch(loadAuth()));
-		}
+		// load if user is logged in
+		if (!isAuthLoaded(getState())) promises.push(dispatch(loadAuth()));
 
-		if (!isHelpfulLinksLoaded(getState())) {
-			promises.push(dispatch(loadHelpfulLinks()));
-		}
+		// load helpful links
+		if (!isHelpfulLinksLoaded(getState())) promises.push(dispatch(loadHelpfulLinks()));
+
+		// load all tracks
+		if (!isAllTrackLoaded(getState())) promises.push(dispatch(loadAllTracks()));
 
 		return Promise.all(promises);
 	}
 }])
 @connect(
-	state => ({user: state.auth.user}),
+	state => ({user: state.authStore.user}),
 	{pushState: push}
 )
 export default class App extends Component {
@@ -40,7 +42,6 @@ export default class App extends Component {
 	componentWillReceiveProps(nextProps) {
 		if (!this.props.user && nextProps.user) {
 			// login
-			//this.props.pushState('/loginSuccess');
 			this.props.pushState('/');
 		} else if (this.props.user && !nextProps.user) {
 			// logout

@@ -3,15 +3,13 @@ import Helmet from 'react-helmet';
 import {Link} from "react-router";
 import {connect} from "react-redux";
 import {asyncConnect} from 'redux-async-connect';
+import {loadListView} from '../../redux/modules/wodsStore';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {MenuBarRedDesktop, TracksListItemDesktop, BottomNav} from '../../components';
 import {
-	loadListView
-} from '../../redux/modules/wods';
-import {
 	isLoaded as isTracksLoaded,
 	load as loadTracks
-} from '../../redux/modules/userTracks';
+} from '../../redux/modules/selectedTracksStore';
 
 @asyncConnect([{
 	promise: ({store: {dispatch, getState}}) => {
@@ -26,12 +24,12 @@ import {
 }])
 @connect(
 	state => ({
-		user: state.auth.user,
-		selectedTracks: state.userTracks.selectedTracks,
+		user: state.authStore.user,
+		selectedTracks: state.selectedTracksStore.selectedTracks,
 		routing: state.routing,
-		wods: state.wods,
-	}),
-	{}
+		wodsStore: state.wodsStore,
+		wods: state.wodsStore.wods,
+	})
 )
 export default class ProgrammingDesktopListView extends Component {
 
@@ -40,7 +38,7 @@ export default class ProgrammingDesktopListView extends Component {
 		const {selectedTracks} = this.props;
 
 		this.state = {
-			selectedTrack: selectedTracks.length ? selectedTracks[0].title : null
+			selectedTrack: selectedTracks.length ? selectedTracks[0].trackName : null
 		};
 	}
 
@@ -62,13 +60,13 @@ export default class ProgrammingDesktopListView extends Component {
 	};
 
 	render() {
-		const {selectedTracks, wods} = this.props;
+		const {selectedTracks, wods, wodsStore} = this.props;
 
 		const leftSideContentDesktop = (
 			<div className="edit-tracks-link">
 				<Link to="/edit-tracks" className="text-white">
 					<span>
-						<i className="icon-user-edit" aria-hidden="true"/>
+						<i className="icon-user-edit"/>
 					</span>
 					<span style={{'position': 'relative', 'top': '-3px'}}>Edit Track</span>
 				</Link>
@@ -87,14 +85,13 @@ export default class ProgrammingDesktopListView extends Component {
 		);
 
 		return (
-
 			<ReactCSSTransitionGroup
 				transitionName="react-anime"
-				transitionAppear = {true}
-				transitionAppearTimeout = {5000}
-				transitionEnter = {true}
+				transitionAppear={true}
+				transitionAppearTimeout={5000}
+				transitionEnter={true}
 				transitionEnterTimeout={500}
-				transitionLeave = {true}
+				transitionLeave={true}
 				transitionLeaveTimeout={500}
 			>
 				<div className="programming-page-list-view-wrapper-desktop hidden-xs hidden-sm" key="programming-list-view">
@@ -111,16 +108,14 @@ export default class ProgrammingDesktopListView extends Component {
 					<div className="tracks-list-view-container-wrapper-desktop">
 						<div className="tracks-list-view-container-desktop">
 
-							{wods.loading || !wods[this.state.selectedTrack] ? undefined :
+
+							{wodsStore.loading || !wods[this.state.selectedTrack] ? undefined :
 								<div className="container-fluid">
-									{Object.keys(wods[this.state.selectedTrack]).map((key, index) => {
+									{Object.keys(wods[this.state.selectedTrack]).map((key, i) => {
 										return (
-											<div key={index}>
+											<div key={i}>
 												<TracksListItemDesktop
-													bgImg={selectedTracks.filter((track) => {
-														return track.title === this.state.selectedTrack;
-													})[0].bgImg}
-													track={wods[this.state.selectedTrack][key]}
+													wod={wods[this.state.selectedTrack][key]}
 												/>
 											</div>
 										)
@@ -133,11 +128,6 @@ export default class ProgrammingDesktopListView extends Component {
 							}
 						</div>
 					</div>
-
-					<BottomNav
-						routing={this.props.routing}
-					/>
-
 				</div>
 			</ReactCSSTransitionGroup>
 		);

@@ -28,6 +28,11 @@ module.exports = function (sequelize, DataTypes) {
 					foreignKey: 'userId',
 					as: 'user',
 				});
+				UserTrack.belongsTo(models.Track, {
+					foreignKey: 'trackName',
+					targetKey: 'name',
+					as: 'track',
+				});
 			}
 		}
 	});

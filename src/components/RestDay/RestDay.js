@@ -3,13 +3,17 @@ import './RestDay.scss';
 
 export default class RestDay extends Component {
 	static propTypes = {
-		track: PropTypes.object.isRequired
+		track: PropTypes.object.isRequired,
+		prevTrack: PropTypes.string,
+		nextTrack: PropTypes.string,
+		onSelectNextTrack: PropTypes.func.isRequired,
+		onSelectPrevTrack: PropTypes.func.isRequired
 	};
 
 	getIcon() {
 		const {track} = this.props;
 
-		if (track.trackIconClassName === 'icon-track-dynamic') {
+		if (track.iconUrl === 'icon-track-dynamic') {
 			return (
 				<span className="icon-track-dynamic">
 					<span className="path1"/>
@@ -24,7 +28,7 @@ export default class RestDay extends Component {
 			);
 		}
 
-		else if (track.trackIconClassName === 'icon-track-strength') {
+		else if (track.iconUrl === 'icon-track-strength') {
 			return (
 				<span className="icon-track-strength">
 					<span className="path1"/>
@@ -37,7 +41,7 @@ export default class RestDay extends Component {
 				</span>);
 		}
 
-		else if (track.trackIconClassName === 'icon-track-lifestyle') {
+		else if (track.iconUrl === 'icon-track-lifestyle') {
 			return (
 				<span className="icon-track-lifestyle">
 					<span className="path1"/>
@@ -50,7 +54,7 @@ export default class RestDay extends Component {
 				</span>);
 		}
 
-		else if (track.trackIconClassName === 'icon-track-hyper') {
+		else if (track.iconUrl === 'icon-track-hyper') {
 			return (
 				<span className="icon-track-hyper">
 				<span className="path1"/>
@@ -72,34 +76,29 @@ export default class RestDay extends Component {
 	}
 
 	render() {
-		const {track, nextTrack, prevTrack, selectNextTrack, selectPrevTrack} = this.props;
+		const {track, nextTrack, prevTrack, onSelectNextTrack, onSelectPrevTrack} = this.props;
 
 		return (
 			<div className="rest-day-wrapper">
 				<div className="rest-day-container">
 					<div className="track-icon">{this.getIcon()}</div>
-					<h2 className="track-name">{track.title}</h2>
+					<h2 className="track-name">{track.name}</h2>
 					<h1 className="track-status">Rest Day</h1>
-					<div className="rest-day-bg"></div>
+					<div className="rest-day-bg"/>
 					<div className="hidden-sm hidden-xs">
-						{
-							nextTrack ?
-								<a href="#" onClick={e => selectNextTrack(nextTrack)} className="pull-right next-track">
-									Next Track
-									<i className="icon-arrow-next" aria-hidden="true"/>
-								</a> : undefined
-						}
+						{nextTrack ?
+							<a href="#" onClick={e => onSelectNextTrack(nextTrack)} className="pull-right next-track">
+								Next Track <i className="icon-arrow-next"/>
+							</a> : undefined}
 
-						{
-							prevTrack ?
-								<a href="#" onClick={e => selectPrevTrack(prevTrack)} className="pull-left prev-track">
-									<span className="mirror-icon"><i className="icon-arrow-next" aria-hidden="true"/></span>
-									Prev Track
-								</a> : undefined
-						}
+						{prevTrack ?
+							<a href="#" onClick={e => onSelectPrevTrack(prevTrack)} className="pull-left prev-track">
+								<span className="mirror-icon"><i className="icon-arrow-next"/></span>
+								Prev Track
+							</a> : undefined}
 					</div>
 				</div>
-				
+
 			</div>
 		);
 	}

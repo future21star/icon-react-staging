@@ -1,31 +1,30 @@
 import React, {Component, PropTypes} from 'react';
+import {connect} from "react-redux";
+import {DayPicker, DotList} from '../../components';
 import './ProgrammingHeader.scss';
-import DayPicker from '../DayPicker/DayPicker';
-import DotList from '../DotList/DotList';
+
+@connect(
+	state => ({
+		user: state.authStore.user,
+		swipedActiveTrackName: state.swipeStore.swipedActiveTrackName,
+	})
+)
 
 export default class ProgrammingHeader extends Component {
-	static propTypes = {
-		user: PropTypes.object,
-		onDayPickerDateChange: PropTypes.func.isRequired,
-		activeWeek: PropTypes.string.isRequired
-	};
 
 	render() {
-		const {user, selectedTrack, allTracks, onDayPickerDateChange, activeWeek} = this.props;
+		const {user, swipedActiveTrackName} = this.props;
 
 		return user ? (
 			<div className="programming-header-wrapper menu-head-buffer">
 				<div className="container">
 					<div className="row">
 						<div className="col-xs-12">
-							<DayPicker onDateChange={onDayPickerDateChange} activeWeek={activeWeek}/>
+							<DayPicker/>
 						</div>
 						<div className="col-xs-12">
-							<div className="title">{selectedTrack}</div>
-							<DotList
-								selectedTrack={selectedTrack}
-								allTracks={allTracks}
-							/>
+							<div className="title">{swipedActiveTrackName} Track</div>
+							<DotList/>
 						</div>
 					</div>
 				</div>

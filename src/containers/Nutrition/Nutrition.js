@@ -7,7 +7,7 @@ import {includes} from 'lodash';
 
 @connect(
 	state => ({
-		vaultAccess: state.auth.user.vaultAccess
+		vaultAccess: state.authStore.user.vaultAccess
 	}),
 	{}
 )

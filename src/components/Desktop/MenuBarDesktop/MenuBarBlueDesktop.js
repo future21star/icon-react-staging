@@ -1,7 +1,16 @@
 import React, {Component} from 'react';
+import {connect} from "react-redux";
 import moment from 'moment';
+import {setActiveDate} from "../../../redux/modules/dayPickerStore";
 import './MenuBarDesktop.scss';
 
+@connect(
+	state => ({
+		activeDate: state.dayPickerStore.activeDate,
+		activeWeek: state.dayPickerStore.activeWeek,
+	}),
+	{setActiveDate}
+)
 export default class MenuBarBlueDesktop extends Component {
 	constructor(props) {
 		super(props);
@@ -11,7 +20,6 @@ export default class MenuBarBlueDesktop extends Component {
 				current: MenuBarBlueDesktop.getCurrentWeekDays(),
 				next: MenuBarBlueDesktop.getNextWeekDays()
 			},
-			activeDate: moment().format('YYYY-MM-DD'),
 		}
 	}
 
@@ -43,18 +51,9 @@ export default class MenuBarBlueDesktop extends Component {
 		return week2Days;
 	}
 
-	onDayClick = (selectedDate) => {
-		this.setState({
-			activeDate: selectedDate
-		}, () => {
-			this.props.onDateChange(selectedDate);
-		})
-	};
-
 	render() {
-
-		const {leftSideContentDesktop, rightSideContentDesktop, activeWeek} = this.props;
-		const {week, activeDate} = this.state;
+		const {leftSideContentDesktop, rightSideContentDesktop, activeDate, activeWeek, setActiveDate} = this.props;
+		const {week} = this.state;
 
 		return (
 			<div className="menu-bar-desktop menu-bar-desktop-blue">
@@ -67,14 +66,14 @@ export default class MenuBarBlueDesktop extends Component {
 							<ul className="nav nav-pills nav-justified">
 								{week[activeWeek].map((dayObj, i) => {
 									return (
-										<li onClick={e => this.onDayClick(dayObj.date)} key={i}>
+										<li onClick={e => setActiveDate(dayObj.date)} key={i}>
 											<span className={`${activeDate === dayObj.date ? 'active' : '' }`}>{dayObj.day}</span>
 										</li>
 									);
 								})}
 							</ul>
 							<p>
-								{moment().format('MMM')} <span className="year">{moment().format('YYYY')}</span>
+								{moment(activeDate).format('MMM')} <span className="year">{moment(activeDate).format('YYYY')}</span>
 							</p>
 						</div>
 						<div className="col-sm-3 col-md-3 col-lg-3 menu-bar-right-side-content-desktop">

@@ -1,4 +1,5 @@
-import {LOGOUT_SUCCESS} from "./auth";
+import {LOGOUT_SUCCESS} from "./authStore";
+
 export const EDIT_PROFILE = 'editProfile/EDIT_PROFILE';
 export const EDIT_PROFILE_SUCCESS = 'editProfile/EDIT_PROFILE_SUCCESS';
 export const EDIT_PROFILE_FAIL = 'editProfile/EDIT_PROFILE_FAIL';

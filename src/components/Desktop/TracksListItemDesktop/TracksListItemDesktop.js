@@ -1,14 +1,17 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import './TracksListItemDesktop.scss';
 import moment from 'moment';
 import TracksListTabsDesktop from '../TracksListTabsDesktop/TracksListTabsDesktop';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 export default class TracksListItemDesktop extends Component {
+	static propTypes = {
+		wod: PropTypes.object
+	};
 
 	render() {
 
-		const {bgImg, track} = this.props;
+		const {wod} = this.props;
 
 		return (
 			<ReactCSSTransitionGroup
@@ -21,26 +24,25 @@ export default class TracksListItemDesktop extends Component {
 				transitionLeaveTimeout={500}
 			>
 				<div className="track-list-item-desktop">
-					{track ? (
+					{wod ? (
 						<div className="row">
-
-							<div className={`col-md-4 track-list-banner-desktop ${track.format}`} style={{backgroundImage: 'url(' + bgImg + ')',}}>
+							<div className={`col-md-4 track-list-banner-desktop ${wod.format}`} style={{backgroundImage: 'url(../' + wod.track.bgImgUrl + ')'}}>
 								<div className="overlay-desktop"/>
 								<div className="title-desktop">
-									<span className="day pull-left">{moment(track.date).format('dd')}</span>
-									<h3>{track.title}</h3>
+									<span className="day pull-left">{moment(wod.date).format('dd')}</span>
+									<h3>{wod.title}</h3>
 
 									<ul className="track-data-list-desktop list-inline">
 										<li>
-											<p>{`${track.duration} min` || '--'}</p>
+											<p>{`${wod.duration} min` || '--'}</p>
 											<p>Duration</p>
 										</li>
 										<li>
-											<p>{track.intensity || '--'}</p>
+											<p>{wod.intensity || '--'}</p>
 											<p>Intensity</p>
 										</li>
 										<li>
-											<p>{track.focus || '--'}</p>
+											<p>{wod.focus || '--'}</p>
 											<p>Focus</p>
 										</li>
 									</ul>
@@ -48,7 +50,7 @@ export default class TracksListItemDesktop extends Component {
 							</div>
 
 							<div className="col-md-8 track-list-tabs-area-desktop">
-								<TracksListTabsDesktop track={track}/>
+								<TracksListTabsDesktop track={wod}/>
 							</div>
 						</div> ) : undefined }
 				</div>

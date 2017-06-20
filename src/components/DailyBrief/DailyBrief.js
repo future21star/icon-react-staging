@@ -3,6 +3,9 @@ import {Collapse} from 'react-collapse';
 import './DailyBrief.scss';
 
 export default class DailyBrief extends Component {
+	static propTypes = {
+		content: PropTypes.string
+	};
 
 	constructor(props) {
 		super(props);
@@ -11,10 +14,6 @@ export default class DailyBrief extends Component {
 		};
 	}
 
-	static propTypes = {
-		user: PropTypes.object,
-	};
-
 	toggleBrief = () => {
 		this.setState({
 			isOpened: !this.state.isOpened
@@ -22,9 +21,9 @@ export default class DailyBrief extends Component {
 	};
 
 	render() {
-		const {user, content} = this.props;
+		const {content} = this.props;
 
-		return user ? (
+		return (
 			<div className="daily-brief-wrapper">
 				<div className="container">
 					<div className="daily-brief-header row" onClick={this.toggleBrief}>
@@ -35,12 +34,11 @@ export default class DailyBrief extends Component {
 							</div>
 						</div>
 					</div>
-
 					<Collapse isOpened={this.state.isOpened}>
 						<div className="daily-brief-body">{content || 'No daily brief found'}</div>
 					</Collapse>
-
 				</div>
-			</div>) : <div/>;
+			</div>
+		);
 	}
 }

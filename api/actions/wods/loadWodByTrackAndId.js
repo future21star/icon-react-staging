@@ -11,7 +11,11 @@ export default function loadWodByTrackAndId(request) {
 				where: {
 					trackName: trackName,
 					id: id
-				}
+				},
+				include: [{
+					model: models.Track,
+					as: 'track',
+				}]
 			});
 		} catch (e) {
 			console.log(e);

@@ -2,12 +2,12 @@ import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
 import {MenubarTransparent, ProfileHeader, SubscriptionUpgradeCard} from '../../components';
 import {Link} from "react-router";
+import {logout} from "../../redux/modules/authStore";
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {logout} from "../../redux/modules/auth";
 import {connect} from "react-redux";
 
 @connect(
-	state => ({user: state.auth.user}),
+	state => ({user: state.authStore.user}),
 	{logout}
 )
 export default class Profile extends Component {
@@ -32,7 +32,7 @@ export default class Profile extends Component {
 
 		const rightSideContent = (
 			<a href="#" onClick={this.handleLogout}>
-				<span className="mobile-hide">Log Out</span><span className="icon-logout"></span>
+				<span className="mobile-hide">Log Out</span><span className="icon-logout"/>
 			</a>
 		);
 

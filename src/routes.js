@@ -1,12 +1,12 @@
 import React from 'react';
 import {IndexRoute, Route} from 'react-router';
-import {isLoaded as isAuthLoaded, load as loadAuth} from 'redux/modules/auth';
+import {isLoaded as isAuthLoaded, load as loadAuth} from './redux/modules/authStore';
 import * as containers from './containers';
 
 export default (store) => {
 	const requiresAuth = (nextState, replace, cb) => {
 		function checkAuth() {
-			const {auth: {user}} = store.getState();
+			const {authStore: {user}} = store.getState();
 			if (!user) {
 				// oops, not logged in, so can't be here!
 				replace('/login');
@@ -23,7 +23,7 @@ export default (store) => {
 
 	const requiresGuest = (nextState, replace, cb) => {
 		function checkGuest() {
-			const {auth: {user}} = store.getState();
+			const {authStore: {user}} = store.getState();
 			if (user) {
 				// oops, logged in, so can't be here!
 				replace('/');

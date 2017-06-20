@@ -22,7 +22,7 @@ export default class SuccessMessage extends Component {
 						transitionLeave={true}
 						transitionLeaveTimeout={500}
 					>
-						<div className="alert alert-success">
+						<div className="alert alert-success text-center">
 							{success.message}
 						</div>
 					</ReactCSSTransitionGroup>

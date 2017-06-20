@@ -54,7 +54,11 @@ module.exports = function (sequelize, DataTypes) {
 		tableName: 'wods',
 		classMethods: {
 			associate: function (models) {
-				// associations can be defined here
+				Wod.belongsTo(models.Track, {
+					foreignKey: 'trackName',
+					targetKey: 'name',
+					as: 'track',
+				});
 			}
 		}
 	});

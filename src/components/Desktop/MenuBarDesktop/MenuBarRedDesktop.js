@@ -8,7 +8,7 @@ export default class MenuBarRedDesktop extends Component {
 
 		let selectedTrack = null;
 		if (this.props.tracks[0]) {
-			selectedTrack = this.props.tracks[0].title;
+			selectedTrack = this.props.tracks[0].trackName;
 		}
 
 		this.state = {
@@ -35,8 +35,8 @@ export default class MenuBarRedDesktop extends Component {
 	};
 
 	render() {
-
 		const {leftSideContentDesktop, rightSideContentDesktop, tracks} = this.props;
+
 		return (
 			<div className="menu-bar-desktop menu-bar-desktop-red">
 				<div className="container-fluid">
@@ -53,8 +53,8 @@ export default class MenuBarRedDesktop extends Component {
 											tracks.map((track, index) => {
 
 												return (<a key={index} href="#" className="list-group-item text-capitalize" onClick={(e) => {
-													this.hidePopOverAndSetDisplayName(e, track.title)
-												}}>{track.title + " Track"}</a>);
+													this.hidePopOverAndSetDisplayName(e, track.trackName)
+												}}>{track.trackName + " Track"}</a>);
 
 											})
 										}

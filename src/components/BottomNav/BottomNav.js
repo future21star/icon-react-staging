@@ -6,27 +6,32 @@ import './BottomNav.scss';
 @connect(
 	state => ({
 		routing: state.routing,
-		helpfulLinks: state.helpfulLinksStore.links
+		helpfulLinks: state.helpfulLinksStore.helpfulLinks
 	})
 )
 
 export default class BottomNav extends Component {
+	static propTypes = {
+		routing: PropTypes.object,
+		helpfulLinks: PropTypes.array
+	};
+
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			helpfulLinksActive: false
+			showHelpfulLinksPopup: false
 		}
 	}
 
-	toggleHelpfulLinks = (e) => {
+	toggleHelpfulLinksPopUp = (e) => {
 		e.preventDefault();
 		this.setState({
-			helpfulLinksActive: !this.state.helpfulLinksActive
+			showHelpfulLinksPopup: !this.state.showHelpfulLinksPopup
 		});
 	};
 
-	static linkItemRender(uri, iconName, currentUri) {
+	static renderLinkItem(uri, iconName, currentUri) {
 		return (
 			<li className={uri === currentUri ? 'active' : ''}><Link to={uri}><span className={iconName}/></Link></li>
 		)
@@ -39,17 +44,18 @@ export default class BottomNav extends Component {
 	render() {
 		const logoImg = require('../../../static/logo.png');
 		const {routing, helpfulLinks} = this.props;
+		const {showHelpfulLinksPopup} = this.state;
 		const currentUri = routing.locationBeforeTransitions.pathname;
 
 		return (
 			<div>
 				<div className="bottom-nav-wrapper hidden-md hidden-lg">
-					<div className={`${this.state.helpfulLinksActive ? 'helpful-links-overlay show-transition-backdrop' : ''}`}/>
-					<div className={`popover top helpful-links-wrapper ${this.state.helpfulLinksActive ? 'show show-transition' : ''}`}>
+					<div className={`${showHelpfulLinksPopup ? 'helpful-links-overlay show-transition-backdrop' : ''}`}/>
+					<div className={`popover top helpful-links-wrapper ${showHelpfulLinksPopup ? 'show show-transition' : ''}`}>
 						<div className="arrow"/>
 						<div className="popover-title">Helpful Links</div>
 						<div className="popover-content">
-							<div className="list-group" onClick={this.toggleHelpfulLinks}>
+							<div className="list-group" onClick={this.toggleHelpfulLinksPopUp}>
 								{helpfulLinks.map((item, i) => {
 									return (
 										<Link key={i} to={`/help/${item.slug}`} className="list-group-item"
@@ -60,22 +66,21 @@ export default class BottomNav extends Component {
 						</div>
 					</div>
 					<ul className="nav nav-pills nav-justified navbar-fixed-bottom bottom-nav">
-						{BottomNav.linkItemRender('/', 'icon-nav-home', currentUri)}
-						{BottomNav.linkItemRender('/feed', 'icon-nav-feed', currentUri)}
-						<li><a href="#" onClick={this.toggleHelpfulLinks} className="helpful-links-item"><span
-							className="icon-nav-links"/></a></li>
-						{BottomNav.linkItemRender('/nutrition', 'icon-nav-nutrition', currentUri)}
-						{BottomNav.linkItemRender('/programming', 'icon-nav-programming', currentUri)}
+						{BottomNav.renderLinkItem('/', 'icon-nav-home', currentUri)}
+						{BottomNav.renderLinkItem('/feed', 'icon-nav-feed', currentUri)}
+						<li><a href="#" onClick={this.toggleHelpfulLinksPopUp} className="helpful-links-item"><span className="icon-nav-links"/></a></li>
+						{BottomNav.renderLinkItem('/nutrition', 'icon-nav-nutrition', currentUri)}
+						{BottomNav.renderLinkItem('/programming', 'icon-nav-programming', currentUri)}
 					</ul>
 				</div>
 
 				<div className="bottom-nav-wrapper-desktop hidden-xs hidden-sm">
-					<div className={`${this.state.helpfulLinksActive ? 'helpful-links-overlay show-transition-backdrop' : ''}`}/>
-					<div className={`popover top helpful-links-desktop-wrapper ${this.state.helpfulLinksActive ? 'show show-transition' : ''}`}>
+					<div className={`${showHelpfulLinksPopup ? 'helpful-links-overlay show-transition-backdrop' : ''}`}/>
+					<div className={`popover top helpful-links-desktop-wrapper ${showHelpfulLinksPopup ? 'show show-transition' : ''}`}>
 						<div className="arrow"/>
 						<div className="popover-title">Helpful Links</div>
 						<div className="popover-content">
-							<div className="list-group" onClick={this.toggleHelpfulLinks}>
+							<div className="list-group" onClick={this.toggleHelpfulLinksPopUp}>
 								{helpfulLinks.map((item, i) => {
 									return (
 										<Link key={i} to={`/help/${item.slug}`} className="list-group-item"
@@ -94,11 +99,12 @@ export default class BottomNav extends Component {
 							</div>
 							<div className="pull-right">
 								<ul className="nav nav-pills">
-									{BottomNav.linkItemRender('/', 'icon-nav-home', currentUri)}
-									{BottomNav.linkItemRender('/feed', 'icon-nav-feed', currentUri)}
-									{BottomNav.linkItemRender('/nutrition', 'icon-nav-nutrition', currentUri)}
-									{BottomNav.linkItemRender('/programming', 'icon-nav-programming', currentUri)}
-									<li className="helpful-links-desktop-li"><a href="#" onClick={this.toggleHelpfulLinks} className="helpful-links-item"><span
+									{BottomNav.renderLinkItem('/', 'icon-nav-home', currentUri)}
+									{BottomNav.renderLinkItem('/feed', 'icon-nav-feed', currentUri)}
+									{BottomNav.renderLinkItem('/nutrition', 'icon-nav-nutrition', currentUri)}
+									{BottomNav.renderLinkItem('/programming', 'icon-nav-programming', currentUri)}
+									<li className="helpful-links-desktop-li"><a href="#" onClick={this.toggleHelpfulLinksPopUp}
+																															className="helpful-links-item"><span
 										className="icon-nav-links"/></a></li>
 								</ul>
 							</div>
@@ -106,7 +112,6 @@ export default class BottomNav extends Component {
 					</div>
 				</div>
 			</div>
-
 		);
 	}
 }
