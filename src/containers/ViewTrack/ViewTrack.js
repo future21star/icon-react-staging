@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import {connect} from "react-redux";
 import {asyncConnect} from 'redux-async-connect';
-import {includes} from 'lodash';
-import {startsWith} from 'lodash';
+import {includes, startsWith, find} from 'lodash';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import {
 	isLoaded as isTracksLoaded,
@@ -35,8 +35,9 @@ import './ViewTrack.scss';
 
 @connect(
 	state => ({
-		userTracks: state.userTracks,
-		vaultAccess: state.auth.user.vaultAccess
+		allTracks: state.allTracksStore.allTracks,
+		selectedTracks: state.selectedTracksStore.selectedTracks,
+		vaultAccess: state.authStore.user.vaultAccess
 	}),
 	{addAsOnlyTrack, addToTrackList, removeTrack}
 )
@@ -69,37 +70,48 @@ export default class ViewTrack extends Component {
 		else if (includes(vaultAccess, 'programming-masters')) accessOfProgrammingType = 'masters';
 
 		return (
-			<div className="view-track-wrapper">
-				<Helmet title="View Track"/>
+			<ReactCSSTransitionGroup
+				transitionName="react-anime"
+				transitionAppear={true}
+				transitionAppearTimeout={5000}
+				transitionEnter={true}
+				transitionEnterTimeout={500}
+				transitionLeave={true}
+				transitionLeaveTimeout={500}
+			>
+				<div className="view-track-wrapper">
+					<Helmet title="View Track"/>
 
-				<MenubarWhite
-					title="View Track"
-					rightSideContent={rightSideContent}
-				/>
+					<MenubarWhite
+						title="View Track"
+						rightSideContent={rightSideContent}
+					/>
 
-				{accessOfProgrammingType ? this.renderViewTrack(accessOfProgrammingType) : this.renderNoVaultAccess()}
+					{accessOfProgrammingType ? this.renderViewTrack(accessOfProgrammingType) : this.renderNoVaultAccess()}
 
-			</div>
+				</div>
+			</ReactCSSTransitionGroup>
 		);
 	}
 
 	renderViewTrack(accessOfProgrammingType) {
-		const {userTracks, params} = this.props;
+		const {allTracks, selectedTracks, params} = this.props;
 
-		const track = userTracks.allTracks.filter(track => {
-			return track.title === params.name;
+		const track = allTracks.filter(track => {
+			return track.name === params.name;
 		})[0];
 
-		let selectedTrackIsSubscribed = track.isSubscribed;
+		const selectedTrackIsSubscribed = find(selectedTracks, selectedTrack => {
+			return selectedTrack.trackName === track.name;
+		});
 
 		return (
 			<div className="container">
 				<div className="row">
 					<EditTracksBanner
-						bgImg={track.bgImg}
-						title={track.title}
-						trackIconClassName={track.trackIconClassName}
-						isSubscribed={track.isSubscribed}
+						track={track}
+						selectedTracks={selectedTracks}
+						singleTrackView={true}
 					/>
 					<EditTracksMidSection/>
 

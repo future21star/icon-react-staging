@@ -65,16 +65,18 @@
     }
     .track-banner-list {
       display: block;
-      max-width: 95%;
+      max-width: 500px;
       margin-left: auto;
+      margin-right: auto;
       padding-bottom: 60px;
       margin-bottom: 0;
       li:not(:last-child) {
-        border-right: 1px solid white;
+        border-right: 1px solid #777676;
       }
       li {
         margin-right: 7px;
         padding-right: 10px;
+        min-width: 30%;
         h3, p {
           color: #fff;
         }
@@ -91,7 +93,7 @@
       }
     }
     .track-banner-list-with-note {
-      padding-bottom: 15px;
+      padding-bottom: 15px !important;
     }
     .mid-content {
       text-align: center;
@@ -136,6 +138,7 @@
       z-index: 1;
       top: 10px;
       right: 15px;
+      font-size:1.6em;
     }
 
   }

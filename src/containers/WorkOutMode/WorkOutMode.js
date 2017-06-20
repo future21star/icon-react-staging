@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {WorkOutModeTabs, Loader} from '../../components';
 import {asyncConnect} from 'redux-async-connect';
 import {connect} from "react-redux";
@@ -27,13 +28,23 @@ export default class WorkOutMode extends Component {
 		const {workout, workoutStore} = this.props;
 
 		return (
-			<div className="workout-mode-page-wrapper">
-				<Helmet title="Workout Mode"/>
-				{workoutStore.loading ? <Loader/> : undefined}
-				{workout.item === null ? <h1>Not found</h1> :
-					<WorkOutModeTabs workout={workout}/>
-				}
-			</div>
+			<ReactCSSTransitionGroup
+				transitionName="react-anime"
+				transitionAppear={true}
+				transitionAppearTimeout={5000}
+				transitionEnter={true}
+				transitionEnterTimeout={500}
+				transitionLeave={true}
+				transitionLeaveTimeout={500}
+			>
+				<div className="workout-mode-page-wrapper">
+					<Helmet title="Workout Mode"/>
+					{workoutStore.loading ? <Loader/> : undefined}
+					{workout === null ? <h1>Not found</h1> :
+						<WorkOutModeTabs workout={workout}/>
+					}
+				</div>
+			</ReactCSSTransitionGroup>
 		);
 	}
 }

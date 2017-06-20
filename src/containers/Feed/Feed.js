@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
-import {BottomNav, MenubarTurquoise, JumbotronWhite} from '../../components';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import {MenubarTurquoise, JumbotronWhite} from '../../components';
 import {connect} from "react-redux";
 import {includes} from 'lodash';
 
@@ -18,17 +19,25 @@ export default class Feed extends Component {
 		let accessToFeed = includes(vaultAccess, 'feed');
 
 		return (
-			<div >
-				<Helmet title="Feed"/>
+			<ReactCSSTransitionGroup
+				transitionName="react-anime"
+				transitionAppear={true}
+				transitionAppearTimeout={5000}
+				transitionEnter={true}
+				transitionEnterTimeout={500}
+				transitionLeave={true}
+				transitionLeaveTimeout={500}
+			>
+				<div >
+					<Helmet title="Feed"/>
 
-				<MenubarTurquoise title="Feed"/>
+					<MenubarTurquoise title="Feed"/>
 
-				<div className="container">
-					{accessToFeed ? this.renderFeed() : this.renderNoVaultAccess()}
+					<div className="container">
+						{accessToFeed ? this.renderFeed() : this.renderNoVaultAccess()}
+					</div>
 				</div>
-
-				<BottomNav/>
-			</div>
+			</ReactCSSTransitionGroup>
 		);
 	}
 

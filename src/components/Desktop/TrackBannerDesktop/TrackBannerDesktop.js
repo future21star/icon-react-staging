@@ -1,19 +1,22 @@
 import React, {Component} from 'react';
 import './TrackBannerDesktop.scss';
+import Note from "../../Note/Note";
 
 export default class TrackBannerDesktop extends Component {
 
 	render() {
 		const {nextTrack, prevTrack, onSelectNextTrack, onSelectPrevTrack, wod} = this.props;
 
+		let noteContent = wod.track.notes;
+
 		return (
 			<div className="track-banner-wrapper-desktop">
-				<div className="track-banner-desktop" style={{backgroundImage: 'url(' + wod.track.bgImgUrl + ')',}}>
+				<div className={`track-banner-desktop ${wod.track.format}`}
+						 style={{backgroundImage: 'url(' + wod.track.bgImgUrl + ')',}}>
 					<div className="overlay"/>
 					<div className="title-desktop">
 						<h1>{wod.track.name}</h1>
-
-						<ul className="track-banner-list-desktop list-inline">
+						<ul className={`track-banner-list-desktop list-inline ${noteContent ? 'track-banner-list-with-note' : ''}`}>
 							<li>
 								<h3>{`${wod.duration} min` || '--'}</h3>
 								<p>Duration</p>
@@ -27,6 +30,12 @@ export default class TrackBannerDesktop extends Component {
 								<p>Focus</p>
 							</li>
 						</ul>
+
+						{noteContent ?
+							<Note
+								noteContent={noteContent}
+								classNames="note note-has-margin-bottom"
+							/> : undefined}
 
 						{nextTrack ?
 							<a href="#" onClick={e => onSelectNextTrack(nextTrack)} className="pull-right next-track">

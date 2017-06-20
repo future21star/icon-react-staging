@@ -76,10 +76,11 @@ export default class TrackBanner extends Component {
 
 		return (
 			<div className="track-banner-wrapper">
-				<div className="track-banner" style={{backgroundImage: 'url(' + wod.track.bgImgUrl + ')',}}>
+				<div className={`track-banner ${wod.track.format}`}
+						 style={{backgroundImage: 'url(' + wod.track.bgImgUrl + ')',}}>
 					<div className="overlay"/>
 					<div className="workout-button">
-						<Link to={`/workout/${wod.track.name}/${wod.track.id}`} className="text-white">
+						<Link to={`/workout/${wod.track.name}/${wod.id}`} className="text-white">
 							<span className="icon-workout-mode"/>
 						</Link>
 					</div>
@@ -90,7 +91,7 @@ export default class TrackBanner extends Component {
 						</div>
 					</div>
 					<div className="title">
-						<h3>{wod.format}</h3>
+						<h3>{wod.track.title}</h3>
 
 						<ul className={`track-banner-list list-inline ${wod.notes ? 'track-banner-list-with-note' : ''}`}>
 							<li>
@@ -111,7 +112,7 @@ export default class TrackBanner extends Component {
 					{wod.notes ? (
 						<Note
 							noteContent={wod.notes}
-							classNames="note note-white"
+							classNames="note note-has-margin-bottom"
 						/>) : undefined}
 
 					<div className="hidden-xs hidden-sm">

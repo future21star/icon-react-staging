@@ -33,7 +33,7 @@ export default function reducer(state = initialState, action = {}) {
 				loaded: true
 			};
 		case SET_ACTIVE_LINK:
-			let activeLink = state.links.filter(item => {
+			let activeLink = state.helpfulLinks.filter(item => {
 				return item.slug === action.payload.slug;
 			})[0];
 

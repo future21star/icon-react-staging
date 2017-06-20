@@ -16,7 +16,7 @@ export default class ProgrammingHeader extends Component {
 		const {user, swipedActiveTrackName} = this.props;
 
 		return user ? (
-			<div className="programming-header-wrapper">
+			<div className="programming-header-wrapper menu-head-buffer">
 				<div className="container">
 					<div className="row">
 						<div className="col-xs-12">

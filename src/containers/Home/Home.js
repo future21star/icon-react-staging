@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import {
-	BottomNav,
 	MenubarTurquoise,
 	DailyBrief,
 	TrackBanner,
@@ -19,6 +18,7 @@ import {isLoaded as isSelectedTracksLoaded, load as loadSelectedTracks} from '..
 import {isLoaded as isDailyBriefLoaded, load as loadDailyBrief} from '../../redux/modules/dailyBriefStore';
 import {isLoaded as isWodsLoaded, load as loadWods} from '../../redux/modules/wodsStore';
 import {setActiveTrack} from "../../redux/modules/swipeStore";
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 @asyncConnect([{
 	promise: ({store: {dispatch, getState}}) => {
@@ -84,18 +84,27 @@ export default class Home extends Component {
 		const {selectedTracks} = this.props;
 
 		return (
-			<div className="bottom-padding">
-				<Helmet title="Home"/>
+			<ReactCSSTransitionGroup
+				transitionName="react-anime"
+				transitionAppear={true}
+				transitionAppearTimeout={5000}
+				transitionEnter={true}
+				transitionEnterTimeout={500}
+				transitionLeave={true}
+				transitionLeaveTimeout={500}
+			>
+				<div className="bottom-padding">
+					<Helmet title="Home"/>
 
-				<MenubarTurquoise title="Today's Workout"
-													leftSideContent={<Link to="profile"><span className="icon-user-profile"/></Link>}>
-					<DotList/>
-				</MenubarTurquoise>
+					<MenubarTurquoise title="Today's Workout"
+														leftSideContent={<Link to="profile"><span className="icon-user-profile"/><span className="mobile-hide">Profile</span></Link>}>
+						<DotList/>
+					</MenubarTurquoise>
 
-				{selectedTracks.length ? this.renderSelectedTracks() : this.renderNoTracksFound()}
+					{selectedTracks.length ? this.renderSelectedTracks() : this.renderNoTracksFound()}
 
-				<BottomNav/>
-			</div>
+				</div>
+			</ReactCSSTransitionGroup>
 		);
 	}
 

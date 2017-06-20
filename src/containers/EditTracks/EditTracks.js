@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {connect} from "react-redux";
 import {Link} from "react-router";
 import {asyncConnect} from 'redux-async-connect';
@@ -33,7 +34,8 @@ import './EditTracks.scss';
 
 @connect(
 	state => ({
-		selectedTracksStore: state.selectedTracksStore,
+		allTracks: state.allTracksStore.allTracks,
+		selectedTracks: state.selectedTracksStore.selectedTracks,
 		vaultAccess: state.authStore.user.vaultAccess
 	}),
 	{addAsOnlyTrack, addToTrackList, removeTrack}
@@ -56,38 +58,46 @@ export default class EditTracks extends Component {
 		else if (includes(vaultAccess, 'programming-masters')) accessOfProgrammingType = 'masters';
 
 		return (
-			<div className="edit-tracks-wrapper">
-				<Helmet title="Edit Tracks"/>
+			<ReactCSSTransitionGroup
+				transitionName="react-anime"
+				transitionAppear={true}
+				transitionAppearTimeout={5000}
+				transitionEnter={true}
+				transitionEnterTimeout={500}
+				transitionLeave={true}
+				transitionLeaveTimeout={500}
+			>
+				<div className="edit-tracks-wrapper">
+					<Helmet title="Edit Tracks"/>
 
-				<MenubarWhite
-					title="Edit Tracks"
-					rightSideContent={rightSideContent}
-				/>
+					<MenubarWhite
+						title="Edit Tracks"
+						rightSideContent={rightSideContent}
+					/>
 
-				{accessOfProgrammingType ? this.renderEditTracks() : this.renderNoVaultAccess()}
+					{accessOfProgrammingType ? this.renderEditTracks() : this.renderNoVaultAccess()}
 
-			</div>
+				</div>
+			</ReactCSSTransitionGroup>
 		);
 	}
 
 	renderEditTracks() {
-		const {userTracks} = this.props;
+		const {selectedTracks, allTracks} = this.props;
 
 		return (
-			<div className="edit-tracks-list-wrapper">
+			<div className="edit-tracks-list-wrapper bottom-padding">
 				<div className="container">
 					<div className="row">
-						{userTracks.allTracks.map((track, i) => {
+						{allTracks.map((track, i) => {
 							return (
 								<div className="col-xs-12 col-sm-6 col-md-4" key={i}>
 									<div className="thumbnail">
 										<EditTracksBanner
-											bgImg={track.bgImg}
-											title={track.title}
-											trackIconClassName={track.trackIconClassName}
-											isSubscribed={track.isSubscribed}
+											track={track}
+											selectedTracks={selectedTracks}
 										/>
-										<Link to={`/edit-tracks/${track.title}`} className="btn btn-block btn-primary">Details</Link>
+										<Link to={`/edit-tracks/${track.name}`} className="btn-absolute">Details</Link>
 									</div>
 								</div>
 							);

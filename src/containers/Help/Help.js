@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
-import {MenubarWhite, BottomNav, Loader} from '../../components';
+import {MenubarWhite} from '../../components';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {setActiveLink, unsetActiveLink} from '../../redux/modules/helpfulLinksStore';
 import {connect} from "react-redux";
 
@@ -32,27 +33,35 @@ export default class Help extends Component {
 		const {activeHelpfulLink} = this.props;
 
 		return (
-			<div className="help-page-wrapper bottom-padding">
-				<Helmet title="Helpful Links"/>
+			<ReactCSSTransitionGroup
+				transitionName="react-anime"
+				transitionAppear={true}
+				transitionAppearTimeout={5000}
+				transitionEnter={true}
+				transitionEnterTimeout={500}
+				transitionLeave={true}
+				transitionLeaveTimeout={500}
+			>
+				<div className="help-page-wrapper bottom-padding">
+					<Helmet title="Helpful Links"/>
 
-				<MenubarWhite title="Helpful Links"/>
+					<MenubarWhite title="Helpful Links"/>
 
-				<div className="container">
-					<div className="row">
-						<div className="col-xs-12">
-							{activeHelpfulLink ? (
-								<div>
-									<h2 className="text-center" dangerouslySetInnerHTML={this.createMarkup(activeHelpfulLink.title)}/>
-									<hr/>
-									<div dangerouslySetInnerHTML={this.createMarkup(activeHelpfulLink.content)}/>
-								</div>
-							) : <Loader/>}
+					<div className="container">
+						<div className="row">
+							<div className="col-xs-12">
+								{activeHelpfulLink ? (
+									<div>
+										<h2 className="text-center" dangerouslySetInnerHTML={this.createMarkup(activeHelpfulLink.title)}/>
+										<hr/>
+										<div dangerouslySetInnerHTML={this.createMarkup(activeHelpfulLink.content)}/>
+									</div>
+								) : undefined}
+							</div>
 						</div>
 					</div>
 				</div>
-
-				<BottomNav/>
-			</div>
+			</ReactCSSTransitionGroup>
 		);
 	}
 }

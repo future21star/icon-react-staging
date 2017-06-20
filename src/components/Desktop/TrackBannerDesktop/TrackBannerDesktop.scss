@@ -10,6 +10,9 @@
       height: 100%;
       background: rgba(0, 0, 0, .7);
     }
+    .track-banner-list-with-note {
+      padding-bottom: 30px !important;
+    }
     .title-desktop{
       position: relative;
       text-align: center;
@@ -17,7 +20,7 @@
       h3, h1, h2 {
         color: #5DC6D2;
         margin-top: 0;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
         text-transform: uppercase;
       }
       .next-track{
@@ -61,17 +64,18 @@
       }
       ul.track-banner-list-desktop{
         display: block;
-        max-width: 95%;
+        /*/max-width: 95%;
         margin-left: auto;
-        /*margin-right: auto;*/
+        margin-right: auto;*/
         padding-bottom: 70px;
         margin-bottom: 0;
         li:not(:last-child) {
           border-right: 1px solid white;
         }
         li {
-          margin-right: 20px;
-          padding-right: 25px;
+          padding: 0 10px;
+          text-align: center;
+          min-width: 170px;
           h3, p {
             color: #fff;
           }

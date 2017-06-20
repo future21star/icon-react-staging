@@ -9,18 +9,18 @@ export default class WorkOutModeTabs extends Component {
 	constructor(props) {
 		super(props);
 
-		const {workout} = this.props;
-
 		this.state = {
-			activeTab: this.getActiveTabName(workout.item),
+			activeTab: this.getActiveTabName(),
 		};
 	}
 
-	getActiveTabName = (track) => {
+	getActiveTabName = () => {
+		const {workout} = this.props;
+
 		let activeTab = null;
-		if (track.warmUp) activeTab = 'warmUp';
-		else if (track.mainWorkout) activeTab = 'mainWorkout';
-		else if (track.coolDown) activeTab = 'coolDown';
+		if (workout.warmUp) activeTab = 'warmUp';
+		else if (workout.mainWorkout) activeTab = 'mainWorkout';
+		else if (workout.coolDown) activeTab = 'coolDown';
 
 		return activeTab;
 	};
@@ -37,35 +37,35 @@ export default class WorkOutModeTabs extends Component {
 
 		return (
 			<div className="workout-mode-tabs">
-				<div className="overlay"/>
+				<div className="overlay-gradient"/>
 				<div className="title">
-					<h3 className="text-uppercase">{workout.item.trackName}</h3>
+					<h3 className="text-uppercase">{workout.trackName}</h3>
 
 					<ul className="workout-mode-banner-list list-inline">
 						<li>
-							<h3 className="text-uppercase">{`${workout.item.duration} min` || '--'}</h3>
+							<h3 className="text-uppercase">{`${workout.duration} min` || '--'}</h3>
 							<p>Duration</p>
 						</li>
 						<li>
-							<h3 className="text-uppercase">{workout.item.intensity || '--'}</h3>
+							<h3 className="text-uppercase">{workout.intensity || '--'}</h3>
 							<p>Intensity</p>
 						</li>
 						<li>
-							<h3 className="text-uppercase">{workout.item.focus || '--'}</h3>
+							<h3 className="text-uppercase">{workout.focus || '--'}</h3>
 							<p>Focus</p>
 						</li>
 					</ul>
 				</div>
 
-				{workout.item.notes ?
+				{workout.notes ?
 					<Note
-						noteContent={workout.item.notes}
-						classNames="note note-has-margin-bottom"
+						noteContent={workout.notes}
+						classNames="note"
 					/> : undefined}
 
 				<div className="container">
 					<ul className="nav nav-tabs nav-justified">
-						{workout.item.warmUp ? (
+						{workout.warmUp ? (
 							<li>
 								<a
 									href="#"
@@ -75,17 +75,17 @@ export default class WorkOutModeTabs extends Component {
 									WARM-UP
 								</a>
 							</li>) : undefined }
-						{workout.item.mainWorkout ? (
+						{workout.mainWorkout ? (
 							<li>
 								<a
 									href="#"
 									onClick={e => this.changeTab(e, 'mainWorkout')}
 									className={this.state.activeTab === 'mainWorkout' ? 'active' : ''}
 								>
-									MAIN-WORKOUT
+									MAIN WORKOUT
 								</a>
 							</li>) : undefined }
-						{workout.item.coolDown ? (
+						{workout.coolDown ? (
 							<li>
 								<a
 									href="#"
@@ -100,13 +100,13 @@ export default class WorkOutModeTabs extends Component {
 
 				<div className="tab-content">
 					<div className={`tab-pane ${this.state.activeTab === 'warmUp' ? 'active' : ''}`}>
-						<WorkOutModeTabContent content={workout.item.warmUp}/>
+						<WorkOutModeTabContent content={workout.warmUp}/>
 					</div>
 					<div className={`tab-pane ${this.state.activeTab === 'mainWorkout' ? 'active' : ''}`}>
-						<WorkOutModeTabContent content={workout.item.mainWorkout}/>
+						<WorkOutModeTabContent content={workout.mainWorkout}/>
 					</div>
 					<div className={`tab-pane ${this.state.activeTab === 'coolDown' ? 'active' : ''}`}>
-						<WorkOutModeTabContent content={workout.item.coolDown}/>
+						<WorkOutModeTabContent content={workout.coolDown}/>
 					</div>
 				</div>
 				<WorkOutModeTimer/>

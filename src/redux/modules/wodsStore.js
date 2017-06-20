@@ -59,10 +59,13 @@ export default function reducer(state = initialState, action = {}) {
 				listNewTrackData[moment(wodOfList.date).format('YYYY-MM-DD')] = wodOfList;
 			});
 
+			let newWods = {...state.wods};
+			newWods[listTrackName] = listNewTrackData;
+
 			return {
 				...state,
 				loading: false,
-				[action.result.trackName]: listNewTrackData
+				wods: newWods
 			};
 			return state;
 		case LOAD_LIST_FAIL:

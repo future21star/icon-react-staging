@@ -43,8 +43,9 @@ export default class ProgrammingTabs extends Component {
 				<div className="programming-tabs-list-wrapper">
 					<div className="container">
 						<ul className="nav nav-tabs nav-justified">
+							<li>
 							{track.warmUp ? (
-								<li>
+								
 									<a
 										href="#"
 										onClick={e => this.changeTab(e, 'warmUp')}
@@ -52,19 +53,23 @@ export default class ProgrammingTabs extends Component {
 									>
 										WARM-UP
 									</a>
-								</li>) : undefined }
+								) : undefined }
+							</li>
+							<li>
 							{track.mainWorkout ? (
-								<li>
+								
 									<a
 										href="#"
 										onClick={e => this.changeTab(e, 'mainWorkout')}
 										className={this.state.activeTab === 'mainWorkout' ? 'active-black' : ''}
 									>
-										MAIN-WORKOUT
+										MAIN WORKOUT
 									</a>
-								</li>) : undefined }
+								) : undefined }
+							</li>
+							<li>
 							{track.coolDown ? (
-								<li>
+								
 									<a
 										href="#"
 										onClick={e => this.changeTab(e, 'coolDown')}
@@ -72,7 +77,8 @@ export default class ProgrammingTabs extends Component {
 									>
 										COOL DOWN
 									</a>
-								</li>) : undefined }
+								) : undefined }
+							</li>
 						</ul>
 					</div>
 				</div>

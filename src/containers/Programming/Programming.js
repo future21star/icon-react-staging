@@ -1,18 +1,15 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import {
-	MenubarBlue,
 	ProgrammingHeader,
-	BottomNav,
 	DailyBrief,
 	TrackBanner,
-	JumbotronWhite,
 	ProgrammingTabs,
 	MenuBarBlueDesktop,
+	JumbotronWhite,
+	MenubarTransparent,
 	TrackBannerDesktop,
 	ProgrammingTabsDesktop,
-	MenuBarRedDesktop,
-	TracksListItemDesktop,
 	RestDay,
 	RestDayDesktop,
 	Loader
@@ -24,6 +21,7 @@ import ReactSwipe from 'react-swipe';
 import {isLoaded as isSelectedTracksLoaded, load as loadSelectedTracks} from '../../redux/modules/selectedTracksStore';
 import {setActiveTrack} from "../../redux/modules/swipeStore";
 import {setActiveDate, toggleActiveWeek} from "../../redux/modules/dayPickerStore";
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {
 	isLoaded as isWodsLoaded,
 	load as loadWods
@@ -130,37 +128,50 @@ export default class Programming extends Component {
 		);
 
 		return (
-			<div className="programming-page-wrapper bottom-padding">
-				<Helmet title="Programming"/>
+			<ReactCSSTransitionGroup
+				transitionName="react-anime"
+				transitionAppear={true}
+				transitionAppearTimeout={5000}
+				transitionEnter={true}
+				transitionEnterTimeout={500}
+				transitionLeave={true}
+				transitionLeaveTimeout={500}
+			>
+				<div className="programming-page-wrapper bottom-padding">
+					<Helmet title="Programming"/>
 
-				{/*mobile*/}
-				<div className="hidden-md hidden-lg">
-					<MenubarBlue
-						title="Programming"
-						leftSideContent={<Link to="/edit-tracks"><span className="icon-user-edit"/></Link>}
-						rightSideContent={rightSideContentMobileView}
-					/>
+					{/*mobile*/}
+					<div className="hidden-md hidden-lg">
+						<MenubarTransparent
+							title="Programming"
+							leftSideContent={<Link to="/edit-tracks"><span className="icon-user-edit"/></Link>}
+							rightSideContent={rightSideContentMobileView}
+							isWhite={true}
+						/>
 
-					{selectedTracks.length ? this.renderSelectedTracksForMobile() : this.renderNoTracksFound()}
+						{selectedTracks.length ? this.renderSelectedTracksForMobile() : this.renderNoTracksFound()}
+					</div>
+
+					{/*desktop*/}
+					<div className="hidden-xs hidden-sm">
+						<MenuBarBlueDesktop
+							leftSideContentDesktop={(
+								<h3 className="text-capitalize">
+									<Link to="/edit-tracks">
+										<span className="icon-user-edit"/>
+										{swipedActiveTrackName} Track
+									</Link>
+								</h3>)}
+							rightSideContentDesktop={(<Link to="/programming/list-view">
+								<p>List View <span><i className="icon-desktop-menu"/></span></p>
+							</Link>)}
+						/>
+
+						{selectedTracks.length ? this.renderSelectedTracksForDesktop() : this.renderNoTracksFound()}
+					</div>
+
 				</div>
-
-				{/*desktop*/}
-				<div className="hidden-xs hidden-sm">
-					<MenuBarBlueDesktop
-						leftSideContentDesktop={(<h3 className="text-capitalize">
-							<span className="icon-user-edit"/>
-							{swipedActiveTrackName} Track
-						</h3>)}
-						rightSideContentDesktop={(<Link to="/programming/list-view">
-							<p>List View <span><i className="icon-desktop-menu"/></span></p>
-						</Link>)}
-					/>
-
-					{selectedTracks.length ? this.renderSelectedTracksForDesktop() : this.renderNoTracksFound()}
-				</div>
-
-				<BottomNav/>
-			</div>
+			</ReactCSSTransitionGroup>
 		)
 	}
 
@@ -274,10 +285,10 @@ export default class Programming extends Component {
 															nextTrack={nextTrackName}
 															prevTrack={prevTrackName}
 															onSelectNextTrack={e => this.refs.programmingSwipeDesktopRef.next()}
-															onSelectPrevTrack={e => this.refs.programmingSwipeDesktopRef.prev()}/>}
+															onSelectPrevTrack={e => this.refs.programmingSwipeDesktopRef.prev()}/>
+					}
 				</div>
-			</div>
-		);
+			</div>)
 	}
 
 	renderNoTracksFound() {

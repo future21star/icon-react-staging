@@ -50,8 +50,8 @@ export default class BottomNav extends Component {
 		return (
 			<div>
 				<div className="bottom-nav-wrapper hidden-md hidden-lg">
-					<div className={`${showHelpfulLinksPopup ? 'helpful-links-overlay' : ''}`}/>
-					<div className={`popover top helpful-links-wrapper ${showHelpfulLinksPopup ? 'show' : ''}`}>
+					<div className={`${showHelpfulLinksPopup ? 'helpful-links-overlay show-transition-backdrop' : ''}`}/>
+					<div className={`popover top helpful-links-wrapper ${showHelpfulLinksPopup ? 'show show-transition' : ''}`}>
 						<div className="arrow"/>
 						<div className="popover-title">Helpful Links</div>
 						<div className="popover-content">
@@ -68,16 +68,15 @@ export default class BottomNav extends Component {
 					<ul className="nav nav-pills nav-justified navbar-fixed-bottom bottom-nav">
 						{BottomNav.renderLinkItem('/', 'icon-nav-home', currentUri)}
 						{BottomNav.renderLinkItem('/feed', 'icon-nav-feed', currentUri)}
-						<li><a href="#" onClick={this.toggleHelpfulLinksPopUp} className="helpful-links-item"><span
-							className="icon-nav-links"/></a></li>
+						<li><a href="#" onClick={this.toggleHelpfulLinksPopUp} className="helpful-links-item"><span className="icon-nav-links"/></a></li>
 						{BottomNav.renderLinkItem('/nutrition', 'icon-nav-nutrition', currentUri)}
 						{BottomNav.renderLinkItem('/programming', 'icon-nav-programming', currentUri)}
 					</ul>
 				</div>
 
 				<div className="bottom-nav-wrapper-desktop hidden-xs hidden-sm">
-					<div className={`${showHelpfulLinksPopup ? 'helpful-links-overlay' : ''}`}/>
-					<div className={`popover top helpful-links-desktop-wrapper ${showHelpfulLinksPopup ? 'show' : ''}`}>
+					<div className={`${showHelpfulLinksPopup ? 'helpful-links-overlay show-transition-backdrop' : ''}`}/>
+					<div className={`popover top helpful-links-desktop-wrapper ${showHelpfulLinksPopup ? 'show show-transition' : ''}`}>
 						<div className="arrow"/>
 						<div className="popover-title">Helpful Links</div>
 						<div className="popover-content">

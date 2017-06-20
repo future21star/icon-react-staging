@@ -7,3 +7,4 @@ webpack-stats.json
 npm-debug.log
 *.swp
 .DS_Store
+api/config/database.json

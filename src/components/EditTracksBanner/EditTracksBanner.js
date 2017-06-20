@@ -1,17 +1,18 @@
 import React, {Component, PropTypes} from 'react';
+import {find} from 'lodash';
 import './EditTracksBanner.scss';
 
 export default class EditTracksBanner extends Component {
 
 	static propTypes = {
-		bgImg: PropTypes.string,
-		title: PropTypes.string,
-		trackIconClassName: PropTypes.string,
-		isSubscribed: PropTypes.bool
+		track: PropTypes.object.isRequired,
+		selectedTracks: PropTypes.array,
+		singleTrackView: PropTypes.bool
 	};
 
 	getIcon() {
-		const {trackIconClassName} = this.props;
+		const {track} = this.props;
+		let trackIconClassName = track.iconUrl;
 
 		if (trackIconClassName === 'icon-track-dynamic') {
 			return (
@@ -77,15 +78,21 @@ export default class EditTracksBanner extends Component {
 	}
 
 	render() {
-		const {bgImg, title, trackIcon, isSubscribed} = this.props;
+		const {track, selectedTracks, singleTrackView} = this.props;
+		const isSubscribed = find(selectedTracks, selectedTrack => {
+			return selectedTrack.trackName === track.name;
+		});
+
+		let style = {backgroundImage: 'url(' + track.bgImgUrl + ')'};
+		if (singleTrackView) style = {backgroundImage: 'url(../' + track.bgImgUrl + ')'};
 
 		return (
-			<div className="edit-tracks-banner-wrapper">
-				<div className="edit-tracks-banner" style={{backgroundImage: 'url(' + bgImg + ')',}}>
+			<div className="edit-tracks-banner-wrapper container-small">
+				<div className="edit-tracks-banner" style={style}>
 					<div className="overlay"/>
 					<div className="title">
 						{this.getIcon()}
-						<h1>{title}</h1>
+						<h1>{track.name}</h1>
 						{isSubscribed ? <span className="icon-checkmark"/> : undefined}
 					</div>
 				</div>

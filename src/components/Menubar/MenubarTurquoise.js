@@ -11,9 +11,9 @@ export default class MenubarTurquoise extends Component {
 	render() {
 		const {title, leftSideContent, rightSideContent} = this.props;
 		return (
-			<div className="menu-bar menu-bar-turquoise">
-				<div className="container">
-					<div className="row">
+			<div className={`menu-bar gradient-blue menu-color-white`}>
+				<div className="container-fluid">
+					<div className="row menu-bar-headings">
 						<div className="col-xs-3 menu-bar-left-side-content">{leftSideContent}</div>
 						<div className="col-xs-6 menu-bar-title">{title}</div>
 						<div className="col-xs-3 menu-bar-right-side-content">{rightSideContent}</div>

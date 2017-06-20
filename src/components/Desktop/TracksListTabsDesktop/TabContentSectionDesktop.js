@@ -6,7 +6,6 @@ import './TracksListTabsDesktop.scss';
 export default class TabContentSectionDesktop extends Component {
 
 	render() {
-
 		const {title, track, content} = this.props;
 
 		let chunks = content.split('@@');
@@ -18,11 +17,18 @@ export default class TabContentSectionDesktop extends Component {
 
 		chunks.map(chunk => {
 			let parsedChunks = chunk.split('--');
+			let optional = false;
 			let title = parsedChunks[0];
+			let parsedTitle = title.split('OP '); // the space is important
+			if (parsedTitle.length === 2) {
+				title = parsedTitle[1];
+				optional = true;
+			}
 			parsedChunks.splice(0, 1);
 			parsedContentObj.push({
 				title,
-				lines: parsedChunks
+				lines: parsedChunks,
+				optional
 			});
 		});
 
@@ -53,7 +59,8 @@ export default class TabContentSectionDesktop extends Component {
 											<div className="item-desktop" key={i}>
 												<span className="item-number-desktop">{number}</span>
 
-												<div>
+												<div className={`${chunk.optional ? 'wod-optional' : ''}`}>
+													{chunk.optional ? <p className="text-danger">OPTIONAL</p> : undefined}
 													<p>{chunk.title}</p>
 													<ul className="list-group">
 														{chunk.lines.map((line, j) => {

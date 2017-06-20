@@ -4,6 +4,7 @@ import {Link} from "react-router";
 import {connect} from "react-redux";
 import {asyncConnect} from 'redux-async-connect';
 import {loadListView} from '../../redux/modules/wodsStore';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {MenuBarRedDesktop, TracksListItemDesktop, BottomNav} from '../../components';
 import {
 	isLoaded as isTracksLoaded,
@@ -26,9 +27,9 @@ import {
 		user: state.authStore.user,
 		selectedTracks: state.selectedTracksStore.selectedTracks,
 		routing: state.routing,
+		wodsStore: state.wodsStore,
 		wods: state.wodsStore.wods,
-	}),
-	{}
+	})
 )
 export default class ProgrammingDesktopListView extends Component {
 
@@ -37,7 +38,7 @@ export default class ProgrammingDesktopListView extends Component {
 		const {selectedTracks} = this.props;
 
 		this.state = {
-			selectedTrack: selectedTracks.length ? selectedTracks[0].title : null
+			selectedTrack: selectedTracks.length ? selectedTracks[0].trackName : null
 		};
 	}
 
@@ -65,7 +66,7 @@ export default class ProgrammingDesktopListView extends Component {
 			<div className="edit-tracks-link">
 				<Link to="/edit-tracks" className="text-white">
 					<span>
-						<i className="icon-user-edit" aria-hidden="true"/>
+						<i className="icon-user-edit"/>
 					</span>
 					<span style={{'position': 'relative', 'top': '-3px'}}>Edit Track</span>
 				</Link>
@@ -84,48 +85,51 @@ export default class ProgrammingDesktopListView extends Component {
 		);
 
 		return (
-			<div className="programming-page-list-view-wrapper-desktop hidden-xs hidden-sm">
+			<ReactCSSTransitionGroup
+				transitionName="react-anime"
+				transitionAppear={true}
+				transitionAppearTimeout={5000}
+				transitionEnter={true}
+				transitionEnterTimeout={500}
+				transitionLeave={true}
+				transitionLeaveTimeout={500}
+			>
+				<div className="programming-page-list-view-wrapper-desktop hidden-xs hidden-sm" key="programming-list-view">
 
-				<Helmet title="Programming"/>
+					<Helmet title="Programming"/>
 
-				<MenuBarRedDesktop
-					leftSideContentDesktop={leftSideContentDesktop}
-					rightSideContentDesktop={rightSideContentDesktop}
-					tracks={selectedTracks}
-					onSelectTrack={this.selectTrack}
-				/>
+					<MenuBarRedDesktop
+						leftSideContentDesktop={leftSideContentDesktop}
+						rightSideContentDesktop={rightSideContentDesktop}
+						tracks={selectedTracks}
+						onSelectTrack={this.selectTrack}
+					/>
 
-				<div className="tracks-list-view-container-wrapper-desktop">
-					<div className="tracks-list-view-container-desktop">
+					<div className="tracks-list-view-container-wrapper-desktop">
+						<div className="tracks-list-view-container-desktop">
 
-						{wodsStore.loading || !wods[this.state.selectedTrack] ? undefined :
-							<div className="container-fluid">
-								{Object.keys(wods[this.state.selectedTrack]).map((key, index) => {
-									return (
-										<div key={index}>
-											<TracksListItemDesktop
-												bgImg={selectedTracks.filter((track) => {
-													return track.title === this.state.selectedTrack;
-												})[0].bgImg}
-												track={wods[this.state.selectedTrack][key]}
-											/>
-										</div>
-									)
-								})}
-							</div>
-						}
-						{wods[this.state.selectedTrack] && Object.keys(wods[this.state.selectedTrack]).length === 0
-							? <p>Nothing found</p>
-							: undefined
-						}
+
+							{wodsStore.loading || !wods[this.state.selectedTrack] ? undefined :
+								<div className="container-fluid">
+									{Object.keys(wods[this.state.selectedTrack]).map((key, i) => {
+										return (
+											<div key={i}>
+												<TracksListItemDesktop
+													wod={wods[this.state.selectedTrack][key]}
+												/>
+											</div>
+										)
+									})}
+								</div>
+							}
+							{wods[this.state.selectedTrack] && Object.keys(wods[this.state.selectedTrack]).length === 0
+								? <p>Nothing found</p>
+								: undefined
+							}
+						</div>
 					</div>
 				</div>
-
-				<BottomNav
-					routing={this.props.routing}
-				/>
-
-			</div>
+			</ReactCSSTransitionGroup>
 		);
 	}
 }
