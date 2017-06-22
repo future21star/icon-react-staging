@@ -1,10 +1,10 @@
-.next-track{
+.next-track {
   position: absolute;
   color: #9a9b9f;
   top: 47%;
   right: 30px;
   font-size: 16px;
-  i{
+  i {
     margin-left: 15px;
     color: #d12022;
     position: relative;
@@ -12,20 +12,21 @@
     font-size: 14px;
   }
 }
-.prev-track{
+
+.prev-track {
   position: absolute;
   color: #9a9b9f;
   top: 47%;
   left: 30px;
   font-size: 16px;
-  span.mirror-icon{
+  span.mirror-icon {
     transform: rotate(180deg);
     display: inline-block;
     margin-right: 10px;
     position: relative;
     top: 2px;
   }
-  i{
+  i {
     margin-right: 15px;
     color: #d12022;
     position: relative;
@@ -33,7 +34,8 @@
     font-size: 14px;
   }
 }
-.prev-track, .next-track, .prev-track:hover, .next-track:hover{
+
+.prev-track, .next-track, .prev-track:hover, .next-track:hover {
   text-decoration: none;
   outline: none;
 }
@@ -55,6 +57,7 @@
   font-size: 24px;
   font-family: Oswald, sans-serif;
 }
+
 .track-icon {
   text-align: center;
   [class^="icon-"], [class*=" icon-"] {

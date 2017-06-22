@@ -1,0 +1,144 @@
+.track-banner-wrapper {
+  .track-banner {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    .next-track {
+      position: absolute;
+      color: #9a9b9f;
+      top: 47%;
+      right: 30px;
+      font-size: 16px;
+      i {
+        margin-left: 15px;
+        color: $red;
+        position: relative;
+        top: 2px;
+        font-size: 14px;
+      }
+    }
+    .prev-track {
+      position: absolute;
+      color: #9a9b9f;
+      top: 47%;
+      left: 30px;
+      font-size: 16px;
+      span.mirror-icon {
+        transform: rotate(180deg);
+        display: inline-block;
+        margin-right: 10px;
+        position: relative;
+        top: 2px;
+      }
+      i {
+        margin-right: 15px;
+        color: $red;
+        position: relative;
+        top: 1px;
+        font-size: 14px;
+      }
+    }
+    .prev-track, .next-track, .prev-track:hover, .next-track:hover {
+      text-decoration: none;
+      outline: none;
+    }
+    .overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, .7);
+    }
+    .title {
+      color: #5DC6D2;
+      position: relative;
+      text-align: center;
+      h3 {
+        margin-top: 0;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+      }
+    }
+    .title-padding {
+      padding-top: 60px;
+    }
+    .track-banner-list {
+      display: block;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-bottom: 60px;
+      margin-bottom: 0;
+      li:not(:last-child) {
+        border-right: 1px solid #777676;
+      }
+      li {
+        margin-right: 7px;
+        padding-right: 10px;
+        min-width: 30%;
+        h3, p {
+          color: #fff;
+        }
+        p {
+          font-size: 14px;
+          font-weight: 300;
+          margin-bottom: 0;
+        }
+        h3 {
+          margin-bottom: 3px;
+          letter-spacing: 1px;
+          font-size: 18px;
+        }
+      }
+    }
+    .track-banner-list-with-note {
+      padding-bottom: 15px !important;
+    }
+    .mid-content {
+      text-align: center;
+      position: relative;
+      h1 {
+        margin-top: 10px;
+        color: #fff;
+        text-transform: uppercase;
+        margin-bottom: 40px;
+      }
+      [class^="icon-"], [class*=" icon-"] {
+        font-size: 50px;
+        margin-top: 30px;
+        .path1:before {
+          color: #fff;
+        }
+        .path2:before {
+          color: #fff;
+        }
+        .path3:before {
+          color: #fff;
+        }
+        .path4:before {
+          color: #fff;
+        }
+        .path5:before {
+          color: #fff;
+        }
+        .path6:before {
+          color: #fff;
+        }
+        .path7:before {
+          color: #fff;
+        }
+        .path8:before {
+          color: #fff;
+        }
+      }
+    }
+    .workout-button {
+      position: absolute;
+      z-index: 1;
+      top: 10px;
+      right: 15px;
+      font-size: 1.6em;
+    }
+
+  }
+}

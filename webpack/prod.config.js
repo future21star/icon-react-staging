@@ -6,7 +6,6 @@ var webpack = require('webpack');
 var CleanPlugin = require('clean-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var strip = require('strip-loader');
-var vendors = require('../styles/vendors');
 
 var projectRootPath = path.resolve(__dirname, '../');
 var assetsPath = path.resolve(projectRootPath, './static/dist');
@@ -19,11 +18,9 @@ module.exports = {
 	devtool: 'source-map',
 	context: path.resolve(__dirname, '..'),
 	entry: {
-		'vendors': vendors,
 		'main': [
 			'./src/client.js',
-			'./styles/custom.scss',
-			'./styles/animations.scss'
+			'./styles/main.scss'
 		]
 	},
 	output: {
@@ -36,10 +33,7 @@ module.exports = {
 		loaders: [
 			{test: /\.jsx?$/, exclude: /node_modules/, loaders: [strip.loader('debug'), 'babel']},
 			{test: /\.json$/, loader: 'json-loader'},
-			{
-				test: /\.scss$/,
-				loader: ExtractTextPlugin.extract(['css', 'sass'])
-			},
+			{test: /\.scss$/, loader: ExtractTextPlugin.extract(['css', 'sass'])},
 			{test: /\.css$/, loader: 'style!css'},
 			{test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/font-woff"},
 			{test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/font-woff"},

@@ -1,0 +1,74 @@
+.note-wrapper {
+  position: relative;
+  padding-bottom: 30px;
+  padding-top: 15px;
+
+  .note {
+    background-color: transparent;
+    border: 1px solid #5DC6D2;
+    padding: 1px 10px 1px 10px;
+    max-width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    border-radius: 4px;
+
+    transition: .3s ease background-color;
+    -moz-transition: .3s ease background-color;
+    -webkit-transition: .3s ease background-color;
+
+    &:hover {
+      background-color: #5DC6D2;
+      h3 {
+        color: #ffffff !important;
+      }
+
+      .icon-nav-links {
+        color: #ffffff;
+      }
+    }
+
+    .icon-notes {
+      font-size: .8em;
+      vertical-align: top;
+      margin-right: 8px;
+    }
+
+    .icon-nav-links {
+      color: #5DC6D2;
+      font-size: 16px;
+      position: relative;
+      top: 2px;
+
+      transition: .3s ease color;
+      -moz-transition: .3s ease color;
+      -webkit-transition: .3s ease color;
+    }
+
+    h3 {
+      text-transform: uppercase;
+      margin-top: 10px !important;
+      font-size: 1.2em !important;
+      color: #5DC6D2 !important;
+      font-weight: 600 !important;
+      text-align: left !important;
+      margin-bottom: 10px !important;
+
+      transition: .3s ease color;
+      -moz-transition: .3s ease color;
+      -webkit-transition: .3s ease color;
+    }
+
+    .note-body {
+      padding: 0 0 15px;
+      font-weight: 300;
+      font-family: "Oswald", sans-serif;
+      text-transform: uppercase;
+      text-align: left !important;
+      color: #ffffff;
+    }
+  }
+  .note-has-margin-bottom {
+    margin-bottom: 35px;
+  }
+}
