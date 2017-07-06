@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {MenubarTurquoise, JumbotronWhite} from '../../components';
+import {MenubarTurquoise, JumbotronWhite, SubscriptionUpgradeCard} from '../../components';
 import {connect} from "react-redux";
 import {includes} from 'lodash';
 import {Link} from 'react-router';
-import SubscriptionUpgradeCard from "../../components/SubscriptionUpgradeCard/SubscriptionUpgradeCard";
 
 @connect(
 	state => ({
@@ -208,9 +207,9 @@ export default class Feed extends Component {
 					</div>
 
 					<div className="filter-feed">
-						<a href="#" className="btn-filter-feed">
+						<Link to="/feed/filter" className="btn-filter-feed">
 							<span className="icon-filter"/>
-						</a>
+						</Link>
 					</div>
 				</div>
 			</div>
