@@ -26,7 +26,7 @@ export default class Login extends Component {
 	};
 
 	render() {
-		const logoImage = require('../../static/logo.png');
+		const logoImage = require('../../static/logo.svg');
 
 		return (
 			<ReactCSSTransitionGroup
@@ -40,16 +40,17 @@ export default class Login extends Component {
 			>
 				<div>
 					<Helmet title="Log In"/>
-					<div className="container login-container">
+					<div className="container-fluid">
 						<div className="row">
-							<div className="col-xs-12">
-								<div className="logo-wrapper">
-									<img src={logoImage} width="100%"/>
+							<div className="col-md-6 col-sm-12">
+								<div className="login-container">
+									<div className="logo-wrapper">
+										<img src={logoImage} width="100%"/>
+									</div>
+									{this.renderLoginForm()}
 								</div>
 							</div>
-							<div className="col-xs-12">
-								{this.renderLoginForm()}
-							</div>
+							<div className="col-md-6 hidden-xs hidden-sm login-bg"></div>
 						</div>
 					</div>
 				</div>
@@ -71,10 +72,10 @@ export default class Login extends Component {
 
 					<div className="form-group block input-effect">
 						<div className="input-group">
+							<input type="email" ref="email" className="form-control" placeholder="Your Email"/>
 							<div className="input-group-addon">
 								<span className="icon-email"/>
 							</div>
-							<input type="email" ref="email" className="form-control" placeholder="Your Email"/>
 							<span className="underline"></span>
 						</div>
 

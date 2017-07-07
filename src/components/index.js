@@ -1,29 +1,47 @@
-export Menubar from './Menubar';
-export NoAccess from './NoAccess';
-export Loader from './Loader';
-export ErrorMessage from './ErrorMessage';
-export SuccessMessage from './SuccessMessage';
-export FacebookButton from './FacebookButton';
-export ShowPasswordInput from './ShowPasswordInput';
-export ProfileHeader from './ProfileHeader';
-export SubscriptionUpgradeCard from './SubscriptionUpgradeCard';
-export BottomNav from './BottomNav';
-export ProgrammingHeader from './ProgrammingHeader';
-export DailyBrief from './DailyBrief';
-export DailyBriefCollapsable from './DailyBriefCollapsable';
-export TrackBanner from './TrackBanner';
-export ProgrammingTabs from './ProgrammingTabs';
-export WorkOutModeTabs from './WorkOutModeTabs';
-export EditTracksBanner from './EditTracksBanner';
-export DayPicker from './DayPicker';
-export DotList from './DotList';
-export BtnBottom from './BtnBottom';
-export Note from './Note';
-export RestDay from './RestDay';
-export MenuBarBlueDesktop from './desktop/MenuBarBlueDesktop';
-export MenuBarListView from './desktop/MenuBarListView';
-export TrackBannerDesktop from './desktop/TrackBannerDesktop';
-export ProgrammingTabsDesktop from './desktop/ProgrammingTabsDesktop';
-export TracksListItemDesktop from './desktop/TracksListItemDesktop';
-export Timer from './Timer';
+//GLOBALS
+export NoAccess from './global/NoAccess';
+export Loader from './global/Loader';
+export SubscriptionUpgradeCard from './global/SubscriptionUpgradeCard';
+export BottomNav from './global/BottomNav';
+export DotList from './global/DotList';
+
+
+//MENUBAR
+export MenuBarBlueDesktop from './menu-bar/MenuBarBlueDesktop';
+export MenuBarListView from './menu-bar/MenuBarListView';
+export Menubar from './menu-bar/Menubar';
+
+//FORMS
+export ErrorMessage from './forms/ErrorMessage';
+export SuccessMessage from './forms/SuccessMessage';
+export FacebookButton from './forms/FacebookButton';
+export ShowPasswordInput from './forms/ShowPasswordInput';
+
+//WORKOUTS
+export Note from './workout/Note';
+export RestDay from './workout/RestDay';
+export Timer from './workout/Timer';
+export WorkoutBanner from './workout/WorkoutBanner';
+export Workout from './workout/Workout';
+export WorkOutModeTabs from './workout/WorkOutModeTabs';
+export DesktopWorkoutBanner from './workout/DesktopWorkoutBanner';
+export DesktopWorkout from './workout/DesktopWorkout';
+
+//PROGRAMMING
+export ProgrammingHeader from './programming/ProgrammingHeader';
+export DayPicker from './programming/DayPicker';
+
+//PROFILE
+export ProfileHeader from './profile/ProfileHeader';
+
+//TRACKS
+export EditTracksBanner from './tracks/EditTracksBanner';
+export DailyBriefDesktop from './tracks/DailyBriefDesktop';
+export DailyBriefCollapsable from './tracks/DailyBriefCollapsable';
+export BtnBottom from './tracks/BtnBottom';
+
+
+
+
+
 

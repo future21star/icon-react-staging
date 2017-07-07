@@ -59,7 +59,7 @@ export default class Profile extends Component {
 						title="Profile"
 						leftSideContent={leftSideContent}
 						rightSideContent={rightSideContent}
-						className="bg-blue text-white"
+						className="gradient-turquoise text-white"
 					>
 					</Menubar>
 					<ProfileHeader user={user}/>

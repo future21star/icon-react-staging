@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+ import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
 import {Menubar, Loader, SuccessMessage, ErrorMessage} from '../components/index';
 import {Link} from "react-router";
@@ -117,30 +117,30 @@ export default class EditProfile extends Component {
 
 									<div className="form-group block">
 										<div className="input-group input-effect">
-											<div className="input-group-addon">
-												<span className="icon-user-profile-filled"/>
-											</div>
 											<input type="text"
 														 name="name"
 														 value={editProfileStore.editingUser.name}
 														 onChange={e => changeEditProfileField(e.target.name, e.target.value)}
 														 className="form-control"
 														 placeholder="Full Name"/>
+											<div className="input-group-addon">
+												<span className="icon-user-profile-filled"/>
+											</div>
 											<div className="underline"/>
 
 										</div>
 									</div>
 									<div className="form-group block">
 										<div className="input-group input-effect">
-											<div className="input-group-addon">
-												<span className="icon-email"/>
-											</div>
 											<input type="email"
 														 name="email"
 														 value={editProfileStore.editingUser.email}
 														 onChange={e => changeEditProfileField(e.target.name, e.target.value)}
 														 className="form-control"
-														 placeholder="Your Email"/>
+														 placeholder="Email"/>
+											<div className="input-group-addon">
+												<span className="icon-email"/>
+											</div>
 											<div className="underline"/>
 										</div>
 									</div>

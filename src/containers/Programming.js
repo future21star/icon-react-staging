@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import {
 	ProgrammingHeader,
-	DailyBrief,
-	TrackBanner,
-	ProgrammingTabs,
+	DailyBriefDesktop,
+	WorkoutBanner,
+	Workout,
 	MenuBarBlueDesktop,
 	Menubar,
-	TrackBannerDesktop,
-	ProgrammingTabsDesktop,
+	DesktopWorkoutBanner,
+	DesktopWorkout,
 	RestDay,
 	Loader
 } from '../components/index';
@@ -224,18 +224,18 @@ export default class Programming extends Component {
 
 		return (
 			<div name={track.name} key={i}>
-				{currentDate === activeDate ? <DailyBrief user={user} content={dailyBriefs[track.name]}/> : undefined}
+				{currentDate === activeDate ? <DailyBriefDesktop user={user} content={dailyBriefs[track.name]}/> : undefined}
 
 				{wodForThisTrack && wodForThisTrackAndDate ? (
 					<div>
-						<TrackBanner
+						<WorkoutBanner
 							wod={wodForThisTrackAndDate}
 							nextTrack={nextTrackName}
 							prevTrack={prevTrackName}
 							onSelectNextTrack={e => this.refs.programmingSwipeMobileRef.next()}
 							onSelectPrevTrack={e => this.refs.programmingSwipeMobileRef.prev()}
 						/>
-						<ProgrammingTabs track={wodForThisTrackAndDate}/>
+						<Workout track={wodForThisTrackAndDate}/>
 					</div>) : undefined}
 
 				{wodForThisTrack && typeof wodForThisTrackAndDate === 'undefined' ? (
@@ -266,7 +266,7 @@ export default class Programming extends Component {
 				<div>
 					{wodForThisTrack && wodForThisTrackAndDate ? (
 						<div>
-							<TrackBannerDesktop
+							<DesktopWorkoutBanner
 								wod={wodForThisTrackAndDate}
 								nextTrack={nextTrackName}
 								prevTrack={prevTrackName}
@@ -274,9 +274,9 @@ export default class Programming extends Component {
 								onSelectPrevTrack={e => this.refs.programmingSwipeDesktopRef.prev()}
 							/>
 							{currentDate === activeDate
-								? <ProgrammingTabsDesktop track={wodForThisTrackAndDate}
+								? <DesktopWorkout track={wodForThisTrackAndDate}
 																					dailyBriefContent={dailyBriefs[track.name]}/>
-								: <ProgrammingTabsDesktop track={wodForThisTrackAndDate}/>
+								: <DesktopWorkout track={wodForThisTrackAndDate}/>
 							}
 						</div>
 					) : <RestDay track={track}

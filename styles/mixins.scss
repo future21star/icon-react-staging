@@ -5,7 +5,7 @@
   transform: $trans;
 }
 
-@mixin transition($trans) {
+@mixin transition($trans...) {
   -webkit-transition: $trans;
   -moz-transition: $trans;
   -o-transition: $trans;

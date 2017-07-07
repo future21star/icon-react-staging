@@ -3,8 +3,8 @@ import Helmet from 'react-helmet';
 import {
 	Menubar,
 	DailyBriefCollapsable,
-	TrackBanner,
-	ProgrammingTabs,
+	WorkoutBanner,
+	Workout,
 	RestDay,
 	Loader,
 	DotList
@@ -99,7 +99,7 @@ export default class Home extends Component {
 									 leftSideContent={<Link to="profile"><span className="icon-user-profile"/>
 										 <span className="mobile-hide">Profile</span>
 									 </Link>}
-									 className="gradient-blue menu-color-white">
+									 className="gradient-turquoise menu-color-white">
 						<DotList/>
 					</Menubar>
 
@@ -158,14 +158,14 @@ export default class Home extends Component {
 
 				{wodForThisTrack && wodForThisTrackAndDate ? (
 					<div>
-						<TrackBanner
+						<WorkoutBanner
 							wod={wodForThisTrackAndDate}
 							nextTrack={nextTrackName}
 							prevTrack={prevTrackName}
 							onSelectNextTrack={e => this.refs.homeSwipeRef.next()}
 							onSelectPrevTrack={e => this.refs.homeSwipeRef.prev()}
 						/>
-						<ProgrammingTabs track={wodForThisTrackAndDate}/>
+						<Workout track={wodForThisTrackAndDate}/>
 					</div>
 				) : undefined }
 
