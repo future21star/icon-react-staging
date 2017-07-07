@@ -85,7 +85,7 @@ export default class Feed extends Component {
 								voluptates?
 							</div>
 							<div className="feed-featured-post-read-more">
-								<a className="btn-read-more" href="#">Read more</a>
+								<Link className="btn-read-more" to="/feed/single">Read more</Link>
 							</div>
 						</div>
 					</div>
@@ -130,7 +130,7 @@ export default class Feed extends Component {
 								</div>
 								<div className="col-xs-6">
 									<div className="feed-post-title">
-										<a href="#">Demo Post Title</a>
+										<Link to="/feed/single">Demo Post Title</Link>
 									</div>
 									<div className="feed-post-content">
 										Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque expedita maiores nam nesciunt
@@ -150,7 +150,7 @@ export default class Feed extends Component {
 								</div>
 								<div className="col-xs-6">
 									<div className="feed-post-title">
-										<a href="#">Demo Post Title</a>
+										<Link to="/feed/single">Demo Post Title</Link>
 									</div>
 									<div className="feed-post-content">
 										Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque expedita maiores nam nesciunt
@@ -170,7 +170,7 @@ export default class Feed extends Component {
 								</div>
 								<div className="col-xs-6">
 									<div className="feed-post-title">
-										<a href="#">Demo Post Title</a>
+										<Link to="/feed/single">Demo Post Title</Link>
 									</div>
 									<div className="feed-post-content">
 										Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque expedita maiores nam nesciunt
@@ -194,7 +194,7 @@ export default class Feed extends Component {
 								</div>
 								<div className="col-xs-6">
 									<div className="feed-post-title">
-										<a href="#">Demo Post Title</a>
+										<Link to="/feed/single">Demo Post Title</Link>
 									</div>
 									<div className="feed-post-content">
 										Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque expedita maiores nam nesciunt

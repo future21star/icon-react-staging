@@ -266,3 +266,16 @@
     }
   }
 }
+
+.feed-search-wrapper {
+  .search-selector-wrapper {
+    padding-top: 10px;
+  }
+  .pretty-select.search-selector-input.Select--single > .Select-control .Select-value {
+    font-size: 1.3em;
+  }
+  .search-text-input {
+    font-size: 1.8em;
+    font-weight: 400;
+  }
+}

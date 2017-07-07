@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {MenubarTurquoise, JumbotronWhite, SubscriptionUpgradeCard} from '../../components';
+import {MenubarWhite, JumbotronWhite} from '../../components';
 import {connect} from "react-redux";
 import {includes} from 'lodash';
 import {Link} from 'react-router';
-import MenubarWhite from "../../components/Menubar/MenubarWhite";
 
 @connect(
 	state => ({
@@ -45,6 +44,15 @@ export default class Filter extends Component {
 		);
 	}
 
+	renderNoVaultAccess() {
+		return (
+			<div className="container">
+				<JumbotronWhite title="No Access"
+												description={<span>You do not have access to view feeds.</span>}
+												logo={true}/>
+			</div>
+		);
+	}
 
 	renderFilter() {
 		return (
