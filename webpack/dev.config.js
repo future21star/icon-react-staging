@@ -7,7 +7,6 @@ var webpack = require('webpack');
 var assetsPath = path.resolve(__dirname, '../static/dist');
 var host = (process.env.HOST || 'localhost');
 var port = (+process.env.PORT + 1) || 3001;
-var vendors = require('../styles/vendors');
 // https://github.com/halt-hammerzeit/webpack-isomorphic-tools
 var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
 var webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require('./webpack-isomorphic-tools'));
@@ -68,10 +67,8 @@ module.exports = {
 		'main': [
 			'webpack-hot-middleware/client?path=http://' + host + ':' + port + '/__webpack_hmr',
 			'./src/client.js',
-			'./styles/custom.scss',
-			'./styles/animations.scss'
-		],
-		'vendors': vendors
+			'./styles/main.scss'
+		]
 	},
 	output: {
 		path: assetsPath,

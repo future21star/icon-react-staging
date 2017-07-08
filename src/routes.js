@@ -51,7 +51,7 @@ export default (store) => {
 					<Route path="feed" component={containers.Feed}/>
 					<Route path="nutrition" component={containers.Nutrition}/>
 					<Route path="programming" component={containers.Programming}/>
-					<Route path="programming/list-view" component={containers.ProgrammingDesktopListView}/>
+					<Route path="programming/list-view" component={containers.ProgrammingListView}/>
 					<Route path="edit-tracks" component={containers.EditTracks}/>
 					<Route path="help/:slug" component={containers.Help}/>
 				</Route>

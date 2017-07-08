@@ -1,0 +1,21 @@
+.dotlist-wrapper {
+  .dot-list {
+    text-align: center;
+    padding-top: 5px;
+    margin-bottom: 0;
+
+    .dot {
+      width: 5px;
+      height: 5px;
+      margin: 5px -1px;
+      background: transparent;
+      display: block;
+      transition: opacity .2s ease;
+      border-radius: 30px;
+      border: 1px solid white;
+    }
+    .active {
+      background: #fff;
+    }
+  }
+}
