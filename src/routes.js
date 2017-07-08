@@ -59,6 +59,9 @@ export default (store) => {
 				<Route path="workout/:trackName/:id" component={containers.WorkOutMode}/>
 				<Route path="edit-profile" component={containers.EditProfile}/>
 				<Route path="edit-tracks/:name" component={containers.ViewTrack}/>
+				<Route path="feed/filter" component={containers.Filter}/>
+				<Route path="feed/search" component={containers.Search}/>
+				<Route path="feed/single" component={containers.SingleFeed}/>
 			</Route>
 
 			{/*logged out*/}
