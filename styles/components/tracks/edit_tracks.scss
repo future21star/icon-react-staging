@@ -1,0 +1,36 @@
+.edit-tracks-wrapper {
+  .edit-tracks-list-wrapper {
+    padding-top: 10px;
+  }
+  .thumbnail {
+    position: relative;
+    padding: 0;
+    border: none;
+    overflow: hidden;
+
+    &:hover{
+      .btn-absolute{
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.btn-absolute {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  border: none;
+  font-size: 1.4em;
+  padding-top: 75px;
+  text-decoration: none !important;
+  text-transform: uppercase;
+  opacity: 0;
+  font-weight: 500;
+  letter-spacing: 1px;
+  background-color: white;
+  @include transition(.3s ease left, .3s ease opacity);
+}

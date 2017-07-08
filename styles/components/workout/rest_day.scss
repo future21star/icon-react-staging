@@ -1,0 +1,26 @@
+.rest-day-container {
+  padding-top: 140px;
+  padding-top: 5vh;
+  position: relative;
+
+  .track-name, .track-status{
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .track-status {
+    font-size: 72px;
+    background: -webkit-linear-gradient($blueLight, $blue);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 5em;
+  }
+  .track-icon {
+    text-align: center;
+    [class^="icon-"], [class*=" icon-"] {
+      font-size: 50px;
+    }
+  }
+
+}

@@ -1,0 +1,96 @@
+.workout-banner-wrapper-desktop{
+  .workout-banner-desktop{
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    /*min-height: 350px;*/
+    .overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, .7);
+    }
+    .workout-banner-list-with-note {
+      padding-bottom: 30px !important;
+    }
+    .title-desktop{
+      position: relative;
+      text-align: center;
+      padding-top: 60px;
+      h3, h1, h2 {
+        color: #5DC6D2;
+        margin-top: 0;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+      }
+      .next-wod{
+        position: absolute;
+        color: #9a9b9f;
+        top: 47%;
+        right: 30px;
+        font-size: 16px;
+        i{
+          margin-left: 15px;
+          color: #d12022;
+          position: relative;
+          top: 2px;
+          font-size: 14px;
+        }
+      }
+      .prev-wod{
+        position: absolute;
+        color: #9a9b9f;
+        top: 47%;
+        left: 30px;
+        font-size: 16px;
+        span.mirror-icon{
+          transform: rotate(180deg);
+          display: inline-block;
+          margin-right: 10px;
+          position: relative;
+          top: 2px;
+        }
+        i{
+          margin-right: 15px;
+          color: #d12022;
+          position: relative;
+          top: 1px;
+          font-size: 14px;
+        }
+      }
+      .prev-wod, .next-wod, .prev-wod:hover, .next-wod:hover{
+        text-decoration: none;
+        outline: none;
+      }
+      ul.workout-banner-list-desktop{
+        display: block;
+        /*/max-width: 95%;
+        margin-left: auto;
+        margin-right: auto;*/
+        padding-bottom: 70px;
+        margin-bottom: 0;
+        li:not(:last-child) {
+          border-right: 1px solid white;
+        }
+        li {
+          padding: 0 10px;
+          text-align: center;
+          min-width: 170px;
+          h3, p {
+            color: #fff;
+          }
+          p {
+            font-size: 18px;
+            font-weight: 300;
+            margin-bottom: 0;
+          }
+          h3 {
+            margin-bottom: 3px;
+            letter-spacing: 1px;
+            font-size: 21px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,203 @@
+.workout-mode-tabs {
+
+  .tab-content {
+    @-webkit-keyframes fadeIn {
+      from {
+        opacity: 0.1
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0.1
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .active {
+      -webkit-animation-name: fadeIn;
+      animation-name: fadeIn;
+      -webkit-animation-duration: 1s;
+      animation-duration: 1s;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+    }
+  }
+  min-height: 100vh;
+  background: url('../static/workout_mode.jpg') no-repeat center;
+  background-size: cover;
+
+  .nav {
+    li {
+      a {
+        padding: 0 4px;
+        font-size: 14px;
+        margin-right: 0;
+        font-family: 'Oswald', sans-serif;
+        color: #cecfc9;
+      }
+    }
+  }
+  .nav-tabs {
+    border-bottom: none;
+    background: transparent;
+    margin-top: 0;
+    li {
+      a:hover {
+        border-color: transparent;
+        background: transparent;
+      }
+    }
+  }
+  .nav-justified > li {
+    display: table-cell;
+    width: 1%;
+    color: #fff;
+    min-width: 35px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  .nav-justified > li > a, .nav-tabs.nav-justified > li > a {
+    margin-bottom: 1px;
+    border-bottom: none;
+  }
+  .nav-justified li:not(:last-child) a {
+    border-right: 1px solid #9a9997 !important;
+  }
+  .nav > li > a:hover, .nav > li > a:focus {
+    background-color: transparent;
+  }
+  .active {
+    color: #fffbff !important;
+  }
+  .workout-mode-tabs-list {
+    margin: 0 auto 0;
+    max-width: 400px;
+    li {
+      list-style-type: none;
+      padding: 5px 10px 3px 20px;
+      background: transparent;
+      left: 0;
+      width: 100%;
+      margin-bottom: 15px;
+      .list-number {
+        font-family: 'Oswald', sans-serif;
+        background: #5dc7d4;
+        color: white;
+        padding: 6px 10px 8px 10px;
+        border-radius: 50%;
+        margin-right: 15px;
+      }
+      p {
+        font-size: 16px;
+        margin-top: 5px;
+        color: #fffefd;
+      }
+      span::after {
+        clear: both;
+      }
+    }
+  }
+  li.list-group-item:last-child {
+    border-bottom: none;
+  }
+  .list-group-item {
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, .2);
+    div {
+      display: table;
+    }
+  }
+  .red-hyphen {
+    color: $red;
+  }
+  .title {
+    color: #5DC6D2;
+    position: relative;
+    text-align: center;
+    padding-top: 25px;
+    h3 {
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+  }
+  .workout-mode-banner-list {
+    display: block;
+    max-width: 95%;
+    margin-left: auto;
+    /*margin-right: auto;*/
+    padding-bottom: 10px;
+    li:not(:last-child) {
+      border-right: 1px solid white;
+    }
+    li {
+      margin-right: 7px;
+      padding-right: 10px;
+      h3, p {
+        color: #fff;
+      }
+      p {
+        font-size: 14px;
+        font-weight: 300;
+        margin-bottom: 0;
+      }
+      h3 {
+        margin-bottom: 3px;
+        letter-spacing: 1px;
+        font-size: 18px;
+      }
+    }
+  }
+  @media(min-width: 768px) {
+    .workout-mode-banner-list {
+      margin-right: auto;
+    }
+  }
+  .workout-mode-timer-wrapper {
+    color: #fff;
+    text-align: center;
+  }
+  .workout-mode-timer {
+    position: relative;
+    text-align: center;
+    margin-top: 50px;
+    font-size: 38px;
+  }
+  .btn-timer {
+    outline: none;
+    position: relative;
+    background: $red;
+    border: none;
+    //padding: 20px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-top: 15px;
+    margin-bottom: 100px;
+    font-weight: 300;
+    cursor: pointer;
+    i {
+      color: white;
+    }
+  }
+  .exit {
+    position: fixed;
+    top: 10px;
+    left: 8px;
+    a {
+      color: #fff;
+      font-size: 18px;
+      text-decoration: underline;
+    }
+  }
+  .workout-mode-tabs-content-container-wrapper {
+    margin-top: 15px;
+  }
+}
