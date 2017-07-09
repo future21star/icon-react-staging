@@ -1,50 +1,58 @@
-$white: #ffffff;
-$whiteDark: #f7f7f7;
-$grey:#D0D0D0;
-$greyLight: #eeeeee;
-$greyDark: #aaaaaa;
-$blue: #53C1CE;
-$blueLight: #77D6E1;
-$blueDark: #2b7596;
-$red: #CC1C22;
-$redDark: #A90D11;
-// colors
-$turquoise-color: $blue;
+@import "variables";
+@import "mixins";
 
-@mixin transform($trans){
-  -webkit-transform: $trans;
-  -moz-transform: $trans;
-  -o-transform: $trans;
-  transform: $trans;
-}
-
-@mixin transition($trans){
-  -webkit-transition: $trans;
-  -moz-transition: $trans;
-  -o-transition: $trans;
-  transition: $trans;
-}
-
-@import "programming";
-@import "rest-day";
-
-.gradient-blue{
+.gradient-blue {
   color: $white;
   background: $blue; /* Old browsers */
   background: -moz-linear-gradient(top, $blueLight 0%, $blue 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, $blueLight 0%,$blue 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, $blueLight 0%,$blue 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#77d6e1', endColorstr='#53c1ce',GradientType=0 );
+  background: -webkit-linear-gradient(top, $blueLight 0%, $blue 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, $blueLight 0%, $blue 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#77d6e1', endColorstr='#53c1ce', GradientType=0);
 }
 
- 
-.gradient-red{
+.gradient-turquoise{
+  color: $white;
+  background: $turquoise; /* Old browsers */
+  background: -moz-linear-gradient(top, $turquoise 0%, $turquoiseLight 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, $turquoise 0%, $turquoiseLight 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, $turquoise 0%, $turquoiseLight 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+}
+
+.gradient-red {
   color: $white;
   background: $red; /* Old browsers */
   background: -moz-linear-gradient(45deg, $redDark 0%, $red 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(45deg, $redDark 0%,$red 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(45deg, $redDark 0%,$red 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90d11', endColorstr='#cc1c22',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  background: -webkit-linear-gradient(45deg, $redDark 0%, $red 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(45deg, $redDark 0%, $red 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a90d11', endColorstr='#cc1c22', GradientType=1); /* IE6-9 fallback on horizontal gradient */
+}
+
+.bg-blue {
+  background-color: $blue;
+  color: $white;
+}
+
+.bg-turquoise-light{
+  background-color: $turquoiseLight;
+}
+
+.bg-sky {
+  background-color: $blueSky;
+  color: $white;
+}
+
+.bg-red {
+  background-color: $red;
+  color: $white;
+}
+
+.text-blue {
+  color: $blue;
+}
+
+.text-red {
+  color: $red;
 }
 
 .overlay-gradient, .overlay-gradient-absolute {
@@ -57,34 +65,36 @@ $turquoise-color: $blue;
   height: 100%;
 }
 
-.overlay-gradient-absolute{
+.overlay-gradient-absolute {
   position: absolute;
 }
 
-.menu-head-buffer{
-  padding-top: 60px;
+.menu-head-buffer {
+  padding-top: 20px;
 }
 
-
-.container-small{
+.container-small {
   max-width: 550px;
   margin: 0 auto;
 }
+
 /************************
 TYPOGRAPHY
 ************************/
-body{
+body {
   font-weight: 300;
 }
 
-h1, h2, h3, h4{
+h1, h2, h3, h4 {
   letter-spacing: 1px;
 
 }
-.block{
+
+.block {
   margin-top: 20px;
   margin-bottom: 20px;
 }
+
 // buttons
 .btn:focus, .btn.focus, .btn:active:focus, .btn:active.focus, .btn.active:focus, .btn.active.focus {
   outline: none;
@@ -119,10 +129,15 @@ h1, h2, h3, h4{
   padding-bottom: 46px;
 }*/
 
+.alert-danger{
+  text-align: center;
+}
+
 /******************************
 LOGIN & PASSWORDS
 ******************************/
-.form-control{
+
+.form-control {
   height: auto;
   border: none;
   box-shadow: none;
@@ -151,45 +166,61 @@ LOGIN & PASSWORDS
   }
 }
 
-.input-effect{
+.input-effect {
   position: relative;
-  border-bottom: 2px solid $grey;
+  border-bottom: 2px solid $greyLight;
+  width: 100%;
 
-  input{
+  input {
     background-color: transparent;
-    &:focus+.underline {
-      transform: scale(1);
-    }
+    &:focus{
+      + .input-group-addon span{
+        color: $red;
+      }
+      ~ .underline {
+        transform: scale(1);
+      }
+    } 
+  }
+   .form-control{
+    padding-left: 50px !important;
   }
 
-  .is-open+.underline{
+  .is-open + .underline {
     transform: scale(1);
+  }
+
+  .input-group-addon{
+      width: 50px;
+      position: absolute;
+      left: 0;
+      top: 8px;
   }
 }
 
-.underline{
+.underline {
   background-color: $red;
   display: inline-block;
   height: 2px;
   left: 0;
   position: absolute;
-  bottom: -1px;
+  bottom: -2px;
   width: 100%;
   @include transform(scale(0, 1));
   @include transition(all 0.2s linear);
 
 }
 
-.input-number{
-  border: 2px solid $grey;
+.input-number {
+  border: 2px solid $greyLight;
   margin-top: 20px;
   position: relative;
-  input{
-    text-align: center; 
+  input {
+    text-align: center;
     -webkit-appearance: none;
   }
 
-  .icon-range{
+  .icon-range {
     position: absolute;
     right: 5px;
     top: 10px;
@@ -200,14 +231,13 @@ LOGIN & PASSWORDS
 .input-group-addon {
   border: none;
   background: transparent;
-  
-  [class^="icon-"]{
+
+  [class^="icon-"] {
     font-size: 1.1em;
+    @include transition(.3s ease color);
   }
 
 }
-
-
 
 .forgot-password--check-spam-folder-wrapper {
   margin-top: 35px;
@@ -227,45 +257,49 @@ LOGIN & PASSWORDS
   text-align: center;
 
   a {
-    color: $turquoise-color;
+    color: $turquoise;
     text-decoration: underline;
   }
 }
 
-.login-container{
+.login-container {
   max-width: 350px;
+  margin: 7vh auto 0;
   letter-spacing: 1px;
   font-size: 1.1em;
-
-  .input-group{
-    width: 100%;  
+  
+  .input-group {
+    width: 100%;
   }
 
-  .input-group-addon{
-    width: 50px;
+  .input-group-addon {
 
-    .icon-register-password{
+    .icon-register-password {
       font-size: .9em;
     }
   }
 
-  button{
+  button {
     letter-spacing: 1px;
     @include transition(all .1s ease);
   }
-  
 
-  button:active, button:hover{
+  button:active, button:hover {
     transform: scale(.95);
     color: $white;
   }
 }
+.login-bg{
+  min-height: 100vh;
+  background-image:url(../static/loginBG.jpg);
+  background-size: cover;
+  background-position: center;
+}
 
-.form-submit-btn-wrapper{
+.form-submit-btn-wrapper {
   margin-top: 35px;
 
 }
-
 
 .restore-password-page--restore-password-form {
   .icon-register-password {
@@ -293,7 +327,7 @@ LOGIN & PASSWORDS
   }
 }
 
-.user-update-container{
+.user-update-container {
   max-width: 600px;
 }
 
@@ -338,7 +372,7 @@ LOGIN & PASSWORDS
     border-radius: 0;
   }
 
-  .Select-placeholder{
+  .Select-placeholder {
     color: $greyDark;
   }
   .Select-placeholder, .Select-input {
@@ -392,7 +426,7 @@ LOGIN & PASSWORDS
   color: #fff;
 }
 
-.rest-day-wrapper .rest-day-container .track-name{
+.rest-day-wrapper .rest-day-container .track-name {
   color: #eeeeee;
 }
 
@@ -406,6 +440,25 @@ LOGIN & PASSWORDS
 }
 
 /********** End of Programming desktop  **********/
+.edit-tracks-mid-section {
+  margin-bottom: 100px;
+  .title {
+    color: $red;
+    font-size: 24px;
+    text-transform: uppercase;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  p {
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+}
 
-@import "mediaqueries";
-@import "feed";
+.logo-wrapper {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  max-width: 175px;
+  height: auto;
+  margin: 0 auto;
+}

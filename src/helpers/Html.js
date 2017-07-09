@@ -35,28 +35,18 @@ export default class Html extends Component {
 
 				<link rel="icon" href="/favicon.png" type="image/x-icon"/>
 				<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-				{/* styles (will be present only in production with webpack extract text plugin) */}
-				{/*{Object.keys(assets.styles).sort((item1, item2) => {*/}
-				{/*if (item1 > item2) return -1;*/}
-				{/*if (item1 < item2) return 1;*/}
-				{/*return 0;*/}
-				{/*}).map((style, key) =>*/}
-				{/*<link href={assets.styles[style]} key={key} media="screen, projection"*/}
-				{/*rel="stylesheet" type="text/css" charSet="UTF-8"/>*/}
-				{/*)}*/}
 
 				{/*Temp*/}
 				<link rel="stylesheet" href="https://i.icomoon.io/public/2aac31bad8/IconAthlete-Vault/style.css"/>
-				<link href={assets.styles.vendors} rel="stylesheet" type="text/css" charSet="UTF-8"/>
-				<link href={assets.styles.main} rel="stylesheet" type="text/css" charSet="UTF-8"/>
 
+				<link href={assets.styles.main} rel="stylesheet" type="text/css" charSet="UTF-8"/>
 
 				{/* (will be present only in development mode) */}
 				{/* outputs a <style/> tag with all bootstrap styles + App.scss + it could be CurrentPage.scss. */}
 				{/* can smoothen the initial style flash (flicker) on page load in development mode. */}
 				{/* ideally one could also include here the style for the current page (Home.scss, About.scss, etc) */}
 				{/*{ Object.keys(assets.styles).length === 0 ? <style dangerouslySetInnerHTML={{__html: require('../containers/App/App.scss')._style}}/> : null }*/}
-				<script src={assets.javascript.vendors} charSet="UTF-8"/>
+				{/*<script src={assets.javascript.vendors} charSet="UTF-8"/>*/}
 			</head>
 			<body>
 			<div id="content" dangerouslySetInnerHTML={{__html: content}}/>

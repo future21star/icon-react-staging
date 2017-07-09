@@ -1,0 +1,52 @@
+.daily-brief-wrapper {
+
+  .daily-brief-header {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    cursor: pointer;
+
+    .daily-brief-header-text {
+      text-transform: uppercase;
+      margin: 0;
+      font-size: 1.4em;
+    }
+
+    .daily-brief-expand-btn {
+      padding: 3px 0;
+      float: right;
+      transition: all .5s ease;
+      -o-transition: all .5s ease;
+      -webkit-transition: all .5s ease;
+
+      &.active {
+        transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+      }
+    }
+
+    [class^="icon-"], [class*=" icon-"] {
+      color: #000000;
+      font-size: 10px;
+    }
+  }
+
+  .daily-brief-body {
+    padding-top: 5px;
+    padding-bottom: 15px;
+    font-size: 17px;
+  }
+
+  .daily-brief-desktop {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #cecece;
+    h2, h3 {
+      font-family: 'Lato', sans-serif;
+    }
+    p {
+      font-size: 16px;
+      margin-top: 15px;
+      color: #5a5a5a;
+      text-align: justify;
+    }
+  }
+}
