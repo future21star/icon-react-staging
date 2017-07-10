@@ -194,3 +194,49 @@
     }
   }
 }
+
+.nutrition-change-track-content-wrapper{
+  background: #f2f2f2;
+  padding: 15px;
+  .select-track, .calculate-goals{
+    text-align: center;
+    background: white;
+    padding-bottom: 40px;
+    margin-bottom: 15px;
+    h2{
+      margin-top: 0;
+      text-transform: uppercase;
+      padding-top: 30px;
+      margin-bottom: 20px;
+      font-size: 24px;
+      padding-left: 25px;
+      padding-right: 25px;
+    }
+    p{
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 30px;
+      padding-left: 25px;
+      padding-right: 25px;
+    }
+    .btn-pill{
+      background: white;
+      color: black;
+      text-transform: uppercase;
+      font-size: 11px;
+      font-weight: 500;
+      border-radius: 30px;
+      border: none;
+      padding: 12px 35px 12px 35px;
+      min-width: 135px;
+    }
+    .btn-turquoise{
+      background: #5DC6D2;
+      color: white;
+    }
+    .btn-grey{
+      background: #999999;
+      color: #fff;
+    }
+  }
+}
