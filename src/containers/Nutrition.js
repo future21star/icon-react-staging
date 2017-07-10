@@ -4,6 +4,9 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {Menubar, NoAccess} from '../components/index';
 import {connect} from "react-redux";
 import {includes} from 'lodash';
+import {Link} from 'react-router';
+import slackImg from '../../static/slack.png';
+import strengthBG from '../../static/strengthBG.jpg';
 
 @connect(
 	state => ({
@@ -17,6 +20,8 @@ export default class Nutrition extends Component {
 		const {vaultAccess} = this.props;
 
 		let accessToNutrition = includes(vaultAccess, 'nutrition');
+		let style = {backgroundImage: 'url(' + strengthBG + ')'};
+		let imageUrl = "http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/articles/health_tools/lowering_blood_pressure_exercise_slideshow/getty_rf_photo_of_men_lifting_weights_in_gym.jpg";
 
 		return (
 			<ReactCSSTransitionGroup
@@ -28,26 +33,148 @@ export default class Nutrition extends Component {
 				transitionLeave={true}
 				transitionLeaveTimeout={500}
 			>
-				<div >
+				<div>
 					<Helmet title="Nutrition"/>
 
-					<Menubar title="Nutrition" className="gradient-blue"/>
+					<Menubar
+						title="Nutrition"
+						leftSideContent={<Link to="profile"><span className="icon-user-profile"/>
+										 <span className="mobile-hide">Profile</span>
+									 </Link>}
+						className="gradient-turquoise menu-color-white">
+					</Menubar>
 
-					<div className="container">
-						{accessToNutrition ? this.renderNutrition() : <NoAccess/>}
+					<div className="nutrition-page-content-wrapper bottom-padding">
+
+						<div className="slack-section">
+							<div className="container-fluid">
+								<h4>
+									<img src={slackImg} alt="slack" className="img-responsive slack-img"/>
+									<span>Join Icon Slack Chat</span>
+								</h4>
+								<a href="#" className="pull-right red-link">Join Us</a>
+							</div>
+						</div>
+
+						<div className="nutrition-banner-wrapper container-small">
+							<div className="nutrition-banner" style={style}>
+								<div className="overlay"/>
+								<div className="title">
+									<h3>The Lean Machine</h3>
+									<h5>Sustainable Weight Loss</h5>
+									<button className="btn btn-primary btn-pill">Change Track</button>
+								</div>
+							</div>
+						</div>
+
+						<div className="nutrition-data-list">
+							<ul className="list-inline">
+								<li>
+									<p>Calories</p>
+									<h4>2323</h4>
+								</li>
+								<li>
+									<p>Gr Carbs</p>
+									<h4>350-540</h4>
+								</li>
+								<li>
+									<p>Gr Protein</p>
+									<h4>135-162</h4>
+								</li>
+							</ul>
+						</div>
+
+						<div className="nutrition-mid-section">
+							<div className="nutrition-mid-section-content">
+								<a href="#">
+									<p>
+										<span className="icon-nutrition"/>
+										<span className="text">
+											Meal Planning
+										</span>
+										<span className="icon-arrow-left pull-right rotated-icon"/>
+									</p>
+								</a>
+							</div>
+							<div className="nutrition-mid-section-content">
+								<a href="#">
+									<p>
+										<span className="icon-nutrition-found icon-green"/>
+										<span className="text">
+											Nutrition Foundations
+										</span>
+										<span className="icon-arrow-left pull-right rotated-icon"/>
+									</p>
+								</a>
+							</div>
+							<div className="nutrition-mid-section-content">
+								<a href="#">
+									<p>
+										<span className="icon-nutrition-blog icon-orange"/>
+										<span className="text">
+											Blog News
+										</span>
+										<span className="icon-arrow-left pull-right rotated-icon"/>
+									</p>
+								</a>
+							</div>
+							<div className="nutrition-mid-section-content">
+								<a href="#">
+									<p>
+										<span className="icon-nutrition-calculator icon-red"/>
+										<span className="text">
+											Nutrition Calculator
+										</span>
+										<span className="icon-arrow-left pull-right rotated-icon"/>
+									</p>
+								</a>
+							</div>
+						</div>
+
+						<div className="nutrition-featured-news-section">
+							<div className="container">
+								<h4>Featured news</h4>
+							</div>
+							<div className="featured-news">
+								<div className="container">
+									<div className="row">
+										<div className="col-xs-5">
+											<img width="100%" src={imageUrl}/>
+										</div>
+										<div className="col-xs-7">
+											<div className="featured-news-title">
+												<Link to="/feed/post/1">Training For Competition</Link>
+											</div>
+											<div className="featured-news-content">
+												Watch Chris and NAME talk about training to compete...
+											</div>
+											<div className="featured-news-date">Posted 24.02.2017</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div className="featured-news">
+								<div className="container">
+									<div className="row">
+										<div className="col-xs-5">
+											<img width="100%" src={imageUrl}/>
+										</div>
+										<div className="col-xs-7">
+											<div className="featured-news-title">
+												<Link to="/feed/post/1">Hero's Journey and WOD</Link>
+											</div>
+											<div className="featured-news-content">
+												Watch Chris and NAME talk about their journeys with...
+											</div>
+											<div className="featured-news-date">Posted 24.02.2017</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</ReactCSSTransitionGroup>
-		);
-	}
-
-
-	renderNutrition() {
-		return (
-			<div className="text-center">
-				<h2>You have access</h2>
-				<p>You have access to view nutrition page.</p>
-			</div>
 		);
 	}
 }

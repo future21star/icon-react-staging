@@ -1,0 +1,196 @@
+.nutrition-page-content-wrapper{
+  .slack-section{
+    background: #f2f2f2;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    h4{
+      margin-top: 7px;
+      margin-bottom: 5px;
+    }
+    h4, img{
+      display: inline-block;
+    }
+    .slack-img{
+      max-width: 30px;
+      margin-right: 15px;
+    }
+    a.red-link{
+      font-size: 11px;
+      color: #D1252E;
+      font-weight: 600;
+      text-transform: uppercase;
+      text-decoration: underline;
+      margin-top: 12px;
+    }
+  }
+  .nutrition-banner {
+    position: relative;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    .overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.52);
+    }
+    .title {
+      position: relative;
+      text-align: center;
+      padding-top: 30px;
+      padding-bottom: 40px;
+      h1, h2, h3{
+        margin-top: 10px;
+        margin-bottom: 0;
+        color: #5DC6D2;
+      }
+      h5{
+        color: #fff;
+        font-family: Lato, sans-serif;
+        margin-top: 5px;
+        font-weight: 300;
+        letter-spacing: .5px;
+        margin-bottom: 15px;
+      }
+    }
+    .banner-img {
+      max-width: 80px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    [class^="icon-"], [class*=" icon-"] {
+      font-size: 50px;
+      margin-top: 30px;
+    }
+
+    .icon-checkmark {
+      font-size: 28px;
+      margin-top: 0;
+      position: absolute;
+      top: 25px;
+      right: 20px;
+      max-width: 30px;
+      color: $red;
+    }
+  }
+
+  .btn-pill{
+    background: white;
+    color: black;
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: 500;
+    border-radius: 30px;
+    border: none;
+    padding: 10px 20px;;
+  }
+  
+  .nutrition-data-list{
+    ul{
+      text-align: center;
+      padding-top: 15px;
+      padding-bottom: 5px;
+      li{
+        width: 33.33%;
+        p{
+          font-size: 12px;
+          font-weight: 500;
+          color: #6e6e6e;
+        }
+        h4{
+          color: #5DC6D2;
+          font-size: 20px;
+        }
+      }
+      li:not(:last-child){
+        border-right: 1px solid #cecece;
+      }
+    }
+  }
+
+  .nutrition-mid-section{
+    background: #f2f2f2;
+    padding: 15px 10px 10px 10px;
+    .nutrition-mid-section-content{
+      background: white;
+      padding: 15px 20px 8px 20px;
+      margin-bottom: 5px;
+      a{
+        text-decoration: none;
+      }
+      .rotated-icon{
+        -ms-transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+        margin-top: 3px;
+        color: #5c5c5c;
+      }
+      p{
+        span[class^="icon-nutrition"], span[class*=" icon-nutrition"] {
+          margin-right: 15px;
+          font-size: 18px;
+          display: inline-block;
+          min-width: 20px;
+        }
+        .text{
+          font-weight: 500;
+        }
+        .icon-green{
+          color: #8fce42;
+        }
+        .icon-orange{
+          color: #f29671;
+        }
+        .icon-red{
+          color: #e00f1d;
+        }
+      }
+    }
+  }
+
+  .nutrition-featured-news-section{
+    .featured-news {
+      background: #ffffff;
+      padding: 15px 0 15px 0;
+      .featured-news-title {
+        font-size: 18px;
+        line-height: 1.2em;
+        color: #000;
+        a{
+          font-size: 16px;
+          font-weight: 500;
+        }
+      }
+      .featured-news-date {
+        color: #999;
+        text-transform: uppercase;
+        font-size: 11px;
+        &:before {
+          content: '\e902';
+          font-family: 'icomoon', serif;
+          padding-right: 5px;
+        }
+      }
+      .featured-news-content {
+        padding: 10px 0;
+      }
+    }
+    .featured-news:not(:last-child){
+      border-bottom: 1px solid #dddddd;
+    }
+  }
+
+  .padding-bottom-100{
+    padding-bottom: 100px;
+  }
+
+  .nutrition-featured-news-section{
+    h4{
+      color: #D1252E;
+      text-transform: uppercase;
+      margin-top: 20px;
+      margin-bottom: 4px;
+    }
+  }
+}
