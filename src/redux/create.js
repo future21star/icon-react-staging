@@ -1,4 +1,5 @@
 import {createStore as _createStore, applyMiddleware, compose} from 'redux';
+import { loadingBarMiddleware } from 'react-redux-loading-bar'
 import createMiddleware from './middleware/clientMiddleware';
 import {routerMiddleware} from 'react-router-redux';
 import thunk from 'redux-thunk';
@@ -8,7 +9,9 @@ export default function createStore(history, client, data) {
 	// Sync dispatched route actions to the history
 	const reduxRouterMiddleware = routerMiddleware(history);
 
-	const middleware = [createMiddleware(client), reduxRouterMiddleware, thunk];
+	const middleware = [createMiddleware(client), reduxRouterMiddleware, thunk, loadingBarMiddleware({
+		promiseTypeSuffixes: ['REQUEST', 'SUCCESS', 'FAIL'],
+	})];
 
 	let finalCreateStore;
 	if (__DEVELOPMENT__ && __CLIENT__ && __DEVTOOLS__) {

@@ -1,6 +1,6 @@
 import {LOGOUT_SUCCESS} from './authStore'
 
-export const LOGIN = 'login/LOGIN';
+export const LOGIN = 'login/LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'login/LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'login/LOGIN_FAIL';
 
