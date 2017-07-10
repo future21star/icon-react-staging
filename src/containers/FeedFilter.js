@@ -17,7 +17,7 @@ export default class FeedFilter extends Component {
 	render() {
 		const {vaultAccess} = this.props;
 
-		let accessToFeed = includes(vaultAccess, 'feed');
+		let accessToFeed = includes(vaultAccess, 'feed-desktop');
 
 		return (
 			<ReactCSSTransitionGroup

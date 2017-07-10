@@ -49,6 +49,8 @@ export default (store) => {
 					<IndexRoute component={containers.Home}/>
 					<Route path="profile" component={containers.Profile}/>
 					<Route path="feed" component={containers.Feed}/>
+					<Route path="feed-desktop" component={containers.FeedDesktop}/>
+					<Route path="feed-desktop/post/:id" component={containers.FeedDesktopSinglePost}/>
 					<Route path="nutrition" component={containers.Nutrition}/>
 					<Route path="programming" component={containers.Programming}/>
 					<Route path="programming/list-view" component={containers.ProgrammingListView}/>

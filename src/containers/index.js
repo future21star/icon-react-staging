@@ -9,6 +9,8 @@ export EditTracks from './EditTracks';
 export ViewTrack from './ViewTrack';
 export Help from './Help';
 export Feed from './Feed';
+export FeedDesktop from './FeedDesktop';
+export FeedDesktopSinglePost from './FeedDesktopSinglePost';
 export SingleFeed from './SingleFeed';
 export FeedFilter from './FeedFilter';
 export Search from './FeedSearch';
