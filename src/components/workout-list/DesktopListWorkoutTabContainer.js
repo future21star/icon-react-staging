@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import TabContentSectionDesktop from './TabContentSectionDesktop';
+import DesktopListWorkoutTab from './DesktopListWorkoutTab';
 
-export default class TracksListTabsDesktop extends Component {
+export default class DesktopListWorkoutTabContainer extends Component {
 
 	constructor(props) {
 		super(props);
@@ -77,21 +77,21 @@ export default class TracksListTabsDesktop extends Component {
 
 				<div className="tab-content">
 					<div className={`tab-pane ${this.state.activeTab === 'warmUp' ? 'active' : ''}`}>
-						<TabContentSectionDesktop
+						<DesktopListWorkoutTab
 							title="Warm-Up"
 							track={track}
 							content={track.warmUp}
 						/>
 					</div>
 					<div className={`tab-pane ${this.state.activeTab === 'mainWorkout' ? 'active' : ''}`}>
-						<TabContentSectionDesktop
+						<DesktopListWorkoutTab
 							title="Main Workout"
 							track={track}
 							content={track.mainWorkout}
 						/>
 					</div>
 					<div className={`tab-pane ${this.state.activeTab === 'coolDown' ? 'active' : ''}`}>
-						<TabContentSectionDesktop
+						<DesktopListWorkoutTab
 							title="Cool Down"
 							track={track}
 							content={track.coolDown}

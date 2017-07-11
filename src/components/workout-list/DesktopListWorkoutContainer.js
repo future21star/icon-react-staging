@@ -1,9 +1,9 @@
 import React, {Component, PropTypes} from 'react';
 import moment from 'moment';
-import TracksListTabsDesktop from './TracksListTabsDesktop';
+import DesktopListWorkoutTabContainer from './DesktopListWorkoutTabContainer';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-export default class TracksListItemDesktop extends Component {
+export default class DesktopListWorkoutContainer extends Component {
 	static propTypes = {
 		wod: PropTypes.object
 	};
@@ -49,7 +49,7 @@ export default class TracksListItemDesktop extends Component {
 							</div>
 
 							<div className="col-md-8 track-list-tabs-area-desktop">
-								<TracksListTabsDesktop track={wod}/>
+								<DesktopListWorkoutTabContainer track={wod}/>
 							</div>
 						</div> ) : undefined }
 				</div>

@@ -23,9 +23,12 @@ export RestDay from './workout/RestDay';
 export Timer from './workout/Timer';
 export WorkoutBanner from './workout/WorkoutBanner';
 export Workout from './workout/Workout';
-export WorkOutModeTabs from './workout/WorkOutModeTabs';
+export WorkoutModeContainer from './workout/WorkoutModeContainer';
 export DesktopWorkoutBanner from './workout/DesktopWorkoutBanner';
 export DesktopWorkout from './workout/DesktopWorkout';
+
+//WORKOUT LIST VIEW
+export DesktopListWorkoutContainer from './workout-list/DesktopListWorkoutContainer';
 
 //PROGRAMMING
 export ProgrammingHeader from './programming/ProgrammingHeader';
@@ -40,8 +43,6 @@ export DailyBriefDesktop from './tracks/DailyBriefDesktop';
 export DailyBriefCollapsable from './tracks/DailyBriefCollapsable';
 export BtnBottom from './tracks/BtnBottom';
 
-//FIX
-export TracksListItemDesktop from './fix/TracksListItemDesktop';
 
 
 
