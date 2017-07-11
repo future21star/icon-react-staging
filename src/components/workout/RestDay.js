@@ -85,12 +85,12 @@ export default class RestDay extends Component {
 					<h1 className="track-status">Rest<br />Day</h1>
 					<div className="hidden-sm hidden-xs">
 						{nextTrack ?
-							<a href="#" onClick={e => onSelectNextTrack(nextTrack)} className="pull-right next-wod">
+							<a href="javascript:;" onClick={e => onSelectNextTrack(nextTrack)} className="pull-right next-wod">
 								Next Track <i className="icon-arrow-next"/>
 							</a> : undefined}
 
 						{prevTrack ?
-							<a href="#" onClick={e => onSelectPrevTrack(prevTrack)} className="pull-left prev-wod">
+							<a href="javascript:;" onClick={e => onSelectPrevTrack(prevTrack)} className="pull-left prev-wod">
 								<span className="mirror-icon"><i className="icon-arrow-next"/></span>
 								Prev Track
 							</a> : undefined}

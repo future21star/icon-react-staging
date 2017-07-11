@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 // import './WorkOutModeTabs.scss';
 import {padStart} from 'lodash';
-import WorkOutModeTabsListItem from './WorkOutModeTabsListItem';
+import WorkoutListItem from './WorkoutListItem';
 
-export default class WorkOutModeTabsContent extends Component {
+export default class WorkoutModeTabsContent  extends Component {
 
 	render() {
 		const {content} = this.props;
@@ -41,7 +41,7 @@ export default class WorkOutModeTabsContent extends Component {
 							{parsedContentObj.map((chunk, i) => {
 								let number = padStart((i + 1).toString(), 2, '0');
 								return (
-									<WorkOutModeTabsListItem number={number} key={i}>
+									<WorkoutListItem number={number} key={i}>
 										<div className={`${chunk.optional ? 'wod-optional' : ''}`}>
 											{chunk.optional ? <p className="text-danger">OPTIONAL</p> : undefined}
 											<p>{chunk.title}</p>
@@ -54,7 +54,7 @@ export default class WorkOutModeTabsContent extends Component {
 												)
 											})}
 										</div>
-									</WorkOutModeTabsListItem>
+									</WorkoutListItem>
 								)
 							})}
 						</ul>
