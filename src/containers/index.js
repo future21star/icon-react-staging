@@ -18,3 +18,4 @@ export AuthLayout from './AuthLayout';
 export Home from './Home';
 export Nutrition from './Nutrition';
 export NutritionChangeTrack from './NutritionChangeTrack';
+export NutritionFoundations from './NutritionFoundations';
