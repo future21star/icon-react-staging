@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import WorkOutModeTabContent from './WorkOutModeTabsContent';
-import {Timer} from './Timer';
+import Timer from './Timer';
 import Note from './Note';
 // import './WorkOutModeTabs.scss';
 

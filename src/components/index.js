@@ -40,6 +40,9 @@ export DailyBriefDesktop from './tracks/DailyBriefDesktop';
 export DailyBriefCollapsable from './tracks/DailyBriefCollapsable';
 export BtnBottom from './tracks/BtnBottom';
 
+//FIX
+export TracksListItemDesktop from './fix/TracksListItemDesktop';
+
 
 
 
