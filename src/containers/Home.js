@@ -6,7 +6,6 @@ import {
 	WorkoutBanner,
 	Workout,
 	RestDay,
-	Loader,
 	DotList
 } from '../components/index';
 import {Link} from "react-router";
@@ -176,8 +175,6 @@ export default class Home extends Component {
 									 onSelectNextTrack={e => this.refs.homeSwipeRef.next()}
 									 onSelectPrevTrack={e => this.refs.homeSwipeRef.prev()}/>
 				) : undefined }
-
-				{wodsStore.loading ? <Loader/> : undefined}
 			</div>
 		);
 	}

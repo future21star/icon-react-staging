@@ -1,4 +1,5 @@
 import {combineReducers} from 'redux';
+import { loadingBarReducer } from 'react-redux-loading-bar'
 import {routerReducer} from 'react-router-redux';
 import {reducer as reduxAsyncConnect} from 'redux-async-connect';
 
@@ -16,6 +17,7 @@ import swipeStore from './swipeStore';
 
 export default combineReducers({
 	routing: routerReducer,
+	loadingBar: loadingBarReducer,
 	reduxAsyncConnect,
 	authStore,
 	loginStore,

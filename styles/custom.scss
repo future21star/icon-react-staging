@@ -10,7 +10,7 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#77d6e1', endColorstr='#53c1ce', GradientType=0);
 }
 
-.gradient-turquoise{
+.gradient-turquoise {
   color: $white;
   background: $turquoise; /* Old browsers */
   background: -moz-linear-gradient(top, $turquoise 0%, $turquoiseLight 100%); /* FF3.6-15 */
@@ -33,7 +33,7 @@
   color: $white;
 }
 
-.bg-turquoise-light{
+.bg-turquoise-light {
   background-color: $turquoiseLight;
 }
 
@@ -129,7 +129,7 @@ h1, h2, h3, h4 {
   padding-bottom: 46px;
 }*/
 
-.alert-danger{
+.alert-danger {
   text-align: center;
 }
 
@@ -173,16 +173,16 @@ LOGIN & PASSWORDS
 
   input {
     background-color: transparent;
-    &:focus{
-      + .input-group-addon span{
+    &:focus {
+      + .input-group-addon span {
         color: $red;
       }
       ~ .underline {
         transform: scale(1);
       }
-    } 
+    }
   }
-   .form-control{
+  .form-control {
     padding-left: 50px !important;
   }
 
@@ -190,11 +190,11 @@ LOGIN & PASSWORDS
     transform: scale(1);
   }
 
-  .input-group-addon{
-      width: 50px;
-      position: absolute;
-      left: 0;
-      top: 8px;
+  .input-group-addon {
+    width: 50px;
+    position: absolute;
+    left: 0;
+    top: 8px;
   }
 }
 
@@ -267,7 +267,7 @@ LOGIN & PASSWORDS
   margin: 7vh auto 0;
   letter-spacing: 1px;
   font-size: 1.1em;
-  
+
   .input-group {
     width: 100%;
   }
@@ -289,9 +289,10 @@ LOGIN & PASSWORDS
     color: $white;
   }
 }
-.login-bg{
+
+.login-bg {
   min-height: 100vh;
-  background-image:url(../static/loginBG.jpg);
+  background-image: url(../static/loginBG.jpg);
   background-size: cover;
   background-position: center;
 }
@@ -461,4 +462,11 @@ LOGIN & PASSWORDS
   max-width: 175px;
   height: auto;
   margin: 0 auto;
+}
+
+.loading-bar {
+  background: $red;
+  height: 3px;
+  position: absolute;
+  z-index: 100000;
 }

@@ -1,6 +1,6 @@
 import {LOGOUT_SUCCESS} from "./authStore";
 
-const LOAD = 'workout/LOAD';
+const LOAD = 'workout/LOAD_REQUEST';
 const LOAD_SUCCESS = 'workout/LOAD_SUCCESS';
 const LOAD_FAIL = 'workout/LOAD_FAIL';
 
