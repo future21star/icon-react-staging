@@ -64,6 +64,9 @@ export default (store) => {
 				<Route path="feed/filter" component={containers.FeedFilter}/>
 				<Route path="feed/search" component={containers.Search}/>
 				<Route path="feed/single" component={containers.SingleFeed}/>
+				<Route path="nutrition/help" component={containers.NutritionHelp}/>
+				<Route path="nutrition/calculator" component={containers.NutritionCalculator}/>
+
 			</Route>
 
 			{/*logged out*/}
