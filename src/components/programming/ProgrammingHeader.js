@@ -5,14 +5,13 @@ import {DayPicker, DotList} from '../index';
 @connect(
 	state => ({
 		user: state.authStore.user,
-		swipedActiveTrackName: state.swipeStore.swipedActiveTrackName,
 	})
 )
 
 export default class ProgrammingHeader extends Component {
 
 	render() {
-		const {user, swipedActiveTrackName} = this.props;
+		const {user} = this.props;
 
 		return user ? (
 			<div className="programming-header-wrapper menu-head-buffer">
@@ -22,7 +21,6 @@ export default class ProgrammingHeader extends Component {
 							<DayPicker/>
 						</div>
 						<div className="col-xs-12">
-							<div className="title">{swipedActiveTrackName} Track</div>
 							<DotList/>
 						</div>
 					</div>

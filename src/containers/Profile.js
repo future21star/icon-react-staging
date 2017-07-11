@@ -46,11 +46,11 @@ export default class Profile extends Component {
 			<ReactCSSTransitionGroup
 				transitionName="react-anime"
 				transitionAppear={true}
-				transitionAppearTimeout={5000}
-				transitionEnter={true}
-				transitionEnterTimeout={500}
-				transitionLeave={true}
-				transitionLeaveTimeout={500}
+				transitionAppearTimeout={300}
+				// transitionEnter={true}
+				// transitionEnterTimeout={300}
+				// transitionLeave={true}
+				// transitionLeaveTimeout={300}
 			>
 				<div className="profile-page-wrapper">
 					<Helmet title="Profile"/>

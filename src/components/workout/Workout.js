@@ -39,7 +39,7 @@ export default class Workout extends Component {
 
 		return (
 			<div className="workout-tabs">
-				<div className="workout-tabs-list-wrapper">
+				<div className="workout-tabs-list-wrapper gradient-white">
 					<div className="container">
 						<ul className="nav nav-tabs nav-justified">
 							<li>

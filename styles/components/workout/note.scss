@@ -1,6 +1,5 @@
 .note-wrapper {
   position: relative;
-  padding-bottom: 30px;
   padding-top: 15px;
 
   .note {
@@ -44,13 +43,10 @@
     }
 
     h3 {
-      margin-top: 10px !important;
-      font-size: 1.2em !important;
-      color: #5DC6D2 !important;
-      font-weight: 600 !important;
+      margin: 10px 0;
+      font-size: 1.2em;
+      color: $turquoise;
       text-align: left !important;
-      margin-bottom: 10px !important;
-
       transition: .3s ease color;
       -moz-transition: .3s ease color;
       -webkit-transition: .3s ease color;
@@ -64,8 +60,5 @@
       text-align: left !important;
       color: #ffffff;
     }
-  }
-  .note-has-margin-bottom {
-    margin-bottom: 35px;
   }
 }

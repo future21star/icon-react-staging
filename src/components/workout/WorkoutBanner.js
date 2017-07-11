@@ -73,7 +73,7 @@ export default class WorkoutBanner extends Component {
 
 	render() {
 		const {nextTrack, prevTrack, onSelectNextTrack, onSelectPrevTrack, wod} = this.props;
-
+		console.log(wod);
 		return (
 			<div className="workout-banner-wrapper">
 				<div className={`workout-banner ${wod.track.format}`}
@@ -86,13 +86,10 @@ export default class WorkoutBanner extends Component {
 					</div>
 					<div className="mid-content">
 						<div className="mid-content-section">
+							<h2>{wod.track.name}</h2>
 							{this.getIcon()}
-							<h1>{wod.track.name}</h1>
+							<h3>{wod.title}</h3>
 						</div>
-					</div>
-					<div className="title">
-						<h3>{wod.track.title}</h3>
-
 						<ul className={`workout-banner-list list-inline ${wod.notes ? 'workout-banner-list-with-note' : ''}`}>
 							<li>
 								<h3>{`${wod.duration} min` || '--'}</h3>
@@ -107,13 +104,12 @@ export default class WorkoutBanner extends Component {
 								<p>Focus</p>
 							</li>
 						</ul>
-					</div>
-
-					{wod.notes ? (
+						{wod.notes ? (
 						<Note
 							noteContent={wod.notes}
 							classNames="note note-has-margin-bottom"
 						/>) : undefined}
+					</div>
 
 					<div className="hidden-xs hidden-sm">
 						{nextTrack ? (

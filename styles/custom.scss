@@ -1,6 +1,9 @@
 @import "variables";
 @import "mixins";
 
+body{
+  font-size: 16px;
+}
 .gradient-blue {
   color: $white;
   background: $blue; /* Old browsers */
@@ -26,6 +29,14 @@
   background: -webkit-linear-gradient(45deg, $redDark 0%, $red 100%); /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(45deg, $redDark 0%, $red 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a90d11', endColorstr='#cc1c22', GradientType=1); /* IE6-9 fallback on horizontal gradient */
+}
+
+.gradient-white{
+  background: #fcfcfc; /* Old browsers */
+background: -moz-linear-gradient(top, #ffffff 0%, #f7f7f7 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #ffffff 0%,#f7f7f7 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #ffffff 0%,#f7f7f7 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f7f7f7',GradientType=0 ); /* IE6-9 */
 }
 
 .bg-blue {
@@ -412,10 +423,6 @@ LOGIN & PASSWORDS
 
 .bottom-padding {
   padding-bottom: 100px;
-}
-
-.mid-content-section {
-  padding-top: 40px;
 }
 
 .panel-home {

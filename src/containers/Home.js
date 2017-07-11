@@ -85,11 +85,11 @@ export default class Home extends Component {
 			<ReactCSSTransitionGroup
 				transitionName="react-anime"
 				transitionAppear={true}
-				transitionAppearTimeout={5000}
-				transitionEnter={true}
-				transitionEnterTimeout={500}
-				transitionLeave={true}
-				transitionLeaveTimeout={500}
+				transitionAppearTimeout={300}
+				transitionEnter={false}
+				transitionEnterTimeout={300}
+				transitionLeave={false}
+				 transitionLeaveTimeout={300}
 			>
 				<div className="bottom-padding">
 					<Helmet title="Home"/>
