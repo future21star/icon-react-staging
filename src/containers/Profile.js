@@ -42,9 +42,9 @@ export default class Profile extends Component {
 				transitionAppear={true}
 				transitionAppearTimeout={300}
 				// transitionEnter={true}
-				// transitionEnterTimeout={300}
+				transitionEnterTimeout={300}
 				// transitionLeave={true}
-				// transitionLeaveTimeout={300}
+				transitionLeaveTimeout={300}
 			>
 				<div className="profile-page-wrapper">
 					<Helmet title="Profile"/>

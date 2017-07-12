@@ -4,7 +4,7 @@ import {padStart} from 'lodash';
 
 export default class WorkoutTabsContentContainer extends Component {
 	static propTypes = {
-		content: PropTypes.object,
+		content: PropTypes.string,
 		className: PropTypes.string
 	};
 
