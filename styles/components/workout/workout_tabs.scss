@@ -73,7 +73,7 @@
   li {
     list-style-type: none;
     padding: 20px 10px 12px 0;
-    background: white;
+    background: $white;
     /*position: absolute;*/
     left: 0;
     width: 100%;
@@ -86,8 +86,13 @@
       margin-right: 15px;
     }
     p {
-      font-size: 16px;
+      font-size: 1.1em;
       margin-top: 5px;
+
+      &.title{
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
     }
     span::after {
       clear: both;
@@ -110,6 +115,34 @@
   }
   .red-hyphen {
     color: $red;
+    margin-right: 3px;
+  }
+
+  .wod-optional{
+    position: relative;
+    & > div > *{
+      position: relative;
+      z-index: 1;
+    }
+
+    .list-number{
+      background: $red;
+    }
+
+    .text-danger{
+      position: absolute;
+      z-index: 0;
+      width: 100%;
+      left: 0;
+      top: 40%;
+      text-align: center;
+      top: 20px;
+      font-size: 2em;
+      font-weight: bold;
+      letter-spacing: 1px;
+      
+      color: rgba($red,.15);
+    }
   }
 }
 

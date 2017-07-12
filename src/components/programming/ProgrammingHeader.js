@@ -14,13 +14,13 @@ export default class ProgrammingHeader extends Component {
 		const {user} = this.props;
 
 		return user ? (
-			<div className="programming-header-wrapper menu-head-buffer">
+			<div className="programming-header-wrapper">
 				<div className="container">
 					<div className="row">
 						<div className="col-xs-12">
 							<DayPicker/>
 						</div>
-						<div className="col-xs-12">
+						<div className="col-xs-12 hidden-md hidden-lg">
 							<DotList/>
 						</div>
 					</div>

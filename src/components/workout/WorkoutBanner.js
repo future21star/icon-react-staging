@@ -72,12 +72,14 @@ export default class WorkoutBanner extends Component {
 	}
 
 	render() {
-		const {nextTrack, prevTrack, onSelectNextTrack, onSelectPrevTrack, wod} = this.props;
-		console.log(wod);
+		const {nextTrack, prevTrack, onSelectNextTrack, onSelectPrevTrack, wod, isWorkoutMode} = this.props;
+		
+		let bannerBg = (!isWorkoutMode ? wod.track.bgImgUrl : '');
+
 		return (
 			<div className="workout-banner-wrapper">
 				<div className={`workout-banner ${wod.track.format}`}
-						 style={{backgroundImage: 'url(' + wod.track.bgImgUrl + ')',}}>
+						 style={{backgroundImage: 'url(' + bannerBg + ')'}}>
 					<div className="overlay"/>
 					<div className="workout-button">
 						<Link to={`/workout/${wod.track.name}/${wod.id}`} className="text-white">
@@ -92,15 +94,15 @@ export default class WorkoutBanner extends Component {
 						</div>
 						<ul className={`workout-banner-list list-inline ${wod.notes ? 'workout-banner-list-with-note' : ''}`}>
 							<li>
-								<h3>{`${wod.duration} min` || '--'}</h3>
+								<h4>{`${wod.duration} min` || '--'}</h4>
 								<p>Duration</p>
 							</li>
 							<li>
-								<h3>{wod.intensity || '--'}</h3>
+								<h4>{wod.intensity || '--'}</h4>
 								<p>Intensity</p>
 							</li>
 							<li>
-								<h3>{wod.focus || '--'}</h3>
+								<h4>{wod.focus || '--'}</h4>
 								<p>Focus</p>
 							</li>
 						</ul>

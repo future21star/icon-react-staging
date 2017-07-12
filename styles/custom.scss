@@ -16,9 +16,9 @@ body{
 .gradient-turquoise {
   color: $white;
   background: $turquoise; /* Old browsers */
-  background: -moz-linear-gradient(top, $turquoise 0%, $turquoiseLight 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, $turquoise 0%, $turquoiseLight 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, $turquoise 0%, $turquoiseLight 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  background: -moz-linear-gradient(top, $turquoiseLight 0%, $turquoise 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, $turquoiseLight 0%, $turquoise 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, $turquoiseLight 0%, $turquoise 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 
 }
 

@@ -6,7 +6,6 @@ export default class DesktopWorkout extends Component {
 
 	constructor(props) {
 		super(props);
-
 		const {track} = this.props;
 
 		this.state = {

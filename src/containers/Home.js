@@ -4,7 +4,7 @@ import {
 	Menubar,
 	DailyBriefCollapsable,
 	WorkoutBanner,
-	Workout,
+	WorkoutTabs,
 	RestDay,
 	DotList
 } from '../components/index';
@@ -86,18 +86,24 @@ export default class Home extends Component {
 				transitionName="react-anime"
 				transitionAppear={true}
 				transitionAppearTimeout={300}
-				transitionEnter={false}
 				transitionEnterTimeout={300}
-				transitionLeave={false}
 				 transitionLeaveTimeout={300}
 			>
 				<div className="bottom-padding">
 					<Helmet title="Home"/>
 
 					<Menubar title="Today's Workout"
-									 leftSideContent={<Link to="profile"><span className="icon-user-profile"/>
-										 <span className="mobile-hide">Profile</span>
-									 </Link>}
+									 rightSideContent={
+									 	<Link to="profile">
+									 		<span className="mobile-hide">Profile</span>
+									 		<span className="icon-user-profile"/> 
+									 	</Link>}
+									 	leftSideContent={
+									 		<a href="#" onClick={this.handleLogout}>
+												<span className="icon-logout"/>
+												<span className="mobile-hide">Log Out</span>
+											</a>
+									 	}
 									 className="gradient-turquoise menu-color-white">
 						<DotList/>
 					</Menubar>
@@ -164,7 +170,7 @@ export default class Home extends Component {
 							onSelectNextTrack={e => this.refs.homeSwipeRef.next()}
 							onSelectPrevTrack={e => this.refs.homeSwipeRef.prev()}
 						/>
-						<Workout track={wodForThisTrackAndDate}/>
+						<WorkoutTabs track={wodForThisTrackAndDate}/>
 					</div>
 				) : undefined }
 

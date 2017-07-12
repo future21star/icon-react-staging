@@ -4,8 +4,7 @@ import {
 	ProgrammingHeader,
 	DailyBriefDesktop,
 	WorkoutBanner,
-	Workout,
-	MenuBarBlueDesktop,
+	WorkoutTabs,
 	Menubar,
 	DesktopWorkoutBanner,
 	DesktopWorkout,
@@ -109,19 +108,24 @@ export default class Programming extends Component {
 	render() {
 		const {selectedTracks, activeWeek, toggleActiveWeek, swipedActiveTrackName} = this.props;
 
-		const rightSideContentMobileView = (
-			<a href="javascript:;" onClick={toggleActiveWeek}>
-				{activeWeek === 'current' ? (
-					<span className="icon-next-week">
-					<span className="path1"/>
-					<span className="path2"/>
-				</span>) : (
-					<span className="icon-prev-week">
-					<span className="path1"/>
-					<span className="path2"/>
-				</span>
-				)}
-			</a>
+		const rightSideContent = (
+			<div>
+				<a href="javascript:;" onClick={toggleActiveWeek} className="hidden-md hidden-lg">
+					{activeWeek === 'current' ? (
+						<span className="icon-next-week">
+						<span className="path1"/>
+						<span className="path2"/>
+					</span>) : (
+						<span className="icon-prev-week">
+						<span className="path1"/>
+						<span className="path2"/>
+					</span>
+					)}
+				</a>
+				<Link to="/programming/list-view" className="hidden-xs hidden-sm">
+					<p><span className="mobile-hide">List View</span><i className="icon-desktop-menu"/></p>
+				</Link>
+			</div>
 		);
 
 		return (
@@ -137,33 +141,22 @@ export default class Programming extends Component {
 				<div className="programming-page-wrapper bottom-padding">
 					<Helmet title="Programming"/>
 
+					<Menubar
+						title="Programming"
+						leftSideContent={<Link to="/edit-tracks"><span className="icon-user-edit"/><span className="mobile-hide">Edit Tracks</span></Link>}
+						rightSideContent={rightSideContent}
+						className="text-white gradient-turquoise programming-menu-bar"
+					/>
+
+					<ProgrammingHeader/>
+
 					{/*mobile*/}
 					<div className="hidden-md hidden-lg">
-						<Menubar
-							title="Programming"
-							leftSideContent={<Link to="/edit-tracks"><span className="icon-user-edit"/></Link>}
-							rightSideContent={rightSideContentMobileView}
-							className="bg-sky text-white"
-						/>
-
 						{selectedTracks.length ? this.renderSelectedTracksForMobile() : this.renderNoTracksFound()}
 					</div>
 
 					{/*desktop*/}
 					<div className="hidden-xs hidden-sm">
-						<MenuBarBlueDesktop
-							leftSideContentDesktop={(
-								<h3 className="text-capitalize">
-									<Link to="/edit-tracks">
-										<span className="icon-user-edit"/>
-										{swipedActiveTrackName} Track
-									</Link>
-								</h3>)}
-							rightSideContentDesktop={(<Link to="/programming/list-view">
-								<p>List View <span><i className="icon-desktop-menu"/></span></p>
-							</Link>)}
-						/>
-
 						{selectedTracks.length ? this.renderSelectedTracksForDesktop() : this.renderNoTracksFound()}
 					</div>
 
@@ -182,8 +175,6 @@ export default class Programming extends Component {
 
 		return (
 			<div>
-				<ProgrammingHeader/>
-
 				<ReactSwipe className="carousel" swipeOptions={swipeConfig} ref="programmingSwipeMobileRef">
 					{selectedTracks.map((selectedTrack, i) => {
 						return this.renderEachTrackForMobile(selectedTrack, i);
@@ -234,7 +225,7 @@ export default class Programming extends Component {
 							onSelectNextTrack={e => this.refs.programmingSwipeMobileRef.next()}
 							onSelectPrevTrack={e => this.refs.programmingSwipeMobileRef.prev()}
 						/>
-						<Workout track={wodForThisTrackAndDate}/>
+						<WorkoutTabs track={wodForThisTrackAndDate}/>
 					</div>) : undefined}
 
 				{wodForThisTrack && wodForThisTrackAndDate === null ? (
@@ -262,7 +253,7 @@ export default class Programming extends Component {
 				<div>
 					{wodForThisTrack && wodForThisTrackAndDate ? (
 						<div>
-							<DesktopWorkoutBanner
+							<WorkoutBanner
 								wod={wodForThisTrackAndDate}
 								nextTrack={nextTrackName}
 								prevTrack={prevTrackName}

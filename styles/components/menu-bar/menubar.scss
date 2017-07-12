@@ -1,21 +1,23 @@
 .menu-bar {
 
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding: 20px 25px 12px;
 
-  
+  .menu-bar-headings{
+    .mobile-hide{
+      
+    }
+  }
   .menu-bar-left-side-content {
     text-align: left;
 
     .mobile-hide{
-      margin-left: 5px;
+      margin-left: 10px;
     }
   }
   .menu-bar-title {
     text-align: center;
-    font-weight: 500;
     letter-spacing: 1px;
-    font-size: 1.3em;
+    font-size: 1.2em;
     line-height: 21px;
   }
 
@@ -28,7 +30,7 @@
     letter-spacing: 1px;
 
     .mobile-hide{
-      margin-right: 5px;
+      margin-right: 10px;
     }
   }
 
@@ -76,6 +78,22 @@
     .menu-bar-title{
       color: #ffffff;
     }
+  }
+}
+
+.programming-menu-bar{
+  padding: 30px 0;
+  .container-fluid{
+    max-width: 95%;
+    margin: 0 auto;
+  }
+  .menu-bar-title{
+    visibility: hidden;
+  }
+
+  .col-xs-3 a{
+    display: block;
+    margin-top: 10px;
   }
 }
 

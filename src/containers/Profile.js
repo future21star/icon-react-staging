@@ -23,17 +23,11 @@ export default class Profile extends Component {
 	render() {
 		const {user} = this.props;
 
-		const leftSideContent = (
-			<Link to="edit-profile">
-				<span className="icon-user-edit"/>
-				<span className="mobile-hide">Edit Profile</span>
-			</Link>
-		);
-
 		const rightSideContent = (
-			<a href="#" onClick={this.handleLogout}>
-				<span className="mobile-hide">Log Out</span><span className="icon-logout"/>
-			</a>
+			<Link to="edit-profile">
+				<span className="mobile-hide">Edit Profile</span>
+				<span className="icon-user-edit"/>
+			</Link>
 		);
 
 		const subscribeCardDescription = (
@@ -57,7 +51,6 @@ export default class Profile extends Component {
 
 					<Menubar
 						title="Profile"
-						leftSideContent={leftSideContent}
 						rightSideContent={rightSideContent}
 						className="gradient-turquoise text-white"
 					>
