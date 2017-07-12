@@ -504,6 +504,25 @@
           color: white;
         }
       }
+      .help-icon{
+        font-size: 20px;
+        color: #d1252e;
+        margin-left: -15px;
+        position: relative;
+        top: 5px;
+        cursor: pointer;
+        //font-weight: bold;
+      }
     }
+  }
+}
+
+.bottom-button{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  button{
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 }

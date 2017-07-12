@@ -34,7 +34,7 @@ export default class NutritionHelp extends Component {
 
 					<Menubar
 						title="Activity Level"
-						leftSideContent={<Link to="nutrition"><span className="icon-close" style={{fontSize: 16+'px'}}/>
+						leftSideContent={<Link to="/nutrition/calculator"><span className="icon-close" style={{fontSize: 16+'px'}}/>
 						</Link>}
 						className="">
 					</Menubar>

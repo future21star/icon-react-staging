@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {Menubar} from '../components/index';
+import {Menubar, BtnBottom} from '../components/index';
 import {connect} from "react-redux";
 import {Link} from 'react-router';
 import Select from 'react-select';
@@ -106,7 +106,7 @@ export default class NutritionCalculator extends Component {
 
 					<Menubar
 						title="Nutrition Calculator"
-						leftSideContent={<Link to="nutrition"><span className="icon-arrow-left" style={{fontSize: 16+'px'}}/>
+						leftSideContent={<Link to="/nutrition"><span className="icon-arrow-left" style={{fontSize: 16+'px'}}/>
 						</Link>}
 						className="gradient-turquoise menu-color-white">
 					</Menubar>
@@ -206,24 +206,43 @@ export default class NutritionCalculator extends Component {
 										</div>
 									</div>
 									<div className="form-group block">
-										<div className="input-group input-effect">
-											<div className="input-group-addon">
-												<span className="icon-gender"/>
+										<div className="row">
+											<div className="col-xs-10">
+												<div className="input-group input-effect">
+													<div className="input-group-addon">
+														<span className="icon-gender"/>
+													</div>
+													<Select
+														className="pretty-select"
+														value={this.state.height}
+														placeholder="Height"
+														options={this.heightOptions}
+														onChange={this.changeHeight}
+														clearable={false}
+														arrowRenderer={NutritionCalculator.arrowRenderer}
+													/>
+													<div className="underline"/>
+												</div>
 											</div>
-											<Select
-												className="pretty-select"
-												value={this.state.activityLevel}
-												placeholder="Activity Level"
-												options={this.activityLevelOptions}
-												onChange={this.changeActivityLevel}
-												clearable={false}
-												arrowRenderer={NutritionCalculator.arrowRenderer}
-											/>
-											<div className="underline"/>
+											<div className="col-xs-2">
+												<div className="input-group-addon">
+													<Link to="/nutrition/help">
+														<span className="icon-information help-icon"/>
+													</Link>
+												</div>
+											</div>
 										</div>
 									</div>
 								</form>
 							</div>
+						</div>
+						<div className="bottom-button">
+							<BtnBottom
+								classNames="btn btn-primary btn-block"
+								icon={null}
+								title="Calculate My Goals"
+								onClick={e => {}}
+							/>
 						</div>
 					</div>
 				</div>
