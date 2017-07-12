@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import WorkoutListContainer from './WorkoutListContainer';
+import WorkoutTabsContentContainer from './WorkoutTabsContentContainer';
 
-export default class Workout extends Component {
+export default class WorkoutTabs extends Component {
 
 	constructor(props) {
 		super(props);
@@ -35,11 +35,13 @@ export default class Workout extends Component {
 	};
 
 	render() {
-		const {track} = this.props;
+		const {track, isWorkoutMode} = this.props;
+
+		let classes = (!isWorkoutMode ? 'workout-tabs-list-wrapper gradient-white' : '');
 
 		return (
 			<div className="workout-tabs">
-				<div className="workout-tabs-list-wrapper">
+				<div className={classes}>
 					<div className="container">
 						<ul className="nav nav-tabs nav-justified">
 							<li>
@@ -78,13 +80,19 @@ export default class Workout extends Component {
 				</div>
 				<div className="tab-content">
 					<div className={`tab-pane ${this.state.activeTab === 'warmUp' ? 'active' : ''}`}>
-						<WorkoutListContainer content={track.warmUp}/>
+						<WorkoutTabsContentContainer 
+							content ={track.warmUp}
+							className = {'workout-tabs-list-container-wrapper'}/>
 					</div>
 					<div className={`tab-pane ${this.state.activeTab === 'mainWorkout' ? 'active' : ''}`}>
-						<WorkoutListContainer content={track.mainWorkout}/>
+						<WorkoutTabsContentContainer 
+							content={track.mainWorkout}
+							className = {'workout-tabs-list-container-wrapper'}/>
 					</div>
 					<div className={`tab-pane ${this.state.activeTab === 'coolDown' ? 'active' : ''}`}>
-						<WorkoutListContainer content={track.coolDown}/>
+						<WorkoutTabsContentContainer 
+						content={track.coolDown}
+						className = {'workout-tabs-list-container-wrapper'}/>
 					</div>
 				</div>
 			</div>

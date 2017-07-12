@@ -44,7 +44,7 @@ export default class DesktopWorkoutListItem extends Component {
 										<span className="item-number-desktop">{number}</span>
 										<div className={`${chunk.optional ? 'wod-optional' : ''}`}>
 											{chunk.optional ? <p className="text-danger">OPTIONAL</p> : undefined}
-											<p>{chunk.title}</p>
+											<p className="title">{chunk.title}</p>
 											<ul className="list-group">
 												{chunk.lines.map((line, j) => {
 													return (

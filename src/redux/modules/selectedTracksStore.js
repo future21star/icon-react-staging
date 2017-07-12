@@ -4,11 +4,11 @@ const LOAD = 'selectedTracks/LOAD';
 const LOAD_SUCCESS = 'selectedTracks/LOAD_SUCCESS';
 const LOAD_FAIL = 'selectedTracks/LOAD_FAIL';
 
-const ADD = 'selectedTracks/ADD';
+const ADD = 'selectedTracks/ADD_REQUEST';
 const ADD_SUCCESS = 'selectedTracks/ADD_SUCCESS';
 const ADD_FAIL = 'selectedTracks/ADD_FAIL';
 
-const REMOVE = 'selectedTracks/REMOVE';
+const REMOVE = 'selectedTracks/REMOVE_REQUEST';
 const REMOVE_SUCCESS = 'selectedTracks/REMOVE_SUCCESS';
 const REMOVE_FAIL = 'selectedTracks/REMOVE_FAIL';
 

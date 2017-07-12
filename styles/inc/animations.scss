@@ -1,3 +1,34 @@
+.react-anime-appear {
+  filter: blur(5);
+  -webkit-filter: blur(5);
+  opacity: .5;
+}
+
+.react-anime-appear.react-anime-appear-active {
+  filter: blur(0);
+  -webkit-filter: blur(0);
+  opacity: 1;
+  transition: opacity 200ms ease-in, filter 400ms ease-in;
+}
+
+.react-anime-enter{
+  opacity: 0;
+}
+
+.react-anime-enter.react-anime-enter-active {
+  opacity: 1;
+  transition: opacity 1000ms ease-in;
+}
+
+.react-anime-leave {
+  opacity: 1;
+}
+
+.react-anime-leave.react-anime-leave-active {
+  opacity: 0;
+  transition: opacity 1000ms ease-in;
+}
+
 .show-popover{
   display: block;
   opacity: 0;
@@ -7,33 +38,6 @@
 @-webkit-keyframes fadeIn {
   from {opacity: 0;}
   to {opacity: 1;}
-}
-
-.react-anime-appear {
-  opacity: 0.01;
-}
-
-.react-anime-appear.react-anime-appear-active {
-  opacity: 1;
-  transition: opacity 500ms ease-in;
-}
-
-.react-anime-enter{
-  opacity: 0.01;
-}
-
-.react-anime-enter.react-anime-enter-active {
-  opacity: 1;
-  transition: opacity 500ms ease-in;
-}
-
-.react-anime-leave {
-  opacity: 1;
-}
-
-.react-anime-leave.react-anime-leave-active {
-  opacity: 0.01;
-  transition: opacity 2s ease-in;
 }
 
 @-webkit-keyframes slideInUp {

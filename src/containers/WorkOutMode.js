@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {WorkOutModeTabs, Loader} from '../components/index';
+import {
+	WorkoutBanner,
+	WorkoutTabs,
+	Timer
+} from '../components/index';
 import {asyncConnect} from 'redux-async-connect';
 import {connect} from "react-redux";
 import {load as loadWorkout} from '../redux/modules/workoutStore';
@@ -39,9 +43,25 @@ export default class WorkOutMode extends Component {
 			>
 				<div className="workout-mode-page-wrapper">
 					<Helmet title="Workout Mode"/>
-					{workoutStore.loading ? <Loader/> : undefined}
 					{workout === null ? <h1>Not found</h1> :
-						<WorkOutModeTabs workout={workout}/>
+						<div className="workout-mode">
+							<div className="overlay-gradient"/>
+
+							<WorkoutBanner
+								wod={workout}
+								isWorkoutMode={true}
+							/>
+
+							<WorkoutTabs 
+								track={workout}
+								isWorkoutMode={true}
+							/>
+
+							<Timer/>
+							<div className="exit">
+								<a href="javascript:history.back()">Exit</a>
+							</div>
+						</div>
 					}
 				</div>
 			</ReactCSSTransitionGroup>

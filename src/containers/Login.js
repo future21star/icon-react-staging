@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {login} from '../redux/modules/loginStore';
-import {Loader, FacebookButton, ShowPasswordInput, ErrorMessage, SuccessMessage} from '../components/index';
+import {FacebookButton, ShowPasswordInput, ErrorMessage, SuccessMessage} from '../components/index';
 import {Link} from "react-router";
 
 @connect(
@@ -86,8 +86,6 @@ export default class Login extends Component {
 					<div className="form-submit-btn-wrapper">
 						<button className="btn gradient-red btn-block btn-lg" type="submit">Log In</button>
 					</div>
-
-					{loginStore.loading ? <Loader/> : undefined}
 
 				</form>
 				<div className="login-page--forgot-password-link-wrapper">

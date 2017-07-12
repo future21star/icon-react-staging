@@ -1,120 +1,92 @@
-.workout-tabs-wrapper-desktop {
-  .tab-nav-desktop {
+.workout-tabs-list-wrapper-desktop{
+  background-color: $turquoiseLight;
+}
+.tab-nav-desktop {
+  padding: 40px 0 40px 0;
 
-    background: #83dbe5;
-    min-height: 500px;
-    padding: 40px 0 20px 0;
-    .nav {
-      li:hover {
-        background: rgba(0, 0, 0, 0.15);
+  .nav {
+    li:hover {
+      background: rgba(0, 0, 0, 0.15);
+    }
+    .active {
+      background: rgba(0, 0, 0, 0.15);
+      a {
+        color: $black;
       }
-      .active {
-        background: rgba(0, 0, 0, 0.15);
-        a {
-          color: black;
-        }
-      }
-    }
-    .nav > li > a {
-      color: #fff;
-      font-size: 21px;
-      text-transform: uppercase;
-      font-family: 'Oswald', sans-serif;
-      margin-left: 40px;
-    }
-    .nav > li > a:hover, .nav > li > a:focus, .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
-      text-decoration: none;
-      background-color: transparent;
-      outline: none;
-    }
-    .nav-stacked > li + li {
-      margin-top: 0;
     }
   }
-  .tab-contents-area-desktop {
-    .tab-content-desktop {
-      @-webkit-keyframes fadeIn {
-        from {
-          opacity: 0.1
-        }
+  .nav > li > a {
+    color: $white;
+    font-size: 21px;
+    text-transform: uppercase;
+    font-family: 'Oswald', sans-serif;
+    margin-left: 40px;
+  }
+  .nav > li > a:hover, .nav > li > a:focus, .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    text-decoration: none;
+    background-color: transparent;
+    outline: none;
+  }
+  .nav-stacked > li + li {
+    margin-top: 0;
+  }
+}
+.tab-contents-area-desktop {
 
-        to {
-          opacity: 1;
-        }
-      }
+  background: $whiteDark;
+  padding-bottom: 15px;
 
-      @keyframes fadeIn {
-        from {
-          opacity: 0.1
-        }
-
-        to {
-          opacity: 1;
-        }
-      }
-
-      .active {
-        -webkit-animation-name: fadeIn;
-        animation-name: fadeIn;
-        -webkit-animation-duration: 1s;
-        animation-duration: 1s;
-        -webkit-animation-fill-mode: both;
-        animation-fill-mode: both;
+  .tab-item-desktop {
+    padding: 20px 20px 20px 45px;
+  }
+  .tab-list-item-desktop-wrapper {
+    margin-top: 30px;
+    .tab-list-item-desktop {
+      h2 {
+        font-family: 'Lato', sans-serif;
+        margin-bottom: 20px;
       }
     }
-    background: #f5f5f5;
-    min-height: 500px;
-    max-height: 500px;
-    overflow-y: scroll;
-    padding-bottom: 15px;
-    .tab-item-desktop {
-      padding: 20px 20px 20px 45px;
-      .tab-list-item-desktop-wrapper {
-        margin-top: 30px;
-        .tab-list-item-desktop {
-          h2 {
-            font-family: 'Lato', sans-serif;
-            margin-bottom: 20px;
-          }
-          .tab-item-container-desktop {
-            .item-desktop {
-              background: #edebec;
-              padding: 23px 10px 3px 0;
-              position: relative;
-              margin-bottom: 20px;
-              div {
-                display: inline-block;
-                margin-left: 80px;
-                position: relative;
-                top: -6px;
-                p {
-                  font-size: 16px;
-                  margin-bottom: 6px;
-                }
-                ul {
-                  li {
-                    list-style-type: none;
-                    font-size: 16px;
-                    margin-bottom: 6px;
-                    .red-hyphen {
-                      color: #d12022;
-                    }
-                  }
-                }
-              }
-              .item-number-desktop {
-                background: #5dc7d4;
-                margin-right: 20px;
-                padding: 15px 20px 14px 20px;
-                color: white;
-                font-family: 'Oswald', sans-serif;
-                font-size: 18px;
-                position: absolute;
-                top: 0;
-              }
-            }
+  }
+  .tab-item-container-desktop {
+    .item-desktop {
+      background: #edebec;
+      padding: 23px 10px 3px 0;
+      position: relative;
+      margin-bottom: 20px;
+      div {
+
+        display: inline-block;
+        margin-left: 80px;
+        position: relative;
+        top: -6px;
+        p {
+          margin-bottom: 6px;
+          font-size: 1.1em;
+          &.title{
+            font-weight: 700;
+            letter-spacing: 1px;
           }
         }
+
+        li {
+          list-style-type: none;
+          margin-bottom: 6px;
+          font-size: 1.1em;
+        }
+      }
+      .red-hyphen {
+              color: #d12022;
+            }
+      .item-number-desktop {
+        background: #5dc7d4;
+        margin-right: 20px;
+        padding: 15px 20px 14px 20px;
+        color: white;
+        font-family: 'Oswald', sans-serif;
+        font-size: 18px;
+        position: absolute;
+        top: 0;
       }
     }
   }
