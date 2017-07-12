@@ -17,7 +17,7 @@ export default class FeedDesktop extends Component {
 	render() {
 		const {vaultAccess} = this.props;
 
-		let accessToFeed = includes(vaultAccess, 'feed-desktop');
+		let accessToFeed = includes(vaultAccess, 'feed');
 		let imageUrl = "http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/articles/health_tools/lowering_blood_pressure_exercise_slideshow/getty_rf_photo_of_men_lifting_weights_in_gym.jpg";
 		let featuredImageUrl = require('../../static/temp/feed-featured-temp.jpg');
 

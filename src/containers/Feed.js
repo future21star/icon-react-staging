@@ -17,7 +17,7 @@ export default class Feed extends Component {
 	render() {
 		const {vaultAccess} = this.props;
 
-		let accessToFeed = includes(vaultAccess, 'feed-desktop');
+		let accessToFeed = includes(vaultAccess, 'feed');
 
 		return (
 			<ReactCSSTransitionGroup
