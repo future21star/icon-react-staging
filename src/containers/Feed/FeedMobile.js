@@ -14,10 +14,7 @@ import {
 import {range} from "lodash";
 
 @connect(
-	state => ({
-
-	}),
-	{}
+	state => ({})
 )
 
 export default class FeedMobile extends Component {
@@ -48,12 +45,12 @@ export default class FeedMobile extends Component {
 
 					{/* show subscription card if locked*/}
 					{/*<div className="container">*/}
-						{/*<SubscriptionUpgradeCard*/}
-							{/*description={(<div>*/}
-								{/*Unlock This Section of the Vault <br/>*/}
-								{/*<span className="text-danger">Cancel Anytime</span>*/}
-							{/*</div>)}*/}
-						{/*/>*/}
+					{/*<SubscriptionUpgradeCard*/}
+					{/*description={(<div>*/}
+					{/*Unlock This Section of the Vault <br/>*/}
+					{/*<span className="text-danger">Cancel Anytime</span>*/}
+					{/*</div>)}*/}
+					{/*/>*/}
 					{/*</div>*/}
 
 					<div>

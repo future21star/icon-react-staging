@@ -10,8 +10,7 @@ import {
 import {range} from "lodash";
 
 @connect(
-	state => ({}),
-	{}
+	state => ({})
 )
 
 export default class FeedDesktop extends Component {

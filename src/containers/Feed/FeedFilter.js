@@ -1,24 +1,19 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {Menubar, NoAccess, FeedFilterForm} from '../../components/index';
+import {Menubar, FeedFilterForm} from '../../components/index';
 import {connect} from "react-redux";
-import {includes} from 'lodash';
 import {Link} from 'react-router';
+import checkAccessLevel from '../HOC/CheckAccessLevel'
+
+@checkAccessLevel('feed')
 
 @connect(
-	state => ({
-		vaultAccess: state.authStore.user.vaultAccess
-	}),
-	{}
+	state => ({})
 )
 
 export default class FeedFilter extends Component {
 	render() {
-		const {vaultAccess} = this.props;
-
-		let accessToFeed = includes(vaultAccess, 'feed');
-
 		return (
 			<ReactCSSTransitionGroup
 				transitionName="react-anime"
@@ -39,18 +34,12 @@ export default class FeedFilter extends Component {
 						className="menu-bar-white"
 					/>
 
-					{accessToFeed ? this.renderFilter() : <NoAccess/>}
+					<div className="container">
+						<div className="filter-title">Filter By Topic</div>
+						<FeedFilterForm/>
+					</div>
 				</div>
 			</ReactCSSTransitionGroup>
-		);
-	}
-
-	renderFilter() {
-		return (
-			<div className="container">
-				<div className="filter-title">Filter By Topic</div>
-				<FeedFilterForm/>
-			</div>
 		);
 	}
 }

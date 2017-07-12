@@ -4,7 +4,6 @@ export default class FeedFilterForm extends Component {
 	static propTypes = {};
 
 	render() {
-
 		return (
 			<form action="#" className="filter-form">
 				<div>

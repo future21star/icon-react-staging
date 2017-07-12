@@ -2,11 +2,9 @@ import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import {DesktopFeedSidebar, DesktopFeedTopNav} from '../../components/index';
 import {connect} from "react-redux";
-import {Link} from 'react-router';
 
 @connect(
-	state => ({}),
-	{}
+	state => ({})
 )
 
 export default class SingleFeedDesktop extends Component {

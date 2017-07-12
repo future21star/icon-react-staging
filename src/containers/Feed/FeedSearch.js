@@ -1,17 +1,16 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {Menubar, NoAccess} from '../../components/index';
+import {Menubar} from '../../components/index';
 import {connect} from "react-redux";
-import {includes} from 'lodash';
 import {Link} from 'react-router';
 import Select from "react-select";
+import checkAccessLevel from '../HOC/CheckAccessLevel'
+
+@checkAccessLevel('feed')
 
 @connect(
-	state => ({
-		vaultAccess: state.authStore.user.vaultAccess
-	}),
-	{}
+	state => ({})
 )
 
 export default class FeedSearch extends Component {
@@ -41,10 +40,6 @@ export default class FeedSearch extends Component {
 	};
 
 	render() {
-		const {vaultAccess} = this.props;
-
-		let accessToFeed = includes(vaultAccess, 'feed');
-
 		return (
 			<ReactCSSTransitionGroup
 				transitionName="react-anime"
@@ -65,7 +60,7 @@ export default class FeedSearch extends Component {
 						className="menu-bar-white"
 					/>
 
-					{accessToFeed ? this.renderSearch() : <NoAccess/>}
+					{this.renderSearch()}
 				</div>
 			</ReactCSSTransitionGroup>
 		);

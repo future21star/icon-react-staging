@@ -1,33 +1,20 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {Menubar, NoAccess} from '../../components/index';
 import {connect} from "react-redux";
-import {includes} from 'lodash';
 import SingleFeedMobile from "./SingleFeedMobile";
 import SingleFeedDesktop from "./SingleFeedDesktop";
+import checkAccessLevel from '../HOC/CheckAccessLevel'
+
+@checkAccessLevel('feed')
 
 @connect(
-	state => ({
-		vaultAccess: state.authStore.user.vaultAccess
-	}),
-	{}
+	state => ({})
 )
 
 export default class SingleFeed extends Component {
+
 	render() {
-		const {vaultAccess} = this.props;
-
-		let accessToFeed = includes(vaultAccess, 'feed');
-
-		return (
-			<div>
-				{accessToFeed ? this.renderSingleFeed() : <NoAccess/>}
-			</div>
-		);
-	}
-
-	renderSingleFeed() {
 		return (
 			<ReactCSSTransitionGroup
 				transitionName="react-anime"

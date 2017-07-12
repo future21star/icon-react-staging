@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {Link} from 'react-router';
 import ReactDisqusThread from 'react-disqus-thread';
 import {Menubar} from "../../components";
 
 @connect(
-	state => ({}),
-	{}
+	state => ({})
 )
 
 export default class SingleFeedMobile extends Component {
