@@ -2,22 +2,16 @@ import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
 import {Menubar, ProfileHeader, SubscriptionUpgradeCard} from '../components/index';
 import {Link} from "react-router";
-import {logout} from "../redux/modules/authStore";
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {connect} from "react-redux";
 
 @connect(
 	state => ({user: state.authStore.user}),
-	{logout}
+	{}
 )
 export default class Profile extends Component {
 	static propTypes = {
 		user: PropTypes.object
-	};
-
-	handleLogout = (event) => {
-		event.preventDefault();
-		this.props.logout();
 	};
 
 	render() {

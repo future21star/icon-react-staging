@@ -12,6 +12,7 @@ import {Link} from "react-router";
 import {connect} from "react-redux";
 import {asyncConnect} from 'redux-async-connect';
 import ReactSwipe from 'react-swipe';
+import {logout} from "../redux/modules/authStore";
 import {isLoaded as isSelectedTracksLoaded, load as loadSelectedTracks} from '../redux/modules/selectedTracksStore';
 import {isLoaded as isDailyBriefLoaded, load as loadDailyBrief} from '../redux/modules/dailyBriefStore';
 import {isLoaded as isWodsLoaded, load as loadWods} from '../redux/modules/wodsStore';
@@ -45,7 +46,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 		wods: state.wodsStore.wods,
 		dailyBriefs: state.dailyBriefStore.dailyBriefs
 	}),
-	{setActiveTrack}
+	{setActiveTrack, logout}
 )
 export default class Home extends Component {
 	componentDidMount() {
@@ -76,6 +77,11 @@ export default class Home extends Component {
 	selectTrack = (trackName, trackIndex) => {
 		this.props.setActiveTrack(trackName, trackIndex);
 		this.loadTodaysWod(trackName);
+	};
+
+	handleLogout = (event) => {
+		event.preventDefault();
+		this.props.logout();
 	};
 
 	render() {
