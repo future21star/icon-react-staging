@@ -1,4 +1,4 @@
- import React, {Component, PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
 import {Menubar, SuccessMessage, ErrorMessage} from '../components/index';
 import {Link} from "react-router";
@@ -61,7 +61,7 @@ export default class EditProfile extends Component {
 	};
 
 	componentWillReceiveProps(nextProps) {
-		if(nextProps.editProfileStore.updated) {
+		if (nextProps.editProfileStore.updated) {
 			this.props.pushState('/profile');
 		}
 	}
@@ -100,7 +100,12 @@ export default class EditProfile extends Component {
 				<div>
 					<Helmet title="Edit Profile"/>
 
-					<Menubar title="Edit Profile" rightSideContent={rightSideContent} className="menu-bar-white"/>
+					<Menubar
+						title="Edit Profile"
+						rightSideContent={rightSideContent}
+						className="menu-bar-white"
+						backButton={true}
+					/>
 
 					<form className="register-page--register-form menu-head-buffer" onSubmit={this.handleSubmit}>
 						<div className="container user-update-container">

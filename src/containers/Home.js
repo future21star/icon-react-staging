@@ -4,7 +4,7 @@ import {
 	Menubar,
 	DailyBriefCollapsable,
 	WorkoutBanner,
-	Workout,
+	WorkoutTabs,
 	RestDay,
 	DotList
 } from '../components/index';
@@ -12,6 +12,7 @@ import {Link} from "react-router";
 import {connect} from "react-redux";
 import {asyncConnect} from 'redux-async-connect';
 import ReactSwipe from 'react-swipe';
+import {logout} from "../redux/modules/authStore";
 import {isLoaded as isSelectedTracksLoaded, load as loadSelectedTracks} from '../redux/modules/selectedTracksStore';
 import {isLoaded as isDailyBriefLoaded, load as loadDailyBrief} from '../redux/modules/dailyBriefStore';
 import {isLoaded as isWodsLoaded, load as loadWods} from '../redux/modules/wodsStore';
@@ -45,7 +46,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 		wods: state.wodsStore.wods,
 		dailyBriefs: state.dailyBriefStore.dailyBriefs
 	}),
-	{setActiveTrack}
+	{setActiveTrack, logout}
 )
 export default class Home extends Component {
 	componentDidMount() {
@@ -78,6 +79,11 @@ export default class Home extends Component {
 		this.loadTodaysWod(trackName);
 	};
 
+	handleLogout = (event) => {
+		event.preventDefault();
+		this.props.logout();
+	};
+
 	render() {
 		const {selectedTracks} = this.props;
 
@@ -85,19 +91,25 @@ export default class Home extends Component {
 			<ReactCSSTransitionGroup
 				transitionName="react-anime"
 				transitionAppear={true}
-				transitionAppearTimeout={5000}
-				transitionEnter={true}
-				transitionEnterTimeout={500}
-				transitionLeave={true}
-				transitionLeaveTimeout={500}
+				transitionAppearTimeout={300}
+				transitionEnterTimeout={300}
+				 transitionLeaveTimeout={300}
 			>
 				<div className="bottom-padding">
 					<Helmet title="Home"/>
 
 					<Menubar title="Today's Workout"
-									 leftSideContent={<Link to="profile"><span className="icon-user-profile"/>
-										 <span className="mobile-hide">Profile</span>
-									 </Link>}
+									 rightSideContent={
+									 	<Link to="profile">
+									 		<span className="mobile-hide">Profile</span>
+									 		<span className="icon-user-profile"/> 
+									 	</Link>}
+									 	leftSideContent={
+									 		<a href="#" onClick={this.handleLogout}>
+												<span className="icon-logout"/>
+												<span className="mobile-hide">Log Out</span>
+											</a>
+									 	}
 									 className="gradient-turquoise menu-color-white">
 						<DotList/>
 					</Menubar>
@@ -164,7 +176,7 @@ export default class Home extends Component {
 							onSelectNextTrack={e => this.refs.homeSwipeRef.next()}
 							onSelectPrevTrack={e => this.refs.homeSwipeRef.prev()}
 						/>
-						<Workout track={wodForThisTrackAndDate}/>
+						<WorkoutTabs track={wodForThisTrackAndDate}/>
 					</div>
 				) : undefined }
 

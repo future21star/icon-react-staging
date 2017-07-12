@@ -1,6 +1,9 @@
 @import "variables";
 @import "mixins";
 
+body{
+  font-size: 16px;
+}
 .gradient-blue {
   color: $white;
   background: $blue; /* Old browsers */
@@ -13,9 +16,9 @@
 .gradient-turquoise {
   color: $white;
   background: $turquoise; /* Old browsers */
-  background: -moz-linear-gradient(top, $turquoise 0%, $turquoiseLight 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, $turquoise 0%, $turquoiseLight 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, $turquoise 0%, $turquoiseLight 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  background: -moz-linear-gradient(top, $turquoiseLight 0%, $turquoise 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, $turquoiseLight 0%, $turquoise 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, $turquoiseLight 0%, $turquoise 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 
 }
 
@@ -26,6 +29,14 @@
   background: -webkit-linear-gradient(45deg, $redDark 0%, $red 100%); /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(45deg, $redDark 0%, $red 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a90d11', endColorstr='#cc1c22', GradientType=1); /* IE6-9 fallback on horizontal gradient */
+}
+
+.gradient-white{
+  background: #fcfcfc; /* Old browsers */
+background: -moz-linear-gradient(top, #ffffff 0%, #f7f7f7 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #ffffff 0%,#f7f7f7 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #ffffff 0%,#f7f7f7 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f7f7f7',GradientType=0 ); /* IE6-9 */
 }
 
 .bg-blue {
@@ -414,10 +425,6 @@ LOGIN & PASSWORDS
   padding-bottom: 100px;
 }
 
-.mid-content-section {
-  padding-top: 40px;
-}
-
 .panel-home {
   margin-bottom: 100px;
 }
@@ -462,11 +469,4 @@ LOGIN & PASSWORDS
   max-width: 175px;
   height: auto;
   margin: 0 auto;
-}
-
-.loading-bar {
-  background: $red;
-  height: 3px;
-  position: absolute;
-  z-index: 100000;
 }

@@ -6,7 +6,6 @@ export DotList from './global/DotList';
 
 
 //MENUBAR
-export MenuBarBlueDesktop from './menu-bar/MenuBarBlueDesktop';
 export MenuBarListView from './menu-bar/MenuBarListView';
 export Menubar from './menu-bar/Menubar';
 
@@ -21,9 +20,8 @@ export Note from './workout/Note';
 export RestDay from './workout/RestDay';
 export Timer from './workout/Timer';
 export WorkoutBanner from './workout/WorkoutBanner';
-export Workout from './workout/Workout';
-export WorkoutModeContainer from './workout/WorkoutModeContainer';
-export DesktopWorkoutBanner from './workout/DesktopWorkoutBanner';
+export WorkoutTabs from './workout/WorkoutTabs';
+
 export DesktopWorkout from './workout/DesktopWorkout';
 
 //WORKOUT LIST VIEW

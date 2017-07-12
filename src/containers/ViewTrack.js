@@ -84,6 +84,7 @@ export default class ViewTrack extends Component {
 						title="View Track"
 						rightSideContent={rightSideContent}
 						className="menu-bar-white"
+						backButton={true}
 					/>
 
 					{accessOfProgrammingType ? this.renderViewTrack(accessOfProgrammingType) : <NoAccess/>}

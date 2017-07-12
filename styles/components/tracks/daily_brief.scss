@@ -1,18 +1,18 @@
 .daily-brief-wrapper {
 
   .daily-brief-header {
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 12px;
+    padding-bottom: 12px;
     cursor: pointer;
 
     .daily-brief-header-text {
       text-transform: uppercase;
       margin: 0;
-      font-size: 1.4em;
+      font-size: 1.2em;
+      color: $blackLight
     }
 
     .daily-brief-expand-btn {
-      padding: 3px 0;
       float: right;
       transition: all .5s ease;
       -o-transition: all .5s ease;
@@ -25,7 +25,7 @@
     }
 
     [class^="icon-"], [class*=" icon-"] {
-      color: #000000;
+      color: $blackLight;
       font-size: 10px;
     }
   }
@@ -33,7 +33,6 @@
   .daily-brief-body {
     padding-top: 5px;
     padding-bottom: 15px;
-    font-size: 17px;
   }
 
   .daily-brief-desktop {

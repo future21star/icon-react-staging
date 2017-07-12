@@ -1,6 +1,5 @@
 .note-wrapper {
   position: relative;
-  padding-bottom: 30px;
   padding-top: 15px;
 
   .note {
@@ -21,7 +20,7 @@
         color: $white !important;
       }
 
-      .icon-nav-links {
+      .icon-nav-links, .icon-notes{
         color: $white;
       }
     }
@@ -30,6 +29,8 @@
       font-size: .8em;
       vertical-align: top;
       margin-right: 8px;
+
+      @include transition(.3s ease color);
     }
 
     .icon-nav-links {
@@ -38,34 +39,23 @@
       position: relative;
       top: 2px;
 
-      transition: .3s ease color;
-      -moz-transition: .3s ease color;
-      -webkit-transition: .3s ease color;
+      @include transition(.3s ease color);
     }
 
     h3 {
-      margin-top: 10px !important;
-      font-size: 1.2em !important;
-      color: #5DC6D2 !important;
-      font-weight: 600 !important;
+      margin: 10px 0;
+      font-size: 1.2em;
+      color: $turquoise;
       text-align: left !important;
-      margin-bottom: 10px !important;
-
-      transition: .3s ease color;
-      -moz-transition: .3s ease color;
-      -webkit-transition: .3s ease color;
+      
+      @include transition( .3s ease color);
     }
 
     .note-body {
       padding: 0 0 15px;
       font-weight: 300;
-      font-family: "Oswald", sans-serif;
-      text-transform: uppercase;
       text-align: left !important;
       color: #ffffff;
     }
-  }
-  .note-has-margin-bottom {
-    margin-bottom: 35px;
   }
 }
