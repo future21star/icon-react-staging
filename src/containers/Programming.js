@@ -9,8 +9,7 @@ import {
 	Menubar,
 	DesktopWorkoutBanner,
 	DesktopWorkout,
-	RestDay,
-	Loader
+	RestDay
 } from '../components/index';
 import {Link} from "react-router";
 import {connect} from "react-redux";
@@ -237,9 +236,6 @@ export default class Programming extends Component {
 						/>
 						<Workout track={wodForThisTrackAndDate}/>
 					</div>) : undefined}
-
-				{wodForThisTrack && typeof wodForThisTrackAndDate === 'undefined' ? (
-					<Loader/>) : undefined }
 
 				{wodForThisTrack && wodForThisTrackAndDate === null ? (
 					<RestDay track={track}

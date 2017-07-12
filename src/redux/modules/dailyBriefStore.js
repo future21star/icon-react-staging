@@ -1,6 +1,6 @@
 import {LOGOUT_SUCCESS} from "./authStore";
 
-const LOAD = 'dailyBrief/LOAD';
+const LOAD = 'dailyBrief/LOAD_REQUEST';
 const LOAD_SUCCESS = 'dailyBrief/LOAD_SUCCESS';
 const LOAD_FAIL = 'dailyBrief/LOAD_FAIL';
 

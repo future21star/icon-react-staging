@@ -1,4 +1,4 @@
-const LOAD = 'helpfulLinks/LOAD';
+const LOAD = 'helpfulLinks/LOAD_REQUEST';
 const LOAD_SUCCESS = 'helpfulLinks/LOAD_SUCCESS';
 const LOAD_FAIL = 'helpfulLinks/LOAD_FAIL';
 

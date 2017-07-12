@@ -2,11 +2,11 @@ import moment from 'moment';
 
 import {LOGOUT_SUCCESS} from "./authStore";
 
-const LOAD = 'wods/LOAD';
+const LOAD = 'wods/LOAD_REQUEST';
 const LOAD_SUCCESS = 'wods/LOAD_SUCCESS';
 const LOAD_FAIL = 'wods/LOAD_FAIL';
 
-const LOAD_LIST = 'wods/LOAD_LIST';
+const LOAD_LIST = 'wods/LOAD_LIST_REQUEST';
 const LOAD_LIST_SUCCESS = 'wods/LOAD_LIST_SUCCESS';
 const LOAD_LIST_FAIL = 'wods/LOAD_LIST_FAIL';
 

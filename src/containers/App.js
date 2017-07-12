@@ -7,6 +7,7 @@ import {isLoaded as isAllTrackLoaded, load as loadAllTracks} from '../redux/modu
 import {push} from 'react-router-redux';
 import config from '../config';
 import {asyncConnect} from 'redux-async-connect';
+import LoadingBar from 'react-redux-loading-bar'
 
 @asyncConnect([{
 	promise: ({store: {dispatch, getState}}) => {
@@ -60,6 +61,7 @@ export default class App extends Component {
 				<Helmet {...config.app.head}/>
 
 				<div className="app-wrapper">
+					<LoadingBar className="loading-bar"/>
 					{this.props.children}
 				</div>
 

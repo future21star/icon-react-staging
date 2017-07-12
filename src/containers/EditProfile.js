@@ -1,6 +1,6 @@
  import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
-import {Menubar, Loader, SuccessMessage, ErrorMessage} from '../components/index';
+import {Menubar, SuccessMessage, ErrorMessage} from '../components/index';
 import {Link} from "react-router";
 import Select from 'react-select';
 import {range} from "lodash";
@@ -200,8 +200,6 @@ export default class EditProfile extends Component {
 
 										<button className="btn btn-primary btn-block btn-lg btn-fixed-bottom" type="submit">Save Changes
 										</button>
-
-										{editProfileStore.loading ? <Loader/> : undefined}
 									</div>
 								</div>
 							</div>
@@ -209,6 +207,6 @@ export default class EditProfile extends Component {
 					</form>
 				</div>
 			</ReactCSSTransitionGroup>
-		) : <Loader/>;
+		) : <div/>;
 	}
 }

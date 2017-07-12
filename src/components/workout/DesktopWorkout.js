@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {DailyBrief} from '../index';
+import {DailyBriefDesktop} from '../index';
 import DesktopWorkoutListItem  from './DesktopWorkoutListItem';
 
 export default class DesktopWorkout extends Component {

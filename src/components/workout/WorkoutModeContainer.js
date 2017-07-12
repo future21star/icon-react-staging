@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import WorkOutModeTabContent from './WorkOutModeTabsContent';
-import {Timer} from './Timer';
+import WorkoutModeTabsContent from './WorkoutModeTabsContent';
+import Timer from './Timer';
 import Note from './Note';
 // import './WorkOutModeTabs.scss';
 
-export default class WorkOutModeTabs extends Component {
+export default class WorkoutModeContainer extends Component {
 
 	constructor(props) {
 		super(props);
@@ -100,13 +100,13 @@ export default class WorkOutModeTabs extends Component {
 
 				<div className="tab-content">
 					<div className={`tab-pane ${this.state.activeTab === 'warmUp' ? 'active' : ''}`}>
-						<WorkOutModeTabContent content={workout.warmUp}/>
+						<WorkoutModeTabsContent content={workout.warmUp}/>
 					</div>
 					<div className={`tab-pane ${this.state.activeTab === 'mainWorkout' ? 'active' : ''}`}>
-						<WorkOutModeTabContent content={workout.mainWorkout}/>
+						<WorkoutModeTabsContent content={workout.mainWorkout}/>
 					</div>
 					<div className={`tab-pane ${this.state.activeTab === 'coolDown' ? 'active' : ''}`}>
-						<WorkOutModeTabContent content={workout.coolDown}/>
+						<WorkoutModeTabsContent content={workout.coolDown}/>
 					</div>
 				</div>
 				<Timer/>
