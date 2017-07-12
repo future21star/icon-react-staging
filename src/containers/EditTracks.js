@@ -73,6 +73,7 @@ export default class EditTracks extends Component {
 						title="Edit Tracks"
 						rightSideContent={rightSideContent}
 						className="menu-bar-white"
+						backButton={true}
 					/>
 
 					{accessOfProgrammingType ? this.renderEditTracks() : <NoAccess/>}

@@ -2,9 +2,9 @@
   .btn-font-lg {
     font-size: 1em !important;
   }
-  .icon-trash, .icon-update-sub, .icon-nav-links {
+  [class^="icon-"], [class*=" icon-"] {
     color: white !important;
-    margin-right: 15px;
+    margin-right: 10px;
     font-size: 1.1em;
     position: relative;
     top: 2px;

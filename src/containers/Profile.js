@@ -47,6 +47,7 @@ export default class Profile extends Component {
 						title="Profile"
 						rightSideContent={rightSideContent}
 						className="gradient-turquoise text-white"
+						backButton={true}
 					>
 					</Menubar>
 					<ProfileHeader user={user}/>

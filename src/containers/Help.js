@@ -45,7 +45,11 @@ export default class Help extends Component {
 				<div className="help-page-wrapper bottom-padding">
 					<Helmet title="Helpful Links"/>
 
-					<Menubar title="Helpful Links" className="gradient-blue text-white"/>
+					<Menubar
+						title="Helpful Links"
+						className="gradient-blue text-white"
+						backButton={true}
+					/>
 
 					<div className="container">
 						<div className="row">
