@@ -8,12 +8,10 @@ export WorkOutMode from './WorkOutMode';
 export EditTracks from './EditTracks';
 export ViewTrack from './ViewTrack';
 export Help from './Help';
-export Feed from './Feed';
-export FeedDesktop from './FeedDesktop';
-export FeedDesktopSinglePost from './FeedDesktopSinglePost';
-export SingleFeed from './SingleFeed';
-export FeedFilter from './FeedFilter';
-export Search from './FeedSearch';
+export Feed from './Feed/Feed';
+export SingleFeed from './Feed/SingleFeed';
+export FeedFilter from './Feed/FeedFilter';
+export Search from './Feed/FeedSearch';
 
 export App from './App';
 export AuthLayout from './AuthLayout';

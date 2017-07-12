@@ -14,6 +14,7 @@ export ErrorMessage from './forms/ErrorMessage';
 export SuccessMessage from './forms/SuccessMessage';
 export FacebookButton from './forms/FacebookButton';
 export ShowPasswordInput from './forms/ShowPasswordInput';
+export FeedFilterForm from './forms/FeedFilterForm';
 
 //WORKOUTS
 export Note from './workout/Note';
@@ -40,7 +41,19 @@ export DailyBriefDesktop from './tracks/DailyBriefDesktop';
 export DailyBriefCollapsable from './tracks/DailyBriefCollapsable';
 export BtnBottom from './tracks/BtnBottom';
 
-//export FeedHeader from './feed-desktop/FeedHeader';
+//FEED
+export FeedTopNav from './feed/FeedTopNav';
+export FeedFeaturedPost from './feed/FeedFeaturedPost';
+export FeedFeaturedLockedPost from './feed/FeedFeaturedLockedPost';
+export FeedPost from './feed/FeedPost';
+export FeedFilterBtn from './feed/FeedFilterBtn';
+export FeedSeeAllVideosBtn from './feed/FeedSeeAllVideosBtn';
+export DesktopFeedTopNav from './feed/DesktopFeedTopNav';
+export DesktopFeedFeaturedPost from './feed/DesktopFeedFeaturedPost';
+export DesktopFeedPost from './feed/DesktopFeedPost';
+export DesktopFeedPagination from './feed/DesktopFeedPagination';
+export DesktopFeedSidebar from './feed/DesktopFeedSidebar';
+
 
 
 

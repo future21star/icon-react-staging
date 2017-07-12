@@ -1,73 +1,70 @@
+@media screen and (max-width: 991px) {
+  .hidden-sm-down {
+    display: none !important;
+  }
 
+  /*
+  MENU BAR
+  */
+  .menu-bar {
+    padding: 12px 0;
+  }
 
-@media screen and (max-width: 991px){
-	.hidden-sm-down{
-		display: none !important;
-	}
-
-	/*
-	MENU BAR
-	*/
-	.menu-bar{
-		padding: 12px 0;
-	}
-
-	.programming-menu-bar{
-		.menu-bar-title{
-			visibility: visible;
-		}
-
-		.col-xs-3 a{
-	    margin-top: 0;
-	  }
-	}
-
-	/*
-	PROGRAMMING HEADER
-	*/
-	.programming-header-wrapper{
-		min-height: auto;
-		.col-xs-12{
-    		padding: 10px 0 0;
-		} 
+  .programming-menu-bar {
+    .menu-bar-title {
+      visibility: visible;
     }
 
-	/*
-	DAYPICKER
-	*/
-	.daypicker-wrapper .nav-justified{
-		margin-top: 0;
-	}
-}
-
-
-@media screen and (min-width: 768px){
-	.login-container{
-		margin-top: 10vh;
-	}
-}
-
-@media screen and (max-width: 768px){
-
-	.mobile-hide{
-		display: none;
-	}
-	
-	.login-container{
-		margin-top: 5vh;
-	}
-
-	.rest-day-bg{
-		top:50%;
-	}
-
-	.mid-content{
-		padding-top: 25px;
-		padding-bottom: 25px;
-	}
-
-	 .workout-mode-banner-list {
-      margin-right: auto;
+    .col-xs-3 a {
+      margin-top: 0;
     }
+  }
+
+  /*
+  PROGRAMMING HEADER
+  */
+  .programming-header-wrapper {
+    min-height: auto;
+    .col-xs-12 {
+      padding: 10px 0 0;
+    }
+  }
+
+  /*
+  DAYPICKER
+  */
+  .daypicker-wrapper .nav-justified {
+    margin-top: 0;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .login-container {
+    margin-top: 10vh;
+  }
+}
+
+@media screen and (max-width: 768px) {
+
+  .mobile-hide {
+    display: none;
+  }
+
+  .login-container {
+    margin-top: 5vh;
+  }
+
+  .rest-day-bg {
+    top: 50%;
+  }
+
+  .mid-content {
+    padding-top: 25px;
+    padding-bottom: 25px;
+  }
+
+  .workout-mode-banner-list {
+    margin-right: auto;
+  }
 }
 

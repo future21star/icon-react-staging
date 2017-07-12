@@ -76,7 +76,7 @@ export default class Login extends Component {
 							<div className="input-group-addon">
 								<span className="icon-email"/>
 							</div>
-							<span className="underline"></span>
+							<span className="underline"/>
 						</div>
 
 					</div>

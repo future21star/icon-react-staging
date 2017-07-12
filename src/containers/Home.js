@@ -93,24 +93,25 @@ export default class Home extends Component {
 				transitionAppear={true}
 				transitionAppearTimeout={300}
 				transitionEnterTimeout={300}
-				 transitionLeaveTimeout={300}
+				transitionLeaveTimeout={300}
 			>
 				<div className="bottom-padding">
 					<Helmet title="Home"/>
 
-					<Menubar title="Today's Workout"
-									 rightSideContent={
-									 	<Link to="profile">
-									 		<span className="mobile-hide">Profile</span>
-									 		<span className="icon-user-profile"/> 
-									 	</Link>}
-									 	leftSideContent={
-									 		<a href="#" onClick={this.handleLogout}>
-												<span className="icon-logout"/>
-												<span className="mobile-hide">Log Out</span>
-											</a>
-									 	}
-									 className="gradient-turquoise menu-color-white">
+					<Menubar
+						title="Today's Workout"
+						rightSideContent={
+							<Link to="profile">
+								<span className="mobile-hide">Profile</span>
+								<span className="icon-user-profile"/>
+							</Link>}
+						leftSideContent={
+							<a href="javascript:;" onClick={this.handleLogout}>
+								<span className="icon-logout"/>
+								<span className="mobile-hide">Log Out</span>
+							</a>
+						}
+						className="gradient-turquoise menu-color-white">
 						<DotList/>
 					</Menubar>
 

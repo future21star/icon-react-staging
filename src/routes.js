@@ -49,8 +49,7 @@ export default (store) => {
 					<IndexRoute component={containers.Home}/>
 					<Route path="profile" component={containers.Profile}/>
 					<Route path="feed" component={containers.Feed}/>
-					<Route path="feed-desktop" component={containers.FeedDesktop}/>
-					<Route path="feed-desktop/post/:id" component={containers.FeedDesktopSinglePost}/>
+					<Route path="feed/single" component={containers.SingleFeed}/>
 					<Route path="nutrition" component={containers.Nutrition}/>
 					<Route path="programming" component={containers.Programming}/>
 					<Route path="programming/list-view" component={containers.ProgrammingListView}/>
@@ -63,7 +62,6 @@ export default (store) => {
 				<Route path="edit-tracks/:name" component={containers.ViewTrack}/>
 				<Route path="feed/filter" component={containers.FeedFilter}/>
 				<Route path="feed/search" component={containers.Search}/>
-				<Route path="feed/single" component={containers.SingleFeed}/>
 			</Route>
 
 			{/*logged out*/}
