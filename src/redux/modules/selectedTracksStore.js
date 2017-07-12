@@ -1,6 +1,6 @@
 import {LOGOUT_SUCCESS} from "./authStore";
 
-const LOAD = 'selectedTracks/LOAD_REQUEST';
+const LOAD = 'selectedTracks/LOAD';
 const LOAD_SUCCESS = 'selectedTracks/LOAD_SUCCESS';
 const LOAD_FAIL = 'selectedTracks/LOAD_FAIL';
 

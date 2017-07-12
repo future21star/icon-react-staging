@@ -1,4 +1,4 @@
-const LOAD = 'allTracks/LOAD_REQUEST';
+const LOAD = 'allTracks/LOAD';
 const LOAD_SUCCESS = 'allTracks/LOAD_SUCCESS';
 const LOAD_FAIL = 'allTracks/LOAD_FAIL';
 

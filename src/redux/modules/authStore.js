@@ -1,7 +1,7 @@
 import {EDIT_PROFILE_SUCCESS} from "./editProfileStore";
 import {LOGIN_SUCCESS} from "./loginStore";
 
-const LOAD = 'auth/LOAD_REQUEST';
+const LOAD = 'auth/LOAD';
 const LOAD_SUCCESS = 'auth/LOAD_SUCCESS';
 const LOAD_FAIL = 'auth/LOAD_FAIL';
 
