@@ -5,14 +5,25 @@ import {connect} from "react-redux";
 import SingleFeedMobile from "./SingleFeedMobile";
 import SingleFeedDesktop from "./SingleFeedDesktop";
 import checkAccessLevel from '../HOC/CheckAccessLevel'
+import {setActiveFeed, unsetActiveFeed} from '../../redux/modules/feedStore';
 
 @checkAccessLevel('feed')
 
 @connect(
-	state => ({})
+	state => ({
+		activeItem: state.feedStore.activeItem
+	}),
+	{setActiveFeed, unsetActiveFeed}
 )
-
 export default class SingleFeed extends Component {
+
+	componentDidMount() {
+		this.props.setActiveFeed(this.props.params.type, this.props.params.slug);
+	}
+
+	componentWillUnmount() {
+		this.props.unsetActiveFeed();
+	}
 
 	render() {
 		return (

@@ -5,28 +5,29 @@ import moment from "moment";
 
 export default class FeedFeaturedPost extends Component {
 	static propTypes = {
+		'type': PropTypes.string.isRequired,
 		'title': PropTypes.string.isRequired,
-		'body': PropTypes.string.isRequired,
-		'imageSizes': PropTypes.object,
+		'slug': PropTypes.string.isRequired,
 		'date': PropTypes.string.isRequired,
+		'description': PropTypes.string.isRequired,
+		'image': PropTypes.oneOfType([
+			PropTypes.string,
+			PropTypes.bool
+		]),
+		'audio': PropTypes.string
 	};
 
 	render() {
-		const {title, body, imageSizes, date} = this.props;
+		const {type, title, slug, date, description, image, audio} = this.props;
 
-		let image = null;
-		if (imageSizes) {
-			image = imageSizes.full.source_url;
-		} else {
-			image = require('../../../static/logo.png');
-		}
+		const defaultImage = require('../../../static/logo.png');
 
 		return (
 			<div className="feed-featured-post">
 				<div className="feed-featured-post-image">
 					{/*type-video*/}
 					<div className="">
-						<img width="100%" src={image}/>
+						<img width="100%" src={image || defaultImage}/>
 					</div>
 				</div>
 
@@ -35,14 +36,14 @@ export default class FeedFeaturedPost extends Component {
 					<div className="feed-featured-post-date">Posted {moment(date).format('DD.MM.YYYY')}</div>
 					<div className="feed-featured-post-content">
 						{
-							truncate(body, {
+							truncate(description, {
 								'length': 120,
 								'separator': ' '
 							})
 						}
 					</div>
 					<div className="feed-featured-post-read-more">
-						<Link className="btn-read-more" to="/feed/single">Read more</Link>
+						<Link className="btn-read-more" to={`/feed/${type}/${slug}`}>Read more</Link>
 					</div>
 				</div>
 			</div>

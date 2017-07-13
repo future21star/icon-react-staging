@@ -2,50 +2,54 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import ReactDisqusThread from 'react-disqus-thread';
 import {Menubar} from "../../components";
+import moment from "moment";
+import ReactAudioPlayer from 'react-audio-player';
 
 @connect(
-	state => ({})
+	state => ({
+		activeItemType: state.feedStore.activeItemType,
+		activeItem: state.feedStore.activeItem
+	})
 )
 
 export default class SingleFeedMobile extends Component {
 
 	render() {
-		let featuredImageUrl = require('../../../static/temp/feed-featured-temp.jpg');
+		const {activeItemType, activeItem} = this.props;
+		const defaultImage = require('../../../static/logo.png');
+
+		if (!activeItem) return <div/>;
 
 		return (
 			<div className="feed-page-wrapper bottom-padding">
 				<Menubar
 					title="Overview"
+					className="text-white"
 					backButton={true}
 				/>
 				<div className="feed-content-wrapper">
 					<div className="feed-featured-post">
 						<div className="feed-featured-post-image">
-							<div className="type-video">
-								<img width="100%" src={featuredImageUrl}/>
+							{/*type-video*/}
+							<div className="">
+								<img width="100%" src={activeItem.image || defaultImage}/>
 							</div>
 						</div>
 
 						<div className="container">
-							<div className="feed-featured-post-title">Here goes to title of this post</div>
-							<div className="feed-featured-post-date">Posted 24.02.2017</div>
+							<div className="feed-featured-post-title">{activeItem.title}</div>
+							<div className="feed-featured-post-date">Posted {moment(activeItem.date).format('DD.MM.YYYY')}</div>
 							<div className="feed-featured-post-content">
-								<p>
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab exercitationem facilis id natus nihil.
-									Consequatur eveniet expedita id in, iusto nam nobis officia porro quae quas qui saepe temporibus
-									voluptates?
-								</p>
-								<p>
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus autem cum dolorem ea facere ipsam
-									maxime minus obcaecati rerum? Amet enim laboriosam laudantium, maiores nulla quidem reprehenderit sint
-									totam veniam.
-								</p>
-								<p>
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit. A blanditiis culpa debitis dicta dolore
-									dolores vero! Consequuntur corporis dolores excepturi facere itaque praesentium repudiandae sequi
-									similique ullam! Delectus praesentium, sit!
-								</p>
+								{ (activeItemType === 'podcast' && activeItem.audio) && (
+									<ReactAudioPlayer
+										src={activeItem.audio}
+										controls
+										style={{'width': '100%'}}
+									/>
+								)}
+								{activeItem.description}
 							</div>
+
 
 							<ReactDisqusThread
 								shortname="example"

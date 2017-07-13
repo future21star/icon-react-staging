@@ -50,11 +50,11 @@ export default (store) => {
 					<Route path="profile" component={containers.Profile}/>
 					<Route path="feed" component={containers.Feed}>
 						<IndexRoute component={containers.FeedVideo}/>
-						<Route path="podcasts" component={containers.FeedPodcast}/>
+						<Route path="podcast" component={containers.FeedPodcast}/>
 						<Route path="rehab" component={containers.FeedRehab}/>
 						<Route path="mentality" component={containers.FeedMentality}/>
 					</Route>
-					<Route path="feed/single" component={containers.SingleFeed}/>
+					<Route path="feed/:type/:slug" component={containers.SingleFeed}/>
 					<Route path="nutrition" component={containers.Nutrition}/>
 					<Route path="programming" component={containers.Programming}/>
 					<Route path="programming/list-view" component={containers.ProgrammingListView}/>

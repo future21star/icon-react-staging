@@ -25,34 +25,23 @@ export default function loadFeeds(request) {
 			allPagesCompleted = true;
 		}
 
-		// make a array of media IDs
-		let allMediaIds = [];
-		feed.data.map((item) => {
-			allMediaIds.push(item.featured_media);
-		});
-
-		// get all medias
-		let medias = null;
-		try {
-			medias = await axios.get(WP_API_URL + '/wp/v2/media?include=' + allMediaIds.join(','));
-		} catch (e) {
-			console.log(e);
-			return reject(generalError(e.response.data.message));
-		}
-
 		// merge media with feed
-		let mergedFeeds = [];
+		let allFeeds = [];
 		feed.data.map((singleFeed, i) => {
-			medias.data.map((singleMedia) => {
-				if (singleFeed.featured_media === singleMedia.id) {
-					singleFeed.featured_media_obj = singleMedia;
-				}
-			});
-			mergedFeeds.push(singleFeed);
+			let newSingleFeed = {
+				title: singleFeed.title.rendered,
+				description: singleFeed.description,
+				image: singleFeed.featured_image ? singleFeed.featured_image.guid : false,
+				audio: singleFeed.podcast_url,
+				slug: singleFeed.slug,
+				date: singleFeed.date,
+			};
+
+			allFeeds.push(newSingleFeed);
 		});
 
 		return resolve({
-			feeds: mergedFeeds,
+			feeds: allFeeds,
 			feedType: feedType,
 			currentPage: currentPage,
 			allPagesCompleted: allPagesCompleted

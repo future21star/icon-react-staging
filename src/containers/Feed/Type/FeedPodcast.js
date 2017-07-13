@@ -50,10 +50,8 @@ export default class FeedPodcast extends Component {
 			>
 				<Helmet title="Feed : Podcasts"/>
 				<FeedFeaturedPost
-					title={podcasts[0].podcast_title}
-					body={podcasts[0].podcast_description}
-					imageSizes={podcasts[0].featured_media_obj ? podcasts[0].featured_media_obj.media_details.sizes : null}
-					date={podcasts[0].date}
+					{...podcasts[0]}
+					type="podcast"
 				/>
 
 				<div>
@@ -63,10 +61,8 @@ export default class FeedPodcast extends Component {
 						return (
 							<div key={index}>
 								<FeedPost
-									title={podcast.podcast_title}
-									body={podcast.podcast_description}
-									imageSizes={podcast.featured_media_obj ? podcast.featured_media_obj.media_details.sizes : null}
-									date={podcast.date}
+									{...podcast}
+									type="podcast"
 								/>
 							</div>
 						)

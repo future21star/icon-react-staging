@@ -21,7 +21,7 @@ export default class FeedTopNav extends Component {
 		return (
 			<ul className="nav nav-pills nav-justified feed-top-sub-nav">
 				{FeedTopNav.renderLinkItem('/feed', 'icon-feed-video', currentUri)}
-				{FeedTopNav.renderLinkItem('/feed/podcasts', 'icon-feed-podcast', currentUri)}
+				{FeedTopNav.renderLinkItem('/feed/podcast', 'icon-feed-podcast', currentUri)}
 				{FeedTopNav.renderLinkItem('/feed/rehab', 'icon-feed-rehab', currentUri)}
 				{FeedTopNav.renderLinkItem('/feed/mentality', 'icon-user-mentality', currentUri)}
 			</ul>
