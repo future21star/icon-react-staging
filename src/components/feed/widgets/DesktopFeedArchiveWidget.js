@@ -6,8 +6,8 @@ export default class DesktopFeedArchiveWidget extends Component {
 
 	render() {
 		return (
-			<div className="sidebar-section-03-desktop">
-				<div className="sidebar-section-03-header">
+			<div className="sidebar-section-desktop sidebar-section-03-desktop">
+				<div className="sidebar-section-header sidebar-section-03-header">
 					Archives
 				</div>
 				<ul className="list-group sidebar-list">

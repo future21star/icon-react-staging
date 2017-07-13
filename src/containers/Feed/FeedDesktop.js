@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
+
 import {
 	DesktopFeedTopNav,
 	DesktopFeedFeaturedPost,
@@ -15,6 +16,14 @@ import {range} from "lodash";
 
 export default class FeedDesktop extends Component {
 
+	componentDidMount() {
+   	document.body.classList.toggle('desktop-disable-scrolling');
+  	}
+
+  	componentWillUnmount() {
+    	document.body.classList.remove('desktop-disable-scrolling');
+  	}
+
 	render() {
 		return (
 			<div className="feed-page-wrapper-desktop bottom-padding hidden-xs">
@@ -27,8 +36,11 @@ export default class FeedDesktop extends Component {
 						<div className="feed-body-desktop">
 							<div className="feed-body-desktop-content">
 								<div className="row no-margin-left-right">
+									<div className="col-md-4 col-lg-3 feed-body-left overflow-custom-scroll">
+										<DesktopFeedSidebar/>
+									</div>
 
-									<div className="col-sm-7 col-md-8">
+									<div className="col-md-8 col-lg-9 feed-body-right overflow-custom-scroll">
 										<DesktopFeedFeaturedPost/>
 
 										<div className="feed-posts-section">
@@ -45,10 +57,6 @@ export default class FeedDesktop extends Component {
 
 										<DesktopFeedPagination/>
 
-									</div>
-
-									<div className="col-sm-5 col-md-4">
-										<DesktopFeedSidebar/>
 									</div>
 								</div>
 							</div>

@@ -6,8 +6,8 @@ export default class DesktopFeedCategoryWidget extends Component {
 
 	render() {
 		return (
-			<div className="sidebar-section-01-desktop">
-				<div className="sidebar-section-01-header">
+			<div className="sidebar-section-desktop sidebar-section-01-desktop">
+				<div className="sidebar-section-header sidebar-section-01-header">
 					Categories
 				</div>
 				<ul className="list-group sidebar-list">

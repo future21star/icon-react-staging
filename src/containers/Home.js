@@ -111,7 +111,7 @@ export default class Home extends Component {
 								<span className="mobile-hide">Log Out</span>
 							</a>
 						}
-						className="gradient-turquoise menu-color-white">
+						className="menu-color-white">
 						<DotList/>
 					</Menubar>
 
@@ -164,9 +164,11 @@ export default class Home extends Component {
 		let nextTrackName = selectedTracks[i + 1] ? selectedTracks[i + 1].trackName : null;
 		let prevTrackName = selectedTracks[i - 1] ? selectedTracks[i - 1].trackName : null;
 
+		let dailyBrief = (dailyBriefs[track.name] ? <DailyBriefCollapsable user={user} content={dailyBriefs[track.name]}/> : undefined);
 		return (
 			<div name={track.name} key={i}>
-				<DailyBriefCollapsable user={user} content={dailyBriefs[track.name]}/>
+				
+				{dailyBrief}	
 
 				{wodForThisTrack && wodForThisTrackAndDate ? (
 					<div>

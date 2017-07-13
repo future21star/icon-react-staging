@@ -3,6 +3,19 @@
     display: none !important;
   }
 
+  .desktop-disable-scrolling{
+    overflow: auto !important;
+  }
+
+  .desktop-menu-fixed{
+    position: relative;
+    z-index: 1;
+  }
+
+  .bottom-padding{
+    padding-bottom: 40px;
+  }
+
   /*
   MENU BAR
   */

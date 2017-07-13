@@ -6,8 +6,8 @@ export default class DesktopFeedTopicWidget extends Component {
 
 	render() {
 		return (
-			<div className="sidebar-section-02-desktop">
-				<div className="sidebar-section-02-header">
+			<div className="sidebar-section-desktop sidebar-section-02-desktop">
+				<div className="sidebar-section-header sidebar-section-02-header">
 					Topics
 				</div>
 				<ul className="list-group sidebar-list">

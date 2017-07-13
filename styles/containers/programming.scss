@@ -15,3 +15,12 @@
 @import "../components/workout/workout_tabs";
 @import "../components/workout/workout_tabs_desktop";
 @import "../components/workout/workout_mode";
+
+
+.programming-page-wrapper{
+
+	.overflow-custom-scroll{
+		margin-top: 103px;
+		height: calc(100vh - 205px);
+	}
+}

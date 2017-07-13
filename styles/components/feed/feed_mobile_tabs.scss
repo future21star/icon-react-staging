@@ -1,0 +1,43 @@
+.feed-top-sub-nav {
+
+  background: $white;
+
+  li {
+    display: table-cell;
+    width: 1%;
+
+    a {
+      margin-top: 8px;
+      margin-bottom: 8px;
+      border-right: 1px solid #dddddd;
+      padding-top: 5px;
+      padding-bottom: 5px;
+
+      [class^="icon-"], [class*=" icon-"] {
+        color: #aaaaaa;
+        font-size: 24px;
+      }
+      // for video icon, we need to set the font size
+      [class="icon-feed-video"] {
+        font-size: 18px;
+      }
+
+      &:hover, &:focus {
+        background: transparent;
+      }
+    }
+
+    &.active {
+      a {
+        background: transparent;
+        [class^="icon-"], [class*=" icon-"] {
+          color: #000000;
+        }
+      }
+    }
+
+    &:last-child a {
+      border-right: 0;
+    }
+  }
+}
