@@ -30,7 +30,7 @@ import checkAccessLevel from '../HOC/CheckAccessLevel'
 
 export default class FeedSearch extends Component {
 
-	searchSelectorOptions = [
+	static searchSelectorOptions = [
 		{value: 'video', label: 'Videos'},
 		{value: 'podcast', label: 'Podcasts'},
 		{value: 'rehab', label: 'Rehab'},
@@ -106,13 +106,15 @@ export default class FeedSearch extends Component {
 					<div className="col-xs-4 col-xs-offset-4">
 						<div className="search-selector-wrapper">
 							<Select
+								instanceId={"search-topic"}
 								className="pretty-select search-selector-input"
 								value={searchTopic}
 								placeholder="Select"
-								options={this.searchSelectorOptions}
+								options={FeedSearch.searchSelectorOptions}
 								onChange={this.changeSearchTopic}
 								clearable={false}
-								arrowRenderer={FeedSearch.arrowRenderer}/>
+								arrowRenderer={FeedSearch.arrowRenderer}
+							/>
 						</div>
 					</div>
 				</div>
