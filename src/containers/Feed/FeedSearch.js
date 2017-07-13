@@ -1,31 +1,41 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {Menubar} from '../../components/index';
+import {Menubar, FeedPost} from '../../components/index';
 import {connect} from "react-redux";
 import {Link} from 'react-router';
 import Select from "react-select";
+import {
+	setSearchTopic,
+	setSearchText,
+	clearSearchResult,
+	search,
+	loadMoreSearchResult
+} from "../../redux/modules/feedStore";
 import checkAccessLevel from '../HOC/CheckAccessLevel'
 
 @checkAccessLevel('feed')
 
 @connect(
-	state => ({})
+	state => ({
+		loading: state.feedStore.loading,
+		searchText: state.feedStore.search.searchText,
+		searchTopic: state.feedStore.search.searchTopic,
+		searchCurrentPageNo: state.feedStore.search.currentPage,
+		searchAllPagesCompleted: state.feedStore.search.allPagesCompleted,
+		searchResultItems: state.feedStore.search.items
+	}),
+	{setSearchTopic, setSearchText, search, clearSearchResult, loadMoreSearchResult}
 )
 
 export default class FeedSearch extends Component {
 
-	constructor(props) {
-		super(props);
-
-		this.state = {
-			selectedSelector: 'Podcasts'
-		}
-	}
-
-	searchSelectorOptions = ['Videos', 'Podcasts', 'Rehab', 'Mentality'].map(val => {
-		return {value: val, label: val};
-	});
+	searchSelectorOptions = [
+		{value: 'video', label: 'Videos'},
+		{value: 'podcast', label: 'Podcasts'},
+		{value: 'rehab', label: 'Rehab'},
+		{value: 'mentality', label: 'Mentality'}
+	];
 
 	static arrowRenderer() {
 		return (
@@ -33,10 +43,31 @@ export default class FeedSearch extends Component {
 		)
 	};
 
-	changeSelector = (selectedValue) => {
-		this.setState({
-			selectedSelector: selectedValue.value
-		})
+	changeSearchTopic = (selectedTopic) => {
+		const {searchText, setSearchTopic} = this.props;
+		setSearchTopic(selectedTopic.value);
+		this.performSearch(searchText, selectedTopic.value);
+	};
+
+	changeSearchText = (e) => {
+		const {searchTopic, setSearchText} = this.props;
+		let searchText = e.target.value;
+		setSearchText(searchText);
+		this.performSearch(searchText, searchTopic);
+	};
+
+	performSearch = (searchText, searchTopic) => {
+		const {search, clearSearchResult} = this.props;
+		if (searchText.length >= 3 && searchTopic) {
+			search(searchText, searchTopic);
+		} else {
+			clearSearchResult();
+		}
+	};
+
+	onClickLoadMoreButton = () => {
+		const {loadMoreSearchResult, searchCurrentPageNo, searchText, searchTopic} = this.props;
+		loadMoreSearchResult(searchText, searchTopic, searchCurrentPageNo);
 	};
 
 	render() {
@@ -67,6 +98,8 @@ export default class FeedSearch extends Component {
 	}
 
 	renderSearch() {
+		const {loading, searchAllPagesCompleted, searchTopic, searchText, searchResultItems} = this.props;
+
 		return (
 			<div className="container">
 				<div className="row">
@@ -74,10 +107,10 @@ export default class FeedSearch extends Component {
 						<div className="search-selector-wrapper">
 							<Select
 								className="pretty-select search-selector-input"
-								value={this.state.selectedSelector}
+								value={searchTopic}
 								placeholder="Select"
 								options={this.searchSelectorOptions}
-								onChange={this.changeSelector}
+								onChange={this.changeSearchTopic}
 								clearable={false}
 								arrowRenderer={FeedSearch.arrowRenderer}/>
 						</div>
@@ -85,7 +118,28 @@ export default class FeedSearch extends Component {
 				</div>
 
 				<div className="form-group">
-					<input type="text" placeholder="Search the Vault" className="form-control search-text-input"/>
+					<input type="text" value={searchText} onChange={this.changeSearchText} placeholder="Search the Vault"
+								 className="form-control search-text-input"/>
+				</div>
+
+				{searchResultItems.map((item, index) => {
+					return (
+						<div key={index}>
+							<FeedPost
+								{...item}
+								type={searchTopic}
+							/>
+						</div>
+					)
+				})}
+
+				{/* TODO: temporary load more button, will be replaced with auto load on scroll*/}
+				<div style={{'background': '#ffffff', 'padding': '20px 0'}} className="text-center">
+					{!searchAllPagesCompleted && searchResultItems.length ?
+						<button className="btn btn-primary" onClick={this.onClickLoadMoreButton} disabled={loading}>
+							{loading ? 'Loading...' : 'Load More'}
+						</button> : undefined
+					}
 				</div>
 			</div>
 		);

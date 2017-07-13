@@ -71,7 +71,7 @@ export default class FeedPodcast extends Component {
 					{/* TODO: temporary load more button, will be replaced with auto load on scroll*/}
 					<div style={{'background': '#ffffff', 'padding': '20px 0 40px'}} className="text-center">
 						{podcastAllPagesCompleted ?
-							<p className="text-success">All feeds has been loaded</p>
+							<p className="text-success">All podcasts has been loaded</p>
 							: <button className="btn btn-primary" onClick={this.onClickLoadMoreButton} disabled={loading}>
 								{loading ? 'Loading...' : 'Load More'}
 							</button>

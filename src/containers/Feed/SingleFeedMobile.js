@@ -18,8 +18,6 @@ export default class SingleFeedMobile extends Component {
 		const {activeItemType, activeItem} = this.props;
 		const defaultImage = require('../../../static/logo.png');
 
-		if (!activeItem) return <div/>;
-
 		return (
 			<div className="feed-page-wrapper bottom-padding">
 				<Menubar
@@ -27,39 +25,41 @@ export default class SingleFeedMobile extends Component {
 					className="text-white"
 					backButton={true}
 				/>
-				<div className="feed-content-wrapper">
-					<div className="feed-featured-post">
-						<div className="feed-featured-post-image">
-							{/*type-video*/}
-							<div className="">
-								<img width="100%" src={activeItem.image || defaultImage}/>
-							</div>
-						</div>
-
-						<div className="container">
-							<div className="feed-featured-post-title">{activeItem.title}</div>
-							<div className="feed-featured-post-date">Posted {moment(activeItem.date).format('DD.MM.YYYY')}</div>
-							<div className="feed-featured-post-content">
-								{ (activeItemType === 'podcast' && activeItem.audio) && (
-									<ReactAudioPlayer
-										src={activeItem.audio}
-										controls
-										style={{'width': '100%'}}
-									/>
-								)}
-								{activeItem.description}
+				{activeItem && (
+					<div className="feed-content-wrapper">
+						<div className="feed-featured-post">
+							<div className="feed-featured-post-image">
+								{/*type-video*/}
+								<div className="">
+									<img width="100%" src={activeItem.image || defaultImage}/>
+								</div>
 							</div>
 
+							<div className="container">
+								<div className="feed-featured-post-title">{activeItem.title}</div>
+								<div className="feed-featured-post-date">Posted {moment(activeItem.date).format('DD.MM.YYYY')}</div>
+								<div className="feed-featured-post-content">
+									{ (activeItemType === 'podcast' && activeItem.audio) && (
+										<ReactAudioPlayer
+											src={activeItem.audio}
+											controls
+											style={{'width': '100%'}}
+										/>
+									)}
+									{activeItem.description}
+								</div>
 
-							<ReactDisqusThread
-								shortname="example"
-								identifier="something-unique-12345"
-								title="Example Thread"
-								url="http://www.example.com/example-thread"
-								category_id="123456"/>
+
+								<ReactDisqusThread
+									shortname="example"
+									identifier="something-unique-12345"
+									title="Example Thread"
+									url="http://www.example.com/example-thread"
+									category_id="123456"/>
+							</div>
 						</div>
 					</div>
-				</div>
+				)}
 			</div>
 		);
 	}

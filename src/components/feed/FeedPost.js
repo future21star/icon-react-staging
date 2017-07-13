@@ -6,8 +6,8 @@ import moment from 'moment';
 export default class FeedPost extends Component {
 	static propTypes = {
 		'type': PropTypes.string.isRequired,
+		'id': PropTypes.number.isRequired,
 		'title': PropTypes.string.isRequired,
-		'slug': PropTypes.string.isRequired,
 		'date': PropTypes.string.isRequired,
 		'description': PropTypes.string.isRequired,
 		'image': PropTypes.oneOfType([
@@ -18,7 +18,7 @@ export default class FeedPost extends Component {
 	};
 
 	render() {
-		const {type, title, slug, date, description, image, audio} = this.props;
+		const {type, title, id, date, description, image, audio} = this.props;
 
 		const defaultImage = require('../../../static/logo.png');
 
@@ -31,7 +31,7 @@ export default class FeedPost extends Component {
 						</div>
 						<div className="col-xs-6">
 							<div className="feed-post-title">
-								<Link to={`/feed/${type}/${slug}`}>{title}</Link>
+								<Link to={`/feed/${type}/${id}`}>{title}</Link>
 							</div>
 							<div className="feed-post-content">
 								{

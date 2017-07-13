@@ -24,4 +24,7 @@ export loadHelpfulLinks from './helpfulLinks/loadHelpfulLinks';
 export loadAllTracks from './tracks/loadAllTracks';
 
 export loadFeeds from './feed/loadFeeds';
+export loadFeed from './feed/loadFeed';
+
+export search from './search/search';
 

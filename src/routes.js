@@ -54,7 +54,7 @@ export default (store) => {
 						<Route path="rehab" component={containers.FeedRehab}/>
 						<Route path="mentality" component={containers.FeedMentality}/>
 					</Route>
-					<Route path="feed/:type/:slug" component={containers.SingleFeed}/>
+					<Route path="feed/:type/:id" component={containers.SingleFeed}/>
 					<Route path="nutrition" component={containers.Nutrition}/>
 					<Route path="programming" component={containers.Programming}/>
 					<Route path="programming/list-view" component={containers.ProgrammingListView}/>
@@ -66,7 +66,7 @@ export default (store) => {
 				<Route path="edit-profile" component={containers.EditProfile}/>
 				<Route path="edit-tracks/:name" component={containers.ViewTrack}/>
 				<Route path="feed/filter" component={containers.FeedFilter}/>
-				<Route path="feed/search" component={containers.Search}/>
+				<Route path="feed/search" component={containers.FeedSearch}/>
 			</Route>
 
 			{/*logged out*/}

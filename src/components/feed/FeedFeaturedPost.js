@@ -6,8 +6,8 @@ import moment from "moment";
 export default class FeedFeaturedPost extends Component {
 	static propTypes = {
 		'type': PropTypes.string.isRequired,
+		'id': PropTypes.number.isRequired,
 		'title': PropTypes.string.isRequired,
-		'slug': PropTypes.string.isRequired,
 		'date': PropTypes.string.isRequired,
 		'description': PropTypes.string.isRequired,
 		'image': PropTypes.oneOfType([
@@ -18,7 +18,7 @@ export default class FeedFeaturedPost extends Component {
 	};
 
 	render() {
-		const {type, title, slug, date, description, image, audio} = this.props;
+		const {type, title, id, date, description, image, audio} = this.props;
 
 		const defaultImage = require('../../../static/logo.png');
 
@@ -43,7 +43,7 @@ export default class FeedFeaturedPost extends Component {
 						}
 					</div>
 					<div className="feed-featured-post-read-more">
-						<Link className="btn-read-more" to={`/feed/${type}/${slug}`}>Read more</Link>
+						<Link className="btn-read-more" to={`/feed/${type}/${id}`}>Read more</Link>
 					</div>
 				</div>
 			</div>

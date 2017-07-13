@@ -25,15 +25,15 @@ export default function loadFeeds(request) {
 			allPagesCompleted = true;
 		}
 
-		// merge media with feed
+		// format feed
 		let allFeeds = [];
 		feed.data.map((singleFeed, i) => {
 			let newSingleFeed = {
+				id: singleFeed.id,
 				title: singleFeed.title.rendered,
 				description: singleFeed.description,
 				image: singleFeed.featured_image ? singleFeed.featured_image.guid : false,
 				audio: singleFeed.podcast_url,
-				slug: singleFeed.slug,
 				date: singleFeed.date,
 			};
 

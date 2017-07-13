@@ -15,7 +15,7 @@ export FeedRehab from './Feed/Type/FeedRehab';
 export FeedMentality from './Feed/Type/FeedMentality';
 export SingleFeed from './Feed/SingleFeed';
 export FeedFilter from './Feed/FeedFilter';
-export Search from './Feed/FeedSearch';
+export FeedSearch from './Feed/FeedSearch';
 
 export App from './App';
 export AuthLayout from './AuthLayout';

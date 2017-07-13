@@ -4,25 +4,23 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {connect} from "react-redux";
 import SingleFeedMobile from "./SingleFeedMobile";
 import SingleFeedDesktop from "./SingleFeedDesktop";
-import checkAccessLevel from '../HOC/CheckAccessLevel'
-import {setActiveFeed, unsetActiveFeed} from '../../redux/modules/feedStore';
+import checkAccessLevel from '../HOC/CheckAccessLevel';
+import {loadSingle as loadSingleFeed, unsetSingleFeed} from '../../redux/modules/feedStore'
 
 @checkAccessLevel('feed')
 
 @connect(
-	state => ({
-		activeItem: state.feedStore.activeItem
-	}),
-	{setActiveFeed, unsetActiveFeed}
+	state => ({}),
+	{loadSingleFeed, unsetSingleFeed}
 )
 export default class SingleFeed extends Component {
 
 	componentDidMount() {
-		this.props.setActiveFeed(this.props.params.type, this.props.params.slug);
+		this.props.loadSingleFeed(this.props.params.type, this.props.params.id);
 	}
 
 	componentWillUnmount() {
-		this.props.unsetActiveFeed();
+		this.props.unsetSingleFeed();
 	}
 
 	render() {
