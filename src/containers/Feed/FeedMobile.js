@@ -3,15 +3,8 @@ import {connect} from "react-redux";
 import {Link} from 'react-router';
 import {
 	Menubar,
-	SubscriptionUpgradeCard,
-	FeedTopNav,
-	FeedFeaturedPost,
-	FeedFeaturedLockedPost,
-	FeedPost,
-	FeedFilterBtn,
-	FeedSeeAllVideosBtn
+	FeedTopNav
 } from '../../components'
-import {range} from "lodash";
 
 @connect(
 	state => ({})
@@ -33,38 +26,8 @@ export default class FeedMobile extends Component {
 				/>
 
 				<div className="feed-content-wrapper">
-					<div>
-						<FeedTopNav/>
-
-						{/*unlocked post*/}
-						<FeedFeaturedPost/>
-
-						{/*locked post*/}
-						{/*<FeedFeaturedLockedPost/>*/}
-					</div>
-
-					{/* show subscription card if locked*/}
-					{/*<div className="container">*/}
-					{/*<SubscriptionUpgradeCard*/}
-					{/*description={(<div>*/}
-					{/*Unlock This Section of the Vault <br/>*/}
-					{/*<span className="text-danger">Cancel Anytime</span>*/}
-					{/*</div>)}*/}
-					{/*/>*/}
-					{/*</div>*/}
-
-					<div>
-						{range(3).map((item, index) => {
-							return (
-								<div key={index}>
-									<FeedPost/>
-								</div>
-							)
-						})}
-
-						<FeedSeeAllVideosBtn/>
-						<FeedFilterBtn/>
-					</div>
+					<FeedTopNav/>
+					{this.props.children}
 				</div>
 			</div>
 		);

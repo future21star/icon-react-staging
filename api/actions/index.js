@@ -23,3 +23,5 @@ export loadHelpfulLinks from './helpfulLinks/loadHelpfulLinks';
 
 export loadAllTracks from './tracks/loadAllTracks';
 
+export loadFeeds from './feed/loadFeeds';
+

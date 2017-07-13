@@ -1,27 +1,45 @@
 import React, {Component, PropTypes} from 'react';
 import {Link} from "react-router";
+import {truncate} from "lodash";
+import moment from "moment";
 
 export default class FeedFeaturedPost extends Component {
-	static propTypes = {};
+	static propTypes = {
+		'title': PropTypes.string.isRequired,
+		'body': PropTypes.string.isRequired,
+		'imageSizes': PropTypes.object,
+		'date': PropTypes.string.isRequired,
+	};
 
 	render() {
-		let featuredImageUrl = require('../../../static/temp/feed-featured-temp.jpg');
+		const {title, body, imageSizes, date} = this.props;
+
+		let image = null;
+		if (imageSizes) {
+			image = imageSizes.full.source_url;
+		} else {
+			image = require('../../../static/logo.png');
+		}
 
 		return (
 			<div className="feed-featured-post">
 				<div className="feed-featured-post-image">
-					<div className="type-video">
-						<img width="100%" src={featuredImageUrl}/>
+					{/*type-video*/}
+					<div className="">
+						<img width="100%" src={image}/>
 					</div>
 				</div>
 
 				<div className="container">
-					<div className="feed-featured-post-title">Here goes to title of this post</div>
-					<div className="feed-featured-post-date">Posted 24.02.2017</div>
+					<div className="feed-featured-post-title">{title}</div>
+					<div className="feed-featured-post-date">Posted {moment(date).format('DD.MM.YYYY')}</div>
 					<div className="feed-featured-post-content">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab exercitationem facilis id natus nihil.
-						Consequatur eveniet expedita id in, iusto nam nobis officia porro quae quas qui saepe temporibus
-						voluptates?
+						{
+							truncate(body, {
+								'length': 120,
+								'separator': ' '
+							})
+						}
 					</div>
 					<div className="feed-featured-post-read-more">
 						<Link className="btn-read-more" to="/feed/single">Read more</Link>

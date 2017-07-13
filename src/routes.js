@@ -48,7 +48,12 @@ export default (store) => {
 				<Route component={containers.AuthLayout}>
 					<IndexRoute component={containers.Home}/>
 					<Route path="profile" component={containers.Profile}/>
-					<Route path="feed" component={containers.Feed}/>
+					<Route path="feed" component={containers.Feed}>
+						<IndexRoute component={containers.FeedVideo}/>
+						<Route path="podcasts" component={containers.FeedPodcast}/>
+						<Route path="rehab" component={containers.FeedRehab}/>
+						<Route path="mentality" component={containers.FeedMentality}/>
+					</Route>
 					<Route path="feed/single" component={containers.SingleFeed}/>
 					<Route path="nutrition" component={containers.Nutrition}/>
 					<Route path="programming" component={containers.Programming}/>

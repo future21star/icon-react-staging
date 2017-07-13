@@ -15,7 +15,7 @@ export default (level) => (WrappedComponent) => {
 			const {vaultAccess} = this.props;
 			let hasAccess = includes(vaultAccess, level);
 
-			return (hasAccess ? <WrappedComponent/> : (
+			return (hasAccess ? <WrappedComponent {...this.props}/> : (
 				<div>
 					<Menubar
 						className="gradient-turquoise menu-color-white"

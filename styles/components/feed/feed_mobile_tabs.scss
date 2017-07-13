@@ -1,4 +1,4 @@
-.feed-top-sub-nav {
+.nav-pills.feed-top-sub-nav {
 
   background: $white;
 
@@ -23,7 +23,7 @@
       }
 
       &:hover, &:focus {
-        background: transparent;
+        background-color: transparent;
       }
     }
 

@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import FeedMobile from "./FeedMobile";
-import FeedDesktop from "./FeedDesktop";
-import checkAccessLevel from '../HOC/CheckAccessLevel'
+import {connect} from "react-redux";
 
-@checkAccessLevel('feed')
+@connect(
+	state => ({})
+)
 
-export default class Feed extends Component {
+export default class FeedMentality extends Component {
 	render() {
 		return (
 			<ReactCSSTransitionGroup
@@ -19,17 +19,8 @@ export default class Feed extends Component {
 				transitionLeave={true}
 				transitionLeaveTimeout={500}
 			>
-				<Helmet title="Feed"/>
-
-				{/*mobile*/}
-				<div className="hidden-md hidden-lg">
-					<FeedMobile {...this.props}/>
-				</div>
-
-				{/*/!*desktop*!/*/}
-				<div className="hidden-xs hidden-sm">
-					<FeedDesktop {...this.props}/>
-				</div>
+				<Helmet title="Feed : Mentality"/>
+				<h2 className="text-center">Mentality</h2>
 			</ReactCSSTransitionGroup>
 		);
 	}

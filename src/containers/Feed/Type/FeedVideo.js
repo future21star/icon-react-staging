@@ -1,13 +1,20 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import FeedMobile from "./FeedMobile";
-import FeedDesktop from "./FeedDesktop";
-import checkAccessLevel from '../HOC/CheckAccessLevel'
+import {connect} from "react-redux";
+import {range} from "lodash";
+import {
+	FeedPost,
+	FeedFeaturedPost,
+	FeedSeeAllVideosBtn,
+	FeedFilterBtn
+} from '../../../components'
 
-@checkAccessLevel('feed')
+@connect(
+	state => ({})
+)
 
-export default class Feed extends Component {
+export default class FeedVideo extends Component {
 	render() {
 		return (
 			<ReactCSSTransitionGroup
@@ -19,16 +26,13 @@ export default class Feed extends Component {
 				transitionLeave={true}
 				transitionLeaveTimeout={500}
 			>
-				<Helmet title="Feed"/>
+				<Helmet title="Feed: Video"/>
 
-				{/*mobile*/}
-				<div className="hidden-md hidden-lg">
-					<FeedMobile {...this.props}/>
-				</div>
+				<div>
+					<h2 className="text-center">Videos</h2>
 
-				{/*/!*desktop*!/*/}
-				<div className="hidden-xs hidden-sm">
-					<FeedDesktop {...this.props}/>
+					{/*<FeedSeeAllVideosBtn/>*/}
+					<FeedFilterBtn/>
 				</div>
 			</ReactCSSTransitionGroup>
 		);
