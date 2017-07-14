@@ -30,6 +30,11 @@ const initialState = {
 		currentPage: 0,
 		allPagesCompleted: false
 	},
+	mentality: {
+		items: [],
+		currentPage: 0,
+		allPagesCompleted: false
+	},
 	search: {
 		searchText: '',
 		searchTopic: 'podcast',

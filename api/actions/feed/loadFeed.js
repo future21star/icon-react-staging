@@ -9,7 +9,8 @@ export default function loadFeed(request) {
 
 		// get feed based on type
 		let url = null;
-		if (type === 'podcast') url = WP_API_URL + '/wp/v2/podcasts/'+id;
+		if (type === 'podcast') url = WP_API_URL + '/wp/v2/podcasts/' + id;
+		else if (type === 'mentality') url = WP_API_URL + '/wp/v2/mentality/' + id;
 
 		let feed = null;
 		try {
@@ -25,10 +26,17 @@ export default function loadFeed(request) {
 			title: feed.data.title.rendered,
 			description: feed.data.description,
 			image: feed.data.featured_image ? feed.data.featured_image.guid : false,
-			audio: feed.data.podcast_url,
-			slug: feed.data.slug,
 			date: feed.data.date,
 		};
+
+		// append type specific fields
+		if (type === 'podcast') {
+			formattedFeed.audio = feed.data.podcast_url;
+		} else if (type === 'mentality') {
+			formattedFeed.is_video = feed.data.video_or_blog === '1';
+			formattedFeed.is_blog = feed.data.video_or_blog === '0';
+			formattedFeed.video = feed.data.video_iframe;
+		}
 
 		return resolve({
 			feed: formattedFeed,

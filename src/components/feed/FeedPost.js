@@ -14,11 +14,20 @@ export default class FeedPost extends Component {
 			PropTypes.string,
 			PropTypes.bool
 		]),
-		'audio': PropTypes.string
+		// belows are for type podcast
+		'audio': PropTypes.string,
+		// belows are for type mentality
+		'is_video': PropTypes.bool,
+		'is_blog': PropTypes.bool,
+		'video': PropTypes.string
+	};
+
+	createMarkup = (html) => {
+		return {__html: html};
 	};
 
 	render() {
-		const {type, title, id, date, description, image, audio} = this.props;
+		const {type, title, id, date, description, image, audio, is_blog, is_video, video} = this.props;
 
 		const defaultImage = require('../../../static/logo.png');
 
@@ -27,11 +36,13 @@ export default class FeedPost extends Component {
 				<div className="container">
 					<div className="row">
 						<div className="col-sm-6 col-xs-4">
-							<img width="100%" src={image || defaultImage}/>
+							{type === 'podcast' && <img width="100%" src={image || defaultImage}/>}
+							{type === 'mentality' && is_blog && <img width="100%" src={image || defaultImage}/>}
+							{type === 'mentality' && is_video && <div className="type-video-iframe" dangerouslySetInnerHTML={this.createMarkup(video)}/>}
 						</div>
 						<div className="col-sm-6 col-xs-8">
 							<h4 className="feed-post-title">
-								<Link to={`/feed/${type}/${id}`}>{title}</Link>
+								<Link to={`/feed/${type}/${id}`} dangerouslySetInnerHTML={this.createMarkup(title)}/>
 							</h4>
 							<div className="feed-post-content">
 								{

@@ -7,36 +7,6 @@
   .feed-featured-post-image {
     position: relative;
 
-    // overlay
-    &:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      //background-image: linear-gradient(to top left, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
-      opacity: .6;
-    }
-
-    .type-video:before {
-      content: '\f04b';
-      font-family: FontAwesome, sans-serif;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 30px;
-      color: #ffffff;
-      border: 1px solid #ffffff;
-      border-radius: 50%;
-      width: 100px;
-      height: 100px;
-      text-align: center;
-      line-height: 3.3em;
-      cursor: pointer;
-    }
-
     .type-locked:before {
       content: '\f023';
       font-family: FontAwesome, sans-serif;
@@ -69,6 +39,7 @@
   padding: 10px 0 5px;
   color: #000;
 }
+
 .feed-featured-post-date {
   color: #999;
   text-transform: uppercase;
@@ -79,14 +50,16 @@
     padding-right: 5px;
   }
 }
+
 .feed-featured-post-content {
   padding: 20px 0 40px;
   line-height: 1.6em;
 
-  audio{
+  audio {
     margin: 0 0 20px;
   }
 }
+
 .feed-featured-post-read-more {
   padding: 10px 0;
   .btn-read-more {
@@ -102,7 +75,6 @@
   }
 }
 
-
 .feed-post {
   background: #ffffff;
   padding: 20px 0;
@@ -110,11 +82,11 @@
   .feed-post-title {
     line-height: 1.2em;
 
-    a{
+    a {
       color: $blackLight;
-    
+
       @include transition(.3s ease color);
-      &:hover{
+      &:hover {
         color: $red;
         cursor: pointer;
       }
@@ -154,4 +126,9 @@
       }
     }
   }
+}
+
+.type-video-iframe iframe {
+  width: 100%;
+  height: auto;
 }

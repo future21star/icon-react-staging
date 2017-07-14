@@ -14,25 +14,33 @@ export default class FeedFeaturedPost extends Component {
 			PropTypes.string,
 			PropTypes.bool
 		]),
-		'audio': PropTypes.string
+		// belows are for type podcast
+		'audio': PropTypes.string,
+		// belows are for type mentality
+		'is_video': PropTypes.bool,
+		'is_blog': PropTypes.bool,
+		'video': PropTypes.string
+	};
+
+	createMarkup = (html) => {
+		return {__html: html};
 	};
 
 	render() {
-		const {type, title, id, date, description, image, audio} = this.props;
+		const {type, title, id, date, description, image, audio, is_blog, is_video, video} = this.props;
 
 		const defaultImage = require('../../../static/logo.png');
 
 		return (
 			<div className="feed-featured-post">
 				<div className="feed-featured-post-image">
-					{/*type-video*/}
-					<div className="">
-						<img width="100%" src={image || defaultImage}/>
-					</div>
+					{type === 'podcast' && <img width="100%" src={image || defaultImage}/>}
+					{type === 'mentality' && is_blog && <img width="100%" src={image || defaultImage}/>}
+					{type === 'mentality' && is_video && <div className="type-video-iframe" dangerouslySetInnerHTML={this.createMarkup(video)}/>}
 				</div>
 
 				<div className="container">
-					<h2 className="feed-featured-post-title">{title}</h2>
+					<h2 className="feed-featured-post-title" dangerouslySetInnerHTML={this.createMarkup(title)}/>
 					<div className="feed-featured-post-date">Posted {moment(date).format('DD.MM.YYYY')}</div>
 					<div className="feed-featured-post-content">
 						{

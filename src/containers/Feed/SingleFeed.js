@@ -35,7 +35,7 @@ export default class SingleFeed extends Component {
 				transitionLeaveTimeout={500}
 			>
 
-				<Helmet title="Single Feed"/>
+				<Helmet title="Feed"/>
 
 				{/*mobile*/}
 				<div className="hidden-md hidden-lg">

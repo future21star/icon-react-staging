@@ -14,6 +14,10 @@ import ReactAudioPlayer from 'react-audio-player';
 
 export default class SingleFeedMobile extends Component {
 
+	createMarkup = (html) => {
+		return {__html: html};
+	};
+
 	render() {
 		const {activeItemType, activeItem} = this.props;
 		const defaultImage = require('../../../static/logo.png');
@@ -29,14 +33,13 @@ export default class SingleFeedMobile extends Component {
 					<div className="feed-content-wrapper">
 						<div className="feed-featured-post">
 							<div className="feed-featured-post-image">
-								{/*type-video*/}
-								<div className="">
-									<img width="100%" src={activeItem.image || defaultImage}/>
-								</div>
+								{activeItemType === 'podcast' && <img width="100%" src={activeItem.image || defaultImage}/>}
+								{activeItemType === 'mentality' && activeItem.is_blog && <img width="100%" src={activeItem.image || defaultImage}/>}
+								{activeItemType === 'mentality' && activeItem.is_video && <div className="type-video-iframe" dangerouslySetInnerHTML={this.createMarkup(activeItem.video)}/>}
 							</div>
 
 							<div className="container">
-								<h2 className="feed-featured-post-title">{activeItem.title}</h2>
+								<h2 className="feed-featured-post-title" dangerouslySetInnerHTML={this.createMarkup(activeItem.title)}/>
 								<div className="feed-featured-post-date">Posted {moment(activeItem.date).format('DD.MM.YYYY')}</div>
 								<div className="feed-featured-post-content">
 									{ (activeItemType === 'podcast' && activeItem.audio) && (
