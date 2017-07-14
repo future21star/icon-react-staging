@@ -17,12 +17,12 @@ import {range} from "lodash";
 export default class FeedDesktop extends Component {
 
 	componentDidMount() {
-   	document.body.classList.toggle('desktop-disable-scrolling');
-  	}
+		document.body.classList.toggle('desktop-disable-scrolling');
+	}
 
-  	componentWillUnmount() {
-    	document.body.classList.remove('desktop-disable-scrolling');
-  	}
+	componentWillUnmount() {
+		document.body.classList.remove('desktop-disable-scrolling');
+	}
 
 	render() {
 		return (

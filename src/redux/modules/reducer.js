@@ -3,6 +3,7 @@ import { loadingBarReducer } from 'react-redux-loading-bar'
 import {routerReducer} from 'react-router-redux';
 import {reducer as reduxAsyncConnect} from 'redux-async-connect';
 
+import appStore from './appStore';
 import authStore from './authStore';
 import loginStore from './loginStore';
 import editProfileStore from './editProfileStore';
@@ -20,6 +21,7 @@ export default combineReducers({
 	routing: routerReducer,
 	loadingBar: loadingBarReducer,
 	reduxAsyncConnect,
+	appStore,
 	authStore,
 	loginStore,
 	editProfileStore,
