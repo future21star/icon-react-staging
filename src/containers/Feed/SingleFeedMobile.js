@@ -21,7 +21,7 @@ export default class SingleFeedMobile extends Component {
 		return (
 			<div className="feed-page-wrapper bottom-padding">
 				<Menubar
-					title="Overview"
+					title=""
 					className="text-white"
 					backButton={true}
 				/>
@@ -36,7 +36,7 @@ export default class SingleFeedMobile extends Component {
 							</div>
 
 							<div className="container">
-								<div className="feed-featured-post-title">{activeItem.title}</div>
+								<h2 className="feed-featured-post-title">{activeItem.title}</h2>
 								<div className="feed-featured-post-date">Posted {moment(activeItem.date).format('DD.MM.YYYY')}</div>
 								<div className="feed-featured-post-content">
 									{ (activeItemType === 'podcast' && activeItem.audio) && (

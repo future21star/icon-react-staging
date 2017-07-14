@@ -125,8 +125,13 @@
   .pretty-select.search-selector-input.Select--single > .Select-control .Select-value {
     //font-size: 1.3em;
   }
-  .search-text-input {
-    font-size: 1.8em;
-    font-weight: 400;
+  .input-effect{
+    border-bottom-color: $whiteDark;
+    .search-text-input {
+      font-size: 1.8em;
+      font-weight: 400;
+      padding-left: 10px !important;
+      line-height: 1em;
+    }
   }
 }

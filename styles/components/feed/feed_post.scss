@@ -67,7 +67,6 @@
 
 .feed-featured-post-title {
   padding: 10px 0 5px;
-  font-size: 22px;
   color: #000;
 }
 .feed-featured-post-date {
@@ -81,8 +80,12 @@
   }
 }
 .feed-featured-post-content {
-  padding: 10px 0;
+  padding: 20px 0 40px;
   line-height: 1.6em;
+
+  audio{
+    margin: 0 0 20px;
+  }
 }
 .feed-featured-post-read-more {
   padding: 10px 0;
@@ -105,10 +108,19 @@
   padding: 20px 0;
   border-top: 1px solid #dddddd;
   .feed-post-title {
-    font-size: 18px;
     line-height: 1.2em;
-    color: #000;
+
+    a{
+      color: $blackLight;
+    
+      @include transition(.3s ease color);
+      &:hover{
+        color: $red;
+        cursor: pointer;
+      }
+    }
   }
+
   .feed-post-date {
     color: #999;
     text-transform: uppercase;
@@ -120,7 +132,6 @@
     }
   }
   .feed-post-content {
-    font-size: 14px;
     padding: 10px 0;
   }
 

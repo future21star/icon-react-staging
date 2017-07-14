@@ -6,7 +6,6 @@ export DotList from './global/DotList';
 
 
 //MENUBAR
-export MenuBarListView from './menu-bar/MenuBarListView';
 export Menubar from './menu-bar/Menubar';
 
 //FORMS
@@ -27,7 +26,7 @@ export DesktopWorkout from './workout/DesktopWorkout';
 
 //WORKOUT LIST VIEW
 export DesktopListWorkoutContainer from './workout-list/DesktopListWorkoutContainer';
-
+export DesktopListWorkoutHeader from './workout-list/DesktopListWorkoutHeader';
 //PROGRAMMING
 export ProgrammingHeader from './programming/ProgrammingHeader';
 export DayPicker from './programming/DayPicker';

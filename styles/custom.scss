@@ -45,6 +45,10 @@ body{
     margin-right: 0;
   }
 
+.relative{
+  position: relative !important;
+}
+
 .gradient-blue {
   color: $white;
   background: $blue; /* Old browsers */
@@ -481,12 +485,6 @@ LOGIN & PASSWORDS
 
 /********** Programming desktop **********/
 
-.tracks-list-view-container-desktop {
-  min-height: calc(100vh - 167px);
-  min-height: -webkit-calc(100vh - 167px);
-  background: #f6f4f5;
-  padding: 80px 50px 50px 50px;
-}
 
 /********** End of Programming desktop  **********/
 .edit-tracks-mid-section {

@@ -16,12 +16,12 @@ export default class FeedMobile extends Component {
 		return (
 			<div className="feed-page-wrapper bottom-padding">
 				<Menubar
-					className="gradient-turquoise menu-color-white"
+					className="menu-color-white"
 					title="Feed"
 					leftSideContent={<Link to="/profile"><span className="icon-user-profile"/><span className="mobile-hide">Profile</span></Link>}
 					rightSideContent={<Link to="/feed/search">
-						<span className="icon-search"/>
 						<span className="mobile-hide">Search</span>
+						<span className="icon-search"/>
 					</Link>}
 				/>
 

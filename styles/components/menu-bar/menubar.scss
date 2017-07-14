@@ -1,6 +1,6 @@
 .menu-bar {
   background-color: $turquoiseLight;
-  padding: 20px 25px 12px;
+  padding: 30px 25px;
 
   .menu-bar-headings {
     .mobile-hide {
@@ -14,6 +14,16 @@
       margin-left: 10px;
     }
   }
+  
+  .menu-bar-right-side-content {
+    text-align: right;
+    letter-spacing: 1px;
+
+    .mobile-hide {
+      margin-right: 10px;
+    }
+  }
+
   .menu-bar-title {
     text-align: center;
     letter-spacing: 1px;
@@ -24,14 +34,18 @@
   [class^="icon-"] {
     font-size: 1.2em;
   }
+  
+  .back-icon{
+    color: $turquoiseDark;
+    vertical-align: middle;
+  }
 
-  .menu-bar-right-side-content {
-    text-align: right;
-    letter-spacing: 1px;
-
-    .mobile-hide {
-      margin-right: 10px;
-    }
+  .back-text{
+    text-transform: uppercase;
+    color: $turquoiseDark;
+    margin-left: 5px;
+    font-size: .9em;
+    vertical-align: middle;
   }
 
   a {
@@ -44,8 +58,14 @@
       opacity: .5;
     }
     & > span {
-      vertical-align: middle;
+      vertical-align: top;
     }
+  }
+
+  .dotlist-wrapper{
+    position: absolute;
+    left: 0;
+    width: 100%;
   }
 
   &.menu-bar-transparent {
@@ -59,239 +79,49 @@
   &.menu-bar-white {
     background: white;
     border-bottom: 1px solid #eee;
+
+    .back-icon{
+    color: $grey;
+    }
+    .back-text{
+      text-transform: uppercase;
+      color: $grey;
+      margin-left: 5px;
+    }
+  }
+
+  &.menu-bar-red{
+    background: $red;
   }
 
   &.menu-color-white {
-    color: #ffffff;
+    color: $white;
     .menu-bar-left-side-content, .menu-bar-right-side-content {
-      color: #ffffff;
+      color: $white;
       a, [class^="icon-"], [class*=" icon-"] {
-        color: #ffffff;
+        color: $white;
         [class^="path"] {
           &:before {
-            color: #ffffff;
+            color: $white;
           }
         }
       }
     }
     .menu-bar-title {
-      color: #ffffff;
+      color: $white;
     }
   }
 }
 
 .programming-menu-bar {
-  padding: 30px 0;
   background-color: $turquoiseLight;
-  .container-fluid {
-    max-width: 95%;
-    margin: 0 auto;
-  }
+
   .menu-bar-title {
     visibility: hidden;
   }
 
   .col-xs-3 a {
     display: block;
-    margin-top: 10px;
   }
 }
-
-.menu-bar-desktop {
-  padding-top: 24px;
-  padding-bottom: 16px;
-  .container-fluid {
-    max-width: 95%;
-  }
-  h3 {
-    margin-top: 5px;
-    a {
-      font-family: 'Lato', sans-serif;
-      color: #2b7596;
-      font-size: 24px;
-      font-weight: 400;
-    }
-  }
-  [class^="icon-"], [class*=" icon-"] {
-    color: #fff;
-    font-size: 18px;
-    margin-right: 15px;
-  }
-  .menu-bar-title-desktop {
-    text-align: center;
-    ul.nav-justified {
-      margin: -3px auto 8px auto;
-      max-width: 450px;
-      li {
-        color: #fff;
-        font-size: 16px;
-        font-weight: 300;
-        min-width: 60px;
-        cursor: pointer;
-      }
-      .active {
-        border-radius: 50%;
-        border: 2px solid #fff;
-        padding: 8px 8px 8px 8px;
-        display: inline-block;
-        min-width: 45px;
-        max-width: 45px
-      }
-    }
-    p {
-      color: #2b7596;
-      margin-bottom: 0;
-      margin-top: 5px;
-      font-weight: 300;
-      text-transform: uppercase;
-      span.year {
-        font-weight: 600;
-      }
-    }
-  }
-  &.menu-bar-desktop-blue {
-    background: #5bc6f7;
-    .menu-bar-right-side-content-desktop {
-      text-align: right;
-      a {
-        text-decoration: none;
-
-        &:hover {
-          text-decoration: none;
-        }
-        p {
-          color: white;
-          margin-top: 8px;
-          font-size: 16px;
-          font-weight: 300;
-          span:first-child {
-            position: relative;
-            top: -3px;
-          }
-          i {
-            margin-left: 15px;
-          }
-        }
-      }
-    }
-    a {
-      text-decoration: none;
-
-      &:hover {
-        text-decoration: none;
-      }
-    }
-  }
-  &.menu-bar-desktop-red {
-    background: #d12022;
-    .menu-bar-left-side-content-desktop {
-      h4 {
-        margin-top: 0;
-        margin-bottom: 0;
-        color: #fff;
-        font-family: 'Lato', sans-serif;
-        font-weight: 300;
-        i {
-          margin-right: 10px;
-          color: #fff;
-          position: relative;
-          top: 2px;
-        }
-      }
-    }
-    .menu-bar-right-side-content-desktop {
-      text-align: right;
-      p {
-        color: white;
-        margin-top: 0;
-        font-size: 16px;
-        font-weight: 300;
-        margin-bottom: 5px;
-        span {
-          margin-left: 15px;
-        }
-        a {
-          text-decoration: none;
-        }
-      }
-    }
-    .menu-bar-title-desktop {
-      .track-popover-wrapper {
-        top: 45px;
-        bottom: 77px;
-        left: 50%;
-        width: 100%;
-        margin-left: -150px;
-        padding: 0;
-
-        &.popover {
-          border: 1px solid transparent;
-        }
-
-        .popover-title {
-          text-align: center;
-          background: #67C5CE;
-          color: #ffffff;
-          font-size: 20px;
-          padding-top: 20px;
-          padding-bottom: 20px;
-        }
-
-        .popover-content {
-          padding: 0;
-          padding-bottom: 10px;
-          /*width: 300px;*/
-          background: white;
-          .list-group {
-            margin: 0 15px;
-            padding: 3px 10px 0 10px;
-            a {
-              color: black;
-            }
-          }
-
-          .list-group-item {
-            border: none;
-            padding-top: 12px;
-            padding-bottom: 12px;
-            margin-bottom: 0;
-            border-bottom: 1px solid #ddd;
-            text-align: center;
-            font-size: 15px;
-
-            &:hover, &:focus {
-              background: white;
-            }
-
-            &:last-child {
-              border: none;
-            }
-          }
-        }
-      }
-      a {
-        color: white;
-        font-size: 18px;
-        font-weight: 300;
-        text-decoration: none;
-        position: relative;
-        top: -3px;
-        span.icon {
-          font-size: 8px;
-          margin-left: 8px;
-          position: relative;
-          top: -2px;
-        }
-      }
-    }
-  }
-
-  .edit-tracks-link {
-    font-size: 18px;
-    a:hover {
-      text-decoration: none;
-    }
-  }
-}
-
 

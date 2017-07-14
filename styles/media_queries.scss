@@ -21,6 +21,10 @@
   */
   .menu-bar {
     padding: 12px 0;
+
+    .dotlist-wrapper{
+      position: static;
+    }
   }
 
   .programming-menu-bar {
@@ -38,16 +42,13 @@
   */
   .programming-header-wrapper {
     min-height: auto;
+
+    .container{
+      margin-top: 0;
+    }
     .col-xs-12 {
       padding: 10px 0 0;
     }
-  }
-
-  /*
-  DAYPICKER
-  */
-  .daypicker-wrapper .nav-justified {
-    margin-top: 0;
   }
 }
 
@@ -79,5 +80,18 @@
   .workout-mode-banner-list {
     margin-right: auto;
   }
+}
+
+@media screen and (max-width: 561px) {
+    .nav-pills.feed-top-sub-nav li{
+     
+
+      a{
+         margin-top: 8px;
+         margin-bottom: 8px;
+        padding-left: 0;
+        padding-right: 0;
+      }
+    } 
 }
 

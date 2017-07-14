@@ -86,8 +86,7 @@ export default class FeedSearch extends Component {
 
 					<Menubar
 						title="Search"
-						leftSideContent={<Link to="/feed"><span className="icon-close" style={{fontSize: '1em'}}/></Link>}
-						rightSideContent={<Link to="/feed/search">Clear</Link>}
+						leftSideContent={<Link to="/feed"><span className="icon-close" style={{fontSize: '1em'}}/><span className="mobile-hide">Close</span></Link>}
 						className="menu-bar-white"
 					/>
 
@@ -119,9 +118,12 @@ export default class FeedSearch extends Component {
 					</div>
 				</div>
 
-				<div className="form-group">
-					<input type="text" value={searchText} onChange={this.changeSearchText} placeholder="Search the Vault"
-								 className="form-control search-text-input"/>
+				<div className="form-group input-effect">
+					<div>
+						<input type="text" value={searchText} onChange={this.changeSearchText} placeholder="Search..."
+									 className="form-control search-text-input"/>
+						<span className="underline"/>
+					</div>
 				</div>
 
 				{searchResultItems.map((item, index) => {

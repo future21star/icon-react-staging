@@ -129,7 +129,7 @@ export default class Programming extends Component {
 					)}
 				</a>
 				<Link to="/programming/list-view" className="hidden-xs hidden-sm">
-					<p><span className="mobile-hide">List View</span><i className="icon-desktop-menu"/></p>
+					<span className="mobile-hide">List View</span><i className="icon-desktop-menu"/>
 				</Link>
 			</div>
 		);

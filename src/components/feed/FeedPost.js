@@ -26,13 +26,13 @@ export default class FeedPost extends Component {
 			<div className="feed-post">
 				<div className="container">
 					<div className="row">
-						<div className="col-xs-6">
+						<div className="col-sm-6 col-xs-4">
 							<img width="100%" src={image || defaultImage}/>
 						</div>
-						<div className="col-xs-6">
-							<div className="feed-post-title">
+						<div className="col-sm-6 col-xs-8">
+							<h4 className="feed-post-title">
 								<Link to={`/feed/${type}/${id}`}>{title}</Link>
-							</div>
+							</h4>
 							<div className="feed-post-content">
 								{
 									truncate(description, {

@@ -32,7 +32,7 @@ export default class FeedFeaturedPost extends Component {
 				</div>
 
 				<div className="container">
-					<div className="feed-featured-post-title">{title}</div>
+					<h2 className="feed-featured-post-title">{title}</h2>
 					<div className="feed-featured-post-date">Posted {moment(date).format('DD.MM.YYYY')}</div>
 					<div className="feed-featured-post-content">
 						{
