@@ -1,5 +1,6 @@
 import {createStore as _createStore, applyMiddleware, compose} from 'redux';
-import { loadingBarMiddleware } from 'react-redux-loading-bar'
+import { loadingBarMiddleware } from 'react-redux-loading-bar';
+import {createResponsiveStoreEnhancer} from 'redux-responsive';
 import createMiddleware from './middleware/clientMiddleware';
 import {routerMiddleware} from 'react-router-redux';
 import thunk from 'redux-thunk';
@@ -18,6 +19,7 @@ export default function createStore(history, client, data) {
 		const {persistState} = require('redux-devtools');
 		finalCreateStore = compose(
 			applyMiddleware(...middleware),
+			createResponsiveStoreEnhancer({calculateInitialState: false}),
 			//window.devToolsExtension ? window.devToolsExtension() : DevTools.instrument(),
 			window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 			persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))

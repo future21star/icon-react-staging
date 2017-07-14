@@ -1,7 +1,8 @@
 import {combineReducers} from 'redux';
-import { loadingBarReducer } from 'react-redux-loading-bar'
+import {loadingBarReducer} from 'react-redux-loading-bar'
 import {routerReducer} from 'react-router-redux';
 import {reducer as reduxAsyncConnect} from 'redux-async-connect';
+import {createResponsiveStateReducer} from 'redux-responsive'
 
 import appStore from './appStore';
 import authStore from './authStore';
@@ -21,6 +22,11 @@ export default combineReducers({
 	routing: routerReducer,
 	loadingBar: loadingBarReducer,
 	reduxAsyncConnect,
+	browser: createResponsiveStateReducer({
+		init: 10,
+		mobile: 992,
+		desktop: 3000
+	}),
 	appStore,
 	authStore,
 	loginStore,

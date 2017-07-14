@@ -119,6 +119,7 @@
     "react-transition-group": "^1.2.0",
     "redux": "^3.0.4",
     "redux-async-connect": "^1.0.0-rc2",
+    "redux-responsive": "^4.3.2",
     "redux-thunk": "^2.1.0",
     "scroll-behavior": "^0.3.2",
     "sequelize": "^3.30.4",

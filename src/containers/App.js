@@ -7,7 +7,8 @@ import {isLoaded as isAllTrackLoaded, load as loadAllTracks} from '../redux/modu
 import {push} from 'react-router-redux';
 import config from '../config';
 import {asyncConnect} from 'redux-async-connect';
-import LoadingBar from 'react-redux-loading-bar'
+import LoadingBar from 'react-redux-loading-bar';
+import {calculateResponsiveState} from 'redux-responsive'
 
 @asyncConnect([{
 	promise: ({store: {dispatch, getState}}) => {
@@ -27,7 +28,7 @@ import LoadingBar from 'react-redux-loading-bar'
 }])
 @connect(
 	state => ({user: state.authStore.user}),
-	{pushState: push}
+	{pushState: push, calculateResponsiveState}
 )
 export default class App extends Component {
 	static propTypes = {
@@ -39,6 +40,10 @@ export default class App extends Component {
 	static contextTypes = {
 		store: PropTypes.object.isRequired
 	};
+
+	componentDidMount() {
+		this.props.calculateResponsiveState(global);
+	}
 
 	componentWillReceiveProps(nextProps) {
 		if (!this.props.user && nextProps.user) {

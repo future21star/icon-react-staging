@@ -4,11 +4,20 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import FeedMobile from "./FeedMobile";
 import FeedDesktop from "./FeedDesktop";
 import checkAccessLevel from '../HOC/CheckAccessLevel'
+import {connect} from "react-redux";
 
 @checkAccessLevel('feed')
 
+@connect(
+	state => ({
+		browser: state.browser
+	})
+)
+
 export default class Feed extends Component {
 	render() {
+		const {browser} = this.props;
+
 		return (
 			<ReactCSSTransitionGroup
 				transitionName="react-anime"
@@ -22,14 +31,11 @@ export default class Feed extends Component {
 				<Helmet title="Feed"/>
 
 				{/*mobile*/}
-				<div className="hidden-md hidden-lg">
-					<FeedMobile {...this.props}/>
-				</div>
+				{browser.is.mobile && <FeedMobile {...this.props}/>}
 
 				{/*/!*desktop*!/*/}
-				<div className="hidden-xs hidden-sm">
-					<FeedDesktop {...this.props}/>
-				</div>
+				{browser.is.desktop && <FeedDesktop {...this.props}/>}
+
 			</ReactCSSTransitionGroup>
 		);
 	}
