@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {asyncConnect} from 'redux-async-connect';
 import {connect} from "react-redux";
-import {FeedPost, FeedFeaturedPost} from '../../../components';
+import {FeedPreviewPost, FeedLoadMore} from '../../../components';
 import {load as loadFeeds, isLoaded as isFeedLoaded} from "../../../redux/modules/feedStore";
 
 @asyncConnect([{
@@ -20,6 +19,7 @@ import {load as loadFeeds, isLoaded as isFeedLoaded} from "../../../redux/module
 
 @connect(
 	state => ({
+		browser: state.browser,
 		loading: state.feedStore.loading,
 		podcasts: state.feedStore.podcast.items,
 		podcastCurrentPageNo: state.feedStore.podcast.currentPage,
@@ -36,49 +36,32 @@ export default class FeedPodcast extends Component {
 	};
 
 	render() {
-		const {podcasts, podcastAllPagesCompleted, loading} = this.props;
+		const {browser, podcasts, podcastAllPagesCompleted, loading} = this.props;
 
 		return (
-			<ReactCSSTransitionGroup
-				transitionName="react-anime"
-				transitionAppear={true}
-				transitionAppearTimeout={5000}
-				transitionEnter={true}
-				transitionEnterTimeout={500}
-				transitionLeave={true}
-				transitionLeaveTimeout={500}
-			>
+			<div>
 				<Helmet title="Feed : Podcasts"/>
-				<FeedFeaturedPost
-					{...podcasts[0]}
-					type="podcast"
-				/>
 
 				<div>
 					{podcasts.map((podcast, index) => {
-						if (index === 0) return;
-
 						return (
 							<div key={index}>
-								<FeedPost
+								<FeedPreviewPost
 									{...podcast}
 									type="podcast"
+									is_featured={index === 0}
 								/>
 							</div>
 						)
 					})}
 
-					{/* TODO: temporary load more button, will be replaced with auto load on scroll*/}
-					<div style={{'background': '#ffffff', 'padding': '20px 0 40px'}} className="text-center">
-						{podcastAllPagesCompleted ?
-							<p className="text-success">All podcasts has been loaded</p>
-							: <button className="btn btn-primary" onClick={this.onClickLoadMoreButton} disabled={loading}>
-								{loading ? 'Loading...' : 'Load More'}
-							</button>
-						}
-					</div>
+					<FeedLoadMore
+						loading={loading}
+						allPagesLoaded={podcastAllPagesCompleted}
+						onClickLoadMore={this.onClickLoadMoreButton}
+					/>
 				</div>
-			</ReactCSSTransitionGroup>
+			</div>
 		);
 	}
 }

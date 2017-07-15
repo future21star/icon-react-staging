@@ -1,7 +1,18 @@
 import React, {Component, PropTypes} from 'react';
+import {connect} from "react-redux";
+import {push} from 'react-router-redux';
 
-export default class DesktopFeedTopNav extends Component {
+@connect(
+	state => ({}),
+	{pushState: push}
+)
+
+export default class DesktopFeedHeader extends Component {
 	static propTypes = {};
+
+	goToSearchPage = () => {
+		this.props.pushState('/feed/search');
+	};
 
 	render() {
 		return (
@@ -22,6 +33,7 @@ export default class DesktopFeedTopNav extends Component {
 								className="form-control feed-search-desktop"
 								placeholder="Search the Vault"
 								aria-describedby="basic-addon1"
+								onClick={this.goToSearchPage}
 							/>
 						</div>
 					</div>

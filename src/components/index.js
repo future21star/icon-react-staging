@@ -41,16 +41,14 @@ export DailyBriefCollapsable from './tracks/DailyBriefCollapsable';
 export BtnBottom from './tracks/BtnBottom';
 
 //FEED
-export FeedTopNav from './feed/FeedTopNav';
-export FeedFeaturedPost from './feed/FeedFeaturedPost';
-export FeedFeaturedLockedPost from './feed/FeedFeaturedLockedPost';
-export FeedPost from './feed/FeedPost';
-export FeedFilterBtn from './feed/FeedFilterBtn';
+export FeedPostSingle from './feed/FeedPostSingle';
+export FeedHeader from './feed/FeedHeader';
+export FeedLoadMore from './feed/FeedLoadMore';
+export MobileFeedTabs from './feed/MobileFeedTabs';
+export FeedPreviewPost from './feed/FeedPreviewPost';
+export MobileFeedFilters from './feed/MobileFeedFilters';
 export FeedSeeAllVideosBtn from './feed/FeedSeeAllVideosBtn';
-export DesktopFeedTopNav from './feed/DesktopFeedTopNav';
-export DesktopFeedFeaturedPost from './feed/DesktopFeedFeaturedPost';
-export DesktopFeedPost from './feed/DesktopFeedPost';
-export DesktopFeedPagination from './feed/DesktopFeedPagination';
+export DesktopFeedHeader from './feed/DesktopFeedHeader';
 export DesktopFeedSidebar from './feed/DesktopFeedSidebar';
 
 

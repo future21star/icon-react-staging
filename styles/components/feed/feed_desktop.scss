@@ -20,7 +20,7 @@
       margin-top: 0;
       margin-bottom: 0;
       margin-left: 20px;
-    } 
+    }
   }
 }
 
@@ -29,24 +29,24 @@
   background-color: $whiteDark;
   top: 75px;
 
-  .feed-body-right, .feed-body-left{
-    background: $whiteDark;
+  .feed-body-right, .feed-body-left {
+    background: #ffffff;
     height: 550px;
     height: calc(100vh - 177px);
     overflow-y: scroll;
 
   }
-  .feed-body-right{
+  .feed-body-right {
     padding: 40px 20px 0;
   }
 
-  .feed-body-left{
+  .feed-body-left {
     padding: 0;
   }
 }
 
 .feed-body-desktop-content {
-  
+
   .feed-featured-post {
     padding-bottom: 25px;
     position: relative;
@@ -55,18 +55,6 @@
     ///////
     .feed-featured-post-image {
       position: relative;
-
-      // overlay
-      &:before {
-        content: '';
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        background-image: linear-gradient(to top left, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
-        opacity: .6;
-      }
 
       .type-video:before {
         content: '\f04b';

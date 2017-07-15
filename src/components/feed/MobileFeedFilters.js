@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {Link} from "react-router";
 
-export default class FeedFilterBtn extends Component {
+export default class MobileFeedFilters extends Component {
 	static propTypes = {};
 
 	render() {

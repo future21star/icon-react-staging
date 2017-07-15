@@ -14,12 +14,6 @@ const initialState = {
 			link: '/feed/podcast'
 		},
 		{
-			icon: 'icon icon-feed-rehab',
-			text: 'Rehab',
-			count: 8,
-			iconClassName: '',
-			link: '/feed/rehab'
-		}, {
 			icon: 'icon icon-user-mentality',
 			text: 'Mentality',
 			count: 2,

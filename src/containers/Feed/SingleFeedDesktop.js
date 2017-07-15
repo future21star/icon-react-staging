@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
-import {DesktopFeedSidebar, DesktopFeedTopNav} from '../../components/index';
+import {DesktopFeedSidebar, DesktopFeedHeader} from '../../components/index';
 import {connect} from "react-redux";
 
 @connect(
@@ -18,7 +18,7 @@ export default class SingleFeedDesktop extends Component {
 				<div className="feed-content-wrapper-desktop">
 					<div className="container-fluid container-fluid-full">
 
-						<DesktopFeedTopNav/>
+						<DesktopFeedHeader/>
 
 						<div className="feed-body-desktop">
 							<div className="feed-body-desktop-content">

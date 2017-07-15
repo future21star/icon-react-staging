@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {Menubar, FeedPost} from '../../components/index';
+import {Menubar, FeedPreviewPost} from '../../components';
 import {connect} from "react-redux";
 import {Link} from 'react-router';
 import Select from "react-select";
@@ -33,7 +33,6 @@ export default class FeedSearch extends Component {
 	static searchSelectorOptions = [
 		{value: 'video', label: 'Videos'},
 		{value: 'podcast', label: 'Podcasts'},
-		{value: 'rehab', label: 'Rehab'},
 		{value: 'mentality', label: 'Mentality'}
 	];
 
@@ -129,7 +128,7 @@ export default class FeedSearch extends Component {
 				{searchResultItems.map((item, index) => {
 					return (
 						<div key={index}>
-							<FeedPost
+							<FeedPreviewPost
 								{...item}
 								type={searchTopic}
 							/>

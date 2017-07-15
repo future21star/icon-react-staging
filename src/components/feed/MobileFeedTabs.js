@@ -8,7 +8,7 @@ import {connect} from "react-redux";
 	})
 )
 
-export default class FeedTopNav extends Component {
+export default class MobileFeedTabs extends Component {
 	static renderLinkItem(uri, iconName, currentUri) {
 		return (
 			<li className={uri === currentUri ? 'active' : ''}><Link to={uri}><span className={iconName}/></Link></li>
@@ -20,10 +20,9 @@ export default class FeedTopNav extends Component {
 
 		return (
 			<ul className="nav nav-pills nav-justified feed-top-sub-nav">
-				{FeedTopNav.renderLinkItem('/feed', 'icon-feed-video', currentUri)}
-				{FeedTopNav.renderLinkItem('/feed/podcast', 'icon-feed-podcast', currentUri)}
-				{FeedTopNav.renderLinkItem('/feed/rehab', 'icon-feed-rehab', currentUri)}
-				{FeedTopNav.renderLinkItem('/feed/mentality', 'icon-user-mentality', currentUri)}
+				{MobileFeedTabs.renderLinkItem('/feed', 'icon-feed-video', currentUri)}
+				{MobileFeedTabs.renderLinkItem('/feed/podcast', 'icon-feed-podcast', currentUri)}
+				{MobileFeedTabs.renderLinkItem('/feed/mentality', 'icon-user-mentality', currentUri)}
 			</ul>
 		);
 	}

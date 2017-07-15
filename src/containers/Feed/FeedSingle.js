@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import checkAccessLevel from '../HOC/CheckAccessLevel'
 import {connect} from "react-redux";
-import {Menubar, FeedHeader, DesktopFeedSidebar} from "../../components";
+import checkAccessLevel from '../HOC/CheckAccessLevel';
+import {loadSingle as loadSingleFeed, unsetSingleFeed} from '../../redux/modules/feedStore'
+import {Menubar, FeedPostSingle, DesktopFeedSidebar, DesktopFeedHeader} from "../../components";
 import {Link} from "react-router";
 
 @checkAccessLevel('feed')
@@ -11,17 +12,17 @@ import {Link} from "react-router";
 @connect(
 	state => ({
 		browser: state.browser
-	})
+	}),
+	{loadSingleFeed, unsetSingleFeed}
 )
-
-export default class Feed extends Component {
+export default class FeedSingle extends Component {
 
 	componentDidMount() {
-		document.body.classList.toggle('desktop-disable-scrolling');
+		this.props.loadSingleFeed(this.props.params.type, this.props.params.id);
 	}
 
 	componentWillUnmount() {
-		document.body.classList.remove('desktop-disable-scrolling');
+		this.props.unsetSingleFeed();
 	}
 
 	render() {
@@ -56,10 +57,10 @@ export default class Feed extends Component {
 
 					<div className={`${browser.is.mobile ? 'feed-content-wrapper' : 'feed-content-wrapper-desktop'}`}>
 						<div className={`${browser.is.mobile ? '' : 'container-fluid container-fluid-full'}`}>
-							<FeedHeader/>
+							{browser.is.desktop && <DesktopFeedHeader/>}
 						</div>
 
-						{browser.is.mobile && this.props.children}
+						{browser.is.mobile && <FeedPostSingle/>}
 
 						{browser.is.desktop && (
 							<div className="feed-body-desktop">
@@ -70,7 +71,7 @@ export default class Feed extends Component {
 										</div>
 										<div className="col-md-8 col-lg-9 feed-body-right overflow-custom-scroll">
 											<div className="feed-posts-section">
-												{this.props.children}
+												<FeedPostSingle/>
 											</div>
 										</div>
 									</div>

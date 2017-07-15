@@ -9,11 +9,10 @@ export EditTracks from './EditTracks';
 export ViewTrack from './ViewTrack';
 export Help from './Help';
 export Feed from './Feed/Feed';
-export FeedVideo from './Feed/Type/FeedVideo';
-export FeedPodcast from './Feed/Type/FeedPodcast';
-export FeedRehab from './Feed/Type/FeedRehab';
-export FeedMentality from './Feed/Type/FeedMentality';
-export SingleFeed from './Feed/SingleFeed';
+export FeedVideo from './Feed/Topic/FeedVideo';
+export FeedPodcast from './Feed/Topic/FeedPodcast';
+export FeedMentality from './Feed/Topic/FeedMentality';
+export FeedSingle from './Feed/FeedSingle';
 export FeedFilter from './Feed/FeedFilter';
 export FeedSearch from './Feed/FeedSearch';
 
