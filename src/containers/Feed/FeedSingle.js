@@ -52,38 +52,13 @@ export default class FeedSingle extends Component {
 				<div
 					className={`${browser.is.mobile ? 'feed-page-wrapper bottom-padding' : 'feed-page-desktop-wrapper bottom-padding'}`}>
 
-					{browser.is.mobile && (
-						<Menubar
-							className="text-white"
-							title={this.toTitleCase(activeItemType)}
-							backButton={true}
-						/>
-					)}
+					<Menubar
+						className={`text-white ${browser.is.desktop ? 'feed-wrapper' : ''}`}
+						title={this.toTitleCase(activeItemType)}
+						backButton={true}
+					/>
 
-					<div className={`${browser.is.mobile ? 'feed-content-wrapper' : 'feed-content-wrapper-desktop'}`}>
-						<div className={`${browser.is.mobile ? '' : 'container-fluid container-fluid-full'}`}>
-							{browser.is.desktop && <DesktopFeedHeader/>}
-						</div>
-
-						{browser.is.mobile && <FeedPostSingle/>}
-
-						{browser.is.desktop && (
-							<div className="feed-body-desktop">
-								<div className="feed-body-desktop-content">
-									<div className="row no-margin-left-right">
-										<div className="col-md-4 col-lg-3 feed-body-left overflow-custom-scroll">
-											<DesktopFeedSidebar/>
-										</div>
-										<div className="col-md-8 col-lg-9 feed-body-right overflow-custom-scroll">
-											<div className="feed-posts-section">
-												<FeedPostSingle/>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						)}
-					</div>
+					<FeedPostSingle/>
 				</div>
 
 			</ReactCSSTransitionGroup>

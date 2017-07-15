@@ -25,36 +25,38 @@ export default class FeedPostSingle extends Component {
 
 		return (
 			activeItem ? (
-				<div className="feed-content-wrapper">
-					<div className="feed-featured-post">
-						<div className="feed-featured-post-image">
-							{activeItemType === 'podcast' && <img width="100%" src={activeItem.image || defaultImage}/>}
-							{activeItemType === 'mentality' && activeItem.is_blog &&
-							<img width="100%" src={activeItem.image || defaultImage}/>}
-							{activeItemType === 'mentality' && activeItem.is_video &&
-							<div className="type-video-iframe" dangerouslySetInnerHTML={this.createMarkup(activeItem.video)}/>}
-						</div>
-
-						<div className={`${browser.is.mobile ? 'container' : ''}`}>
-							<h2 className="feed-featured-post-title" dangerouslySetInnerHTML={this.createMarkup(activeItem.title)}/>
-							<div className="feed-featured-post-date">Posted {moment(activeItem.date).format('DD.MM.YYYY')}</div>
-							<div className="feed-featured-post-content">
-								{ (activeItemType === 'podcast' && activeItem.audio) && (
-									<ReactAudioPlayer
-										src={activeItem.audio}
-										controls
-										style={{'width': '100%'}}
-									/>
-								)}
-								{activeItem.description}
+				<div className={`${browser.is.desktop ? 'container' : ''}`}>
+					<div className="feed-content-wrapper">
+						<div className="feed-featured-post">
+							<div className="feed-featured-post-image">
+								{activeItemType === 'podcast' && <img width="100%" src={activeItem.image || defaultImage}/>}
+								{activeItemType === 'mentality' && activeItem.is_blog &&
+								<img width="100%" src={activeItem.image || defaultImage}/>}
+								{activeItemType === 'mentality' && activeItem.is_video &&
+								<div className="type-video-iframe" dangerouslySetInnerHTML={this.createMarkup(activeItem.video)}/>}
 							</div>
 
-							<ReactDisqusThread
-								shortname="example"
-								identifier="something-unique-12345"
-								title="Example Thread"
-								url="http://www.example.com/example-thread"
-								category_id="123456"/>
+							<div className={`${browser.is.mobile ? 'container' : ''}`}>
+								<h2 className="feed-featured-post-title" dangerouslySetInnerHTML={this.createMarkup(activeItem.title)}/>
+								<div className="feed-featured-post-date">Posted {moment(activeItem.date).format('DD.MM.YYYY')}</div>
+								<div className="feed-featured-post-content">
+									{ (activeItemType === 'podcast' && activeItem.audio) && (
+										<ReactAudioPlayer
+											src={activeItem.audio}
+											controls
+											style={{'width': '100%'}}
+										/>
+									)}
+									{activeItem.description}
+								</div>
+
+								<ReactDisqusThread
+									shortname="example"
+									identifier="something-unique-12345"
+									title="Example Thread"
+									url="http://www.example.com/example-thread"
+									category_id="123456"/>
+							</div>
 						</div>
 					</div>
 				</div>
