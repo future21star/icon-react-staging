@@ -15,6 +15,7 @@ export FeedMentality from './Feed/Topic/FeedMentality';
 export FeedSingle from './Feed/FeedSingle';
 export FeedFilter from './Feed/FeedFilter';
 export FeedSearch from './Feed/FeedSearch';
+export FeedFilteredByTopic from './Feed/FeedFilteredByTopic';
 
 export App from './App';
 export AuthLayout from './AuthLayout';

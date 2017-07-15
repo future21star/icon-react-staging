@@ -4,12 +4,14 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {Menubar, FeedFilterForm} from '../../components/index';
 import {connect} from "react-redux";
 import {Link} from 'react-router';
-import checkAccessLevel from '../HOC/CheckAccessLevel'
+import checkAccessLevel from '../HOC/CheckAccessLevel';
+import {clearTopicFeeds} from '../../redux/modules/feedStore'
 
 @checkAccessLevel('feed')
 
 @connect(
-	state => ({})
+	state => ({}),
+	{clearTopicFeeds}
 )
 
 export default class FeedFilter extends Component {
@@ -30,7 +32,7 @@ export default class FeedFilter extends Component {
 					<Menubar
 						title="Filter"
 						leftSideContent={<Link to="/feed"><span className="icon-close" style={{fontSize: '1em'}}/></Link>}
-						rightSideContent={<Link to="/feed/filter">Reset</Link>}
+						rightSideContent={<a href="javascript:;" onClick={this.props.clearTopicFeeds}>Reset</a>}
 						className="menu-bar-white"
 					/>
 

@@ -1,35 +1,39 @@
 import React, {Component, PropTypes} from 'react';
+import {connect} from "react-redux";
+import {setActiveFilterTopic} from '../../redux/modules/feedStore';
+import {Link} from "react-router";
+
+@connect(
+	state => ({
+		filterTopics: state.feedStore.filterTopics,
+		activeFilterTopic: state.feedStore.activeFilterTopic
+	}),
+	{setActiveFilterTopic}
+)
 
 export default class FeedFilterForm extends Component {
 	static propTypes = {};
 
 	render() {
+		const {filterTopics, setActiveFilterTopic, activeFilterTopic} = this.props;
+
 		return (
 			<form action="#" className="filter-form">
-				<div>
-					<input type="radio" id="topic1" name="radio-group"/>
-					<label htmlFor="topic1">Topic 1</label>
-				</div>
-				<div>
-					<input type="radio" id="topic2" name="radio-group"/>
-					<label htmlFor="topic2">Topic 2</label>
-				</div>
-				<div>
-					<input type="radio" id="topic3" name="radio-group"/>
-					<label htmlFor="topic3">Topic 3</label>
-				</div>
-				<div>
-					<input type="radio" id="topic4" name="radio-group"/>
-					<label htmlFor="topic4">Topic 4</label>
-				</div>
-				<div>
-					<input type="radio" id="topic5" name="radio-group"/>
-					<label htmlFor="topic5">Topic 5</label>
-				</div>
+				{filterTopics.map((filterTopic, i) => {
+					return (
+						<div key={i}>
+							<input type="radio" checked={activeFilterTopic === filterTopic.id} id={`filter-topic-${filterTopic.id}`}
+										 name="radio-group" onChange={e => setActiveFilterTopic(filterTopic.id)}/>
+							<label htmlFor={`filter-topic-${filterTopic.id}`}>{filterTopic.name}</label>
+						</div>
+					)
+				})}
 
-				<button className="btn btn-primary btn-lg btn-block btn-fixed-bottom"><span className="icon-filter"/> Apply
-					Filter
-				</button>
+				{activeFilterTopic && (
+					<Link to={`/feed/topic/${activeFilterTopic}`} className="btn btn-primary btn-lg btn-block btn-fixed-bottom">
+						<span className="icon-filter"/> Apply Filter
+					</Link>
+				)}
 			</form>
 		);
 	}

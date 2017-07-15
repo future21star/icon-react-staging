@@ -4,8 +4,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {connect} from "react-redux";
 import checkAccessLevel from '../HOC/CheckAccessLevel';
 import {loadSingle as loadSingleFeed, unsetSingleFeed} from '../../redux/modules/feedStore'
-import {Menubar, FeedPostSingle, DesktopFeedSidebar, DesktopFeedHeader} from "../../components";
-import {Link} from "react-router";
+import {Menubar, FeedPostSingle} from "../../components";
 
 @checkAccessLevel('feed')
 

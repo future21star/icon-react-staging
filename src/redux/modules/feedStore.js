@@ -21,6 +21,22 @@ const UNSET_SINGLE_FEED = 'feed/UNSET_SINGLE_FEED';
 const SET_SEARCH_TOPIC = 'feed/SET_SEARCH_TOPIC';
 const SET_SEARCH_TEXT = 'feed/SET_SEARCH_TEXT';
 
+const LOAD_FILTER_TOPICS = 'feed/LOAD_FILTER_TOPICS_REQUEST';
+const LOAD_FILTER_TOPICS_SUCCESS = 'feed/LOAD_FILTER_TOPICS_SUCCESS';
+const LOAD_FILTER_TOPICS_FAIL = 'feed/LOAD_FILTER_TOPICS_FAIL';
+
+const LOAD_TOPIC_FEEDS = 'feed/LOAD_TOPIC_FEEDS_REQUEST';
+const LOAD_TOPIC_FEEDS_SUCCESS = 'feed/LOAD_TOPIC_FEEDS_SUCCESS';
+const LOAD_TOPIC_FEEDS_FAIL = 'feed/LOAD_TOPIC_FEEDS_FAIL';
+
+const CLEAR_TOPIC_FEEDS = 'feed/CLEAR_TOPIC_FEEDS';
+
+const LOAD_MORE_TOPIC_FEEDS = 'feed/LOAD_MORE_TOPIC_FEEDS_REQUEST';
+const LOAD_MORE_TOPIC_FEEDS_SUCCESS = 'feed/LOAD_MORE_TOPIC_FEEDS_SUCCESS';
+const LOAD_MORE_TOPIC_FEEDS_FAIL = 'feed/LOAD_MORE_TOPIC_FEEDS_FAIL';
+
+const SET_ACTIVE_FILTER_TOPIC = 'feed/SET_ACTIVE_FILTER_TOPIC';
+
 const initialState = {
 	loading: false,
 	activeItemType: null,
@@ -46,7 +62,14 @@ const initialState = {
 		currentPage: 0,
 		allPagesCompleted: false,
 		items: []
-	}
+	},
+	filterTopics: [],
+	activeFilterTopic: null,
+	activeFilterTopics: {
+		items: [],
+		currentPage: 0,
+		allPagesCompleted: false
+	},
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -170,6 +193,86 @@ export default function reducer(state = initialState, action = {}) {
 				...state,
 				loading: false
 			};
+		case LOAD_FILTER_TOPICS:
+			return {
+				...state,
+				loading: true
+			};
+		case LOAD_FILTER_TOPICS_SUCCESS:
+			return {
+				...state,
+				loading: false,
+				filterTopics: action.result.filterTopics
+			};
+		case LOAD_FILTER_TOPICS_FAIL:
+			return {
+				...state,
+				loading: false
+			};
+		case SET_ACTIVE_FILTER_TOPIC:
+			return {
+				...state,
+				activeFilterTopic: action.payload.topicId
+			};
+		case LOAD_TOPIC_FEEDS:
+			return {
+				...state,
+				loading: true
+			};
+		case LOAD_TOPIC_FEEDS_SUCCESS:
+			let newFilterTopicData = {
+				currentPage: action.result.currentPage,
+				allPagesCompleted: action.result.allPagesCompleted,
+				items: action.result.feeds
+			};
+
+			return {
+				...state,
+				loading: false,
+				activeFilterTopics: {
+					...newFilterTopicData
+				}
+			};
+		case LOAD_TOPIC_FEEDS_FAIL:
+			return {
+				...state,
+				loading: false
+			};
+		case LOAD_MORE_TOPIC_FEEDS:
+			return {
+				...state,
+				loading: true
+			};
+		case LOAD_MORE_TOPIC_FEEDS_SUCCESS:
+			let newMoreAddedSearchResultData = {
+				currentPage: action.result.currentPage,
+				allPagesCompleted: action.result.allPagesCompleted,
+				items: state.activeFilterTopics.items.concat(action.result.feeds)
+			};
+
+			return {
+				...state,
+				loading: false,
+				activeFilterTopics: {
+					...state.activeFilterTopics,
+					...newMoreAddedSearchResultData
+				}
+			};
+		case LOAD_MORE_TOPIC_FEEDS_FAIL:
+			return {
+				...state,
+				loading: false
+			};
+		case CLEAR_TOPIC_FEEDS:
+			return {
+				...state,
+				activeFilterTopic: null,
+				activeFilterTopics: {
+					items: [],
+					currentPage: 0,
+					allPagesCompleted: false
+				}
+			};
 		default:
 			return state;
 	}
@@ -258,5 +361,56 @@ export function loadMoreSearchResult(text, topic, currentPage) {
 				currentPage: currentPage + 1
 			}
 		})
+	};
+}
+
+export function isFilterTopicsLoaded(globalState) {
+	return globalState.feedStore.filterTopics.length;
+}
+
+export function loadFilterTopics() {
+	return {
+		types: [LOAD_FILTER_TOPICS, LOAD_FILTER_TOPICS_SUCCESS, LOAD_FILTER_TOPICS_FAIL],
+		promise: (client) => client.post('/loadFilterTopics')
+	};
+}
+
+export function setActiveFilterTopic(topicId) {
+	return {
+		type: SET_ACTIVE_FILTER_TOPIC,
+		payload: {
+			topicId
+		}
+	};
+}
+
+export function loadTopicFeeds(id) {
+	return {
+		types: [LOAD_TOPIC_FEEDS, LOAD_TOPIC_FEEDS_SUCCESS, LOAD_TOPIC_FEEDS_FAIL],
+		promise: (client) => client.post('/loadTopicFeeds', {
+			data: {
+				id: id,
+				currentPage:  1
+			}
+		})
+	};
+}
+
+export function loadMoreTopicFeeds(id, currentPage) {
+	return {
+		types: [LOAD_MORE_TOPIC_FEEDS, LOAD_MORE_TOPIC_FEEDS_SUCCESS, LOAD_MORE_TOPIC_FEEDS_FAIL],
+		promise: (client) => client.post('/loadTopicFeeds', {
+			data: {
+				id: id,
+				currentPage: currentPage + 1
+			}
+		})
+	};
+}
+
+export function clearTopicFeeds() {
+	return {
+		type: CLEAR_TOPIC_FEEDS,
+		payload: {}
 	};
 }

@@ -4,14 +4,26 @@ import {connect} from "react-redux";
 
 @connect(
 	state => ({
+		filterTopics: state.feedStore.filterTopics,
 		desktopCategoryItems: state.appStore.desktopCategoryItems
 	})
 )
+
 export default class DesktopFeedSidebar extends Component {
-	static propTypes = {};
 
 	render() {
-		const {desktopCategoryItems} = this.props;
+		const {desktopCategoryItems, filterTopics} = this.props;
+
+		let topics = [];
+		filterTopics.map(topic => {
+			topics.push({
+				icon: 'icon icon-nav-programming',
+				text: topic.name,
+				count: topic.count,
+				iconClassName: '',
+				link: `/feed/topic/${topic.id}`
+			})
+		});
 
 		return (
 			<div className="sidebar-desktop">
@@ -22,45 +34,7 @@ export default class DesktopFeedSidebar extends Component {
 				/>
 				<DesktopFeedWidget
 					name="TOPICS"
-					items={[
-						{
-							icon: 'icon icon-nav-programming',
-							text: 'Lorem ipsum dolor set amet',
-							count: 4,
-							iconClassName: '',
-							link: '#'
-						}, {
-							icon: 'icon icon-nav-programming',
-							text: 'Lorem ipsum dolor set amet',
-							count: 4,
-							iconClassName: '',
-							link: '#'
-						}, {
-							icon: 'icon icon-nav-programming',
-							text: 'Lorem ipsum dolor set amet',
-							count: 4,
-							iconClassName: '',
-							link: '#'
-						}, {
-							icon: 'icon icon-nav-programming',
-							text: 'Lorem ipsum dolor set amet',
-							count: 4,
-							iconClassName: '',
-							link: '#'
-						}, {
-							icon: 'icon icon-nav-programming',
-							text: 'Lorem ipsum dolor set amet',
-							count: 4,
-							iconClassName: '',
-							link: '#'
-						}, {
-							icon: 'icon icon-nav-programming',
-							text: 'Lorem ipsum dolor set amet',
-							count: 4,
-							iconClassName: '',
-							link: '#'
-						}
-					]}
+					items={topics}
 					className="topic-header"
 				/>
 				<DesktopFeedWidget

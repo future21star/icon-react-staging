@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import {asyncConnect} from 'redux-async-connect';
 import {connect} from "react-redux";
-import {FeedPreviewPost, FeedLoadMore} from '../../../components';
+import {FeedPreviewPost, FeedLoadMore, MobileFeedFilters} from '../../../components';
 import {load as loadFeeds, isLoaded as isFeedLoaded} from "../../../redux/modules/feedStore";
 
 @asyncConnect([{
@@ -60,6 +60,8 @@ export default class FeedVideo extends Component {
 						allPagesLoaded={videoAllPagesCompleted}
 						onClickLoadMore={this.onClickLoadMoreButton}
 					/>
+
+					{browser.is.mobile && <MobileFeedFilters/>}
 				</div>
 			</div>
 		);

@@ -4,6 +4,7 @@ import Helmet from 'react-helmet';
 import {isLoaded as isAuthLoaded, load as loadAuth} from '../redux/modules/authStore';
 import {isLoaded as isHelpfulLinksLoaded, load as loadHelpfulLinks} from '../redux/modules/helpfulLinksStore';
 import {isLoaded as isAllTrackLoaded, load as loadAllTracks} from '../redux/modules/allTracksStore';
+import {isFilterTopicsLoaded, loadFilterTopics} from "../redux/modules/feedStore";
 import {push} from 'react-router-redux';
 import config from '../config';
 import {asyncConnect} from 'redux-async-connect';
@@ -22,6 +23,9 @@ import {calculateResponsiveState} from 'redux-responsive'
 
 		// load all tracks
 		if (!isAllTrackLoaded(getState())) promises.push(dispatch(loadAllTracks()));
+
+		//  filter topics
+		if (!isFilterTopicsLoaded(getState())) promises.push(dispatch(loadFilterTopics()));
 
 		return Promise.all(promises);
 	}
