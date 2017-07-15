@@ -3,6 +3,7 @@ import {Link} from "react-router";
 import {truncate} from "lodash";
 import moment from 'moment';
 import {connect} from "react-redux";
+import ReactPlayer from 'react-player';
 
 @connect(
 	state => ({
@@ -49,7 +50,7 @@ export default class FeedPreviewPost extends Component {
 						<div className="row">
 							<div className="col-xs-12 col-lg-3">
 								<div className="feed-featured-post-image">
-									{type === 'video' && <p>Video id: {video_id}</p>}
+									{type === 'video' && <ReactPlayer url={`https://vimeo.com/${video_id}`} width="100%"/>}
 									{type === 'podcast' && <img width="100%" src={image || defaultImage}/>}
 									{type === 'mentality' && is_blog && <img width="100%" src={image || defaultImage}/>}
 									{type === 'mentality' && is_video &&
@@ -70,9 +71,11 @@ export default class FeedPreviewPost extends Component {
 											}
 										</div>
 									)}
-									<div className="feed-featured-post-read-more">
-										<Link className="btn-read-more" to={`/feed/${type}/${id}`}>Read more</Link>
-									</div>
+									{type !== 'video' && (
+										<div className="feed-featured-post-read-more">
+											<Link className="btn-read-more" to={`/feed/${type}/${id}`}>Read more</Link>
+										</div>
+									)}
 								</div>
 							</div>
 						</div>
@@ -82,7 +85,7 @@ export default class FeedPreviewPost extends Component {
 						<div className={`${browser.is.mobile ? 'container' : ''}`}>
 							<div className="row">
 								<div className="col-xs-4 col-lg-3">
-									{type === 'video' && <p>Video id: {video_id}</p>}
+									{type === 'video' && <ReactPlayer url={`https://vimeo.com/${video_id}`} width="100%" height="auto"/>}
 									{type === 'podcast' && <img width="100%" src={image || defaultImage}/>}
 									{type === 'mentality' && is_blog && <img width="100%" src={image || defaultImage}/>}
 									{type === 'mentality' && is_video &&

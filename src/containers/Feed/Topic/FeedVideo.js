@@ -40,7 +40,7 @@ export default class FeedVideo extends Component {
 
 		return (
 			<div>
-				<Helmet title="Feed : Podcasts"/>
+				<Helmet title="Feed : Video"/>
 
 				<div>
 					{videos.map((video, index) => {
