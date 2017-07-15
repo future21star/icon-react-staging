@@ -11,7 +11,8 @@ import {Link} from "react-router";
 
 @connect(
 	state => ({
-		browser: state.browser
+		browser: state.browser,
+		activeItemType: state.feedStore.activeItemType
 	}),
 	{loadSingleFeed, unsetSingleFeed}
 )
@@ -25,8 +26,16 @@ export default class FeedSingle extends Component {
 		this.props.unsetSingleFeed();
 	}
 
+	toTitleCase = (str) => {
+		if (!str) return '';
+
+		return str.replace(/\w\S*/g, function (txt) {
+			return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+		});
+	};
+
 	render() {
-		const {browser} = this.props;
+		const {browser, activeItemType} = this.props;
 
 		return (
 			<ReactCSSTransitionGroup
@@ -45,13 +54,9 @@ export default class FeedSingle extends Component {
 
 					{browser.is.mobile && (
 						<Menubar
-							className="menu-color-white"
-							title="Feed"
-							leftSideContent={<Link to="/profile"><span className="icon-user-profile"/><span className="mobile-hide">Profile</span></Link>}
-							rightSideContent={<Link to="/feed/search">
-								<span className="mobile-hide">Search</span>
-								<span className="icon-search"/>
-							</Link>}
+							className="text-white"
+							title={this.toTitleCase(activeItemType)}
+							backButton={true}
 						/>
 					)}
 

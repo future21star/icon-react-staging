@@ -47,7 +47,6 @@ export FeedLoadMore from './feed/FeedLoadMore';
 export MobileFeedTabs from './feed/MobileFeedTabs';
 export FeedPreviewPost from './feed/FeedPreviewPost';
 export MobileFeedFilters from './feed/MobileFeedFilters';
-export FeedSeeAllVideosBtn from './feed/FeedSeeAllVideosBtn';
 export DesktopFeedHeader from './feed/DesktopFeedHeader';
 export DesktopFeedSidebar from './feed/DesktopFeedSidebar';
 
