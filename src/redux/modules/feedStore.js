@@ -25,6 +25,11 @@ const initialState = {
 	loading: false,
 	activeItemType: null,
 	activeItem: null,
+	video: {
+		items: [],
+		currentPage: 0,
+		allPagesCompleted: false
+	},
 	podcast: {
 		items: [],
 		currentPage: 0,

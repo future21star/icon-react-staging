@@ -16,18 +16,21 @@ export default class FeedPreviewPost extends Component {
 		'id': PropTypes.number.isRequired,
 		'title': PropTypes.string.isRequired,
 		'date': PropTypes.string.isRequired,
-		'description': PropTypes.string.isRequired,
+		'is_featured': PropTypes.bool,
+		// belows are for type podcast + mentality
+		'description': PropTypes.string,
 		'image': PropTypes.oneOfType([
 			PropTypes.string,
 			PropTypes.bool
 		]),
-		'is_featured': PropTypes.bool,
+		// belows are for type video
+		'video_id': PropTypes.string,
 		// belows are for type podcast
 		'audio': PropTypes.string,
 		// belows are for type mentality
 		'is_video': PropTypes.bool,
 		'is_blog': PropTypes.bool,
-		'video': PropTypes.string
+		'video_iframe': PropTypes.string
 	};
 
 	createMarkup = (html) => {
@@ -35,7 +38,7 @@ export default class FeedPreviewPost extends Component {
 	};
 
 	render() {
-		const {browser, type, title, id, date, description, image, is_featured, audio, is_blog, is_video, video} = this.props;
+		const {browser, type, title, id, date, description, image, is_featured, audio, is_blog, is_video, video_iframe, video_id} = this.props;
 
 		const defaultImage = require('../../../static/logo.png');
 
@@ -46,24 +49,27 @@ export default class FeedPreviewPost extends Component {
 						<div className="row">
 							<div className="col-xs-12 col-lg-3">
 								<div className="feed-featured-post-image">
+									{type === 'video' && <p>Video id: {video_id}</p>}
 									{type === 'podcast' && <img width="100%" src={image || defaultImage}/>}
 									{type === 'mentality' && is_blog && <img width="100%" src={image || defaultImage}/>}
 									{type === 'mentality' && is_video &&
-									<div className="type-video-iframe" dangerouslySetInnerHTML={this.createMarkup(video)}/>}
+									<div className="type-video-iframe" dangerouslySetInnerHTML={this.createMarkup(video_iframe)}/>}
 								</div>
 							</div>
 							<div className="col-xs-12 col-lg-9">
 								<div className={`${browser.is.mobile ? 'container' : ''}`}>
 									<h2 className="feed-featured-post-title" dangerouslySetInnerHTML={this.createMarkup(title)}/>
 									<div className="feed-featured-post-date">Posted {moment(date).format('DD.MM.YYYY')}</div>
-									<div className="feed-featured-post-content">
-										{
-											truncate(description, {
-												'length': browser.is.mobile ? 120 : 600,
-												'separator': ' '
-											})
-										}
-									</div>
+									{description && (
+										<div className="feed-featured-post-content">
+											{
+												truncate(description, {
+													'length': browser.is.mobile ? 120 : 600,
+													'separator': ' '
+												})
+											}
+										</div>
+									)}
 									<div className="feed-featured-post-read-more">
 										<Link className="btn-read-more" to={`/feed/${type}/${id}`}>Read more</Link>
 									</div>
@@ -76,23 +82,26 @@ export default class FeedPreviewPost extends Component {
 						<div className={`${browser.is.mobile ? 'container' : ''}`}>
 							<div className="row">
 								<div className="col-xs-4 col-lg-3">
+									{type === 'video' && <p>Video id: {video_id}</p>}
 									{type === 'podcast' && <img width="100%" src={image || defaultImage}/>}
 									{type === 'mentality' && is_blog && <img width="100%" src={image || defaultImage}/>}
 									{type === 'mentality' && is_video &&
-									<div className="type-video-iframe" dangerouslySetInnerHTML={this.createMarkup(video)}/>}
+									<div className="type-video-iframe" dangerouslySetInnerHTML={this.createMarkup(video_iframe)}/>}
 								</div>
 								<div className="col-xs-8 col-lg-9">
 									<h4 className="feed-post-title">
 										<Link to={`/feed/${type}/${id}`} dangerouslySetInnerHTML={this.createMarkup(title)}/>
 									</h4>
-									<div className="feed-post-content">
-										{
-											truncate(description, {
-												'length': browser.is.mobile ? 120 : 600,
-												'separator': ' '
-											})
-										}
-									</div>
+									{description && (
+										<div className="feed-post-content">
+											{
+												truncate(description, {
+													'length': browser.is.mobile ? 120 : 600,
+													'separator': ' '
+												})
+											}
+										</div>
+									)}
 									<div className="feed-post-date">Posted {moment(date).format('DD.MM.YYYY')}</div>
 								</div>
 							</div>

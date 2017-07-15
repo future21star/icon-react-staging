@@ -29,6 +29,7 @@ export default class FeedPostSingle extends Component {
 					<div className="feed-content-wrapper">
 						<div className="feed-featured-post">
 							<div className="feed-featured-post-image">
+								{activeItemType === 'video' && <p>Video id: {activeItem.video_id}</p>}
 								{activeItemType === 'podcast' && <img width="100%" src={activeItem.image || defaultImage}/>}
 								{activeItemType === 'mentality' && activeItem.is_blog &&
 								<img width="100%" src={activeItem.image || defaultImage}/>}

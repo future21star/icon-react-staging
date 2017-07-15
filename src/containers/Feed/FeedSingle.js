@@ -47,7 +47,7 @@ export default class FeedSingle extends Component {
 				transitionLeave={true}
 				transitionLeaveTimeout={500}
 			>
-				<Helmet title="Feed"/>
+				<Helmet title={this.toTitleCase(activeItemType)}/>
 
 				<div
 					className={`${browser.is.mobile ? 'feed-page-wrapper bottom-padding' : 'feed-page-desktop-wrapper bottom-padding'}`}>
