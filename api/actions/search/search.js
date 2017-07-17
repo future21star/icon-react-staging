@@ -13,6 +13,7 @@ export default function search(request) {
 		let url = null;
 		if (topic === 'podcast') url = WP_API_URL + '/wp/v2/podcasts?search=' + text + "&page=" + currentPage;
 		else if (topic === 'mentality') url = WP_API_URL + '/wp/v2/mentality?search=' + text + "&page=" + currentPage;
+		else if (topic === 'video') url = WP_API_URL + '/wp/v2/vimeo-video?search=' + text + "&page=" + currentPage;
 		else return reject(generalError('topic not found'));
 
 		let result = null;
@@ -41,7 +42,9 @@ export default function search(request) {
 			};
 
 			// append type specific fields
-			if (topic === 'podcast') {
+			if (topic === 'video') {
+				newSingleFeed.video_id = singleResult.vimeo_video.video_id;
+			} else if (topic === 'podcast') {
 				newSingleFeed.audio = singleResult.podcast_url;
 			} else if (topic === 'mentality') {
 				newSingleFeed.is_video = singleResult.video_or_blog === '1';
