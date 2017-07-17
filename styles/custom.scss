@@ -49,6 +49,15 @@ body{
   position: relative !important;
 }
 
+.display-table{
+  display: table;
+}
+
+.table-cell{
+  display: table-cell;
+  float: none;
+  overflow: hidden;
+}
 .gradient-blue {
   color: $white;
   background: $blue; /* Old browsers */

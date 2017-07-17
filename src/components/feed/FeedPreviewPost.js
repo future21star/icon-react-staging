@@ -18,17 +18,18 @@ export default class FeedPreviewPost extends Component {
 		'title': PropTypes.string.isRequired,
 		'date': PropTypes.string.isRequired,
 		'is_featured': PropTypes.bool,
-		// belows are for type podcast + mentality
+		'is_row': PropTypes.bool,
+		// for type podcast + mentality
 		'description': PropTypes.string,
 		'image': PropTypes.oneOfType([
 			PropTypes.string,
 			PropTypes.bool
 		]),
-		// belows are for type video
+		// for type video
 		'video_id': PropTypes.string,
-		// belows are for type podcast
+		// for type podcast
 		'audio': PropTypes.string,
-		// belows are for type mentality
+		// for type mentality
 		'is_video': PropTypes.bool,
 		'is_blog': PropTypes.bool,
 		'video_iframe': PropTypes.string
@@ -39,77 +40,86 @@ export default class FeedPreviewPost extends Component {
 	};
 
 	render() {
-		const {browser, type, title, id, date, description, image, is_featured, audio, is_blog, is_video, video_iframe, video_id} = this.props;
+		const {browser, type, title, id, date, description, image, is_featured, is_row, audio, is_blog, is_video, video_iframe, video_id} = this.props;
 
 		const defaultImage = require('../../../static/logo.png');
 
+		let isVideo = type === 'video';
 		return (
 			<div>
 				{ is_featured ?
-					<div className="feed-featured-post">
-						<div className="row">
-							<div className="col-xs-12 col-lg-3">
+					<div className={`feed-featured-post feed-post-${type}`}>
+						<div className="row no-margin-left-right">
+							<div className={isVideo ? 'col-sm-12 col-md-7': 'col-xs-12'}>
 								<div className="feed-featured-post-image">
-									{type === 'video' && <ReactPlayer url={`https://vimeo.com/${video_id}`} width="100%"/>}
+									{isVideo && <ReactPlayer url={`https://vimeo.com/${video_id}`} width="100%"/>}
 									{type === 'podcast' && <img width="100%" src={image || defaultImage}/>}
 									{type === 'mentality' && is_blog && <img width="100%" src={image || defaultImage}/>}
 									{type === 'mentality' && is_video &&
 									<div className="type-video-iframe" dangerouslySetInnerHTML={this.createMarkup(video_iframe)}/>}
 								</div>
 							</div>
-							<div className="col-xs-12 col-lg-9">
+							<div className={isVideo ? 'col-sm-12 col-md-5': 'col-xs-12'}>
 								<div className={`${browser.is.mobile ? 'container' : ''}`}>
-									<h2 className="feed-featured-post-title" dangerouslySetInnerHTML={this.createMarkup(title)}/>
+									<h3 className="feed-featured-post-title">
+										<Link to={`/feed/${type}/${id}`} dangerouslySetInnerHTML={this.createMarkup(title)}/>
+									</h3>
 									<div className="feed-featured-post-date">Posted {moment(date).format('DD.MM.YYYY')}</div>
 									{description && (
 										<div className="feed-featured-post-content">
 											{
 												truncate(description, {
-													'length': browser.is.mobile ? 120 : 600,
+													'length': 220,
 													'separator': ' '
 												})
 											}
 										</div>
 									)}
-									{type !== 'video' && (
+									{!isVideo && (
 										<div className="feed-featured-post-read-more">
-											<Link className="btn-read-more" to={`/feed/${type}/${id}`}>Read more</Link>
+											<Link className="btn-read-more" to={`/feed/${type}/${id}`}>{type === 'podcast' ? 'Listen' : 'Read More'}</Link>
 										</div>
 									)}
 								</div>
 							</div>
-						</div>
+						</div>					
 					</div>
 					:
-					<div className="feed-post">
-						<div className={`${browser.is.mobile ? 'container' : ''}`}>
-							<div className="row">
-								<div className="col-xs-4 col-lg-3">
-									{type === 'video' && <ReactPlayer url={`https://vimeo.com/${video_id}`} width="100%" height="auto"/>}
-									{type === 'podcast' && <img width="100%" src={image || defaultImage}/>}
-									{type === 'mentality' && is_blog && <img width="100%" src={image || defaultImage}/>}
-									{type === 'mentality' && is_video &&
-									<div className="type-video-iframe" dangerouslySetInnerHTML={this.createMarkup(video_iframe)}/>}
-								</div>
-								<div className="col-xs-8 col-lg-9">
-									<h4 className="feed-post-title">
-										<Link to={`/feed/${type}/${id}`} dangerouslySetInnerHTML={this.createMarkup(title)}/>
-									</h4>
-									{description && (
-										<div className="feed-post-content">
-											{
-												truncate(description, {
-													'length': browser.is.mobile ? 120 : 600,
-													'separator': ' '
-												})
-											}
-										</div>
-									)}
-									<div className="feed-post-date">Posted {moment(date).format('DD.MM.YYYY')}</div>
-								</div>
+					<div className={`feed-post feed-post-${type}`}>
+						<div className={isVideo ? 'col-sm-6' : 'col-sm-6 col-xs-12 display-table-mobile'}>
+							<div className={isVideo ? 'col-xs-12 fluid-width-container': 'table-cell-mobile col-sm-12 col-xs-4 feed-post-image'}>
+								{type === 'video' && <ReactPlayer url={`https://vimeo.com/${video_id}`} width="100%" height="auto"/>}
+								{type === 'podcast' && <img width="100%" src={image || defaultImage}/>}
+								{type === 'mentality' && is_blog && <img width="100%" src={image || defaultImage}/>}
+								{type === 'mentality' && is_video &&
+								<div className="type-video-iframe" dangerouslySetInnerHTML={this.createMarkup(video_iframe)}/>}
+							</div>
+							<div className={isVideo ? 'col-xs-12': 'table-cell-mobile col-sm-12 col-xs-8'}>
+								<h3 className="feed-post-title">
+									<Link to={`/feed/${type}/${id}`} dangerouslySetInnerHTML={this.createMarkup(title)}/>
+								</h3>
+								<div className="feed-post-date">Posted {moment(date).format('DD.MM.YYYY')}</div>
+								{description && (
+									<div className="feed-post-content">
+										{
+											truncate(description, {
+												'length': 120,
+												'separator': ' '
+											})
+										}
+									</div>
+								)}
+								{!isVideo && (
+									<div className="feed-featured-post-read-more">
+										<Link className="btn-read-more" to={`/feed/${type}/${id}`}>{type === 'podcast' ? 'Listen' : 'Read More'}</Link>
+									</div>
+								)}
 							</div>
 						</div>
-					</div>}
+						<div className="clearfix"/>
+					</div>
+				}
+				<div className={is_row ? 'clearfix' : ''} />
 			</div>
 		);
 	}

@@ -49,11 +49,12 @@ export default class FeedMentality extends Component {
 									{...mentality}
 									type="mentality"
 									is_featured={index === 0}
+									is_row={index % 2 === 0}
 								/>
 							</div>
 						)
 					})}
-
+					<div className="clearfix" />
 					<FeedLoadMore
 						loading={loading}
 						allPagesLoaded={mentalityAllPagesCompleted}

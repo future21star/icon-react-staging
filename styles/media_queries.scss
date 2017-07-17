@@ -64,6 +64,15 @@
     display: none;
   }
 
+  .display-table-mobile{
+    display: table;
+  }
+
+  .table-cell-mobile{
+    display: table-cell;
+    float: none;
+    overflow: hidden;
+  }
   .login-container {
     margin-top: 5vh;
   }
@@ -80,7 +89,37 @@
   .workout-mode-banner-list {
     margin-right: auto;
   }
+
+  //FEED
+  .feed-post{
+    padding: 20px 0;
+    border-top: 1px solid #dddddd;
+    
+    .display-table-mobile{
+      padding: 0;
+    }
+    .feed-post-image{
+      height: 100%;
+    }
+    .feed-post-title{
+      margin-top: 0;
+    }
+  }
+  .feed-featured-post{
+    padding-left: 0;
+    padding-right: 0;
+    .col-xs-12{
+      padding: 0;
+    }
+    .feed-featured-post-image{
+      max-height: 250px;
+    }
+  }
+  .feed-featured-post-read-more, .feed-post-content, .feed-post-date{
+    padding-top: 10px;
+  }
 }
+
 
 @media screen and (max-width: 561px) {
     .nav-pills.feed-top-sub-nav li{

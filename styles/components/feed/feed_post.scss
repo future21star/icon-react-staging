@@ -1,11 +1,16 @@
 .feed-featured-post {
-  padding-bottom: 25px;
+  padding: 0 30px 60px;
   position: relative;
-  background: #ffffff;
 
   ///////
   .feed-featured-post-image {
     position: relative;
+    max-height: 350px;
+    overflow: hidden;
+    img{
+      width: auto;
+      height: 100%;
+    }
 
     .type-locked:before {
       content: '\f023';
@@ -35,15 +40,45 @@
   }
 }
 
-.feed-featured-post-title {
-  padding: 10px 0 5px;
-  color: #000;
+.feed-post {
+  vertical-align: top;
 }
 
-.feed-featured-post-date {
+.feed-post-image{
+  height: 250px;
+  overflow: hidden;
+  img{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: auto !important;
+    width: 100% !important;
+    padding: 0 15px;
+  }
+}
+
+.feed-featured-post-title, .feed-post-title{
+  font-weight: 400;
+  font-family: "Lato";
+  font-size: 1.3em;
+  line-height: 1.2em;
+  margin-bottom: 0;
+  a {
+    color: $blackLight;
+
+    @include transition(.3s ease color);
+    &:hover {
+      color: $red;
+      cursor: pointer;
+    }
+  }
+}
+
+.feed-featured-post-date, .feed-post-date {
   color: #999;
   text-transform: uppercase;
   font-size: 12px;
+  padding-top: 20px;
   &:before {
     content: '\e902';
     font-family: 'icomoon', serif;
@@ -51,8 +86,11 @@
   }
 }
 
-.feed-featured-post-content {
-  padding: 20px 0 40px;
+.feed-featured-post-content, .feed-post-content{
+  padding: 20px 0 0;
+}
+
+.feed-featured-post-content{
   line-height: 1.6em;
 
   audio {
@@ -61,52 +99,19 @@
 }
 
 .feed-featured-post-read-more {
-  padding: 10px 0;
+  padding-top: 20px;
   .btn-read-more {
     font-size: 13px;
     color: #D1252E;
     font-weight: 500;
     text-transform: uppercase;
+    letter-spacing: 1px;
     border-bottom: 1px solid #D1252E;
 
     &:hover, &:focus {
       text-decoration: none;
     }
   }
-}
-
-.feed-post {
-  background: #ffffff;
-  padding: 20px 0;
-  border-top: 1px solid #dddddd;
-  .feed-post-title {
-    line-height: 1.2em;
-
-    a {
-      color: $blackLight;
-
-      @include transition(.3s ease color);
-      &:hover {
-        color: $red;
-        cursor: pointer;
-      }
-    }
-  }
-
-  .feed-post-date {
-    color: #999;
-    text-transform: uppercase;
-    font-size: 12px;
-    &:before {
-      content: '\e902';
-      font-family: 'icomoon', serif;
-      padding-right: 5px;
-    }
-  }
-  .feed-post-content {
-    padding: 10px 0;
-  }
-
 }
 
 .feed-see-all-video-wrapper {
@@ -128,7 +133,46 @@
   }
 }
 
-.type-video-iframe iframe {
-  width: 100%;
-  height: auto;
-}
+.feed-post-video{
+
+  .col-sm-6{
+    margin: 20px 0;
+  }
+
+  .feed-post-title{
+    float: left;
+    margin: 0 0 10px;
+  }
+
+  .feed-post-date{
+    float: right;
+  }
+
+  .feed-featured-post-image, .fluid-width-container{
+    div div{
+      position: relative;
+      padding-bottom: 56.25%; /* proportion value to aspect ratio 16:9 (9 / 16 = 0.5625 or 56.25%) */
+      padding-top: 30px;
+      height: 0 !important;
+      overflow: hidden;
+    }
+  }
+
+  iframe {
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+} 
+
+
+
+
+
+
+
+
+

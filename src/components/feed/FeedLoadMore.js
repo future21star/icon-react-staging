@@ -11,9 +11,9 @@ export default class FeedLoadMore extends Component {
 		const {loading, allPagesLoaded, onClickLoadMore} = this.props;
 
 		return (
-			<div style={{'background': '#ffffff', 'padding': '20px 0 40px'}} className="text-center">
+			<div className="text-center block row no-margin-left-right feed-load-more-container">
 				{allPagesLoaded ?
-					<p className="text-success">All feed has been loaded</p>
+					<p className="text-success">Looks like all the posts have been loaded.</p>
 					: <button className="btn btn-primary" onClick={onClickLoadMore} disabled={loading}>
 						{loading ? 'Loading...' : 'Load More'}
 					</button>
