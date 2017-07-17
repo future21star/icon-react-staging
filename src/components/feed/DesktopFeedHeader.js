@@ -3,18 +3,25 @@ import {connect} from "react-redux";
 import {push} from 'react-router-redux';
 
 @connect(
-	state => ({}),
+	state => ({
+		searchText: state.feedStore.search.searchText
+	}),
 	{pushState: push}
 )
 
 export default class DesktopFeedHeader extends Component {
-	static propTypes = {};
+	static propTypes = {
+		redirectToSearchOnInputPress: PropTypes.bool,
+		onChangeSearchText: PropTypes.func
+	};
 
 	goToSearchPage = () => {
 		this.props.pushState('/feed/search');
 	};
 
 	render() {
+		const {redirectToSearchOnInputPress, onChangeSearchText, searchText} = this.props;
+
 		return (
 			<div className="feed-header-desktop navbar-fixed-top">
 				<div className="row no-margin-left-right">
@@ -32,8 +39,9 @@ export default class DesktopFeedHeader extends Component {
 								type="text"
 								className="form-control feed-search-desktop"
 								placeholder="Search the Vault"
-								aria-describedby="basic-addon1"
-								onClick={this.goToSearchPage}
+								onClick={redirectToSearchOnInputPress ? this.goToSearchPage : undefined}
+								value={searchText}
+								onChange={onChangeSearchText}
 							/>
 						</div>
 					</div>

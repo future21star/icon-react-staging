@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {Menubar, FeedPreviewPost} from '../../components';
+import {Menubar, FeedPreviewPost, DesktopFeedHeader, FeedLoadMore, DesktopFeedSidebar, BottomNav} from '../../components';
 import {connect} from "react-redux";
 import {Link} from 'react-router';
 import Select from "react-select";
@@ -18,6 +18,7 @@ import checkAccessLevel from '../HOC/CheckAccessLevel'
 
 @connect(
 	state => ({
+		browser: state.browser,
 		loading: state.feedStore.loading,
 		searchText: state.feedStore.search.searchText,
 		searchTopic: state.feedStore.search.searchTopic,
@@ -70,6 +71,7 @@ export default class FeedSearch extends Component {
 	};
 
 	render() {
+		const {browser} = this.props;
 		return (
 			<ReactCSSTransitionGroup
 				transitionName="react-anime"
@@ -83,23 +85,48 @@ export default class FeedSearch extends Component {
 				<div className="feed-search-wrapper bottom-padding">
 					<Helmet title="Search"/>
 
-					<Menubar
-						title="Search"
-						leftSideContent={<Link to="/feed"><span className="icon-close" style={{fontSize: '1em'}}/><span className="mobile-hide">Close</span></Link>}
-						className="menu-bar-white"
-					/>
+					{browser.is.mobile ? (
+						<Menubar
+							title="Search"
+							leftSideContent={<Link to="/feed"><span className="icon-close" style={{fontSize: '1em'}}/><span
+								className="mobile-hide">Close</span></Link>}
+							className="menu-bar-white"
+						/>) : (
+						<div className='feed-content-wrapper-desktop'>
+							<div className='container-fluid container-fluid-full'>
+								<DesktopFeedHeader onChangeSearchText={this.changeSearchText}/>
+							</div>
+						</div>
+					)}
 
-					{this.renderSearch()}
+					{browser.is.mobile ? this.renderSearch() : (
+						<div className="feed-body-desktop">
+							<div className="feed-body-desktop-content">
+								<div className="row no-margin-left-right">
+									<div className="col-md-4 col-lg-3 feed-body-left overflow-custom-scroll">
+										<DesktopFeedSidebar/>
+									</div>
+									<div className="col-md-8 col-lg-9 feed-body-right overflow-custom-scroll">
+										<div className="feed-posts-section">
+											{this.renderSearch()}
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					)}
+
+					{browser.is.desktop && <BottomNav/>}
 				</div>
 			</ReactCSSTransitionGroup>
 		);
 	}
 
 	renderSearch() {
-		const {loading, searchAllPagesCompleted, searchTopic, searchText, searchResultItems} = this.props;
+		const {browser, loading, searchAllPagesCompleted, searchTopic, searchText, searchResultItems} = this.props;
 
 		return (
-			<div className="container">
+			<div className={browser.is.mobile ? 'container' : ''}>
 				<div className="row">
 					<div className="col-xs-4 col-xs-offset-4">
 						<div className="search-selector-wrapper">
@@ -117,13 +144,20 @@ export default class FeedSearch extends Component {
 					</div>
 				</div>
 
-				<div className="form-group input-effect">
-					<div>
-						<input type="text" value={searchText} onChange={this.changeSearchText} placeholder="Search..."
-									 className="form-control search-text-input" autoFocus={true}/>
-						<span className="underline"/>
+				{browser.is.mobile && (
+					<div className="form-group input-effect">
+						<div>
+							<input
+								type="text"
+								value={searchText}
+								onChange={this.changeSearchText}
+								placeholder="Search..."
+								className="form-control search-text-input"
+							/>
+							<span className="underline"/>
+						</div>
 					</div>
-				</div>
+				)}
 
 				{searchResultItems.map((item, index) => {
 					return (
@@ -136,14 +170,14 @@ export default class FeedSearch extends Component {
 					)
 				})}
 
-				{/* TODO: temporary load more button, will be replaced with auto load on scroll*/}
-				<div style={{'background': '#ffffff', 'padding': '20px 0'}} className="text-center">
-					{!searchAllPagesCompleted && searchResultItems.length ?
-						<button className="btn btn-primary" onClick={this.onClickLoadMoreButton} disabled={loading}>
-							{loading ? 'Loading...' : 'Load More'}
-						</button> : undefined
-					}
-				</div>
+				{searchResultItems.length ? (
+					<FeedLoadMore
+						loading={loading}
+						allPagesLoaded={searchAllPagesCompleted}
+						onClickLoadMore={this.onClickLoadMoreButton}
+					/>
+				) : undefined}
+
 			</div>
 		);
 	}

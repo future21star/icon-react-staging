@@ -15,7 +15,7 @@ export default class FeedHeader extends Component {
 		const {browser} = this.props;
 
 		return (
-			browser.is.mobile ? <MobileFeedTabs/> : <DesktopFeedHeader/>
+			browser.is.mobile ? <MobileFeedTabs/> : <DesktopFeedHeader redirectToSearchOnInputPress={true}/>
 		);
 	}
 }
