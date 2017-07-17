@@ -37,37 +37,37 @@ export default class DesktopFeedSidebar extends Component {
 					items={topics}
 					className="topic-header"
 				/>
-				<DesktopFeedWidget
-					name="ARCHIVES"
-					items={[
-						{
-							icon: 'icon icon-calendar',
-							text: 'June 2017',
-							count: 4,
-							iconClassName: '',
-							link: '#'
-						}, {
-							icon: 'icon icon-calendar',
-							text: 'May 2017',
-							count: 4,
-							iconClassName: '',
-							link: '#'
-						}, {
-							icon: 'icon icon-calendar',
-							text: 'April 2017',
-							count: 4,
-							iconClassName: '',
-							link: '#'
-						}, {
-							icon: 'icon icon-calendar',
-							text: 'March 2017',
-							count: 4,
-							iconClassName: '',
-							link: '#'
-						},
-					]}
-					className="archive-header"
-				/>
+				{/*<DesktopFeedWidget*/}
+					{/*name="ARCHIVES"*/}
+					{/*items={[*/}
+						{/*{*/}
+							{/*icon: 'icon icon-calendar',*/}
+							{/*text: 'June 2017',*/}
+							{/*count: 4,*/}
+							{/*iconClassName: '',*/}
+							{/*link: '#'*/}
+						{/*}, {*/}
+							{/*icon: 'icon icon-calendar',*/}
+							{/*text: 'May 2017',*/}
+							{/*count: 4,*/}
+							{/*iconClassName: '',*/}
+							{/*link: '#'*/}
+						{/*}, {*/}
+							{/*icon: 'icon icon-calendar',*/}
+							{/*text: 'April 2017',*/}
+							{/*count: 4,*/}
+							{/*iconClassName: '',*/}
+							{/*link: '#'*/}
+						{/*}, {*/}
+							{/*icon: 'icon icon-calendar',*/}
+							{/*text: 'March 2017',*/}
+							{/*count: 4,*/}
+							{/*iconClassName: '',*/}
+							{/*link: '#'*/}
+						{/*},*/}
+					{/*]}*/}
+					{/*className="archive-header"*/}
+				{/*/>*/}
 			</div>
 		);
 	}

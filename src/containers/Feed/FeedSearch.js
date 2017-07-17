@@ -120,7 +120,7 @@ export default class FeedSearch extends Component {
 				<div className="form-group input-effect">
 					<div>
 						<input type="text" value={searchText} onChange={this.changeSearchText} placeholder="Search..."
-									 className="form-control search-text-input"/>
+									 className="form-control search-text-input" autoFocus={true}/>
 						<span className="underline"/>
 					</div>
 				</div>
