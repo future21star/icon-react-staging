@@ -37,7 +37,7 @@ export default class DesktopFeedWidget extends Component {
 				<Link to={item.link}>
 					<span className={`${item.icon} ${item.iconClassName}`}/>
 					{item.text}
-					<span className="pull-right">({item.count})</span>
+					{item.count ? <span className="pull-right">({item.count})</span> : undefined}
 				</Link>
 			</li>
 		);

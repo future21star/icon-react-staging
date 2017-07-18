@@ -59,6 +59,7 @@ export default function loadFeeds(request) {
 			feeds: allFeeds,
 			feedType: feedType,
 			currentPage: currentPage,
+			totalCount: feed.headers['x-wp-total'],
 			allPagesCompleted: allPagesCompleted
 		});
 	});

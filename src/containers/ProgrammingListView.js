@@ -100,10 +100,12 @@ export default class ProgrammingListView extends Component {
 						title="List View"
 						className="menu-color-white menu-bar-red"
 					/>
-					<DesktopListWorkoutHeader
-						tracks={selectedTracks}
-						onSelectTrack={this.selectTrack}
-					/>
+					{selectedTracks.length ?
+						<DesktopListWorkoutHeader
+							tracks={selectedTracks}
+							onSelectTrack={this.selectTrack}
+						/> : <h3 className="text-center">Please select your track first</h3>
+					}
 
 					<div className="tracks-list-view-container-wrapper-desktop">
 						<div className="tracks-list-view-container-desktop">

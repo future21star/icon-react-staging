@@ -44,16 +44,19 @@ const initialState = {
 	video: {
 		items: [],
 		currentPage: 0,
+		totalCount: 0,
 		allPagesCompleted: false
 	},
 	podcast: {
 		items: [],
 		currentPage: 0,
+		totalCount: 0,
 		allPagesCompleted: false
 	},
 	mentality: {
 		items: [],
 		currentPage: 0,
+		totalCount: 0,
 		allPagesCompleted: false
 	},
 	search: {
@@ -83,6 +86,7 @@ export default function reducer(state = initialState, action = {}) {
 			let newFeedData = {
 				currentPage: action.result.currentPage,
 				allPagesCompleted: action.result.allPagesCompleted,
+				totalCount: action.result.totalCount,
 				items: state[action.result.feedType].items.concat(action.result.feeds)
 			};
 

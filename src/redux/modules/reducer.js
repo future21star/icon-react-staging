@@ -4,7 +4,6 @@ import {routerReducer} from 'react-router-redux';
 import {reducer as reduxAsyncConnect} from 'redux-async-connect';
 import {createResponsiveStateReducer} from 'redux-responsive'
 
-import appStore from './appStore';
 import authStore from './authStore';
 import loginStore from './loginStore';
 import editProfileStore from './editProfileStore';
@@ -27,7 +26,6 @@ export default combineReducers({
 		mobile: 992,
 		desktop: 3000
 	}),
-	appStore,
 	authStore,
 	loginStore,
 	editProfileStore,
