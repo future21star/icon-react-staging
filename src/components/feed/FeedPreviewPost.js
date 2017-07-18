@@ -112,7 +112,7 @@ export default class FeedPreviewPost extends Component {
 								{!isVideo ? 
 									<Link to={`/feed/${type}/${id}`} dangerouslySetInnerHTML={this.createMarkup(title)}/>
 									: 
-									title
+									<span dangerouslySetInnerHTML={this.createMarkup(title)}/>
 								}
 							</h3>
 							<div className="feed-post-date">Posted {moment(date).format('DD.MM.YYYY')}</div>

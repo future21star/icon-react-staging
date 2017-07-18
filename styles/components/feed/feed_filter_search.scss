@@ -87,7 +87,7 @@
   .input-group-addon {
     background-color: $greyLight;
   }
- 
+
   .feed-search-desktop {
     height: 75px;
     background: $greyLight;
@@ -120,13 +120,13 @@
 
 .search-selector-desktop {
   margin-bottom: 40px;
-  .Select-control{
+  .Select-control {
     background-color: transparent !important;
   }
   .pretty-select.search-selector-input.Select--single > .Select-control .Select-value {
     //font-size: 1.3em;
   }
-  .input-effect{
+  .input-effect {
     border-bottom-color: $grey;
     .search-text-input {
       font-size: 1.8em;
@@ -137,8 +137,14 @@
   }
 }
 
-.mobile-search-input.input-effect{
-  .form-control{
+.mobile-search-input.input-effect {
+  .form-control {
     padding-left: 0 !important;
   }
+}
+
+.desktop-topic-title {
+  text-align: center;
+  padding-bottom: 30px;
+  margin-top: 0;
 }

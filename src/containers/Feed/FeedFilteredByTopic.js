@@ -39,8 +39,11 @@ export default class FeedFilteredByTopic extends Component {
 	}
 
 	componentWillReceiveProps(newProps) {
-		if(this.props.params.id !== newProps.params.id)
+		if (this.props.params.id !== newProps.params.id) {
+			this.props.clearTopicFeeds();
 			this.props.loadTopicFeeds(this.props.params.id);
+			this.refs.overflowCustomScroll.scrollTop = 0;
+		}
 	}
 
 	onClickLoadMoreButton = () => {
@@ -121,10 +124,11 @@ export default class FeedFilteredByTopic extends Component {
 										<div className="col-md-4 col-lg-3 feed-body-left overflow-custom-scroll">
 											<DesktopFeedSidebar/>
 										</div>
-										<div className="col-md-8 col-lg-9 feed-body-right overflow-custom-scroll">
+										<div className="col-md-8 col-lg-9 feed-body-right overflow-custom-scroll"
+												 ref="overflowCustomScroll">
 											<div className="feed-posts-section">
 												<div>
-													<h1>Topic: {currentTopicName}</h1>
+													<h1 className="desktop-topic-title">Topic: {currentTopicName}</h1>
 													{activeFilterTopicItems.map((video, index) => {
 														return (
 															<div key={index}>

@@ -24,6 +24,12 @@ export default class Feed extends Component {
 		document.body.classList.remove('desktop-disable-scrolling');
 	}
 
+	componentWillReceiveProps(nextProps) {
+		if(nextProps.location.pathname !== this.props.location.pathname) {
+			this.refs.overflowCustomScroll.scrollTop = 0;
+		}
+	}
+
 	render() {
 		const {browser} = this.props;
 
@@ -68,7 +74,7 @@ export default class Feed extends Component {
 										<div className="col-md-4 col-lg-3 feed-body-left overflow-custom-scroll">
 											<DesktopFeedSidebar/>
 										</div>
-										<div className="col-md-8 col-lg-9 feed-body-right overflow-custom-scroll">
+										<div className="col-md-8 col-lg-9 feed-body-right overflow-custom-scroll" ref="overflowCustomScroll">
 											<div className="feed-posts-section">
 												{this.props.children}
 											</div>

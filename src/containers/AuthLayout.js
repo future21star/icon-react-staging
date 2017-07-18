@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {BottomNav} from "../components/index";
+import {BottomNav} from "../components";
 
 export default class AuthLayout extends Component {
 	static propTypes = {
