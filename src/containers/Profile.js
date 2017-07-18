@@ -46,7 +46,7 @@ export default class Profile extends Component {
 					<Menubar
 						title="Profile"
 						rightSideContent={rightSideContent}
-						className="gradient-turquoise text-white"
+						className="text-white"
 						backButton={true}
 					>
 					</Menubar>

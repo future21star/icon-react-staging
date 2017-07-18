@@ -32,7 +32,7 @@ export default class TabContentSectionDesktop extends Component {
 		});
 
 		return (
-			<div className="tab-content-section-desktop">
+			<div className="tab-content-section-desktop overflow-custom-scroll">
 				<div className="tab-content-header-desktop">
 					<h2>
 						{title}

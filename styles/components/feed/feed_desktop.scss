@@ -1,0 +1,61 @@
+.feed-page-wrapper-desktop {
+
+}
+
+.feed-header-desktop {
+  .header-desktop {
+    padding-right: 0;
+    background: $turquoiseLight;
+    color: $white;
+    padding-top: 25px;
+    padding-bottom: 24px;
+
+    h3 {
+      font-family: Lato, sans-serif;
+      margin-top: 0;
+      margin-bottom: 0;
+      margin-left: 20px;
+    }
+    .desktop-search-back-btn {
+      * {
+        color: #ffffff;
+      }
+      border: 1px solid #ffffff;
+      padding: 3px 10px;
+      font-size: .8em;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.feed-body-desktop {
+  position: relative;
+  background-color: #F2F3F5;
+  top: 75px;
+
+  .feed-body-right, .feed-body-left {
+    height: 550px;
+    height: calc(100vh - 177px);
+    overflow-y: scroll;
+
+  }
+  .feed-body-right {
+    padding: 40px 20px 0;
+  }
+
+  .feed-body-left {
+    padding: 0;
+  }
+}
+
+.feed-post-single-wrapper {
+  max-width: 700px;
+  margin: 0 auto;
+  .feed-featured-post-content {
+    padding-bottom: 60px !important;
+  }
+}
+

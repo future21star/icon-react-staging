@@ -1,7 +1,8 @@
 import {combineReducers} from 'redux';
-import { loadingBarReducer } from 'react-redux-loading-bar'
+import {loadingBarReducer} from 'react-redux-loading-bar'
 import {routerReducer} from 'react-router-redux';
 import {reducer as reduxAsyncConnect} from 'redux-async-connect';
+import {createResponsiveStateReducer} from 'redux-responsive'
 
 import authStore from './authStore';
 import loginStore from './loginStore';
@@ -14,11 +15,17 @@ import allTracksStore from './allTracksStore';
 import helpfulLinksStore from './helpfulLinksStore';
 import dayPickerStore from './dayPickerStore';
 import swipeStore from './swipeStore';
+import feedStore from './feedStore';
 
 export default combineReducers({
 	routing: routerReducer,
 	loadingBar: loadingBarReducer,
 	reduxAsyncConnect,
+	browser: createResponsiveStateReducer({
+		init: 10,
+		mobile: 992,
+		desktop: 3000
+	}),
 	authStore,
 	loginStore,
 	editProfileStore,
@@ -29,5 +36,6 @@ export default combineReducers({
 	helpfulLinksStore,
 	allTracksStore,
 	dayPickerStore,
-	swipeStore
+	swipeStore,
+	feedStore
 });

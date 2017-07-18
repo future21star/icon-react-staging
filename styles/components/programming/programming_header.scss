@@ -1,3 +1,16 @@
 .programming-header-wrapper {
-  background: $turquoise;
+  	background: $turquoiseLight;
+
+  	.container{
+		max-width: 500px;
+	  	margin: -75px auto 0;
+   }
+
+  .current-date{
+  		text-align: center;
+  		margin:  0;
+  		font-size: 1.1em;
+  		color: $turquoiseDark;
+
+  }
 }

@@ -48,7 +48,13 @@ export default (store) => {
 				<Route component={containers.AuthLayout}>
 					<IndexRoute component={containers.Home}/>
 					<Route path="profile" component={containers.Profile}/>
-					<Route path="feed" component={containers.Feed}/>
+					<Route path="feed" component={containers.Feed}>
+						<IndexRoute component={containers.FeedVideo}/>
+						<Route path="podcast" component={containers.FeedPodcast}/>
+						<Route path="mentality" component={containers.FeedMentality}/>
+					</Route>
+					<Route path="feed/topic/:id" component={containers.FeedFilteredByTopic}/>
+					<Route path="feed/:type/:id" component={containers.FeedSingle}/>
 					<Route path="nutrition" component={containers.Nutrition}/>
 					<Route path="programming" component={containers.Programming}/>
 					<Route path="programming/list-view" component={containers.ProgrammingListView}/>
@@ -60,8 +66,7 @@ export default (store) => {
 				<Route path="edit-profile" component={containers.EditProfile}/>
 				<Route path="edit-tracks/:name" component={containers.ViewTrack}/>
 				<Route path="feed/filter" component={containers.FeedFilter}/>
-				<Route path="feed/search" component={containers.Search}/>
-				<Route path="feed/single" component={containers.SingleFeed}/>
+				<Route path="feed/search" component={containers.FeedSearch}/>
 			</Route>
 
 			{/*logged out*/}

@@ -19,8 +19,8 @@ export default class Menubar extends Component {
 						<div className="col-xs-3 menu-bar-left-side-content">
 							{ backButton ? (
 								<a href="javascript:history.back()">
-									<span className="icon-back"/>
-									<span className="mobile-hide">Back</span>
+									<span className="icon-arrow-left back-icon"/>
+									<span className="back-text">Back</span>
 								</a>) : leftSideContent
 							}
 						</div>

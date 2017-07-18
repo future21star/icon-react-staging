@@ -76,6 +76,8 @@ export default class Programming extends Component {
 				this.loadActiveDaysWod(selectedTracks[0].trackName);
 			}
 		}
+
+		document.body.classList.toggle('desktop-disable-scrolling');
 	}
 
 	loadActiveDaysWod = (trackName) => {
@@ -105,6 +107,10 @@ export default class Programming extends Component {
 		}
 	}
 
+	componentWillUnmount(){
+		document.body.classList.remove('desktop-disable-scrolling');
+	}
+
 	render() {
 		const {selectedTracks, activeWeek, toggleActiveWeek, swipedActiveTrackName} = this.props;
 
@@ -123,7 +129,7 @@ export default class Programming extends Component {
 					)}
 				</a>
 				<Link to="/programming/list-view" className="hidden-xs hidden-sm">
-					<p><span className="mobile-hide">List View</span><i className="icon-desktop-menu"/></p>
+					<span className="mobile-hide">List View</span><i className="icon-desktop-menu"/>
 				</Link>
 			</div>
 		);
@@ -140,23 +146,23 @@ export default class Programming extends Component {
 			>
 				<div className="programming-page-wrapper bottom-padding">
 					<Helmet title="Programming"/>
+					<div className="desktop-menu-fixed">
+						<Menubar
+							title="Programming"
+							leftSideContent={<Link to="/edit-tracks"><span className="icon-user-edit"/><span className="mobile-hide">Edit Tracks</span></Link>}
+							rightSideContent={rightSideContent}
+							className="text-white programming-menu-bar"
+						/>
 
-					<Menubar
-						title="Programming"
-						leftSideContent={<Link to="/edit-tracks"><span className="icon-user-edit"/><span className="mobile-hide">Edit Tracks</span></Link>}
-						rightSideContent={rightSideContent}
-						className="text-white gradient-turquoise programming-menu-bar"
-					/>
-
-					<ProgrammingHeader/>
-
+						<ProgrammingHeader/>
+					</div>
 					{/*mobile*/}
 					<div className="hidden-md hidden-lg">
 						{selectedTracks.length ? this.renderSelectedTracksForMobile() : this.renderNoTracksFound()}
 					</div>
 
 					{/*desktop*/}
-					<div className="hidden-xs hidden-sm">
+					<div className="hidden-xs hidden-sm overflow-custom-scroll">
 						{selectedTracks.length ? this.renderSelectedTracksForDesktop() : this.renderNoTracksFound()}
 					</div>
 
@@ -211,10 +217,11 @@ export default class Programming extends Component {
 		let wodForThisTrackAndDate = wodForThisTrack ? wods[track.name][activeDate] : null;
 		let nextTrackName = selectedTracks[i + 1] ? selectedTracks[i + 1].trackName : null;
 		let prevTrackName = selectedTracks[i - 1] ? selectedTracks[i - 1].trackName : null;
+		let dailyBrief = (dailyBriefs[track.name] ? <DailyBriefDesktop user={user} content={dailyBriefs[track.name]}/> : undefined);
 
 		return (
 			<div name={track.name} key={i}>
-				{currentDate === activeDate ? <DailyBriefDesktop user={user} content={dailyBriefs[track.name]}/> : undefined}
+				{currentDate === activeDate ?  dailyBrief : undefined}
 
 				{wodForThisTrack && wodForThisTrackAndDate ? (
 					<div>

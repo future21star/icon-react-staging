@@ -23,3 +23,10 @@ export loadHelpfulLinks from './helpfulLinks/loadHelpfulLinks';
 
 export loadAllTracks from './tracks/loadAllTracks';
 
+export loadFeeds from './feed/loadFeeds';
+export loadFeed from './feed/loadFeed';
+export loadFilterTopics from './feed/loadFilterTopics';
+export loadTopicFeeds from './feed/loadTopicFeeds';
+
+export search from './search/search';
+

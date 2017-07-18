@@ -4,10 +4,12 @@ import Helmet from 'react-helmet';
 import {isLoaded as isAuthLoaded, load as loadAuth} from '../redux/modules/authStore';
 import {isLoaded as isHelpfulLinksLoaded, load as loadHelpfulLinks} from '../redux/modules/helpfulLinksStore';
 import {isLoaded as isAllTrackLoaded, load as loadAllTracks} from '../redux/modules/allTracksStore';
+import {isFilterTopicsLoaded, loadFilterTopics} from "../redux/modules/feedStore";
 import {push} from 'react-router-redux';
 import config from '../config';
 import {asyncConnect} from 'redux-async-connect';
-import LoadingBar from 'react-redux-loading-bar'
+import LoadingBar from 'react-redux-loading-bar';
+import {calculateResponsiveState} from 'redux-responsive'
 
 @asyncConnect([{
 	promise: ({store: {dispatch, getState}}) => {
@@ -22,12 +24,15 @@ import LoadingBar from 'react-redux-loading-bar'
 		// load all tracks
 		if (!isAllTrackLoaded(getState())) promises.push(dispatch(loadAllTracks()));
 
+		//  filter topics
+		if (!isFilterTopicsLoaded(getState())) promises.push(dispatch(loadFilterTopics()));
+
 		return Promise.all(promises);
 	}
 }])
 @connect(
 	state => ({user: state.authStore.user}),
-	{pushState: push}
+	{pushState: push, calculateResponsiveState}
 )
 export default class App extends Component {
 	static propTypes = {
@@ -39,6 +44,10 @@ export default class App extends Component {
 	static contextTypes = {
 		store: PropTypes.object.isRequired
 	};
+
+	componentDidMount() {
+		this.props.calculateResponsiveState(global);
+	}
 
 	componentWillReceiveProps(nextProps) {
 		if (!this.props.user && nextProps.user) {

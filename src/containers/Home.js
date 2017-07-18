@@ -93,24 +93,25 @@ export default class Home extends Component {
 				transitionAppear={true}
 				transitionAppearTimeout={300}
 				transitionEnterTimeout={300}
-				 transitionLeaveTimeout={300}
+				transitionLeaveTimeout={300}
 			>
 				<div className="bottom-padding">
 					<Helmet title="Home"/>
 
-					<Menubar title="Today's Workout"
-									 rightSideContent={
-									 	<Link to="profile">
-									 		<span className="mobile-hide">Profile</span>
-									 		<span className="icon-user-profile"/> 
-									 	</Link>}
-									 	leftSideContent={
-									 		<a href="#" onClick={this.handleLogout}>
-												<span className="icon-logout"/>
-												<span className="mobile-hide">Log Out</span>
-											</a>
-									 	}
-									 className="gradient-turquoise menu-color-white">
+					<Menubar
+						title="Today's Workout"
+						rightSideContent={
+							<Link to="profile">
+								<span className="mobile-hide">Profile</span>
+								<span className="icon-user-profile"/>
+							</Link>}
+						leftSideContent={
+							<a href="javascript:;" onClick={this.handleLogout}>
+								<span className="icon-logout"/>
+								<span className="mobile-hide">Log Out</span>
+							</a>
+						}
+						className="menu-color-white">
 						<DotList/>
 					</Menubar>
 
@@ -163,9 +164,11 @@ export default class Home extends Component {
 		let nextTrackName = selectedTracks[i + 1] ? selectedTracks[i + 1].trackName : null;
 		let prevTrackName = selectedTracks[i - 1] ? selectedTracks[i - 1].trackName : null;
 
+		let dailyBrief = (dailyBriefs[track.name] ? <DailyBriefCollapsable user={user} content={dailyBriefs[track.name]}/> : undefined);
 		return (
 			<div name={track.name} key={i}>
-				<DailyBriefCollapsable user={user} content={dailyBriefs[track.name]}/>
+				
+				{dailyBrief}	
 
 				{wodForThisTrack && wodForThisTrackAndDate ? (
 					<div>

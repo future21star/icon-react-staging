@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import {asyncConnect} from 'redux-async-connect';
 import {loadListView} from '../redux/modules/wodsStore';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {MenuBarListView, DesktopListWorkoutContainer} from '../components/index';
+import {Menubar, DesktopListWorkoutContainer, DesktopListWorkoutHeader} from '../components/index';
 import {
 	isLoaded as isTracksLoaded,
 	load as loadTracks
@@ -62,26 +62,22 @@ export default class ProgrammingListView extends Component {
 	render() {
 		const {selectedTracks, wods, wodsStore} = this.props;
 
-		const leftSideContentDesktop = (
-			<div className="edit-tracks-link">
-				<Link to="/edit-tracks" className="text-white">
-					<span>
-						<i className="icon-user-edit"/>
-					</span>
-					<span style={{'position': 'relative', 'top': '-3px'}}>Edit Track</span>
-				</Link>
-			</div>
+		const leftSideContent = (
+			<Link to="/edit-tracks">
+				<span>
+					<i className="icon-user-edit"/>
+				</span>
+				<span className="mobile-hide">Edit Track</span>
+			</Link>
 		);
 
-		const rightSideContentDesktop = (
-			<p>
-				<Link to="/programming" className="text-white">
-					<span style={{'position': 'relative', 'top': '-3px'}}>Exit List View</span>
-					<span>
-						<i className="icon-desktop-menu" aria-hidden="true"/>
-					</span>
-				</Link>
-			</p>
+		const rightSideContent = (
+			<Link to="/programming">
+				<span className="mobile-hide">Exit List View</span>
+				<span>
+					<i className="icon-desktop-menu" aria-hidden="true"/>
+				</span>
+			</Link>
 		);
 
 		return (
@@ -98,12 +94,18 @@ export default class ProgrammingListView extends Component {
 
 					<Helmet title="Programming"/>
 
-					<MenuBarListView
-						leftSideContentDesktop={leftSideContentDesktop}
-						rightSideContentDesktop={rightSideContentDesktop}
-						tracks={selectedTracks}
-						onSelectTrack={this.selectTrack}
+					<Menubar
+						leftSideContent={leftSideContent}
+						rightSideContent={rightSideContent}
+						title="List View"
+						className="menu-color-white menu-bar-red"
 					/>
+					{selectedTracks.length ?
+						<DesktopListWorkoutHeader
+							tracks={selectedTracks}
+							onSelectTrack={this.selectTrack}
+						/> : <h3 className="text-center">Please select your track first</h3>
+					}
 
 					<div className="tracks-list-view-container-wrapper-desktop">
 						<div className="tracks-list-view-container-desktop">

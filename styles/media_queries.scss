@@ -1,73 +1,169 @@
+@media screen and (max-width: 991px) {
+  .hidden-sm-down {
+    display: none !important;
+  }
 
+  .desktop-disable-scrolling{
+    overflow: auto !important;
+  }
 
-@media screen and (max-width: 991px){
-	.hidden-sm-down{
-		display: none !important;
-	}
+  .desktop-menu-fixed{
+    position: relative;
+    z-index: 1;
+  }
 
-	/*
-	MENU BAR
-	*/
-	.menu-bar{
-		padding: 12px 0;
-	}
+  .bottom-padding{
+    padding-bottom: 40px;
+  }
 
-	.programming-menu-bar{
-		.menu-bar-title{
-			visibility: visible;
-		}
+  /*
+  MENU BAR
+  */
+  .menu-bar {
+    padding: 12px 0;
 
-		.col-xs-3 a{
-	    margin-top: 0;
-	  }
-	}
+    .dotlist-wrapper{
+      position: static;
+    }
+  }
 
-	/*
-	PROGRAMMING HEADER
-	*/
-	.programming-header-wrapper{
-		min-height: auto;
-		.col-xs-12{
-    		padding: 10px 0 0;
-		} 
+  .programming-menu-bar {
+    .menu-bar-title {
+      visibility: visible;
     }
 
-	/*
-	DAYPICKER
-	*/
-	.daypicker-wrapper .nav-justified{
-		margin-top: 0;
-	}
+    .col-xs-3 a {
+      margin-top: 0;
+    }
+  }
+
+  /*
+  PROGRAMMING HEADER
+  */
+  .programming-header-wrapper {
+    min-height: auto;
+
+    .container{
+      margin-top: 0;
+    }
+    .col-xs-12 {
+      padding: 10px 0 0;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .login-container {
+    margin-top: 10vh;
+  }
+}
+
+@media screen and (max-width: 768px) {
+
+  .mobile-hide {
+    display: none;
+  }
+
+  .display-table-mobile{
+    display: table;
+  }
+
+  .table-cell-mobile{
+    display: table-cell;
+    float: none;
+    overflow: hidden;
+  }
+  .login-container {
+    margin-top: 5vh;
+  }
+
+  .rest-day-bg {
+    top: 50%;
+  }
+
+  .mid-content {
+    padding-top: 25px;
+    padding-bottom: 25px;
+  }
+
+  .workout-mode-banner-list {
+    margin-right: auto;
+  }
+
+  //FEED
+  .feed-post{
+    padding: 20px 0;
+    border-top: 1px solid #dddddd;
+    
+    .display-table-mobile{
+      padding: 0;
+    }
+    .feed-post-image{
+      height: 100%;
+      img{
+        height: 100% !important;
+        width: auto !important;
+      }
+    }
+    .feed-post-title{
+      margin-top: 0;
+    }
+
+    .feed-featured-post-read-more{
+      padding-top: 10px;
+    }
+  }
+  .feed-featured-post{
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 40px;
+    .col-xs-12{
+      padding: 0;
+    }
+    .feed-featured-post-image{
+      max-height: 250px;
+    }
+  }
+  .feed-post-content, .feed-post-date{
+    padding-top: 10px;
+  }
+
+  .feed-post-podcast.feed-post{
+    margin: 0;
+  }
+
+  .feed-post-video{
+    .col-sm-6{
+      margin: 0;
+    }
+    &.feed-post{
+      margin-bottom: 0;
+      .feed-post-title{
+        margin: 0 0 10px;
+        float: none;
+      }
+
+      .feed-post-date{
+        float: none;
+      }
+    }
+  }
+  .feed-load-more-container{
+    margin-bottom: 80px !important;
+  }
 }
 
 
-@media screen and (min-width: 768px){
-	.login-container{
-		margin-top: 10vh;
-	}
-}
+@media screen and (max-width: 561px) {
+    .nav-pills.feed-top-sub-nav li{
+     
 
-@media screen and (max-width: 768px){
-
-	.mobile-hide{
-		display: none;
-	}
-	
-	.login-container{
-		margin-top: 5vh;
-	}
-
-	.rest-day-bg{
-		top:50%;
-	}
-
-	.mid-content{
-		padding-top: 25px;
-		padding-bottom: 25px;
-	}
-
-	 .workout-mode-banner-list {
-      margin-right: auto;
-    }
+      a{
+         margin-top: 8px;
+         margin-bottom: 8px;
+        padding-left: 0;
+        padding-right: 0;
+      }
+    } 
 }
 
