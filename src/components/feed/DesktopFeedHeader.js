@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from "react-redux";
 import {push} from 'react-router-redux';
+import {Link} from "react-router";
 
 @connect(
 	state => ({
@@ -27,7 +28,16 @@ export default class DesktopFeedHeader extends Component {
 				<div className="row no-margin-left-right">
 
 					<div className="col-md-4 col-lg-3 header-desktop">
-						<h3>Feed</h3>
+						{redirectToSearchOnInputPress ? <h3>Feed</h3> : (
+							<div>
+								<a href="javascript:history.back();" className="desktop-search-back-btn pull-left">
+									<span className="icon-arrow-left back-icon"/> Back
+								</a>
+								<h3 className="text-white pull-left">
+									Feed
+								</h3>
+							</div>
+						)}
 					</div>
 
 					<div className="col-md-8 col-lg-9 feed-search-container-desktop">

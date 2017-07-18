@@ -16,6 +16,18 @@
       margin-bottom: 0;
       margin-left: 20px;
     }
+    .desktop-search-back-btn {
+      * {
+        color: #ffffff;
+      }
+      border: 1px solid #ffffff;
+      padding: 3px 10px;
+      font-size: .8em;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
   }
 }
 
@@ -39,10 +51,10 @@
   }
 }
 
-.feed-post-single-wrapper{
+.feed-post-single-wrapper {
   max-width: 700px;
   margin: 0 auto;
-  .feed-featured-post-content{
+  .feed-featured-post-content {
     padding-bottom: 60px !important;
   }
 }
