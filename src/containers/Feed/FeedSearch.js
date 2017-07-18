@@ -128,24 +128,27 @@ export default class FeedSearch extends Component {
 		return (
 			<div className={browser.is.mobile ? 'container' : ''}>
 				<div className="row">
-					<div className="col-xs-4 col-xs-offset-4">
-						<div className="search-selector-wrapper">
-							<Select
-								instanceId={"search-topic"}
-								className="pretty-select search-selector-input"
-								value={searchTopic}
-								placeholder="Select"
-								options={FeedSearch.searchSelectorOptions}
-								onChange={this.changeSearchTopic}
-								clearable={false}
-								arrowRenderer={FeedSearch.arrowRenderer}
-							/>
+					<div className={!browser.is.mobile ? 'col-xs-4 search-selector-desktop' : 'col-xs-4 col-xs-offset-4'}>
+						<div className={!browser.is.mobile ? 'input-effect' : ''}>
+							<div className="search-selector-wrapper">
+								<Select
+									instanceId={"search-topic"}
+									className="pretty-select search-selector-input"
+									value={searchTopic}
+									placeholder="Select"
+									options={FeedSearch.searchSelectorOptions}
+									onChange={this.changeSearchTopic}
+									clearable={false}
+									arrowRenderer={FeedSearch.arrowRenderer}
+								/>
+								<span className="underline"/>
+							</div>
 						</div>
 					</div>
 				</div>
 
 				{browser.is.mobile && (
-					<div className="form-group input-effect">
+					<div className="form-group input-effect mobile-search-input">
 						<div>
 							<input
 								type="text"

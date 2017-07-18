@@ -100,14 +100,23 @@
     }
     .feed-post-image{
       height: 100%;
+      img{
+        height: 100% !important;
+        width: auto !important;
+      }
     }
     .feed-post-title{
       margin-top: 0;
+    }
+
+    .feed-featured-post-read-more{
+      padding-top: 10px;
     }
   }
   .feed-featured-post{
     padding-left: 0;
     padding-right: 0;
+    padding-bottom: 40px;
     .col-xs-12{
       padding: 0;
     }
@@ -115,8 +124,32 @@
       max-height: 250px;
     }
   }
-  .feed-featured-post-read-more, .feed-post-content, .feed-post-date{
+  .feed-post-content, .feed-post-date{
     padding-top: 10px;
+  }
+
+  .feed-post-podcast.feed-post{
+    margin: 0;
+  }
+
+  .feed-post-video{
+    .col-sm-6{
+      margin: 0;
+    }
+    &.feed-post{
+      margin-bottom: 0;
+      .feed-post-title{
+        margin: 0 0 10px;
+        float: none;
+      }
+
+      .feed-post-date{
+        float: none;
+      }
+    }
+  }
+  .feed-load-more-container{
+    margin-bottom: 80px !important;
   }
 }
 

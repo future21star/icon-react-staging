@@ -3,11 +3,11 @@
   right: 25px;
   bottom: 85px;
   a.btn-filter-feed {
-    background-color: #65C4D7;
+    background-color: $turquoiseLight;
     padding: 15px;
-    box-shadow: 0 0 10px #b7b7b7;
+    box-shadow: 0 0 10px #dadada;
     border-radius: 50%;
-    transition: box-shadow 200ms ease-in-out;
+    @include transition(box-shadow .3s ease-in-out);
     [class^="icon-"], [class*=" icon-"] {
       color: #ffffff;
     }
@@ -118,20 +118,27 @@
   }
 }
 
-.feed-search-wrapper {
-  .search-selector-wrapper {
-    padding-top: 10px;
+.search-selector-desktop {
+  margin-bottom: 40px;
+  .Select-control{
+    background-color: transparent !important;
   }
   .pretty-select.search-selector-input.Select--single > .Select-control .Select-value {
     //font-size: 1.3em;
   }
   .input-effect{
-    border-bottom-color: $whiteDark;
+    border-bottom-color: $grey;
     .search-text-input {
       font-size: 1.8em;
       font-weight: 400;
       padding-left: 10px !important;
       line-height: 1em;
     }
+  }
+}
+
+.mobile-search-input.input-effect{
+  .form-control{
+    padding-left: 0 !important;
   }
 }

@@ -2,16 +2,6 @@
   padding: 0 30px 60px;
   position: relative;
 
-  ///////
-  .feed-featured-post-image {
-    position: relative;
-    max-height: 350px;
-    overflow: hidden;
-    img{
-      width: auto;
-      height: 100%;
-    }
-
     .type-locked:before {
       content: '\f023';
       font-family: FontAwesome, sans-serif;
@@ -37,15 +27,14 @@
       height: 30px;
       text-align: center;
     }
-  }
 }
 
 .feed-post {
   vertical-align: top;
 }
 
-.feed-post-image{
-  height: 250px;
+.feed-post-image, .feed-featured-post-image{
+  position: relative;
   overflow: hidden;
   img{
     position: absolute;
@@ -53,6 +42,16 @@
     top: 0;
     height: auto !important;
     width: 100% !important;
+  }
+}
+
+.feed-featured-post-image{
+  height: 350px;
+}
+
+.feed-post-image{
+  height: 250px;
+  img{
     padding: 0 15px;
   }
 }
@@ -133,40 +132,66 @@
   }
 }
 
-.feed-post-video{
+.feed-post-video, .feed-post-mentality{
 
-  .col-sm-6{
-    margin: 20px 0;
+  &.feed-post{
+    margin-bottom: 40px;
+
+    .col-sm-6{
+      margin: 20px 0;
+    }
+  }
+
+  .col-md-7{
+    padding: 0;
   }
 
   .feed-post-title{
     float: left;
-    margin: 0 0 10px;
+    margin: 0 15px 10px 0;
   }
 
   .feed-post-date{
     float: right;
-  }
-
-  .feed-featured-post-image, .fluid-width-container{
-    div div{
-      position: relative;
-      padding-bottom: 56.25%; /* proportion value to aspect ratio 16:9 (9 / 16 = 0.5625 or 56.25%) */
-      padding-top: 30px;
-      height: 0 !important;
-      overflow: hidden;
-    }
-  }
-
-  iframe {
-    position: absolute;
-    top: 0; 
-    left: 0;
-    width: 100% !important;
-    height: 100% !important;
+    padding-top: 0;
   }
 
 } 
+
+.feed-post-mentality{
+
+  .feed-post-title{
+    float: none;
+  }
+  .feed-post-date{
+    float: none;
+  }
+
+}
+
+.feed-post-podcast.feed-post{
+  margin: 20px 0;
+}
+
+.feed-post-video .feed-featured-post-image, .fluid-width-container{
+    & > div{
+    height: auto !important;
+    div{
+      position: relative;
+      padding-bottom: 56.25%; /* proportion value to aspect ratio 16:9 (9 / 16 = 0.5625 or 56.25%) */
+      height: 0 !important;
+      overflow: hidden;
+    }
+
+    iframe{
+      position: absolute;
+      top: 0; 
+      left: 0;
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
+}
 
 
 

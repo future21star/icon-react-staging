@@ -27,7 +27,7 @@ export default class FeedPostSingle extends Component {
 		return (
 			activeItem ? (
 				<div className={`${browser.is.desktop ? 'container' : ''}`}>
-					<div className="feed-content-wrapper">
+					<div className="feed-content-wrapper feed-post-single-wrapper">
 						<div className="feed-featured-post">
 							<div className="feed-featured-post-image">
 								{activeItemType === 'video' &&
