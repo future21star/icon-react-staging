@@ -1,5 +1,5 @@
 import {createStore as _createStore, applyMiddleware, compose} from 'redux';
-import { loadingBarMiddleware } from 'react-redux-loading-bar';
+import {loadingBarMiddleware} from 'react-redux-loading-bar';
 import {createResponsiveStoreEnhancer} from 'redux-responsive';
 import createMiddleware from './middleware/clientMiddleware';
 import {routerMiddleware} from 'react-router-redux';
@@ -25,7 +25,10 @@ export default function createStore(history, client, data) {
 			persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
 		)(_createStore);
 	} else {
-		finalCreateStore = applyMiddleware(...middleware)(_createStore);
+		finalCreateStore = compose(
+			applyMiddleware(...middleware),
+			createResponsiveStoreEnhancer({calculateInitialState: false})
+		)(_createStore);
 	}
 
 	const reducer = require('./modules/reducer');
