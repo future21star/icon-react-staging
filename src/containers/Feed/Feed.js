@@ -25,7 +25,7 @@ export default class Feed extends Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if(nextProps.location.pathname !== this.props.location.pathname) {
+		if(nextProps.location.pathname !== this.props.location.pathname && this.props.browser.is.desktop) {
 			this.refs.overflowCustomScroll.scrollTop = 0;
 		}
 	}
