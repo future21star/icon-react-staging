@@ -1,7 +1,5 @@
 # icon-react-staging
 
-# icon-react-staging
-
 ## Deploying in production
 1. From terminal, `cd` to the folder where the **.pem** file exists
 2. Run `ssh -i "react_staging.pem" ec2-user@34.210.177.213`
