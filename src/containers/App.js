@@ -10,6 +10,7 @@ import config from '../config';
 import {asyncConnect} from 'redux-async-connect';
 import LoadingBar from 'react-redux-loading-bar';
 import {calculateResponsiveState} from 'redux-responsive'
+import {PodcastFloatingPlayerButton} from "../components";
 
 @asyncConnect([{
 	promise: ({store: {dispatch, getState}}) => {
@@ -72,6 +73,8 @@ export default class App extends Component {
 				<div className="app-wrapper">
 					<LoadingBar className="loading-bar"/>
 					{this.props.children}
+
+					<PodcastFloatingPlayerButton/>
 				</div>
 
 			</div>

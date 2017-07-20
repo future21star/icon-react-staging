@@ -67,6 +67,7 @@ export default (store) => {
 				<Route path="edit-tracks/:name" component={containers.ViewTrack}/>
 				<Route path="feed/filter" component={containers.FeedFilter}/>
 				<Route path="feed/search" component={containers.FeedSearch}/>
+				<Route path="podcast-player" component={containers.PodcastPlayer}/>
 			</Route>
 
 			{/*logged out*/}

@@ -57,7 +57,7 @@ export default class FeedSingle extends Component {
 						backButton={true}
 					/>
 
-					<FeedPostSingle/>
+					<FeedPostSingle feedId={this.props.params.id}/>
 				</div>
 
 			</ReactCSSTransitionGroup>
