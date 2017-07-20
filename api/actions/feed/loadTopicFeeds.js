@@ -30,7 +30,8 @@ export default function loadTopicFeeds(request) {
 				id: singleFeed.id,
 				title: singleFeed.title.rendered,
 				date: singleFeed.date,
-				video_id: singleFeed.vimeo_video.video_id
+				video_id: singleFeed.vimeo_video.video_id,
+				thumbnail_image: singleFeed.vimeo_video.thumbnails[3]
 			};
 			allFeeds.push(newSingleFeed);
 		});

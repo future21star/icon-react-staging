@@ -4,6 +4,7 @@ import {truncate} from "lodash";
 import moment from 'moment';
 import {connect} from "react-redux";
 import ReactPlayer from 'react-player';
+import FeedPreviewVideoPost from "./FeedPreviewVideoPost";
 
 @connect(
 	state => ({
@@ -25,6 +26,8 @@ export default class FeedPreviewPost extends Component {
 			PropTypes.string,
 			PropTypes.bool
 		]),
+		// for type video + mentality
+		'thumbnail_image': PropTypes.string,
 		// for type video
 		'video_id': PropTypes.string,
 		// for type podcast
@@ -40,7 +43,7 @@ export default class FeedPreviewPost extends Component {
 	};
 
 	render() {
-		const {browser, type, title, id, date, description, image, is_featured, is_row, audio, is_blog, is_video, video_iframe, video_id} = this.props;
+		const {browser, type, title, id, date, description, image, is_featured, is_row, audio, is_blog, is_video, video_iframe, video_id, thumbnail_image} = this.props;
 
 		const defaultImage = require('../../../static/logo.png');
 
@@ -97,7 +100,7 @@ export default class FeedPreviewPost extends Component {
 					:
 					<div className={isVideo ? `col-sm-6 col-xs-12 feed-post feed-post-${type}` : `col-sm-6 col-xs-12 display-table-mobile feed-post feed-post-${type}`}>
 						<div className={isVideoInner ? 'col-xs-6 col-sm-12 fluid-width-container': 'table-cell-mobile col-sm-12 col-xs-4 feed-post-image'}>
-							{type === 'video' && <ReactPlayer url={`https://vimeo.com/${video_id}`} width="100%" height="auto"/>}
+							{type === 'video' && <FeedPreviewVideoPost video_id={video_id} thumbnail_image={thumbnail_image}/>}
 							{type === 'podcast' && <img width="100%" src={image || defaultImage}/>}
 							{type === 'mentality' && is_blog && <img width="100%" src={image || defaultImage}/>}
 							{type === 'mentality' && is_video &&

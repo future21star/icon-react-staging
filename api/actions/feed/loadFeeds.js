@@ -40,6 +40,7 @@ export default function loadFeeds(request) {
 			// append type specific fields
 			if (feedType === 'video') {
 				newSingleFeed.video_id = singleFeed.vimeo_video.video_id;
+				newSingleFeed.thumbnail_image = singleFeed.vimeo_video.thumbnails[3];
 			} else if (feedType === 'podcast') {
 				newSingleFeed.image = singleFeed.featured_image ? singleFeed.featured_image.guid : false;
 				newSingleFeed.description = singleFeed.description;
