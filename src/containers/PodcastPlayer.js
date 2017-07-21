@@ -19,6 +19,41 @@ import {Link} from "react-router";
 
 export default class PodcastPlayer extends Component {
 
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			timer: null
+		}
+	}
+
+	componentDidMount() {
+		this.timer = setInterval(this.step, 1000);
+	}
+
+	componentWillUnmount() {
+		clearInterval(this.timer)
+	}
+
+	componentWillReceiveProps(nextProps) {
+		nextProps.podcastPlayer.on('pause', () => {
+			clearInterval(this.timer);
+		});
+
+		nextProps.podcastPlayer.on('play', () => {
+			clearInterval(this.timer);
+			this.timer = setInterval(this.step, 1000);
+		});
+	}
+
+	step = () => {
+		const {podcastPlayer, updatePodcastPlayer} = this.props;
+		let seek = podcastPlayer.seek() || 0;
+		this.setState({
+			timer: seek
+		});
+	};
+
 	play = () => {
 		const {podcastPlayer, updatePodcastPlayer} = this.props;
 
@@ -32,8 +67,16 @@ export default class PodcastPlayer extends Component {
 		updatePodcastPlayer(podcastPlayer, false);
 	};
 
+	formatTime = (secs) => {
+		secs = Math.round(secs);
+		let minutes = Math.floor(secs / 60) || 0;
+		let seconds = (secs - minutes * 60) || 0;
+
+		return (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+	};
+
 	render() {
-		const {browser, podcastPlayerIsPlaying, podcastPlayerFeed, podcastPlayerPrevPodcast, podcastPlayerNextPodcast} = this.props;
+		const {browser, podcastPlayer, podcastPlayerIsPlaying, podcastPlayerFeed, podcastPlayerPrevPodcast, podcastPlayerNextPodcast} = this.props;
 
 		return (
 			<ReactCSSTransitionGroup
@@ -50,45 +93,49 @@ export default class PodcastPlayer extends Component {
 
 					<div className="podcast-player">
 						<div className="container text-center">
-							{/* current podcast name */}
-							<div className="page-header">
-								<h3>Now Playing: {podcastPlayerFeed.title}</h3>
+							<div className="current-playing-podcast-title">
+								<div className="now-playing">Now Playing:</div>
+								{podcastPlayerFeed.title}
 							</div>
 
-							{/* go to current playing podcast post */}
-							<Link className="btn btn-default btn-lg" to={'/feed/podcast/' + podcastPlayerFeed.id}>
-								<span className="fa fa-th-list"/>
-							</Link>
+							<div className="btn-current-podcast-wrapper">
+								<Link to={'/feed/podcast/' + podcastPlayerFeed.id}>
+									<span className="fa fa-list-ul"/>
+								</Link>
+							</div>
 
-							{/* go to prev playing podcast post */}
-							{podcastPlayerPrevPodcast ? (
-								<Link className="btn btn-default btn-lg" to={'/feed/podcast/' + podcastPlayerPrevPodcast.id}>
-									<span className="fa fa-step-backward"/>
-								</Link>) : (
-								<button className="btn btn-default btn-lg" disabled>
-									<span className="fa fa-step-backward"/>
-								</button>
-							)}
+							<div className="btn-prev-wrapper">
+								{podcastPlayerPrevPodcast ? (
+									<Link to={'/feed/podcast/' + podcastPlayerPrevPodcast.id}>
+										<span className="fa fa-step-backward"/>
+									</Link>) : (
+									<button disabled>
+										<span className="fa fa-step-backward"/>
+									</button>
+								)}
+							</div>
 
-							{/* pause/play current podcast */}
-							{podcastPlayerIsPlaying ?
-								<button className="btn btn-default btn-lg" onClick={this.pause}>
-									<span className="fa fa-pause"/>
-								</button>
-								: <button className="btn btn-default btn-lg" onClick={this.play}>
-									<span className="fa fa-play"/>
-								</button>
-							}
+							<div className="btn-play-pause-wrapper">
+								{podcastPlayerIsPlaying ?
+									<button onClick={this.pause}><span className="fa fa-pause"/></button>
+									: <button onClick={this.play}><span className="fa fa-play"/></button>
+								}
+							</div>
 
-							{/* go to next playing podcast post */}
-							{podcastPlayerNextPodcast ? (
-								<Link className="btn btn-default btn-lg" to={'/feed/podcast/' + podcastPlayerNextPodcast.id}>
-									<span className="fa fa-step-forward"/>
-								</Link>) : (
-								<button className="btn btn-default btn-lg" disabled>
-									<span className="fa fa-step-forward"/>
-								</button>
-							)}
+							<div className="btn-next-wrapper">
+								{podcastPlayerNextPodcast ? (
+									<Link to={'/feed/podcast/' + podcastPlayerNextPodcast.id}>
+										<span className="fa fa-step-forward"/>
+									</Link>) : (
+									<button disabled>
+										<span className="fa fa-step-forward"/>
+									</button>
+								)}
+							</div>
+
+							<div className="timer-duration-wrapper">
+								{this.formatTime(this.state.timer)} / {this.formatTime(podcastPlayer.duration())}
+							</div>
 						</div>
 					</div>
 				</div>
