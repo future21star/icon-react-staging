@@ -75,6 +75,10 @@ export default class PodcastPlayer extends Component {
 		return (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
 	};
 
+	createMarkup = (html) => {
+		return {__html: html};
+	};
+
 	render() {
 		const {browser, podcastPlayer, podcastPlayerIsPlaying, podcastPlayerFeed, podcastPlayerPrevPodcast, podcastPlayerNextPodcast} = this.props;
 
@@ -93,9 +97,12 @@ export default class PodcastPlayer extends Component {
 
 					<div className="podcast-player">
 						<div className="container text-center">
+							<div className="btn-close-wrapper">
+								<a href="javascript:history.back()"><span className="icon-close back-icon"/></a>
+							</div>
 							<div className="current-playing-podcast-title">
 								<div className="now-playing">Now Playing:</div>
-								{podcastPlayerFeed.title}
+								<span dangerouslySetInnerHTML={this.createMarkup(podcastPlayerFeed.title)}/>
 							</div>
 
 							<div className="btn-current-podcast-wrapper">

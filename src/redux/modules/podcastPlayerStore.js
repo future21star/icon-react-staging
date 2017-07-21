@@ -1,6 +1,7 @@
 const UPDATE_PODCAST_PLAYER = 'podcastPlayer/UPDATE_PODCAST_PLAYER';
 const SET_PODCAST_FEED = 'podcastPlayer/SET_PODCAST_FEED';
 import {LOAD_SUCCESS as PODCAST_LOAD_SUCCESS} from './feedStore';
+import {LOGOUT_SUCCESS} from './authStore'
 
 const initialState = {
 	podcastPlayer: null,
@@ -27,7 +28,7 @@ export default function reducer(state = initialState, action = {}) {
 			})[0];
 			let prevPodcast = state.podcastPlayerItems.filter(item => {
 				return item.id > currentPodcastId;
-			})[0];
+			}).slice(-1)[0];
 
 			return {
 				...state,
@@ -46,6 +47,11 @@ export default function reducer(state = initialState, action = {}) {
 					...state
 				};
 			}
+		case LOGOUT_SUCCESS:
+			return {
+				...state,
+				...initialState
+			};
 		default:
 			return state;
 	}
