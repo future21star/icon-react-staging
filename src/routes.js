@@ -5,6 +5,12 @@ import * as containers from './containers';
 
 export default (store) => {
 	const requiresAuth = (nextState, replace, cb) => {
+		// do not need to log in if podcast
+		if (nextState.params.type && nextState.params.type === 'podcast') {
+			cb();
+			return;
+		}
+
 		function checkAuth() {
 			const {authStore: {user}} = store.getState();
 			if (!user) {

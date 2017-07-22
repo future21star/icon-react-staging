@@ -1,4 +1,12 @@
 import React, {Component, PropTypes} from 'react';
+import {connect} from "react-redux";
+import {Link} from "react-router";
+
+@connect(
+	state => ({
+		user: state.authStore.user
+	})
+)
 
 export default class Menubar extends Component {
 	static propTypes = {
@@ -10,19 +18,27 @@ export default class Menubar extends Component {
 	};
 
 	render() {
-		const {title, leftSideContent, rightSideContent, className, backButton} = this.props;
+		const {user, title, leftSideContent, rightSideContent, className, backButton} = this.props;
+
+		let leftSideConditionalContent = <div/>;
+		if (!user) {
+			leftSideConditionalContent = <Link to="/login">Login</Link>;
+		}
+		else if (backButton) {
+			leftSideConditionalContent = <a href="javascript:history.back()">
+				<span className="icon-arrow-left back-icon"/>
+				<span className="back-text">Back</span>
+			</a>;
+		} else {
+			leftSideConditionalContent = leftSideContent;
+		}
 
 		return (
 			<div className={`menu-bar ${className}`}>
 				<div className="container-fluid">
 					<div className="row menu-bar-headings">
 						<div className="col-xs-3 menu-bar-left-side-content">
-							{ backButton ? (
-								<a href="javascript:history.back()">
-									<span className="icon-arrow-left back-icon"/>
-									<span className="back-text">Back</span>
-								</a>) : leftSideContent
-							}
+							{leftSideConditionalContent}
 						</div>
 						<div className="col-xs-6 menu-bar-title">{title}</div>
 						<div className="col-xs-3 menu-bar-right-side-content">{rightSideContent}</div>

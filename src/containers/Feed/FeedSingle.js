@@ -5,21 +5,30 @@ import {connect} from "react-redux";
 import checkAccessLevel from '../HOC/CheckAccessLevel';
 import {loadSingle as loadSingleFeed, unsetSingleFeed} from '../../redux/modules/feedStore'
 import {Menubar, FeedPostSingle} from "../../components";
+import {asyncConnect} from "redux-async-connect";
+
+
+@asyncConnect([{
+	promise: ({store: {dispatch, getState}, params}) => {
+		const promises = [];
+
+		promises.push(dispatch(loadSingleFeed(params.type, params.id)));
+
+		return Promise.all(promises);
+	}
+}])
 
 @checkAccessLevel('feed')
 
 @connect(
 	state => ({
 		browser: state.browser,
-		activeItemType: state.feedStore.activeItemType
+		activeItemType: state.feedStore.activeItemType,
+		activeItem: state.feedStore.activeItem
 	}),
-	{loadSingleFeed, unsetSingleFeed}
+	{unsetSingleFeed}
 )
 export default class FeedSingle extends Component {
-
-	componentDidMount() {
-		this.props.loadSingleFeed(this.props.params.type, this.props.params.id);
-	}
 
 	componentWillUnmount() {
 		this.props.unsetSingleFeed();
@@ -34,7 +43,7 @@ export default class FeedSingle extends Component {
 	};
 
 	render() {
-		const {browser, activeItemType} = this.props;
+		const {browser, activeItemType, activeItem} = this.props;
 
 		return (
 			<ReactCSSTransitionGroup
@@ -46,7 +55,13 @@ export default class FeedSingle extends Component {
 				transitionLeave={true}
 				transitionLeaveTimeout={500}
 			>
-				<Helmet title={this.toTitleCase(activeItemType)}/>
+				<Helmet
+					title={this.toTitleCase(activeItemType)}
+					meta={[
+						{"property": "og:title", "content": activeItem.title},
+						{"property": "og:description", "content": activeItem.description}
+					]}
+				/>
 
 				<div
 					className={`${browser.is.mobile ? 'feed-page-wrapper bottom-padding' : 'feed-page-desktop-wrapper bottom-padding'}`}>

@@ -154,6 +154,7 @@
     "react-audio-player": "^0.6.0",
     "react-player": "^0.19.0",
     "react-select": "^1.0.0-rc.5",
+    "react-share": "^1.15.0",
     "react-swipe": "^5.0.8",
     "react-transform-catch-errors": "^1.0.0",
     "react-transform-hmr": "^1.0.1",

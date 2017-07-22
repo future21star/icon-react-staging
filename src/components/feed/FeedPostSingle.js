@@ -5,6 +5,7 @@ import ReactDisqusThread from 'react-disqus-thread';
 import ReactPlayer from 'react-player';
 import {Howl} from 'howler';
 import {updatePodcastPlayer, setPodcastFeed} from '../../redux/modules/podcastPlayerStore';
+import {PodcastShareButtons} from "./../../components";
 
 @connect(
 	state => ({
@@ -99,6 +100,9 @@ export default class FeedPostSingle extends Component {
 											<span className="icon-play-circle"/>
 										</button>
 									}
+									<PodcastShareButtons
+										podcastId={activeItem.id}
+									/>
 									<div className="timer-duration-wrapper">
 										<span>Length</span>
 										{podcastPlayer && this.formatTime(podcastPlayer.duration())}
@@ -119,6 +123,7 @@ export default class FeedPostSingle extends Component {
 							<div className="feed-featured-post-content">
 								{activeItem.description}
 							</div>
+							
 							<div className="feed-featured-post-disqus">
 								<ReactDisqusThread
 								shortname="example"
