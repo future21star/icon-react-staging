@@ -233,15 +233,13 @@ export default class Programming extends Component {
 							onSelectPrevTrack={e => this.refs.programmingSwipeMobileRef.prev()}
 						/>
 						<WorkoutTabs track={wodForThisTrackAndDate}/>
-					</div>) : undefined}
-
-				{wodForThisTrack && wodForThisTrackAndDate === null ? (
+					</div>) : (
 					<RestDay track={track}
 									 nextTrack={nextTrackName}
 									 prevTrack={prevTrackName}
 									 onSelectNextTrack={e => this.refs.programmingSwipeMobileRef.next()}
 									 onSelectPrevTrack={e => this.refs.programmingSwipeMobileRef.prev()}/>
-				) : undefined }
+				)}
 			</div>
 		);
 	}
