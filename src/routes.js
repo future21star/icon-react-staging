@@ -5,6 +5,12 @@ import * as containers from './containers';
 
 export default (store) => {
 	const requiresAuth = (nextState, replace, cb) => {
+		// do not need to log in if podcast
+		if (nextState.params.type && nextState.params.type === 'podcast') {
+			cb();
+			return;
+		}
+
 		function checkAuth() {
 			const {authStore: {user}} = store.getState();
 			if (!user) {
@@ -67,6 +73,7 @@ export default (store) => {
 				<Route path="edit-tracks/:name" component={containers.ViewTrack}/>
 				<Route path="feed/filter" component={containers.FeedFilter}/>
 				<Route path="feed/search" component={containers.FeedSearch}/>
+				<Route path="podcast-player" component={containers.PodcastPlayer}/>
 			</Route>
 
 			{/*logged out*/}

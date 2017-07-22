@@ -3,6 +3,7 @@ export NoAccess from './global/NoAccess';
 export SubscriptionUpgradeCard from './global/SubscriptionUpgradeCard';
 export BottomNav from './global/BottomNav';
 export DotList from './global/DotList';
+export PodcastFloatingPlayerButton from './global/PodcastFloatingPlayerButton';
 
 
 //MENUBAR
@@ -49,6 +50,7 @@ export FeedPreviewPost from './feed/FeedPreviewPost';
 export MobileFeedFilters from './feed/MobileFeedFilters';
 export DesktopFeedHeader from './feed/DesktopFeedHeader';
 export DesktopFeedSidebar from './feed/DesktopFeedSidebar';
+export PodcastShareButtons from './feed/PodcastShareButtons';
 
 
 

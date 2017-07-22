@@ -10,6 +10,7 @@ import config from '../config';
 import {asyncConnect} from 'redux-async-connect';
 import LoadingBar from 'react-redux-loading-bar';
 import {calculateResponsiveState} from 'redux-responsive'
+import {PodcastFloatingPlayerButton} from "../components";
 
 @asyncConnect([{
 	promise: ({store: {dispatch, getState}}) => {
@@ -31,7 +32,10 @@ import {calculateResponsiveState} from 'redux-responsive'
 	}
 }])
 @connect(
-	state => ({user: state.authStore.user}),
+	state => ({
+		user: state.authStore.user,
+		podcastPlayer: state.podcastPlayerStore.podcastPlayer
+	}),
 	{pushState: push, calculateResponsiveState}
 )
 export default class App extends Component {
@@ -54,6 +58,7 @@ export default class App extends Component {
 			// login
 			this.props.pushState('/');
 		} else if (this.props.user && !nextProps.user) {
+			this.props.podcastPlayer.stop();
 			// logout
 			this.props.pushState('/login');
 		}
@@ -72,6 +77,8 @@ export default class App extends Component {
 				<div className="app-wrapper">
 					<LoadingBar className="loading-bar"/>
 					{this.props.children}
+
+					<PodcastFloatingPlayerButton/>
 				</div>
 
 			</div>

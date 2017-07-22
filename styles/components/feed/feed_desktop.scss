@@ -6,7 +6,6 @@
   .header-desktop {
     padding-right: 0;
     background: $turquoiseLight;
-    color: $white;
     padding-top: 25px;
     padding-bottom: 24px;
 
@@ -15,17 +14,17 @@
       margin-top: 0;
       margin-bottom: 0;
       margin-left: 20px;
+      color: $white;
     }
-    .desktop-search-back-btn {
-      * {
-        color: #ffffff;
-      }
-      border: 1px solid #ffffff;
-      padding: 3px 10px;
-      font-size: .8em;
+    .desktop-search-back-btn{
+        @include transition( .3s ease opacity);
+        span{
+          color: $turquoiseDark;
+        }
 
-      &:hover {
+      &:hover{
         text-decoration: none;
+        opacity: .7;
       }
     }
   }
@@ -56,6 +55,31 @@
   margin: 0 auto;
   .feed-featured-post-content {
     padding-bottom: 60px !important;
+  }
+
+  .feed-featured-post-header{
+    text-align: center;
+    padding: 0 15px;
+    margin: 30px 0;
+
+    .feed-featured-post-title{
+      font-size: 2em;
+    }
+  }
+
+  .feed-featured-post-content{
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+.feed-load-more-container{
+  .text-success{
+    color: $blackLight;
+    font-size: 18px;
+    span{
+      display: block;
+    }
   }
 }
 

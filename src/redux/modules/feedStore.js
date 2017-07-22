@@ -1,5 +1,5 @@
 const LOAD = 'feed/LOAD_REQUEST';
-const LOAD_SUCCESS = 'feed/LOAD_SUCCESS';
+export const LOAD_SUCCESS = 'feed/LOAD_SUCCESS';
 const LOAD_FAIL = 'feed/LOAD_FAIL';
 
 const SEARCH = 'feed/SEARCH_REQUEST';
