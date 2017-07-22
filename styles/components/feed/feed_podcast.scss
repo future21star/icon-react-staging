@@ -31,9 +31,11 @@
 .podcast-audio-wrapper {
   margin: 0 15px 30px;
   background-color: $whiteDark;
+  .col-sm-4{
+    padding: 0;
+  }
   .timer-duration-wrapper{
-    float: right;
-    text-align: right;
+    text-align: center;
      padding: 8px 15px 0 0;
 
     span{
@@ -48,13 +50,28 @@
       }
     }
   }
+  .podcast-share-wrapper{
+    text-align: right;
+    margin-top: 5px;
+
+    .SocialMediaShareButton{
+    }
+    > div {
+      display: inline-block;
+      margin-right: 10px;
+      &:last-child{
+        margin-right: 5px;
+      }
+    }
+  }
 }
 
 .btn-play-podcast {
   border: none;
-  padding: 10px 15px;
+  padding: 12px 15px;
   background: $turquoise;
   outline: none;
+  height: 74px;
   @include transition(.3s ease background-color);
 
   span {

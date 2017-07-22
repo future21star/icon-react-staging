@@ -90,22 +90,26 @@ export default class FeedPostSingle extends Component {
 							</header>
 
 							{activeItemType === 'podcast' && (
-								<div className="podcast-audio-wrapper">
-									{podcastPlayerIsPlaying && (parseInt(feedId) === parseInt(podcastPlayerFeed.id)) ?
-										<button className="btn-play-podcast" onClick={this.pause}>
-											<span className="icon-pause-circle"/>
-										</button>
-										:
-										<button className="btn-play-podcast" onClick={this.play}>
-											<span className="icon-play-circle"/>
-										</button>
-									}
-									<PodcastShareButtons
-										podcastId={activeItem.id}
-									/>
-									<div className="timer-duration-wrapper">
+								<div className="podcast-audio-wrapper clearfix">
+									<div className="col-sm-4 col-xs-4">
+										{podcastPlayerIsPlaying && (parseInt(feedId) === parseInt(podcastPlayerFeed.id)) ?
+											<button className="btn-play-podcast" onClick={this.pause}>
+												<span className="icon-pause-circle"/>
+											</button>
+											:
+											<button className="btn-play-podcast" onClick={this.play}>
+												<span className="icon-play-circle"/>
+											</button>
+										}
+									</div>
+									<div className="timer-duration-wrapper col-sm-4 mobile-hide">
 										<span>Length</span>
 										{podcastPlayer && this.formatTime(podcastPlayer.duration())}
+									</div>
+									<div className="col-sm-4 col-xs-8">
+										<PodcastShareButtons
+											podcastId={activeItem.id}
+										/>
 									</div>
 								</div>
 							)}
