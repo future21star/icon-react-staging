@@ -61,8 +61,7 @@ export default class FeedSingle extends Component {
 					meta={[
 						{"property": "og:title", "content": activeItem.title},
 						{"property": "og:description", "content": activeItem.description},
-						{"property": "og:image", "content": activeItem.image || defaultImage},
-						{"property": "og:audio", "content": activeItem.audio}
+						{"property": "og:image", "content": activeItem.image || defaultImage}
 					]}
 				/>
 
