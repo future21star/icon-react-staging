@@ -1,8 +1,13 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from "react-redux";
 import {DayPicker, DotList} from '../index';
+import moment from "moment";
 
-
+@connect(
+	state => ({
+		activeDate: state.dayPickerStore.activeDate,
+	})
+)
 export default class ProgrammingHeader extends Component {
 
 	render() {
@@ -15,7 +20,7 @@ export default class ProgrammingHeader extends Component {
 							<DayPicker/>
 						</div>
 						<div className="col-xs-12 hidden-xs hidden-mg current-date">
-							<p>Friday, July 21st</p>
+							<p>{ moment(this.props.activeDate).format('dddd, MMMM Do') }</p>
 						</div>
 						<div className="col-xs-12 hidden-md hidden-lg">
 							<DotList/>
