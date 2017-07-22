@@ -58,7 +58,7 @@ export default class App extends Component {
 			// login
 			this.props.pushState('/');
 		} else if (this.props.user && !nextProps.user) {
-			this.props.podcastPlayer.stop();
+			if(this.props.podcastPlayer) this.props.podcastPlayer.stop();
 			// logout
 			this.props.pushState('/login');
 		}
