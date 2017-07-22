@@ -32,7 +32,7 @@ export default class FeedPreviewVideoPost extends Component {
 		const {video_id, thumbnail_image} = this.props;
 		const {showVideoPlayer} = this.state;
 
-		const defaultImage = require('../../../static/logo.png');
+		const defaultImage = require('../../../static/feed-default.jpg');
 
 		return (
 			<div>

@@ -15,8 +15,10 @@
       padding-bottom: 5px;
 
       [class^="icon-"], [class*=" icon-"] {
-        color: #aaaaaa;
+        color: $grey;
         font-size: 24px;
+
+        @include transition(.3s ease color);
       }
       // for video icon, we need to set the font size
       [class="icon-feed-video"] {
@@ -35,7 +37,7 @@
         right: 0;
         top: 20%;
         width: 1px;
-        background-color: $grey;
+        background-color: $greyLight;
         height: 60%;
       }
 

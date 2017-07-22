@@ -31,11 +31,8 @@ export default class DesktopFeedHeader extends Component {
 						{redirectToSearchOnInputPress ? <h3>Feed</h3> : (
 							<div>
 								<a href="javascript:history.back();" className="desktop-search-back-btn pull-left">
-									<span className="icon-arrow-left back-icon"/> Back
+									<h3><span className="icon-close"/> Clear</h3>
 								</a>
-								<h3 className="text-white pull-left">
-									Feed
-								</h3>
 							</div>
 						)}
 					</div>

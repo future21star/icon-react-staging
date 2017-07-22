@@ -1,5 +1,5 @@
 .programming-header-wrapper {
-  	background: $turquoiseLight;
+  background-color: $turquoise;
 
   	.container{
 		max-width: 500px;
@@ -9,8 +9,8 @@
   .current-date{
   		text-align: center;
   		margin:  0;
-  		font-size: 1.1em;
   		color: $turquoiseDark;
-
+      font-weight: 700;
+      letter-spacing: 1px;
   }
 }

@@ -107,35 +107,34 @@ export default class PodcastPlayer extends Component {
 
 							<div className="btn-current-podcast-wrapper">
 								<Link to={'/feed/podcast/' + podcastPlayerFeed.id}>
-									<span className="fa fa-list-ul"/>
+									<span className="icon-nutrition-blog"/>
 								</Link>
 							</div>
-
 							<div className="btn-prev-wrapper">
 								{podcastPlayerPrevPodcast ? (
 									<Link to={'/feed/podcast/' + podcastPlayerPrevPodcast.id}>
-										<span className="fa fa-step-backward"/>
+										<span className="icon-play-prev"/>
 									</Link>) : (
 									<button disabled>
-										<span className="fa fa-step-backward"/>
+										<span className="icon-play-prev"/>
 									</button>
 								)}
 							</div>
 
 							<div className="btn-play-pause-wrapper">
 								{podcastPlayerIsPlaying ?
-									<button onClick={this.pause}><span className="fa fa-pause"/></button>
-									: <button onClick={this.play}><span className="fa fa-play"/></button>
+									<button onClick={this.pause}><span className="icon-pause"/></button>
+									: <button onClick={this.play}><span className="icon-play"/></button>
 								}
 							</div>
 
 							<div className="btn-next-wrapper">
 								{podcastPlayerNextPodcast ? (
 									<Link to={'/feed/podcast/' + podcastPlayerNextPodcast.id}>
-										<span className="fa fa-step-forward"/>
+										<span className="icon-play-next"/>
 									</Link>) : (
 									<button disabled>
-										<span className="fa fa-step-forward"/>
+										<span className="icon-play-next"/>
 									</button>
 								)}
 							</div>

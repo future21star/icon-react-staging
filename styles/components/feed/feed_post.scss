@@ -34,15 +34,31 @@
 }
 
 .feed-post-image, .feed-featured-post-image {
-
   position: relative;
   overflow: hidden;
   img {
     position: absolute;
     left: 0;
     top: 0;
-    height: auto !important;
-    width: 100% !important;
+    height: auto;
+    max-width: 100%;
+  }
+}
+
+.feed-featured-post-image {
+  height: 350px;
+
+  img{
+    width: 100%;
+  }
+}
+
+.feed-post-image {
+  height: 250px;
+  img {
+    padding: 0 15px;
+    max-height: 100% !important;
+    width: auto !important;
   }
 }
 
@@ -54,35 +70,24 @@
   bottom: 0;
   left: 0;
   background-image: linear-gradient(to top left, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8));
-  opacity: .5;
+  opacity: .8;
 }
 
 .type-video:after {
-  content: '\f04b';
-  font-family: FontAwesome, sans-serif;
+  content: '\e951';
+  font-family: 'icomoon', serif;
+  speak: none;
+  font-variant: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: #ffffff;
-  border: 1px solid #ffffff;
-  border-radius: 50%;
-  width: 3em;
-  height: 3em;
+  color: $white;
+  font-size: 3em;
   text-align: center;
-  line-height: 3em;
   cursor: pointer;
-}
-
-.feed-featured-post-image {
-  height: 350px;
-}
-
-.feed-post-image {
-  height: 250px;
-  img {
-    padding: 0 15px;
-  }
 }
 
 .feed-featured-post-title, .feed-post-title {
@@ -107,7 +112,7 @@
   color: #999;
   text-transform: uppercase;
   font-size: 12px;
-  padding-top: 20px;
+  padding-top: 10px;
   &:before {
     content: '\e902';
     font-family: 'icomoon', serif;
@@ -125,6 +130,10 @@
   audio {
     margin: 0 0 20px;
   }
+}
+
+.feed-featured-post-disqus{
+  padding: 0 30px 0;
 }
 
 .feed-featured-post-read-more {
@@ -223,144 +232,6 @@
   }
 }
 
-.podcast-player-button {
-  position: fixed;
-  left: 25px;
-  bottom: 82px;
-  a.btn-filter-feed {
-    background-color: $blue;
-    padding: 16px 18px;
-    box-shadow: 0 0 10px #dadada;
-    border-radius: 50%;
-    @include transition(box-shadow .3s ease-in-out);
-    span {
-      color: #ffffff;
-    }
-
-    &:hover, &:focus {
-      text-decoration: none;
-      box-shadow: 0 0 20px #b7b7b7;
-    }
-  }
-}
-
-.podcast-audio-wrapper {
-  padding-bottom: 25px;
-  text-align: center;
-}
-
-.btn-play-podcast {
-  border: 1px solid $turquoise;
-  background: $white;
-  border-radius: 50%;
-  padding: 25px 30px;
-  outline: none;
-
-  span {
-    color: $turquoise;
-    font-size: 1.3em;
-  }
-}
-
-.podcast-player {
-  @extend .gradient-blue;
-  color: $white;
-  height: 100vh;
-  position: relative;
-
-  .current-playing-podcast-title {
-    font-size: 2em;
-    padding: 40px 0;
-    .now-playing {
-      display: block;
-      font-size: .5em;
-    }
-  }
-
-  .btn-play-pause-wrapper {
-    width: 70px;
-    position: absolute;
-    bottom: 100px;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    button {
-      background: transparent;
-      border-color: transparent;
-      outline: none;
-    }
-    span {
-      font-size: 3em;
-    }
-  }
-  .btn-prev-wrapper, .btn-next-wrapper {
-    width: 40px;
-    position: absolute;
-    bottom: 125px;
-    left: 35%;
-    transform: translate(-50%, -50%);
-
-    a {
-      color: $white;
-      border: 2px solid transparent;
-      display: block;
-      padding: 2px 6px 3px;
-    }
-    button {
-      background: transparent;
-      border-color: transparent;
-    }
-    button[disabled] {
-      color: rgba(255, 255, 255, 0.31);
-    }
-    span {
-      font-size: 1.3em;
-    }
-  }
-  .btn-next-wrapper {
-    left: 65%;
-  }
-  .btn-current-podcast-wrapper {
-    width: 40px;
-    position: absolute;
-    bottom: 125px;
-    left: 10%;
-    transform: translate(-50%, -50%);
-
-    a {
-      color: $white;
-      border: 2px solid transparent;
-      display: block;
-      padding: 2px 6px 3px;
-    }
-    span {
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 1.3em;
-    }
-  }
-  .timer-duration-wrapper {
-    width: 150px;
-    position: absolute;
-    bottom: 90px;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  .btn-close-wrapper {
-    //background-color: red;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    a {
-      padding: 10px;
-      &:hover {
-        text-decoration: none;
-      }
-    }
-    span {
-      color: $white;
-    }
-  }
-
-}
 
 
 

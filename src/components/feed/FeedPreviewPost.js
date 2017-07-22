@@ -45,7 +45,7 @@ export default class FeedPreviewPost extends Component {
 	render() {
 		const {browser, type, title, id, date, description, image, is_featured, is_row, audio, is_blog, is_video, video_iframe, video_id, thumbnail_image} = this.props;
 
-		const defaultImage = require('../../../static/logo.png');
+		const defaultImage = require('../../../static/feed-default.jpg');
 
 		let isVideo = type === 'video';
 		let isVideoInner = type === 'mentality' && is_video || isVideo;
