@@ -5,6 +5,7 @@ import ReactDisqusThread from 'react-disqus-thread';
 import ReactPlayer from 'react-player';
 import {Howl} from 'howler';
 import {updatePodcastPlayer, setPodcastFeed} from '../../redux/modules/podcastPlayerStore';
+import {PodcastShareButtons} from "./../../components";
 
 @connect(
 	state => ({
@@ -101,6 +102,10 @@ export default class FeedPostSingle extends Component {
 									)}
 									{activeItem.description}
 								</div>
+
+								<PodcastShareButtons
+									podcastId={activeItem.id}
+								/>
 
 								<ReactDisqusThread
 									shortname="example"

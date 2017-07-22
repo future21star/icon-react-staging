@@ -5,7 +5,7 @@ import {Menubar, NoAccess} from "../../components";
 
 @connect(
 	state => ({
-		vaultAccess: state.authStore.user.vaultAccess
+		vaultAccess: state.authStore.user ? state.authStore.user.vaultAccess : []
 	})
 )
 
@@ -13,7 +13,12 @@ export default (level) => (WrappedComponent) => {
 	return class CheckAccessLevel extends Component {
 		render() {
 			const {vaultAccess} = this.props;
-			let hasAccess = includes(vaultAccess, level);
+			let hasAccess = false;
+			if (this.props.params.type && this.props.params.type === 'podcast') {
+				hasAccess = true;
+			} else {
+				hasAccess = includes(vaultAccess, level);
+			}
 
 			return (hasAccess ? <WrappedComponent {...this.props}/> : (
 				<div>
