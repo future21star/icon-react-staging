@@ -44,6 +44,7 @@ export default class FeedSingle extends Component {
 
 	render() {
 		const {browser, activeItemType, activeItem} = this.props;
+		const defaultImage = require('../../../static/feed-default.jpg');
 
 		return (
 			<ReactCSSTransitionGroup
@@ -59,7 +60,9 @@ export default class FeedSingle extends Component {
 					title={this.toTitleCase(activeItemType)}
 					meta={[
 						{"property": "og:title", "content": activeItem.title},
-						{"property": "og:description", "content": activeItem.description}
+						{"property": "og:description", "content": activeItem.description},
+						{"property": "og:image", "content": activeItem.image || defaultImage},
+						{"property": "og:audio", "content": activeItem.audio}
 					]}
 				/>
 
