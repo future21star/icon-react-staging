@@ -132,8 +132,38 @@
   }
 }
 
-.feed-featured-post-disqus{
+.feed-post-comments {
   padding: 0 30px 0;
+  .new-comment-title {
+    text-transform: uppercase;
+    font-family: Oswald, sans-serif;
+    background: #999999;
+    padding: 8px;
+    color: #ffffff;
+  }
+
+  .comment-box {
+    border: 1px solid #999999;
+    padding: 6px 12px;
+    margin-bottom: 10px;
+  }
+}
+.comments-wrapper {
+  margin-top: 10px;
+}
+.comment {
+  .media-heading {
+    font-family: 'Lato', sans-serif;
+    text-transform: uppercase;
+  }
+  .media-heading-secondary {
+    font-size: .9em;
+    text-transform: none;
+  }
+  .comment-text {
+    color: #666;
+
+  }
 }
 
 .feed-featured-post-read-more {

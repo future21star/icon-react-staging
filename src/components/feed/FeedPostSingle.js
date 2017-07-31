@@ -1,11 +1,11 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from "react-redux";
 import moment from "moment";
-import ReactDisqusThread from 'react-disqus-thread';
 import ReactPlayer from 'react-player';
 import {Howl} from 'howler';
 import {updatePodcastPlayer, setPodcastFeed} from '../../redux/modules/podcastPlayerStore';
-import {PodcastShareButtons} from "./../../components";
+import {loadMoreComments, addNewComment} from '../../redux/modules/feedStore';
+import {PodcastShareButtons, Comments, NewComment, FeedLoadMore} from "./../../components";
 
 @connect(
 	state => ({
@@ -14,9 +14,13 @@ import {PodcastShareButtons} from "./../../components";
 		activeItem: state.feedStore.activeItem,
 		podcastPlayer: state.podcastPlayerStore.podcastPlayer,
 		podcastPlayerFeed: state.podcastPlayerStore.podcastPlayerFeed,
-		podcastPlayerIsPlaying: state.podcastPlayerStore.isPlaying
+		podcastPlayerIsPlaying: state.podcastPlayerStore.isPlaying,
+		feedCommentItems: state.feedStore.activeItemComments.items,
+		feedCommentLoading: state.feedStore.loading,
+		feedCommentAllPagesCompleted: state.feedStore.activeItemComments.allPagesCompleted,
+		feedCommentCurrentPage: state.feedStore.activeItemComments.currentPage,
 	}),
-	{updatePodcastPlayer, setPodcastFeed}
+	{updatePodcastPlayer, setPodcastFeed, loadMoreComments, addNewComment}
 )
 
 export default class FeedPostSingle extends Component {
@@ -75,8 +79,20 @@ export default class FeedPostSingle extends Component {
 		return (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
 	};
 
+	onClickLoadMoreButton = () => {
+		const {loadMoreComments, feedId, feedCommentCurrentPage} = this.props;
+		loadMoreComments(feedId, feedCommentCurrentPage)
+	};
+
+	onNewCommentSubmit = (comment) => {
+		const {addNewComment, feedId} = this.props;
+		addNewComment(feedId, comment);
+	};
+
 	render() {
-		const {browser, activeItemType, activeItem, podcastPlayerIsPlaying, feedId, podcastPlayerFeed, podcastPlayer} = this.props;
+		const {
+			browser, activeItemType, activeItem, podcastPlayerIsPlaying, feedId, podcastPlayerFeed, podcastPlayer, feedCommentItems, feedCommentLoading, feedCommentAllPagesCompleted
+		} = this.props;
 		const defaultImage = require('../../../static/feed-default.jpg');
 
 		return (
@@ -127,14 +143,21 @@ export default class FeedPostSingle extends Component {
 							<div className="feed-featured-post-content">
 								{activeItem.description}
 							</div>
-							
-							<div className="feed-featured-post-disqus">
-								<ReactDisqusThread
-								shortname="example"
-								identifier="something-unique-12345"
-								title="Example Thread"
-								url="http://www.example.com/example-thread"
-								category_id="123456"/>
+
+							<div className="feed-post-comments">
+								<h5 className="new-comment-title">Leave a comment</h5>
+								<NewComment onSubmit={this.onNewCommentSubmit}/>
+
+								<Comments items={feedCommentItems} wodId={feedId} commentOnType="feed"/>
+
+								{feedCommentItems.length ?
+									<FeedLoadMore
+										loading={feedCommentLoading}
+										allPagesLoaded={feedCommentAllPagesCompleted}
+										onClickLoadMore={this.onClickLoadMoreButton}
+									/> : undefined}
+
+								{feedCommentItems.length === 0 && <p className="text-center">No comment found</p>}
 							</div>
 						</article>
 					</div>
