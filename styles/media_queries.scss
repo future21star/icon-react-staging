@@ -128,12 +128,16 @@
     margin: 0;
   }
 
+  .feed-post-video.feed-post, .feed-post-mentality.feed-post{
+    margin-bottom: 0;
+  }
+
   .feed-post-video{
     .col-sm-6{
       margin: 0;
     }
     &.feed-post{
-      margin-bottom: 0;
+
       .feed-post-title{
         margin: 0 0 10px;
         float: none;
@@ -146,6 +150,12 @@
   }
   .feed-load-more-container{
     margin-bottom: 80px !important;
+  }
+
+  .feed-post-single-wrapper{
+      .feed-featured-post-image .type-video-iframe iframe{
+        height: 200px;
+      }
   }
 }
 

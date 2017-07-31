@@ -99,7 +99,7 @@ export default class FeedPreviewPost extends Component {
 					</div>
 					:
 					<div className={isVideo ? `col-sm-6 col-xs-12 feed-post feed-post-${type}` : `col-sm-6 col-xs-12 display-table-mobile feed-post feed-post-${type}`}>
-						<div className={isVideoInner ? 'col-xs-6 col-sm-12 fluid-width-container': 'table-cell-mobile col-sm-12 col-xs-4 feed-post-image'}>
+						<div className={isVideo ? 'col-xs-6 col-sm-12 fluid-width-container': (isVideoInner ? 'col-xs-12' : 'table-cell-mobile col-sm-12 col-xs-4 feed-post-image')}>
 							{type === 'video' && <FeedPreviewVideoPost video_id={video_id} thumbnail_image={thumbnail_image}/>}
 							{type === 'podcast' && <img width="100%" src={image || defaultImage}/>}
 							{type === 'mentality' && is_blog && <img width="100%" src={image || defaultImage}/>}
@@ -110,7 +110,7 @@ export default class FeedPreviewPost extends Component {
 									</div>
 								</div>}
 						</div>
-						<div className={isVideoInner ? 'col-xs-6 col-sm-12': 'table-cell-mobile col-sm-12 col-xs-8'}>
+						<div className={isVideo ? 'col-xs-6 col-sm-12': (isVideoInner ? 'col-xs-12' : 'table-cell-mobile col-sm-12 col-xs-8')}>
 							<h3 className="feed-post-title">
 								{!isVideo ? 
 									<Link to={`/feed/${type}/${id}`} dangerouslySetInnerHTML={this.createMarkup(title)}/>

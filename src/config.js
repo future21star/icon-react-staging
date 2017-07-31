@@ -1,5 +1,5 @@
 require('babel-polyfill');
-import {APP_URL} from '../api/config/app';
+const APP_URL = 'http://34.210.177.213';
 
 const environment = {
 	development: {
