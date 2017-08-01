@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {includes} from 'lodash';
 import {connect} from "react-redux";
-import {Menubar, NoAccess} from "../../components";
+import {Menubar, NoAccessSubscriptionUpgradeCard} from "../../components";
 
 @connect(
 	state => ({
@@ -26,7 +26,7 @@ export default (level) => (WrappedComponent) => {
 						className="gradient-turquoise menu-color-white"
 						title="Sorry"
 					/>
-					<NoAccess/>
+					<NoAccessSubscriptionUpgradeCard permissionName={level}/>
 				</div>
 			));
 		}

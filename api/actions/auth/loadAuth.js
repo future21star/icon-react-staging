@@ -2,6 +2,7 @@ import axios from 'axios';
 import {WP_API_URL} from "../../config/app";
 import * as models from "../../models";
 import levels from '../../levels.json';
+import {generalError} from "../../utils/message";
 
 export default function loadAuth(request) {
 
@@ -80,7 +81,8 @@ export default function loadAuth(request) {
 				...wpUser.data,
 				...reactUser.dataValues,
 				subscription: wpSubscription.data,
-				vaultAccess: vaultAccess
+				vaultAccess: vaultAccess,
+				jwtToken: request.session.user.token
 			}
 		});
 	});

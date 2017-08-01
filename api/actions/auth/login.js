@@ -103,7 +103,8 @@ export default function login(request) {
 				...wpUser.data,
 				...reactUser.dataValues,
 				subscription: wpSubscription.data,
-				vaultAccess: vaultAccess
+				vaultAccess: vaultAccess,
+				jwtToken: jwtResponse.data.token
 			}
 		});
 	})
