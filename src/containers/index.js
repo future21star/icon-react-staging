@@ -17,6 +17,7 @@ export FeedFilter from './Feed/FeedFilter';
 export FeedSearch from './Feed/FeedSearch';
 export FeedFilteredByTopic from './Feed/FeedFilteredByTopic';
 export PodcastPlayer from './PodcastPlayer';
+export Assessment from './Assessment';
 
 export App from './App';
 export AuthLayout from './AuthLayout';
