@@ -6,7 +6,9 @@ import Select from 'react-select';
 import {range} from "lodash";
 import {connect} from "react-redux";
 import {push} from 'react-router-redux';
+import axios from "axios";
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import {showLoading, hideLoading} from 'react-redux-loading-bar'
 import {
 	setAuthUserAsEditingUser,
 	changeEditProfileField,
@@ -19,7 +21,15 @@ import {
 		user: state.authStore.user,
 		editProfileStore: state.editProfileStore,
 	}),
-	{setAuthUserAsEditingUser, changeEditProfileField, editProfile, changeAvatar, pushState: push}
+	{
+		setAuthUserAsEditingUser,
+		changeEditProfileField,
+		editProfile,
+		changeAvatar,
+		showLoading,
+		hideLoading,
+		pushState: push
+	}
 )
 
 export default class EditProfile extends Component {
@@ -89,6 +99,32 @@ export default class EditProfile extends Component {
 		this.props.changeAvatar(avatarUrl);
 	};
 
+	showImageBrowser = () => {
+		this.refs.avatarRef.click();
+	};
+
+	uploadAvatar = (e) => {
+		let file = e.target.files[0];
+		if (!file) return;
+
+		let formData = new FormData();
+		formData.append('file', file);
+		this.props.showLoading();
+
+		axios.post('http://54.148.236.111/wp-json/wp/v2/media', formData, {
+			headers: {
+				'Content-Type': 'multipart/form-data',
+				Authorization: 'Bearer ' + this.props.user.jwtToken
+			}
+		}).then(result => {
+			this.props.changeAvatar(result.data.source_url);
+			this.props.hideLoading();
+		}).catch(error => {
+			console.log(error);
+			this.props.hideLoading();
+		})
+	};
+
 	render() {
 		const avatarImages = [
 			'https://s-media-cache-ak0.pinimg.com/736x/d7/a3/ae/d7a3ae5506817d1ef60dabde37150fe9--grumpy-cat-humor-grumpy-cats.jpg',
@@ -133,7 +169,9 @@ export default class EditProfile extends Component {
 								<div className="col-xs-12">
 
 									<div className="upload-avatar-wrapper">
-										<img src={editProfileStore.editingUser.profile_picture_url}/>
+										<img src={editProfileStore.editingUser.profile_picture_url} onClick={this.showImageBrowser}/>
+										<input ref="avatarRef" type="file" accept=".jpg,.jpeg,.png" style={{display: 'none'}}
+													 onChange={this.uploadAvatar}/>
 										<br/>
 										<p>Current Avatar</p>
 									</div>
