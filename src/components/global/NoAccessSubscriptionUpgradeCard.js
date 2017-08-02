@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 @connect(
 	state => ({
 		jwtToken: state.authStore.user.jwtToken,
+		username: state.authStore.user.username,
 		wpUserId: state.authStore.user.wpUserId,
 		routing: state.routing
 	}),
@@ -30,7 +31,7 @@ export default class NoAccessSubscriptionUpgradeCard extends Component {
 	}
 
 	render() {
-		const {jwtToken, wpUserId, routing} = this.props;
+		const {jwtToken, wpUserId, username, routing} = this.props;
 		const formActionUrl = 'http://54.148.236.111/register';
 
 		let redirectUrl = null;
@@ -49,6 +50,7 @@ export default class NoAccessSubscriptionUpgradeCard extends Component {
 					<input type="hidden" name="jwt_token" value={jwtToken}/>
 					<input type="hidden" name="wp_id" value={wpUserId}/>
 					<input type="hidden" name="redirect_url" value={redirectUrl}/>
+					<input type="hidden" name="wp_username" value={username}/>
 					<button type="submit" className="btn btn-lg btn-primary btn-rounded btn-subscribe">Upgrade Subscription
 					</button>
 				</form>
