@@ -53,6 +53,10 @@ export default class ViewTrack extends Component {
 		this.props.removeTrack(this.props.params.name);
 	};
 
+	createMarkup = (html) => {
+		return {__html: html};
+	};
+
 	render() {
 		const {vaultAccess} = this.props;
 
@@ -111,20 +115,7 @@ export default class ViewTrack extends Component {
 					<div className="col-sm-12 col-md-6 full-height edit-tracks-mid-section--wrapper">
 						<div className="view-track-mid-section">
 							<h1 className="title">{track.name}</h1>
-							<h3 className="sub-title">
-								Seeking for adventure out your door?
-							</h3>
-							<p>
-								Warm Up, Workout, Goals for each session, and
-								Cool Down/Accessory work are always included.
-							</p>
-							<p>
-								Sessions last no more than one hour so you can
-								put your increased fitness to use outside the
-								confines of the gym. Icon ambassadors that are
-								professionals in other sports or adventure seekers
-								need more time outside opf the gym.
-							</p>
+							<div dangerouslySetInnerHTML={this.createMarkup(track.details)}/>
 						</div>
 						{accessOfProgrammingType === 'all' ? this.renderButtonsForProgrammingAll(selectedTrackIsSubscribed) : undefined}
 						{accessOfProgrammingType === 'single' ? this.renderButtonsForProgrammingSingle(selectedTrackIsSubscribed) : undefined}
@@ -146,7 +137,7 @@ export default class ViewTrack extends Component {
 						title="Remove Track"
 						icon={<span className="icon-trash"/>}
 						onClick={this.removeTrack}
-					/> : undefined }
+					/> : undefined}
 
 				{!selectedTrackIsSubscribed && visibleTrackStartsWithMasters ?
 					<BtnBottom
@@ -180,7 +171,7 @@ export default class ViewTrack extends Component {
 						title="Remove Track"
 						icon={<span className="icon-trash"/>}
 						onClick={this.removeTrack}
-					/> : undefined }
+					/> : undefined}
 
 				{!selectedTrackIsSubscribed && visibleTrackStartsWithMasters ?
 					<BtnBottom
@@ -213,7 +204,7 @@ export default class ViewTrack extends Component {
 						title="Remove Track"
 						icon={<span className="icon-trash"/>}
 						onClick={this.removeTrack}
-					/> : undefined }
+					/> : undefined}
 
 				{!selectedTrackIsSubscribed && visibleTrackStartsWithMasters ?
 					<BtnBottom
