@@ -8,6 +8,10 @@ module.exports = {
 				primaryKey: true,
 				type: Sequelize.INTEGER
 			},
+			wpId: {
+				allowNull: false,
+				type: Sequelize.INTEGER
+			},
 			trackName: {
 				allowNull: false,
 				type: Sequelize.STRING(30)

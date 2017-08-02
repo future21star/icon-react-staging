@@ -13,26 +13,6 @@ module.exports = {
 				primaryKey: true,
 				type: Sequelize.INTEGER
 			},
-			gender: {
-				allowNull: true,
-				type: Sequelize.STRING(10),
-				defaultValue: null
-			},
-			heightFt: {
-				allowNull: true,
-				type: Sequelize.INTEGER,
-				defaultValue: null
-			},
-			heightIn: {
-				allowNull: true,
-				type: Sequelize.INTEGER,
-				defaultValue: null
-			},
-			weight: {
-				allowNull: true,
-				type: Sequelize.INTEGER,
-				defaultValue: null
-			},
 			createdAt: {
 				allowNull: false,
 				type: Sequelize.DATE

@@ -19,7 +19,7 @@ export default class ProgrammingHeader extends Component {
 						<div className="col-xs-12">
 							<DayPicker/>
 						</div>
-						<div className="col-xs-12 hidden-xs hidden-mg current-date">
+						<div className="col-xs-12 hidden-mg current-date">
 							<p>{ moment(this.props.activeDate).format('dddd, MMMM Do') }</p>
 						</div>
 						<div className="col-xs-12 hidden-md hidden-lg">

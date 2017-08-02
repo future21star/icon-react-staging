@@ -53,8 +53,13 @@
 .feed-post-single-wrapper {
   max-width: 700px;
   margin: 0 auto;
+  padding: 0 15px;
   .feed-featured-post-content {
     padding-bottom: 60px !important;
+  }
+
+  .feed-featured-post-image{
+    margin: 0 -15px;
   }
 
   .feed-featured-post-image .type-video-iframe iframe{
@@ -76,8 +81,7 @@
   }
 
   .feed-featured-post-content{
-    padding-left: 30px;
-    padding-right: 30px;
+    font-size: 1.2em;
   }
 }
 

@@ -37,11 +37,11 @@ export default class Menubar extends Component {
 			<div className={`menu-bar ${className}`}>
 				<div className="container-fluid">
 					<div className="row menu-bar-headings">
-						<div className="col-xs-3 menu-bar-left-side-content">
+						<div className="col-xs-2 col-sm-3 menu-bar-left-side-content">
 							{leftSideConditionalContent}
 						</div>
-						<div className="col-xs-6 menu-bar-title">{title}</div>
-						<div className="col-xs-3 menu-bar-right-side-content">{rightSideContent}</div>
+						<div className="col-xs-8 col-sm-6 menu-bar-title">{title}</div>
+						<div className="col-xs-2 col-sm-3 menu-bar-right-side-content">{rightSideContent}</div>
 					</div>
 					{this.props.children}
 				</div>

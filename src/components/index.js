@@ -52,6 +52,12 @@ export DesktopFeedHeader from './feed/DesktopFeedHeader';
 export DesktopFeedSidebar from './feed/DesktopFeedSidebar';
 export PodcastShareButtons from './feed/PodcastShareButtons';
 
+//COMMENT
+export Comments from './comment/Comments';
+export Comment from './comment/Comment';
+export NewComment from './comment/NewComment';
+export NewReply from './comment/NewReply';
+
 
 
 

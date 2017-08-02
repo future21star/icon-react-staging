@@ -28,5 +28,13 @@ export loadFeed from './feed/loadFeed';
 export loadFilterTopics from './feed/loadFilterTopics';
 export loadTopicFeeds from './feed/loadTopicFeeds';
 
+export loadFeedComments from './comments/loadFeedComments';
+export newFeedComment from './comments/newFeedComment';
+export newFeedReply from './comments/newFeedReply';
+
 export search from './search/search';
+
+export loadWodComments from './comments/loadWodComments';
+export newWodComment from './comments/newWodComment';
+export newWodReply from './comments/newWodReply';
 

@@ -388,7 +388,9 @@ LOGIN & PASSWORDS
 
     img {
       width: 100px;
+      height: 100px;
       border-radius: 100%;
+      cursor: pointer;
     }
   }
 }
@@ -496,20 +498,6 @@ LOGIN & PASSWORDS
 
 
 /********** End of Programming desktop  **********/
-.edit-tracks-mid-section {
-  margin-bottom: 100px;
-  .title {
-    color: $red;
-    font-size: 24px;
-    text-transform: uppercase;
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-  p {
-    font-size: 16px;
-    margin-bottom: 30px;
-  }
-}
 
 .logo-wrapper {
   padding-top: 25px;

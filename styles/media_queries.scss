@@ -20,8 +20,11 @@
   MENU BAR
   */
   .menu-bar {
-    padding: 12px 0;
+    padding: 12px 0 12px;
 
+  &.has-dot-list{
+    padding-bottom: 0;
+  }
     .dotlist-wrapper{
       position: static;
     }
@@ -47,8 +50,24 @@
       margin-top: 0;
     }
     .col-xs-12 {
-      padding: 10px 0 0;
+      padding: 0;
     }
+  }
+
+  /*
+  TRACKS
+  */
+  .view-track-wrapper {
+
+    .edit-tracks-banner, .full-height{
+      height: auto !important;
+      position: relative;
+    }
+  }
+
+  .edit-tracks-mid-section--wrapper .btn{
+    position: fixed;
+    
   }
 }
 

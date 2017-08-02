@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import Note from './Note';
 import {Link} from 'react-router';
-// import './WorkoutBanner.scss';
 
 export default class WorkoutBanner extends Component {
 
@@ -73,15 +72,18 @@ export default class WorkoutBanner extends Component {
 
 	render() {
 		const {nextTrack, prevTrack, onSelectNextTrack, onSelectPrevTrack, wod, isWorkoutMode} = this.props;
-		
+
 		let bannerBg = (!isWorkoutMode ? wod.track.bgImgUrl : '');
 
 		return (
 			<div className="workout-banner-wrapper">
-				<div className={`workout-banner ${wod.track.format}`}
-						 style={{backgroundImage: 'url(' + bannerBg + ')'}}>
+				<div className={`workout-banner ${wod.track.format}`} style={{backgroundImage: 'url(' + bannerBg + ')'}}>
 					<div className="overlay"/>
 					<div className="workout-button">
+						<Link to={`/workout/${wod.track.name}/${wod.id}/comments`} className="text-white">
+							<span className="icon-comment"/>
+							<div className="comment-count">{wod.commentsCount}</div>
+						</Link>
 						<Link to={`/workout/${wod.track.name}/${wod.id}`} className="text-white">
 							<span className="icon-workout-mode"/>
 						</Link>
@@ -107,10 +109,10 @@ export default class WorkoutBanner extends Component {
 							</li>
 						</ul>
 						{wod.notes ? (
-						<Note
-							noteContent={wod.notes}
-							classNames="note note-has-margin-bottom"
-						/>) : undefined}
+							<Note
+								noteContent={wod.notes}
+								classNames="note note-has-margin-bottom"
+							/>) : undefined}
 					</div>
 
 					<div className="hidden-xs hidden-sm">

@@ -14,11 +14,11 @@ export default  {
 		notEmpty: true,
 		errorMessage: 'Gender is required'
 	},
-	'heightFt': {
+	'height_feet': {
 		notEmpty: true,
 		errorMessage: 'Height (Ft) is required'
 	},
-	'heightIn': {
+	'height_inches': {
 		notEmpty: true,
 		errorMessage: 'Height (In) is required'
 	},

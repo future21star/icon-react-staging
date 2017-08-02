@@ -3,7 +3,7 @@ import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {connect} from "react-redux";
 import checkAccessLevel from '../HOC/CheckAccessLevel';
-import {loadSingle as loadSingleFeed, unsetSingleFeed} from '../../redux/modules/feedStore'
+import {loadSingle as loadSingleFeed, loadComments, unsetSingleFeed} from '../../redux/modules/feedStore'
 import {Menubar, FeedPostSingle} from "../../components";
 import {asyncConnect} from "redux-async-connect";
 
@@ -13,6 +13,7 @@ import {asyncConnect} from "redux-async-connect";
 		const promises = [];
 
 		promises.push(dispatch(loadSingleFeed(params.type, params.id)));
+		promises.push(dispatch(loadComments(params.id)));
 
 		return Promise.all(promises);
 	}

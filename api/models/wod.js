@@ -6,6 +6,10 @@ module.exports = function (sequelize, DataTypes) {
 			primaryKey: true,
 			type: DataTypes.INTEGER
 		},
+		wpId: {
+			allowNull: false,
+			type: DataTypes.INTEGER
+		},
 		trackName: {
 			allowNull: false,
 			type: DataTypes.STRING(30)
