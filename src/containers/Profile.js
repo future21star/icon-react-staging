@@ -24,12 +24,6 @@ export default class Profile extends Component {
 			</Link>
 		);
 
-		const subscribeCardDescription = (
-			<div>
-				Lorem ispum demo content
-			</div>
-		);
-
 		return (
 			<ReactCSSTransitionGroup
 				transitionName="react-anime"
@@ -56,11 +50,7 @@ export default class Profile extends Component {
 
 						<div className="row">
 							<div className="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12">
-								<SubscriptionUpgradeCard
-									showStatus={true}
-									description={subscribeCardDescription}
-									showCancelButton={true}
-								/>
+								<SubscriptionUpgradeCard/>
 							</div>
 						</div>
 					</div>

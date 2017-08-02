@@ -14,7 +14,8 @@ import {
 } from '../redux/modules/selectedTracksStore';
 import {
 	Menubar,
-	NoAccess,
+	NoAccessSubscriptionUpgradeCard,
+	NoAccessSubscriptionUpgradeButton,
 	EditTracksBanner,
 	BtnBottom
 } from '../components/index';
@@ -63,9 +64,9 @@ export default class ViewTrack extends Component {
 		);
 
 		let accessOfProgrammingType = null;
-		if (includes(vaultAccess, 'programming-all')) accessOfProgrammingType = 'all';
-		else if (includes(vaultAccess, 'programming-single')) accessOfProgrammingType = 'single';
-		else if (includes(vaultAccess, 'programming-masters')) accessOfProgrammingType = 'masters';
+		if (includes(vaultAccess, 'programming-all')) accessOfProgrammingType = 'programming-all';
+		else if (includes(vaultAccess, 'programming-single')) accessOfProgrammingType = 'programming-single';
+		else if (includes(vaultAccess, 'programming-masters')) accessOfProgrammingType = 'programming-masters';
 
 		return (
 			<ReactCSSTransitionGroup
@@ -87,7 +88,8 @@ export default class ViewTrack extends Component {
 						backButton={true}
 					/>
 
-					{accessOfProgrammingType ? this.renderViewTrack(accessOfProgrammingType) : <NoAccess/>}
+					{accessOfProgrammingType ? this.renderViewTrack(accessOfProgrammingType) :
+						<NoAccessSubscriptionUpgradeCard permissionName={accessOfProgrammingType}/>}
 
 				</div>
 			</ReactCSSTransitionGroup>
@@ -134,9 +136,9 @@ export default class ViewTrack extends Component {
 						</div>
 					</div>
 
-					{accessOfProgrammingType === 'all' ? this.renderButtonsForProgrammingAll(selectedTrackIsSubscribed) : undefined}
-					{accessOfProgrammingType === 'single' ? this.renderButtonsForProgrammingSingle(selectedTrackIsSubscribed) : undefined}
-					{accessOfProgrammingType === 'masters' ? this.renderButtonsForProgrammingMasters(selectedTrackIsSubscribed) : undefined}
+					{accessOfProgrammingType === 'programming-all' ? this.renderButtonsForProgrammingAll(selectedTrackIsSubscribed) : undefined}
+					{accessOfProgrammingType === 'programming-single' ? this.renderButtonsForProgrammingSingle(selectedTrackIsSubscribed) : undefined}
+					{accessOfProgrammingType === 'programming-masters' ? this.renderButtonsForProgrammingMasters(selectedTrackIsSubscribed) : undefined}
 
 				</div>
 			</div>
@@ -154,13 +156,12 @@ export default class ViewTrack extends Component {
 						title="Delete This Track"
 						icon={<span className="icon-trash"/>}
 						onClick={this.removeTrack}
-					/> : undefined }
+					/> : undefined}
 
 				{!selectedTrackIsSubscribed && visibleTrackStartsWithMasters ?
-					<BtnBottom
+					<NoAccessSubscriptionUpgradeButton
 						classNames="btn btn-block btn-lg btn-fixed-bottom btn-turquoise btn-font-lg"
 						title="Update Subscription"
-						onClick={e => console.log('subscription update')}
 						icon={<span className="icon-update-sub"/>}
 					/> : undefined
 				}
@@ -188,13 +189,12 @@ export default class ViewTrack extends Component {
 						title="Delete This Track"
 						icon={<span className="icon-trash"/>}
 						onClick={this.removeTrack}
-					/> : undefined }
+					/> : undefined}
 
 				{!selectedTrackIsSubscribed && visibleTrackStartsWithMasters ?
-					<BtnBottom
+					<NoAccessSubscriptionUpgradeButton
 						classNames="btn btn-block btn-lg btn-fixed-bottom btn-turquoise btn-font-lg"
 						title="Update Subscription"
-						onClick={e => console.log('subscription update')}
 						icon={<span className="icon-update-sub"/>}
 					/> : undefined
 				}
@@ -221,7 +221,7 @@ export default class ViewTrack extends Component {
 						title="Delete This Track"
 						icon={<span className="icon-trash"/>}
 						onClick={this.removeTrack}
-					/> : undefined }
+					/> : undefined}
 
 				{!selectedTrackIsSubscribed && visibleTrackStartsWithMasters ?
 					<BtnBottom

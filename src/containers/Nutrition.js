@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {Menubar, NoAccess} from '../components/index';
+import {Menubar} from '../components/index';
 import {connect} from "react-redux";
-import {includes} from 'lodash';
+import CheckAccessLevel from './HOC/CheckAccessLevel'
 
 @connect(
 	state => ({
@@ -12,12 +12,11 @@ import {includes} from 'lodash';
 	{}
 )
 
+@CheckAccessLevel('nutrition')
+
 export default class Nutrition extends Component {
+
 	render() {
-		const {vaultAccess} = this.props;
-
-		let accessToNutrition = includes(vaultAccess, 'nutrition');
-
 		return (
 			<ReactCSSTransitionGroup
 				transitionName="react-anime"
@@ -28,26 +27,19 @@ export default class Nutrition extends Component {
 				transitionLeave={true}
 				transitionLeaveTimeout={500}
 			>
-				<div >
+				<div>
 					<Helmet title="Nutrition"/>
 
 					<Menubar title="Nutrition" className="gradient-blue"/>
 
 					<div className="container">
-						{accessToNutrition ? this.renderNutrition() : <NoAccess/>}
+						<div className="text-center">
+							<h2>You have access</h2>
+							<p>You have access to view nutrition page.</p>
+						</div>
 					</div>
 				</div>
 			</ReactCSSTransitionGroup>
-		);
-	}
-
-
-	renderNutrition() {
-		return (
-			<div className="text-center">
-				<h2>You have access</h2>
-				<p>You have access to view nutrition page.</p>
-			</div>
 		);
 	}
 }
