@@ -23,7 +23,7 @@ export default function reducer(state = initialState, action = {}) {
 				loading: true
 			};
 		case LOAD_SUCCESS:
-			const {trackName, date, wod} = action.result;
+			const {trackName, date, wod, commentsCount} = action.result;
 
 			let wods = {...state.wods};
 
@@ -31,6 +31,7 @@ export default function reducer(state = initialState, action = {}) {
 			if (!tracks)
 				tracks = state.wods[trackName] = {};
 
+			wod.commentsCount = commentsCount || 0;
 			tracks[date] = wod;
 
 			wods[trackName] = tracks;

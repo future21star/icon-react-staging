@@ -6,10 +6,14 @@ import levels from '../../levels.json';
 export default function loadAuth(request) {
 
 	return new Promise(async (resolve, reject) => {
-		// session does not have token
+		////////////////////////////////
+		///// redirect if not session user found
+		////////////////////////////////
 		if (!request.session.user) return resolve({user: null});
 
-		// session have token
+		////////////////////////////////
+		///// load wp user
+		////////////////////////////////
 		let wpUser = null;
 		try {
 			wpUser = await axios.post(WP_API_URL + '/wp/v2/users/me', {}, {
@@ -22,7 +26,9 @@ export default function loadAuth(request) {
 			return resolve({user: null});
 		}
 
-		// find/create react user
+		////////////////////////////////
+		///// find/create react user
+		////////////////////////////////
 		let reactUser = null;
 		try {
 			reactUser = await
@@ -42,7 +48,9 @@ export default function loadAuth(request) {
 			return resolve({user: null});
 		}
 
-		// load admin jwt
+		////////////////////////////////
+		///// load admin jwt
+		////////////////////////////////
 		let adminJWT = null;
 		try {
 			adminJWT = await models.AppMeta.findOne({
@@ -55,7 +63,9 @@ export default function loadAuth(request) {
 			return reject(generalError(e.response.data.message));
 		}
 
-		// load users levels
+		////////////////////////////////
+		///// load users levels and access
+		////////////////////////////////
 		let wpSubscription = null;
 		try {
 			wpSubscription = await axios.get(WP_API_URL + '/rcp/v1/members/' + request.session.user.wpUserId, {
@@ -75,10 +85,62 @@ export default function loadAuth(request) {
 		if (typeof vaultAccess === 'undefined') vaultAccess = [];
 		else vaultAccess = vaultAccess.vault_sections;
 
+
+		////////////////////////////////
+		///// format wp data
+		////////////////////////////////
+		let gender = null;
+		if(typeof wpUser.data.gender === 'string') {
+			gender = null;
+		} else {
+			if(wpUser.data.gender[0].length) {
+				gender = wpUser.data.gender[0];
+			}
+		}
+
+		let profile_picture_url = null;
+		if(wpUser.data.profile_picture_url === '') {
+			profile_picture_url = wpUser.data.avatar_urls[96];
+		} else {
+			profile_picture_url = wpUser.data.profile_picture_url;
+		}
+
+		let height_feet = null;
+		if(typeof wpUser.data.height_feet !== 'string') {
+			height_feet = null;
+		} else {
+			height_feet = parseInt(wpUser.data.height_feet);
+		}
+
+		let height_inches = null;
+		if(typeof wpUser.data.height_inches !== 'string') {
+			height_inches = null;
+		} else {
+			height_inches = parseInt(wpUser.data.height_inches);
+		}
+
+		let weight = null;
+		if(typeof wpUser.data.weight !== 'string') {
+			weight = null;
+		} else {
+			weight = parseInt(wpUser.data.weight);
+		}
+
+		let wpUserData = {
+			...wpUser.data,
+			gender,
+			height_feet,
+			height_inches,
+			weight,
+			profile_picture_url
+		};
+
+		////////////////////////////////
+		///// response
+		////////////////////////////////
 		return resolve({
 			user: {
-				...wpUser.data,
-				...reactUser.dataValues,
+				...wpUserData,
 				subscription: wpSubscription.data,
 				vaultAccess: vaultAccess
 			}

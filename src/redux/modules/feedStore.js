@@ -37,10 +37,36 @@ const LOAD_MORE_TOPIC_FEEDS_FAIL = 'feed/LOAD_MORE_TOPIC_FEEDS_FAIL';
 
 const SET_ACTIVE_FILTER_TOPIC = 'feed/SET_ACTIVE_FILTER_TOPIC';
 
+const LOAD_COMMENTS = 'feed/LOAD_COMMENTS_REQUEST';
+const LOAD_COMMENTS_SUCCESS = 'feed/LOAD_COMMENTS_SUCCESS';
+const LOAD_COMMENTS_FAIL = 'feed/LOAD_COMMENTS_FAIL';
+
+const LOAD_MORE_COMMENT = 'feed/LOAD_MORE_COMMENT_REQUEST';
+const LOAD_MORE_COMMENT_SUCCESS = 'feed/LOAD_MORE_COMMENT_SUCCESS';
+const LOAD_MORE_COMMENT_FAIL = 'feed/LOAD_MORE_COMMENT_FAIL';
+
+const NEW_COMMENT = 'feed/NEW_COMMENT_REQUEST';
+const NEW_COMMENT_SUCCESS = 'feed/NEW_COMMENT_SUCCESS';
+const NEW_COMMENT_FAIL = 'feed/NEW_COMMENT_FAIL';
+
+const SET_REPLY_ON_COMMENT_ID = 'feed/SET_REPLY_ON_COMMENT_ID';
+const UNSET_REPLY_ON_COMMENT_ID = 'feed/UNSET_REPLY_ON_COMMENT_ID';
+
+const NEW_REPLY = 'feed/NEW_REPLY_REQUEST';
+const NEW_REPLY_SUCCESS = 'feed/NEW_REPLY_SUCCESS';
+const NEW_REPLY_FAIL = 'feed/NEW_REPLY_FAIL';
+
 const initialState = {
 	loading: false,
 	activeItemType: null,
 	activeItem: null,
+	activeItemComments: {
+		items: [],
+		currentPage: 0,
+		totalCount: 0,
+		allPagesCompleted: false
+	},
+	feedReplyingOnCommentId: null,
 	video: {
 		items: [],
 		currentPage: 0,
@@ -277,6 +303,115 @@ export default function reducer(state = initialState, action = {}) {
 					allPagesCompleted: false
 				}
 			};
+
+		case LOAD_COMMENTS:
+			return {
+				...state,
+				loading: true
+			};
+		case LOAD_COMMENTS_SUCCESS:
+			return {
+				...state,
+				loading: false,
+				activeItemComments: {
+					items: action.result.comments,
+					currentPage: action.result.currentPage,
+					totalCount: action.result.totalCount,
+					allPagesCompleted: action.result.allPagesCompleted
+				},
+			};
+		case LOAD_COMMENTS_FAIL:
+			return {
+				...state,
+				loading: false
+			};
+
+		case LOAD_MORE_COMMENT:
+			return {
+				...state,
+				loading: true
+			};
+		case LOAD_MORE_COMMENT_SUCCESS:
+			return {
+				...state,
+				loading: false,
+				activeItemComments: {
+					items: state.activeItemComments.items.concat(action.result.comments),
+					currentPage: action.result.currentPage,
+					totalCount: action.result.totalCount,
+					allPagesCompleted: action.result.allPagesCompleted
+				},
+			};
+		case LOAD_MORE_COMMENT_FAIL:
+			return {
+				...state,
+				loading: false
+			};
+		case NEW_COMMENT:
+			return {
+				...state,
+				loading: true
+			};
+		case NEW_COMMENT_SUCCESS:
+			let items = [action.result.newComment, ...state.activeItemComments.items];
+
+			return {
+				...state,
+				loading: false,
+				activeItemComments: {
+					...state.activeItemComments,
+					items: items
+				},
+			};
+		case NEW_COMMENT_FAIL:
+			return {
+				...state,
+				loading: false
+			};
+		case SET_REPLY_ON_COMMENT_ID:
+			return {
+				...state,
+				feedReplyingOnCommentId: action.payload.id
+			};
+		case UNSET_REPLY_ON_COMMENT_ID:
+			return {
+				...state,
+				feedReplyingOnCommentId: null
+			};
+		case NEW_REPLY:
+			return {
+				...state,
+				loading: true
+			};
+		case NEW_REPLY_SUCCESS:
+			let repliedOnComment = state.activeItemComments.items.filter(item => {
+				return item.id === action.result.replyingOnCommentId;
+			})[0];
+
+			let repliesOnComment = [action.result.reply, ...repliedOnComment.replies];
+			repliedOnComment.replies = repliesOnComment;
+
+			let commentIndex = state.activeItemComments.items.findIndex(item => item.id === action.result.replyingOnCommentId);
+
+			let newAllComments = [
+				...state.activeItemComments.items.slice(0, commentIndex),
+				repliedOnComment,
+				...state.activeItemComments.items.slice(commentIndex + 1),
+			];
+
+			return {
+				...state,
+				loading: false,
+				activeItemComments: {
+					...state.activeItemComments,
+					items: newAllComments
+				},
+			};
+		case NEW_REPLY_FAIL:
+			return {
+				...state,
+				loading: false
+			};
 		default:
 			return state;
 	}
@@ -394,7 +529,7 @@ export function loadTopicFeeds(id) {
 		promise: (client) => client.post('/loadTopicFeeds', {
 			data: {
 				id: id,
-				currentPage:  1
+				currentPage: 1
 			}
 		})
 	};
@@ -415,6 +550,71 @@ export function loadMoreTopicFeeds(id, currentPage) {
 export function clearTopicFeeds() {
 	return {
 		type: CLEAR_TOPIC_FEEDS,
+		payload: {}
+	};
+}
+
+export function loadComments(id) {
+	return {
+		types: [LOAD_COMMENTS, LOAD_COMMENTS_SUCCESS, LOAD_COMMENTS_FAIL],
+		promise: (client) => client.post('/loadFeedComments', {
+			data: {
+				id: id,
+				currentPage: 1
+			}
+		})
+	};
+}
+
+export function loadMoreComments(id, currentPage) {
+	return {
+		types: [LOAD_MORE_COMMENT, LOAD_MORE_COMMENT_SUCCESS, LOAD_MORE_COMMENT_FAIL],
+		promise: (client) => client.post('/loadFeedComments', {
+			data: {
+				id,
+				currentPage: currentPage + 1
+			}
+		})
+	};
+}
+
+export function addNewComment(id, comment) {
+	return {
+		types: [NEW_COMMENT, NEW_COMMENT_SUCCESS, NEW_COMMENT_FAIL],
+		promise: (client) => client.post('/newFeedComment', {
+			data: {
+				id,
+				comment
+			}
+		})
+	};
+}
+
+export function addNewReply(id, replyingOnCommentId, reply) {
+	return {
+		types: [NEW_REPLY, NEW_REPLY_SUCCESS, NEW_REPLY_FAIL],
+		promise: (client) => client.post('/newFeedReply', {
+			data: {
+				id,
+				replyingOnCommentId,
+				reply
+			}
+		})
+	};
+}
+
+export function setReplyOnCommentId(id) {
+	return {
+		type: SET_REPLY_ON_COMMENT_ID,
+		payload: {
+			id
+		}
+	};
+}
+
+export function unsetReplyOnCommentId(id) {
+	return {
+		type: UNSET_REPLY_ON_COMMENT_ID,
 		payload: {}
 	};
 }

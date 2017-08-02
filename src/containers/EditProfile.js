@@ -30,9 +30,10 @@ export default class EditProfile extends Component {
 		this.props.setAuthUserAsEditingUser(this.props.user);
 	}
 
-	genderOptions = ['Male', 'Female'].map(val => {
-		return {value: val, label: val};
-	});
+	genderOptions = [
+		{value: 'Yes', label: 'Male'},
+		{value: 'No', label: 'Female'}
+	];
 
 	heightFeetOptions = range(1, 8).map(val => {
 		return {value: val, label: `${val} Ft`};
@@ -53,11 +54,11 @@ export default class EditProfile extends Component {
 	};
 
 	changeHeightFt = (heightFt) => {
-		this.props.changeEditProfileField('heightFt', heightFt.value);
+		this.props.changeEditProfileField('height_feet', heightFt.value);
 	};
 
 	changeHeightIn = (heightIn) => {
-		this.props.changeEditProfileField('heightIn', heightIn.value);
+		this.props.changeEditProfileField('height_inches', heightIn.value);
 	};
 
 	componentWillReceiveProps(nextProps) {
@@ -73,8 +74,8 @@ export default class EditProfile extends Component {
 			name: editProfileStore.editingUser.name,
 			email: editProfileStore.editingUser.email,
 			gender: editProfileStore.editingUser.gender,
-			heightFt: editProfileStore.editingUser.heightFt,
-			heightIn: editProfileStore.editingUser.heightIn,
+			height_feet: editProfileStore.editingUser.height_feet,
+			height_inches: editProfileStore.editingUser.height_inches,
 			weight: editProfileStore.editingUser.weight
 		});
 	};
@@ -114,7 +115,7 @@ export default class EditProfile extends Component {
 								<div className="col-xs-12">
 
 									<div className="upload-avatar-wrapper">
-										<img src={editProfileStore.editingUser.avatar_urls[96]}/>
+										<img src={editProfileStore.editingUser.profile_picture_url}/>
 									</div>
 
 									<ErrorMessage error={editProfileStore.error}/>
@@ -122,12 +123,13 @@ export default class EditProfile extends Component {
 
 									<div className="form-group block">
 										<div className="input-group input-effect">
-											<input type="text"
-														 name="name"
-														 value={editProfileStore.editingUser.name}
-														 onChange={e => changeEditProfileField(e.target.name, e.target.value)}
-														 className="form-control"
-														 placeholder="Full Name"/>
+											<input
+												type="text"
+												name="name"
+												value={editProfileStore.editingUser.name}
+												onChange={e => changeEditProfileField(e.target.name, e.target.value)}
+												className="form-control"
+												placeholder="Full Name"/>
 											<div className="input-group-addon">
 												<span className="icon-user-profile-filled"/>
 											</div>
@@ -154,13 +156,14 @@ export default class EditProfile extends Component {
 											<div className="input-group-addon">
 												<span className="icon-gender"/>
 											</div>
-											<Select className="pretty-select"
-															value={editProfileStore.editingUser.gender}
-															placeholder="Gender"
-															options={this.genderOptions}
-															onChange={this.changeGender}
-															clearable={false}
-															arrowRenderer={EditProfile.arrowRenderer}/>
+											<Select
+												className="pretty-select"
+												value={editProfileStore.editingUser.gender}
+												placeholder="Gender"
+												options={this.genderOptions}
+												onChange={this.changeGender}
+												clearable={false}
+												arrowRenderer={EditProfile.arrowRenderer}/>
 											<div className="underline"/>
 										</div>
 									</div>
@@ -169,7 +172,7 @@ export default class EditProfile extends Component {
 											<div className="col-xs-6">
 												<div className="input-effect">
 													<Select placeholder="Height (Ft)"
-																	value={editProfileStore.editingUser.heightFt}
+																	value={editProfileStore.editingUser.height_feet}
 																	options={this.heightFeetOptions}
 																	onChange={this.changeHeightFt}
 																	clearable={false}
@@ -180,13 +183,14 @@ export default class EditProfile extends Component {
 											</div>
 											<div className="col-xs-6">
 												<div className="input-effect">
-													<Select placeholder="Height (In)"
-																	value={editProfileStore.editingUser.heightIn}
-																	options={this.heightInchesOptions}
-																	onChange={this.changeHeightIn}
-																	clearable={false}
-																	arrowRenderer={EditProfile.arrowRenderer}
-																	className="pretty-select"/>
+													<Select
+														placeholder="Height (In)"
+														value={editProfileStore.editingUser.height_inches}
+														options={this.heightInchesOptions}
+														onChange={this.changeHeightIn}
+														clearable={false}
+														arrowRenderer={EditProfile.arrowRenderer}
+														className="pretty-select"/>
 													<div className="underline"/>
 												</div>
 											</div>

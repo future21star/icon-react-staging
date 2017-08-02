@@ -1,4 +1,5 @@
 .edit-tracks-wrapper {
+
   .edit-tracks-list-wrapper {
     padding-top: 10px;
   }
@@ -9,8 +10,9 @@
     overflow: hidden;
 
     &:hover{
+      cursor: pointer;
       .btn-absolute{
-        opacity: 1;
+        left: 0;
       }
     }
   }
@@ -18,19 +20,19 @@
 
 .btn-absolute {
   position: absolute;
-  top: 0;
-  left: 0;
+  bottom: 0;
+  left: -100%;
   width: 100%;
   height: 100%;
+  padding-top: 95px;
   text-align: center;
   border: none;
   font-size: 1.4em;
-  padding-top: 75px;
   text-decoration: none !important;
   text-transform: uppercase;
-  opacity: 0;
   font-weight: 500;
   letter-spacing: 1px;
-  background-color: white;
-  @include transition(.3s ease left, .3s ease opacity);
+  color: $white !important;
+  background-color: rgba(0,0,0, .8);
+  @include transition(.3s ease left);
 }

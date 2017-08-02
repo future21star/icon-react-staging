@@ -56,12 +56,6 @@ export default class ViewTrack extends Component {
 	render() {
 		const {vaultAccess} = this.props;
 
-		const rightSideContent = (
-			<a href="javascript:history.back();" className="turquoise-color">
-				Done
-			</a>
-		);
-
 		let accessOfProgrammingType = null;
 		if (includes(vaultAccess, 'programming-all')) accessOfProgrammingType = 'all';
 		else if (includes(vaultAccess, 'programming-single')) accessOfProgrammingType = 'single';
@@ -82,7 +76,6 @@ export default class ViewTrack extends Component {
 
 					<Menubar
 						title="View Track"
-						rightSideContent={rightSideContent}
 						className="menu-bar-white"
 						backButton={true}
 					/>
@@ -106,38 +99,37 @@ export default class ViewTrack extends Component {
 		});
 
 		return (
-			<div className="container">
+			<div className="container-fluid">
 				<div className="row">
-					<EditTracksBanner
-						track={track}
-						selectedTracks={selectedTracks}
-						singleTrackView={true}
-					/>
-					<div className="edit-tracks-mid-section--wrapper">
-						<div className="container container-small">
-							<div className="edit-tracks-mid-section">
-								<h1 className="title">
-									Seeking for adventure out your door?
-								</h1>
-								<p>
-									Warm Up, Workout, Goals for each session, and
-									Cool Down/Accessory work are always included.
-								</p>
-								<p>
-									Sessions last no more than one hour so you can
-									put your increased fitness to use outside the
-									confines of the gym. Icon ambassadors that are
-									professionals in other sports or adventure seekers
-									need more time outside opf the gym.
-								</p>
-							</div>
-						</div>
+					<div className="col-sm-12 col-md-6 view-track-banner">
+						<EditTracksBanner
+							track={track}
+							selectedTracks={selectedTracks}
+							singleTrackView={true}
+						/>
 					</div>
-
-					{accessOfProgrammingType === 'all' ? this.renderButtonsForProgrammingAll(selectedTrackIsSubscribed) : undefined}
-					{accessOfProgrammingType === 'single' ? this.renderButtonsForProgrammingSingle(selectedTrackIsSubscribed) : undefined}
-					{accessOfProgrammingType === 'masters' ? this.renderButtonsForProgrammingMasters(selectedTrackIsSubscribed) : undefined}
-
+					<div className="col-sm-12 col-md-6 full-height edit-tracks-mid-section--wrapper">
+						<div className="view-track-mid-section">
+							<h1 className="title">{track.name}</h1>
+							<h3 className="sub-title">
+								Seeking for adventure out your door?
+							</h3>
+							<p>
+								Warm Up, Workout, Goals for each session, and
+								Cool Down/Accessory work are always included.
+							</p>
+							<p>
+								Sessions last no more than one hour so you can
+								put your increased fitness to use outside the
+								confines of the gym. Icon ambassadors that are
+								professionals in other sports or adventure seekers
+								need more time outside opf the gym.
+							</p>
+						</div>
+						{accessOfProgrammingType === 'all' ? this.renderButtonsForProgrammingAll(selectedTrackIsSubscribed) : undefined}
+						{accessOfProgrammingType === 'single' ? this.renderButtonsForProgrammingSingle(selectedTrackIsSubscribed) : undefined}
+						{accessOfProgrammingType === 'masters' ? this.renderButtonsForProgrammingMasters(selectedTrackIsSubscribed) : undefined}
+					</div>
 				</div>
 			</div>
 		);
@@ -150,15 +142,15 @@ export default class ViewTrack extends Component {
 			<div>
 				{selectedTrackIsSubscribed ?
 					<BtnBottom
-						classNames="btn btn-block btn-lg btn-fixed-bottom btn-danger btn-font-lg"
-						title="Delete This Track"
+						classNames="btn btn-block btn-lg btn-danger btn-font-lg"
+						title="Remove Track"
 						icon={<span className="icon-trash"/>}
 						onClick={this.removeTrack}
 					/> : undefined }
 
 				{!selectedTrackIsSubscribed && visibleTrackStartsWithMasters ?
 					<BtnBottom
-						classNames="btn btn-block btn-lg btn-fixed-bottom btn-turquoise btn-font-lg"
+						classNames="btn btn-block btn-lg btn-turquoise btn-font-lg"
 						title="Update Subscription"
 						onClick={e => console.log('subscription update')}
 						icon={<span className="icon-update-sub"/>}
@@ -167,8 +159,8 @@ export default class ViewTrack extends Component {
 
 				{!selectedTrackIsSubscribed && !visibleTrackStartsWithMasters ?
 					<BtnBottom
-						classNames="btn btn-block btn-lg btn-fixed-bottom btn-turquoise btn-font-lg"
-						title="Add This Track"
+						classNames="btn btn-block btn-lg btn-turquoise btn-font-lg"
+						title="Add Track"
 						icon={<span className="icon-nav-links"/>}
 						onClick={this.addAsOnlyTrack}
 					/> : undefined
@@ -184,15 +176,15 @@ export default class ViewTrack extends Component {
 			<div>
 				{selectedTrackIsSubscribed ?
 					<BtnBottom
-						classNames="btn btn-block btn-lg btn-fixed-bottom btn-danger btn-font-lg"
-						title="Delete This Track"
+						classNames="btn btn-block btn-lg btn-danger btn-font-lg"
+						title="Remove Track"
 						icon={<span className="icon-trash"/>}
 						onClick={this.removeTrack}
 					/> : undefined }
 
 				{!selectedTrackIsSubscribed && visibleTrackStartsWithMasters ?
 					<BtnBottom
-						classNames="btn btn-block btn-lg btn-fixed-bottom btn-turquoise btn-font-lg"
+						classNames="btn btn-block btn-lg btn-turquoise btn-font-lg"
 						title="Update Subscription"
 						onClick={e => console.log('subscription update')}
 						icon={<span className="icon-update-sub"/>}
@@ -201,8 +193,8 @@ export default class ViewTrack extends Component {
 
 				{!selectedTrackIsSubscribed && !visibleTrackStartsWithMasters ?
 					<BtnBottom
-						classNames="btn btn-block btn-lg btn-fixed-bottom btn-turquoise btn-font-lg"
-						title="Add This Track"
+						classNames="btn btn-block btn-lg btn-turquoise btn-font-lg"
+						title="Add Track"
 						icon={<span className="icon-nav-links"/>}
 						onClick={this.addToTrackList}
 					/> : undefined
@@ -217,16 +209,16 @@ export default class ViewTrack extends Component {
 			<div>
 				{selectedTrackIsSubscribed ?
 					<BtnBottom
-						classNames="btn btn-block btn-lg btn-fixed-bottom btn-danger btn-font-lg"
-						title="Delete This Track"
+						classNames="btn btn-block btn-lg btn-danger btn-font-lg"
+						title="Remove Track"
 						icon={<span className="icon-trash"/>}
 						onClick={this.removeTrack}
 					/> : undefined }
 
 				{!selectedTrackIsSubscribed && visibleTrackStartsWithMasters ?
 					<BtnBottom
-						classNames="btn btn-block btn-lg btn-fixed-bottom btn-turquoise btn-font-lg"
-						title="Add This Track"
+						classNames="btn btn-block btn-lg btn-turquoise btn-font-lg"
+						title="Add Track"
 						icon={<span className="icon-nav-links"/>}
 						onClick={this.addAsOnlyTrack}
 					/> : undefined

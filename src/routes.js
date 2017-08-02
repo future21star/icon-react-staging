@@ -69,6 +69,7 @@ export default (store) => {
 				</Route>
 				{/*logged in view without bottom nav*/}
 				<Route path="workout/:trackName/:id" component={containers.WorkOutMode}/>
+				<Route path="workout/:trackName/:id/comments" component={containers.WorkOutModeComments}/>
 				<Route path="edit-profile" component={containers.EditProfile}/>
 				<Route path="edit-tracks/:name" component={containers.ViewTrack}/>
 				<Route path="feed/filter" component={containers.FeedFilter}/>

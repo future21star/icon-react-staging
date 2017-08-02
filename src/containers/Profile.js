@@ -17,13 +17,6 @@ export default class Profile extends Component {
 	render() {
 		const {user} = this.props;
 
-		const rightSideContent = (
-			<Link to="edit-profile">
-				<span className="mobile-hide">Edit Profile</span>
-				<span className="icon-user-edit"/>
-			</Link>
-		);
-
 		const subscribeCardDescription = (
 			<div>
 				Lorem ispum demo content
@@ -45,7 +38,6 @@ export default class Profile extends Component {
 
 					<Menubar
 						title="Profile"
-						rightSideContent={rightSideContent}
 						className="text-white"
 						backButton={true}
 					>

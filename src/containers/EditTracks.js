@@ -45,11 +45,6 @@ export default class EditTracks extends Component {
 	render() {
 		const {vaultAccess} = this.props;
 
-		const rightSideContent = (
-			<a href="javascript:history.back();" className="turquoise-color">
-				Done
-			</a>
-		);
 
 		let accessOfProgrammingType = null;
 		if (includes(vaultAccess, 'programming-all')) accessOfProgrammingType = 'all';
@@ -71,7 +66,6 @@ export default class EditTracks extends Component {
 
 					<Menubar
 						title="Edit Tracks"
-						rightSideContent={rightSideContent}
 						className="menu-bar-white"
 						backButton={true}
 					/>

@@ -111,7 +111,7 @@ export default class Home extends Component {
 								<span className="mobile-hide">Log Out</span>
 							</a>
 						}
-						className="menu-color-white">
+						className="menu-color-white has-dot-list">
 						<DotList/>
 					</Menubar>
 

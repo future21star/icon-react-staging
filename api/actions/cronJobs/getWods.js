@@ -29,6 +29,7 @@ export default function getWods(request) {
 
 				if (trackName) {
 					wods.push({
+						wpId: singleWpWod.id,
 						trackName: trackName,
 						title: singleWpWod.title.rendered,
 						format: singleWpWod.workout_format[0],
