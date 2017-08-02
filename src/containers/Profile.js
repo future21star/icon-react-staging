@@ -1,6 +1,12 @@
 import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
-import {Menubar, ProfileHeader, SubscriptionUpgradeCard} from '../components/index';
+import {
+	Menubar,
+	ProfileHeader,
+	SubscriptionUpgradeCard,
+	EditProfileCard,
+	EditBillingInformation
+} from '../components/index';
 import {Link} from "react-router";
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {connect} from "react-redux";
@@ -33,7 +39,7 @@ export default class Profile extends Component {
 				// transitionLeave={true}
 				transitionLeaveTimeout={300}
 			>
-				<div className="profile-page-wrapper">
+				<div className="profile-page-wrapper bottom-padding">
 					<Helmet title="Profile"/>
 
 					<Menubar
@@ -47,13 +53,20 @@ export default class Profile extends Component {
 					<div className="container">
 
 						<div className="row">
-							<div className="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12">
+							<div className="col-md-4 col-xs-12">
 								<SubscriptionUpgradeCard
 									showStatus={true}
 									description={subscribeCardDescription}
 									showCancelButton={true}
 								/>
 							</div>
+							<div className="col-md-4 col-xs-12">
+								<EditProfileCard/>
+							</div>
+							<div className="col-md-4 col-xs-12">
+								<EditBillingInformation/>
+							</div>
+
 						</div>
 					</div>
 				</div>
