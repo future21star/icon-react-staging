@@ -1,0 +1,42 @@
+.subscription-upgrade-card {
+  background: $white;
+  text-align: center;
+  margin-top: 40px;
+  margin: 20vh auto 40px;
+  padding: 20px 15px;
+  border-radius: 2px;
+  border: 1px solid $whiteDark;
+  max-width: 560px;
+  position: relative;
+
+  .subscription-title{
+    color: $turquoise;
+  }
+
+  .subscription-value{
+    text-transform: uppercase;
+    color: $red;
+  }
+
+  .subscription-status {
+    text-transform: uppercase;
+    color: $red;
+    font-weight: 700;
+    font-size: 12px;
+  }
+
+  .subscription-description{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: 300;
+  }
+
+
+  .subscription-upgrade-button-wrapper {
+
+    .btn-subscribe-cancel {
+      font-weight: 300;
+      font-size: 12px;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+.page-404{
+  height: 100vh;
+  position: relative;
+
+  .icon-logo-bg{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-size: contain;
+    background-position: right center;
+  }
+}

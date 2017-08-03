@@ -6,7 +6,8 @@ import {
 	WorkoutBanner,
 	WorkoutTabs,
 	RestDay,
-	DotList
+	DotList,
+	NoTracksFound
 } from '../components/index';
 import {Link} from "react-router";
 import {connect} from "react-redux";
@@ -115,25 +116,11 @@ export default class Home extends Component {
 						<DotList/>
 					</Menubar>
 
-					{selectedTracks.length ? this.renderSelectedTracks() : this.renderNoTracksFound()}
+					{selectedTracks.length ? this.renderSelectedTracks() : <NoTracksFound/>}
 
 				</div>
 			</ReactCSSTransitionGroup>
 		);
-	}
-
-	renderNoTracksFound() {
-		return (
-			<div className="text-center">
-				<h2>No tracks found</h2>
-				<div>
-					You have not selected any track yet.
-					<br/>
-					<br/>
-					<Link className="btn btn-lg btn-primary btn-rounded" to="/edit-tracks">Select track</Link>
-				</div>
-			</div>
-		)
 	}
 
 	renderSelectedTracks() {

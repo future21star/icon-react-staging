@@ -15,7 +15,7 @@ import {
 } from '../redux/modules/selectedTracksStore';
 import {
 	Menubar,
-	NoAccess,
+	NoAccessSubscriptionUpgradeCard,
 	EditTracksBanner
 } from '../components/index';
 
@@ -47,9 +47,9 @@ export default class EditTracks extends Component {
 
 
 		let accessOfProgrammingType = null;
-		if (includes(vaultAccess, 'programming-all')) accessOfProgrammingType = 'all';
-		else if (includes(vaultAccess, 'programming-single')) accessOfProgrammingType = 'single';
-		else if (includes(vaultAccess, 'programming-masters')) accessOfProgrammingType = 'masters';
+		if (includes(vaultAccess, 'programming-all')) accessOfProgrammingType = 'programming-all';
+		else if (includes(vaultAccess, 'programming-single')) accessOfProgrammingType = 'programming-single';
+		else if (includes(vaultAccess, 'programming-masters')) accessOfProgrammingType = 'programming-masters';
 
 		return (
 			<ReactCSSTransitionGroup
@@ -66,11 +66,11 @@ export default class EditTracks extends Component {
 
 					<Menubar
 						title="Edit Tracks"
-						className="menu-bar-white"
+						className="menu-bar-grey"
 						backButton={true}
 					/>
 
-					{accessOfProgrammingType ? this.renderEditTracks() : <NoAccess/>}
+					{accessOfProgrammingType ? this.renderEditTracks() : <NoAccessSubscriptionUpgradeCard permissionName={accessOfProgrammingType}/>}
 
 				</div>
 			</ReactCSSTransitionGroup>

@@ -12,11 +12,12 @@ export default class FeedLoadMore extends Component {
 
 		return (
 			<div className="text-center block row no-margin-left-right feed-load-more-container">
-				{allPagesLoaded ?
-					<p className="text-success"><span className="icon-update-sub" />Well looks like you've read everything</p>
-					: <button className="btn btn-primary" onClick={onClickLoadMore} disabled={loading}>
-						{loading ? 'Loading...' : 'Load More'}
+				{!allPagesLoaded ?
+					<button className="btn btn-icon" onClick={onClickLoadMore} disabled={loading}>
+						{loading ? 'Loading...' : <span className="icon-loading" /> + 'Load More'}
 					</button>
+					: 
+					undefined
 				}
 			</div>
 		);
