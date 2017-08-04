@@ -86,12 +86,11 @@ export default class EditTracksBanner extends Component {
 		if (singleTrackView) style = {backgroundImage: 'url(../' + track.bgImgUrl + ')'};
 
 		return (
-			<div className="edit-tracks-banner-wrapper container-small">
+			<div className="edit-tracks-banner-wrapper">
 				<div className="edit-tracks-banner" style={style}>
-					<div className="overlay"/>
 					<div className="title">
+						{!singleTrackView ? <h1>{track.name}</h1> : undefined}
 						{this.getIcon()}
-						<h1>{track.name}</h1>
 						{isSubscribed ? <span className="icon-checkmark"/> : undefined}
 					</div>
 				</div>

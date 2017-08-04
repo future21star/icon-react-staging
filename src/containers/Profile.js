@@ -39,21 +39,13 @@ export default class Profile extends Component {
 
 					<Menubar
 						title="Profile"
-						rightSideContent={rightSideContent}
 						className="text-white"
 						backButton={true}
-					>
-					</Menubar>
+					/>
+
 					<ProfileHeader user={user}/>
 
-					<div className="container">
-
-						<div className="row">
-							<div className="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12">
-								<SubscriptionUpgradeCard/>
-							</div>
-						</div>
-					</div>
+					<SubscriptionUpgradeCard/>
 				</div>
 			</ReactCSSTransitionGroup>
 		);

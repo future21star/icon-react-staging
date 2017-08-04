@@ -5,6 +5,7 @@ export EditProfile from './EditProfile';
 export ProgrammingListView from './ProgrammingListView';
 export Programming from './Programming';
 export WorkOutMode from './WorkOutMode';
+export WorkOutModeComments from './WorkOutModeComments';
 export EditTracks from './EditTracks';
 export ViewTrack from './ViewTrack';
 export Help from './Help';

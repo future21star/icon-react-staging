@@ -9,12 +9,16 @@ export default function login(request) {
 	return new Promise(async (resolve, reject) => {
 		const {email, password} = request.body;
 
-		// validate
+		////////////////////////////////
+		///// validate
+		////////////////////////////////
 		request.checkBody(loginRules);
 		let errors = request.validationErrors();
 		if (errors) return reject(validationError(errors));
 
-		// get JWT Token
+		////////////////////////////////
+		///// get JWT Token
+		////////////////////////////////
 		let jwtResponse = null;
 		try {
 			jwtResponse = await axios.post(WP_API_URL + '/jwt-auth/v1/token', {
@@ -26,7 +30,9 @@ export default function login(request) {
 			return reject(generalError("Error in email or password"));
 		}
 
-		// find/create react user
+		////////////////////////////////
+		///// find/create react user
+		////////////////////////////////
 		let reactUser = null;
 		try {
 			reactUser = await models.User.findOne({
@@ -44,7 +50,9 @@ export default function login(request) {
 			return reject(generalError("Error in email or password"));
 		}
 
-		// find wp user
+		////////////////////////////////
+		///// find wp user
+		////////////////////////////////
 		let wpUser = null;
 		try {
 			wpUser = await axios.post(WP_API_URL + '/wp/v2/users/me', {}, {
@@ -57,7 +65,9 @@ export default function login(request) {
 			return reject(generalError(e.response.data.message));
 		}
 
-		// load admin jwt
+		////////////////////////////////
+		///// load admin jwt
+		////////////////////////////////
 		let adminJWT = null;
 		try {
 			adminJWT = await models.AppMeta.findOne({
@@ -70,7 +80,9 @@ export default function login(request) {
 			return reject(generalError(e.response.data.message));
 		}
 
-		// load users levels
+		////////////////////////////////
+		///// load users levels and access
+		////////////////////////////////
 		let wpSubscription = null;
 		try {
 			wpSubscription = await axios.get(WP_API_URL + '/rcp/v1/members/' + jwtResponse.data.user_id, {
@@ -88,8 +100,9 @@ export default function login(request) {
 		if (typeof vaultAccess === 'undefined') vaultAccess = [];
 		else vaultAccess = vaultAccess.vault_sections;
 
-
-		// save login credentials in session
+		////////////////////////////////
+		///// save login credentials in session
+		////////////////////////////////
 		request.session.user = {
 			reactUserId: reactUser.id,
 			wpUserId: jwtResponse.data.user_id,
@@ -97,11 +110,61 @@ export default function login(request) {
 			vaultAccess
 		};
 
-		// response
+		////////////////////////////////
+		///// format wp data
+		////////////////////////////////
+		let gender = null;
+		if(typeof wpUser.data.gender === 'string') {
+			gender = null;
+		} else {
+			if(wpUser.data.gender[0].length) {
+				gender = wpUser.data.gender[0];
+			}
+		}
+
+		let profile_picture_url = null;
+		if(wpUser.data.profile_picture_url === '') {
+			profile_picture_url = wpUser.data.avatar_urls[96];
+		} else {
+			profile_picture_url = wpUser.data.profile_picture_url;
+		}
+
+		let height_feet = null;
+		if(typeof wpUser.data.height_feet !== 'string') {
+			height_feet = null;
+		} else {
+			height_feet = parseInt(wpUser.data.height_feet);
+		}
+
+		let height_inches = null;
+		if(typeof wpUser.data.height_inches !== 'string') {
+			height_inches = null;
+		} else {
+			height_inches = parseInt(wpUser.data.height_inches);
+		}
+
+		let weight = null;
+		if(typeof wpUser.data.weight !== 'string') {
+			weight = null;
+		} else {
+			weight = parseInt(wpUser.data.weight);
+		}
+
+		let wpUserData = {
+			...wpUser.data,
+			gender,
+			height_feet,
+			height_inches,
+			weight,
+			profile_picture_url
+		};
+
+		////////////////////////////////
+		///// response
+		////////////////////////////////
 		return resolve({
 			user: {
-				...wpUser.data,
-				...reactUser.dataValues,
+				...wpUserData,
 				subscription: wpSubscription.data,
 				vaultAccess: vaultAccess,
 				jwtToken: jwtResponse.data.token

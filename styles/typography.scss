@@ -1,0 +1,139 @@
+/************************
+TYPOGRAPHY
+************************/
+body {
+  font-weight: 300;
+  font-size: 16px;
+  font-family: "Lato", sans-serif;
+}
+
+h1, h2, h3, h4 {
+  letter-spacing: 1px;
+
+}
+
+a{
+  font-family: "Lato", sans-serif;
+  color: $turquoise;
+
+  &:hover{
+    text-decoration: none;
+  }
+}
+
+.block {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.btn{
+  @include transition(.3s ease all);
+}
+// buttons
+.btn:focus, .btn.focus, .btn:active:focus, .btn:active.focus, .btn.active:focus, .btn.active.focus {
+  outline: none;
+}
+
+.text-white {
+  color: #ffffff;
+  i, span {
+    color: #ffffff;
+  }
+}
+
+.btn:active, .btn.active {
+  box-shadow: none;
+}
+
+.btn-lg, .btn-group-lg > .btn {
+  padding: 10px 16px;
+}
+
+.btn-rounded {
+  border-radius: 30px;
+}
+
+.btn-icon{
+  padding-left: 0;
+  padding-right: 0;
+  width: 100%;
+  max-width: 200px;
+  background-color: $red;
+  border-color: $red;
+  color: $white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 10px 0;
+
+  &:hover{
+    background-color: $white;
+    color: $red;
+    border-color: $red;
+    text-decoration: none;
+  }
+}
+
+.btn-icon-blue{
+  background-color: $turquoise;
+  border-color: $turquoise;
+
+  &:hover{
+    color: $turquoise;
+    border-color: $turquoise;
+  }
+}
+
+.btn-icon-icon{
+  position: relative;
+  max-width: 215px;
+  padding-left: 35px !important;
+  color: $white !important;
+
+  [class^="icon-"]{
+    position:absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    padding: 12px 8px;
+    background-color: $redDark;
+    color: $red;
+  }
+
+  &.btn-icon-blue{
+
+    [class^="icon-"]{
+      background-color: $turquoiseDark;
+      color: $turquoiseLight;
+    }
+
+    &:hover{
+      background-color: $turquoiseDark;
+    }
+  }
+
+  &:hover{
+    background-color: $redDark;
+  }
+}
+
+// icon
+[class^="icon-"], [class*=" icon-"] {
+  color: #65C4D7;
+}
+
+// wrappers
+/*.app-wrapper {
+  padding-bottom: 46px;
+}*/
+
+.alert-danger {
+  text-align: center;
+}
+
+.text-blue {
+  color: $blue;
+}
+
+.text-red {
+  color: $red;
+}

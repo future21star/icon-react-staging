@@ -11,12 +11,13 @@
       display: inline-block;
       min-width: 45px;
       max-width: 45px;
-      color: $white;
+      color: $turquoiseLight;
 
-      @include transition(.5s ease border-color);
+      @include transition(.5s ease border-color,.5s ease color);
 
       &.active {
         border-color: $white;
+        color: $white
       }
     }
   }

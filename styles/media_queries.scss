@@ -16,12 +16,25 @@
     padding-bottom: 40px;
   }
 
+  .btn-absolute {
+    position: static;
+    left: 0;
+    display: block;
+    height: auto;
+    padding: 8px 0;
+    background-color: $turquoise;
+    text-transform: capitalize;
+  }
+
   /*
   MENU BAR
   */
   .menu-bar {
-    padding: 12px 0;
+    padding: 12px 0 12px;
 
+  &.has-dot-list{
+    padding-bottom: 0;
+  }
     .dotlist-wrapper{
       position: static;
     }
@@ -47,7 +60,18 @@
       margin-top: 0;
     }
     .col-xs-12 {
-      padding: 10px 0 0;
+      padding: 0;
+    }
+  }
+
+  /*
+  TRACKS
+  */
+  .view-track-wrapper {
+
+    .edit-tracks-banner, .full-height{
+      height: auto !important;
+      position: relative;
     }
   }
 }
@@ -161,6 +185,9 @@
 
 
 @media screen and (max-width: 561px) {
+    .subscription-upgrade-card{
+      margin: 80px 15px 0;
+    }
     .nav-pills.feed-top-sub-nav li{
      
 

@@ -1,13 +1,14 @@
 .profile-header {
-
+  background-color: $turquoiseDark;
+  padding-top: 20px;
   .profile-base {
     padding-bottom: 15px;
     text-align: center;
-    color: #ffffff;;
+    color: $white;
 
     .full-name {
       text-transform: uppercase;
-      font-size: 21px;
+      font-size: 1.4em;
       padding-top: 10px;
       padding-bottom: 5px;
       margin: 0;
@@ -15,18 +16,28 @@
 
     .email {
       font-weight: 300;
+      font-size: 1.1em;
       padding-bottom: 4px;
     }
 
     .member-since {
-      font-size: 9px;
       text-transform: uppercase;
     }
     .avatar {
+      width: 110px;
+      height: 110px;
+      position: relative;
+       border-radius: 50%;
+      border: 5px solid $turquoise;
+      overflow: hidden;
+      margin: 0 auto;
       img {
-        width: 90px;
-        border-radius: 50%;
-        border: 5px solid #52a2ad;
+        position: absolute;
+        width: 100%;
+        height: auto;
+        left: 0;
+        top: 0;
+       
       }
     }
   }

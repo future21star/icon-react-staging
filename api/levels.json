@@ -2,40 +2,92 @@
   "subscription_levels": [
     {
       "id": 1,
-      "name": "Base",
+      "name": "Assessment",
+      "desc": "Access to take the Icon assessment",
+      "upgrade_desc": "Access programming tracks, the Feed, and more by upgrading your subscription",
       "vault_sections": [
-        "feed",
-        "programming-single"
+        "assessment"
       ]
     },
     {
       "id": 2,
-      "name": "Rx",
+      "name": "Unity",
+      "desc": "Access to the Unity programming track and the Feed",
+      "upgrade_desc": "Upgrade to Individual to access all the programming tracks Icon has to offer.",
       "vault_sections": [
         "feed",
-        "programming-all"
+        "programming-lifestyle",
       ]
     },
     {
       "id": 3,
-      "name": "Masters",
+      "name": "Unity + Nutrition",
+      "desc": "Access to the Unity programming track, the Feed, and Nutrition",
+      "upgrade_desc": "Upgrade to Individual + Nutrition to maximize your fitness.",
       "vault_sections": [
-        "nutrition",
-        "programming-masters"
+        "feed",
+        "programming-lifestyle",
+        "nutrition"
       ]
     },
     {
       "id": 4,
-      "name": "Max",
+      "name": "Individual",
+      "desc": "Access to the all programming track and the Feed",
+      "upgrade_desc": "Upgrade to Individual + Nutrition to take your fitness to the next level",
       "vault_sections": [
         "feed",
-        "nutrition",
         "programming-all"
       ]
     },
     {
       "id": 6,
+      "name": "Individual + Nutrition",
+      "desc": "\"Find your weaknesses, make friends with them and beat them to death...\"",
+      "upgrade_desc": false,
+      "vault_sections": [
+        "feed",
+        "nutrition",
+        "programming-all"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Gym",
+      "desc": "\"Find your weaknesses, make friends with them and beat them to death...\"",
+      "upgrade_desc": false,
+      "vault_sections": [
+        "feed",
+        "nutrition",
+        "programming-all",
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Masters",
+      "desc": "Access to all Masters programming tracks and the Feed",
+      "upgrade_desc": "Upgrade to Masters + Nutrition to take your fitness to the next level",
+      "vault_sections": [
+        "programming-masters",
+        "feed"
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Masters + Nutrition",
+      "desc": "\"Find your weaknesses, make friends with them and beat them to death...\"",
+      "upgrade_desc": false,
+      "vault_sections": [
+        "feed",
+        "programming-masters",
+        "nutrition"
+      ]
+    },
+    {
+      "id": 11,
       "name": "Nutrition",
+      "desc": "Access to the Nutrition section of the vault",
+      "upgrade_desc": "Upgrade to Unity + Nutrition, Individual + Nutrition, or Masters + Nutrition to gain access to programming and the Feed",
       "vault_sections": [
         "nutrition"
       ]

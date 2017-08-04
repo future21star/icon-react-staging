@@ -1,4 +1,10 @@
 .view-track-wrapper {
+
+	.edit-tracks-banner, .full-height{
+		height: calc(100vh - 86px) !important;
+		position: relative;
+	}
+
   .turquoise-color {
     color: #5dc7d4 !important;
   }
@@ -6,3 +12,28 @@
     font-weight: 500;
   }
 }
+
+.view-track-banner{
+	padding: 0;
+}
+
+.view-track-mid-section{
+	padding-bottom: 60px;
+	.title{
+		color: $turquoise;
+		text-transform: uppercase;
+	}
+
+	.sub-title{
+		margin-bottom: 25px;
+		color: $red;
+	}
+
+	.btn-icon{
+		span{
+			color: $white;
+			margin-right: 5px;
+		}
+	}
+}
+
