@@ -1,31 +1,40 @@
 import React, {Component, PropTypes} from 'react';
+import {connect} from "react-redux";
 
+@connect(
+	state => ({
+		subscriptionName: state.authStore.user.subscription.subscription_name,
+		jwtToken: state.authStore.user.jwtToken,
+		wpUserId: state.authStore.user.wpUserId,
+		routing: state.routing
+	}),
+	{}
+)
 export default class SubscriptionUpgradeCard extends Component {
-	static propTypes = {
-		showStatus: PropTypes.bool,
-		description: PropTypes.object.isRequired,
-		showCancelButton: PropTypes.bool
-	};
-
 	render() {
-		const {showStatus, description, showCancelButton} = this.props;
+		const {subscriptionName, jwtToken, wpUserId, routing} = this.props;
+		const formActionUrl = 'http://54.148.236.111/register';
+
+		let redirectUrl = null;
+		if (process.env.NODE_ENV !== 'production') {
+			redirectUrl = 'http://localhost:3000' + routing.locationBeforeTransitions.pathname;
+		} else {
+			redirectUrl = 'http://54.148.236.111' + routing.locationBeforeTransitions.pathname;
+		}
 
 		return (
 			<div className="subscription-upgrade-card">
-				{showStatus && (
-					<div className="subscription-status">Subscribed</div>
-				)}
-				<div className="subscription-value">$15.00 USD/Month</div>
-				<div className="subscription-description">
-					{description}
-				</div>
+				<h3 className="subscription-title">Subscribed to</h3>
+				<h3 className="subscription-value">{subscriptionName}</h3>
+				<p className="subscription-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut metus eu justo malesuada aliquet id ut risus. Cras lobortis, risus et pellentesque pellentesque, massa nibh cursus velit, et dictum ipsum dolor sed sem</p>
 				<div className="subscription-upgrade-button-wrapper">
-					<button className="btn btn-lg btn-primary btn-rounded btn-subscribe">Upgrade</button>
-					{showCancelButton && (
-						<div>
-							<button className="btn btn-link btn-subscribe-cancel">Cancel</button>
-						</div>
-					)}
+					<form action={formActionUrl} target="_blank" method="post">
+						<input type="hidden" name="jwt_token" value={jwtToken}/>
+						<input type="hidden" name="wp_id" value={wpUserId}/>
+						<input type="hidden" name="redirect_url" value={redirectUrl}/>
+						<button type="submit" className="btn btn-lg btn-icon btn-icon-icon"><span className="icon-update-sub"/>Upgrade
+						</button>
+					</form>
 				</div>
 			</div>
 		);

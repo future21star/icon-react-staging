@@ -17,10 +17,11 @@ export default class Profile extends Component {
 	render() {
 		const {user} = this.props;
 
-		const subscribeCardDescription = (
-			<div>
-				Lorem ispum demo content
-			</div>
+		const rightSideContent = (
+			<Link to="edit-profile">
+				<span className="mobile-hide">Edit Profile</span>
+				<span className="icon-user-edit"/>
+			</Link>
 		);
 
 		return (
@@ -40,22 +41,11 @@ export default class Profile extends Component {
 						title="Profile"
 						className="text-white"
 						backButton={true}
-					>
-					</Menubar>
+					/>
+
 					<ProfileHeader user={user}/>
 
-					<div className="container">
-
-						<div className="row">
-							<div className="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12">
-								<SubscriptionUpgradeCard
-									showStatus={true}
-									description={subscribeCardDescription}
-									showCancelButton={true}
-								/>
-							</div>
-						</div>
-					</div>
+					<SubscriptionUpgradeCard/>
 				</div>
 			</ReactCSSTransitionGroup>
 		);

@@ -16,6 +16,16 @@
     padding-bottom: 40px;
   }
 
+  .btn-absolute {
+    position: static;
+    left: 0;
+    display: block;
+    height: auto;
+    padding: 8px 0;
+    background-color: $turquoise;
+    text-transform: capitalize;
+  }
+
   /*
   MENU BAR
   */
@@ -63,11 +73,6 @@
       height: auto !important;
       position: relative;
     }
-  }
-
-  .edit-tracks-mid-section--wrapper .btn{
-    position: fixed;
-    
   }
 }
 
@@ -180,6 +185,9 @@
 
 
 @media screen and (max-width: 561px) {
+    .subscription-upgrade-card{
+      margin: 80px 15px 0;
+    }
     .nav-pills.feed-top-sub-nav li{
      
 

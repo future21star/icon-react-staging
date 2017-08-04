@@ -12,12 +12,10 @@ export default class BtnBottom extends Component {
 		const {classNames, icon, title, onClick} = this.props;
 
 		return (
-			<div className="btn-wrapper">
-				<button className={classNames} onClick={onClick}>
-					{icon}
-					{title}
-				</button>
-			</div>
+			<button className={classNames} onClick={onClick}>
+				{icon}
+				{title}
+			</button>
 		);
 	}
 }

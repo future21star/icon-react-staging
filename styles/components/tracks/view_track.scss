@@ -28,11 +28,12 @@
 		margin-bottom: 25px;
 		color: $red;
 	}
+
+	.btn-icon{
+		span{
+			color: $white;
+			margin-right: 5px;
+		}
+	}
 }
 
-.edit-tracks-mid-section--wrapper .btn{
-	position: absolute;
-	width: 100%;
-	bottom: 0;
-	left: 0;
-}

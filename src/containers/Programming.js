@@ -8,7 +8,8 @@ import {
 	Menubar,
 	DesktopWorkoutBanner,
 	DesktopWorkout,
-	RestDay
+	RestDay,
+	NoTracksFound
 } from '../components/index';
 import {Link} from "react-router";
 import {connect} from "react-redux";
@@ -160,12 +161,12 @@ export default class Programming extends Component {
 					</div>
 					{/*mobile*/}
 					<div className="hidden-md hidden-lg">
-						{selectedTracks.length ? this.renderSelectedTracksForMobile() : this.renderNoTracksFound()}
+						{selectedTracks.length ? this.renderSelectedTracksForMobile() : <NoTracksFound/>}
 					</div>
 
 					{/*desktop*/}
 					<div className="hidden-xs hidden-sm overflow-custom-scroll">
-						{selectedTracks.length ? this.renderSelectedTracksForDesktop() : this.renderNoTracksFound()}
+						{selectedTracks.length ? this.renderSelectedTracksForDesktop() : <NoTracksFound/>}
 					</div>
 
 				</div>
@@ -281,20 +282,6 @@ export default class Programming extends Component {
 					}
 				</div>
 			</div>)
-	}
-
-	renderNoTracksFound() {
-		return (
-			<div className="text-center">
-				<h2>No tracks found</h2>
-				<div>
-					You have not selected any track yet.
-					<br/>
-					<br/>
-					<Link className="btn btn-lg btn-primary btn-rounded" to="/edit-tracks">Select track</Link>
-				</div>
-			</div>
-		)
 	}
 
 }

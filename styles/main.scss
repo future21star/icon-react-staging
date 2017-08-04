@@ -5,15 +5,17 @@
 @import "~font-awesome/css/font-awesome.css";
 @import "~react-select/dist/react-select.css";
 @import "inc/animations";
+@import "typography";
 
 /**********
 COMPONENTS
 **********/
 
 //globals
+
 @import "components/global/bottom_nav";
-@import "components/global/subscription_upgrade_card";
-@import "components/global/no_access";
+@import "components/global/cards";
+@import "components/global/page-404";
 @import "components/global/loader";
 @import "components/global/dot_list";
 

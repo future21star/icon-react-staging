@@ -14,7 +14,8 @@ import {
 } from '../redux/modules/selectedTracksStore';
 import {
 	Menubar,
-	NoAccess,
+	NoAccessSubscriptionUpgradeCard,
+	NoAccessSubscriptionUpgradeButton,
 	EditTracksBanner,
 	BtnBottom
 } from '../components/index';
@@ -57,9 +58,9 @@ export default class ViewTrack extends Component {
 		const {vaultAccess} = this.props;
 
 		let accessOfProgrammingType = null;
-		if (includes(vaultAccess, 'programming-all')) accessOfProgrammingType = 'all';
-		else if (includes(vaultAccess, 'programming-single')) accessOfProgrammingType = 'single';
-		else if (includes(vaultAccess, 'programming-masters')) accessOfProgrammingType = 'masters';
+		if (includes(vaultAccess, 'programming-all')) accessOfProgrammingType = 'programming-all';
+		else if (includes(vaultAccess, 'programming-single')) accessOfProgrammingType = 'programming-single';
+		else if (includes(vaultAccess, 'programming-masters')) accessOfProgrammingType = 'programming-masters';
 
 		return (
 			<ReactCSSTransitionGroup
@@ -76,11 +77,12 @@ export default class ViewTrack extends Component {
 
 					<Menubar
 						title="View Track"
-						className="menu-bar-white"
+						className="menu-bar-grey"
 						backButton={true}
 					/>
 
-					{accessOfProgrammingType ? this.renderViewTrack(accessOfProgrammingType) : <NoAccess/>}
+					{accessOfProgrammingType ? this.renderViewTrack(accessOfProgrammingType) :
+						<NoAccessSubscriptionUpgradeCard permissionName={accessOfProgrammingType}/>}
 
 				</div>
 			</ReactCSSTransitionGroup>
@@ -97,6 +99,7 @@ export default class ViewTrack extends Component {
 		const selectedTrackIsSubscribed = find(selectedTracks, selectedTrack => {
 			return selectedTrack.trackName === track.name;
 		});
+
 
 		return (
 			<div className="container-fluid">
@@ -125,15 +128,22 @@ export default class ViewTrack extends Component {
 								professionals in other sports or adventure seekers
 								need more time outside opf the gym.
 							</p>
-						</div>
-						{accessOfProgrammingType === 'all' ? this.renderButtonsForProgrammingAll(selectedTrackIsSubscribed) : undefined}
-						{accessOfProgrammingType === 'single' ? this.renderButtonsForProgrammingSingle(selectedTrackIsSubscribed) : undefined}
-						{accessOfProgrammingType === 'masters' ? this.renderButtonsForProgrammingMasters(selectedTrackIsSubscribed) : undefined}
+							{accessOfProgrammingType === 'programming-all' ? this.renderButtonsForProgrammingAll(selectedTrackIsSubscribed) : undefined}
+							{accessOfProgrammingType === 'programming-single' ? this.renderButtonsForProgrammingSingle(selectedTrackIsSubscribed) : undefined}
+							{accessOfProgrammingType === 'programming-masters' ? this.renderButtonsForProgrammingMasters(selectedTrackIsSubscribed) : undefined}
+
+							{accessOfProgrammingType === 'all' ? this.renderButtonsForProgrammingAll(selectedTrackIsSubscribed) : undefined}
+							{accessOfProgrammingType === 'single' ? this.renderButtonsForProgrammingSingle(selectedTrackIsSubscribed) : undefined}
+							{accessOfProgrammingType === 'masters' ? this.renderButtonsForProgrammingMasters(selectedTrackIsSubscribed) : undefined}
 					</div>
+						</div>
+
 				</div>
 			</div>
 		);
 	}
+
+
 
 	renderButtonsForProgrammingSingle(selectedTrackIsSubscribed) {
 		let visibleTrackStartsWithMasters = startsWith(this.props.params.name, 'masters');
@@ -142,24 +152,24 @@ export default class ViewTrack extends Component {
 			<div>
 				{selectedTrackIsSubscribed ?
 					<BtnBottom
-						classNames="btn btn-block btn-lg btn-danger btn-font-lg"
+						classNames="btn btn-block btn-lg btn-icon btn-icon-icon"
 						title="Remove Track"
 						icon={<span className="icon-trash"/>}
 						onClick={this.removeTrack}
-					/> : undefined }
+					/> : undefined}
 
 				{!selectedTrackIsSubscribed && visibleTrackStartsWithMasters ?
-					<BtnBottom
-						classNames="btn btn-block btn-lg btn-turquoise btn-font-lg"
+
+					<NoAccessSubscriptionUpgradeButton
+						classNames="btn btn-block btn-lg btn-fixed-bottom btn-turquoise btn-font-lg"
 						title="Update Subscription"
-						onClick={e => console.log('subscription update')}
 						icon={<span className="icon-update-sub"/>}
 					/> : undefined
 				}
 
 				{!selectedTrackIsSubscribed && !visibleTrackStartsWithMasters ?
 					<BtnBottom
-						classNames="btn btn-block btn-lg btn-turquoise btn-font-lg"
+						classNames="btn btn-block btn-lg btn-icon btn-icon-blue btn-icon-icon"
 						title="Add Track"
 						icon={<span className="icon-nav-links"/>}
 						onClick={this.addAsOnlyTrack}
@@ -176,24 +186,23 @@ export default class ViewTrack extends Component {
 			<div>
 				{selectedTrackIsSubscribed ?
 					<BtnBottom
-						classNames="btn btn-block btn-lg btn-danger btn-font-lg"
+						classNames="btn btn-block btn-lg btn-icon btn-icon-icon"
 						title="Remove Track"
 						icon={<span className="icon-trash"/>}
 						onClick={this.removeTrack}
-					/> : undefined }
+					/> : undefined}
 
 				{!selectedTrackIsSubscribed && visibleTrackStartsWithMasters ?
-					<BtnBottom
-						classNames="btn btn-block btn-lg btn-turquoise btn-font-lg"
+					<NoAccessSubscriptionUpgradeButton
+						classNames="btn btn-block btn-lg btn-fixed-bottom btn-turquoise btn-font-lg"
 						title="Update Subscription"
-						onClick={e => console.log('subscription update')}
 						icon={<span className="icon-update-sub"/>}
 					/> : undefined
 				}
 
 				{!selectedTrackIsSubscribed && !visibleTrackStartsWithMasters ?
 					<BtnBottom
-						classNames="btn btn-block btn-lg btn-turquoise btn-font-lg"
+						classNames="btn btn-block btn-lg btn-icon btn-icon-blue btn-icon-icon"
 						title="Add Track"
 						icon={<span className="icon-nav-links"/>}
 						onClick={this.addToTrackList}
@@ -209,15 +218,15 @@ export default class ViewTrack extends Component {
 			<div>
 				{selectedTrackIsSubscribed ?
 					<BtnBottom
-						classNames="btn btn-block btn-lg btn-danger btn-font-lg"
+						classNames="btn btn-block btn-lg btn-icon btn-icon-icon"
 						title="Remove Track"
 						icon={<span className="icon-trash"/>}
 						onClick={this.removeTrack}
-					/> : undefined }
+					/> : undefined}
 
 				{!selectedTrackIsSubscribed && visibleTrackStartsWithMasters ?
 					<BtnBottom
-						classNames="btn btn-block btn-lg btn-turquoise btn-font-lg"
+						classNames="btn btn-block btn-lg btn-icon btn-icon-blue btn-icon-icon"
 						title="Add Track"
 						icon={<span className="icon-nav-links"/>}
 						onClick={this.addAsOnlyTrack}
