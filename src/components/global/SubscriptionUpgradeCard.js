@@ -6,13 +6,14 @@ import {connect} from "react-redux";
 		subscriptionName: state.authStore.user.subscription.subscription_name,
 		jwtToken: state.authStore.user.jwtToken,
 		wpUserId: state.authStore.user.wpUserId,
+		username: state.authStore.user.username,
 		routing: state.routing
 	}),
 	{}
 )
 export default class SubscriptionUpgradeCard extends Component {
 	render() {
-		const {subscriptionName, jwtToken, wpUserId, routing} = this.props;
+		const {subscriptionName, jwtToken, wpUserId, username, routing} = this.props;
 		const formActionUrl = 'http://54.148.236.111/register';
 
 		let redirectUrl = null;
@@ -32,6 +33,8 @@ export default class SubscriptionUpgradeCard extends Component {
 						<input type="hidden" name="jwt_token" value={jwtToken}/>
 						<input type="hidden" name="wp_id" value={wpUserId}/>
 						<input type="hidden" name="redirect_url" value={redirectUrl}/>
+						<input type="hidden" name="wp_username" value={username}/>
+      
 						<button type="submit" className="btn btn-lg btn-icon btn-icon-icon"><span className="icon-update-sub"/>Upgrade
 						</button>
 					</form>
