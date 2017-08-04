@@ -53,6 +53,19 @@ export DesktopFeedSidebar from './feed/DesktopFeedSidebar';
 export PodcastShareButtons from './feed/PodcastShareButtons';
 
 
+//ASSESSMENT
+export Step from './assessment/Step';
+export StepGender from './assessment/StepGender';
+export StepBackSquat from './assessment/StepBackSquat';
+export Step5k from './assessment/Step5k';
+export StepPullingPushing from './assessment/StepPullingPushing';
+export StepOverheadSquat from './assessment/StepOverheadSquat';
+export StepWallballs from './assessment/StepWallballs';
+export StepSnatch from './assessment/StepSnatch';
+export StepCleanAndJerk from './assessment/StepCleanAndJerk';
+export StepHoursInTheGym from './assessment/StepHoursInTheGym';
+export StepResult from './assessment/StepResult';
+
 
 
 
