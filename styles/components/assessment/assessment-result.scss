@@ -1,15 +1,14 @@
 .assessment-result-wrapper {
   color: $white;
   background-size: cover;
-  height: 100vh;
-  background-position: center center;
-  position: fixed;
-  left: 0;
-  right: 0;
+  min-height: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
 
   &:before {
     content: '';
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
@@ -24,17 +23,30 @@
     padding: 20px 0 50px;
   }
 
-  .recommended-track, .recommended-track-name {
+  .title, .title-track-name {
     text-align: center;
     font-size: 2em;
     font-family: 'Lato', sans-serif;
   }
-  .recommended-track-name {
+  .title-track-name {
     font-weight: 600;
     text-transform: uppercase;
   }
 
-  .recommended-track-description {
+  .description {
     font-size: 1.3em;
+  }
+
+  .assessment-thumbnail {
+    margin: 60px 0;
+  }
+  .thumbnail-icon {
+    text-align: center;
+    margin-bottom: 20px;
+
+    [class^="icon-"], [class*=" icon-"] {
+      color: $white;
+      font-size: 2em;
+    }
   }
 }

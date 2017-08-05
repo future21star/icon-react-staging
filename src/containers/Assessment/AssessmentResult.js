@@ -4,6 +4,8 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {connect} from "react-redux";
 import {Menubar} from '../../components/index';
 import {Polar} from 'react-chartjs-2';
+import {Link} from "react-router";
+import assessmentResults from '../../../api/assessmentResults.json';
 
 @connect(
 	state => ({
@@ -100,6 +102,10 @@ export default class AssessmentResult extends Component {
 		});
 	}
 
+	createMarkup = (html) => {
+		return {__html: html};
+	};
+
 	render() {
 		const data = {
 			datasets: [{
@@ -132,6 +138,10 @@ export default class AssessmentResult extends Component {
 			return (<div>loading...</div>);
 		}
 
+		let trackDetails = assessmentResults.assessment_results.filter((result) => {
+			return result.name === recommendedTrackName;
+		})[0];
+
 		let style = {backgroundImage: 'url(../../' + recommendedTrack.bgImgUrl + ')'};
 
 		return (
@@ -151,7 +161,7 @@ export default class AssessmentResult extends Component {
 						<div className="container">
 							<div className="row">
 								<div className="col-xs-12 col-sm-6 col-sm-offset-3">
-									<Polar data={data} width={200} height={240} options={{
+									<Polar data={data} width={300} height={300} options={{
 										legend: {
 											display: true,
 											labels: {
@@ -171,17 +181,42 @@ export default class AssessmentResult extends Component {
 									}}/>
 								</div>
 								<div className="col-xs-12">
-									<h1 className="recommended-track">
+									<h1 className="title">
 										Track Best Suited For You: <br/>
-										<div className="recommended-track-name">{recommendedTrack.name}</div>
+										<div className="title-track-name">{recommendedTrack.name}</div>
 									</h1>
-									<div className="recommended-track-description">
-										Sessions last no more than 1 hour so you can put your increased fitness to use outside the confines
-										of the gym. Icon ambassadors that are professionals in other sports or adventure seekers need more
-										time outside of the gym.
-										Warm Up, Workout, Goals for each Session, and Cool Down/Accessory work are always included. The
-										Lifestyle Track opens doors to better experiences with improved levels of general physical
-										preparedness
+									<div className="description" dangerouslySetInnerHTML={this.createMarkup(trackDetails.details || '')}/>
+								</div>
+								<div className="col-xs-12">
+									<h1 className="title">
+										Get Started On Your Track:
+									</h1>
+									<div className="description text-center">
+										Getting started easy, just follow the 3 steps below:
+									</div>
+								</div>
+								<div className="col-xs-12 col-md-4">
+									<div className="assessment-thumbnail">
+										<div className="thumbnail-icon"><span className="icon icon-play"/></div>
+										<h1 className="title">START TRACK</h1>
+										<div className="description text-center">
+											Go to BTWB to see your week of workouts.
+											<br/>
+											<br/>
+											<Link to="/" className="btn btn-primary">Get Started</Link>
+										</div>
+									</div>
+								</div>
+								<div className="col-xs-12 col-md-4">
+									<div className="assessment-thumbnail">
+										<div className="thumbnail-icon"><span className="icon icon-user-mentality"/></div>
+										<h1 className="title">WORKOUT</h1>
+									</div>
+								</div>
+								<div className="col-xs-12 col-md-4">
+									<div className="assessment-thumbnail">
+										<div className="thumbnail-icon"><span className="icon icon-user-mentality"/></div>
+										<h1 className="title">HAVE SOME FUN</h1>
 									</div>
 								</div>
 							</div>
