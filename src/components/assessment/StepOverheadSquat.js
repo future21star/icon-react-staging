@@ -32,7 +32,7 @@ export default class StepOverheadSquat extends Component {
 		return (
 			<Step stepTitle="Overhead Squat w/ PVC (For Time)">
 				<p>Points of Perfomance</p>
-				<ul>
+				<ul className="text-left">
 					<li>Lumbar Curve</li>
 					<li>Weight in Heels</li>
 					<li>Hip Crease Below Knee</li>
@@ -41,11 +41,13 @@ export default class StepOverheadSquat extends Component {
 					<li>Upright Torso</li>
 				</ul>
 
-				<select className="form-control" onChange={e => setAnswer(e.target.value)} value={answer}>
-					{this.answerOptions.map((item, i) => {
-						return <option value={item.value} key={i}>{item.label}</option>
-					})}
-				</select>
+				<form>
+					<select className="form-control" onChange={e => setAnswer(e.target.value)} value={answer}>
+						{this.answerOptions.map((item, i) => {
+							return <option value={item.value} key={i}>{item.label}</option>
+						})}
+					</select>
+				</form>
 
 			</Step>
 		);

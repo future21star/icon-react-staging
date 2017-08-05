@@ -32,11 +32,13 @@ export default class Step5k extends Component {
 		return (
 			<Step stepTitle="5k">
 				<p>Please select the time you were closest to, if you are inbetween please select the lower option.</p>
-				<select className="form-control" onChange={e => setAnswer(e.target.value)} value={answer}>
-					{this.answerOptions.map((item, i) => {
-						return <option value={item.value} key={i}>{item.label}</option>
-					})}
-				</select>
+				<form>
+					<select className="form-control" onChange={e => setAnswer(e.target.value)} value={answer}>
+						{this.answerOptions.map((item, i) => {
+							return <option value={item.value} key={i}>{item.label}</option>
+						})}
+					</select>
+				</form>
 			</Step>
 		);
 	}

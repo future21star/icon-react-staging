@@ -24,21 +24,23 @@ export default class StepHoursInTheGym extends Component {
 			<Step stepTitle="Hours In The Gym">
 				<p>Do you use your fitness primarily for activities outside of the gym and want to spend 5 hours or less per
 					week in the gym training for those activities?</p>
-				{this.answerOptions.map((item, i) => {
-					return (
-						<div className="radio" key={i}>
-							<label>
-								<input
-									type="radio"
-									name="hours"
-									value={item.value}
-									checked={answer === item.value}
-									onChange={e => setAnswer(e.target.value)}
-								/> {item.label}
-							</label>
-						</div>
-					)
-				})}
+				<form>
+					{this.answerOptions.map((item, i) => {
+						return (
+							<div className="radio-inline" key={i}>
+								<label>
+									<input
+										type="radio"
+										name="hours"
+										value={item.value}
+										checked={answer === item.value}
+										onChange={e => setAnswer(e.target.value)}
+									/> {item.label}
+								</label>
+							</div>
+						)
+					})}
+				</form>
 
 			</Step>
 		);

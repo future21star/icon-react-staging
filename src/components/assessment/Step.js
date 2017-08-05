@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from "react-redux";
 import {goToPrevStep, goToNextStep} from "../../redux/modules/assessmentStore";
+import {Link} from "react-router";
 
 @connect(
 	state => ({
@@ -20,36 +21,30 @@ export default class Step extends Component {
 		const currentStepAnswer = answers[currentStep];
 
 		return (
-			<div className="panel panel-primary">
-				<div className="panel-heading">
-					<h3 className="panel-title">
-						{(currentStep > 0)
-							? <span>Step {currentStep} - {stepTitle}</span>
-							: <span>{stepTitle}</span>
-						}
-					</h3>
-				</div>
-				<div className="panel-body">
-					{children}
-				</div>
-				<div className="panel-footer clearfix">
-					<button className="btn btn-primary" onClick={goToPrevStep} disabled={currentStep < 1}>&lt; Previous</button>
+			<div className="step-wrapper">
+				<div className="step-title">{stepTitle}</div>
+				<div className="step-content">{children}</div>
+				<div className="step-buttons">
+					<button className="btn btn-danger" onClick={goToPrevStep} disabled={currentStep < 1}>Previous</button>
 					{currentStep < 8 ? (
 						<button
-							className="btn btn-primary pull-right"
+							className="btn btn-danger pull-right"
 							onClick={goToNextStep}
 							disabled={!currentStepAnswer}>
-							Next &gt;
+							Next
 						</button>
 					) : (
 						<button
-							className="btn btn-primary pull-right"
+							className="btn btn-danger pull-right"
 							onClick={goToNextStep}
 							disabled={!currentStepAnswer}>
-							Calculate</button>
+							Calculate
+						</button>
 					)}
-
 				</div>
+				<Link to="/assessment" className="step-close-button">
+					<span className="icon icon-close"/>
+				</Link>
 			</div>
 		);
 	}

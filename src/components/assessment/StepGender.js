@@ -23,21 +23,23 @@ export default class StepGender extends Component {
 		return (
 			<Step stepTitle="Gender">
 				<p>Please select which of the following you are:</p>
-				{this.answerOptions.map((item, i) => {
-					return (
-						<div className="radio" key={i}>
-							<label>
-								<input
-									type="radio"
-									name="gender"
-									value={item.value}
-									checked={answer === item.value}
-									onChange={e => setAnswer(e.target.value)}
-								/> {item.label}
-							</label>
-						</div>
-					)
-				})}
+				<form>
+					{this.answerOptions.map((item, i) => {
+						return (
+							<div className="radio-inline" key={i}>
+								<label>
+									<input
+										type="radio"
+										name="gender"
+										value={item.value}
+										checked={answer === item.value}
+										onChange={e => setAnswer(e.target.value)}
+									/> {item.label}
+								</label>
+							</div>
+						)
+					})}
+				</form>
 			</Step>
 		);
 	}

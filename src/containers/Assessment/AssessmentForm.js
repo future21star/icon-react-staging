@@ -14,7 +14,7 @@ import {
 	StepCleanAndJerk,
 	StepHoursInTheGym,
 	StepResult
-} from '../components/index';
+} from '../../components/index';
 
 @connect(
 	state => ({
@@ -23,7 +23,7 @@ import {
 	{}
 )
 
-export default class Assessment extends Component {
+export default class AssessmentForm extends Component {
 
 	render() {
 		const {currentStep} = this.props;
@@ -37,16 +37,14 @@ export default class Assessment extends Component {
 				transitionLeave={true}
 				transitionLeaveTimeout={500}
 			>
-				<div className="bottom-padding">
-					<Helmet title="Assessment"/>
+				<div className="assessment-form-wrapper bottom-padding">
+					<Helmet title="Icon Assessment"/>
 
-					<Menubar title="Assessment" className="text-white"/>
+					<Menubar title="Icon Assessment" className="text-white"/>
 
 					<div className="container">
 
-						<div className="page-header">
-							<h2>Calculate Your Track</h2>
-						</div>
+						{currentStep !== 9 && <h1 className="page-title">Calculate Your Track</h1>}
 
 						{currentStep === 0 && <StepGender/>}
 						{currentStep === 1 && <StepBackSquat/>}

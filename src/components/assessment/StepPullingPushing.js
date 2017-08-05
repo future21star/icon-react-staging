@@ -56,21 +56,23 @@ export default class StepPullingPushing extends Component {
 			<Step stepTitle="Pulling/Pushing">
 				<p>Please select the last option you were able to complete</p>
 
-				{this.answerOptions.map((item, i) => {
-					return (
-						<div className="radio" key={i}>
-							<label>
-								<input
-									type="radio"
-									name="push-pull"
-									value={item.value}
-									checked={answer === item.value}
-									onChange={e => setAnswer(e.target.value)}
-								/> {item.label}
-							</label>
-						</div>
-					)
-				})}
+				<form className="text-left text-normalcase">
+					{this.answerOptions.map((item, i) => {
+						return (
+							<div className="radio" key={i}>
+								<label>
+									<input
+										type="radio"
+										name="push-pull"
+										value={item.value}
+										checked={answer === item.value}
+										onChange={e => setAnswer(e.target.value)}
+									/> {item.label}
+								</label>
+							</div>
+						)
+					})}
+				</form>
 
 			</Step>
 		);

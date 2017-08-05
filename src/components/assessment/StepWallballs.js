@@ -33,11 +33,13 @@ export default class StepWallballs extends Component {
 			<Step stepTitle="Wallballs (20/14) (consecutive reps)">
 				<p>Points of Perfomance</p>
 
-				<select className="form-control" onChange={e => setAnswer(e.target.value)} value={answer}>
-					{this.answerOptions.map((item, i) => {
-						return <option value={item.value} key={i}>{item.label}</option>
-					})}
-				</select>
+				<form>
+					<select className="form-control" onChange={e => setAnswer(e.target.value)} value={answer}>
+						{this.answerOptions.map((item, i) => {
+							return <option value={item.value} key={i}>{item.label}</option>
+						})}
+					</select>
+				</form>
 			</Step>
 		);
 	}
