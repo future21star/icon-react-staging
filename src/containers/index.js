@@ -3,6 +3,7 @@ export Login from './Login';
 export NotFound from './NotFound';
 export AuthLayout from './AuthLayout';
 export Home from './Home';
+export Welcome from './Welcome';
 export Profile from './Profile';
 export EditProfile from './EditProfile';
 export ProgrammingListView from './ProgrammingListView';
