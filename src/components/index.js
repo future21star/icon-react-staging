@@ -64,7 +64,6 @@ export StepWallballs from './assessment/StepWallballs';
 export StepSnatch from './assessment/StepSnatch';
 export StepCleanAndJerk from './assessment/StepCleanAndJerk';
 export StepHoursInTheGym from './assessment/StepHoursInTheGym';
-export StepResult from './assessment/StepResult';
 
 
 

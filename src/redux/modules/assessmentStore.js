@@ -7,15 +7,14 @@ const initialState = {
 	currentStep: 0,
 	answers: {
 		0: null,
-		1: null,
-		2: null,
-		3: null,
-		4: null,
-		5: null,
-		6: null,
-		7: null,
-		8: null,
-		9: null
+		1: '1',
+		2: '1',
+		3: '1',
+		4: '1',
+		5: '1',
+		6: '1',
+		7: '1',
+		8: null
 	}
 };
 

@@ -22,6 +22,6 @@ export FeedFilteredByTopic from './Feed/FeedFilteredByTopic';
 export PodcastPlayer from './PodcastPlayer';
 export AssessmentLanding from './Assessment/AssessmentLanding';
 export AssessmentForm from './Assessment/AssessmentForm';
-
+export AssessmentResult from './Assessment/AssessmentResult';
 
 export Nutrition from './Nutrition';

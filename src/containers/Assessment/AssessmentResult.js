@@ -1,6 +1,8 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import Helmet from 'react-helmet';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {connect} from "react-redux";
-import {} from "../../redux/modules/assessmentStore";
+import {Menubar} from '../../components/index';
 import {Polar} from 'react-chartjs-2';
 
 @connect(
@@ -11,7 +13,7 @@ import {Polar} from 'react-chartjs-2';
 	{}
 )
 
-export default class StepResult extends Component {
+export default class AssessmentResult extends Component {
 
 	constructor(props) {
 		super(props);
@@ -103,13 +105,14 @@ export default class StepResult extends Component {
 			datasets: [{
 				data: this.state.radarData,
 				backgroundColor: [
-					'rgba(255, 99, 132, 0.6)',
-					'rgba(75, 192, 192, 0.6)',
-					'rgba(255, 206, 86, 0.6)',
-					'rgba(255, 0, 188, 0.6)',
-					'rgba(54, 162, 235, 0.6)',
-					'rgba(54, 162, 34, 0.6)',
+					'rgba(255, 99, 132, 0.8)',
+					'rgba(75, 192, 192, 0.8)',
+					'rgba(255, 206, 86, 0.8)',
+					'rgba(255, 0, 188, 0.8)',
+					'rgba(54, 162, 235, 0.8)',
+					'rgba(54, 162, 34, 0.8)',
 				],
+				fillColor: 'red',
 				borderWidth: 0,
 				label: 'Categories'
 			}],
@@ -132,22 +135,61 @@ export default class StepResult extends Component {
 		let style = {backgroundImage: 'url(../../' + recommendedTrack.bgImgUrl + ')'};
 
 		return (
-			<div className="row">
-				<div className="col-xs-12 col-sm-6 col-sm-offset-3">
-					<Polar data={data} width={200} height={240} options={{
-						scale: {
-							ticks: {
-								stepSize: 1,
-								suggestedMax: 10
-							}
-						}
-					}}/>
+			<ReactCSSTransitionGroup
+				transitionName="react-anime"
+				transitionAppear={true}
+				transitionAppearTimeout={5000}
+				transitionEnter={true}
+				transitionEnterTimeout={500}
+				transitionLeave={true}
+				transitionLeaveTimeout={500}
+			>
+				<Helmet title="Icon Assessment Result"/>
+
+				<div className="assessment-result-wrapper" style={style}>
+					<div className="assessment-result">
+						<div className="container">
+							<div className="row">
+								<div className="col-xs-12 col-sm-6 col-sm-offset-3">
+									<Polar data={data} width={200} height={240} options={{
+										legend: {
+											display: true,
+											labels: {
+												fontColor: '#fff',
+												fontSize: 16
+											}
+										},
+										scale: {
+											ticks: {
+												stepSize: 1,
+												suggestedMax: 10,
+											},
+											gridLines: {
+												color: '#fff'
+											}
+										}
+									}}/>
+								</div>
+								<div className="col-xs-12">
+									<h1 className="recommended-track">
+										Track Best Suited For You: <br/>
+										<div className="recommended-track-name">{recommendedTrack.name}</div>
+									</h1>
+									<div className="recommended-track-description">
+										Sessions last no more than 1 hour so you can put your increased fitness to use outside the confines
+										of the gym. Icon ambassadors that are professionals in other sports or adventure seekers need more
+										time outside of the gym.
+										Warm Up, Workout, Goals for each Session, and Cool Down/Accessory work are always included. The
+										Lifestyle Track opens doors to better experiences with improved levels of general physical
+										preparedness
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-				<div className="col-xs-12">
-					<h3>Track Best Suited For You: {recommendedTrack.name}</h3>
-					<div style={style}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid architecto asperiores beatae cumque, doloremque ea error et exercitationem facilis minus nihil omnis porro quos recusandae voluptate. Eum nesciunt nobis suscipit!</div>
-				</div>
-			</div>
+			</ReactCSSTransitionGroup>
 		);
 	}
 }
+

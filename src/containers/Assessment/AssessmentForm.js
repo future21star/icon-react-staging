@@ -44,7 +44,7 @@ export default class AssessmentForm extends Component {
 
 					<div className="container">
 
-						{currentStep !== 9 && <h1 className="page-title">Calculate Your Track</h1>}
+						<h1 className="page-title">Calculate Your Track</h1>
 
 						{currentStep === 0 && <StepGender/>}
 						{currentStep === 1 && <StepBackSquat/>}
@@ -55,7 +55,6 @@ export default class AssessmentForm extends Component {
 						{currentStep === 6 && <StepSnatch/>}
 						{currentStep === 7 && <StepCleanAndJerk/>}
 						{currentStep === 8 && <StepHoursInTheGym/>}
-						{currentStep === 9 && <StepResult/>}
 
 					</div>
 				</div>

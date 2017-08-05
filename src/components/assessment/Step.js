@@ -34,12 +34,12 @@ export default class Step extends Component {
 							Next
 						</button>
 					) : (
-						<button
+						<Link
 							className="btn btn-danger pull-right"
-							onClick={goToNextStep}
-							disabled={!currentStepAnswer}>
+							disabled={!currentStepAnswer}
+							to="/assessment/result">
 							Calculate
-						</button>
+						</Link>
 					)}
 				</div>
 				<Link to="/assessment" className="step-close-button">
