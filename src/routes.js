@@ -53,6 +53,7 @@ export default (store) => {
 				{/*logged in view with bottom nav*/}
 				<Route component={containers.AuthLayout}>
 					<IndexRoute component={containers.Home}/>
+					<Route path="welcome" component={containers.Welcome}/>
 					<Route path="profile" component={containers.Profile}/>
 					<Route path="feed" component={containers.Feed}>
 						<IndexRoute component={containers.FeedVideo}/>
