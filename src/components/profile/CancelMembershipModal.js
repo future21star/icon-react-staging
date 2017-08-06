@@ -1,4 +1,16 @@
 import React, {Component, PropTypes} from 'react';
+import {connect} from "react-redux";
+
+@connect(
+	state => ({
+		subscription: state.authStore.user.subscription,
+		jwtToken: state.authStore.user.jwtToken,
+		wpUserId: state.authStore.user.wpUserId,
+		username: state.authStore.user.username,
+		routing: state.routing
+	}),
+	{}
+)
 
 export default class CancelMembershipModal extends Component {
 	static propTypes = {
@@ -7,7 +19,16 @@ export default class CancelMembershipModal extends Component {
 	};
 
 	render() {
-		const {isShown, onClose} = this.props;
+
+		const {subscription, jwtToken, wpUserId, username, isShown, onClose, routing} = this.props;
+		const formActionUrl = 'http://54.148.236.111/register/upgrade';
+
+		let redirectUrl = null;
+		if (process.env.NODE_ENV !== 'production') {
+			redirectUrl = 'http://localhost:3000' + routing.locationBeforeTransitions.pathname;
+		} else {
+			redirectUrl = 'http://54.148.236.111' + routing.locationBeforeTransitions.pathname;
+		}
 
 		return (
 			<div>
@@ -28,20 +49,23 @@ export default class CancelMembershipModal extends Component {
 								{/*yes, it supports grid*/}
 								<div className="row">
 									<div className="col-xs-6 text-justify">
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi commodi, ea excepturi facilis,
-										incidunt iste itaque laborum magnam minus obcaecati perferendis qui rerum sequi similique tempore
-										ullam velit voluptate voluptates!
+										<img className="img-rounded" width="100%" src="http://s2.dmcdn.net/Ub1O8/1280x720-mCQ.jpg" alt="How can you?"/>
 									</div>
 									<div className="col-xs-6 text-justify">
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam autem cupiditate debitis delectus
-										ducimus eligendi error, est id ipsa iste nemo nostrum pariatur placeat porro quasi quo reprehenderit
-										voluptas, voluptates.
+										<form action={formActionUrl} target="_blank" method="post">
+											<input type="hidden" name="jwt_token" value={jwtToken}/>
+											<input type="hidden" name="wp_id" value={wpUserId}/>
+											<input type="hidden" name="redirect_url" value={redirectUrl}/>
+											<input type="hidden" name="wp_username" value={username}/>
+											<input type="hidden" name="discount" value={true}/>
+
+											<button type="submit" className="btn btn-lg btn-danger">Cancel</button>
+										</form>
 									</div>
 								</div>
 							</div>
 							<div className="modal-footer">
 								<button type="button" className="btn btn-default" onClick={onClose}>Close</button>
-								<button type="button" className="btn btn-primary">Save changes</button>
 							</div>
 						</div>
 					</div>
