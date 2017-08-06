@@ -4,7 +4,7 @@ import levels from '../../../api/levels.json';
 
 @connect(
 	state => ({
-		subscriptionName: state.authStore.user.subscription.subscription_name,
+		subscription: state.authStore.user.subscription,
 		jwtToken: state.authStore.user.jwtToken,
 		wpUserId: state.authStore.user.wpUserId,
 		username: state.authStore.user.username,
@@ -14,7 +14,7 @@ import levels from '../../../api/levels.json';
 )
 export default class SubscriptionUpgradeCard extends Component {
 	render() {
-		const {subscriptionName, jwtToken, wpUserId, username, routing} = this.props;
+		const {subscription, jwtToken, wpUserId, username, routing} = this.props;
 		const formActionUrl = 'http://54.148.236.111/register/upgrade';
 
 		let redirectUrl = null;
@@ -25,7 +25,7 @@ export default class SubscriptionUpgradeCard extends Component {
 		}
 
 		let vaultAccess = levels.subscription_levels.filter((level) => {
-			return level.name === subscriptionName;
+			return parseInt(level.id) === parseInt(subscription.subscription_id);
 		})[0];
 
 		let currentSubscriptionDescription = null;
@@ -35,7 +35,7 @@ export default class SubscriptionUpgradeCard extends Component {
 		return (
 			<div className="subscription-upgrade-card">
 				<h3 className="subscription-title">Subscribed to</h3>
-				<h3 className="subscription-value">{subscriptionName}</h3>
+				<h3 className="subscription-value">{subscription.subscription_name}</h3>
 				<p className="subscription-description">
 					{currentSubscriptionDescription}
 				</p>
