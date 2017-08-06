@@ -82,6 +82,10 @@ export default (store) => {
 				<Route path="login" component={containers.Login}/>
 			</Route>
 
+			<Route path="assessment" component={containers.AssessmentLanding}/>
+			<Route path="assessment/form" component={containers.AssessmentForm}/>
+			<Route path="assessment/result" component={containers.AssessmentResult}/>
+
 			{/*404*/}
 			<Route path="*" component={containers.NotFound} status={404}/>
 		</Route>
