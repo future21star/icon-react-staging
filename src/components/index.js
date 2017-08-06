@@ -35,6 +35,8 @@ export DayPicker from './programming/DayPicker';
 
 //PROFILE
 export ProfileHeader from './profile/ProfileHeader';
+export EditProfileCard from './profile/EditProfileCard';
+export EditBillingInformation from './profile/EditBillingInformation';
 
 //TRACKS
 export EditTracksBanner from './tracks/EditTracksBanner';

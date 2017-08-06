@@ -18,6 +18,10 @@ module.exports = function (sequelize, DataTypes) {
 			allowNull: false,
 			type: DataTypes.STRING
 		},
+		details: {
+			allowNull: true,
+			type: DataTypes.TEXT
+		},
 	}, {
 		tableName: 'tracks',
 		classMethods: {

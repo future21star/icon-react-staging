@@ -142,6 +142,7 @@ export default function loadAuth(request) {
 		return resolve({
 			user: {
 				...wpUserData,
+				...reactUser.dataValues,
 				subscription: wpSubscription.data,
 				vaultAccess: vaultAccess,
 				jwtToken: request.session.user.token

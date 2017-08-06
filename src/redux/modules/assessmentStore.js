@@ -14,7 +14,7 @@ const initialState = {
 		5: '1',
 		6: '1',
 		7: '1',
-		8: null
+		8: 'no'
 	}
 };
 

@@ -165,6 +165,7 @@ export default function login(request) {
 		return resolve({
 			user: {
 				...wpUserData,
+				...reactUser.dataValues,
 				subscription: wpSubscription.data,
 				vaultAccess: vaultAccess,
 				jwtToken: jwtResponse.data.token

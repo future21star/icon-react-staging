@@ -54,6 +54,10 @@ export default class ViewTrack extends Component {
 		this.props.removeTrack(this.props.params.name);
 	};
 
+	createMarkup = (html) => {
+		return {__html: html};
+	};
+
 	render() {
 		const {vaultAccess} = this.props;
 
@@ -114,35 +118,16 @@ export default class ViewTrack extends Component {
 					<div className="col-sm-12 col-md-6 full-height edit-tracks-mid-section--wrapper">
 						<div className="view-track-mid-section">
 							<h1 className="title">{track.name}</h1>
-							<h3 className="sub-title">
-								Seeking for adventure out your door?
-							</h3>
-							<p>
-								Warm Up, Workout, Goals for each session, and
-								Cool Down/Accessory work are always included.
-							</p>
-							<p>
-								Sessions last no more than one hour so you can
-								put your increased fitness to use outside the
-								confines of the gym. Icon ambassadors that are
-								professionals in other sports or adventure seekers
-								need more time outside opf the gym.
-							</p>
-							{accessOfProgrammingType === 'programming-all' ? this.renderButtonsForProgrammingAll(selectedTrackIsSubscribed) : undefined}
-							{accessOfProgrammingType === 'programming-single' ? this.renderButtonsForProgrammingSingle(selectedTrackIsSubscribed) : undefined}
-							{accessOfProgrammingType === 'programming-masters' ? this.renderButtonsForProgrammingMasters(selectedTrackIsSubscribed) : undefined}
-
-							{accessOfProgrammingType === 'all' ? this.renderButtonsForProgrammingAll(selectedTrackIsSubscribed) : undefined}
-							{accessOfProgrammingType === 'single' ? this.renderButtonsForProgrammingSingle(selectedTrackIsSubscribed) : undefined}
-							{accessOfProgrammingType === 'masters' ? this.renderButtonsForProgrammingMasters(selectedTrackIsSubscribed) : undefined}
-					</div>
+							<div dangerouslySetInnerHTML={this.createMarkup(track.details)}/>
 						</div>
-
+					</div>
+					{accessOfProgrammingType === 'programming-all' ? this.renderButtonsForProgrammingAll(selectedTrackIsSubscribed) : undefined}
+					{accessOfProgrammingType === 'programming-single' ? this.renderButtonsForProgrammingSingle(selectedTrackIsSubscribed) : undefined}
+					{accessOfProgrammingType === 'programming-masters' ? this.renderButtonsForProgrammingMasters(selectedTrackIsSubscribed) : undefined}
 				</div>
 			</div>
 		);
 	}
-
 
 
 	renderButtonsForProgrammingSingle(selectedTrackIsSubscribed) {
@@ -159,7 +144,6 @@ export default class ViewTrack extends Component {
 					/> : undefined}
 
 				{!selectedTrackIsSubscribed && visibleTrackStartsWithMasters ?
-
 					<NoAccessSubscriptionUpgradeButton
 						classNames="btn btn-block btn-lg btn-fixed-bottom btn-turquoise btn-font-lg"
 						title="Update Subscription"
