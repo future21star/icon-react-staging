@@ -6,15 +6,30 @@ import Select from 'react-select';
 import {range} from "lodash";
 import {connect} from "react-redux";
 import {push} from 'react-router-redux';
+import axios from "axios";
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {setAuthUserAsEditingUser, changeEditProfileField, editProfile} from "../redux/modules/editProfileStore";
+import {showLoading, hideLoading} from 'react-redux-loading-bar'
+import {
+	setAuthUserAsEditingUser,
+	changeEditProfileField,
+	editProfile,
+	changeAvatar
+} from "../redux/modules/editProfileStore";
 
 @connect(
 	state => ({
 		user: state.authStore.user,
 		editProfileStore: state.editProfileStore,
 	}),
-	{setAuthUserAsEditingUser, changeEditProfileField, editProfile, pushState: push}
+	{
+		setAuthUserAsEditingUser,
+		changeEditProfileField,
+		editProfile,
+		changeAvatar,
+		showLoading,
+		hideLoading,
+		pushState: push
+	}
 )
 
 export default class EditProfile extends Component {
@@ -80,7 +95,46 @@ export default class EditProfile extends Component {
 		});
 	};
 
+	changeAvatar = (avatarUrl) => {
+		this.props.changeAvatar(avatarUrl);
+	};
+
+	showImageBrowser = () => {
+		this.refs.avatarRef.click();
+	};
+
+	uploadAvatar = (e) => {
+		let file = e.target.files[0];
+		if (!file) return;
+
+		let formData = new FormData();
+		formData.append('file', file);
+		this.props.showLoading();
+
+		axios.post('http://54.148.236.111/wp-json/wp/v2/media', formData, {
+			headers: {
+				'Content-Type': 'multipart/form-data',
+				Authorization: 'Bearer ' + this.props.user.jwtToken
+			}
+		}).then(result => {
+			this.props.changeAvatar(result.data.source_url);
+			this.props.hideLoading();
+		}).catch(error => {
+			console.log(error);
+			this.props.hideLoading();
+		})
+	};
+
 	render() {
+		const avatarImages = [
+			'https://s-media-cache-ak0.pinimg.com/736x/d7/a3/ae/d7a3ae5506817d1ef60dabde37150fe9--grumpy-cat-humor-grumpy-cats.jpg',
+			'https://humorkitty.files.wordpress.com/2015/06/cute-cat-hipster-desktop-background-wallpaper.jpg?w=256&h=256&crop=1',
+			'https://lh3.googleusercontent.com/-oL8Q6AGlCng/VdIBUw4AwTI/AAAAAAAAACA/ETe50Q5K8AU/s256-p/funny-cat-glasses-dressed-reflex.jpg',
+			'https://pbs.twimg.com/profile_images/682493419579699200/xu2JTnH4.jpg',
+			'https://s-media-cache-ak0.pinimg.com/736x/fc/53/60/fc53609874a4fe09f114a6ed15b8ed95--pretty-cats-cute-cats.jpg',
+			'https://lh3.googleusercontent.com/-N3snMHFmoL4/AAAAAAAAAAI/AAAAAAAAAAc/WAk5ewtc1sw/photo.jpg',
+		];
+
 		const {editProfileStore, changeEditProfileField} = this.props;
 
 		const rightSideContent = (
@@ -98,7 +152,7 @@ export default class EditProfile extends Component {
 				transitionLeave={true}
 				transitionLeaveTimeout={500}
 			>
-				<div>
+				<div className="bottom-padding">
 					<Helmet title="Edit Profile"/>
 
 					<Menubar
@@ -115,11 +169,27 @@ export default class EditProfile extends Component {
 								<div className="col-xs-12">
 
 									<div className="upload-avatar-wrapper">
-										<img src={editProfileStore.editingUser.profile_picture_url}/>
+										<img src={editProfileStore.editingUser.profile_picture_url} onClick={this.showImageBrowser}/>
+										<input ref="avatarRef" type="file" accept=".jpg,.jpeg,.png" style={{display: 'none'}}
+													 onChange={this.uploadAvatar}/>
+										<br/>
+										<p>Current Avatar</p>
 									</div>
 
 									<ErrorMessage error={editProfileStore.error}/>
 									<SuccessMessage success={editProfileStore.success}/>
+
+									<label>Select New Avatar:</label>
+									<div className="row">
+										{avatarImages.map((avatar, i) => {
+											return (
+												<div className="col-xs-4 col-sm-2" key={i}>
+													<img className="img-circle" onClick={e => this.changeAvatar(avatar)} src={avatar} width="100%"
+															 alt="Avatar"/>
+												</div>
+											)
+										})}
+									</div>
 
 									<div className="form-group block">
 										<div className="input-group input-effect">

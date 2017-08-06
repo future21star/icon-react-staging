@@ -1,5 +1,6 @@
 //GLOBALS
-export NoAccess from './global/NoAccess';
+export NoAccessSubscriptionUpgradeButton from './global/NoAccessSubscriptionUpgradeButton';
+export NoAccessSubscriptionUpgradeCard from './global/NoAccessSubscriptionUpgradeCard';
 export SubscriptionUpgradeCard from './global/SubscriptionUpgradeCard';
 export BottomNav from './global/BottomNav';
 export DotList from './global/DotList';
