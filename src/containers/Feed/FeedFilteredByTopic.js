@@ -14,7 +14,6 @@ import {
 import {loadTopicFeeds, loadMoreTopicFeeds, clearTopicFeeds} from '../../redux/modules/feedStore'
 import {Link} from "react-router";
 
-@checkAccessLevel('feed')
 
 @connect(
 	state => ({
@@ -27,6 +26,8 @@ import {Link} from "react-router";
 	}),
 	{loadTopicFeeds, loadMoreTopicFeeds, clearTopicFeeds}
 )
+
+@checkAccessLevel('feed')
 
 export default class FeedFilteredByTopic extends Component {
 

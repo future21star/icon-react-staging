@@ -6,6 +6,7 @@ import {Menubar} from '../../components/index';
 import {Polar} from 'react-chartjs-2';
 import {Link} from "react-router";
 import assessmentResults from '../../../api/assessmentResults.json';
+import CheckAccessLevel from '../HOC/CheckAccessLevel'
 
 @connect(
 	state => ({
@@ -14,6 +15,8 @@ import assessmentResults from '../../../api/assessmentResults.json';
 	}),
 	{}
 )
+
+@CheckAccessLevel('assessment')
 
 export default class AssessmentResult extends Component {
 

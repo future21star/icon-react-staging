@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import {Link} from "react-router";
 import {asyncConnect} from 'redux-async-connect';
 import {includes} from 'lodash';
-
+import CheckAccessLevel from './HOC/CheckAccessLevel'
 import {
 	isLoaded as isTracksLoaded,
 	load as loadTracks,
@@ -40,6 +40,8 @@ import {
 	{addAsOnlyTrack, addToTrackList, removeTrack}
 )
 
+@CheckAccessLevel('assessment')
+
 export default class EditTracks extends Component {
 
 	render() {
@@ -48,7 +50,7 @@ export default class EditTracks extends Component {
 
 		let accessOfProgrammingType = null;
 		if (includes(vaultAccess, 'programming-all')) accessOfProgrammingType = 'programming-all';
-		else if (includes(vaultAccess, 'programming-single')) accessOfProgrammingType = 'programming-single';
+		else if (includes(vaultAccess, 'programming-lifestyle')) accessOfProgrammingType = 'programming-lifestyle';
 		else if (includes(vaultAccess, 'programming-masters')) accessOfProgrammingType = 'programming-masters';
 
 		return (
@@ -70,15 +72,28 @@ export default class EditTracks extends Component {
 						backButton={true}
 					/>
 
-					{accessOfProgrammingType ? this.renderEditTracks() : <NoAccessSubscriptionUpgradeCard permissionName={accessOfProgrammingType}/>}
+					{
+						accessOfProgrammingType
+							? this.renderEditTracks(accessOfProgrammingType)
+							: <NoAccessSubscriptionUpgradeCard permissionName='programming-lifestyle'/>
+					}
 
 				</div>
 			</ReactCSSTransitionGroup>
 		);
 	}
 
-	renderEditTracks() {
-		const {selectedTracks, allTracks} = this.props;
+	renderEditTracks(accessOfProgrammingType) {
+		let {selectedTracks, allTracks} = this.props;
+
+
+		if (accessOfProgrammingType === 'programming-masters') {
+			// find only masters tracks
+			allTracks = allTracks.filter(track => {
+				// ids of masters tracks
+				if (includes([5, 6, 7, 8, 9, 10], track.id)) return track;
+			});
+		}
 
 		return (
 			<div className="edit-tracks-list-wrapper bottom-padding">

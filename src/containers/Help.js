@@ -1,13 +1,14 @@
 import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
-import {Menubar} from '../components/index';
+import {Menubar, NoAccessSubscriptionUpgradeCard} from '../components/index';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {setActiveLink, unsetActiveLink} from '../redux/modules/helpfulLinksStore';
 import {connect} from "react-redux";
 
 @connect(
 	state => ({
-		activeHelpfulLink: state.helpfulLinksStore.activeHelpfulLink
+		activeHelpfulLink: state.helpfulLinksStore.activeHelpfulLink,
+		subscription: state.authStore.user.subscription
 	}),
 	{setActiveLink, unsetActiveLink}
 )
@@ -30,7 +31,24 @@ export default class Help extends Component {
 	};
 
 	render() {
-		const {activeHelpfulLink} = this.props;
+		const {activeHelpfulLink, subscription} = this.props;
+
+		let content = activeHelpfulLink ? (
+			<div>
+				<h2 className="text-center" dangerouslySetInnerHTML={this.createMarkup(activeHelpfulLink.title)}/>
+				<hr/>
+				<div dangerouslySetInnerHTML={this.createMarkup(activeHelpfulLink.content)}/>
+			</div>
+		) : undefined;
+
+		// less than Unity OR is nutrition
+		if (parseInt(subscription.subscription_id) < 2 || parseInt(subscription.subscription_id) === 11) {
+			content = (
+				<div>
+					<NoAccessSubscriptionUpgradeCard permissionName="feed"/>
+				</div>
+			)
+		}
 
 		return (
 			<ReactCSSTransitionGroup
@@ -54,13 +72,7 @@ export default class Help extends Component {
 					<div className="container">
 						<div className="row">
 							<div className="col-xs-12">
-								{activeHelpfulLink ? (
-									<div>
-										<h2 className="text-center" dangerouslySetInnerHTML={this.createMarkup(activeHelpfulLink.title)}/>
-										<hr/>
-										<div dangerouslySetInnerHTML={this.createMarkup(activeHelpfulLink.content)}/>
-									</div>
-								) : undefined}
+								{content}
 							</div>
 						</div>
 					</div>

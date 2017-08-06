@@ -15,8 +15,9 @@
       "desc": "Access to the Unity programming track and the Feed",
       "upgrade_desc": "Upgrade to Individual to access all the programming tracks Icon has to offer.",
       "vault_sections": [
+        "assessment",
         "feed",
-        "programming-lifestyle",
+        "programming-lifestyle"
       ]
     },
     {
@@ -25,6 +26,7 @@
       "desc": "Access to the Unity programming track, the Feed, and Nutrition",
       "upgrade_desc": "Upgrade to Individual + Nutrition to maximize your fitness.",
       "vault_sections": [
+        "assessment",
         "feed",
         "programming-lifestyle",
         "nutrition"
@@ -36,6 +38,7 @@
       "desc": "Access to the all programming track and the Feed",
       "upgrade_desc": "Upgrade to Individual + Nutrition to take your fitness to the next level",
       "vault_sections": [
+        "assessment",
         "feed",
         "programming-all"
       ]
@@ -46,6 +49,7 @@
       "desc": "\"Find your weaknesses, make friends with them and beat them to death...\"",
       "upgrade_desc": false,
       "vault_sections": [
+        "assessment",
         "feed",
         "nutrition",
         "programming-all"
@@ -57,9 +61,10 @@
       "desc": "\"Find your weaknesses, make friends with them and beat them to death...\"",
       "upgrade_desc": false,
       "vault_sections": [
+        "assessment",
         "feed",
         "nutrition",
-        "programming-all",
+        "programming-all"
       ]
     },
     {
@@ -68,6 +73,7 @@
       "desc": "Access to all Masters programming tracks and the Feed",
       "upgrade_desc": "Upgrade to Masters + Nutrition to take your fitness to the next level",
       "vault_sections": [
+        "assessment",
         "programming-masters",
         "feed"
       ]
@@ -78,6 +84,7 @@
       "desc": "\"Find your weaknesses, make friends with them and beat them to death...\"",
       "upgrade_desc": false,
       "vault_sections": [
+        "assessment",
         "feed",
         "programming-masters",
         "nutrition"
@@ -89,6 +96,7 @@
       "desc": "Access to the Nutrition section of the vault",
       "upgrade_desc": "Upgrade to Unity + Nutrition, Individual + Nutrition, or Masters + Nutrition to gain access to programming and the Feed",
       "vault_sections": [
+        "assessment",
         "nutrition"
       ]
     }

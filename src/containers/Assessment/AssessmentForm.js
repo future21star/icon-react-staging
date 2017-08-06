@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {connect} from "react-redux";
+import CheckAccessLevel from '../HOC/CheckAccessLevel'
 import {
 	Menubar,
 	StepGender,
@@ -12,8 +13,7 @@ import {
 	StepWallballs,
 	StepSnatch,
 	StepCleanAndJerk,
-	StepHoursInTheGym,
-	StepResult
+	StepHoursInTheGym
 } from '../../components/index';
 
 @connect(
@@ -22,6 +22,8 @@ import {
 	}),
 	{}
 )
+
+@CheckAccessLevel('assessment')
 
 export default class AssessmentForm extends Component {
 

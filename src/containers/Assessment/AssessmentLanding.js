@@ -4,11 +4,14 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {connect} from "react-redux";
 import {Menubar} from '../../components/index';
 import {Link} from "react-router";
+import CheckAccessLevel from '../HOC/CheckAccessLevel'
 
 @connect(
 	state => ({}),
 	{}
 )
+
+@CheckAccessLevel('assessment')
 
 export default class AssessmentLanding extends Component {
 

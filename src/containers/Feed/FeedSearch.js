@@ -14,7 +14,6 @@ import {
 } from "../../redux/modules/feedStore";
 import checkAccessLevel from '../HOC/CheckAccessLevel'
 
-@checkAccessLevel('feed')
 
 @connect(
 	state => ({
@@ -28,6 +27,8 @@ import checkAccessLevel from '../HOC/CheckAccessLevel'
 	}),
 	{setSearchTopic, setSearchText, search, clearSearchResult, loadMoreSearchResult}
 )
+
+@checkAccessLevel('feed')
 
 export default class FeedSearch extends Component {
 

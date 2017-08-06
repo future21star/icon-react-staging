@@ -7,12 +7,13 @@ import {Link} from 'react-router';
 import checkAccessLevel from '../HOC/CheckAccessLevel';
 import {clearTopicFeeds} from '../../redux/modules/feedStore'
 
-@checkAccessLevel('feed')
 
 @connect(
 	state => ({}),
 	{clearTopicFeeds}
 )
+
+@checkAccessLevel('feed')
 
 export default class FeedFilter extends Component {
 	render() {
