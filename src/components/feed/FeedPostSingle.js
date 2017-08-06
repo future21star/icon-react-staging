@@ -132,7 +132,7 @@ export default class FeedPostSingle extends Component {
 
 							<div className="feed-featured-post-image">
 								{activeItemType === 'video' &&
-								<ReactPlayer url={`https://vimeo.com/${activeItem.video_id}`} width="100%" height="auto"/>}
+								<ReactPlayer url={`https://vimeo.com/${activeItem.video_id}`} width="100%" height="100%"/>}
 								{activeItemType === 'podcast' && <img width="100%" src={activeItem.image || defaultImage}/>}
 								{activeItemType === 'mentality' && activeItem.is_blog &&
 								<img width="100%" src={activeItem.image || defaultImage}/>}
