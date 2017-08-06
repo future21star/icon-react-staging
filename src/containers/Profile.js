@@ -20,7 +20,7 @@ export default class Profile extends Component {
 		const rightSideContent = (
 			<Link to="edit-profile">
 				<span className="mobile-hide">Edit Profile</span>
-				<span className="icon-user-edit"/>
+				<span className="icon-edit-profile"/>
 			</Link>
 		);
 
@@ -41,6 +41,7 @@ export default class Profile extends Component {
 						title="Profile"
 						className="text-white"
 						backButton={true}
+						rightSideContent={rightSideContent}
 					/>
 
 					<ProfileHeader user={user}/>

@@ -67,9 +67,18 @@ a{
 
   &:hover{
     background-color: $white;
-    color: $red;
+    color: $red !important;
     border-color: $red;
     text-decoration: none;
+  }
+  
+  &:focus{
+    color: $white;
+  }
+  
+  &.btn-fixed-bottom{
+    margin: 0;
+    max-width: 100%;
   }
 }
 
@@ -78,7 +87,7 @@ a{
   border-color: $turquoise;
 
   &:hover{
-    color: $turquoise;
+    color: $turquoise !important;
     border-color: $turquoise;
   }
 }
@@ -114,6 +123,22 @@ a{
   &:hover{
     background-color: $redDark;
   }
+}
+
+.btn-fixed-top {
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  top: 0;
+}
+
+.btn-fixed-bottom {
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  bottom: 0;
 }
 
 // icon

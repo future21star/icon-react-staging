@@ -31,7 +31,7 @@ export default function reducer(state = initialState, action = {}) {
 			if (!tracks)
 				tracks = state.wods[trackName] = {};
 
-			wod.commentsCount = commentsCount || 0;
+			if (wod) wod.commentsCount = commentsCount || 0;
 			tracks[date] = wod;
 
 			wods[trackName] = tracks;

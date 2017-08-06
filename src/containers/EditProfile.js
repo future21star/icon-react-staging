@@ -6,15 +6,30 @@ import Select from 'react-select';
 import {range} from "lodash";
 import {connect} from "react-redux";
 import {push} from 'react-router-redux';
+import axios from "axios";
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {setAuthUserAsEditingUser, changeEditProfileField, editProfile} from "../redux/modules/editProfileStore";
+import {showLoading, hideLoading} from 'react-redux-loading-bar'
+import {
+	setAuthUserAsEditingUser,
+	changeEditProfileField,
+	editProfile,
+	changeAvatar
+} from "../redux/modules/editProfileStore";
 
 @connect(
 	state => ({
 		user: state.authStore.user,
 		editProfileStore: state.editProfileStore,
 	}),
-	{setAuthUserAsEditingUser, changeEditProfileField, editProfile, pushState: push}
+	{
+		setAuthUserAsEditingUser,
+		changeEditProfileField,
+		editProfile,
+		changeAvatar,
+		showLoading,
+		hideLoading,
+		pushState: push
+	}
 )
 
 export default class EditProfile extends Component {
@@ -80,12 +95,38 @@ export default class EditProfile extends Component {
 		});
 	};
 
+	changeAvatar = (avatarUrl) => {
+		this.props.changeAvatar(avatarUrl);
+	};
+
+	showImageBrowser = () => {
+		this.refs.avatarRef.click();
+	};
+
+	uploadAvatar = (e) => {
+		let file = e.target.files[0];
+		if (!file) return;
+
+		let formData = new FormData();
+		formData.append('file', file);
+		this.props.showLoading();
+
+		axios.post('http://54.148.236.111/wp-json/wp/v2/media', formData, {
+			headers: {
+				'Content-Type': 'multipart/form-data',
+				Authorization: 'Bearer ' + this.props.user.jwtToken
+			}
+		}).then(result => {
+			this.props.changeAvatar(result.data.source_url);
+			this.props.hideLoading();
+		}).catch(error => {
+			console.log(error);
+			this.props.hideLoading();
+		})
+	};
+
 	render() {
 		const {editProfileStore, changeEditProfileField} = this.props;
-
-		const rightSideContent = (
-			<Link to="profile" className="text-danger">Cancel</Link>
-		);
 
 		return editProfileStore.editingUser ? (
 
@@ -98,24 +139,32 @@ export default class EditProfile extends Component {
 				transitionLeave={true}
 				transitionLeaveTimeout={500}
 			>
-				<div>
+				<div className="bottom-padding">
 					<Helmet title="Edit Profile"/>
 
 					<Menubar
 						title="Edit Profile"
-						rightSideContent={rightSideContent}
-						className="menu-bar-grey"
+						className="menu-bar-white"
 						backButton={true}
 					/>
 
-					<form className="register-page--register-form menu-head-buffer" onSubmit={this.handleSubmit}>
+					<form className="register-page--register-form" onSubmit={this.handleSubmit}>
 						<div className="container user-update-container">
 
 							<div className="row">
 								<div className="col-xs-12">
 
 									<div className="upload-avatar-wrapper">
-										<img src={editProfileStore.editingUser.profile_picture_url}/>
+										<div className="avatar">
+											<img src={editProfileStore.editingUser.profile_picture_url} onClick={this.showImageBrowser}/>
+										</div>
+										<p>Current Avatar</p>
+										<div className="col-xs-12">
+											<input id="avatarUpload" ref="avatarRef" type="file" accept=".jpg,.jpeg,.png"
+										onChange={this.uploadAvatar} />
+											<label htmlFor="avatarUpload" className="btn btn-lg btn-icon btn-icon-blue">Upload Photo</label>
+										</div>
+										<div className="clearfix"/>
 									</div>
 
 									<ErrorMessage error={editProfileStore.error}/>
@@ -207,7 +256,7 @@ export default class EditProfile extends Component {
 											</div>
 										</div>
 
-										<button className="btn btn-primary btn-block btn-lg btn-fixed-bottom" type="submit">Save Changes
+										<button className="btn btn-lg btn-icon btn-fixed-bottom" type="submit">Save Changes
 										</button>
 									</div>
 								</div>

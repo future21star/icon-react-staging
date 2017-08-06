@@ -18,7 +18,7 @@ export default function NotFound() {
 			<div className="container-fluid page-404">
 				<div className="icon-logo-bg"/>
 				<div className="subscription-upgrade-card">
-					<h2 className="subscription-title">No Rep!</h2>
+					<h2 className="subscription-title">No Rep, 404!</h2>
 					<p>Looks like you're doing something not allowed.</p>
 					<p>How about you take a trip to the vault to improve that form so this doesn't happen again.</p>
 					<div className="col-xs-12 col-sm-6">

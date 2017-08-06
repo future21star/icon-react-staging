@@ -32,7 +32,8 @@
 
 .feed-body-desktop {
   position: relative;
-  background-color: #F2F3F5;
+  //background-color: #F2F3F5;
+  background-color: $whiteDark;
   top: 75px;
 
   .feed-body-right, .feed-body-left {

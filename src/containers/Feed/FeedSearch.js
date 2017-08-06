@@ -88,8 +88,7 @@ export default class FeedSearch extends Component {
 					{browser.is.mobile ? (
 						<Menubar
 							title="Search"
-							leftSideContent={<Link to="/feed"><span className="icon-close" style={{fontSize: '1em'}}/><span
-								className="mobile-hide">Close</span></Link>}
+							backButton={true}
 							className="menu-bar-white"
 						/>) : (
 						<div className='feed-content-wrapper-desktop'>

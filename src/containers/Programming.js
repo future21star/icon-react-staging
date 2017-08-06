@@ -152,7 +152,7 @@ export default class Programming extends Component {
 					<div className="desktop-menu-fixed">
 						<Menubar
 							title="Programming"
-							leftSideContent={<Link to="/edit-tracks"><span className="icon-user-edit"/><span className="mobile-hide">Edit Tracks</span></Link>}
+							leftSideContent={<Link to="/edit-tracks"><span className="icon-edit-track"/><span className="mobile-hide">Edit Tracks</span></Link>}
 							rightSideContent={rightSideContent}
 							className="text-white programming-menu-bar"
 						/>
