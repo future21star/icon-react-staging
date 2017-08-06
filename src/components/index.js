@@ -29,6 +29,7 @@ export DesktopWorkout from './workout/DesktopWorkout';
 //WORKOUT LIST VIEW
 export DesktopListWorkoutContainer from './workout-list/DesktopListWorkoutContainer';
 export DesktopListWorkoutHeader from './workout-list/DesktopListWorkoutHeader';
+
 //PROGRAMMING
 export ProgrammingHeader from './programming/ProgrammingHeader';
 export DayPicker from './programming/DayPicker';
@@ -37,6 +38,7 @@ export DayPicker from './programming/DayPicker';
 export ProfileHeader from './profile/ProfileHeader';
 export EditProfileCard from './profile/EditProfileCard';
 export EditBillingInformation from './profile/EditBillingInformation';
+export CancelMembershipModal from './profile/CancelMembershipModal';
 
 //TRACKS
 export EditTracksBanner from './tracks/EditTracksBanner';

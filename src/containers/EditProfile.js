@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
-import {Menubar, SuccessMessage, ErrorMessage} from '../components/index';
+import {Menubar, SuccessMessage, ErrorMessage, CancelMembershipModal} from '../components/index';
 import {Link} from "react-router";
 import Select from 'react-select';
 import {range} from "lodash";
@@ -41,9 +41,23 @@ export default class EditProfile extends Component {
 		editProfile: PropTypes.func.isRequired
 	};
 
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			showCancelMembershipModal: false
+		}
+	}
+
 	componentDidMount() {
 		this.props.setAuthUserAsEditingUser(this.props.user);
 	}
+
+	toggleCancelMembershipModal = () => {
+		this.setState({
+			showCancelMembershipModal: !this.state.showCancelMembershipModal
+		})
+	};
 
 	genderOptions = [
 		{value: 'Yes', label: 'Male'},
@@ -168,6 +182,10 @@ export default class EditProfile extends Component {
 							<div className="row">
 								<div className="col-xs-12">
 
+									<div className="text-center">
+										<button className="btn btn-default" type="button" onClick={this.toggleCancelMembershipModal}>Cancel Membership</button>
+									</div>
+
 									<div className="upload-avatar-wrapper">
 										<img src={editProfileStore.editingUser.profile_picture_url} onClick={this.showImageBrowser}/>
 										<input ref="avatarRef" type="file" accept=".jpg,.jpeg,.png" style={{display: 'none'}}
@@ -285,6 +303,8 @@ export default class EditProfile extends Component {
 						</div>
 					</form>
 				</div>
+
+				<CancelMembershipModal isShown={this.state.showCancelMembershipModal} onClose={this.toggleCancelMembershipModal}/>
 			</ReactCSSTransitionGroup>
 		) : <div/>;
 	}
