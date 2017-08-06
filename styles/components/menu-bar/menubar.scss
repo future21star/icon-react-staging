@@ -1,5 +1,5 @@
 .menu-bar {
-  background-color: $blue;
+  background-color: $turquoiseDark;
   padding: 25px;
 
   .menu-bar-headings {
@@ -34,9 +34,9 @@
       height: 77px;
       padding: 20px 15px;
       text-align: center;
-      background-color: $blueDark;
+      background-color: $turquoiseLight;
       i,span{
-         color: $blueLight;
+         color: $turquoiseDark;
       }
       i{
         font-size: 1.2em;
@@ -65,13 +65,13 @@
   }
   
   .back-icon{
-    color: $blueDark;
+    color: $turquoiseLight;
     vertical-align: middle;
   }
 
   .back-text{
     text-transform: uppercase;
-    color: $blueDark;
+    color: $turquoiseLight;
     margin-left: 5px;
     font-size: .9em;
     vertical-align: middle;
@@ -100,7 +100,7 @@
     left: 0;
   }
 
-  &.menu-bar-white {
+  &.menu-bar-grey {
     background: $whiteDark;
     border-bottom: 1px solid #eee;
 
@@ -119,10 +119,20 @@
     }
   }
 
+  &.menu-bar-white{
+    background: $white;
+
+    .menu-bar-title{
+      color: $blackLight;
+    }
+  }
+
+
   &.menu-bar-red{
     background: $red;
   }
 
+  
   &.menu-color-white {
     color: $white;
     .menu-bar-left-side-content, .menu-bar-right-side-content {

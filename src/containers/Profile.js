@@ -7,7 +7,6 @@ import {
 	EditProfileCard,
 	EditBillingInformation
 } from '../components/index';
-import {Link} from "react-router";
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {connect} from "react-redux";
 
@@ -40,24 +39,21 @@ export default class Profile extends Component {
 						title="Profile"
 						className="text-white"
 						backButton={true}
-					>
-					</Menubar>
+					/>
+
 					<ProfileHeader user={user}/>
 
-					<div className="container">
-
-						<div className="row">
-							<div className="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12">
-								<SubscriptionUpgradeCard/>
-							</div>
-							<div className="col-md-4 col-xs-12">
-								<EditProfileCard/>
-							</div>
-							<div className="col-md-4 col-xs-12">
-								<EditBillingInformation/>
-							</div>
-
+					<div className="row">
+						<div className="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12">
+							<SubscriptionUpgradeCard/>
 						</div>
+						<div className="col-md-4 col-xs-12">
+							<EditProfileCard/>
+						</div>
+						<div className="col-md-4 col-xs-12">
+							<EditBillingInformation/>
+						</div>
+
 					</div>
 				</div>
 			</ReactCSSTransitionGroup>

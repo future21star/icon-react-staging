@@ -81,7 +81,7 @@ export default class ViewTrack extends Component {
 
 					<Menubar
 						title="View Track"
-						className="menu-bar-white"
+						className="menu-bar-grey"
 						backButton={true}
 					/>
 
@@ -104,6 +104,7 @@ export default class ViewTrack extends Component {
 			return selectedTrack.trackName === track.name;
 		});
 
+
 		return (
 			<div className="container-fluid">
 				<div className="row">
@@ -119,9 +120,6 @@ export default class ViewTrack extends Component {
 							<h1 className="title">{track.name}</h1>
 							<div dangerouslySetInnerHTML={this.createMarkup(track.details)}/>
 						</div>
-						{accessOfProgrammingType === 'all' ? this.renderButtonsForProgrammingAll(selectedTrackIsSubscribed) : undefined}
-						{accessOfProgrammingType === 'single' ? this.renderButtonsForProgrammingSingle(selectedTrackIsSubscribed) : undefined}
-						{accessOfProgrammingType === 'masters' ? this.renderButtonsForProgrammingMasters(selectedTrackIsSubscribed) : undefined}
 					</div>
 					{accessOfProgrammingType === 'programming-all' ? this.renderButtonsForProgrammingAll(selectedTrackIsSubscribed) : undefined}
 					{accessOfProgrammingType === 'programming-single' ? this.renderButtonsForProgrammingSingle(selectedTrackIsSubscribed) : undefined}
@@ -131,6 +129,7 @@ export default class ViewTrack extends Component {
 		);
 	}
 
+
 	renderButtonsForProgrammingSingle(selectedTrackIsSubscribed) {
 		let visibleTrackStartsWithMasters = startsWith(this.props.params.name, 'masters');
 
@@ -138,7 +137,7 @@ export default class ViewTrack extends Component {
 			<div>
 				{selectedTrackIsSubscribed ?
 					<BtnBottom
-						classNames="btn btn-block btn-lg btn-danger btn-font-lg"
+						classNames="btn btn-block btn-lg btn-icon btn-icon-icon"
 						title="Remove Track"
 						icon={<span className="icon-trash"/>}
 						onClick={this.removeTrack}
@@ -154,7 +153,7 @@ export default class ViewTrack extends Component {
 
 				{!selectedTrackIsSubscribed && !visibleTrackStartsWithMasters ?
 					<BtnBottom
-						classNames="btn btn-block btn-lg btn-turquoise btn-font-lg"
+						classNames="btn btn-block btn-lg btn-icon btn-icon-blue btn-icon-icon"
 						title="Add Track"
 						icon={<span className="icon-nav-links"/>}
 						onClick={this.addAsOnlyTrack}
@@ -171,7 +170,7 @@ export default class ViewTrack extends Component {
 			<div>
 				{selectedTrackIsSubscribed ?
 					<BtnBottom
-						classNames="btn btn-block btn-lg btn-danger btn-font-lg"
+						classNames="btn btn-block btn-lg btn-icon btn-icon-icon"
 						title="Remove Track"
 						icon={<span className="icon-trash"/>}
 						onClick={this.removeTrack}
@@ -187,7 +186,7 @@ export default class ViewTrack extends Component {
 
 				{!selectedTrackIsSubscribed && !visibleTrackStartsWithMasters ?
 					<BtnBottom
-						classNames="btn btn-block btn-lg btn-turquoise btn-font-lg"
+						classNames="btn btn-block btn-lg btn-icon btn-icon-blue btn-icon-icon"
 						title="Add Track"
 						icon={<span className="icon-nav-links"/>}
 						onClick={this.addToTrackList}
@@ -203,7 +202,7 @@ export default class ViewTrack extends Component {
 			<div>
 				{selectedTrackIsSubscribed ?
 					<BtnBottom
-						classNames="btn btn-block btn-lg btn-danger btn-font-lg"
+						classNames="btn btn-block btn-lg btn-icon btn-icon-icon"
 						title="Remove Track"
 						icon={<span className="icon-trash"/>}
 						onClick={this.removeTrack}
@@ -211,7 +210,7 @@ export default class ViewTrack extends Component {
 
 				{!selectedTrackIsSubscribed && visibleTrackStartsWithMasters ?
 					<BtnBottom
-						classNames="btn btn-block btn-lg btn-turquoise btn-font-lg"
+						classNames="btn btn-block btn-lg btn-icon btn-icon-blue btn-icon-icon"
 						title="Add Track"
 						icon={<span className="icon-nav-links"/>}
 						onClick={this.addAsOnlyTrack}

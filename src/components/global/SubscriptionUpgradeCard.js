@@ -25,16 +25,17 @@ export default class SubscriptionUpgradeCard extends Component {
 
 		return (
 			<div className="subscription-upgrade-card">
-				<div className="subscription-status">Subscribed to</div>
-				<div className="subscription-value">{subscriptionName}</div>
-
+				<h3 className="subscription-title">Subscribed to</h3>
+				<h3 className="subscription-value">{subscriptionName}</h3>
+				<p className="subscription-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut metus eu justo malesuada aliquet id ut risus. Cras lobortis, risus et pellentesque pellentesque, massa nibh cursus velit, et dictum ipsum dolor sed sem</p>
 				<div className="subscription-upgrade-button-wrapper">
 					<form action={formActionUrl} target="_blank" method="post">
 						<input type="hidden" name="jwt_token" value={jwtToken}/>
 						<input type="hidden" name="wp_id" value={wpUserId}/>
 						<input type="hidden" name="redirect_url" value={redirectUrl}/>
 						<input type="hidden" name="wp_username" value={username}/>
-						<button type="submit" className="btn btn-lg btn-primary btn-rounded btn-subscribe">Upgrade
+      
+						<button type="submit" className="btn btn-lg btn-icon btn-icon-icon"><span className="icon-update-sub"/>Upgrade
 						</button>
 					</form>
 				</div>

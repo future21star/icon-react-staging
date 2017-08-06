@@ -158,7 +158,7 @@ export default class EditProfile extends Component {
 					<Menubar
 						title="Edit Profile"
 						rightSideContent={rightSideContent}
-						className="menu-bar-white"
+						className="menu-bar-grey"
 						backButton={true}
 					/>
 

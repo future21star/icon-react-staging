@@ -57,18 +57,19 @@ export default class WorkOutModeComments extends Component {
 				<Helmet title={wodTitle + ' comments'}/>
 
 				<Menubar
-					className="text-white"
+					className="menu-bar-white"
 					title={wodTitle + ' comments'}
 					backButton={true}
 				/>
 
-				<div className="container">
+				<div className="container container-small">
 					<div className="feed-post-comments">
-						<h5 className="new-comment-title">Leave a comment</h5>
+						<h4 className="new-comment-title">Leave a comment</h4>
 						<NewComment onSubmit={this.onNewCommentSubmit}/>
-
+						<h4 className="comments-list-title">Comments</h4>
+								
 						<Comments items={wodCommentItems} wodId={params.id} commentOnType="wod"/>
-
+						
 						{wodCommentItems.length ?
 							<FeedLoadMore
 								loading={wodCommentLoading}

@@ -8,6 +8,7 @@ body {
 .btn:hover, .btn:focus, .btn.focus {
   color: #fff;
 }
+
 .desktop-disable-scrolling {
   overflow: hidden !important;
 }
@@ -116,14 +117,6 @@ body {
   color: $white;
 }
 
-.text-blue {
-  color: $blue;
-}
-
-.text-red {
-  color: $red;
-}
-
 .overlay-gradient, .overlay-gradient-absolute {
   background-image: linear-gradient(0deg, rgb(93, 199, 211) 0%, rgb(163, 8, 55) 99%);
   opacity: 0.9;
@@ -145,61 +138,6 @@ body {
 .container-small {
   max-width: 550px;
   margin: 0 auto;
-}
-
-/************************
-TYPOGRAPHY
-************************/
-body {
-  font-weight: 300;
-}
-
-h1, h2, h3, h4 {
-  letter-spacing: 1px;
-
-}
-
-.block {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-// buttons
-.btn:focus, .btn.focus, .btn:active:focus, .btn:active.focus, .btn.active:focus, .btn.active.focus {
-  outline: none;
-}
-
-.text-white {
-  color: #ffffff;
-  i, span {
-    color: #ffffff;
-  }
-}
-
-.btn:active, .btn.active {
-  box-shadow: none;
-}
-
-.btn-lg, .btn-group-lg > .btn {
-  padding: 14px 16px;
-}
-
-.btn-rounded {
-  border-radius: 30px;
-}
-
-// icon
-[class^="icon-"], [class*=" icon-"] {
-  color: #65C4D7;
-}
-
-// wrappers
-/*.app-wrapper {
-  padding-bottom: 46px;
-}*/
-
-.alert-danger {
-  text-align: center;
 }
 
 /******************************

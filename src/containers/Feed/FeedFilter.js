@@ -33,7 +33,7 @@ export default class FeedFilter extends Component {
 						title="Filter"
 						leftSideContent={<Link to="/feed"><span className="icon-close" style={{fontSize: '1em'}}/></Link>}
 						rightSideContent={<a href="javascript:;" onClick={this.props.clearTopicFeeds}>Reset</a>}
-						className="menu-bar-white"
+						className="menu-bar-grey"
 					/>
 
 					<div className="container">

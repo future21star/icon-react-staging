@@ -43,6 +43,7 @@ export default class NoAccessSubscriptionUpgradeCard extends Component {
 
 		return (
 			<div className="subscription-upgrade-card">
+				<h2 className="subscription-title">Almost There</h2>
 				<p>Looks like your subscription doesn't allow you <br/> to access this section of the vault.</p>
 				<p>You need to purchase <strong>{this.state.subscriptionName}</strong> to access this.</p>
 
@@ -51,7 +52,9 @@ export default class NoAccessSubscriptionUpgradeCard extends Component {
 					<input type="hidden" name="wp_id" value={wpUserId}/>
 					<input type="hidden" name="redirect_url" value={redirectUrl}/>
 					<input type="hidden" name="wp_username" value={username}/>
-					<button type="submit" className="btn btn-lg btn-primary btn-rounded btn-subscribe">Upgrade Subscription
+
+					<button type="submit" className="btn btn-lg btn-icon btn-icon-icon"><span className="icon-update-sub"/>Upgrade
+
 					</button>
 				</form>
 

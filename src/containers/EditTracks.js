@@ -66,7 +66,7 @@ export default class EditTracks extends Component {
 
 					<Menubar
 						title="Edit Tracks"
-						className="menu-bar-white"
+						className="menu-bar-grey"
 						backButton={true}
 					/>
 
