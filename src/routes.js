@@ -53,6 +53,7 @@ export default (store) => {
 				{/*logged in view with bottom nav*/}
 				<Route component={containers.AuthLayout}>
 					<IndexRoute component={containers.Home}/>
+					<Route path="welcome" component={containers.Welcome}/>
 					<Route path="profile" component={containers.Profile}/>
 					<Route path="feed" component={containers.Feed}>
 						<IndexRoute component={containers.FeedVideo}/>
@@ -81,6 +82,10 @@ export default (store) => {
 			<Route onEnter={requiresGuest}>
 				<Route path="login" component={containers.Login}/>
 			</Route>
+
+			<Route path="assessment" component={containers.AssessmentLanding}/>
+			<Route path="assessment/form" component={containers.AssessmentForm}/>
+			<Route path="assessment/result" component={containers.AssessmentResult}/>
 
 			{/*404*/}
 			<Route path="*" component={containers.NotFound} status={404}/>

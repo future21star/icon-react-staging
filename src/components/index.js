@@ -61,6 +61,18 @@ export NewComment from './comment/NewComment';
 export NewReply from './comment/NewReply';
 
 
+//ASSESSMENT
+export Step from './assessment/Step';
+export StepGender from './assessment/StepGender';
+export StepBackSquat from './assessment/StepBackSquat';
+export Step5k from './assessment/Step5k';
+export StepPullingPushing from './assessment/StepPullingPushing';
+export StepOverheadSquat from './assessment/StepOverheadSquat';
+export StepWallballs from './assessment/StepWallballs';
+export StepSnatch from './assessment/StepSnatch';
+export StepCleanAndJerk from './assessment/StepCleanAndJerk';
+export StepHoursInTheGym from './assessment/StepHoursInTheGym';
+
 
 
 
