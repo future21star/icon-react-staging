@@ -27,3 +27,7 @@ export AssessmentForm from './Assessment/AssessmentForm';
 export AssessmentResult from './Assessment/AssessmentResult';
 
 export Nutrition from './Nutrition';
+export NutritionChangeTrack from './NutritionChangeTrack';
+export NutritionFoundations from './NutritionFoundations';
+export NutritionHelp from './NutritionHelp';
+export NutritionCalculator from './NutritionCalculator';

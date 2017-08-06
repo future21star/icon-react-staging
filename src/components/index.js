@@ -56,6 +56,9 @@ export DesktopFeedHeader from './feed/DesktopFeedHeader';
 export DesktopFeedSidebar from './feed/DesktopFeedSidebar';
 export PodcastShareButtons from './feed/PodcastShareButtons';
 
+//NUTRITION
+export Targets from './nutrition/Targets';
+
 //COMMENT
 export Comments from './comment/Comments';
 export Comment from './comment/Comment';
