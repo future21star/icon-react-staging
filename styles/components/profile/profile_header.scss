@@ -23,23 +23,6 @@
     .member-since {
       text-transform: uppercase;
     }
-    .avatar {
-      width: 110px;
-      height: 110px;
-      position: relative;
-       border-radius: 50%;
-      border: 5px solid $turquoise;
-      overflow: hidden;
-      margin: 0 auto;
-      img {
-        position: absolute;
-        width: 100%;
-        height: auto;
-        left: 0;
-        top: 0;
-       
-      }
-    }
   }
 
   .profile-information {

@@ -1,7 +1,40 @@
 @import "../components/profile/profile_header";
+@import "../components/profile/profile_card";
+
+.register-page--register-form {
+  .icon-register-password {
+    font-size: 9px;
+  }
+  .icon-user-profile-filled {
+    font-size: 20px;
+  }
+
+  .upload-avatar-wrapper {
+    text-align: center;
+    padding-bottom: 10px;
+  }
+}
 
 .profile-page-wrapper{
+  	background: #eeeeee;
+  	height: 100vh;
 	.subscription-upgrade-card{
 		margin-top: 40px;
 	}
 }
+
+.user-update-container{
+	max-width: 600px;
+}
+
+.upload-avatar-wrapper{
+	input[type="file"]{
+		width: 0.1px;
+		height: 0.1px;
+		opacity: 0;
+		overflow: hidden;
+		position: absolute;
+		z-index: -1;
+	}
+}
+

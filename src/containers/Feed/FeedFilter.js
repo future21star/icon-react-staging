@@ -7,12 +7,13 @@ import {Link} from 'react-router';
 import checkAccessLevel from '../HOC/CheckAccessLevel';
 import {clearTopicFeeds} from '../../redux/modules/feedStore'
 
-@checkAccessLevel('feed')
 
 @connect(
 	state => ({}),
 	{clearTopicFeeds}
 )
+
+@checkAccessLevel('feed')
 
 export default class FeedFilter extends Component {
 	render() {
@@ -31,9 +32,8 @@ export default class FeedFilter extends Component {
 
 					<Menubar
 						title="Filter"
-						leftSideContent={<Link to="/feed"><span className="icon-close" style={{fontSize: '1em'}}/></Link>}
-						rightSideContent={<a href="javascript:;" onClick={this.props.clearTopicFeeds}>Reset</a>}
-						className="menu-bar-grey"
+						className="menu-bar-white"
+						backButton={true}
 					/>
 
 					<div className="container">

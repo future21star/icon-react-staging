@@ -10,6 +10,7 @@ export login from './auth/login';
 export logout from './auth/logout';
 
 export editProfile from './profile/editProfile';
+export changeAvatar from './profile/changeAvatar';
 export loadAuthUserTracks from './tracks/loadAuthUserTracks';
 export addAsOnlyTrack from './tracks/addAsOnlyTrack';
 export addToTrackList from './tracks/addToTrackList';
@@ -37,4 +38,8 @@ export search from './search/search';
 export loadWodComments from './comments/loadWodComments';
 export newWodComment from './comments/newWodComment';
 export newWodReply from './comments/newWodReply';
+
+export getAssessmentCategories from './assessment/getAssessmentCategories';
+
+
 

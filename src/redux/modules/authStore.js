@@ -1,4 +1,4 @@
-import {EDIT_PROFILE_SUCCESS} from "./editProfileStore";
+import {CHANGE_AVATAR_SUCCESS, EDIT_PROFILE_SUCCESS} from "./editProfileStore";
 import {LOGIN_SUCCESS} from "./loginStore";
 
 const LOAD = 'auth/LOAD';
@@ -66,6 +66,14 @@ export default function reducer(state = initialState, action = {}) {
 			return {
 				...state,
 				user
+			};
+		case CHANGE_AVATAR_SUCCESS:
+			return {
+				...state,
+				user: {
+					...state.user,
+					profile_picture_url: action.result.new_profile_picture_url
+				}
 			};
 		default:
 			return state;

@@ -5,8 +5,15 @@ import * as containers from './containers';
 
 export default (store) => {
 	const requiresAuth = (nextState, replace, cb) => {
-		// do not need to log in if podcast
+
+		// do not need to log in if single podcast
 		if (nextState.params.type && nextState.params.type === 'podcast') {
+			cb();
+			return;
+		}
+
+		// do not need to log in if podcast index
+		if (nextState.location.pathname === '/feed/podcast') {
 			cb();
 			return;
 		}
@@ -53,6 +60,7 @@ export default (store) => {
 				{/*logged in view with bottom nav*/}
 				<Route component={containers.AuthLayout}>
 					<IndexRoute component={containers.Home}/>
+					<Route path="welcome" component={containers.Welcome}/>
 					<Route path="profile" component={containers.Profile}/>
 					<Route path="feed" component={containers.Feed}>
 						<IndexRoute component={containers.FeedVideo}/>
@@ -66,6 +74,11 @@ export default (store) => {
 					<Route path="programming/list-view" component={containers.ProgrammingListView}/>
 					<Route path="edit-tracks" component={containers.EditTracks}/>
 					<Route path="help/:slug" component={containers.Help}/>
+
+					<Route path="assessment" component={containers.AssessmentLanding}/>
+					<Route path="assessment/workouts" component={containers.AssessmentWorkouts}/>
+					<Route path="assessment/form" component={containers.AssessmentForm}/>
+					<Route path="assessment/result" component={containers.AssessmentResult}/>
 				</Route>
 				{/*logged in view without bottom nav*/}
 				<Route path="workout/:trackName/:id" component={containers.WorkOutMode}/>

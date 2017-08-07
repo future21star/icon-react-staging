@@ -26,19 +26,24 @@ export default function loadWod(request) {
 		}
 
 		// load comments
-		let comments = null;
-		try {
-			comments = await axios.get(WP_API_URL + '/wp/v2/comments?post=' + wod.wpId);
-		} catch (e) {
-			console.log(e);
-			return reject(generalError(e.response.data.message));
+		let commentsCount = 0;
+		if (wod) {
+			let comments = null;
+			try {
+				comments = await axios.get(WP_API_URL + '/wp/v2/comments?post=' + wod.wpId);
+			} catch (e) {
+				console.log(e);
+				return reject(generalError(e.response.data.message));
+			}
+
+			commentsCount = comments.headers['x-wp-total'];
 		}
 
 		return resolve({
 			wod: wod,
 			date: date,
 			trackName: trackName,
-			commentsCount: comments.headers['x-wp-total'],
+			commentsCount: commentsCount,
 		});
 	});
 }

@@ -17,6 +17,7 @@ import dayPickerStore from './dayPickerStore';
 import swipeStore from './swipeStore';
 import feedStore from './feedStore';
 import podcastPlayerStore from './podcastPlayerStore';
+import assessmentStore from './assessmentStore';
 
 export default combineReducers({
 	routing: routerReducer,
@@ -39,5 +40,6 @@ export default combineReducers({
 	dayPickerStore,
 	swipeStore,
 	feedStore,
-	podcastPlayerStore
+	podcastPlayerStore,
+	assessmentStore
 });

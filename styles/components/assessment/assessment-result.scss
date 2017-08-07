@@ -1,0 +1,41 @@
+.assessment-result-wrapper {
+  color: $white;
+  background-size: cover;
+  min-height: calc(100vh - 102px);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  padding-bottom: 120px;
+
+  .overlay-gradient{
+    opacity: .7;
+  }
+
+  .chart-wrapper{
+    max-width: 550px;
+    margin: 0 auto 15px;
+  }
+
+  .title, .title-track-name {
+    text-align: center;
+    font-size: 2em;
+    font-family: 'Lato', sans-serif;
+  }
+
+  .title-desc{
+    display: block;
+  }
+  .title-track-name {
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .description {
+    font-size: 1.3em;
+    line-height: 1.2em;
+    margin-bottom: 20px;
+  }
+  .btn-wrap{
+    text-align: center;
+  }
+}

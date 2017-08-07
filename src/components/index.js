@@ -29,12 +29,15 @@ export DesktopWorkout from './workout/DesktopWorkout';
 //WORKOUT LIST VIEW
 export DesktopListWorkoutContainer from './workout-list/DesktopListWorkoutContainer';
 export DesktopListWorkoutHeader from './workout-list/DesktopListWorkoutHeader';
+
 //PROGRAMMING
 export ProgrammingHeader from './programming/ProgrammingHeader';
 export DayPicker from './programming/DayPicker';
 
 //PROFILE
 export ProfileHeader from './profile/ProfileHeader';
+export EditProfileCard from './profile/EditProfileCard';
+export CancelMembershipModal from './profile/CancelMembershipModal';
 
 //TRACKS
 export EditTracksBanner from './tracks/EditTracksBanner';
@@ -60,6 +63,18 @@ export Comment from './comment/Comment';
 export NewComment from './comment/NewComment';
 export NewReply from './comment/NewReply';
 
+
+//ASSESSMENT
+export Step from './assessment/Step';
+export StepGender from './assessment/StepGender';
+export StepBackSquat from './assessment/StepBackSquat';
+export Step5k from './assessment/Step5k';
+export StepPullingPushing from './assessment/StepPullingPushing';
+export StepOverheadSquat from './assessment/StepOverheadSquat';
+export StepWallballs from './assessment/StepWallballs';
+export StepSnatch from './assessment/StepSnatch';
+export StepCleanAndJerk from './assessment/StepCleanAndJerk';
+export StepHoursInTheGym from './assessment/StepHoursInTheGym';
 
 
 

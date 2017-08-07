@@ -25,6 +25,7 @@ export default (level) => (WrappedComponent) => {
 					<Menubar
 						className="gradient-turquoise menu-color-white"
 						title="Sorry"
+						backButton={true}
 					/>
 					<NoAccessSubscriptionUpgradeCard permissionName={level}/>
 				</div>

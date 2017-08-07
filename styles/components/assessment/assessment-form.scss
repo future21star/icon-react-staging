@@ -1,0 +1,47 @@
+.assessment-form-container{
+	min-height: 100vh;
+
+	.assessment-form-wrapper{
+		padding-top: 20px;
+	}
+  .page-title {
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  .container-small{
+  		max-width: 700px;
+  }
+}
+
+.assessment-steps-list{
+	margin: 0 auto;
+	text-align: center;
+	li{
+		height: 35px;
+		width: 35px;
+		margin: 10px;
+		padding-top: 5px;
+		border: 1px solid transparent;
+		border-radius: 50%;
+		color: $grey;
+		text-align: center;
+
+		@include transition(.3s ease color, .3s ease border-color);
+
+		&.active{
+			color: $turquoise;
+			border-color: $turquoise;
+		}
+	}
+}
+
+.assessment-form-title{
+	color: $greyDark;
+	margin-top: 60px;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+}
+

@@ -5,17 +5,20 @@ import DesktopFeedHeader from "./DesktopFeedHeader";
 
 @connect(
 	state => ({
-		browser: state.browser
+		browser: state.browser,
+		user: state.authStore.user
 	})
 )
 
 export default class FeedHeader extends Component {
 
 	render() {
-		const {browser} = this.props;
+		const {browser, user} = this.props;
 
-		return (
-			browser.is.mobile ? <MobileFeedTabs/> : <DesktopFeedHeader redirectToSearchOnInputPress={true}/>
-		);
+		if (user) {
+			return browser.is.mobile ? <MobileFeedTabs/> : <DesktopFeedHeader redirectToSearchOnInputPress={true}/>;
+		} else {
+			return browser.is.mobile ? <span/> : <DesktopFeedHeader redirectToSearchOnInputPress={true}/>;
+		}
 	}
 }

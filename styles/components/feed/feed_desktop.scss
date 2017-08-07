@@ -16,13 +16,13 @@
       margin-left: 20px;
       color: $white;
     }
-    .desktop-search-back-btn{
-        @include transition( .3s ease opacity);
-        span{
-          color: $turquoiseDark;
-        }
+    .desktop-search-back-btn {
+      @include transition(.3s ease opacity);
+      span {
+        color: $turquoiseDark;
+      }
 
-      &:hover{
+      &:hover {
         text-decoration: none;
         opacity: .7;
       }
@@ -32,17 +32,35 @@
 
 .feed-body-desktop {
   position: relative;
-  background-color: #F2F3F5;
+  //background-color: #F2F3F5;
+  background-color: $whiteDark;
   top: 75px;
 
   .feed-body-right, .feed-body-left {
     height: 550px;
     height: calc(100vh - 177px);
     overflow-y: scroll;
-
   }
   .feed-body-right {
     padding: 40px 20px 0;
+  }
+
+  .feed-body-left {
+    padding: 0;
+  }
+}
+
+.feed-body-desktop-guest {
+  position: relative;
+  background-color: #F2F3F5;
+  top: 75px;
+
+  .feed-body-right, .feed-body-left {
+    height: 100vh;
+    overflow-y: scroll;
+  }
+  .feed-body-right {
+    padding: 40px 20px 100px;
   }
 
   .feed-body-left {
@@ -58,11 +76,11 @@
     padding-bottom: 60px !important;
   }
 
-  .feed-featured-post-image{
+  .feed-featured-post-image {
     margin: 0 -15px;
   }
 
-  .feed-featured-post-image .type-video-iframe iframe{
+  .feed-featured-post-image .type-video-iframe iframe {
     position: absolute;
     left: 0;
     top: 0;
@@ -70,26 +88,26 @@
     height: 350px;
   }
 
-  .feed-featured-post-header{
+  .feed-featured-post-header {
     text-align: center;
     padding: 0 15px;
     margin: 30px 0;
 
-    .feed-featured-post-title{
+    .feed-featured-post-title {
       font-size: 2em;
     }
   }
 
-  .feed-featured-post-content{
+  .feed-featured-post-content {
     font-size: 1.2em;
   }
 }
 
-.feed-load-more-container{
-  .text-success{
+.feed-load-more-container {
+  .text-success {
     color: $blackLight;
     font-size: 18px;
-    span{
+    span {
       display: block;
     }
   }

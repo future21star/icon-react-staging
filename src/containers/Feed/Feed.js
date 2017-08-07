@@ -1,16 +1,14 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import checkAccessLevel from '../HOC/CheckAccessLevel'
 import {connect} from "react-redux";
 import {Menubar, FeedHeader, DesktopFeedSidebar} from "../../components";
 import {Link} from "react-router";
 
-@checkAccessLevel('feed')
-
 @connect(
 	state => ({
-		browser: state.browser
+		browser: state.browser,
+		user: state.authStore.user
 	})
 )
 
@@ -25,13 +23,13 @@ export default class Feed extends Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if(nextProps.location.pathname !== this.props.location.pathname && this.props.browser.is.desktop) {
+		if (nextProps.location.pathname !== this.props.location.pathname && this.props.browser.is.desktop) {
 			this.refs.overflowCustomScroll.scrollTop = 0;
 		}
 	}
 
 	render() {
-		const {browser} = this.props;
+		const {browser, user} = this.props;
 
 		return (
 			<ReactCSSTransitionGroup
@@ -53,10 +51,11 @@ export default class Feed extends Component {
 							className="menu-color-white"
 							title="Feed"
 							leftSideContent={<Link to="/profile"><span className="icon-user-profile"/><span className="mobile-hide">Profile</span></Link>}
-							rightSideContent={<Link to="/feed/search">
-								<span className="mobile-hide">Search</span>
-								<span className="icon-search"/>
-							</Link>}
+							rightSideContent={
+								user ? (<Link to="/feed/search">
+									<span className="mobile-hide">Search</span>
+									<span className="icon-search"/>
+								</Link>) : undefined}
 						/>
 					)}
 
@@ -68,13 +67,15 @@ export default class Feed extends Component {
 						{browser.is.mobile && this.props.children}
 
 						{browser.is.desktop && (
-							<div className="feed-body-desktop">
+							<div className={user ? "feed-body-desktop" : "feed-body-desktop-guest"}>
 								<div className="feed-body-desktop-content">
 									<div className="row no-margin-left-right">
-										<div className="col-md-4 col-lg-3 feed-body-left overflow-custom-scroll">
-											<DesktopFeedSidebar/>
-										</div>
-										<div className="col-md-8 col-lg-9 feed-body-right overflow-custom-scroll" ref="overflowCustomScroll">
+										{user && (
+											<div className="col-md-4 col-lg-3 feed-body-left overflow-custom-scroll">
+												<DesktopFeedSidebar/>
+											</div>
+										)}
+										<div className={user ? "col-md-8 col-lg-9 feed-body-right overflow-custom-scroll": "col-md-offset-2 col-md-8 feed-body-right overflow-custom-scroll"} ref="overflowCustomScroll">
 											<div className="feed-posts-section">
 												{this.props.children}
 											</div>

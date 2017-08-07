@@ -19,7 +19,7 @@ export default class NoAccessSubscriptionUpgradeButton extends Component {
 
 	render() {
 		const {classNames, icon, title, jwtToken, wpUserId, username, routing} = this.props;
-		const formActionUrl = 'http://54.148.236.111/register';
+		const formActionUrl = 'http://54.148.236.111/register/upgrade';
 
 		let redirectUrl = null;
 		if (process.env.NODE_ENV !== 'production') {
