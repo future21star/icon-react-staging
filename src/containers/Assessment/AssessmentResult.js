@@ -5,13 +5,16 @@ import {connect} from "react-redux";
 import {Menubar} from '../../components/index';
 import {Polar} from 'react-chartjs-2';
 import {Link} from "react-router";
+import {includes} from 'lodash';
 import assessmentResults from '../../../api/assessmentResults.json';
-import CheckAccessLevel from '../HOC/CheckAccessLevel'
+import CheckAccessLevel from '../HOC/CheckAccessLevel';
 
 @connect(
 	state => ({
 		answers: state.assessmentStore.answers,
-		allTracks: state.allTracksStore.allTracks
+		allTracks: state.allTracksStore.allTracks,
+		subscription: state.authStore.user.subscription,
+		vaultAccess: state.authStore.user.vaultAccess
 	}),
 	{}
 )
@@ -136,6 +139,7 @@ export default class AssessmentResult extends Component {
 		};
 
 		const {totalScore, radarData, recommendedTrackName, recommendedTrack} = this.state;
+		const {subscription, vaultAccess} = this.props;
 
 		if (!totalScore || radarData.length === 0 || !recommendedTrackName || !recommendedTrack) {
 			return (<div>loading...</div>);
@@ -146,6 +150,11 @@ export default class AssessmentResult extends Component {
 		})[0];
 
 		let style = {backgroundImage: 'url(../../' + recommendedTrack.bgImgUrl + ')'};
+
+		let hasAccessOfProgramming = false;
+		if (includes(vaultAccess, 'programming-all')) hasAccessOfProgramming = true;
+		else if (includes(vaultAccess, 'programming-lifestyle')) hasAccessOfProgramming = true;
+		else if (includes(vaultAccess, 'programming-masters')) hasAccessOfProgramming = true;
 
 		return (
 			<ReactCSSTransitionGroup
@@ -167,44 +176,54 @@ export default class AssessmentResult extends Component {
 
 				<div className="container-fluid assessment-result-wrapper menu-head-buffer" style={style}>
 					<div className="overlay-gradient"/>
-						<div className="row">
-							<div className="col-xs-12 col-sm-6">
-								<div className="chart-wrapper">
-									<Polar data={data} width={300} height={300} options={{
-										legend: {
-											display: true,
-											labels: {
-												fontColor: '#fff',
-												fontSize: 16
-											}
-										},
-										scale: {
-											ticks: {
-												stepSize: 1,
-												suggestedMax: 10,
-											},
-											gridLines: {
-												color: '#fff'
-											}
+					<div className="row">
+						<div className="col-xs-12 col-sm-6">
+							<div className="chart-wrapper">
+								<Polar data={data} width={300} height={300} options={{
+									legend: {
+										display: true,
+										labels: {
+											fontColor: '#fff',
+											fontSize: 16
 										}
-									}}/>
-								</div>
-							</div>
-							<div className="col-xs-12 col-sm-6">
-								<h1 className="title">
-									<span className="title-desc">Track Best Suited For You:</span>
-									<div className="title-track-name">{recommendedTrack.name}</div>
-								</h1>
-								<div className="description" dangerouslySetInnerHTML={this.createMarkup(trackDetails.details || '')}/>
-								<div className="btn-wrap">
-									<a href="http://54.148.236.111//register/upgrade" target="_blank" className="btn btn-lg btn-icon btn-icon-icon"><span className="icon-update-sub" />Get Access</a>
-									<Link to="/edit-tracks" className="btn btn-lg btn-icon btn-icon-icon"><span className="icon-nav-links"/>Add Track</Link>
-								</div>
+									},
+									scale: {
+										ticks: {
+											stepSize: 1,
+											suggestedMax: 10,
+										},
+										gridLines: {
+											color: '#fff'
+										}
+									}
+								}}/>
 							</div>
 						</div>
+						<div className="col-xs-12 col-sm-6">
+							<h1 className="title">
+								<span className="title-desc">Track Best Suited For You:</span>
+								<div className="title-track-name">{recommendedTrack.name}</div>
+							</h1>
+							<div className="description" dangerouslySetInnerHTML={this.createMarkup(trackDetails.details || '')}/>
+							<div className="btn-wrap">
+								{(parseInt(subscription.subscription_id) === 1 || parseInt(subscription.subscription_id) === 11) && (
+									<a href="http://54.148.236.111/register/upgrade" target="_blank"
+										 className="btn btn-lg btn-icon btn-icon-icon">
+										<span className="icon-update-sub"/>Get Access
+									</a>
+								)}
+
+								{hasAccessOfProgramming && (
+									<Link to="/edit-tracks" className="btn btn-lg btn-icon btn-icon-icon"><span
+										className="icon-nav-links"/>
+										Add Track
+									</Link>
+								)}
+							</div>
+						</div>
+					</div>
 				</div>
 			</ReactCSSTransitionGroup>
 		);
 	}
 }
-
