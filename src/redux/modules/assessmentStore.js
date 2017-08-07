@@ -3,6 +3,11 @@ const GO_TO_NEXT_STEP = 'assessment/GO_TO_NEXT_STEP';
 
 const SET_ANSWER = 'assessment/SET_ANSWER';
 
+
+const LOAD_WORKOUTS = 'assessment/LOAD_WORKOUTS_REQUEST';
+const LOAD_WORKOUTS_SUCCESS = 'assessment/LOAD_WORKOUTS_SUCCESS';
+const LOAD_WORKOUTS_FAIL = 'assessment/LOAD_WORKOUTS_FAIL';
+
 const initialState = {
 	currentStep: 0,
 	answers: {
@@ -15,7 +20,8 @@ const initialState = {
 		6: '1',
 		7: '1',
 		8: 'no'
-	}
+	},
+	workouts: []
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -37,6 +43,23 @@ export default function reducer(state = initialState, action = {}) {
 					...state.answers,
 					[state.currentStep]: action.payload.answer
 				}
+			};
+		case LOAD_WORKOUTS:
+			return {
+				...state,
+				loading: true
+			};
+		case LOAD_WORKOUTS_SUCCESS:
+			
+			return {
+				...state,
+				loading: false,
+				workouts: action.result.assessmentCategories
+			};
+		case LOAD_WORKOUTS_FAIL:
+			return {
+				...state,
+				loading: false
 			};
 		default:
 			return state;
@@ -63,5 +86,17 @@ export function setAnswer(answer) {
 		payload: {
 			answer
 		}
+	};
+}
+
+
+export function isLoaded(globalState) {
+	return globalState.assessmentStore.workouts.length > 0;
+}
+
+export function load() {
+	return {
+		types: [LOAD_WORKOUTS, LOAD_WORKOUTS_SUCCESS, LOAD_WORKOUTS_FAIL],
+		promise: (client) => client.get('/getAssessmentCategories')
 	};
 }

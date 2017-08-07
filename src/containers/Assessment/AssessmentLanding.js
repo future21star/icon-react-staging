@@ -4,7 +4,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {connect} from "react-redux";
 import {Menubar} from '../../components/index';
 import {Link} from "react-router";
-import CheckAccessLevel from '../HOC/CheckAccessLevel'
+import CheckAccessLevel from '../HOC/CheckAccessLevel';
 
 @connect(
 	state => ({}),
@@ -39,6 +39,10 @@ export default class AssessmentLanding extends Component {
 							in each of the 6 categories, then click the calculate button to enter your results.
 						</div>
 						<div className="action-button">
+							<Link to="/assessment/workouts" className="btn btn-danger btn-lg">
+								workouts 
+								<span className="icon icon-arrow-left"/>
+							</Link>
 							<Link to="/assessment/form" className="btn btn-danger btn-lg">
 								Calculate
 								<span className="icon icon-arrow-left"/>

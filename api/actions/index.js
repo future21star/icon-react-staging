@@ -39,3 +39,7 @@ export loadWodComments from './comments/loadWodComments';
 export newWodComment from './comments/newWodComment';
 export newWodReply from './comments/newWodReply';
 
+export getAssessmentCategories from './assessment/getAssessmentCategories';
+
+
+

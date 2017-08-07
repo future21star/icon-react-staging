@@ -76,6 +76,7 @@ export default (store) => {
 					<Route path="help/:slug" component={containers.Help}/>
 
 					<Route path="assessment" component={containers.AssessmentLanding}/>
+					<Route path="assessment/workouts" component={containers.AssessmentWorkouts}/>
 					<Route path="assessment/form" component={containers.AssessmentForm}/>
 					<Route path="assessment/result" component={containers.AssessmentResult}/>
 				</Route>

@@ -23,6 +23,7 @@ export FeedSearch from './Feed/FeedSearch';
 export FeedFilteredByTopic from './Feed/FeedFilteredByTopic';
 export PodcastPlayer from './PodcastPlayer';
 export AssessmentLanding from './Assessment/AssessmentLanding';
+export AssessmentWorkouts from './Assessment/AssessmentWorkouts';
 export AssessmentForm from './Assessment/AssessmentForm';
 export AssessmentResult from './Assessment/AssessmentResult';
 
