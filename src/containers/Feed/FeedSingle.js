@@ -70,7 +70,7 @@ export default class FeedSingle extends Component {
 					className={`${browser.is.mobile ? 'feed-page-wrapper bottom-padding' : 'feed-page-desktop-wrapper bottom-padding'}`}>
 
 					<Menubar
-						className={`text-white ${browser.is.desktop ? 'feed-wrapper' : ''}`}
+						className={`menu-color-white ${browser.is.desktop ? 'feed-wrapper' : ''}`}
 						title={this.toTitleCase(activeItemType)}
 						backButton={true}
 					/>

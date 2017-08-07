@@ -41,7 +41,7 @@ export default class StepOverheadSquat extends Component {
 					<li>Upright Torso</li>
 				</ul>
 
-				<form>
+				<form className="form-select">
 					<select className="form-control" onChange={e => setAnswer(e.target.value)} value={answer}>
 						{this.answerOptions.map((item, i) => {
 							return <option value={item.value} key={i}>{item.label}</option>

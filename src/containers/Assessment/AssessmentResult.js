@@ -4,6 +4,9 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {connect} from "react-redux";
 import {Menubar} from '../../components/index';
 import {Polar} from 'react-chartjs-2';
+import {Link} from "react-router";
+import assessmentResults from '../../../api/assessmentResults.json';
+import CheckAccessLevel from '../HOC/CheckAccessLevel'
 
 @connect(
 	state => ({
@@ -12,6 +15,8 @@ import {Polar} from 'react-chartjs-2';
 	}),
 	{}
 )
+
+@CheckAccessLevel('assessment')
 
 export default class AssessmentResult extends Component {
 
@@ -100,6 +105,10 @@ export default class AssessmentResult extends Component {
 		});
 	}
 
+	createMarkup = (html) => {
+		return {__html: html};
+	};
+
 	render() {
 		const data = {
 			datasets: [{
@@ -132,6 +141,10 @@ export default class AssessmentResult extends Component {
 			return (<div>loading...</div>);
 		}
 
+		let trackDetails = assessmentResults.assessment_results.filter((result) => {
+			return result.name === recommendedTrackName;
+		})[0];
+
 		let style = {backgroundImage: 'url(../../' + recommendedTrack.bgImgUrl + ')'};
 
 		return (
@@ -144,14 +157,20 @@ export default class AssessmentResult extends Component {
 				transitionLeave={true}
 				transitionLeaveTimeout={500}
 			>
-				<Helmet title="Icon Assessment Result"/>
+				<Helmet title="Assessment - Result"/>
 
-				<div className="assessment-result-wrapper" style={style}>
-					<div className="assessment-result">
-						<div className="container">
-							<div className="row">
-								<div className="col-xs-12 col-sm-6 col-sm-offset-3">
-									<Polar data={data} width={200} height={240} options={{
+				<Menubar
+					title="Icon Assessment - Result"
+					className="menu-color-white menu-bar-transparent"
+					backButton={true}
+				/>
+
+				<div className="container-fluid assessment-result-wrapper menu-head-buffer" style={style}>
+					<div className="overlay-gradient"/>
+						<div className="row">
+							<div className="col-xs-12 col-sm-6">
+								<div className="chart-wrapper">
+									<Polar data={data} width={300} height={300} options={{
 										legend: {
 											display: true,
 											labels: {
@@ -170,23 +189,19 @@ export default class AssessmentResult extends Component {
 										}
 									}}/>
 								</div>
-								<div className="col-xs-12">
-									<h1 className="recommended-track">
-										Track Best Suited For You: <br/>
-										<div className="recommended-track-name">{recommendedTrack.name}</div>
-									</h1>
-									<div className="recommended-track-description">
-										Sessions last no more than 1 hour so you can put your increased fitness to use outside the confines
-										of the gym. Icon ambassadors that are professionals in other sports or adventure seekers need more
-										time outside of the gym.
-										Warm Up, Workout, Goals for each Session, and Cool Down/Accessory work are always included. The
-										Lifestyle Track opens doors to better experiences with improved levels of general physical
-										preparedness
-									</div>
+							</div>
+							<div className="col-xs-12 col-sm-6">
+								<h1 className="title">
+									<span className="title-desc">Track Best Suited For You:</span>
+									<div className="title-track-name">{recommendedTrack.name}</div>
+								</h1>
+								<div className="description" dangerouslySetInnerHTML={this.createMarkup(trackDetails.details || '')}/>
+								<div className="btn-wrap">
+									<a href="http://54.148.236.111//register/upgrade" target="_blank" className="btn btn-lg btn-icon btn-icon-icon"><span className="icon-update-sub" />Get Access</a>
+									<Link to="/edit-tracks" className="btn btn-lg btn-icon btn-icon-icon"><span className="icon-nav-links"/>Add Track</Link>
 								</div>
 							</div>
 						</div>
-					</div>
 				</div>
 			</ReactCSSTransitionGroup>
 		);

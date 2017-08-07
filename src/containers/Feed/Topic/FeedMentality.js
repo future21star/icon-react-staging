@@ -4,6 +4,7 @@ import {asyncConnect} from 'redux-async-connect';
 import {connect} from "react-redux";
 import {FeedPreviewPost, FeedLoadMore} from '../../../components';
 import {load as loadFeeds, isLoaded as isFeedLoaded} from "../../../redux/modules/feedStore";
+import checkAccessLevel from '../../HOC/CheckAccessLevel';
 
 @asyncConnect([{
 	promise: ({store: {dispatch, getState}}) => {
@@ -16,6 +17,8 @@ import {load as loadFeeds, isLoaded as isFeedLoaded} from "../../../redux/module
 		return Promise.all(promises);
 	}
 }])
+
+@checkAccessLevel('feed')
 
 @connect(
 	state => ({
@@ -54,7 +57,7 @@ export default class FeedMentality extends Component {
 							</div>
 						)
 					})}
-					<div className="clearfix" />
+					<div className="clearfix"/>
 					<FeedLoadMore
 						loading={loading}
 						allPagesLoaded={mentalityAllPagesCompleted}

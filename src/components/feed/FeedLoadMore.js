@@ -17,9 +17,7 @@ export default class FeedLoadMore extends Component {
 						<span className="icon-loading" />
 						{loading ? 'Loading...' : 'Load More'}
 					</button>
-					: 
-					undefined
-				}
+				 : undefined}
 			</div>
 		);
 	}

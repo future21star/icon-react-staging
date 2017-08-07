@@ -25,26 +25,29 @@ export default class Step extends Component {
 				<div className="step-title">{stepTitle}</div>
 				<div className="step-content">{children}</div>
 				<div className="step-buttons">
-					<button className="btn btn-danger" onClick={goToPrevStep} disabled={currentStep < 1}>Previous</button>
-					{currentStep < 8 ? (
-						<button
-							className="btn btn-danger pull-right"
-							onClick={goToNextStep}
-							disabled={!currentStepAnswer}>
-							Next
-						</button>
-					) : (
-						<Link
-							className="btn btn-danger pull-right"
-							disabled={!currentStepAnswer}
-							to="/assessment/result">
-							Calculate
-						</Link>
-					)}
+					<div className="col-xs-6">
+						<button className="btn btn-lg btn-icon btn-icon-blue btn-icon-icon" onClick={goToPrevStep} disabled={currentStep < 1}><span className="icon-arrow-left" />Previous</button>
+					</div>
+					<div className="col-xs-6 text-right">
+						{currentStep < 8 ? (
+							<button
+								className="btn btn-lg btn-icon btn-icon-blue btn-icon-icon btn-icon-right"
+								onClick={goToNextStep}
+								disabled={!currentStepAnswer}>
+								<span className="icon-arrow-right" />
+								Next
+							</button>
+						) : (
+							<Link
+								className="btn btn-lg btn-icon btn-icon-blue btn-icon-icon btn-icon-right"
+								disabled={!currentStepAnswer}
+								to="/assessment/result">
+								<span className="icon-nutrition-calculator" />
+								Calculate
+							</Link>
+						)}
+					</div>
 				</div>
-				<Link to="/assessment" className="step-close-button">
-					<span className="icon icon-close"/>
-				</Link>
 			</div>
 		);
 	}

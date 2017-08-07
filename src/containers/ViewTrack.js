@@ -36,7 +36,8 @@ import {
 	state => ({
 		allTracks: state.allTracksStore.allTracks,
 		selectedTracks: state.selectedTracksStore.selectedTracks,
-		vaultAccess: state.authStore.user.vaultAccess
+		vaultAccess: state.authStore.user.vaultAccess,
+		subscription: state.authStore.user.subscription
 	}),
 	{addAsOnlyTrack, addToTrackList, removeTrack}
 )
@@ -54,12 +55,16 @@ export default class ViewTrack extends Component {
 		this.props.removeTrack(this.props.params.name);
 	};
 
+	createMarkup = (html) => {
+		return {__html: html};
+	};
+
 	render() {
 		const {vaultAccess} = this.props;
 
 		let accessOfProgrammingType = null;
 		if (includes(vaultAccess, 'programming-all')) accessOfProgrammingType = 'programming-all';
-		else if (includes(vaultAccess, 'programming-single')) accessOfProgrammingType = 'programming-single';
+		else if (includes(vaultAccess, 'programming-lifestyle')) accessOfProgrammingType = 'programming-lifestyle';
 		else if (includes(vaultAccess, 'programming-masters')) accessOfProgrammingType = 'programming-masters';
 
 		return (
@@ -81,8 +86,11 @@ export default class ViewTrack extends Component {
 						backButton={true}
 					/>
 
-					{accessOfProgrammingType ? this.renderViewTrack(accessOfProgrammingType) :
-						<NoAccessSubscriptionUpgradeCard permissionName={accessOfProgrammingType}/>}
+					{
+						accessOfProgrammingType
+							? this.renderViewTrack(accessOfProgrammingType)
+							: <NoAccessSubscriptionUpgradeCard permissionName='programming-lifestyle'/>
+					}
 
 				</div>
 			</ReactCSSTransitionGroup>
@@ -114,39 +122,21 @@ export default class ViewTrack extends Component {
 					<div className="col-sm-12 col-md-6 full-height edit-tracks-mid-section--wrapper">
 						<div className="view-track-mid-section">
 							<h1 className="title">{track.name}</h1>
-							<h3 className="sub-title">
-								Seeking for adventure out your door?
-							</h3>
-							<p>
-								Warm Up, Workout, Goals for each session, and
-								Cool Down/Accessory work are always included.
-							</p>
-							<p>
-								Sessions last no more than one hour so you can
-								put your increased fitness to use outside the
-								confines of the gym. Icon ambassadors that are
-								professionals in other sports or adventure seekers
-								need more time outside opf the gym.
-							</p>
-							{accessOfProgrammingType === 'programming-all' ? this.renderButtonsForProgrammingAll(selectedTrackIsSubscribed) : undefined}
-							{accessOfProgrammingType === 'programming-single' ? this.renderButtonsForProgrammingSingle(selectedTrackIsSubscribed) : undefined}
-							{accessOfProgrammingType === 'programming-masters' ? this.renderButtonsForProgrammingMasters(selectedTrackIsSubscribed) : undefined}
-
-							{accessOfProgrammingType === 'all' ? this.renderButtonsForProgrammingAll(selectedTrackIsSubscribed) : undefined}
-							{accessOfProgrammingType === 'single' ? this.renderButtonsForProgrammingSingle(selectedTrackIsSubscribed) : undefined}
-							{accessOfProgrammingType === 'masters' ? this.renderButtonsForProgrammingMasters(selectedTrackIsSubscribed) : undefined}
-					</div>
+							<div dangerouslySetInnerHTML={this.createMarkup(track.details)}/>
 						</div>
-
+						{accessOfProgrammingType === 'programming-all' ? this.renderButtonsForProgrammingAll(selectedTrackIsSubscribed) : undefined}
+						{accessOfProgrammingType === 'programming-lifestyle' ? this.renderButtonsForProgrammingLifeStyle(selectedTrackIsSubscribed) : undefined}
+						{accessOfProgrammingType === 'programming-masters' ? this.renderButtonsForProgrammingMasters(selectedTrackIsSubscribed) : undefined}
+					</div>
 				</div>
 			</div>
 		);
 	}
 
 
-
-	renderButtonsForProgrammingSingle(selectedTrackIsSubscribed) {
+	renderButtonsForProgrammingLifeStyle(selectedTrackIsSubscribed) {
 		let visibleTrackStartsWithMasters = startsWith(this.props.params.name, 'masters');
+		const {subscription} = this.props;
 
 		return (
 			<div>
@@ -159,7 +149,6 @@ export default class ViewTrack extends Component {
 					/> : undefined}
 
 				{!selectedTrackIsSubscribed && visibleTrackStartsWithMasters ?
-
 					<NoAccessSubscriptionUpgradeButton
 						classNames="btn btn-block btn-lg btn-fixed-bottom btn-turquoise btn-font-lg"
 						title="Update Subscription"
@@ -167,12 +156,20 @@ export default class ViewTrack extends Component {
 					/> : undefined
 				}
 
-				{!selectedTrackIsSubscribed && !visibleTrackStartsWithMasters ?
+				{!selectedTrackIsSubscribed && (parseInt(subscription.subscription_id) === 2 || parseInt(subscription.subscription_id) === 3) && !visibleTrackStartsWithMasters && this.props.params.name === 'lifestyle' ?
 					<BtnBottom
 						classNames="btn btn-block btn-lg btn-icon btn-icon-blue btn-icon-icon"
 						title="Add Track"
 						icon={<span className="icon-nav-links"/>}
 						onClick={this.addAsOnlyTrack}
+					/> : undefined
+				}
+
+				{!selectedTrackIsSubscribed && (parseInt(subscription.subscription_id) === 2 || parseInt(subscription.subscription_id) === 3) && !visibleTrackStartsWithMasters && this.props.params.name !== 'lifestyle' ?
+					<NoAccessSubscriptionUpgradeButton
+						classNames="btn btn-block btn-lg btn-fixed-bottom btn-turquoise btn-font-lg"
+						title="Update Subscription"
+						icon={<span className="icon-update-sub"/>}
 					/> : undefined
 				}
 			</div>

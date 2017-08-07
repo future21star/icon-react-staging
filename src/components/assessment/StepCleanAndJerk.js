@@ -47,7 +47,7 @@ export default class StepCleanAndJerk extends Component {
 
 		return (
 			<Step stepTitle="Clean & Jerk">
-				<form>
+				<form className="form-select">
 					<select className="form-control" onChange={e => setAnswer(e.target.value)} value={answer}>
 						{this.answerOptions[gender].map((item, i) => {
 							return <option value={item.value} key={i}>{item.label}</option>

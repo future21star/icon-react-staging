@@ -56,7 +56,7 @@ export default class StepPullingPushing extends Component {
 			<Step stepTitle="Pulling/Pushing">
 				<p>Please select the last option you were able to complete</p>
 
-				<form className="text-left text-normalcase">
+				<form className="text-left text-normalcase form-radio">
 					{this.answerOptions.map((item, i) => {
 						return (
 							<div className="radio" key={i}>
@@ -67,7 +67,8 @@ export default class StepPullingPushing extends Component {
 										value={item.value}
 										checked={answer === item.value}
 										onChange={e => setAnswer(e.target.value)}
-									/> {item.label}
+									/> 
+									<p className="input-label">{item.label}</p>
 								</label>
 							</div>
 						)

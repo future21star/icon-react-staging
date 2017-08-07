@@ -4,11 +4,14 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {connect} from "react-redux";
 import {Menubar} from '../../components/index';
 import {Link} from "react-router";
+import CheckAccessLevel from '../HOC/CheckAccessLevel'
 
 @connect(
 	state => ({}),
 	{}
 )
+
+@CheckAccessLevel('assessment')
 
 export default class AssessmentLanding extends Component {
 
@@ -24,13 +27,13 @@ export default class AssessmentLanding extends Component {
 				transitionLeaveTimeout={500}
 			>
 				<div className="assessment-landing-wrapper bottom-padding">
-					<Helmet title="Icon Assessment"/>
+					<Helmet title="Assessment"/>
 
-					<Menubar title="Icon Athlete Vault" className="text-white"/>
+					<Menubar 
+						title="Icon Assessment" 
+					/>
 
 					<div className="container">
-
-						<h1 className="page-title">Icon Assessment</h1>
 						<div className="page-description">
 							Use the Icon Assessment to figure out what programming route is best suited for you. Complete the workouts
 							in each of the 6 categories, then click the calculate button to enter your results.

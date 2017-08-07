@@ -1,40 +1,41 @@
 .assessment-result-wrapper {
   color: $white;
   background-size: cover;
-  height: 100vh;
-  background-position: center center;
-  position: fixed;
-  left: 0;
-  right: 0;
+  min-height: calc(100vh - 102px);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  padding-bottom: 120px;
 
-  &:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-image: linear-gradient(to top left, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8));
-    opacity: .8;
+  .overlay-gradient{
+    opacity: .7;
   }
 
-  .assessment-result {
-    height: 100%;
-    overflow: scroll;
-    padding: 20px 0 50px;
+  .chart-wrapper{
+    max-width: 550px;
+    margin: 0 auto 15px;
   }
 
-  .recommended-track, .recommended-track-name {
+  .title, .title-track-name {
     text-align: center;
     font-size: 2em;
     font-family: 'Lato', sans-serif;
   }
-  .recommended-track-name {
+
+  .title-desc{
+    display: block;
+  }
+  .title-track-name {
     font-weight: 600;
     text-transform: uppercase;
   }
 
-  .recommended-track-description {
+  .description {
     font-size: 1.3em;
+    line-height: 1.2em;
+    margin-bottom: 20px;
+  }
+  .btn-wrap{
+    text-align: center;
   }
 }

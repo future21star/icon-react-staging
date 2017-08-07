@@ -19,10 +19,11 @@ export default class NoAccessSubscriptionUpgradeCard extends Component {
 		super(props);
 
 		let subscriptionName = null;
-		if (this.props.permissionName === 'nutrition') subscriptionName = 'Nutrition';
-		else if (this.props.permissionName === 'feed') subscriptionName = 'Max';
-		else if (this.props.permissionName === 'programming-single') subscriptionName = 'Base';
-		else if (this.props.permissionName === 'programming-all') subscriptionName = 'Max';
+		if (this.props.permissionName === 'assessment') subscriptionName = 'Assessment';
+		else if (this.props.permissionName === 'feed') subscriptionName = 'Unity';
+		else if (this.props.permissionName === 'programming-lifestyle') subscriptionName = 'Unity';
+		else if (this.props.permissionName === 'nutrition') subscriptionName = 'Individual + Nutrition';
+		else if (this.props.permissionName === 'programming-all') subscriptionName = 'Individual';
 		else if (this.props.permissionName === 'programming-masters') subscriptionName = 'Masters';
 
 		this.state = {
@@ -32,7 +33,7 @@ export default class NoAccessSubscriptionUpgradeCard extends Component {
 
 	render() {
 		const {jwtToken, wpUserId, username, routing} = this.props;
-		const formActionUrl = 'http://54.148.236.111/register';
+		const formActionUrl = 'http://54.148.236.111/register/upgrade';
 
 		let redirectUrl = null;
 		if (process.env.NODE_ENV !== 'production') {

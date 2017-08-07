@@ -48,7 +48,7 @@ export default class StepBackSquat extends Component {
 		return (
 			<Step stepTitle="Back Squat">
 				<p>Please select the weight you got closest to, if you are inbetween please select the lower option.</p>
-				<form>
+				<form className="form-select">
 					<select className="form-control" onChange={e => setAnswer(e.target.value)} value={answer}>
 						{this.answerOptions[gender].map((item, i) => {
 							return <option value={item.value} key={i}>{item.label}</option>

@@ -30,7 +30,7 @@ export default class PodcastFloatingPlayerButton extends Component {
 				>
 					<div className="podcast-player-button">
 						<Link to="/podcast-player" className="btn-filter-feed">
-							<span className="fa fa-pause"/>
+							<span className="icon icon-play"/>
 						</Link>
 					</div>
 				</ReactCSSTransitionGroup>

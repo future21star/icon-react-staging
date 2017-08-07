@@ -5,9 +5,6 @@ body {
   font-size: 16px;
 }
 
-.btn:hover, .btn:focus, .btn.focus {
-  color: #fff;
-}
 .desktop-disable-scrolling {
   overflow: hidden !important;
 }
@@ -131,7 +128,7 @@ body {
 }
 
 .menu-head-buffer {
-  padding-top: 20px;
+  padding-top: 77px;
 }
 
 .container-small {
@@ -156,6 +153,33 @@ body {
     top: 0;
    
   }
+}
+
+.inline-list{
+  list-style:none;
+  padding-left: 0;
+
+  li{
+    display: inline-block;
+  }
+}
+
+.cancel-membership-wrapper{
+  position: absolute;
+  right: 15px;
+  top: 20px;
+
+  button{
+    background: transparent !important;
+    border: none;
+    color: $greyDark;
+  }
+}
+
+.btn-cancel{
+  background-color: transparent !important;
+  color: $greyDark;
+  
 }
 
 /******************************
