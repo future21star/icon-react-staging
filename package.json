@@ -62,7 +62,7 @@
       }
     },
     "build": {
-      "command": "webpack --verbose --colors --display-error-details --config webpack/prod.config.js",
+      "command": "node --max_old_space_size=800 ./node_modules/webpack/bin/webpack.js --verbose --colors --display-error-details --config webpack/prod.config.js",
       "env": {
         "NODE_ENV": "production"
       }
