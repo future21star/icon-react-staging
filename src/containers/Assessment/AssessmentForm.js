@@ -42,22 +42,14 @@ export default class AssessmentForm extends Component {
 				<div className="assessment-form-container bottom-padding">
 					<Helmet title="Assessment - Calculate"/>
 
-					<Menubar 
-					title="Icon Assessment"
-					backButton={true}/>
+					<Menubar
+						title="Icon Assessment"
+						backButton={true}/>
 					<div className="container container-small">
 						<h1 className="assessment-form-title">Calculate Your Track</h1>
 						<div className="assessment-form-wrapper">
-							<ul className="assessment-steps-list inline-list">
-								<li>1</li>
-								<li>2</li>
-								<li className="active">3</li>
-								<li>4</li>
-								<li>5</li>
-								<li>6</li>
-								<li>7</li>
-								<li>8</li>								
-							</ul>
+							{this.renderSteps()}
+
 							{currentStep === 0 && <StepGender/>}
 							{currentStep === 1 && <StepBackSquat/>}
 							{currentStep === 2 && <Step5k/>}
@@ -71,6 +63,18 @@ export default class AssessmentForm extends Component {
 					</div>
 				</div>
 			</ReactCSSTransitionGroup>
+		);
+	}
+
+	renderSteps() {
+		const {currentStep} = this.props;
+
+		return (
+			<ul className="assessment-steps-list inline-list">
+				{[1, 2, 3, 4, 5, 6, 7, 8].map(i => {
+					return <li key={i} className={currentStep === i ? "active" : ""}>{i}</li>
+				})}
+			</ul>
 		);
 	}
 }
