@@ -9,6 +9,7 @@
 6. Run `git pull origin master` (You know it already)
 7. Enter username and password of your github account
 8. Run `npm install` (Installing new modules and building the app)
+8.5. Run `npm run build` if server fails
 9. Run `sudo service mysqld start` (Starting the mysql server)
 10. Run `node_modules/.bin/sequelize db:migrate:undo:all --env production` (Dumping the database)
 11. Run `node_modules/.bin/sequelize db:migrate --env production` (Importing the database)
