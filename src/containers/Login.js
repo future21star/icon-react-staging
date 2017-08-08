@@ -66,10 +66,6 @@ export default class Login extends Component {
 				<ErrorMessage error={loginStore.error}/>
 				<SuccessMessage success={loginStore.success}/>
 				<form className="login-page--login-form" onSubmit={this.handleSubmit}>
-					<div className="form-group block">
-						<FacebookButton/>
-					</div>
-
 					<div className="form-group block input-effect">
 						<div className="input-group">
 							<input type="email" ref="email" className="form-control" placeholder="Your Email"/>

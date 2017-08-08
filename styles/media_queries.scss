@@ -36,7 +36,10 @@
   }
 
   .full-height-header{
-    min-height: calc(100vh - 46px);
+    min-height: calc(100vh - 49px);
+  }
+  .full-height-menu-header{
+    min-height: calc(100vh - 99px)
   }
 
   /*
@@ -126,6 +129,18 @@
   */
   .assessment-result-wrapper {
     background-attachment: scroll;
+  }
+  /*
+  FAQ
+  */
+  .faq-single-container{
+
+    .row .col-md-4:nth-child(3n + 1){
+      clear:none;
+    }
+    .row .col-md-4:nth-child(2n + 1){
+      clear:left;
+    }
   }
 }
 

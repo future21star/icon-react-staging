@@ -87,28 +87,28 @@ export default class FaqSingle extends Component {
 							backButton={true}
 						/>
 
-						<div className="container">
+						<div className="container-fluid full-height-menu-header faq-single-container menu-head-buffer">
 							<div className="row">
-								<div className="col-xs-12">
-									<div className="faq-single">
-										{activeFaq.faqs.map((faq, i) => {
-											return (
-												<div className="panel-group" key={i}>
-													<div className="panel panel-default">
-														<div className="panel-heading gradient-red">
-															<h4 className="panel-title" onClick={e => this.toggleActiveFaqItemId(faq.id)}>
-																{faq.faq_question}
-															</h4>
-														</div>
-														<div className={`panel-collapse collapse ${activeFaqItemId === faq.id ? 'in' : ''}`}>
-															<div className="panel-body" dangerouslySetInnerHTML={this.createMarkup(faq.faq_answer)}/>
-														</div>
+								{activeFaq.faqs.map((faq, i) => {
+									return (
+									<div className="col-xs-12 col-sm-6 col-md-4">
+										<div className="faq-single">
+											<div className="panel-group" key={i}>
+												<div className="panel panel-default">
+													<div className="panel-heading">
+														<h4 className="panel-title" onClick={e => this.toggleActiveFaqItemId(faq.id)}>
+															{faq.faq_question}
+														</h4>
+													</div>
+													<div className={`panel-collapse collapse ${activeFaqItemId === faq.id ? 'in' : ''}`}>
+														<div className="panel-body" dangerouslySetInnerHTML={this.createMarkup(faq.faq_answer)}/>
 													</div>
 												</div>
-											);
-										})}
+											</div>
+										</div>
 									</div>
-								</div>
+									);
+								})}
 							</div>
 						</div>
 					</div>

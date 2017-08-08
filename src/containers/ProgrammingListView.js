@@ -90,7 +90,7 @@ export default class ProgrammingListView extends Component {
 				transitionLeave={true}
 				transitionLeaveTimeout={500}
 			>
-				<div className="programming-page-list-view-wrapper-desktop hidden-xs hidden-sm" key="programming-list-view">
+				<div className="programming-page-list-view-wrapper-desktop" key="programming-list-view">
 
 					<Helmet title="Programming"/>
 
@@ -100,34 +100,36 @@ export default class ProgrammingListView extends Component {
 						title="List View"
 						className="menu-color-white menu-bar-red"
 					/>
-					{selectedTracks.length ?
-						<DesktopListWorkoutHeader
-							tracks={selectedTracks}
-							onSelectTrack={this.selectTrack}
-						/> : <h3 className="text-center">Please select your track first</h3>
-					}
+					<div className="full-height-menu-header-scroll overflow-custom-scroll">
+						{selectedTracks.length ?
+							<DesktopListWorkoutHeader
+								tracks={selectedTracks}
+								onSelectTrack={this.selectTrack}
+							/> : <h3 className="text-center">Please select your track first</h3>
+						}
 
-					<div className="tracks-list-view-container-wrapper-desktop">
-						<div className="tracks-list-view-container-desktop">
+						<div className="tracks-list-view-container-wrapper-desktop">
+							<div className="tracks-list-view-container-desktop">
 
 
-							{wodsStore.loading || !wods[this.state.selectedTrack] ? undefined :
-								<div className="container-fluid">
-									{Object.keys(wods[this.state.selectedTrack]).map((key, i) => {
-										return (
-											<div key={i}>
-												<DesktopListWorkoutContainer
-													wod={wods[this.state.selectedTrack][key]}
-												/>
-											</div>
-										)
-									})}
-								</div>
-							}
-							{wods[this.state.selectedTrack] && Object.keys(wods[this.state.selectedTrack]).length === 0
-								? <p>Nothing found</p>
-								: undefined
-							}
+								{wodsStore.loading || !wods[this.state.selectedTrack] ? undefined :
+									<div className="container-fluid">
+										{Object.keys(wods[this.state.selectedTrack]).map((key, i) => {
+											return (
+												<div key={i}>
+													<DesktopListWorkoutContainer
+														wod={wods[this.state.selectedTrack][key]}
+													/>
+												</div>
+											)
+										})}
+									</div>
+								}
+								{wods[this.state.selectedTrack] && Object.keys(wods[this.state.selectedTrack]).length === 0
+									? <p>Nothing found</p>
+									: undefined
+								}
+							</div>
 						</div>
 					</div>
 				</div>

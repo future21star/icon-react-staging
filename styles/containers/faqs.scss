@@ -1,7 +1,16 @@
 .faq-category {
+	background-color: $red;
 	text-align: center;
+	min-height: 245px;
+
+	@include transition(.3s ease background-color);
+
+	&:hover{
+		background-color: $redDark;
+	}
 	a {
 		color: $white!important;
+		outline: none !important;
 	}
 
 	.faq-category-title {
@@ -18,19 +27,23 @@
 	}
 }
 
-.faq-single {
-	padding: 10px 0;
+.faq-single-container{
+	background-color: $greyLight;
 
-	.panel-default > .panel-heading {
-		color: $white;
-	    border-color: $redDark;
-	    padding: 15px;
+	.row .col-md-4:nth-child(3n + 1){
+		clear:left;
 	}
-
+}
+.faq-single {
+	.panel-heading{
+		padding: 10px 15px;
+		background-color: $whiteDark;
+	}
 	.panel-title {
+		color: $turquoise;
 		cursor: pointer;
-	    font-size: 1.3em;
-	    font-family: "Lato", sans-serif;
-	    font-weight: 600;
+		font-family: "Lato", sans-serif;
+	    font-size: 1.1em;
+	    font-weight: 400;
 	}
 }
