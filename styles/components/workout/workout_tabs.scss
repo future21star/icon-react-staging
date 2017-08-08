@@ -1,71 +1,17 @@
-.workout-tabs {
-
-  .workout-tabs-list-wrapper {
-    .container {
-      padding-left: 5px;
-      padding-right: 5px;
-    }
+.workout-tabs-nav{
+  padding: 10px 5px !important;
+  a{
+    padding: 10px 0 !important;
   }
 
-  .nav-tabs {
-    border-bottom: 1px solid $whiteDark !important;
-
-    li {
-
-      a {
-        padding: 0 4px;
-        margin: 0;
-        font-family: 'Oswald', sans-serif;
-        letter-spacing: 1px;
-        line-height: 1em;
-        background-color: transparent;
-        color: $grey;
-        border: none !important;
-
-        @include transition(.3s ease all);
-
-        &:hover{
-          background: transparent;
-        }
-      }
-
-    }
+  a:focus, .active-black{
+    background-color: $white !important;
+    color: $black !important;
   }
-  .nav-justified > li {
-    display: table-cell;
-    width: 1%;
-    color: $greyLight;
-    min-width: 35px;
-    min-height: 50px;
-    padding: 18px 0;
 
-    &:after {
-      content: "";
-      height: 25px;
-      position: absolute;
-      width: 1px;
-      right: 0;
-      top: 13px;
-      display: inline-block;
-      background-color: $greyLight;
+  .col-xs-4:first-child{
+      padding-left: 0 !important;
     }
-
-    &:last-child:after {
-      display: none;
-    }
-
-  }
-  // .nav-justified > li > a, .nav-tabs.nav-justified > li > a {
-  //   margin-bottom: 1px;
-  //   border-bottom: none;
-  // }
-  // .nav-justified
-  // .nav > li > a:hover, .nav > li > a:focus {
-  //   background-color: transparent;
-  // }
-  .active-black {
-    color: $blackLight !important;
-  }
 }
 
 .workout-tabs-list {
@@ -79,9 +25,12 @@
     width: 100%;
     .list-number {
       font-family: 'Oswald', sans-serif;
-      background: #5dc7d4;
-      color: white;
-      padding: 6px 10px 8px 10px;
+      background: $turquoise;
+      color: $white;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
       border-radius: 50%;
       margin-right: 15px;
     }

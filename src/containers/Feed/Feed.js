@@ -48,7 +48,7 @@ export default class Feed extends Component {
 
 					{browser.is.mobile && (
 						<Menubar
-							className="menu-color-white"
+							className="menu-bar-white"
 							title="Feed"
 							leftSideContent={<Link to="/profile"><span className="icon-user-profile"/><span className="mobile-hide">Profile</span></Link>}
 							rightSideContent={
@@ -60,7 +60,7 @@ export default class Feed extends Component {
 					)}
 
 					<div className={`${browser.is.mobile ? 'feed-content-wrapper' : 'feed-content-wrapper-desktop'}`}>
-						<div className={`${browser.is.mobile ? '' : 'container-fluid container-fluid-full'}`}>
+						<div className={`${browser.is.mobile ? 'container-fluid' : 'container-fluid container-fluid-full'}`}>
 							<FeedHeader/>
 						</div>
 

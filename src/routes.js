@@ -79,6 +79,9 @@ export default (store) => {
 					<Route path="assessment/workouts" component={containers.AssessmentWorkouts}/>
 					<Route path="assessment/form" component={containers.AssessmentForm}/>
 					<Route path="assessment/result" component={containers.AssessmentResult}/>
+					
+					<Route path="faqs" component={containers.FaqsLanding}/>
+					<Route path="faqs/:slug" component={containers.FaqSingle}/>
 				</Route>
 				{/*logged in view without bottom nav*/}
 				<Route path="workout/:trackName/:id" component={containers.WorkOutMode}/>

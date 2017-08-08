@@ -1,10 +1,6 @@
 @import "variables";
 @import "mixins";
 
-body {
-  font-size: 16px;
-}
-
 .desktop-disable-scrolling {
   overflow: hidden !important;
 }
@@ -113,6 +109,14 @@ body {
   color: $white;
 }
 
+.overlay-dark{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.7);
+}
 .overlay-gradient, .overlay-gradient-absolute {
   background-image: linear-gradient(0deg, rgb(93, 199, 211) 0%, rgb(163, 8, 55) 99%);
   opacity: 0.9;
@@ -135,6 +139,10 @@ body {
   max-width: 550px;
   margin: 0 auto;
 }
+
+.full-height-header{
+  min-height: calc(100vh - 102px);
+} 
 
 .avatar {
   width: 120px;
@@ -165,14 +173,13 @@ body {
 }
 
 .cancel-membership-wrapper{
-  position: absolute;
-  right: 15px;
-  top: 20px;
+  margin-top: 20px;
+  display: block;
 
   button{
     background: transparent !important;
     border: none;
-    color: $greyDark;
+    color: $grey;
   }
 }
 
@@ -180,6 +187,60 @@ body {
   background-color: transparent !important;
   color: $greyDark;
   
+}
+/******************************
+TABS
+******************************/
+.assessment-tabs-nav{
+  text-align: center;
+  background-color: $greyLight;
+  padding: 10px;
+  .col-xs-12, .col-xs-4{
+    padding: 0 5px;
+  }
+  a{
+    display: block;
+    padding: 20px 0;
+    background-color: $white;
+    font-weight: 700;
+    color: $grey;
+    text-decoration: none !important;
+
+    @include transition(.3s ease color, .3s ease background-color);
+
+    &:hover{
+      color: $greyDark;
+      background-color: $greyLight;
+    }
+  }
+  .active a, a:focus{
+    color: $white;
+    background-color: $turquoise;
+    outline: none;
+  }
+}
+
+.assessment-tabs-content{
+  background-color: $greyLight;
+  .row{
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .assessment-section-bg{
+    margin-bottom: 30px;
+    background-color: $white;
+
+    & > div{
+      padding: 30px 15px;
+    }
+    h2{
+      text-align: center;
+      margin: 0;
+      padding: 10px 0;
+      border-bottom: 1px solid $grey;
+      background-color: $grey;
+    }
+  }
 }
 
 /******************************

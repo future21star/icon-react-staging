@@ -1,0 +1,27 @@
+.assessment-workout-wrapper, .assessment-video-wrapper{
+	h2{
+		color: $white;
+	}
+	span[class^="icon-"]{
+		font-size: .9em;
+		margin-right: 5px;
+		vertical-align: top;
+		color: rgba(0,0,0,.2);
+	}
+
+}
+.assessment-workout-wrapper{
+	h2{
+		background-color: $red !important;
+	}
+
+	h3{
+		margin-top: 0;
+	}
+}
+
+.assessment-video-wrapper{
+	h2{
+		background-color: $turquoise !important;
+	}
+}

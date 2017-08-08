@@ -66,33 +66,48 @@ export default class AssessmentWorkouts extends Component {
 				transitionLeaveTimeout={500}
 			>
 				<div className="assessment-landing-wrapper bottom-padding">
-					<Helmet title="Assessment Workouts"/>
+					<Helmet title="Assessment - Workouts"/>
 
 					<Menubar 
-						title="Assessment Workouts"
+						title="Assessment - Workouts"
+						className="menu-bar-white"
+						backButton={true}
 					/>
-
-					<div className="container">
-						<br/>
-						<ul className="nav nav-pills nav-justified">
+					<div className="container-fluid">
+						<div className="assessment-tabs-nav row">
 							{workouts.map((workout, index) => {
 								return (
-									<li key={index} onClick={e => this.selectWorkout(workout)} className={selectedWorkout.id === workout.id ? "active" : ""}>
+									<div key={index} onClick={e => this.selectWorkout(workout)} className={`col-xs-12 col-sm-6 col-md-2 ${selectedWorkout.id === workout.id ? "active" : ""}`}>
 										<a href="javascript:;">{workout.title.rendered}</a>
-									</li>
+									</div>
 								);
 							})}
-						</ul>
-
-						<h2>Description</h2>
-						<div dangerouslySetInnerHTML={this.createMarkup(selectedWorkout.assessment_description)}/>
-
-						<h2>Test</h2>
-						<div dangerouslySetInnerHTML={this.createMarkup(selectedWorkout.assessment_workout)}/>
-
-						<h2>Video</h2>
-						{selectedWorkout.assessment_video && <div dangerouslySetInnerHTML={this.createMarkup(selectedWorkout.assessment_video)}/>}
+						</div>
 					</div>
+
+					<div className="container-fluid assessment-tabs-content">
+						<div className="row">
+							<div className="col-xs-12 col-sm-12 col-md-4">
+								<div className="assessment-section-bg">
+									<h2>Description</h2>
+									<div dangerouslySetInnerHTML={this.createMarkup(selectedWorkout.assessment_description)}/>
+								</div>
+							</div>
+							<div className="col-xs-12 col-sm-6 col-md-4 assessment-workout-wrapper">
+								<div className="assessment-section-bg">
+									<h2><span className="icon-user-mentality"/>Workout</h2>
+									<div dangerouslySetInnerHTML={this.createMarkup(selectedWorkout.assessment_workout)}/>
+								</div>
+							</div>
+							<div className="col-xs-12 col-sm-6 col-md-4 assessment-video-wrapper">
+								<div className="assessment-section-bg">
+									<h2><span className="icon-feed-video"/>Instructional Help</h2>
+									{selectedWorkout.assessment_video && <div dangerouslySetInnerHTML={this.createMarkup(selectedWorkout.assessment_video)}/>}
+								</div>
+							</div>
+						</div>	
+					</div>
+
 				</div>
 			</ReactCSSTransitionGroup>
 		);

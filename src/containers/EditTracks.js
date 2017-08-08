@@ -84,22 +84,59 @@ export default class EditTracks extends Component {
 	}
 
 	renderEditTracks(accessOfProgrammingType) {
+		if (accessOfProgrammingType === 'programming-masters') {
+			return this.renderMastersTracks();
+		} else {
+			return this.renderWithoutMastersTracks();
+		}
+	}
+
+	renderWithoutMastersTracks() {
 		let {selectedTracks, allTracks} = this.props;
 
-
-		if (accessOfProgrammingType === 'programming-masters') {
-			// find only masters tracks
-			allTracks = allTracks.filter(track => {
-				// ids of masters tracks
-				if (includes([5, 6, 7, 8, 9, 10], track.id)) return track;
-			});
-		}
+		// find without masters tracks
+		let withoutMasterTracks = allTracks.filter(track => {
+			// ids of masters tracks
+			if (includes([1,2,3,4], track.id)) return track;
+		});
 
 		return (
 			<div className="edit-tracks-list-wrapper bottom-padding">
 				<div className="container">
 					<div className="row">
-						{allTracks.map((track, i) => {
+						{withoutMasterTracks.map((track, i) => {
+							return (
+								<div className="col-xs-12 col-sm-6 col-md-4" key={i}>
+									<div className="thumbnail">
+										<EditTracksBanner
+											track={track}
+											selectedTracks={selectedTracks}
+										/>
+										<Link to={`/edit-tracks/${track.name}`} className="btn-absolute">Details</Link>
+									</div>
+								</div>
+							);
+						})}
+					</div>
+				</div>
+			</div>
+		);
+	}
+
+	renderMastersTracks() {
+		let {selectedTracks, allTracks} = this.props;
+
+		// find only masters tracks
+		let masterTracks = allTracks.filter(track => {
+			// ids of masters tracks
+			if (includes([5, 6, 7, 8, 9, 10], track.id)) return track;
+		});	
+
+		return (
+			<div className="edit-tracks-list-wrapper bottom-padding">
+				<div className="container">
+					<div className="row">
+						{masterTracks.map((track, i) => {
 							return (
 								<div className="col-xs-12 col-sm-6 col-md-4" key={i}>
 									<div className="thumbnail">

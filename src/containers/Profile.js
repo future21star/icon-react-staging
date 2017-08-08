@@ -7,8 +7,9 @@ import {
 	ProfileHeader,
 	SubscriptionUpgradeCard,
 	EditProfileCard,
-	EditBillingInformation
-} from '../components/index';
+	EditBillingInformation,
+	CancelMembershipModal
+} from '../components';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {connect} from "react-redux";
 
@@ -19,6 +20,20 @@ import {connect} from "react-redux";
 export default class Profile extends Component {
 	static propTypes = {
 		user: PropTypes.object
+	};
+
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			showCancelMembershipModal: false
+		}
+	}
+
+	toggleCancelMembershipModal = () => {
+		this.setState({
+			showCancelMembershipModal: !this.state.showCancelMembershipModal
+		})
 	};
 
 	render() {
@@ -32,10 +47,15 @@ export default class Profile extends Component {
 		);
 
 		const extraButton = 	(
-				<a href="https://iconathlete.com/register/update-billing-card/"
-					 className="btn btn-lg btn-icon btn-icon-blue btn-icon-lg">
-					Edit Billing Information
-				</a>);
+				<div>
+					<a href="https://iconathlete.com/register/update-billing-card/"
+						 className="btn btn-lg btn-icon btn-icon-blue btn-icon-lg">
+						Edit Billing Information
+					</a>
+					<div className="cancel-membership-wrapper">
+						<button className="btn btn-default" type="button" onClick={this.toggleCancelMembershipModal}>Cancel Membership</button>
+					</div>
+				</div>);
 
 		return (
 			<ReactCSSTransitionGroup
@@ -59,14 +79,16 @@ export default class Profile extends Component {
 
 					<ProfileHeader user={user}/>
 
-					<div className="row">
-						<div className="col-md-6 col-xs-12">
+					<div className="row subscription-upgrade-card-wrapper">
+						<div className="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6">
 							<SubscriptionUpgradeCard
 							extraButton={extraButton}
 							/>
 						</div>
 					</div>
 				</div>
+
+				<CancelMembershipModal isShown={this.state.showCancelMembershipModal} onClose={this.toggleCancelMembershipModal}/>
 			</ReactCSSTransitionGroup>
 		);
 	}

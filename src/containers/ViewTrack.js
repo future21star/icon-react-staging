@@ -59,6 +59,70 @@ export default class ViewTrack extends Component {
 		return {__html: html};
 	};
 
+	getIcon(track) {
+		let trackIconClassName = track.iconUrl;
+
+		if (trackIconClassName === 'icon-track-dynamic') {
+			return (
+				<span className="icon-track-dynamic">
+					<span className="path1"/>
+					<span className="path2"/>
+					<span className="path3"/>
+					<span className="path4"/>
+					<span className="path5"/>
+					<span className="path6"/>
+					<span className="path7"/>
+					<span className="path8"/>
+				</span>
+			);
+		}
+
+		else if (trackIconClassName === 'icon-track-strength') {
+			return (
+				<span className="icon-track-strength">
+					<span className="path1"/>
+					<span className="path2"/>
+					<span className="path3"/>
+					<span className="path4"/>
+					<span className="path5"/>
+					<span className="path6"/>
+					<span className="path7"/>
+				</span>);
+		}
+
+		else if (trackIconClassName === 'icon-track-lifestyle') {
+			return (
+				<span className="icon-track-lifestyle">
+					<span className="path1"/>
+					<span className="path2"/>
+					<span className="path3"/>
+					<span className="path4"/>
+					<span className="path5"/>
+					<span className="path6"/>
+					<span className="path7"/>
+				</span>);
+		}
+
+		else if (trackIconClassName === 'icon-track-hyper') {
+			return (
+				<span className="icon-track-hyper">
+				<span className="path1"/>
+				<span className="path2"/>
+				<span className="path3"/>
+				<span className="path4"/>
+				<span className="path5"/>
+				<span className="path6"/>
+				<span className="path7"/>
+				<span className="path8"/>
+				<span className="path9"/>
+				<span className="path10"/>
+			</span>);
+		}
+		return (
+			<span className="fa fa-circle-o"/>
+		)
+	}
+
 	render() {
 		const {vaultAccess} = this.props;
 
@@ -121,6 +185,7 @@ export default class ViewTrack extends Component {
 					</div>
 					<div className="col-sm-12 col-md-6 full-height edit-tracks-mid-section--wrapper">
 						<div className="view-track-mid-section">
+							<div className="view-track-icon">{this.getIcon(track)}</div>
 							<h1 className="title">{track.name}</h1>
 							<div dangerouslySetInnerHTML={this.createMarkup(track.details)}/>
 						</div>
@@ -142,7 +207,7 @@ export default class ViewTrack extends Component {
 			<div>
 				{selectedTrackIsSubscribed ?
 					<BtnBottom
-						classNames="btn btn-block btn-lg btn-icon btn-icon-icon"
+						classNames="btn btn-block btn-lg btn-icon btn-icon-icon btn-fixed-mobile"
 						title="Remove Track"
 						icon={<span className="icon-trash"/>}
 						onClick={this.removeTrack}
@@ -158,7 +223,7 @@ export default class ViewTrack extends Component {
 
 				{!selectedTrackIsSubscribed && (parseInt(subscription.subscription_id) === 2 || parseInt(subscription.subscription_id) === 3) && !visibleTrackStartsWithMasters && this.props.params.name === 'lifestyle' ?
 					<BtnBottom
-						classNames="btn btn-block btn-lg btn-icon btn-icon-blue btn-icon-icon"
+						classNames="btn btn-block btn-lg btn-icon btn-icon-blue btn-icon-icon btn-fixed-mobile"
 						title="Add Track"
 						icon={<span className="icon-nav-links"/>}
 						onClick={this.addAsOnlyTrack}
@@ -183,7 +248,7 @@ export default class ViewTrack extends Component {
 			<div>
 				{selectedTrackIsSubscribed ?
 					<BtnBottom
-						classNames="btn btn-block btn-lg btn-icon btn-icon-icon"
+						classNames="btn btn-block btn-lg btn-icon btn-icon-icon btn-fixed-mobile"
 						title="Remove Track"
 						icon={<span className="icon-trash"/>}
 						onClick={this.removeTrack}
@@ -199,7 +264,7 @@ export default class ViewTrack extends Component {
 
 				{!selectedTrackIsSubscribed && !visibleTrackStartsWithMasters ?
 					<BtnBottom
-						classNames="btn btn-block btn-lg btn-icon btn-icon-blue btn-icon-icon"
+						classNames="btn btn-block btn-lg btn-icon btn-icon-blue btn-icon-icon btn-fixed-mobile"
 						title="Add Track"
 						icon={<span className="icon-nav-links"/>}
 						onClick={this.addToTrackList}
@@ -215,7 +280,7 @@ export default class ViewTrack extends Component {
 			<div>
 				{selectedTrackIsSubscribed ?
 					<BtnBottom
-						classNames="btn btn-block btn-lg btn-icon btn-icon-icon"
+						classNames="btn btn-block btn-lg btn-icon btn-icon-icon btn-fixed-mobile"
 						title="Remove Track"
 						icon={<span className="icon-trash"/>}
 						onClick={this.removeTrack}
@@ -223,7 +288,7 @@ export default class ViewTrack extends Component {
 
 				{!selectedTrackIsSubscribed && visibleTrackStartsWithMasters ?
 					<BtnBottom
-						classNames="btn btn-block btn-lg btn-icon btn-icon-blue btn-icon-icon"
+						classNames="btn btn-block btn-lg btn-icon btn-icon-blue btn-icon-icon btn-fixed-mobile"
 						title="Add Track"
 						icon={<span className="icon-nav-links"/>}
 						onClick={this.addAsOnlyTrack}

@@ -7,6 +7,7 @@ import {
 	WorkoutTabs,
 	RestDay,
 	DotList,
+	DesktopWorkout,
 	NoTracksFound
 } from '../components/index';
 import {Link} from "react-router";
@@ -166,7 +167,15 @@ export default class Home extends Component {
 							onSelectNextTrack={e => this.refs.homeSwipeRef.next()}
 							onSelectPrevTrack={e => this.refs.homeSwipeRef.prev()}
 						/>
-						<WorkoutTabs track={wodForThisTrackAndDate}/>
+						<div className="hidden-xs hidden-sm">
+							<DesktopWorkout 
+								track={wodForThisTrackAndDate}
+								dailyBriefContent={dailyBriefs[track.name]}
+							/>
+						</div>
+						<div className="hidden-md hidden-lg">
+							<WorkoutTabs track={wodForThisTrackAndDate}/>
+						</div>
 					</div>
 				) : undefined }
 

@@ -11,7 +11,7 @@ import {connect} from "react-redux";
 export default class MobileFeedTabs extends Component {
 	static renderLinkItem(uri, iconName, currentUri) {
 		return (
-			<li className={uri === currentUri ? 'active' : ''}><Link to={uri}><span className={iconName}/></Link></li>
+			<div className={uri === currentUri ? 'col-xs-4 active' : 'col-xs-4'}><Link to={uri}><span className={iconName}/></Link></div>
 		)
 	}
 
@@ -19,11 +19,11 @@ export default class MobileFeedTabs extends Component {
 		const currentUri = this.props.routing.locationBeforeTransitions.pathname;
 
 		return (
-			<ul className="nav nav-pills nav-justified feed-top-sub-nav">
+			<div className="assessment-tabs-nav feed-mobile-tabs-nav row">
 				{MobileFeedTabs.renderLinkItem('/feed', 'icon-feed-video', currentUri)}
 				{MobileFeedTabs.renderLinkItem('/feed/podcast', 'icon-feed-podcast', currentUri)}
 				{MobileFeedTabs.renderLinkItem('/feed/mentality', 'icon-user-mentality', currentUri)}
-			</ul>
+			</div>
 		);
 	}
 }
