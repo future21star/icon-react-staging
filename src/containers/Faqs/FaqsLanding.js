@@ -60,7 +60,7 @@ export default class FaqsLanding extends Component {
 							{faqs.map((faq, i) => {
 								return (
 									<div className="col-xs-12 col-md-6" key={i}>
-										<div className="faq-category">
+										<div className="faq-category gradient-red">
 											<Link to={`faqs/${faq.slug}`}>
 												<h2 className="faq-category-title">{faq.name}</h2>
 												<div className="faq-category-count"># of FAQ's: {faq.count}</div>

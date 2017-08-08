@@ -95,9 +95,9 @@ export default class FaqSingle extends Component {
 											return (
 												<div className="panel-group" key={i}>
 													<div className="panel panel-default">
-														<div className="panel-heading">
-															<h4 className="panel-title">
-																<a onClick={e => this.toggleActiveFaqItemId(faq.id)} href="javascript:;">{faq.faq_question}</a>
+														<div className="panel-heading gradient-red">
+															<h4 className="panel-title" onClick={e => this.toggleActiveFaqItemId(faq.id)}>
+																{faq.faq_question}
 															</h4>
 														</div>
 														<div className={`panel-collapse collapse ${activeFaqItemId === faq.id ? 'in' : ''}`}>
