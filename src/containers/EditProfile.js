@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
-import {Menubar, SuccessMessage, ErrorMessage, CancelMembershipModal} from '../components/index';
+import {Menubar, SuccessMessage, ErrorMessage} from '../components';
 import {Link} from "react-router";
 import Select from 'react-select';
 import {range} from "lodash";
@@ -41,23 +41,9 @@ export default class EditProfile extends Component {
 		editProfile: PropTypes.func.isRequired
 	};
 
-	constructor(props) {
-		super(props);
-
-		this.state = {
-			showCancelMembershipModal: false
-		}
-	}
-
 	componentDidMount() {
 		this.props.setAuthUserAsEditingUser(this.props.user);
 	}
-
-	toggleCancelMembershipModal = () => {
-		this.setState({
-			showCancelMembershipModal: !this.state.showCancelMembershipModal
-		})
-	};
 
 	genderOptions = [
 		{value: 'Yes', label: 'Male'},
@@ -276,8 +262,6 @@ export default class EditProfile extends Component {
 						</div>
 					</form>
 				</div>
-
-				<CancelMembershipModal isShown={this.state.showCancelMembershipModal} onClose={this.toggleCancelMembershipModal}/>
 			</ReactCSSTransitionGroup>
 		) : <div/>;
 	}

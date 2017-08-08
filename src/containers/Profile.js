@@ -7,8 +7,9 @@ import {
 	ProfileHeader,
 	SubscriptionUpgradeCard,
 	EditProfileCard,
-	EditBillingInformation
-} from '../components/index';
+	EditBillingInformation,
+	CancelMembershipModal
+} from '../components';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {connect} from "react-redux";
 
@@ -19,6 +20,20 @@ import {connect} from "react-redux";
 export default class Profile extends Component {
 	static propTypes = {
 		user: PropTypes.object
+	};
+
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			showCancelMembershipModal: false
+		}
+	}
+
+	toggleCancelMembershipModal = () => {
+		this.setState({
+			showCancelMembershipModal: !this.state.showCancelMembershipModal
+		})
 	};
 
 	render() {
@@ -72,6 +87,8 @@ export default class Profile extends Component {
 						</div>
 					</div>
 				</div>
+
+				<CancelMembershipModal isShown={this.state.showCancelMembershipModal} onClose={this.toggleCancelMembershipModal}/>
 			</ReactCSSTransitionGroup>
 		);
 	}
