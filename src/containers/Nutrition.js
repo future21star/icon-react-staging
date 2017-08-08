@@ -30,12 +30,11 @@ export default class Nutrition extends Component {
 				<div>
 					<Helmet title="Nutrition"/>
 
-					<Menubar title="Nutrition" className="gradient-blue"/>
+					<Menubar title="Nutrition"/>
 
 					<div className="container">
 						<div className="text-center">
-							<h2>You have access</h2>
-							<p>You have access to view nutrition page.</p>
+							<h2>Coming Soon</h2>
 						</div>
 					</div>
 				</div>

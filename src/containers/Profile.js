@@ -14,7 +14,11 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {connect} from "react-redux";
 
 @connect(
-	state => ({user: state.authStore.user}),
+	state => ({user: state.authStore.user,
+				jwtToken: state.authStore.user.jwtToken,
+				wpUserId: state.authStore.user.wpUserId,
+				username: state.authStore.user.username}),
+
 	{}
 )
 export default class Profile extends Component {
@@ -37,7 +41,8 @@ export default class Profile extends Component {
 	};
 
 	render() {
-		const {user} = this.props;
+		const {user, jwtToken, wpUserId, username,} = this.props;
+		const formActionUrl = 'http://54.148.236.11/register/prepare-upgrade';
 
 		const rightSideContent = (
 			<Link to="edit-profile">
@@ -48,10 +53,13 @@ export default class Profile extends Component {
 
 		const extraButton = 	(
 				<div>
-					<a href="https://iconathlete.com/register/update-billing-card/"
-						 className="btn btn-lg btn-icon btn-icon-blue btn-icon-lg">
-						Edit Billing Information
-					</a>
+					<form action={formActionUrl} target="_blank" method="post">
+						<input type="hidden" name="jwt_token" value={jwtToken}/>
+						<input type="hidden" name="wp_id" value={wpUserId}/>
+						<input type="hidden" name="wp_username" value={username}/>
+						<input type="hidden" name="is_update_card" value={true}/>
+						<button type="submit" className="btn btn-lg btn-icon-blue">Update Billing</button>
+					</form>
 					<div className="cancel-membership-wrapper">
 						<button className="btn btn-default" type="button" onClick={this.toggleCancelMembershipModal}>Cancel Membership</button>
 					</div>

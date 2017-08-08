@@ -55,12 +55,13 @@ export default class CancelMembershipModal extends Component {
 										</form>
 									</div>
 									<div className="col-xs-12">
-										<form action={formActionUrl} target="_blank" method="post">
+										<form action={formActionUrl} method="post">
 											<input type="hidden" name="jwt_token" value={jwtToken}/>
 											<input type="hidden" name="wp_id" value={wpUserId}/>
 											<input type="hidden" name="redirect_url" value={redirectUrl}/>
 											<input type="hidden" name="wp_username" value={username}/>
 											<input type="hidden" name="discount" value={true}/>
+											<input type="hidden" name="is_cancel" value={true}/>
 											<button type="submit" className="btn btn-cancel">No, I do not want to take advantage of this awesome discount.</button>
 										</form>
 									</div>

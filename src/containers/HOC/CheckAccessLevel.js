@@ -23,8 +23,8 @@ export default (level) => (WrappedComponent) => {
 			return (hasAccess ? <WrappedComponent {...this.props}/> : (
 				<div>
 					<Menubar
-						className="gradient-turquoise menu-color-white"
-						title="Sorry"
+						className="menu-bar-grey"
+						title="Time For An Upgrade"
 						backButton={true}
 					/>
 					<NoAccessSubscriptionUpgradeCard permissionName={level}/>
