@@ -29,16 +29,23 @@ export default class SubscriptionUpgradeCard extends Component {
 		})[0];
 
 		let currentSubscriptionDescription = null;
-		if (typeof vaultAccess === 'undefined') currentSubscriptionDescription = null;
-		else currentSubscriptionDescription = vaultAccess.desc;
+		let upgradeSubscriptionDescription = null;
+		if (typeof vaultAccess !== 'undefined'){
+			currentSubscriptionDescription = vaultAccess.desc;
+			upgradeSubscriptionDescription = vaultAccess.upgrade_desc;
+		}
 
 		return (
 			<div className="subscription-upgrade-card">
 				<h3 className="subscription-title">Subscribed to</h3>
 				<h3 className="subscription-value">{subscription.subscription_name}</h3>
-				<p className="subscription-description">
+				<p className="subscription-desc">
 					{currentSubscriptionDescription}
 				</p>
+				<p className="subscription-upgrade-desc">
+					{upgradeSubscriptionDescription}
+				</p>
+
 				<div className="subscription-upgrade-button-wrapper">
 					<form action={formActionUrl} target="_blank" method="post">
 						<input type="hidden" name="jwt_token" value={jwtToken}/>

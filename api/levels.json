@@ -35,7 +35,7 @@
     {
       "id": 4,
       "name": "Individual",
-      "desc": "Access to the all programming track and the Feed",
+      "desc": "Access to All programming track and the Feed",
       "upgrade_desc": "Upgrade to Individual + Nutrition to take your fitness to the next level",
       "vault_sections": [
         "assessment",

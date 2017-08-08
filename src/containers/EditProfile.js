@@ -161,10 +161,6 @@ export default class EditProfile extends Component {
 						className="menu-bar-white"
 						backButton={true}
 					/>
-					<div className="cancel-membership-wrapper">
-						<button className="btn btn-default" type="button" onClick={this.toggleCancelMembershipModal}>Cancel Membership</button>
-					</div>
-
 					<form className="register-page--register-form" onSubmit={this.handleSubmit}>
 						<div className="container user-update-container">
 
@@ -273,8 +269,7 @@ export default class EditProfile extends Component {
 											</div>
 										</div>
 
-										<button className="btn btn-lg btn-icon btn-fixed-bottom" type="submit">Save Changes
-										</button>
+										<button className="btn btn-lg btn-icon btn-icon-icon btn-fixed-mobile btn-edit-profile" type="submit"><span className="icon-arrow-right"/>Save Changes</button>
 									</div>
 								</div>
 							</div>

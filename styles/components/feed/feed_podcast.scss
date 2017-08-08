@@ -9,21 +9,26 @@
 
 .podcast-player-button {
   position: fixed;
-  left: 25px;
+  left: 15px;
   bottom: 82px;
   a.btn-filter-feed {
     background-color: $blue;
-    padding: 16px 18px;
+    display: block;
+    width: 60px;
+    height: 60px;
+    font-size: 28px;
+    text-align: center;
+    line-height: 62px;
     box-shadow: 0 0 10px #dadada;
     border-radius: 50%;
     @include transition(box-shadow .3s ease-in-out);
     span {
-      color: #ffffff;
+      color: $white;
     }
 
     &:hover, &:focus {
       text-decoration: none;
-      box-shadow: 0 0 20px #b7b7b7;
+      box-shadow: 0 0 20px rgba(0,0,0,.5);
     }
   }
 }
@@ -93,6 +98,7 @@
 
   .current-playing-podcast-title {
     font-size: 2em;
+    line-height: 2em;
     padding: 40px 0;
     .now-playing {
       display: block;

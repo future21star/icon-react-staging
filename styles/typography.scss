@@ -3,8 +3,8 @@ TYPOGRAPHY
 ************************/
 body {
   font-weight: 300;
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 17px;
+  line-height: 24px;
   font-family: "Lato", sans-serif;
 }
 
@@ -37,9 +37,9 @@ a{
 }
 
 .text-white {
-  color: #ffffff;
-  i, span {
-    color: #ffffff;
+  color: $white;
+  h1,h2,h3,h4, h5, p, i ,span{
+    color: $white;
   }
 }
 
@@ -155,6 +155,17 @@ a{
   left: 0;
   z-index: 1030;
   bottom: 0;
+  
+ 
+
+  &.btn-icon:hover{
+     color: $white !important;
+    background-color: $red !important;
+  }
+  &.btn-icon-blue:hover{
+     color: $white !important;
+    background-color: $turquoise !important;
+  }
 }
 
 // icon
@@ -167,6 +178,25 @@ a{
   padding-bottom: 46px;
 }*/
 
+.list-check{
+  list-style: none;
+  li{
+    position: relative;
+    margin: 10px 0;
+    &:before{
+      content: "\e955";
+      position: absolute;
+      left: -40px;
+      height: 100%;
+      top: 0;
+      border-right: 1px solid #d8d8d8;
+      padding: 4px 10px 8px;
+      font: normal normal normal 14px/1 'icomoon';
+      color: $red;
+      font-size: 10px;
+    }
+  }
+}
 .alert-danger {
   text-align: center;
 }

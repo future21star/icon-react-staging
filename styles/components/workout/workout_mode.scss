@@ -17,13 +17,11 @@
     border-right-color: rgba($white, .4);
   }
 
-  .workout-tabs{
-    .nav-tabs li a{
-      color: rgba($white, .4);
-    }
+  .workout-tabs-nav a{
+    background-color: transparent !important;
 
-    .active-black{
-      color: $white !important;
+    &.active-black{
+      color: $turquoise !important;
     }
   }
 

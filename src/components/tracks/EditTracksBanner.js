@@ -89,8 +89,12 @@ export default class EditTracksBanner extends Component {
 			<div className="edit-tracks-banner-wrapper">
 				<div className="edit-tracks-banner" style={style}>
 					<div className="title">
-						{!singleTrackView ? <h1>{track.name}</h1> : undefined}
-						{this.getIcon()}
+						{!singleTrackView ? (
+							<div>
+								<h1>{track.name}</h1>
+								{this.getIcon()} 
+							</div>
+							): undefined}
 						{isSubscribed ? <span className="icon-checkmark"/> : undefined}
 					</div>
 				</div>

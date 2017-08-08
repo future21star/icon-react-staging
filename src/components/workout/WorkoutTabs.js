@@ -42,9 +42,9 @@ export default class WorkoutTabs extends Component {
 		return (
 			<div className="workout-tabs">
 				<div className={classes}>
-					<div className="container">
-						<ul className="nav nav-tabs nav-justified">
-							<li>
+					<div className="container-fluid">
+						<div className="assessment-tabs-nav workout-tabs-nav row">
+							<div className="col-xs-4">
 								{track.warmUp ? (
 									<a
 										href="#"
@@ -54,19 +54,19 @@ export default class WorkoutTabs extends Component {
 										WARM-UP
 									</a>
 								) : undefined }
-							</li>
-							<li>
+							</div>
+							<div className="col-xs-4">
 								{track.mainWorkout ? (
 									<a
 										href="#"
 										onClick={e => this.changeTab(e, 'mainWorkout')}
 										className={this.state.activeTab === 'mainWorkout' ? 'active-black' : ''}
 									>
-										MAIN WORKOUT
+										WORKOUT
 									</a>
 								) : undefined }
-							</li>
-							<li>
+							</div>
+							<div className="col-xs-4">
 								{track.coolDown ? (
 									<a
 										href="#"
@@ -74,8 +74,8 @@ export default class WorkoutTabs extends Component {
 										className={this.state.activeTab === 'coolDown' ? 'active-black' : ''}
 									>COOL DOWN</a>
 								) : undefined }
-							</li>
-						</ul>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div className="tab-content">

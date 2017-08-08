@@ -169,12 +169,12 @@ export default class AssessmentResult extends Component {
 				<Helmet title="Assessment - Result"/>
 
 				<Menubar
-					title="Icon Assessment - Result"
+					title="Assessment - Result"
 					className="menu-color-white menu-bar-transparent"
 					backButton={true}
 				/>
 
-				<div className="container-fluid assessment-result-wrapper menu-head-buffer" style={style}>
+				<div className="container-fluid assessment-result-wrapper menu-head-buffer full-height-header" style={style}>
 					<div className="overlay-gradient"/>
 					<div className="row">
 						<div className="col-xs-12 col-sm-6">

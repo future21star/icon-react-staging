@@ -65,7 +65,6 @@ export default class Help extends Component {
 
 					<Menubar
 						title="Helpful Links"
-						className="gradient-blue text-white"
 						backButton={true}
 					/>
 

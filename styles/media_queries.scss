@@ -26,6 +26,19 @@
     text-transform: capitalize;
   }
 
+  .btn-fixed-mobile{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    max-width: 100%;
+    margin: 0;
+    z-index: 9999;
+  }
+
+  .full-height-header{
+    min-height: calc(100vh - 46px);
+  }
+
   /*
   MENU BAR
   */
@@ -59,6 +72,10 @@
     padding-top: 44px;
   }
 
+  .cancel-membership-wrapper{
+    top: 10px;
+  }
+
   /*
   PROGRAMMING HEADER
   */
@@ -74,12 +91,29 @@
   }
 
   /*
+  FEED
+  */
+  .feed-featured-post {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    .col-xs-12{
+      padding: 0;
+    }
+    .feed-featured-post-image {
+      max-height: 250px;
+    }
+  }
+  .podcast-player-button {
+
+    bottom: 60px;
+  }
+  /*
   TRACKS
   */
   .view-track-wrapper {
 
     .edit-tracks-banner, .full-height {
-      height: auto !important;
+      height: 300px !important;
       position: relative;
     }
   }
@@ -134,6 +168,10 @@
   }
 
   //FEED
+  .feed-featured-post {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
   .feed-post {
     padding: 20px 0;
     border-top: 1px solid #dddddd;
@@ -151,16 +189,9 @@
     .feed-featured-post-read-more {
       padding-top: 10px;
     }
-  }
-  .feed-featured-post {
-    padding-left: 0;
-    padding-right: 0;
-    padding-bottom: 40px;
-    .col-xs-12 {
-      padding: 0;
-    }
-    .feed-featured-post-image {
-      max-height: 250px;
+
+    &.col-xs-12 .feed-post-title{
+      margin-top: 20px;
     }
   }
   .feed-post-content, .feed-post-date {
@@ -200,12 +231,26 @@
       height: 200px;
     }
   }
+
+  /*
+  TRACKS
+  */
+  .view-track-wrapper {
+
+    .edit-tracks-banner, .full-height {
+      height: 200px !important;
+    }
+  }
 }
 
 @media screen and (max-width: 561px) {
-
+  .assessment-tabs-nav{
+    .col-xs-4{
+      padding: 0 0 0 5px;
+    }
+  }
   .subscription-upgrade-card {
-    margin: 80px 15px 0;
+    margin: 80px 15px;
   }
   .nav-pills.feed-top-sub-nav li {
 
