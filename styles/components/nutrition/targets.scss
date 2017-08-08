@@ -1,0 +1,39 @@
+.nutrition-data-list{
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 5px;
+
+    p{
+      margin: 0;
+    }
+    h4,p{
+      color: $turquoise;
+      letter-spacing: 2px;
+    }
+
+  .list-item{
+    padding: 15px 0;
+
+    &.calories{
+      h4,p{
+        color: $red;
+      }
+    }
+
+    &.carbs{
+    }
+
+    &.protein{
+      h4,p{
+        color: $blue;
+      }
+    }
+  }
+ 
+}
+
+.nutrition-data-list-vertical{
+  .list-item{
+    border-bottom: 1px solid $greyLight;
+  }
+}
