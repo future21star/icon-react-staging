@@ -60,7 +60,7 @@ export default class ViewTrack extends Component {
 	};
 
 	getIcon(track) {
-
+		let trackIconClassName = track.iconUrl;
 
 		if (trackIconClassName === 'icon-track-dynamic') {
 			return (
@@ -185,7 +185,7 @@ export default class ViewTrack extends Component {
 					</div>
 					<div className="col-sm-12 col-md-6 full-height edit-tracks-mid-section--wrapper">
 						<div className="view-track-mid-section">
-							{/*this.getIcon()*/}
+							<div className="view-track-icon">{this.getIcon(track)}</div>
 							<h1 className="title">{track.name}</h1>
 							<div dangerouslySetInnerHTML={this.createMarkup(track.details)}/>
 						</div>
