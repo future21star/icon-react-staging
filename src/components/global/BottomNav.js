@@ -62,6 +62,8 @@ export default class BottomNav extends Component {
 						<div className="popover-title">Helpful Links</div>
 						<div className="popover-content">
 							<div className="list-group" onClick={this.toggleHelpfulLinksPopUp}>
+								<Link to="/assessment" className="list-group-item">Assessment</Link>
+								<Link to="/faqs" className="list-group-item">FAQ's</Link>
 								{helpfulLinks.map((item, i) => {
 									return (
 										<Link key={i} to={`/help/${item.slug}`} className="list-group-item"
@@ -100,6 +102,8 @@ export default class BottomNav extends Component {
 					<div className="popover-title">Helpful Links</div>
 					<div className="popover-content">
 						<div className="list-group" onClick={this.toggleHelpfulLinksPopUp}>
+							<Link to="/assessment" className="list-group-item">Assessment</Link>
+							<Link to="/faqs" className="list-group-item">FAQ's</Link>
 							{helpfulLinks.map((item, i) => {
 								return (
 									<Link key={i} to={`/help/${item.slug}`} className="list-group-item"
