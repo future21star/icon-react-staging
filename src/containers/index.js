@@ -26,5 +26,7 @@ export AssessmentLanding from './Assessment/AssessmentLanding';
 export AssessmentWorkouts from './Assessment/AssessmentWorkouts';
 export AssessmentForm from './Assessment/AssessmentForm';
 export AssessmentResult from './Assessment/AssessmentResult';
+export FaqsLanding from './Faqs/FaqsLanding';
+export FaqSingle from './Faqs/FaqSingle';
 
 export Nutrition from './Nutrition';

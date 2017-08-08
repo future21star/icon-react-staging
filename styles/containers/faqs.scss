@@ -1,0 +1,24 @@
+.faq-category {
+	background: $red;
+	text-align: center;
+	a {
+		color: $white!important;
+	}
+
+	.faq-category-title {
+		padding: 20px 0 5px;
+	    font-weight: 600;
+	    font-size: 2.5em;
+	    font-family: "Lato", sans-serif;
+	}
+	.faq-category-count {
+		font-size: .8em;
+	}
+	.faq-category-desc {
+		padding: 20px;
+	}
+}
+
+.faq-single {
+	padding: 10px 0;
+}
