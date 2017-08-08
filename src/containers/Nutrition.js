@@ -8,8 +8,7 @@ import slackImg from '../../static/slack.png';
 import strengthBG from '../../static/strengthBG.jpg';
 
 import {
-	Menubar, 
-	NoAccess,
+	Menubar,
 	Targets
 } from '../components/index';
 
