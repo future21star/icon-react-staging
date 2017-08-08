@@ -21,13 +21,13 @@ export default class CancelMembershipModal extends Component {
 	render() {
 
 		const {subscription, jwtToken, wpUserId, username, isShown, onClose, routing} = this.props;
-		const formActionUrl = 'http://54.148.236.111/register/upgrade';
+		const formActionUrl = 'http://54.148.236.111/register/prepare-upgrade';
 
 		let redirectUrl = null;
 		if (process.env.NODE_ENV !== 'production') {
 			redirectUrl = 'http://localhost:3000' + routing.locationBeforeTransitions.pathname;
 		} else {
-			redirectUrl = 'http://54.148.236.111' + routing.locationBeforeTransitions.pathname;
+			redirectUrl = 'http://34.210.177.213' + routing.locationBeforeTransitions.pathname;
 		}
 
 		return (
@@ -46,7 +46,13 @@ export default class CancelMembershipModal extends Component {
 			
 								<div className="row text-center">
 									<div className="col-xs-12">
-										<a href="http://54.148.236.111/register/upgrade" target="_blank" className="btn btn-lg btn-icon btn-icon-lg btn-icon-icon"><span className="icon-update-sub" />I Want The Discount!</a>
+										<form action={formActionUrl} target="_blank" method="post">
+											<input type="hidden" name="jwt_token" value={jwtToken}/>
+											<input type="hidden" name="wp_id" value={wpUserId}/>
+											<input type="hidden" name="redirect_url" value={redirectUrl}/>
+											<input type="hidden" name="wp_username" value={username}/>
+											<button type="submit" className="btn btn-lg btn-icon btn-icon-lg btn-icon-icon"><span className="icon-update-sub" />I Want The Discount!</button>
+										</form>
 									</div>
 									<div className="col-xs-12">
 										<form action={formActionUrl} target="_blank" method="post">

@@ -33,13 +33,13 @@ export default class NoAccessSubscriptionUpgradeCard extends Component {
 
 	render() {
 		const {jwtToken, wpUserId, username, routing} = this.props;
-		const formActionUrl = 'http://54.148.236.111/register/upgrade';
+		const formActionUrl = 'http://54.148.236.111/register/prepare-upgrade';
 
 		let redirectUrl = null;
 		if (process.env.NODE_ENV !== 'production') {
 			redirectUrl = 'http://localhost:3000' + routing.locationBeforeTransitions.pathname;
 		} else {
-			redirectUrl = 'http://54.148.236.111' + routing.locationBeforeTransitions.pathname;
+			redirectUrl = 'http://34.210.177.213' + routing.locationBeforeTransitions.pathname;
 		}
 
 		return (
