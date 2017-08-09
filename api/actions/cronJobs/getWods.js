@@ -21,11 +21,16 @@ export default function getWods(request) {
 		wpWods.data.map(singleWpWod => {
 			singleWpWod.categories.map(trackId => {
 				let trackName = null;
-				if (trackId === 28) trackName = 'masters';
-				else if (trackId === 29) trackName = 'dynamic';
+				if (trackId === 29) trackName = 'dynamic';
 				else if (trackId === 30) trackName = 'lifestyle';
 				else if (trackId === 31) trackName = 'strength';
 				else if (trackId === 32) trackName = 'hyper';
+				else if (trackId === 35) trackName = 'masters-35-39';
+				else if (trackId === 36) trackName = 'masters-40-44';
+				else if (trackId === 37) trackName = 'masters-50-54';
+				else if (trackId === 38) trackName = 'masters-55-59';
+				else if (trackId === 39) trackName = 'masters-60+';
+				else if (trackId === 40) trackName = 'masters-45-49';
 
 				if (trackName) {
 					wods.push({
