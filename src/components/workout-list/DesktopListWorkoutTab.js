@@ -1,8 +1,25 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
 import {padStart} from 'lodash';
+import copy from 'copy-to-clipboard';
 
 export default class TabContentSectionDesktop extends Component {
+
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			copyText: 'Copy'
+		}
+	}
+
+	copyContent = () => {
+		const {content} = this.props;
+		copy(content);
+		this.setState({
+			copyText: 'Copied'
+		});
+	}
 
 	render() {
 		const {title, track, content} = this.props;
@@ -34,17 +51,23 @@ export default class TabContentSectionDesktop extends Component {
 		return (
 			<div className="tab-content-section-desktop overflow-custom-scroll">
 				<div className="tab-content-header-desktop">
-					<h2>
-						{title}
-						<span className="pull-right">
-							<Link to={`/workout/${track.trackName}/${track.id}`}>
-								<p>
+					<div className="row">
+						<div className="col-xs-6">
+							<h2>{title}</h2>
+						</div>
+						<div className="col-xs-6">
+							<div className="workout-copy-wrapper">
+								<Link to={`/workout/${track.trackName}/${track.id}`}>
 									Workout Mode
 									<span className="icon icon-workout-mode"/>
-								</p>
-							</Link>
-						</span>
-					</h2>
+								</Link>
+								<a href="javascript:;" onClick={this.copyContent}>
+									{this.state.copyText}
+									<span className="icon icon-copy"/>
+								</a>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div className="tab-content-body-desktop">
 					<div className="tab-content-list-item-desktop">

@@ -85,6 +85,7 @@
     "body-parser": "^1.14.1",
     "chart.js": "^2.6.0",
     "compression": "^1.6.0",
+    "copy-to-clipboard": "^3.0.8",
     "express": "^4.13.3",
     "express-session": "^1.12.1",
     "express-validator": "^3.2.0",
