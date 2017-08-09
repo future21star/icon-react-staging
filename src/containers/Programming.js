@@ -215,6 +215,8 @@ export default class Programming extends Component {
 	renderEachTrackForMobile(selectedTrack, i) {
 		const {user, selectedTracks, wods, activeDate, currentDate, dailyBriefs} = this.props;
 
+		const logoImg = require('../../static/logo.png');
+
 		let track = selectedTrack.track;
 		let wodForThisTrack = wods[track.name];
 		let wodForThisTrackAndDate = wodForThisTrack ? wods[track.name][activeDate] : null;
@@ -222,27 +224,43 @@ export default class Programming extends Component {
 		let prevTrackName = selectedTracks[i - 1] ? selectedTracks[i - 1].trackName : null;
 		let dailyBrief = (dailyBriefs[track.name] ? <DailyBriefDesktop user={user} content={dailyBriefs[track.name]}/> : undefined);
 
+		let content = null;
+		if(wodForThisTrack && typeof wods[track.name][activeDate] === 'undefined') {
+			content = (
+				<div className="loading-logo">
+					<img src={logoImg} alt="logo" width="100%"/>
+				</div>
+			);
+		} else if(wodForThisTrack && wodForThisTrackAndDate) {
+			content = (
+				<div>
+					<WorkoutBanner
+						wod={wodForThisTrackAndDate}
+						nextTrack={nextTrackName}
+						prevTrack={prevTrackName}
+						onSelectNextTrack={e => this.refs.programmingSwipeMobileRef.next()}
+						onSelectPrevTrack={e => this.refs.programmingSwipeMobileRef.prev()}
+					/>
+					<WorkoutTabs track={wodForThisTrackAndDate}/>
+				</div>
+			);
+		} else {
+			content = (
+				<RestDay 
+					track={track}
+					nextTrack={nextTrackName}
+					prevTrack={prevTrackName}
+					onSelectNextTrack={e => this.refs.programmingSwipeMobileRef.next()}
+					onSelectPrevTrack={e => this.refs.programmingSwipeMobileRef.prev()}
+				 />
+			);
+		}
+
 		return (
 			<div name={track.name} key={i}>
 				{currentDate === activeDate ?  dailyBrief : undefined}
 
-				{wodForThisTrack && wodForThisTrackAndDate ? (
-					<div>
-						<WorkoutBanner
-							wod={wodForThisTrackAndDate}
-							nextTrack={nextTrackName}
-							prevTrack={prevTrackName}
-							onSelectNextTrack={e => this.refs.programmingSwipeMobileRef.next()}
-							onSelectPrevTrack={e => this.refs.programmingSwipeMobileRef.prev()}
-						/>
-						<WorkoutTabs track={wodForThisTrackAndDate}/>
-					</div>) : (
-					<RestDay track={track}
-									 nextTrack={nextTrackName}
-									 prevTrack={prevTrackName}
-									 onSelectNextTrack={e => this.refs.programmingSwipeMobileRef.next()}
-									 onSelectPrevTrack={e => this.refs.programmingSwipeMobileRef.prev()}/>
-				)}
+				{content}
 			</div>
 		);
 	}
@@ -250,36 +268,53 @@ export default class Programming extends Component {
 	renderEachTrackForDesktop(selectedTrack, i) {
 		const {user, selectedTracks, wods, activeDate, currentDate, dailyBriefs} = this.props;
 
+		const logoImg = require('../../static/logo.png');
+
 		let track = selectedTrack.track;
 		let wodForThisTrack = wods[track.name];
 		let wodForThisTrackAndDate = wodForThisTrack ? wods[track.name][activeDate] : null;
 		let nextTrackName = selectedTracks[i + 1] ? selectedTracks[i + 1].trackName : null;
 		let prevTrackName = selectedTracks[i - 1] ? selectedTracks[i - 1].trackName : null;
 
+		let content = null;
+		if(wodForThisTrack && typeof wods[track.name][activeDate] === 'undefined') {
+			content = (
+				<div className="loading-logo">
+					<img src={logoImg} alt="logo"/>
+				</div>
+			);
+		} else if(wodForThisTrack && wodForThisTrackAndDate) {
+			content = (
+				<div>
+					<WorkoutBanner
+						wod={wodForThisTrackAndDate}
+						nextTrack={nextTrackName}
+						prevTrack={prevTrackName}
+						onSelectNextTrack={e => this.refs.programmingSwipeDesktopRef.next()}
+						onSelectPrevTrack={e => this.refs.programmingSwipeDesktopRef.prev()}
+					/>
+					{currentDate === activeDate
+						? <DesktopWorkout track={wodForThisTrackAndDate}
+																			dailyBriefContent={dailyBriefs[track.name]}/>
+						: <DesktopWorkout track={wodForThisTrackAndDate}/>
+					}
+				</div>
+			);
+		} else {
+			content = (
+				<RestDay track={track}
+					nextTrack={nextTrackName}
+					prevTrack={prevTrackName}
+					onSelectNextTrack={e => this.refs.programmingSwipeDesktopRef.next()}
+					onSelectPrevTrack={e => this.refs.programmingSwipeDesktopRef.prev()}
+				/>
+			);
+		}
+
 		return (
 			<div name={track.name} key={i}>
 				<div>
-					{wodForThisTrack && wodForThisTrackAndDate ? (
-						<div>
-							<WorkoutBanner
-								wod={wodForThisTrackAndDate}
-								nextTrack={nextTrackName}
-								prevTrack={prevTrackName}
-								onSelectNextTrack={e => this.refs.programmingSwipeDesktopRef.next()}
-								onSelectPrevTrack={e => this.refs.programmingSwipeDesktopRef.prev()}
-							/>
-							{currentDate === activeDate
-								? <DesktopWorkout track={wodForThisTrackAndDate}
-																					dailyBriefContent={dailyBriefs[track.name]}/>
-								: <DesktopWorkout track={wodForThisTrackAndDate}/>
-							}
-						</div>
-					) : <RestDay track={track}
-											 nextTrack={nextTrackName}
-											 prevTrack={prevTrackName}
-											 onSelectNextTrack={e => this.refs.programmingSwipeDesktopRef.next()}
-											 onSelectPrevTrack={e => this.refs.programmingSwipeDesktopRef.prev()}/>
-					}
+					{content}
 				</div>
 			</div>)
 	}

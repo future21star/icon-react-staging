@@ -146,6 +146,8 @@ export default class Home extends Component {
 	renderEachTrack(selectedTrack, i) {
 		const {user, selectedTracks, wods, wodsStore, currentDate, dailyBriefs} = this.props;
 
+		const logoImg = require('../../static/logo.png');
+
 		let track = selectedTrack.track;
 		let wodForThisTrack = wods[track.name];
 		let wodForThisTrackAndDate = wodForThisTrack ? wods[track.name][currentDate] : null;
@@ -153,39 +155,66 @@ export default class Home extends Component {
 		let prevTrackName = selectedTracks[i - 1] ? selectedTracks[i - 1].trackName : null;
 
 		let dailyBrief = (dailyBriefs[track.name] ? <DailyBriefCollapsable user={user} content={dailyBriefs[track.name]}/> : undefined);
+
+
+		let content = null;
+		if(!wodForThisTrack) {
+			content = (
+				<div className="row">
+					<div className="col-xs-12 col-md-offset-4 col-md-4">
+						<div className="loading-logo">
+							<img src={logoImg} alt="logo" width="100%"/>
+						</div>
+					</div>
+				</div>
+			);
+		}
+		else if(wodForThisTrack && typeof wods[track.name][currentDate] === 'undefined') {
+			content = (
+				<div className="loading-logo">
+					<img src={logoImg} alt="logo"/>
+				</div>
+			);
+		} else if(wodForThisTrack && wodForThisTrackAndDate) {
+			content = (
+				<div>
+					<WorkoutBanner
+						wod={wodForThisTrackAndDate}
+						nextTrack={nextTrackName}
+						prevTrack={prevTrackName}
+						onSelectNextTrack={e => this.refs.homeSwipeRef.next()}
+						onSelectPrevTrack={e => this.refs.homeSwipeRef.prev()}
+					/>
+					<div className="hidden-xs hidden-sm">
+						<DesktopWorkout 
+							track={wodForThisTrackAndDate}
+							dailyBriefContent={dailyBriefs[track.name]}
+						/>
+					</div>
+					<div className="hidden-md hidden-lg">
+						<WorkoutTabs track={wodForThisTrackAndDate}/>
+					</div>
+				</div>
+			);
+		} else {
+			content = (
+				<RestDay 
+					track={track}
+					nextTrack={nextTrackName}
+					prevTrack={prevTrackName}
+					onSelectNextTrack={e => this.refs.homeSwipeRef.next()}
+					onSelectPrevTrack={e => this.refs.homeSwipeRef.prev()}
+				/>
+			);
+		}
+
+
 		return (
 			<div name={track.name} key={i}>
 				
 				{dailyBrief}	
 
-				{wodForThisTrack && wodForThisTrackAndDate ? (
-					<div>
-						<WorkoutBanner
-							wod={wodForThisTrackAndDate}
-							nextTrack={nextTrackName}
-							prevTrack={prevTrackName}
-							onSelectNextTrack={e => this.refs.homeSwipeRef.next()}
-							onSelectPrevTrack={e => this.refs.homeSwipeRef.prev()}
-						/>
-						<div className="hidden-xs hidden-sm">
-							<DesktopWorkout 
-								track={wodForThisTrackAndDate}
-								dailyBriefContent={dailyBriefs[track.name]}
-							/>
-						</div>
-						<div className="hidden-md hidden-lg">
-							<WorkoutTabs track={wodForThisTrackAndDate}/>
-						</div>
-					</div>
-				) : undefined }
-
-				{wodForThisTrack && wodForThisTrackAndDate === null ? (
-					<RestDay track={track}
-									 nextTrack={nextTrackName}
-									 prevTrack={prevTrackName}
-									 onSelectNextTrack={e => this.refs.homeSwipeRef.next()}
-									 onSelectPrevTrack={e => this.refs.homeSwipeRef.prev()}/>
-				) : undefined }
+				{content}
 			</div>
 		);
 	}
