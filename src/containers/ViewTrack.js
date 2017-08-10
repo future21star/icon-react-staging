@@ -37,8 +37,7 @@ import {
 	state => ({
 		allTracks: state.allTracksStore.allTracks,
 		selectedTracks: state.selectedTracksStore.selectedTracks,
-		vaultAccess: state.authStore.user.vaultAccess,
-		subscription: state.authStore.user.subscription
+		user: state.authStore.user
 	}),
 	{addAsOnlyTrack, addToTrackList, removeTrack}
 )
@@ -125,7 +124,12 @@ export default class ViewTrack extends Component {
 	}
 
 	render() {
-		const {vaultAccess} = this.props;
+		const {user} = this.props;
+
+		if(!user) {
+			return <div/>;
+		}
+		const {vaultAccess, subscription} = user;
 
 		let accessOfProgrammingType = null;
 		if (includes(vaultAccess, 'programming-all')) accessOfProgrammingType = 'programming-all';
@@ -202,7 +206,7 @@ export default class ViewTrack extends Component {
 
 	renderButtonsForProgrammingLifeStyle(selectedTrackIsSubscribed) {
 		let visibleTrackStartsWithMasters = startsWith(this.props.params.name, 'masters');
-		const {subscription} = this.props;
+		const {subscription} = this.props.user;
 
 		return (
 			<div>

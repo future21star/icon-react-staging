@@ -35,7 +35,7 @@ import {
 	state => ({
 		allTracks: state.allTracksStore.allTracks,
 		selectedTracks: state.selectedTracksStore.selectedTracks,
-		vaultAccess: state.authStore.user.vaultAccess
+		user: state.authStore.user
 	}),
 	{addAsOnlyTrack, addToTrackList, removeTrack}
 )
@@ -45,7 +45,8 @@ import {
 export default class EditTracks extends Component {
 
 	render() {
-		const {vaultAccess} = this.props;
+		const {user} = this.props;
+		const vaultAccess = user.vaultAccess || [];
 
 
 		let accessOfProgrammingType = null;

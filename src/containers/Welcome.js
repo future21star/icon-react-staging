@@ -8,7 +8,7 @@ import {
 
 @connect(
 	state => ({
-		subscription: state.authStore.user.subscription
+		user: state.authStore.user
 	})
 )
 export default class Welcome extends Component {
@@ -18,16 +18,14 @@ export default class Welcome extends Component {
 	};
 
 	render() {
-		const {subscription} = this.props;
+		const {user} = this.props;
 
-		// displaying all subscription info in console for @Eli
-		console.log("for @Eli:", subscription);
-
-		let output = '<ul>';
-		for (let property in subscription) {
-			output += '<li>' + property + ': ' + subscription[property] + '</li>';
+		if(!user) {
+			return <div/>;
 		}
-		output += '<ul>';
+		
+		const {subscription} = user;
+
 
 		return (
 			<div className="bottom-padding">

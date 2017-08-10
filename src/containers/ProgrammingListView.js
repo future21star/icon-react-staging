@@ -32,7 +32,7 @@ import {
 		selectedTracks: state.selectedTracksStore.selectedTracks,
 		routing: state.routing,
 		wodsStore: state.wodsStore,
-		wods: state.wodsStore.wods,
+		wods: state.wodsStore.wods
 	})
 )
 export default class ProgrammingListView extends Component {

@@ -7,7 +7,7 @@ import CheckAccessLevel from './HOC/CheckAccessLevel'
 
 @connect(
 	state => ({
-		vaultAccess: state.authStore.user.vaultAccess
+		user: state.authStore.user
 	}),
 	{}
 )
@@ -17,6 +17,12 @@ import CheckAccessLevel from './HOC/CheckAccessLevel'
 export default class Nutrition extends Component {
 
 	render() {
+		const {user} = this.props;
+
+		if(!user) {
+			return <div/>;
+		}
+
 		return (
 			<ReactCSSTransitionGroup
 				transitionName="react-anime"

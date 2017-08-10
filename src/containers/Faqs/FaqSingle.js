@@ -91,9 +91,9 @@ export default class FaqSingle extends Component {
 							<div className="row">
 								{activeFaq.faqs.map((faq, i) => {
 									return (
-									<div className="col-xs-12 col-sm-6 col-md-4">
+									<div className="col-xs-12 col-sm-6 col-md-4" key={i}>
 										<div className="faq-single">
-											<div className="panel-group" key={i}>
+											<div className="panel-group">
 												<div className="panel panel-default">
 													<div className="panel-heading">
 														<h4 className="panel-title" onClick={e => this.toggleActiveFaqItemId(faq.id)}>

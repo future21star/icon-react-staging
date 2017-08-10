@@ -16,8 +16,7 @@ import CheckAccessLevel from '../HOC/CheckAccessLevel';
 	state => ({
 		answers: state.assessmentStore.answers,
 		allTracks: state.allTracksStore.allTracks,
-		subscription: state.authStore.user.subscription,
-		vaultAccess: state.authStore.user.vaultAccess
+		user: state.authStore.user
 	}),
 	{}
 )
@@ -148,7 +147,12 @@ export default class AssessmentResult extends Component {
 		};
 
 		const {totalScore, radarData, recommendedTrackName, recommendedTrack, addStrength} = this.state;
-		const {subscription, vaultAccess} = this.props;
+		const {user} = this.props;
+		if(!user) {
+			return <div/>
+		}
+		
+		const {subscription, vaultAccess} = user;
 
 		if (!totalScore || radarData.length === 0 || !recommendedTrackName || !recommendedTrack) {
 			return (<ProblemHouston/>);
