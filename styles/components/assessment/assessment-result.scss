@@ -24,15 +24,29 @@
   .title-desc{
     display: block;
   }
-  .title-track-name {
+  .title-track-name, .track-strength {
+    font-size: 3em;
     font-weight: 600;
     text-transform: uppercase;
+    margin: 0;
+  }
+
+  .track-title-name{
+    margin-bottom: 0;
+  }
+
+  .track-strength{
+    .icon{
+      font-size: 28px;
+      display: block;
+      color: $white !important;
+    }
   }
 
   .description {
-    font-size: 1.3em;
-    line-height: 1.2em;
-    margin-bottom: 20px;
+    font-size: 1.2em;
+    line-height: 1.3em;
+    margin: 20px 0;
   }
   .btn-wrap{
     text-align: center;

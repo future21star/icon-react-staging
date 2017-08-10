@@ -102,17 +102,11 @@ export default class Home extends Component {
 
 					<Menubar
 						title="Today's Workout"
-						rightSideContent={
+						leftSideContent={
 							<Link to="profile">
 								<span className="mobile-hide">Profile</span>
 								<span className="icon-user-profile"/>
 							</Link>}
-						leftSideContent={
-							<a href="javascript:;" onClick={this.handleLogout}>
-								<span className="icon-logout"/>
-								<span className="mobile-hide">Log Out</span>
-							</a>
-						}
 						className="menu-color-white has-dot-list">
 						<DotList/>
 					</Menubar>
@@ -146,7 +140,7 @@ export default class Home extends Component {
 	renderEachTrack(selectedTrack, i) {
 		const {user, selectedTracks, wods, wodsStore, currentDate, dailyBriefs} = this.props;
 
-		const logoImg = require('../../static/logo.png');
+		const logoImg = require('../../static/iconlogobg.jpg');
 
 		let track = selectedTrack.track;
 		let wodForThisTrack = wods[track.name];

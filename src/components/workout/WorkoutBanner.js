@@ -77,7 +77,7 @@ export default class WorkoutBanner extends Component {
 
 		return (
 			<div className="workout-banner-wrapper">
-				<div className={`workout-banner ${wod.track.format}`} style={{backgroundImage: 'url(' + bannerBg + ')'}}>
+				<div className={`workout-banner ${wod.track.format} workout-banner-${wod.track.name}`} style={{backgroundImage: 'url(' + bannerBg + ')'}}>
 					<div className="overlay"/>
 					<div className="workout-button">
 						<Link to={`/workout/${wod.track.name}/${wod.id}/comments`} className="text-white">

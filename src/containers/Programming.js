@@ -113,9 +113,8 @@ export default class Programming extends Component {
 	}
 
 	render() {
-		const {selectedTracks, activeWeek, toggleActiveWeek, swipedActiveTrackName} = this.props;
-
-		const rightSideContent = (
+		const {browser,selectedTracks, activeWeek, toggleActiveWeek, swipedActiveTrackName} = this.props;
+		const rightSideContent = ( 
 			<div>
 				<a href="javascript:;" onClick={toggleActiveWeek}>
 					<span className="mobile-hide">{activeWeek === 'current' ? 'Next' : 'Previous'} Week</span>
@@ -159,16 +158,14 @@ export default class Programming extends Component {
 
 						<ProgrammingHeader/>
 					</div>
-					{/*mobile*/}
 					<div className="hidden-md hidden-lg">
 						{selectedTracks.length ? this.renderSelectedTracksForMobile() : <NoTracksFound/>}
 					</div>
 
-					{/*desktop*/}
 					<div className="hidden-xs hidden-sm overflow-custom-scroll">
-						{selectedTracks.length ? this.renderSelectedTracksForDesktop() : <NoTracksFound/>}
+							{selectedTracks.length ? this.renderSelectedTracksForDesktop() : <NoTracksFound/>}
 					</div>
-
+			
 				</div>
 			</ReactCSSTransitionGroup>
 		)
@@ -214,9 +211,6 @@ export default class Programming extends Component {
 
 	renderEachTrackForMobile(selectedTrack, i) {
 		const {user, selectedTracks, wods, activeDate, currentDate, dailyBriefs} = this.props;
-
-		const logoImg = require('../../static/logo.png');
-
 		let track = selectedTrack.track;
 		let wodForThisTrack = wods[track.name];
 		let wodForThisTrackAndDate = wodForThisTrack ? wods[track.name][activeDate] : null;
@@ -224,6 +218,8 @@ export default class Programming extends Component {
 		let prevTrackName = selectedTracks[i - 1] ? selectedTracks[i - 1].trackName : null;
 		let dailyBrief = (dailyBriefs[track.name] ? <DailyBriefDesktop user={user} content={dailyBriefs[track.name]}/> : undefined);
 
+		const logoImg = require('../../static/iconlogobg.jpg');
+		
 		let content = null;
 		if(wodForThisTrack && typeof wods[track.name][activeDate] === 'undefined') {
 			content = (
@@ -268,19 +264,19 @@ export default class Programming extends Component {
 	renderEachTrackForDesktop(selectedTrack, i) {
 		const {user, selectedTracks, wods, activeDate, currentDate, dailyBriefs} = this.props;
 
-		const logoImg = require('../../static/logo.png');
-
 		let track = selectedTrack.track;
 		let wodForThisTrack = wods[track.name];
 		let wodForThisTrackAndDate = wodForThisTrack ? wods[track.name][activeDate] : null;
 		let nextTrackName = selectedTracks[i + 1] ? selectedTracks[i + 1].trackName : null;
 		let prevTrackName = selectedTracks[i - 1] ? selectedTracks[i - 1].trackName : null;
 
+		const logoImg = require('../../static/iconlogobg.jpg');
+
 		let content = null;
 		if(wodForThisTrack && typeof wods[track.name][activeDate] === 'undefined') {
 			content = (
 				<div className="loading-logo">
-					<img src={logoImg} alt="logo"/>
+					<img src={logoImg} alt="logo" width="100%"/>
 				</div>
 			);
 		} else if(wodForThisTrack && wodForThisTrackAndDate) {

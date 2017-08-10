@@ -5,7 +5,11 @@ import {connect} from "react-redux";
 import {asyncConnect} from 'redux-async-connect';
 import {loadListView} from '../redux/modules/wodsStore';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {Menubar, DesktopListWorkoutContainer, DesktopListWorkoutHeader} from '../components/index';
+import {
+	Menubar,
+	NoTracksFound, 
+	DesktopListWorkoutContainer, 
+	DesktopListWorkoutHeader} from '../components/index';
 import {
 	isLoaded as isTracksLoaded,
 	load as loadTracks
@@ -126,7 +130,7 @@ export default class ProgrammingListView extends Component {
 									</div>
 								}
 								{wods[this.state.selectedTrack] && Object.keys(wods[this.state.selectedTrack]).length === 0
-									? <p>Nothing found</p>
+									? <NoTracksFound/>
 									: undefined
 								}
 							</div>

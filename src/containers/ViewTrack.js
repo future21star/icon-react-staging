@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {asyncConnect} from 'redux-async-connect';
 import {includes, startsWith, find} from 'lodash';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import {Link} from "react-router";
 
 import {
 	isLoaded as isTracksLoaded,
@@ -176,23 +177,23 @@ export default class ViewTrack extends Component {
 		return (
 			<div className="container-fluid">
 				<div className="row">
-					<div className="col-sm-12 col-md-6 view-track-banner">
+					<div className="col-sm-12 col-md-6 full-height view-track-banner">
 						<EditTracksBanner
 							track={track}
 							selectedTracks={selectedTracks}
 							singleTrackView={true}
 						/>
 					</div>
-					<div className="col-sm-12 col-md-6 full-height edit-tracks-mid-section--wrapper">
+					<div className="col-sm-12 col-md-6 edit-tracks-mid-section--wrapper">
 						<div className="view-track-mid-section">
 							<div className="view-track-icon">{this.getIcon(track)}</div>
-							<h1 className="title">{track.name}</h1>
-							<div dangerouslySetInnerHTML={this.createMarkup(track.details)}/>
+								<h1 className="title">{track.name}</h1>
+								<div dangerouslySetInnerHTML={this.createMarkup(track.details)}/>
+								{accessOfProgrammingType === 'programming-all' ? this.renderButtonsForProgrammingAll(selectedTrackIsSubscribed) : undefined}
+								{accessOfProgrammingType === 'programming-lifestyle' ? this.renderButtonsForProgrammingLifeStyle(selectedTrackIsSubscribed) : undefined}
+								{accessOfProgrammingType === 'programming-masters' ? this.renderButtonsForProgrammingMasters(selectedTrackIsSubscribed) : undefined}
+							</div>
 						</div>
-						{accessOfProgrammingType === 'programming-all' ? this.renderButtonsForProgrammingAll(selectedTrackIsSubscribed) : undefined}
-						{accessOfProgrammingType === 'programming-lifestyle' ? this.renderButtonsForProgrammingLifeStyle(selectedTrackIsSubscribed) : undefined}
-						{accessOfProgrammingType === 'programming-masters' ? this.renderButtonsForProgrammingMasters(selectedTrackIsSubscribed) : undefined}
-					</div>
 				</div>
 			</div>
 		);

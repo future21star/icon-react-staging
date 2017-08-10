@@ -25,8 +25,8 @@
   [class^="icon-"], [class*=" icon-"] {
     display: block;
     font-size: 4em;
-    margin-top: 70px;
-    margin-bottom: 70px;
+    padding-top: 60px;
+    padding-bottom: 80px;
     clear: left;
     text-align: center;
     text-shadow: -1px 1px 6px rgba(0,0,0,.5);
@@ -39,6 +39,7 @@
     top: 15px;
     right: 15px;
     max-width: 30px;
+    padding: 0 !important;
     color: $turquoise;
   }
 }

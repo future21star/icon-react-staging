@@ -24,12 +24,11 @@ export default class Note extends Component {
 
 		return (
 			<div className="note-wrapper">
-				<div className="container container-small">
+				<div className="container-small">
 					<div className={classNames}>
 						<div className="note-header" onClick={this.toggleExpand}>
 							<h3 className="note-title">
-								<span className="icon-notes"/>
-								Notes
+								Workout Tips
 								{isOpened ? <i className="fa fa-minus pull-right"/> :
 									<span className="icon-nav-links pull-right"/>}
 							</h3>

@@ -77,7 +77,7 @@ export default class BottomNav extends Component {
 						{BottomNav.renderLinkItem('/', 'icon-nav-home', currentUri)}
 						{BottomNav.renderLinkItem('/feed', 'icon-nav-feed', currentUri)}
 						<li><a href="#" onClick={this.toggleHelpfulLinksPopUp} className="helpful-links-item"><span
-							className="icon-nav-links"/></a></li>
+							className="icon-menu-more"/></a></li>
 						{BottomNav.renderLinkItem('/nutrition', 'icon-nav-nutrition', currentUri)}
 						{BottomNav.renderLinkItem('/programming', 'icon-nav-programming', currentUri)}
 					</ul>
@@ -128,7 +128,7 @@ export default class BottomNav extends Component {
 								{BottomNav.renderLinkItem('/programming', 'icon-nav-programming', currentUri)}
 								<li className="helpful-links-desktop-li"><a href="#" onClick={this.toggleHelpfulLinksPopUp}
 																														className="helpful-links-item"><span
-									className="icon-nav-links"/></a></li>
+									className="icon-menu-more"/></a></li>
 							</ul>
 						</div>
 					</div>

@@ -90,6 +90,12 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f7f7f7', GradientType=0); /* IE6-9 */
 }
 
+.bg-logo-img{
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .bg-blue {
   background-color: $blue;
   color: $white;
@@ -194,6 +200,24 @@
   background-color: transparent !important;
   color: $greyDark;
   
+}
+
+.loading-logo img{
+  max-width: 600px;
+  width: 100%;
+  height: auto;
+}
+
+.welcome-block-bg{
+  padding: 20px 15px;
+  margin-top: 20px;
+  background-color: $whiteDark;
+  border: 1px solid $greyLight;
+  min-height: 280px;
+
+  .icon{
+    font-size: 3em;
+  }
 }
 /******************************
 TABS

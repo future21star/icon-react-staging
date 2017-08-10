@@ -68,7 +68,7 @@ export default class Login extends Component {
 				<form className="login-page--login-form" onSubmit={this.handleSubmit}>
 					<div className="form-group block input-effect">
 						<div className="input-group">
-							<input type="email" ref="email" className="form-control" placeholder="Your Email"/>
+							<input type="email" ref="email" className="form-control" placeholder="Email"/>
 							<div className="input-group-addon">
 								<span className="icon-email"/>
 							</div>

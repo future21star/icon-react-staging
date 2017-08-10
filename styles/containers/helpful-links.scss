@@ -1,0 +1,15 @@
+
+.travel-wods{
+	p{
+		background-color: $whiteDark;
+		border: 1px solid $greyLight;
+		padding: 15px;
+		width: 48%;
+		display: inline-block;
+		margin: 0 10px 20px 0;
+		vertical-align: top;
+	}
+	strong{
+		display: block;
+	}
+}

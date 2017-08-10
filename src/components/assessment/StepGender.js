@@ -34,7 +34,8 @@ export default class StepGender extends Component {
 										value={item.value}
 										checked={answer === item.value}
 										onChange={e => setAnswer(e.target.value)}
-									/> {item.label}
+									/> 
+									<p className="input-label">{item.label}</p>
 								</label>
 							</div>
 						)

@@ -19,9 +19,9 @@ export default class SubscriptionUpgradeCard extends Component {
 
 		let redirectUrl = null;
 		if (process.env.NODE_ENV !== 'production') {
-			redirectUrl = 'http://localhost:3000' + routing.locationBeforeTransitions.pathname;
+			redirectUrl = 'http://localhost:3000/' + routing.locationBeforeTransitions.pathname;
 		} else {
-			redirectUrl = 'http://34.210.177.213' + routing.locationBeforeTransitions.pathname;
+			redirectUrl = 'http://34.210.177.213/' + routing.locationBeforeTransitions.pathname;
 		}
 
 		let vaultAccess = levels.subscription_levels.filter((level) => {

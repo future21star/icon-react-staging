@@ -88,6 +88,7 @@ export default class EditTracksBanner extends Component {
 		return (
 			<div className="edit-tracks-banner-wrapper">
 				<div className="edit-tracks-banner" style={style}>
+					<div className="overlay-dark"/>
 					<div className="title">
 						{!singleTrackView ? (
 							<div>

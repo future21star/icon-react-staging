@@ -2,7 +2,10 @@ import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {connect} from "react-redux";
-import {Menubar} from '../../components/index';
+import {
+	Menubar,
+	ProblemHouston
+} from '../../components/index';
 import {Polar} from 'react-chartjs-2';
 import {Link} from "react-router";
 import {includes} from 'lodash';
@@ -29,7 +32,8 @@ export default class AssessmentResult extends Component {
 		this.state = {
 			totalScore: 0,
 			radarData: [],
-			recommendedTrackName: null
+			recommendedTrackName: null,
+			addStrength: false
 		}
 	}
 
@@ -38,6 +42,8 @@ export default class AssessmentResult extends Component {
 
 		let recommendedTrackName = false;
 		let recommendedTrack = false;
+		let trackShown = false;
+		let addStrength = false;
 		let answersAsArray = Object.values(answers);
 		let radarData = answersAsArray.slice(1, 8);
 		let totalScore = 0;
@@ -48,7 +54,6 @@ export default class AssessmentResult extends Component {
 		///////////////
 		radarData.map(value => totalScore += parseInt(value));
 
-
 		///////////////
 		// check lifestyle
 		///////////////
@@ -56,29 +61,32 @@ export default class AssessmentResult extends Component {
 			if (value <= 4) lifestyleCount++;
 		});
 
-		if ((lifestyleCount > 4 && totalScore <= 27) || answers[8] === 'yes') {
+		if ((lifestyleCount > 4 || totalScore <= 27) || answers[8] === 'yes') {
 			recommendedTrackName = 'lifestyle';
-		}
-
-		///////////////
-		// check hyper
-		///////////////
-		if (radarData.every((value) => (value >= 8 && value <= 10)) && (totalScore >= 56 && totalScore <= 70)) {
-			recommendedTrackName = 'hyper';
+			trackShown = true;
 		}
 
 		///////////////
 		// check dynamic
 		///////////////
-		if (radarData.every((value) => (value >= 4 && value <= 7)) || (totalScore >= 28 && totalScore <= 55)) {
+		if (!trackShown && (radarData.every((value) => (value >= 4 && value <= 7)) || totalScore >= 28 && totalScore <= 56)) {
 			recommendedTrackName = 'dynamic';
+			trackShown = true;
+		}
+
+		///////////////
+		// check hyper
+		///////////////
+		if ( !trackShown && radarData.every((value) => (value >= 7)) && totalScore >= 56) {
+			recommendedTrackName = 'hyper';
+			trackShown = true;
 		}
 
 		///////////////
 		// check strength
 		///////////////
-		if ([1, 6, 7].every(value => (value <= 4)) && [2, 3, 4, 5].every(value => (value >= 7)) && totalScore >= 28) {
-			recommendedTrackName = 'strength';
+		if (radarData[3] <= 4 && radarData[5] <= 4 && radarData[6]  <= 4 && radarData[0] >= 7 && radarData[1] >= 7 && radarData[2] >= 7 && radarData[4] >= 7 && totalScore >= 28) {
+			addStrength = true;
 		}
 
 
@@ -104,7 +112,8 @@ export default class AssessmentResult extends Component {
 			totalScore: totalScore,
 			radarData: newRadarData,
 			recommendedTrackName: recommendedTrackName,
-			recommendedTrack: recommendedTrack
+			recommendedTrack: recommendedTrack,
+			addStrength: addStrength
 		});
 	}
 
@@ -138,11 +147,11 @@ export default class AssessmentResult extends Component {
 			]
 		};
 
-		const {totalScore, radarData, recommendedTrackName, recommendedTrack} = this.state;
+		const {totalScore, radarData, recommendedTrackName, recommendedTrack, addStrength} = this.state;
 		const {subscription, vaultAccess} = this.props;
 
 		if (!totalScore || radarData.length === 0 || !recommendedTrackName || !recommendedTrack) {
-			return (<div>loading...</div>);
+			return (<ProblemHouston/>);
 		}
 
 		let trackDetails = assessmentResults.assessment_results.filter((result) => {
@@ -200,10 +209,14 @@ export default class AssessmentResult extends Component {
 							</div>
 						</div>
 						<div className="col-xs-12 col-sm-6">
-							<h1 className="title">
-								<span className="title-desc">Track Best Suited For You:</span>
-								<div className="title-track-name">{recommendedTrack.name}</div>
-							</h1>
+							<h1 className="title title-desc">Track Best Suited For You:</h1>
+							<h1 className="title title-track-name">{recommendedTrack.name}</h1>
+								{addStrength && (
+									<h1 className="title track-strength">
+										<span className="icon icon-nav-links"/>
+										STRENGTH
+									</h1>
+								)}
 							<div className="description" dangerouslySetInnerHTML={this.createMarkup(trackDetails.details || '')}/>
 							<div className="btn-wrap">
 								{(parseInt(subscription.subscription_id) === 1 || parseInt(subscription.subscription_id) === 11) && (

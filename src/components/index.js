@@ -5,6 +5,7 @@ export SubscriptionUpgradeCard from './global/SubscriptionUpgradeCard';
 export BottomNav from './global/BottomNav';
 export DotList from './global/DotList';
 export PodcastFloatingPlayerButton from './global/PodcastFloatingPlayerButton';
+export ProblemHouston from './global/ProblemHouston';
 
 
 //MENUBAR

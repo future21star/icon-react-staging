@@ -106,7 +106,7 @@ export default class EditTracks extends Component {
 					<div className="row">
 						{withoutMasterTracks.map((track, i) => {
 							return (
-								<div className="col-xs-12 col-sm-6 col-md-4" key={i}>
+								<div className="col-xs-12 col-sm-6" key={i}>
 									<div className="thumbnail">
 										<EditTracksBanner
 											track={track}

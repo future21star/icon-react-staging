@@ -42,7 +42,7 @@ export default class Profile extends Component {
 
 	render() {
 		const {user, jwtToken, wpUserId, username,} = this.props;
-		const formActionUrl = 'http://54.148.236.11/register/prepare-upgrade';
+		const formActionUrl = 'http://54.148.236.111/register/prepare-upgrade';
 
 		const rightSideContent = (
 			<Link to="edit-profile">

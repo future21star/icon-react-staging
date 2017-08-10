@@ -18,12 +18,11 @@
 
   .btn-absolute {
     position: static;
-    left: 0;
     display: block;
     height: auto;
     padding: 8px 0;
+    opacity: 1;
     background-color: $turquoise;
-    text-transform: capitalize;
   }
 
   .btn-fixed-mobile{
@@ -113,6 +112,12 @@
   /*
   TRACKS
   */
+  .edit-tracks-banner{
+    [class^="icon-"], [class*=" icon-"] {
+      padding-top: 40px;
+      padding-bottom: 60px;
+    }
+  }
   .view-track-wrapper {
 
     .edit-tracks-banner, .full-height {
@@ -141,6 +146,12 @@
     .row .col-md-4:nth-child(2n + 1){
       clear:left;
     }
+  }
+  /*
+  WELCOME
+  */
+  .welcome-block-bg{
+    min-height: auto;
   }
 }
 
@@ -254,6 +265,17 @@
 
     .edit-tracks-banner, .full-height {
       height: 200px !important;
+    }
+  }
+  .view-track-mid-section{
+    padding: 20px 20px 80px;
+  }
+  /*
+  HELPFUL LINKS
+  */
+  .travel-wods{
+    p{
+      width: 100%;
     }
   }
 }
