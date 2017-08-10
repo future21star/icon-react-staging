@@ -29,7 +29,6 @@ export default function loadFeed(request) {
 		};
 
 		// append type specific fields
-		// append type specific fields
 		if (type === 'video') {
 			formattedFeed.video_id = feed.data.vimeo_video.video_id;
 			formattedFeed.thumbnail_image = feed.data.vimeo_video.thumbnails[3];
