@@ -34,6 +34,7 @@ import {PodcastFloatingPlayerButton} from "../components";
 @connect(
 	state => ({
 		user: state.authStore.user,
+		showWelcomeAfterLogin: state.loginStore.showWelcomeAfterLogin,
 		podcastPlayer: state.podcastPlayerStore.podcastPlayer
 	}),
 	{pushState: push, calculateResponsiveState}
@@ -42,6 +43,7 @@ export default class App extends Component {
 	static propTypes = {
 		children: PropTypes.object.isRequired,
 		user: PropTypes.object,
+		showWelcomeAfterLogin: PropTypes.bool,
 		pushState: PropTypes.func.isRequired
 	};
 
@@ -56,7 +58,8 @@ export default class App extends Component {
 	componentWillReceiveProps(nextProps) {
 		if (!this.props.user && nextProps.user) {
 			// login
-			this.props.pushState('/');
+			if(nextProps.showWelcomeAfterLogin) this.props.pushState('/welcome');
+			else this.props.pushState('/');
 		} else if (this.props.user && !nextProps.user) {
 			if(this.props.podcastPlayer) this.props.podcastPlayer.stop();
 			// logout
