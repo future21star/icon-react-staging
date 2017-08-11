@@ -1,7 +1,7 @@
 import moment from 'moment';
 
 const SET_ACTIVE_DATE = 'dayPicker/SET_ACTIVE_DATE';
-const TOGGLE_ACTIVE_WEEK = 'dayPicker/TOGGLE_ACTIVE_WEEK';
+const SET_ACTIVE_WEEK = 'dayPicker/SET_ACTIVE_WEEK';
 
 const initialState = {
 	activeDate: moment().format('YYYY-MM-DD'),
@@ -15,10 +15,10 @@ export default function reducer(state = initialState, action = {}) {
 				...state,
 				activeDate: action.payload.activeDate
 			};
-		case TOGGLE_ACTIVE_WEEK:
+		case SET_ACTIVE_WEEK:
 			return {
 				...state,
-				activeWeek: (state.activeWeek === 'current') ? 'next' : 'current'
+				activeWeek: action.payload.activeWeek
 			};
 		default:
 			return state;
@@ -34,8 +34,11 @@ export function setActiveDate(activeDate) {
 	};
 }
 
-export function toggleActiveWeek() {
+export function setActiveWeek(activeWeek) {
 	return {
-		type: TOGGLE_ACTIVE_WEEK
+		type: SET_ACTIVE_WEEK,
+		payload: {
+			activeWeek
+		}
 	};
 }

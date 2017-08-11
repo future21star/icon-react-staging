@@ -539,3 +539,19 @@ LOGIN & PASSWORDS
   padding: 20px 0;
   text-align: center;
 }
+
+.programming-week-wrapper {
+  position: relative;
+
+  .programming-prev-week {
+    position: absolute;
+    top: -15px;
+    right: 90px;
+  }
+  
+  .programming-next-week {
+    position: absolute;
+    top: 15px;
+    right: 90px;
+  }
+}
