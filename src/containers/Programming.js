@@ -17,7 +17,7 @@ import {asyncConnect} from 'redux-async-connect';
 import ReactSwipe from 'react-swipe';
 import {isLoaded as isSelectedTracksLoaded, load as loadSelectedTracks} from '../redux/modules/selectedTracksStore';
 import {setActiveTrack} from "../redux/modules/swipeStore";
-import {setActiveDate, toggleActiveWeek} from "../redux/modules/dayPickerStore";
+import {setActiveDate, setActiveWeek} from "../redux/modules/dayPickerStore";
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {
 	isLoaded as isWodsLoaded,
@@ -58,7 +58,7 @@ import {
 		activeWeek: state.dayPickerStore.activeWeek,
 		dailyBriefs: state.dailyBriefStore.dailyBriefs
 	}),
-	{setActiveTrack, setActiveDate, toggleActiveWeek}
+	{setActiveTrack, setActiveDate, setActiveWeek}
 )
 export default class Programming extends Component {
 	componentDidMount() {
@@ -113,28 +113,75 @@ export default class Programming extends Component {
 	}
 
 	render() {
-		const {browser,selectedTracks, activeWeek, toggleActiveWeek, swipedActiveTrackName} = this.props;
-		const rightSideContent = ( 
+		const {browser, user, selectedTracks, activeWeek, setActiveWeek, swipedActiveTrackName} = this.props;
+
+		if(!user) return <div/>;
+
+
+		let rightSideContent = (
 			<div>
-				<a href="javascript:;" onClick={toggleActiveWeek}>
-					<span className="mobile-hide">{activeWeek === 'current' ? 'Next' : 'Previous'} Week</span>
-					{activeWeek === 'current' ? (
+				{activeWeek === 'current' && (
+					<a href="javascript:;" onClick={e => setActiveWeek('next')}>
+						<span className="mobile-hide">Next Week</span>
 						<span className="icon-next-week">
 							<span className="path1"/>
 							<span className="path2"/>
-						</span>) : (
+						</span>
+					</a>
+				)}
+				{activeWeek === 'next' && (
+					<a href="javascript:;" onClick={e => setActiveWeek('current')}>
+						<span className="mobile-hide">Previous Week</span>
 						<span className="icon-prev-week">
 							<span className="path1"/>
 							<span className="path2"/>
 						</span>
-					)}
-				</a>
+					</a>
+				)}
+
 				<Link to="/programming/list-view" className="hidden-xs hidden-sm list-view-toggle">
 					<i className="icon-desktop-menu"/>
 					<span>List View</span>
 				</Link>
 			</div>
 		);
+
+		// gym user
+		if(parseInt(user.subscription.subscription_id) === 8) {
+			rightSideContent = (
+				<div className="programming-week-wrapper">
+					{activeWeek === 'current' && (
+						<a href="javascript:;" className="programming-prev-week" onClick={e => setActiveWeek('previous')}>
+							<span className="mobile-hide">Prev Week</span>
+							<span className="icon-prev-week">
+								<span className="path1"/>
+								<span className="path2"/>
+							</span>
+						</a>
+					)}
+					{activeWeek !== 'current' && (
+						<a href="javascript:;" onClick={e => setActiveWeek('current')}>
+							<span className="mobile-hide">Current Week</span>
+							<span className="icon-calendar"/>
+						</a>
+					)}
+					{activeWeek === 'current' && (
+						<a href="javascript:;"  className="programming-next-week" onClick={e => setActiveWeek('next')}>
+							<span className="mobile-hide">Next Week</span>
+							<span className="icon-next-week">
+								<span className="path1"/>
+								<span className="path2"/>
+							</span>
+						</a>
+					)}
+					
+					<Link to="/programming/list-view" className="hidden-xs hidden-sm list-view-toggle">
+						<i className="icon-desktop-menu"/>
+						<span>List View</span>
+					</Link>
+				</div>
+			);
+		}
 
 		return (
 			<ReactCSSTransitionGroup
@@ -273,10 +320,16 @@ export default class Programming extends Component {
 		const logoImg = require('../../static/iconlogobg.jpg');
 
 		let content = null;
-		if(wodForThisTrack && typeof wods[track.name][activeDate] === 'undefined') {
+		if(!wodForThisTrack) {
 			content = (
 				<div className="loading-logo">
-					<img src={logoImg} alt="logo" width="100%"/>
+					<img src={logoImg} alt="logo"/>
+				</div>
+			);
+		} else if(wodForThisTrack && typeof wods[track.name][activeDate] === 'undefined') {
+			content = (
+				<div className="loading-logo">
+					<img src={logoImg} alt="logo"/>
 				</div>
 			);
 		} else if(wodForThisTrack && wodForThisTrackAndDate) {

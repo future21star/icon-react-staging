@@ -16,10 +16,25 @@ export default class DayPicker extends Component {
 
 		this.state = {
 			week: {
+				previous: DayPicker.getPreviousWeekDays(),
 				current: DayPicker.getCurrentWeekDays(),
 				next: DayPicker.getNextWeekDays()
 			}
 		}
+	}
+
+	static getPreviousWeekDays() {
+		let startDayOfWeek0 = moment().startOf('week').day(-7);
+		let week0Days = [];
+		for (let i = 0; i < 7; i++) {
+			let date = startDayOfWeek0.day(i);
+			week0Days.push({
+				date: date.format('YYYY-MM-DD'),
+				day: date.format('dd')
+			});
+		}
+
+		return week0Days;
 	}
 
 	static getCurrentWeekDays() {
