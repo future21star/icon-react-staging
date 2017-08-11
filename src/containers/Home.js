@@ -104,8 +104,8 @@ export default class Home extends Component {
 						title="Today's Workout"
 						leftSideContent={
 							<Link to="profile">
-								<span className="mobile-hide">Profile</span>
 								<span className="icon-user-profile"/>
+								<span className="mobile-hide">Profile</span>
 							</Link>}
 						className="menu-color-white has-dot-list">
 						<DotList/>
