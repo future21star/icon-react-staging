@@ -8,7 +8,7 @@ import {connect} from "react-redux";
 @connect(
 	state => ({
 		activeHelpfulLink: state.helpfulLinksStore.activeHelpfulLink,
-		subscription: state.authStore.user.subscription
+		user: state.authStore.user
 	}),
 	{setActiveLink, unsetActiveLink}
 )
@@ -31,7 +31,12 @@ export default class Help extends Component {
 	};
 
 	render() {
-		const {activeHelpfulLink, subscription} = this.props;
+		const {activeHelpfulLink, user} = this.props;
+		if(!user) {
+			return <div/>
+		}
+		
+		const {subscription} = user;
 
 		let content = activeHelpfulLink ? (
 			<div>

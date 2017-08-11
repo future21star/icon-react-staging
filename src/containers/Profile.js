@@ -14,11 +14,9 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {connect} from "react-redux";
 
 @connect(
-	state => ({user: state.authStore.user,
-				jwtToken: state.authStore.user.jwtToken,
-				wpUserId: state.authStore.user.wpUserId,
-				username: state.authStore.user.username}),
-
+	state => ({
+		user: state.authStore.user
+	}),
 	{}
 )
 export default class Profile extends Component {
@@ -41,7 +39,13 @@ export default class Profile extends Component {
 	};
 
 	render() {
-		const {user, jwtToken, wpUserId, username,} = this.props;
+		const {user} = this.props;
+
+		if(!user) {
+			return <div/>;
+		}
+		const {jwtToken, wpUserId, username} = user;
+		
 		const formActionUrl = 'http://54.148.236.111/register/prepare-upgrade';
 
 		const rightSideContent = (

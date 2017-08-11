@@ -42,7 +42,7 @@ export default class FeedFilteredByTopic extends Component {
 	componentWillReceiveProps(newProps) {
 		if (this.props.params.id !== newProps.params.id) {
 			this.props.clearTopicFeeds();
-			this.props.loadTopicFeeds(this.props.params.id);
+			this.props.loadTopicFeeds(newProps.params.id);
 			this.refs.overflowCustomScroll.scrollTop = 0;
 		}
 	}

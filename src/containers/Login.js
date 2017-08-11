@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {login} from '../redux/modules/loginStore';
+import {login,showWelcomeAfterLogin} from '../redux/modules/loginStore';
 import {FacebookButton, ShowPasswordInput, ErrorMessage, SuccessMessage} from '../components/index';
 import {Link} from "react-router";
 
@@ -10,7 +10,7 @@ import {Link} from "react-router";
 	state => ({
 		loginStore: state.loginStore
 	}),
-	{login}
+	{login, showWelcomeAfterLogin}
 )
 
 export default class Login extends Component {
@@ -19,6 +19,14 @@ export default class Login extends Component {
 		login: PropTypes.func,
 	};
 
+	componentDidMount() {
+		if(this.props.location.query.email) {
+			this.refs.email.value = this.props.location.query.email;
+			this.props.showWelcomeAfterLogin();
+		}
+			
+	}
+
 	handleSubmit = (event) => {
 		event.preventDefault();
 		const {email, password} = this.refs;
@@ -26,6 +34,7 @@ export default class Login extends Component {
 	};
 
 	render() {
+
 		const logoImage = require('../../static/logo.svg');
 
 		return (

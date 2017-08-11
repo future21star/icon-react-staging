@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {Link} from "react-router";
 import {connect} from "react-redux";
 import BtnBottom from "../tracks/BtnBottom";
+import {logout} from "../../redux/modules/authStore";
 
 @connect(
 	state => ({
@@ -9,7 +10,8 @@ import BtnBottom from "../tracks/BtnBottom";
 		browser: state.browser,
 		user: state.authStore.user,
 		helpfulLinks: state.helpfulLinksStore.helpfulLinks
-	})
+	}),
+	{logout}
 )
 
 export default class BottomNav extends Component {
@@ -26,6 +28,11 @@ export default class BottomNav extends Component {
 		this.setState({
 			showHelpfulLinksPopup: !this.state.showHelpfulLinksPopup
 		});
+	};
+
+	handleLogout = (event) => {
+		event.preventDefault();
+		this.props.logout();
 	};
 
 	static renderLinkItem(uri, iconName, currentUri) {
@@ -70,6 +77,7 @@ export default class BottomNav extends Component {
 													dangerouslySetInnerHTML={this.createMarkup(item.title)}/>
 									);
 								})}
+								<a href="javascript:;" onClick={this.handleLogout} className="list-group-item">Log Out</a>
 							</div>
 						</div>
 					</div>
@@ -110,6 +118,7 @@ export default class BottomNav extends Component {
 												dangerouslySetInnerHTML={this.createMarkup(item.title)}/>
 								);
 							})}
+							<a className="list-group-item" href="javascript:;" onClick={this.handleLogout}>Log Out</a>
 						</div>
 					</div>
 				</div>

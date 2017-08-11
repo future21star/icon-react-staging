@@ -31,12 +31,12 @@ export default function loadWod(request) {
 			let comments = null;
 			try {
 				comments = await axios.get(WP_API_URL + '/wp/v2/comments?post=' + wod.wpId);
+				commentsCount = comments.headers['x-wp-total'];
 			} catch (e) {
-				console.log(e);
-				return reject(generalError(e.response.data.message));
+				// most of the case, comments are disabled for this post
+				// console.log(e);
+				// return reject(generalError(e.response.data.message));
 			}
-
-			commentsCount = comments.headers['x-wp-total'];
 		}
 
 		return resolve({

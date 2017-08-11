@@ -4,10 +4,13 @@ export const LOGIN = 'login/LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'login/LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'login/LOGIN_FAIL';
 
+export const SHOW_WELCOME_AFTER_LOGIN = 'login/SHOW_WELCOME_AFTER_LOGIN';
+
 const initialState = {
 	loading: false,
 	success: null,
-	error: null
+	error: null,
+	showWelcomeAfterLogin: false
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -36,7 +39,13 @@ export default function reducer(state = initialState, action = {}) {
 				...state,
 				loading: false,
 				success: action.result.success,
-				error: null
+				error: null,
+				showWelcomeAfterLogin: false
+			};
+		case SHOW_WELCOME_AFTER_LOGIN:
+			return {
+				...state,
+				showWelcomeAfterLogin: true
 			};
 		default:
 			return state;
@@ -49,5 +58,12 @@ export function login(email, password) {
 		promise: (client) => client.post('/login', {
 			data: {email, password}
 		})
+	};
+}
+
+
+export function showWelcomeAfterLogin() {
+	return {
+		type: SHOW_WELCOME_AFTER_LOGIN
 	};
 }
