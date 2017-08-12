@@ -13,7 +13,7 @@ import moment from "moment";
 )
 export default class ProgrammingHeader extends Component {
 	render() {
-		const {isGym, setActiveWeek} = this.props;
+		const {isGym, showWeekNavOnMobile, setActiveWeek} = this.props;
 
 		let activeWeek = this.props.activeWeek;
 
@@ -47,7 +47,7 @@ export default class ProgrammingHeader extends Component {
 			<div className="programming-header-wrapper">
 				<div className="container">
 					<div className="row">
-						<div className="col-xs-12 change-weeks-wrapper hidden-xs hidden-sm">
+						<div className={showWeekNavOnMobile ? "col-xs-12 change-weeks-wrapper" : "col-xs-12 change-weeks-wrapper hidden-xs hidden-sm"}>
 							<div className="col-xs-3">
 								{isGym && (
 									<a href="javascript:;" className={`left ${activeWeek}`} onClick={e => setActiveWeek('previous')}>
