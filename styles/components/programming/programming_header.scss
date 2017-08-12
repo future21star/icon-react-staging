@@ -2,13 +2,12 @@
   background-color: $turquoiseDark;
 
   	.container{
-		max-width: 500px;
-	  	margin: -70px auto 0;
+		max-width: 640px;
+	  	margin: -75px auto 0;
    }
 
   .current-date{
-      padding-top: 5px !important;
-  		text-align: center;
+      padding-top: 10px !important;
   		margin:  0;
   		color: $white;
       letter-spacing: 1px;
@@ -16,5 +15,48 @@
       p{
         margin-bottom: 0;
       }
+  }
+}
+
+.change-weeks-wrapper{
+  a, .icon{
+    color: $turquoiseLight;
+    text-decoration: none !important;
+  }
+
+  span{
+    vertical-align: middle;
+  }
+
+  .left{
+    .icon{
+      margin-right: 5px;
+    }
+
+    &.previous{
+      color: $white !important;
+      .icon{
+        color: $white;
+      }
+    }
+  }
+
+  .center{
+    &.current{
+      color: $white !important;
+    }
+  }
+
+  .right{
+    .icon{
+      margin-left: 5px;
+    }
+
+    &.next{
+      color: $white !important;
+      .icon{
+        color: $white;
+      }
+    }
   }
 }

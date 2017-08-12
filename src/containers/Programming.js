@@ -9,6 +9,7 @@ import {
 	DesktopWorkoutBanner,
 	DesktopWorkout,
 	RestDay,
+	NoAccessSubscriptionUpgradeCard,
 	NoTracksFound
 } from '../components/index';
 import {Link} from "react-router";
@@ -17,7 +18,7 @@ import {asyncConnect} from 'redux-async-connect';
 import ReactSwipe from 'react-swipe';
 import {isLoaded as isSelectedTracksLoaded, load as loadSelectedTracks} from '../redux/modules/selectedTracksStore';
 import {setActiveTrack} from "../redux/modules/swipeStore";
-import {setActiveDate, setActiveWeek} from "../redux/modules/dayPickerStore";
+import {setActiveDate} from "../redux/modules/dayPickerStore";
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {
 	isLoaded as isWodsLoaded,
@@ -55,10 +56,9 @@ import {
 		wods: state.wodsStore.wods,
 		currentDate: state.swipeStore.currentDate,
 		activeDate: state.dayPickerStore.activeDate,
-		activeWeek: state.dayPickerStore.activeWeek,
 		dailyBriefs: state.dailyBriefStore.dailyBriefs
 	}),
-	{setActiveTrack, setActiveDate, setActiveWeek}
+	{setActiveTrack, setActiveDate}
 )
 export default class Programming extends Component {
 	componentDidMount() {
@@ -113,75 +113,22 @@ export default class Programming extends Component {
 	}
 
 	render() {
-		const {browser, user, selectedTracks, activeWeek, setActiveWeek, swipedActiveTrackName} = this.props;
+		const {browser, user, selectedTracks, swipedActiveTrackName} = this.props;
 
-		if(!user) return <div/>;
-
+		if(!user) return <NoAccessSubscriptionUpgradeCard/>;
+		let isGym = parseInt(user.subscription.subscription_id) === 8;
 
 		let rightSideContent = (
 			<div>
-				{activeWeek === 'current' && (
-					<a href="javascript:;" onClick={e => setActiveWeek('next')}>
-						<span className="mobile-hide">Next Week</span>
-						<span className="icon-next-week">
-							<span className="path1"/>
-							<span className="path2"/>
-						</span>
-					</a>
-				)}
-				{activeWeek === 'next' && (
-					<a href="javascript:;" onClick={e => setActiveWeek('current')}>
-						<span className="mobile-hide">Previous Week</span>
-						<span className="icon-prev-week">
-							<span className="path1"/>
-							<span className="path2"/>
-						</span>
-					</a>
-				)}
-
-				<Link to="/programming/list-view" className="hidden-xs hidden-sm list-view-toggle">
-					<i className="icon-desktop-menu"/>
-					<span>List View</span>
+				<a href="javascript:;" className="hidden-md hidden-lg">
+					<span className="mobile-hide">Change Week</span>
+					<span className="icon-calendar"/>
+				</a>
+				<Link to="/programming/list-view" className="hidden-xs hidden-sm">
+					<span className="mobile-hide">List View</span>
+					<span className="icon-desktop-menu"/>
 				</Link>
-			</div>
-		);
-
-		// gym user
-		if(parseInt(user.subscription.subscription_id) === 8) {
-			rightSideContent = (
-				<div className="programming-week-wrapper">
-					{activeWeek === 'current' && (
-						<a href="javascript:;" className="programming-prev-week" onClick={e => setActiveWeek('previous')}>
-							<span className="mobile-hide">Prev Week</span>
-							<span className="icon-prev-week">
-								<span className="path1"/>
-								<span className="path2"/>
-							</span>
-						</a>
-					)}
-					{activeWeek !== 'current' && (
-						<a href="javascript:;" onClick={e => setActiveWeek('current')}>
-							<span className="mobile-hide">Current Week</span>
-							<span className="icon-calendar"/>
-						</a>
-					)}
-					{activeWeek === 'current' && (
-						<a href="javascript:;"  className="programming-next-week" onClick={e => setActiveWeek('next')}>
-							<span className="mobile-hide">Next Week</span>
-							<span className="icon-next-week">
-								<span className="path1"/>
-								<span className="path2"/>
-							</span>
-						</a>
-					)}
-					
-					<Link to="/programming/list-view" className="hidden-xs hidden-sm list-view-toggle">
-						<i className="icon-desktop-menu"/>
-						<span>List View</span>
-					</Link>
-				</div>
-			);
-		}
+			</div>);
 
 		return (
 			<ReactCSSTransitionGroup
@@ -203,7 +150,9 @@ export default class Programming extends Component {
 							className="text-white programming-menu-bar"
 						/>
 
-						<ProgrammingHeader/>
+						<ProgrammingHeader
+							isGym = {isGym}
+						/>
 					</div>
 					<div className="hidden-md hidden-lg">
 						{selectedTracks.length ? this.renderSelectedTracksForMobile() : <NoTracksFound/>}
