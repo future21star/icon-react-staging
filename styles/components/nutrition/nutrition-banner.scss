@@ -1,0 +1,39 @@
+.nutrition-banner-wrapper {
+  padding: 0;
+  position: relative;
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+  .overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+  }
+
+  &.is-landing{
+    .nutrition-banner-title{
+      margin-top: 200px;
+      margin-top: 20vh;
+    }
+  }
+}
+.nutrition-banner-title{
+  position: relative;
+  padding: 15px;
+
+  h2{
+    margin:0;
+    color: $white;
+  }
+  p{
+    color: $greyLight;
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+
+}
+.nutrition-banner-content{
+  padding-top: 20px;
+  padding-bottom: 40px
+}

@@ -1,9 +1,18 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {Menubar} from '../components/index';
 import {connect} from "react-redux";
-import CheckAccessLevel from './HOC/CheckAccessLevel'
+import {includes} from 'lodash';
+import {Link} from 'react-router';
+
+import {
+	Menubar,
+	Targets,
+	NutritionNav,
+	NutritionBanner,
+	JoinSlack
+} from '../components/index';
+
 
 @connect(
 	state => ({
@@ -12,16 +21,16 @@ import CheckAccessLevel from './HOC/CheckAccessLevel'
 	{}
 )
 
-@CheckAccessLevel('nutrition')
-
 export default class Nutrition extends Component {
-
 	render() {
 		const {user} = this.props;
 
 		if(!user) {
 			return <div/>;
 		}
+		const {vaultAccess} = this.props;
+
+		let accessToNutrition = includes(vaultAccess, 'nutrition');
 
 		return (
 			<ReactCSSTransitionGroup
@@ -35,12 +44,29 @@ export default class Nutrition extends Component {
 			>
 				<div>
 					<Helmet title="Nutrition"/>
+					<Menubar
+						title="Nutrition"
+						className="menu-bar-red menu-color-white"
+						leftSideContent={<Link to="/profile">
+							<span className="icon-user-profile"/>
+							<span className="mobile-hide">Profile</span>
+						</Link>}
+					/>
 
-					<Menubar title="Nutrition"/>
-
-					<div className="container">
-						<div className="text-center">
-							<h2>Coming Soon</h2>
+					<div className="nutrition-page-content-wrapper bottom-padding container-fluid">
+						<div className="row nutrition-banner-nav-wrapper">
+							<div className="col-xs-12 col-sm-6">
+								<div className="row">
+									<NutritionBanner 
+										isLanding={true}
+									/>
+								</div>
+							</div>
+							<div className="col-xs-12 col-sm-6">
+								<JoinSlack/>
+								<Targets/>
+								<NutritionNav/>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -48,4 +74,3 @@ export default class Nutrition extends Component {
 		);
 	}
 }
-

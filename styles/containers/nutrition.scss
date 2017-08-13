@@ -1,0 +1,394 @@
+@import "../components/nutrition/targets";
+@import "../components/nutrition/join-slack";
+@import "../components/nutrition/nutrition-nav";
+@import "../components/nutrition/nutrition-banner";
+
+.nutrition-page-content-wrapper{
+  background-color: $greyLight;
+  .nutrition-featured-news-section{
+    .featured-news {
+      background: #ffffff;
+      padding: 15px 0 15px 0;
+      .featured-news-title {
+        font-size: 18px;
+        line-height: 1.2em;
+        color: #000;
+        a{
+          font-size: 16px;
+          font-weight: 500;
+        }
+      }
+      .featured-news-date {
+        color: #999;
+        text-transform: uppercase;
+        font-size: 11px;
+        &:before {
+          content: '\e902';
+          font-family: 'icomoon', serif;
+          padding-right: 5px;
+        }
+      }
+      .featured-news-content {
+        padding: 10px 0;
+      }
+    }
+    .featured-news:not(:last-child){
+      border-bottom: 1px solid #dddddd;
+    }
+  }
+
+  .padding-bottom-100{
+    padding-bottom: 100px;
+  }
+
+  .nutrition-featured-news-section{
+    h4{
+      color: #D1252E;
+      text-transform: uppercase;
+      margin-top: 20px;
+      margin-bottom: 4px;
+    }
+  }
+}
+
+.nutrition-change-track-content-wrapper{
+  background: #f2f2f2;
+  padding: 15px;
+  .select-track, .calculate-goals{
+    text-align: center;
+    background: white;
+    padding-bottom: 40px;
+    margin-bottom: 15px;
+    h2{
+      margin-top: 0;
+      text-transform: uppercase;
+      padding-top: 30px;
+      margin-bottom: 20px;
+      font-size: 24px;
+      padding-left: 25px;
+      padding-right: 25px;
+    }
+    p{
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 30px;
+      padding-left: 25px;
+      padding-right: 25px;
+    }
+    .btn-pill{
+      background: white;
+      color: black;
+      text-transform: uppercase;
+      font-size: 11px;
+      font-weight: 500;
+      border-radius: 30px;
+      border: none;
+      padding: 12px 35px 12px 35px;
+      min-width: 135px;
+    }
+    .btn-turquoise{
+      background: #5DC6D2;
+      color: white;
+    }
+    .btn-grey{
+      background: #999999;
+      color: #fff;
+    }
+  }
+}
+
+.nutrition-foundations-page-content-wrapper{
+  .nutrition-banner-wrapper{
+    .nutrition-banner {
+      position: relative;
+      -webkit-background-size: cover;
+      background-size: cover;
+      background-repeat: no-repeat;
+      .overlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.52);
+      }
+      .title {
+        position: relative;
+        text-align: center;
+        padding-top: 30px;
+        padding-bottom: 40px;
+        h1, h2, h3{
+          margin-top: 10px;
+          margin-bottom: 0;
+          color: #5DC6D2;
+        }
+        h5{
+          color: #fff;
+          font-family: Lato, sans-serif;
+          margin-top: 5px;
+          font-weight: 300;
+          letter-spacing: .5px;
+          margin-bottom: 15px;
+        }
+      }
+      .banner-img {
+        max-width: 80px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      [class^="icon-"], [class*=" icon-"] {
+        font-size: 50px;
+        margin-top: 30px;
+      }
+    }
+    .nutrition-dot-list-container{
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+    .dotlist-wrapper {
+      .dot-list {
+        text-align: center;
+        padding-top: 5px;
+        margin-bottom: 0;
+
+        .dot {
+          width: 5px;
+          height: 5px;
+          margin: 5px -1px;
+          background: transparent;
+          display: block;
+          transition: opacity .2s ease;
+          border-radius: 30px;
+          border: 1px solid black;
+        }
+        .active {
+          background: #000;
+        }
+      }
+    }
+  }
+
+  .btn-pill{
+    background: white;
+    color: black;
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: 500;
+    border-radius: 30px;
+    border: none;
+    padding: 10px 20px;;
+  }
+
+  .nutrition-tabs{
+
+    @-webkit-keyframes fadeIn {
+      from {
+        opacity: 0.1
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0.1
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .active {
+      -webkit-animation-name: fadeIn;
+      animation-name: fadeIn;
+      -webkit-animation-duration: 1s;
+      animation-duration: 1s;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+      //color: black!important;
+    }
+
+    .nav {
+      li {
+        a {
+          padding: 0 4px;
+          margin-right: 0;
+          margin-top: 3px;
+          font-family: 'Oswald', sans-serif;
+          color: #666666;
+          letter-spacing: 1px;
+          line-height: 1.2em;
+          font-size: 1em;
+          transition: all .3s ease;
+          -moz-transition: all .3s ease;
+          -webkit-transition: all .3s ease;
+        }
+
+      }
+
+    }
+    .nav-tabs {
+      background-color: #F6F6F5;
+      li {
+        a:hover {
+          border-top: transparent;
+          background: transparent;
+        }
+      }
+    }
+    .nav-justified > li {
+      display: table-cell;
+      width: 1%;
+      color: #fff;
+      min-width: 35px;
+      min-height: 50px;
+      padding: 14px 0;
+
+      &:after {
+        content: "";
+        height: 25px;
+        position: absolute;
+        width: 1px;
+        right: 0;
+        top: 13px;
+        display: inline-block;
+        background-color: #CBCCCD;
+      }
+
+      &:last-child:after {
+        display: none;
+      }
+
+    }
+    .nav-justified > li > a, .nav-tabs.nav-justified > li > a {
+      margin-bottom: 1px;
+      border-bottom: none;
+    }
+    .nav-justified
+    .nav > li > a:hover, .nav > li > a:focus {
+      background-color: transparent;
+    }
+    .active-black {
+      //font-size: 1.2em !important;
+      color: black !important;
+    }
+  }
+
+  .nutrition-tab-content{
+    padding: 15px 15px 15px 15px;
+    h2, h3, h4{
+      color: #D1252E;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    p{
+      font-size: 16px;
+      font-weight: 400;
+    }
+    .red{
+      color: #D1252E;
+    }
+    .margin-bottom-20{
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.nutrition-help-page-content-wrapper{
+  .nutrition-help-page-content{
+    border-top: 1px solid #989898;
+    .help-block{
+      padding: 1px 20px 1px 20px;
+      h3{
+        color: #D1252E;
+        text-transform: uppercase;
+      }
+      p{
+        font-size: 16px;
+        font-weight: 400;
+      }
+    }
+    .help-block:not(:first-child){
+      h3{
+        margin-top: 5px;
+      }
+    }
+  }
+}
+
+.nutrition-calculator-page-content{
+  padding: 20px 20px 30px 20px;
+  .calculator-header{
+    text-align: center;
+    margin-bottom: 30px;
+    h3{
+      color: #D1252E;
+      text-transform: uppercase;
+    }
+    p{
+      font-size: 16px;
+      font-weight: 400;
+    }
+  }
+  .calculator-section{
+    padding-left: 15px;
+    padding-right: 15px;
+    form{
+      .block {
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+      .input-effect-less-padding .form-control{
+        padding-left: 7px!important;
+      }
+      .icon-arrow-down{
+        color: #747474;
+      }
+      .unit-radios{
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        .btn-white-left, .btn-white-right{
+          background: #fff;
+          color: black;
+          border: 1px solid #eeeeee;
+          padding-top: 12px;
+          padding-bottom: 12px;
+        }
+        .btn-white-left{
+          border-radius: 6px 0 0 6px;
+          width: 50%;
+        }
+        .btn-white-right{
+          border-radius: 0 6px 6px 0;
+          width: 50%;
+        }
+        .active{
+          background: #D1252E;
+          color: white;
+        }
+      }
+      .help-icon{
+        font-size: 20px;
+        color: #d1252e;
+        margin-left: -15px;
+        position: relative;
+        top: 5px;
+        cursor: pointer;
+        //font-weight: bold;
+      }
+    }
+  }
+}
+
+.bottom-button{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  button{
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}

@@ -1,0 +1,63 @@
+.nutrition-data-list{
+  background-color: $white;
+  padding-bottom: 15px;
+  
+  .list-title-wrapper{
+    background-color: $turquoise;
+    padding-top: 8px;
+    margin: 0;
+  }
+  .list-title{
+    padding-left: 30px;
+    font-size: 1.3em;
+    color: $white;
+  }
+
+
+  .calculator-link-wrapper{
+    margin-top: 3px;
+    padding-right: 30px;
+    a{
+      color: $white;
+
+      .icon{
+        margin-left: 5px;
+        color: $white;
+      }
+    }
+  }
+  .list-item{
+      text-align: center;
+    padding: 0;
+    margin: 15px 0 0;
+    border-right: 1px solid $whiteDark;
+
+    &:last-child{
+      border-right: none;
+    }
+
+    &.calories{
+      h4,p{
+        color: $orange;
+      }
+    }
+
+    &.carbs{
+      h4,p{
+        color: $turquoise;
+      }
+    }
+
+    &.protein{
+      h4,p{
+        color: $blue;
+      }
+    }
+  }
+}
+
+.nutrition-data-list-vertical{
+  .list-item{
+    border-bottom: 1px solid $whiteDark;
+  }
+}

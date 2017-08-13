@@ -1,0 +1,25 @@
+.slack-section{
+  background: $redDark;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  h4{
+    color: $white;
+    margin-top: 7px;
+    margin-bottom: 5px;
+  }
+  h4, img{
+    display: inline-block;
+  }
+  .slack-img{
+    max-width: 30px;
+    margin-right: 15px;
+  }
+  a{
+    font-size: 11px;
+    color: $white;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: underline;
+    margin-top: 8px;
+  }
+}

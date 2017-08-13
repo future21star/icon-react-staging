@@ -77,6 +77,14 @@ export StepSnatch from './assessment/StepSnatch';
 export StepCleanAndJerk from './assessment/StepCleanAndJerk';
 export StepHoursInTheGym from './assessment/StepHoursInTheGym';
 
+//NUTRITION
+export Targets from './nutrition/Targets';
+export NutritionNav from './nutrition/NutritionNav';
+export NutritionBanner from './nutrition/NutritionBanner';
+export NutritionBlogPost from './nutrition/NutritionBlogPost';
+export JoinSlack from './nutrition/JoinSlack';
+
+
 
 
 

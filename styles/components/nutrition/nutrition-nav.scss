@@ -1,0 +1,41 @@
+.nutrition-nav{
+  background: $greyLight;
+  text-align: left !important;
+  .nutrition-nav-item{
+    margin-bottom: 5px;
+    a{
+      text-decoration: none;
+      position: relative;
+      padding-left: 15px;
+    }
+    .icon-arrow-right{
+      margin: 3px 10px 0;
+      color: $grey;
+
+    }
+
+    .icon{
+      margin-right: 15px;
+      font-size: 18px;
+      display: inline-block;
+      min-width: 20px;
+    }
+    .text{
+      font-weight: 500;
+    }
+    .icon-green{
+      color: #8fce42;
+    }
+    .icon-orange{
+      color: $orange;
+    }
+    .icon-red{
+      color: $red;
+    }
+
+    .icon-turquoise{
+      color: $turquoise;
+    }
+
+  }
+}

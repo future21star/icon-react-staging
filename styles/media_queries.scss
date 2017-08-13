@@ -13,7 +13,7 @@
   }
 
   .bottom-padding {
-    padding-bottom: 40px;
+    padding-bottom: 60px;
   }
 
   .btn-absolute {
@@ -281,6 +281,26 @@
       width: 100%;
     }
   }
+  /*
+  NUTRITION
+  */
+
+  .nutrition-banner-nav-wrapper{
+    .full-height-menu-header{
+      min-height: auto;
+      height: auto;
+    }
+  }
+  
+  .nutrition-banner-wrapper {
+
+    &.is-landing{
+      .nutrition-banner-title{
+        margin-top: 40px;
+        margin-bottom: 40px;
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 561px) {
@@ -288,6 +308,10 @@
     .col-xs-4{
       padding: 0 0 0 5px;
     }
+  }
+
+  .assessment-tabs-content .assessment-section-bg iframe{
+      height: 200px;
   }
   .subscription-upgrade-card {
     margin: 80px 15px;

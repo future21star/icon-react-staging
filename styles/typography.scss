@@ -95,6 +95,15 @@ a{
   }
 }
 
+.btn-icon-white{
+  color: $black;
+  background-color: $white;
+  &:hover{
+    color: $white !important;
+    border-color: $white;
+  }
+}
+
 .btn-icon-icon{
   position: relative;
   max-width: 215px;
@@ -132,9 +141,39 @@ a{
     }
   }
 
+  &.btn-icon-white{
+    [class^="icon-"]{
+      background-color: $whiteDark;
+      color: $greyLight;
+    }
+
+    &:hover{
+      background-color: $whiteDark;
+    }
+  }
+
+  &.btn-icon-outline{
+    [class^="icon-"]{
+      background-color: transparent;
+      color: $white;
+    }
+  }
+
   &:hover{
     background-color: $redDark;
   }
+}
+
+.btn-icon-outline{
+  background-color: transparent;
+  border-color: $white;
+  color: $white;
+
+  &:hover{
+    border-color: transparent;
+    color: $black;
+  }
+
 }
 
 .btn-icon-lg{

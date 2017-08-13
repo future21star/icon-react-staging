@@ -63,7 +63,7 @@ export default class Welcome extends Component {
 					</div>
 					<div className="clearfix"/>
 					<h1 className="block">First Step</h1>
-					<p>We recommend you take our Assessment to figure out which programming track is best for you:</p>
+					<p>We recommend taking our Assessment to decide which programming track is best for you:</p>
 					<div className="block">
 						<Link to="assessment" className="btn btn-lg btn-icon">Take Assessment</Link>
 					</div>
