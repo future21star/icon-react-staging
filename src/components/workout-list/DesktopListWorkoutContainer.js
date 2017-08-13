@@ -28,7 +28,7 @@ export default class DesktopListWorkoutContainer extends Component {
 									 style={{backgroundImage: 'url(../' + wod.track.bgImgUrl + ')'}}>
 								<div className="overlay-desktop"/>
 								<div className="title-desktop">
-									<span className="day pull-left">{moment(wod.date).format('dd')}</span>
+									<span className="day pull-left">{moment.utc(wod.date).local().format('dd')}</span>
 									<h3>{wod.title}</h3>
 
 									<ul className="track-data-list-desktop list-inline">

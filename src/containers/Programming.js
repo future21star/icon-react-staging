@@ -61,6 +61,21 @@ import {
 	{setActiveTrack, setActiveDate}
 )
 export default class Programming extends Component {
+
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			showWeekNavOnMobile: false
+		};
+	}
+
+	toggleShowWeekNavOnMobile = () => {
+		this.setState({
+			showWeekNavOnMobile: !this.state.showWeekNavOnMobile
+		});
+	};
+
 	componentDidMount() {
 		const {dispatch, selectedTracks, swipedActiveTrackIndex, setActiveTrack} = this.props;
 
@@ -120,7 +135,7 @@ export default class Programming extends Component {
 
 		let rightSideContent = (
 			<div>
-				<a href="javascript:;" className="hidden-md hidden-lg">
+				<a href="javascript:;" className="hidden-md hidden-lg" onClick={this.toggleShowWeekNavOnMobile}>
 					<span className="mobile-hide">Change Week</span>
 					<span className="icon-calendar"/>
 				</a>
@@ -152,6 +167,7 @@ export default class Programming extends Component {
 
 						<ProgrammingHeader
 							isGym = {isGym}
+							showWeekNavOnMobile={this.state.showWeekNavOnMobile}
 						/>
 					</div>
 					<div className="hidden-md hidden-lg">

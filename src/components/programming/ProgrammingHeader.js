@@ -13,7 +13,7 @@ import moment from "moment";
 )
 export default class ProgrammingHeader extends Component {
 	render() {
-		const {isGym, setActiveWeek} = this.props;
+		const {isGym, showWeekNavOnMobile, setActiveWeek} = this.props;
 
 		let activeWeek = this.props.activeWeek;
 
@@ -41,13 +41,13 @@ export default class ProgrammingHeader extends Component {
 		// 		)}
 		// 	</div>
 		// 	);
-
+		
 
 		return (
 			<div className="programming-header-wrapper">
 				<div className="container">
 					<div className="row">
-						<div className="col-xs-12 change-weeks-wrapper hidden-xs hidden-sm">
+						<div className={showWeekNavOnMobile ? "col-xs-12 change-weeks-wrapper" : "col-xs-12 change-weeks-wrapper hidden-xs hidden-sm"}>
 							<div className="col-xs-3">
 								{isGym && (
 									<a href="javascript:;" className={`left ${activeWeek}`} onClick={e => setActiveWeek('previous')}>
@@ -69,7 +69,7 @@ export default class ProgrammingHeader extends Component {
 							<DayPicker/>
 						</div>
 						<div className="col-xs-8 col-md-4 text-center current-date">
-							<p>{ moment(this.props.activeDate).format('dddd, MMMM Do') }</p>
+							<p>{moment.utc(this.props.activeDate).local().format('dddd, MMMM Do')}</p>
 						</div>
 						<div className="col-xs-4 hidden-md hidden-lg">
 							<DotList/>
