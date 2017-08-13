@@ -1,13 +1,12 @@
-.edit-tracks-wrapper {
+.edit-tracks-list-wrapper {
+    background-color: $blackDark;
 
-  .edit-tracks-list-wrapper {
-    padding-top: 10px;
-  }
-  .thumbnail {
+    .thumbnail {
     position: relative;
     padding: 0;
     border: none;
     overflow: hidden;
+    background-color: transparent;
 
     &:hover{
       cursor: pointer;
@@ -20,24 +19,15 @@
   .overlay-dark{
     background-color: rgba(0,0,0,.5);
   }
-}
 
-.btn-absolute {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  padding-top: 115px;
-  text-align: center;
-  border: none;
-  font-size: 1.2em;
-  text-decoration: none !important;
-  text-transform: uppercase;
-  font-weight: 500;
-  letter-spacing: 1px;
-  color: $white !important;
-  background-color: rgba(0,0,0, .8);
-  opacity: 0;
-  @include transition(.3s ease opacity);
+  .edit-tracks-btn-wrapper{
+    padding: 0;
+
+    .btn-icon{
+      margin: 0;
+      max-width: 100% !important;
+    }
+  }
+
 }
+  

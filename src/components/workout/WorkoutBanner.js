@@ -91,7 +91,7 @@ export default class WorkoutBanner extends Component {
 					<div className="mid-content">
 						<div className="mid-content-section">
 							<h2>{wod.track.name}</h2>
-							{this.getIcon()}
+							{!isWorkoutMode && this.getIcon()}
 							<h3>{wod.title}</h3>
 						</div>
 						<ul className={`workout-banner-list list-inline ${wod.notes ? 'workout-banner-list-with-note' : ''}`}>

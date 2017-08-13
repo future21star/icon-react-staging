@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {
+	Menubar,
 	WorkoutBanner,
 	WorkoutTabs,
 	Timer
@@ -43,26 +44,29 @@ export default class WorkOutMode extends Component {
 			>
 				<div className="workout-mode-page-wrapper">
 					<Helmet title="Workout Mode"/>
-					{workout === null ? <h1>Not found</h1> :
-						<div className="workout-mode">
-							<div className="overlay-gradient"/>
+					<Menubar
+						title="Workout Mode"
+						className="menu-bar-transparent menu-color-white"
+						backButton={true}
+					/>
 
-							<WorkoutBanner
-								wod={workout}
-								isWorkoutMode={true}
-							/>
+						{workout === null ? <h1>Not found</h1> :
+							<div className="workout-mode">
+								<div className="overlay-gradient"/>
 
-							<WorkoutTabs 
-								track={workout}
-								isWorkoutMode={true}
-							/>
+								<WorkoutBanner
+									wod={workout}
+									isWorkoutMode={true}
+								/>
 
-							<Timer/>
-							<div className="exit">
-								<a href="javascript:history.back()">Exit</a>
+								<Timer/>
+
+								<WorkoutTabs 
+									track={workout}
+									isWorkoutMode={true}
+								/>
 							</div>
-						</div>
-					}
+						}
 				</div>
 			</ReactCSSTransitionGroup>
 		);

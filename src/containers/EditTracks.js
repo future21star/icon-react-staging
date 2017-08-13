@@ -72,15 +72,17 @@ export default class EditTracks extends Component {
 
 					<Menubar
 						title="Edit Tracks"
-						className="menu-bar-grey"
+						className="menu-bar-transparent menu-color-white"
 						backButton={true}
 					/>
 
-					{
-						accessOfProgrammingType
-							? this.renderEditTracks(accessOfProgrammingType)
-							: <NoAccessSubscriptionUpgradeCard permissionName='programming-lifestyle'/>
-					}
+					<div className="menu-head-buffer edit-tracks-list-wrapper bottom-padding">
+						{
+							accessOfProgrammingType
+								? this.renderEditTracks(accessOfProgrammingType)
+								: <NoAccessSubscriptionUpgradeCard permissionName='programming-lifestyle'/>
+						}
+					</div>
 
 				</div>
 			</ReactCSSTransitionGroup>
@@ -105,34 +107,48 @@ export default class EditTracks extends Component {
 		});
 
 		return (
-			<div className="edit-tracks-list-wrapper bottom-padding">
-				<div className="container">
-					<div className="row">
-						{withoutMasterTracks.map((track, i) => {
+			<div className="container">
+				<div className="row">
+					{withoutMasterTracks.map((track, i) => {
 
-							const isSubscribed = find(selectedTracks, selectedTrack => {
-								return selectedTrack.trackName === track.name;
-							});
+						const isSubscribed = find(selectedTracks, selectedTrack => {
+							return selectedTrack.trackName === track.name;
+						});
 
-							return (
-								<div className="col-xs-12 col-sm-6" key={i}>
-									<div className="thumbnail">
-										<EditTracksBanner
-											track={track}
-											selectedTracks={selectedTracks}
-										/>
-										<Link to={`/edit-tracks/${track.name}`} className="btn-absolute">Details</Link>
+						return (
+							<div className="col-xs-12 col-sm-6" key={i}>
+								<div className="thumbnail">
+									<EditTracksBanner
+										track={track}
+										selectedTracks={selectedTracks}
+									/>
+									<div className="col-xs-6 edit-tracks-btn-wrapper">
+										{isSubscribed && 
+											<button className="btn btn-lg btn-icon btn-icon-icon" onClick={e => this.props.removeTrack(track.name)}>
+												<span className="icon-trash"/>
+												Remove
+											</button>}
+										{!isSubscribed && accessOfProgrammingType === 'programming-all' && 
+											<button className="btn btn-lg btn-icon btn-icon-bluer btn-icon-icon" onClick={e => this.props.addToTrackList(track.name)}>
+												<span className="icon-nav-links"/>
+												Add
+											</button>}
+										{!isSubscribed && accessOfProgrammingType === 'programming-lifestyle' && track.name === "lifestyle" && 
+											<button className="btn btn-lg btn-icon btn-icon-bluer btn-icon-icon" onClick={e => this.props.addAsOnlyTrack(track.name)}>
+												<span className="icon-nav-links"/>
+												Add
+											</button>}
 									</div>
-
-									{isSubscribed && <button className="btn btn-default btn-block" onClick={e => this.props.removeTrack(track.name)}>Remove</button>}
-									{!isSubscribed && accessOfProgrammingType === 'programming-all' && <button className="btn btn-default btn-block" onClick={e => this.props.addToTrackList(track.name)}>Add</button>}
-									{!isSubscribed && accessOfProgrammingType === 'programming-lifestyle' && track.name === "lifestyle" && <button className="btn btn-default btn-block" onClick={e => this.props.addAsOnlyTrack(track.name)}>Add</button>}
-
-									<br/>
+									<div className="col-xs-6 edit-tracks-btn-wrapper">
+										<Link to={`/edit-tracks/${track.name}`} className="btn btn-lg btn-icon btn-icon-blue btn-icon-icon">
+											<span className="icon-information"/>
+											Details
+										</Link>
+									</div>
 								</div>
-							);
-						})}
-					</div>
+							</div>
+						);
+					})}
 				</div>
 			</div>
 		);
@@ -148,33 +164,31 @@ export default class EditTracks extends Component {
 		});	
 
 		return (
-			<div className="edit-tracks-list-wrapper bottom-padding">
-				<div className="container">
-					<div className="row">
-						{masterTracks.map((track, i) => {
+			<div className="container">
+				<div className="row">
+					{masterTracks.map((track, i) => {
 
-							const isSubscribed = find(selectedTracks, selectedTrack => {
-								return selectedTrack.trackName === track.name;
-							});
+						const isSubscribed = find(selectedTracks, selectedTrack => {
+							return selectedTrack.trackName === track.name;
+						});
 
-							return (
-								<div className="col-xs-12 col-sm-6 col-md-4" key={i}>
-									<div className="thumbnail">
-										<EditTracksBanner
-											track={track}
-											selectedTracks={selectedTracks}
-										/>
-										<Link to={`/edit-tracks/${track.name}`} className="btn-absolute">Details</Link>
-									</div>
-
-									{isSubscribed && <button className="btn btn-default btn-block" onClick={e => this.props.removeTrack(track.name)}>Remove</button>}
-									{!isSubscribed && <button className="btn btn-default btn-block" onClick={e => this.props.addAsOnlyTrack(track.name)}>Add</button>}
-
-									<br/>
+						return (
+							<div className="col-xs-12 col-sm-6 col-md-4" key={i}>
+								<div className="thumbnail">
+									<EditTracksBanner
+										track={track}
+										selectedTracks={selectedTracks}
+									/>
+									<Link to={`/edit-tracks/${track.name}`} className="btn-absolute">Details</Link>
 								</div>
-							);
-						})}
-					</div>
+
+								{isSubscribed && <button className="btn btn-default btn-block" onClick={e => this.props.removeTrack(track.name)}>Remove</button>}
+								{!isSubscribed && <button className="btn btn-default btn-block" onClick={e => this.props.addAsOnlyTrack(track.name)}>Add</button>}
+
+								<br/>
+							</div>
+						);
+					})}
 				</div>
 			</div>
 		);

@@ -98,12 +98,21 @@ a{
 .btn-icon-white{
   color: $black;
   background-color: $white;
+  border-color: $white;
   &:hover{
     color: $white !important;
     border-color: $white;
   }
 }
 
+.btn-icon-bluer{
+  background-color: $blue;
+  border-color: $blue;
+  &:hover{
+    color: $blue !important;
+    border-color: $blue;
+  }
+}
 .btn-icon-icon{
   position: relative;
   max-width: 215px;
@@ -141,10 +150,21 @@ a{
     }
   }
 
+  &.btn-icon-bluer{
+    [class^="icon-"]{
+      background-color: $blueDark;
+      color: $blueLight;
+    }
+    &:hover{
+      background-color: $blueDark;
+    }
+  }
+
   &.btn-icon-white{
+    color: $black !important;
     [class^="icon-"]{
       background-color: $whiteDark;
-      color: $greyLight;
+      color: $grey;
     }
 
     &:hover{
