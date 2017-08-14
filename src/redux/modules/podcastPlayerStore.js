@@ -1,5 +1,6 @@
 const UPDATE_PODCAST_PLAYER = 'podcastPlayer/UPDATE_PODCAST_PLAYER';
 const SET_PODCAST_FEED = 'podcastPlayer/SET_PODCAST_FEED';
+const SET_PODCAST_AUDIO_LOADING = 'podcastPlayer/SET_PODCAST_AUDIO_LOADING';
 import {LOAD_SUCCESS as PODCAST_LOAD_SUCCESS} from './feedStore';
 import {LOGOUT_SUCCESS} from './authStore'
 
@@ -9,7 +10,8 @@ const initialState = {
 	prevPodcast: null,
 	nextPodcast: null,
 	podcastPlayerItems: [],
-	isPlaying: false
+	isPlaying: false,
+	isPodcastAudioLoading: false
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -18,7 +20,13 @@ export default function reducer(state = initialState, action = {}) {
 			return {
 				...state,
 				podcastPlayer: action.payload.howl,
-				isPlaying: action.payload.isPlaying
+				isPlaying: action.payload.isPlaying,
+				isPodcastAudioLoading: false
+			};
+		case SET_PODCAST_AUDIO_LOADING:
+			return {
+				...state,		
+				isPodcastAudioLoading: true
 			};
 		case SET_PODCAST_FEED:
 			let currentPodcastId = parseInt(action.payload.feed.id);
@@ -73,5 +81,11 @@ export function setPodcastFeed(feed) {
 		payload: {
 			feed
 		}
+	};
+}
+
+export function setPodcastAudioLoading() {
+	return {
+		type: SET_PODCAST_AUDIO_LOADING
 	};
 }

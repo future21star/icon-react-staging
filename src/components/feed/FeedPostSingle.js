@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import moment from "moment";
 import ReactPlayer from 'react-player';
 import {Howl} from 'howler';
-import {updatePodcastPlayer, setPodcastFeed} from '../../redux/modules/podcastPlayerStore';
+import {updatePodcastPlayer, setPodcastFeed, setPodcastAudioLoading} from '../../redux/modules/podcastPlayerStore';
 import {loadMoreComments, addNewComment} from '../../redux/modules/feedStore';
 import {PodcastShareButtons, Comments, NewComment, FeedLoadMore} from "./../../components";
 
@@ -15,12 +15,13 @@ import {PodcastShareButtons, Comments, NewComment, FeedLoadMore} from "./../../c
 		podcastPlayer: state.podcastPlayerStore.podcastPlayer,
 		podcastPlayerFeed: state.podcastPlayerStore.podcastPlayerFeed,
 		podcastPlayerIsPlaying: state.podcastPlayerStore.isPlaying,
+		podcastPlayerIsAudioLoading: state.podcastPlayerStore.isPodcastAudioLoading,
 		feedCommentItems: state.feedStore.activeItemComments.items,
 		feedCommentLoading: state.feedStore.loading,
 		feedCommentAllPagesCompleted: state.feedStore.activeItemComments.allPagesCompleted,
 		feedCommentCurrentPage: state.feedStore.activeItemComments.currentPage,
 	}),
-	{updatePodcastPlayer, setPodcastFeed, loadMoreComments, addNewComment}
+	{updatePodcastPlayer, setPodcastAudioLoading, setPodcastFeed, loadMoreComments, addNewComment}
 )
 
 export default class FeedPostSingle extends Component {
@@ -31,7 +32,9 @@ export default class FeedPostSingle extends Component {
 	};
 
 	play = () => {
-		const {podcastPlayer, activeItem, updatePodcastPlayer, setPodcastFeed, feedId, podcastPlayerFeed} = this.props;
+		const {podcastPlayer, activeItem, setPodcastAudioLoading, updatePodcastPlayer, setPodcastFeed, feedId, podcastPlayerFeed} = this.props;
+
+		setPodcastAudioLoading();
 
 		// first play
 		if (!podcastPlayer) {
@@ -91,9 +94,32 @@ export default class FeedPostSingle extends Component {
 
 	render() {
 		const {
-			browser, activeItemType, activeItem, podcastPlayerIsPlaying, feedId, podcastPlayerFeed, podcastPlayer, feedCommentItems, feedCommentLoading, feedCommentAllPagesCompleted
+			browser, activeItemType, activeItem, podcastPlayerIsPlaying, podcastPlayerIsAudioLoading, feedId, podcastPlayerFeed, podcastPlayer, feedCommentItems, feedCommentLoading, feedCommentAllPagesCompleted
 		} = this.props;
 		const defaultImage = require('../../../static/feed-default.jpg');
+
+		let podcastAudioBtn = null;
+		if(podcastPlayerIsAudioLoading) {
+			podcastAudioBtn = (
+				<button className="btn-play-podcast">
+					<span className="icon-menu-more"/>
+				</button>
+			);
+		} else {
+			if(podcastPlayerIsPlaying && (parseInt(feedId) === parseInt(podcastPlayerFeed.id))) {
+				podcastAudioBtn = (
+					<button className="btn-play-podcast" onClick={this.pause}>
+						<span className="icon-pause-circle"/>
+					</button>
+				);
+			} else {
+				podcastAudioBtn = (
+					<button className="btn-play-podcast" onClick={this.play}>
+						<span className="icon-play-circle"/>
+					</button>
+				);
+			}
+		}
 
 		return (
 			activeItem ? (
@@ -108,15 +134,7 @@ export default class FeedPostSingle extends Component {
 							{activeItemType === 'podcast' && (
 								<div className="podcast-audio-wrapper clearfix">
 									<div className="col-sm-4 col-xs-4">
-										{podcastPlayerIsPlaying && (parseInt(feedId) === parseInt(podcastPlayerFeed.id)) ?
-											<button className="btn-play-podcast" onClick={this.pause}>
-												<span className="icon-pause-circle"/>
-											</button>
-											:
-											<button className="btn-play-podcast" onClick={this.play}>
-												<span className="icon-play-circle"/>
-											</button>
-										}
+										{podcastAudioBtn}
 									</div>
 									<div className="timer-duration-wrapper col-sm-4 mobile-hide">
 										<span>Length</span>
