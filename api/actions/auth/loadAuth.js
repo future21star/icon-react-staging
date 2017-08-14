@@ -136,6 +136,53 @@ export default function loadAuth(request) {
 			profile_picture_url
 		};
 
+
+		////////////////////////////////
+		///// save wpSubscriptionId in User if not saved
+		////////////////////////////////	
+
+		if(!reactUser.wpSubscriptionId) {
+			try {
+				reactUser = await reactUser.update({
+					wpSubscriptionId: wpSubscription.data.subscription_id
+				})
+			} catch (e) {
+				console.log(e);
+				return reject(generalError(e.response.data.message));
+			}
+
+		}
+
+		////////////////////////////////
+		///// Remove all user tracks if subscription was updated
+		////////////////////////////////
+		if(reactUser.wpSubscriptionId !== wpSubscription.data.subscription_id) {
+
+ 			// remove existing user tracks
+			try {
+				await models.UserTrack.destroy({
+					where: {
+						userId: reactUser.id
+					}
+				});
+			} catch (e) {
+				console.log(e);
+				return reject(generalError(e.response.data.message));
+			}
+
+
+			// save new subscription id in react
+			try {
+				reactUser = await reactUser.update({
+					wpSubscriptionId: wpSubscription.data.subscription_id
+				})
+			} catch (e) {
+				console.log(e);
+				return reject(generalError(e.response.data.message));
+			}
+		}
+
+
 		////////////////////////////////
 		///// response
 		////////////////////////////////

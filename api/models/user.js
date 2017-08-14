@@ -10,7 +10,11 @@ module.exports = function (sequelize, DataTypes) {
 			allowNull: false,
 			primaryKey: true,
 			type: DataTypes.INTEGER
-		}
+		},
+		wpSubscriptionId: {
+	        type: DataTypes.STRING,
+	        allowNull: true
+	    }
 	}, {
 		tableName: 'users',
 		classMethods: {
