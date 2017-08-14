@@ -69,7 +69,7 @@ export default class ProgrammingHeader extends Component {
 							<DayPicker/>
 						</div>
 						<div className="col-xs-8 col-md-4 text-center current-date">
-							<p>{moment.utc(this.props.activeDate).local().format('dddd, MMMM Do')}</p>
+							<p>{moment(this.props.activeDate).format('dddd, MMMM Do')}</p>
 						</div>
 						<div className="col-xs-4 hidden-md hidden-lg">
 							<DotList/>
