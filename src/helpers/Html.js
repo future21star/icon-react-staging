@@ -34,6 +34,7 @@ export default class Html extends Component {
 				{head.script.toComponent()}
 
 				<link rel="icon" href="/favicon.png" type="image/x-icon"/>
+				<link href="/apple-touch-icon.png" rel="apple-touch-icon" />
 				<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
 
 				{/*Temp*/}
