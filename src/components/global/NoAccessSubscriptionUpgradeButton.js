@@ -29,7 +29,7 @@ export default class NoAccessSubscriptionUpgradeButton extends Component {
 		}
 
 		return (
-			<div className="btn-wrapper">
+			<div>
 				<form action={formActionUrl} target="_blank" method="post">
 					<input type="hidden" name="jwt_token" value={jwtToken}/>
 					<input type="hidden" name="wp_id" value={wpUserId}/>

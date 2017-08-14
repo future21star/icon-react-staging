@@ -16,6 +16,7 @@ import {
 import {
 	Menubar,
 	NoAccessSubscriptionUpgradeCard,
+	NoAccessSubscriptionUpgradeButton,
 	EditTracksBanner
 } from '../components/index';
 
@@ -106,6 +107,8 @@ export default class EditTracks extends Component {
 			if (includes([1,2,3,4], track.id)) return track;
 		});
 
+		let isLifestyle = accessOfProgrammingType === 'programming-lifestyle';
+
 		return (
 			<div className="container">
 				<div className="row">
@@ -114,7 +117,6 @@ export default class EditTracks extends Component {
 						const isSubscribed = find(selectedTracks, selectedTrack => {
 							return selectedTrack.trackName === track.name;
 						});
-
 						return (
 							<div className="col-xs-12 col-sm-6" key={i}>
 								<div className="thumbnail">
@@ -122,28 +124,34 @@ export default class EditTracks extends Component {
 										track={track}
 										selectedTracks={selectedTracks}
 									/>
-									<div className="col-xs-6 edit-tracks-btn-wrapper">
-										{isSubscribed && 
-											<button className="btn btn-lg btn-icon btn-icon-icon" onClick={e => this.props.removeTrack(track.name)}>
-												<span className="icon-trash"/>
-												Remove
-											</button>}
-										{!isSubscribed && accessOfProgrammingType === 'programming-all' && 
-											<button className="btn btn-lg btn-icon btn-icon-bluer btn-icon-icon" onClick={e => this.props.addToTrackList(track.name)}>
-												<span className="icon-nav-links"/>
-												Add
-											</button>}
-										{!isSubscribed && accessOfProgrammingType === 'programming-lifestyle' && track.name === "lifestyle" && 
-											<button className="btn btn-lg btn-icon btn-icon-bluer btn-icon-icon" onClick={e => this.props.addAsOnlyTrack(track.name)}>
-												<span className="icon-nav-links"/>
-												Add
-											</button>}
-									</div>
-									<div className="col-xs-6 edit-tracks-btn-wrapper">
-										<Link to={`/edit-tracks/${track.name}`} className="btn btn-lg btn-icon btn-icon-blue btn-icon-icon">
-											<span className="icon-information"/>
-											Details
-										</Link>
+									<div className="edit-tracks-btn-wrapper">
+										<div className="col-xs-12">
+											{ isLifestyle ? ( 
+												
+												track.name === 'lifestyle' ? 
+													<button className="btn btn-lg btn-icon btn-icon-blue">
+														Subscribed
+													</button>
+												: 
+													<NoAccessSubscriptionUpgradeButton 
+														classNames="btn btn-lg btn-icon btn-icon-icon btn-icon-lg"
+														title="Update To Individual"
+														icon={<span className="icon-update-sub"/>}
+													/>												
+											) : ( 
+													isSubscribed ? 
+													<button className="btn btn-lg btn-icon btn-icon-icon" onClick={e => this.props.removeTrack(track.name)}>
+														<span className="icon-trash"/>
+														Remove
+													</button>
+												:  
+													<button className="btn btn-lg btn-icon btn-icon-bluer btn-icon-icon" onClick={e => this.props.addToTrackList(track.name)}>
+														<span className="icon-nav-links"/>
+														Add
+													</button>
+											)}
+											
+										</div>
 									</div>
 								</div>
 							</div>
@@ -179,13 +187,22 @@ export default class EditTracks extends Component {
 										track={track}
 										selectedTracks={selectedTracks}
 									/>
-									<Link to={`/edit-tracks/${track.name}`} className="btn-absolute">Details</Link>
+									<div className="edit-tracks-btn-wrapper">
+										<div className="col-xs-12">
+											{isSubscribed && 
+												<button className="btn btn-lg btn-icon btn-icon-icon" onClick={e => this.props.removeTrack(track.name)}>
+													<span className="icon-trash"/>
+													Remove
+												</button>}}
+											{!isSubscribed && 
+												<button className="btn btn-lg btn-icon btn-icon-bluer btn-icon-icon" onClick={e => this.props.addAsOnlyTrack(track.name)}>
+													<span className="icon-nav-links"/>
+													Add
+												</button>}
+
+										</div>
+									</div>
 								</div>
-
-								{isSubscribed && <button className="btn btn-default btn-block" onClick={e => this.props.removeTrack(track.name)}>Remove</button>}
-								{!isSubscribed && <button className="btn btn-default btn-block" onClick={e => this.props.addAsOnlyTrack(track.name)}>Add</button>}
-
-								<br/>
 							</div>
 						);
 					})}

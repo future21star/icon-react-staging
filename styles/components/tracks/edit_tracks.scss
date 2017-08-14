@@ -21,11 +21,13 @@
   }
 
   .edit-tracks-btn-wrapper{
-    padding: 0;
+    position: absolute;
+    width: 100%;
+    bottom: 15px;
+    left: 0;
 
-    .btn-icon{
-      margin: 0;
-      max-width: 100% !important;
+    .col-xs-12{
+      text-align: center;
     }
   }
 

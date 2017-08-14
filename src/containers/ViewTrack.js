@@ -220,8 +220,8 @@ export default class ViewTrack extends Component {
 
 				{!selectedTrackIsSubscribed && visibleTrackStartsWithMasters ?
 					<NoAccessSubscriptionUpgradeButton
-						classNames="btn btn-block btn-lg btn-fixed-bottom btn-turquoise btn-font-lg"
-						title="Update Subscription"
+						classNames="btn btn-block btn-lg btn-icon btn-icon-lg btn-icon-icon btn-fixed-mobile"
+						title="Update To Individual"
 						icon={<span className="icon-update-sub"/>}
 					/> : undefined
 				}
@@ -237,8 +237,8 @@ export default class ViewTrack extends Component {
 
 				{!selectedTrackIsSubscribed && (parseInt(subscription.subscription_id) === 2 || parseInt(subscription.subscription_id) === 3) && !visibleTrackStartsWithMasters && this.props.params.name !== 'lifestyle' ?
 					<NoAccessSubscriptionUpgradeButton
-						classNames="btn btn-block btn-lg btn-fixed-bottom btn-turquoise btn-font-lg"
-						title="Update Subscription"
+						classNames="btn btn-block btn-lg btn-icon btn-icon-lg btn-icon-icon btn-fixed-mobile"
+						title="Update To Individual"
 						icon={<span className="icon-update-sub"/>}
 					/> : undefined
 				}
@@ -261,8 +261,8 @@ export default class ViewTrack extends Component {
 
 				{!selectedTrackIsSubscribed && visibleTrackStartsWithMasters ?
 					<NoAccessSubscriptionUpgradeButton
-						classNames="btn btn-block btn-lg btn-fixed-bottom btn-turquoise btn-font-lg"
-						title="Update Subscription"
+						classNames="btn btn-block btn-lg btn-icon btn-icon-lg btn-icon-icon btn-fixed-mobile"
+						title="Update To Individual"
 						icon={<span className="icon-update-sub"/>}
 					/> : undefined
 				}

@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import {Link} from "react-router";
 import {find} from 'lodash';
 
 export default class EditTracksBanner extends Component {
@@ -15,7 +16,7 @@ export default class EditTracksBanner extends Component {
 
 		if (trackIconClassName === 'icon-track-dynamic') {
 			return (
-				<span className="icon-track-dynamic">
+				<span className="icon icon-track-dynamic">
 					<span className="path1"/>
 					<span className="path2"/>
 					<span className="path3"/>
@@ -30,7 +31,7 @@ export default class EditTracksBanner extends Component {
 
 		else if (trackIconClassName === 'icon-track-strength') {
 			return (
-				<span className="icon-track-strength">
+				<span className="icon icon-track-strength">
 					<span className="path1"/>
 					<span className="path2"/>
 					<span className="path3"/>
@@ -43,7 +44,7 @@ export default class EditTracksBanner extends Component {
 
 		else if (trackIconClassName === 'icon-track-lifestyle') {
 			return (
-				<span className="icon-track-lifestyle">
+				<span className="icon icon-track-lifestyle">
 					<span className="path1"/>
 					<span className="path2"/>
 					<span className="path3"/>
@@ -56,7 +57,7 @@ export default class EditTracksBanner extends Component {
 
 		else if (trackIconClassName === 'icon-track-hyper') {
 			return (
-				<span className="icon-track-hyper">
+				<span className="icon icon-track-hyper">
 				<span className="path1"/>
 				<span className="path2"/>
 				<span className="path3"/>
@@ -93,10 +94,12 @@ export default class EditTracksBanner extends Component {
 						{!singleTrackView ? (
 							<div>
 								<h1>{track.name}</h1>
+								<Link to={`/edit-tracks/${track.name}`}>
+									<span className="icon-information"/>
+								</Link>
 								{this.getIcon()} 
 							</div>
 							): undefined}
-						{isSubscribed ? <span className="icon-checkmark"/> : undefined}
 					</div>
 				</div>
 			</div>

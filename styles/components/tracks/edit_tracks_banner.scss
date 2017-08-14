@@ -16,30 +16,28 @@
       text-shadow: -1px 1px 6px rgba(0,0,0,.5);
     }
   }
+  a{
+    float: right;
+    text-align: right;
+    font-size: 1.5em;
+
+    .icon-information{
+      color: $white;
+    }
+  }
   .banner-img {
     max-width: 80px;
     margin-left: auto;
     margin-right: auto;
   }
 
-  [class^="icon-"], [class*=" icon-"] {
+  .icon{
     display: block;
     font-size: 4em;
     padding-top: 60px;
-    padding-bottom: 80px;
+    padding-bottom: 120px;
     clear: left;
     text-align: center;
     text-shadow: -1px 1px 6px rgba(0,0,0,.5);
-  }
-
-  .icon-checkmark {
-    font-size: 1.4em;
-    margin-top: 0;
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    max-width: 30px;
-    padding: 0 !important;
-    color: $white;
   }
 }
