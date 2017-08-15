@@ -41,6 +41,7 @@ export newWodComment from './comments/newWodComment';
 export newWodReply from './comments/newWodReply';
 
 export getAssessmentCategories from './assessment/getAssessmentCategories';
+export saveAssessmentResult from './assessment/saveAssessmentResult';
 
 
 

@@ -11,6 +11,7 @@ import {Link} from "react-router";
 import {includes} from 'lodash';
 import assessmentResults from '../../../api/assessmentResults.json';
 import CheckAccessLevel from '../HOC/CheckAccessLevel';
+import {saveAssessmentResult} from "../../redux/modules/assessmentStore";
 
 @connect(
 	state => ({
@@ -18,7 +19,7 @@ import CheckAccessLevel from '../HOC/CheckAccessLevel';
 		allTracks: state.allTracksStore.allTracks,
 		user: state.authStore.user
 	}),
-	{}
+	{saveAssessmentResult}
 )
 
 @CheckAccessLevel('assessment')
@@ -114,6 +115,8 @@ export default class AssessmentResult extends Component {
 			recommendedTrack: recommendedTrack,
 			addStrength: addStrength
 		});
+
+		this.props.saveAssessmentResult(answers, totalScore, recommendedTrackName);
 	}
 
 	createMarkup = (html) => {
