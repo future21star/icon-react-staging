@@ -38,6 +38,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 @connect(
 	state => ({
+		browser: state.browser,
 		user: state.authStore.user,
 		swipedActiveTrackName: state.swipeStore.swipedActiveTrackName,
 		swipedActiveTrackIndex: state.swipeStore.swipedActiveTrackIndex,
@@ -132,7 +133,7 @@ export default class Home extends Component {
 	}
 
 	renderEachTrack(selectedTrack, i) {
-		const {user, selectedTracks, wods, wodsStore, currentDate, dailyBriefs} = this.props;
+		const {browser, user, selectedTracks, wods, wodsStore, currentDate, dailyBriefs} = this.props;
 
 		const logoImg = require('../../static/iconlogobg.jpg');
 
@@ -173,15 +174,17 @@ export default class Home extends Component {
 						onSelectNextTrack={e => this.refs.homeSwipeRef.next()}
 						onSelectPrevTrack={e => this.refs.homeSwipeRef.prev()}
 					/>
-					<div className="hidden-xs hidden-sm">
+					{browser.is.desktop ? (
 						<DesktopWorkout 
 							track={wodForThisTrackAndDate}
 							dailyBriefContent={dailyBriefs[track.name]}
 						/>
-					</div>
-					<div className="hidden-md hidden-lg">
+					) : (
 						<WorkoutTabs track={wodForThisTrackAndDate}/>
-					</div>
+					)}
+
+
+					
 				</div>
 			);
 		} else {

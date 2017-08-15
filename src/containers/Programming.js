@@ -48,6 +48,7 @@ import {
 
 @connect(
 	state => ({
+		browser: state.browser,
 		user: state.authStore.user,
 		selectedTracks: state.selectedTracksStore.selectedTracks,
 		swipedActiveTrackName: state.swipeStore.swipedActiveTrackName,
@@ -83,8 +84,7 @@ export default class Programming extends Component {
 		if (selectedTracks.length) {
 			// if user has a track in swipe store, show it
 			if (swipedActiveTrackIndex) {
-				this.refs.programmingSwipeMobileRef.slide(swipedActiveTrackIndex);
-				this.refs.programmingSwipeDesktopRef.slide(swipedActiveTrackIndex);
+				this.refs.programmingSwipeRef.slide(swipedActiveTrackIndex);
 			}
 			// set the first one if not available
 			else {
@@ -118,8 +118,7 @@ export default class Programming extends Component {
 			}
 		}
 		if (nextProps.swipedActiveTrackIndex !== swipedActiveTrackIndex) {
-			this.refs.programmingSwipeMobileRef.slide(nextProps.swipedActiveTrackIndex);
-			this.refs.programmingSwipeDesktopRef.slide(nextProps.swipedActiveTrackIndex);
+			this.refs.programmingSwipeRef.slide(nextProps.swipedActiveTrackIndex);
 		}
 	}
 
@@ -170,21 +169,16 @@ export default class Programming extends Component {
 							showWeekNavOnMobile={this.state.showWeekNavOnMobile}
 						/>
 					</div>
-					<div className="hidden-md hidden-lg">
-						{selectedTracks.length ? this.renderSelectedTracksForMobile() : <NoTracksFound/>}
-					</div>
-
-					<div className="hidden-xs hidden-sm overflow-custom-scroll">
-							{selectedTracks.length ? this.renderSelectedTracksForDesktop() : <NoTracksFound/>}
-					</div>
-			
+				
+					{selectedTracks.length ? this.renderSelectedTracks() : <NoTracksFound/>}
+					
 				</div>
 			</ReactCSSTransitionGroup>
 		)
 	}
 
-	renderSelectedTracksForMobile() {
-		const {selectedTracks} = this.props;
+	renderSelectedTracks() {
+		const {browser, selectedTracks} = this.props;
 
 		const swipeConfig = {
 			callback: (index, elem) => this.selectTrack(elem.getAttribute('name'), index),
@@ -192,37 +186,19 @@ export default class Programming extends Component {
 		};
 
 		return (
-			<div>
-				<ReactSwipe className="carousel" swipeOptions={swipeConfig} ref="programmingSwipeMobileRef">
+			<div className={browser.is.desktop ? 'overflow-custom-scroll' : ''}>
+				<ReactSwipe className="carousel" swipeOptions={swipeConfig} ref="programmingSwipeRef">
 					{selectedTracks.map((selectedTrack, i) => {
-						return this.renderEachTrackForMobile(selectedTrack, i);
+						return this.renderEachTrack(selectedTrack, i);
 					})}
 				</ReactSwipe>
 			</div>
 		);
 	}
 
-	renderSelectedTracksForDesktop() {
-		const {selectedTracks} = this.props;
+	renderEachTrack(selectedTrack, i) {
+		const {browser, user, selectedTracks, wods, activeDate, currentDate, dailyBriefs} = this.props;
 
-		const swipeConfig = {
-			callback: (index, elem) => this.selectTrack(elem.getAttribute('name'), index),
-			continuous: false
-		};
-
-		return (
-			<div>
-				<ReactSwipe className="carousel" swipeOptions={swipeConfig} ref="programmingSwipeDesktopRef">
-					{selectedTracks.map((selectedTrack, i) => {
-						return this.renderEachTrackForDesktop(selectedTrack, i);
-					})}
-				</ReactSwipe>
-			</div>
-		);
-	}
-
-	renderEachTrackForMobile(selectedTrack, i) {
-		const {user, selectedTracks, wods, activeDate, currentDate, dailyBriefs} = this.props;
 		let track = selectedTrack.track;
 		let wodForThisTrack = wods[track.name];
 		let wodForThisTrackAndDate = wodForThisTrack ? wods[track.name][activeDate] : null;
@@ -231,9 +207,21 @@ export default class Programming extends Component {
 		let dailyBrief = (dailyBriefs[track.name] ? <DailyBriefDesktop user={user} content={dailyBriefs[track.name]}/> : undefined);
 
 		const logoImg = require('../../static/iconlogobg.jpg');
+
+		let desktopWorkoutContent = <DesktopWorkout track={wodForThisTrackAndDate}/>;
+
+		if(currentDate === activeDate) {
+			desktopWorkoutContent = <DesktopWorkout track={wodForThisTrackAndDate} dailyBriefContent={dailyBriefs[track.name]}/>;
+		}
 		
 		let content = null;
-		if(wodForThisTrack && typeof wods[track.name][activeDate] === 'undefined') {
+		if(!wodForThisTrack) {
+			content = (
+				<div className="loading-logo">
+					<img src={logoImg} alt="logo"/>
+				</div>
+			);
+		} else if(wodForThisTrack && typeof wods[track.name][activeDate] === 'undefined') {
 			content = (
 				<div className="loading-logo">
 					<img src={logoImg} alt="logo" width="100%"/>
@@ -246,10 +234,12 @@ export default class Programming extends Component {
 						wod={wodForThisTrackAndDate}
 						nextTrack={nextTrackName}
 						prevTrack={prevTrackName}
-						onSelectNextTrack={e => this.refs.programmingSwipeMobileRef.next()}
-						onSelectPrevTrack={e => this.refs.programmingSwipeMobileRef.prev()}
+						onSelectNextTrack={e => this.refs.programmingSwipeRef.next()}
+						onSelectPrevTrack={e => this.refs.programmingSwipeRef.prev()}
 					/>
-					<WorkoutTabs track={wodForThisTrackAndDate}/>
+					{browser.is.mobile && <WorkoutTabs track={wodForThisTrackAndDate}/>}
+
+					{browser.is.desktop && desktopWorkoutContent}
 				</div>
 			);
 		} else {
@@ -258,79 +248,19 @@ export default class Programming extends Component {
 					track={track}
 					nextTrack={nextTrackName}
 					prevTrack={prevTrackName}
-					onSelectNextTrack={e => this.refs.programmingSwipeMobileRef.next()}
-					onSelectPrevTrack={e => this.refs.programmingSwipeMobileRef.prev()}
+					onSelectNextTrack={e => this.refs.programmingSwipeRef.next()}
+					onSelectPrevTrack={e => this.refs.programmingSwipeRef.prev()}
 				 />
 			);
 		}
 
 		return (
 			<div name={track.name} key={i}>
-				{currentDate === activeDate ?  dailyBrief : undefined}
+				{browser.is.mobile && currentDate === activeDate ?  dailyBrief : undefined}
 
 				{content}
 			</div>
 		);
-	}
-
-	renderEachTrackForDesktop(selectedTrack, i) {
-		const {user, selectedTracks, wods, activeDate, currentDate, dailyBriefs} = this.props;
-
-		let track = selectedTrack.track;
-		let wodForThisTrack = wods[track.name];
-		let wodForThisTrackAndDate = wodForThisTrack ? wods[track.name][activeDate] : null;
-		let nextTrackName = selectedTracks[i + 1] ? selectedTracks[i + 1].trackName : null;
-		let prevTrackName = selectedTracks[i - 1] ? selectedTracks[i - 1].trackName : null;
-
-		const logoImg = require('../../static/iconlogobg.jpg');
-
-		let content = null;
-		if(!wodForThisTrack) {
-			content = (
-				<div className="loading-logo">
-					<img src={logoImg} alt="logo"/>
-				</div>
-			);
-		} else if(wodForThisTrack && typeof wods[track.name][activeDate] === 'undefined') {
-			content = (
-				<div className="loading-logo">
-					<img src={logoImg} alt="logo"/>
-				</div>
-			);
-		} else if(wodForThisTrack && wodForThisTrackAndDate) {
-			content = (
-				<div>
-					<WorkoutBanner
-						wod={wodForThisTrackAndDate}
-						nextTrack={nextTrackName}
-						prevTrack={prevTrackName}
-						onSelectNextTrack={e => this.refs.programmingSwipeDesktopRef.next()}
-						onSelectPrevTrack={e => this.refs.programmingSwipeDesktopRef.prev()}
-					/>
-					{currentDate === activeDate
-						? <DesktopWorkout track={wodForThisTrackAndDate}
-																			dailyBriefContent={dailyBriefs[track.name]}/>
-						: <DesktopWorkout track={wodForThisTrackAndDate}/>
-					}
-				</div>
-			);
-		} else {
-			content = (
-				<RestDay track={track}
-					nextTrack={nextTrackName}
-					prevTrack={prevTrackName}
-					onSelectNextTrack={e => this.refs.programmingSwipeDesktopRef.next()}
-					onSelectPrevTrack={e => this.refs.programmingSwipeDesktopRef.prev()}
-				/>
-			);
-		}
-
-		return (
-			<div name={track.name} key={i}>
-				<div>
-					{content}
-				</div>
-			</div>)
 	}
 
 }
