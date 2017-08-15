@@ -205,6 +205,23 @@ export default function login(request) {
 		}
 
 		////////////////////////////////
+		///// set track to lifestyle if subscription is Unify
+		////////////////////////////////
+		if(wpSubscription.data.subscription_id === '2') {
+			try {
+				await models.UserTrack.findOrCreate({
+					where: {
+					    trackName: 'lifestyle',
+						userId: reactUser.id
+					}
+				});
+			} catch (e) {
+				console.log(e);
+				return reject(generalError(e.response.data.message));
+			}
+		}
+
+		////////////////////////////////
 		///// response
 		////////////////////////////////
 		return resolve({
