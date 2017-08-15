@@ -9,7 +9,7 @@ export default function getWods(request) {
 		// get all wods
 		let wpWods = null;
 		try {
-			wpWods = await axios.get(WP_API_URL + '/wp/v2/wod?per_page=100');
+			wpWods = await axios.get(WP_API_URL + '/wp/v2/wod?per_page=100&status=publish');
 		} catch (e) {
 			console.log(e);
 			return reject(generalError(e.response.data.message));
