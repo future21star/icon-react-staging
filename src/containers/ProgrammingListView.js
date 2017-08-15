@@ -69,7 +69,7 @@ export default class ProgrammingListView extends Component {
 		const leftSideContent = (
 			<Link to="/edit-tracks">
 				<span>
-					<i className="icon-user-edit"/>
+					<i className="icon-edit-track"/>
 				</span>
 				<span className="mobile-hide">Edit Track</span>
 			</Link>
@@ -109,7 +109,7 @@ export default class ProgrammingListView extends Component {
 							<DesktopListWorkoutHeader
 								tracks={selectedTracks}
 								onSelectTrack={this.selectTrack}
-							/> : <h3 className="text-center">Please select your track first</h3>
+							/> : undefined
 						}
 
 						<div className="tracks-list-view-container-wrapper-desktop">
