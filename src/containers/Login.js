@@ -94,7 +94,7 @@ export default class Login extends Component {
 
 				</form>
 				<div className="login-page--forgot-password-link-wrapper">
-					<Link to="/">Forgot?</Link>
+					<a href="http://54.148.236.111/wp-login.php?action=lostpassword" target="_blank">Forgot?</a>
 				</div>
 
 				<div className="login-page--register-link-wrapper">
