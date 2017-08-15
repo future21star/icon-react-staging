@@ -38,7 +38,11 @@ export default class AssessmentLanding extends Component {
 							</div>
 						</header>
 						<h3 className="page-title text-center">Find out what programming track is right for you</h3>
-						<p className="page-description">Complete the workouts in each of the 6 categories, then come back and click on the calculate button to enter your results.</p>
+						<ol className="page-description">
+							<li>Click Workouts to view the workouts</li>
+							<li>Record your workouts then come back and click Calculate</li>
+							<li>Enter your results and find out what programming track is best for you</li>
+						</ol>
 						<div className="action-button row">
 							<div className="col-xs-6">
 								<Link to="/assessment/workouts" className="btn btn-lg btn-icon btn-icon-icon">

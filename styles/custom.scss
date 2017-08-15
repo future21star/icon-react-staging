@@ -253,6 +253,14 @@ TABS
 
 .assessment-tabs-content{
   background-color: $greyLight;
+
+  .tab{
+    display: none !important;
+
+    &.active{
+      display: block !important;
+    }
+  }
   .row{
     margin-top: 20px;
     margin-bottom: 20px;
@@ -270,6 +278,49 @@ TABS
       padding: 10px 0;
       border-bottom: 1px solid $grey;
       background-color: $grey;
+    }
+  }
+
+}
+
+/******************************
+WELCOME
+******************************/
+.welcome-tabs-nav{
+  .icon{
+    margin-right: 5px;
+  }
+
+  .active{
+    .icon{
+      color: $white;
+    }
+  }
+}
+.welcome-tabs-content{
+  background-color: $white;
+  max-width: 600px;
+  border-bottom: 1px solid $greyLight;
+  margin: 0 auto;
+  
+  .col-sm-3{
+    text-align: center;
+    padding-top: 20px;
+  }
+  .icon{
+    font-size: 3.5em;
+  }
+}
+
+.add-homescreen{
+  h2{
+    border-bottom: 1px solid $greyLight;
+    padding-bottom:5px;
+  }
+  .screenshot-container{
+    img{
+      width: 100%;
+      height: auto;
     }
   }
 }

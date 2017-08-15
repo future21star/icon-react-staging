@@ -210,28 +210,12 @@ export default class ViewTrack extends Component {
 
 		return (
 			<div>
-				{selectedTrackIsSubscribed ?
-					<BtnBottom
-						classNames="btn btn-block btn-lg btn-icon btn-icon-icon btn-fixed-mobile"
-						title="Remove Track"
-						icon={<span className="icon-trash"/>}
-						onClick={this.removeTrack}
-					/> : undefined}
 
 				{!selectedTrackIsSubscribed && visibleTrackStartsWithMasters ?
 					<NoAccessSubscriptionUpgradeButton
 						classNames="btn btn-block btn-lg btn-icon btn-icon-lg btn-icon-icon btn-fixed-mobile"
 						title="Update To Individual"
 						icon={<span className="icon-update-sub"/>}
-					/> : undefined
-				}
-
-				{!selectedTrackIsSubscribed && (parseInt(subscription.subscription_id) === 2 || parseInt(subscription.subscription_id) === 3) && !visibleTrackStartsWithMasters && this.props.params.name === 'lifestyle' ?
-					<BtnBottom
-						classNames="btn btn-block btn-lg btn-icon btn-icon-blue btn-icon-icon btn-fixed-mobile"
-						title="Add Track"
-						icon={<span className="icon-nav-links"/>}
-						onClick={this.addAsOnlyTrack}
 					/> : undefined
 				}
 

@@ -55,6 +55,12 @@ export default class AssessmentWorkouts extends Component {
 		const {workouts} = this.props;
 		const {selectedWorkout} = this.state;
 
+		let rightSideContent = (
+				<Link to="/assessment/form">
+					<span className="mobile-hide">Calculate</span>
+					<span className="icon-nutrition-calculator"/>
+				</Link>);
+
 		return (
 			<ReactCSSTransitionGroup
 				transitionName="react-anime"
@@ -69,8 +75,9 @@ export default class AssessmentWorkouts extends Component {
 					<Helmet title="Assessment - Workouts"/>
 
 					<Menubar 
-						title="Assessment - Workouts"
+						title="Workouts"
 						className="menu-bar-white"
+						rightSideContent={rightSideContent}
 						backButton={true}
 					/>
 					<div className="container-fluid">
