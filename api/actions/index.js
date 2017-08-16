@@ -43,5 +43,10 @@ export newWodReply from './comments/newWodReply';
 export getAssessmentCategories from './assessment/getAssessmentCategories';
 export saveAssessmentResult from './assessment/saveAssessmentResult';
 
+export loadNutritionPosts from './nutrition/loadNutritionPosts';
+export loadSingleNutritionPost from './nutrition/loadSingleNutritionPost';
+
+
+
 
 

@@ -2,13 +2,14 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from "react-redux";
 import {unsetReplyOnCommentId as unsetReplyOnCommentIdOfWod} from '../../redux/modules/workoutStore';
 import {unsetReplyOnCommentId as unsetReplyOnCommentIdOfFeed} from '../../redux/modules/feedStore';
+import {unsetReplyOnCommentId as unsetReplyOnCommentIdOfNutritionBlog} from '../../redux/modules/nutritionBlogStore';
 import {Link} from "react-router";
 
 @connect(
 	state => ({
 		user: state.authStore.user
 	}),
-	{unsetReplyOnCommentIdOfWod, unsetReplyOnCommentIdOfFeed}
+	{unsetReplyOnCommentIdOfWod, unsetReplyOnCommentIdOfFeed, unsetReplyOnCommentIdOfNutritionBlog}
 )
 
 export default class NewReply extends Component {
@@ -22,11 +23,13 @@ export default class NewReply extends Component {
 		this.refs.newComment.value = '';
 		this.props.unsetReplyOnCommentIdOfWod();
 		this.props.unsetReplyOnCommentIdOfFeed();
+		this.props.unsetReplyOnCommentIdOfNutritionBlog();
 	};
 
 	unsetReplyOnCommentId = () => {
 		this.props.unsetReplyOnCommentIdOfWod();
 		this.props.unsetReplyOnCommentIdOfFeed();
+		this.props.unsetReplyOnCommentIdOfNutritionBlog();
 	};
 
 	render() {

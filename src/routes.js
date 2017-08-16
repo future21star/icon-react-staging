@@ -72,6 +72,8 @@ export default (store) => {
 					<Route path="nutrition" component={containers.Nutrition}/>
 					<Route path="nutrition/change-track" component={containers.NutritionChangeTrack}/>
 					<Route path="nutrition/foundations" component={containers.NutritionFoundations}/>
+					<Route path="nutrition/blog" component={containers.NutritionBlog}/>
+					<Route path="nutrition/blog/:id" component={containers.NutritionSinglePost}/>
 					<Route path="programming" component={containers.Programming}/>
 					<Route path="programming/list-view" component={containers.ProgrammingListView}/>
 					<Route path="edit-tracks" component={containers.EditTracks}/>
@@ -94,7 +96,6 @@ export default (store) => {
 				<Route path="feed/search" component={containers.FeedSearch}/>
 				<Route path="podcast-player" component={containers.PodcastPlayer}/>
 				<Route path="feed/search" component={containers.Search}/>
-				<Route path="feed/single" component={containers.SingleFeed}/>
 				<Route path="nutrition/help" component={containers.NutritionHelp}/>
 				<Route path="nutrition/calculator" component={containers.NutritionCalculator}/>
 			</Route>

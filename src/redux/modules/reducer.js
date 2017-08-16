@@ -18,6 +18,7 @@ import swipeStore from './swipeStore';
 import feedStore from './feedStore';
 import podcastPlayerStore from './podcastPlayerStore';
 import assessmentStore from './assessmentStore';
+import nutritionBlogStore from './nutritionBlogStore';
 
 export default combineReducers({
 	routing: routerReducer,
@@ -41,5 +42,6 @@ export default combineReducers({
 	swipeStore,
 	feedStore,
 	podcastPlayerStore,
-	assessmentStore
+	assessmentStore,
+	nutritionBlogStore
 });

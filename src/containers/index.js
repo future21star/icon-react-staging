@@ -30,6 +30,8 @@ export FaqsLanding from './Faqs/FaqsLanding';
 export FaqSingle from './Faqs/FaqSingle';
 
 export Nutrition from './Nutrition/Nutrition';
+export NutritionBlog from './Nutrition/NutritionBlog';
+export NutritionSinglePost from './Nutrition/NutritionSinglePost';
 export NutritionChangeTrack from './Nutrition/NutritionChangeTrack';
 export NutritionFoundations from './Nutrition/NutritionFoundations';
 export NutritionHelp from './Nutrition/NutritionHelp';
