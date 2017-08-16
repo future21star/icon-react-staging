@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {Menubar, NoAccess, DotList} from '../components/index';
+import {Menubar, NoAccess, DotList} from '../../components/index';
 import {connect} from "react-redux";
 import {includes} from 'lodash';
 import {Link} from 'react-router';
-import strengthBG from '../../static/strengthBG.jpg';
+import strengthBG from '../../../static/strengthBG.jpg';
 
 @connect(
 	state => ({

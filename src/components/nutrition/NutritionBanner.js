@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import {Link} from 'react-router';
 import strengthBG from '../../../static/strengthBG.jpg';
 
 
@@ -20,7 +21,7 @@ export default class NutritionBanner extends Component {
 				<div className="nutrition-banner-title text-center">
 					<h2>The Lean Machine</h2>
 					<p>Goal: Sustainable Weight Loss</p>
-					<button className="block btn btn-lg btn-icon btn-icon-outline">Change Track</button>
+					<Link to="/nutrition/change-track" className="block btn btn-lg btn-icon btn-icon-outline">Change Track</Link>
 				</div>
 				{!isLanding && (
 					<div className="nutrition-banner-content">

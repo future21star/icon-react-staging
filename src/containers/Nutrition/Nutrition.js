@@ -11,7 +11,7 @@ import {
 	NutritionNav,
 	NutritionBanner,
 	JoinSlack
-} from '../components/index';
+} from '../../components/index';
 
 
 @connect(

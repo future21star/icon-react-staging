@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {Menubar, BtnBottom} from '../components/index';
+import {Menubar, BtnBottom} from '../../components/index';
 import {connect} from "react-redux";
 import {Link} from 'react-router';
 import Select from 'react-select';

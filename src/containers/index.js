@@ -29,8 +29,8 @@ export AssessmentResult from './Assessment/AssessmentResult';
 export FaqsLanding from './Faqs/FaqsLanding';
 export FaqSingle from './Faqs/FaqSingle';
 
-export Nutrition from './Nutrition';
-export NutritionChangeTrack from './NutritionChangeTrack';
-export NutritionFoundations from './NutritionFoundations';
-export NutritionHelp from './NutritionHelp';
-export NutritionCalculator from './NutritionCalculator';
+export Nutrition from './Nutrition/Nutrition';
+export NutritionChangeTrack from './Nutrition/NutritionChangeTrack';
+export NutritionFoundations from './Nutrition/NutritionFoundations';
+export NutritionHelp from './Nutrition/NutritionHelp';
+export NutritionCalculator from './Nutrition/NutritionCalculator';
