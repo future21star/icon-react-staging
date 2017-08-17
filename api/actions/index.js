@@ -45,6 +45,8 @@ export saveAssessmentResult from './assessment/saveAssessmentResult';
 
 export loadNutritionPosts from './nutrition/loadNutritionPosts';
 export loadSingleNutritionPost from './nutrition/loadSingleNutritionPost';
+export loadNutritionCategories from './nutrition/loadNutritionCategories';
+export nutritionSearch from './nutrition/nutritionSearch';
 
 
 

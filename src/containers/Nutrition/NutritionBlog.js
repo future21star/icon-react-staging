@@ -76,7 +76,7 @@ export default class NutritionBlog extends Component {
 							title="Nutrition Blog"
 							leftSideContent={<Link to="/profile"><span className="icon-user-profile"/><span className="mobile-hide">Profile</span></Link>}
 							rightSideContent={
-								user ? (<Link to="/nutrition/blog">
+								user ? (<Link to="/nutrition/search">
 									<span className="mobile-hide">Search</span>
 									<span className="icon-search"/>
 								</Link>) : undefined}

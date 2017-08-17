@@ -31,6 +31,7 @@ export FaqSingle from './Faqs/FaqSingle';
 
 export Nutrition from './Nutrition/Nutrition';
 export NutritionBlog from './Nutrition/NutritionBlog';
+export NutritionBlogSearch from './Nutrition/NutritionBlogSearch';
 export NutritionSinglePost from './Nutrition/NutritionSinglePost';
 export NutritionChangeTrack from './Nutrition/NutritionChangeTrack';
 export NutritionFoundations from './Nutrition/NutritionFoundations';

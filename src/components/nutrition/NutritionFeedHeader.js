@@ -5,7 +5,7 @@ import {Link} from "react-router";
 
 @connect(
 	state => ({
-		searchText: state.feedStore.search.searchText,
+		searchText: state.nutritionBlogStore.search.searchText,
 		user: state.authStore.user
 	}),
 	{pushState: push}
@@ -18,7 +18,7 @@ export default class NutritionFeedHeader extends Component {
 	};
 
 	goToSearchPage = () => {
-		// this.props.pushState('/feed/search');
+		this.props.pushState('/nutrition/search');
 	};
 
 	render() {

@@ -23,9 +23,28 @@ const NEW_REPLY = 'nutritionBlog/NEW_REPLY_REQUEST';
 const NEW_REPLY_SUCCESS = 'nutritionBlog/NEW_REPLY_SUCCESS';
 const NEW_REPLY_FAIL = 'nutritionBlog/NEW_REPLY_FAIL';
 
-const LOAD_MORE_COMMENT = 'feed/LOAD_MORE_COMMENT_REQUEST';
-const LOAD_MORE_COMMENT_SUCCESS = 'feed/LOAD_MORE_COMMENT_SUCCESS';
-const LOAD_MORE_COMMENT_FAIL = 'feed/LOAD_MORE_COMMENT_FAIL';
+const LOAD_MORE_COMMENT = 'nutritionBlog/LOAD_MORE_COMMENT_REQUEST';
+const LOAD_MORE_COMMENT_SUCCESS = 'nutritionBlog/LOAD_MORE_COMMENT_SUCCESS';
+const LOAD_MORE_COMMENT_FAIL = 'nutritionBlog/LOAD_MORE_COMMENT_FAIL';
+
+
+
+const SET_SEARCH_CATEGORY = 'nutritionBlog/SET_SEARCH_CATEGORY';
+const SET_SEARCH_TEXT = 'nutritionBlog/SET_SEARCH_TEXT';
+
+const CLEAR_SEARCH_RESULT = 'nutritionBlog/CLEAR_SEARCH_RESULT';
+
+const LOAD_CATEGORIES = 'nutritionBlog/LOAD_CATEGORIES_REQUEST';
+const LOAD_CATEGORIES_SUCCESS = 'nutritionBlog/LOAD_CATEGORIES_SUCCESS';
+const LOAD_CATEGORIES_FAIL = 'nutritionBlog/LOAD_CATEGORIES_FAIL';
+
+const SEARCH = 'nutritionBlog/SEARCH_REQUEST';
+const SEARCH_SUCCESS = 'nutritionBlog/SEARCH_SUCCESS';
+const SEARCH_FAIL = 'nutritionBlog/SEARCH_FAIL';
+
+const SEARCH_MORE = 'nutritionBlog/SEARCH_MORE_REQUEST';
+const SEARCH_MORE_SUCCESS = 'nutritionBlog/SEARCH_MORE_SUCCESS';
+const SEARCH_MORE_FAIL = 'nutritionBlog/SEARCH_MORE_FAIL';
 
 const initialState = {
 	loading: false,
@@ -43,6 +62,14 @@ const initialState = {
 		allPagesCompleted: false
 	},
 	postReplyingOnCommentId: null,
+	search: {
+		searchText: '',
+		searchCategory: '',
+		currentPage: 0,
+		allPagesCompleted: false,
+		items: [],
+		categories: []
+	}
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -198,6 +225,99 @@ export default function reducer(state = initialState, action = {}) {
 				...state,
 				loading: false
 			};
+		case CLEAR_SEARCH_RESULT:
+			return {
+				...state,
+				search: {
+					...state.search,
+					items: []
+				}
+			};
+		case SET_SEARCH_CATEGORY:
+			return {
+				...state,
+				search: {
+					...state.search,
+					searchCategory: action.payload.category
+				}
+			};
+		case SET_SEARCH_TEXT:
+			return {
+				...state,
+				search: {
+					...state.search,
+					searchText: action.payload.text
+				}
+			};
+		case SEARCH:
+			return {
+				...state,
+				loading: true
+			};
+		case SEARCH_SUCCESS:
+			let newSearchResultData = {
+				currentPage: action.result.currentPage,
+				allPagesCompleted: action.result.allPagesCompleted,
+				items: action.result.results
+			};
+
+			return {
+				...state,
+				loading: false,
+				search: {
+					...state.search,
+					...newSearchResultData
+				}
+			};
+		case SEARCH_FAIL:
+			return {
+				...state,
+				loading: false
+			};
+		case SEARCH_MORE:
+			return {
+				...state,
+				loading: true
+			};
+		case SEARCH_MORE_SUCCESS:
+			let newAddedSearchResultData = {
+				currentPage: action.result.currentPage,
+				allPagesCompleted: action.result.allPagesCompleted,
+				items: state.search.items.concat(action.result.results)
+			};
+
+			return {
+				...state,
+				loading: false,
+				search: {
+					...state.search,
+					...newAddedSearchResultData
+				}
+			};
+		case SEARCH_MORE_FAIL:
+			return {
+				...state,
+				loading: false
+			};
+		case LOAD_CATEGORIES:
+			return {
+				...state,
+				loading: true
+			};
+		case LOAD_CATEGORIES_SUCCESS:
+			return {
+				...state,
+				loading: false,
+				search: {
+					...state.search,
+					categories: action.result.categories
+				}
+			};
+		case LOAD_CATEGORIES_FAIL:
+			return {
+				...state,
+				loading: false
+			};
 		default:
 			return state;
 	}
@@ -296,6 +416,68 @@ export function loadMoreComments(id, currentPage) {
 		promise: (client) => client.post('/loadFeedComments', {
 			data: {
 				id,
+				currentPage: currentPage + 1
+			}
+		})
+	};
+}
+
+export function isCategoriesLoaded(globalState) {
+	return globalState.nutritionBlogStore.search.categories.length;
+}
+
+export function loadCategories() {
+	return {
+		types: [LOAD_CATEGORIES, LOAD_CATEGORIES_SUCCESS, LOAD_CATEGORIES_FAIL],
+		promise: (client) => client.post('/loadNutritionCategories')
+	};
+}
+
+export function setSearchCategory(category) {
+	return {
+		type: SET_SEARCH_CATEGORY,
+		payload: {
+			category
+		}
+	};
+}
+
+export function setSearchText(text) {
+	return {
+		type: SET_SEARCH_TEXT,
+		payload: {
+			text
+		}
+	};
+}
+
+export function clearSearchResult() {
+	return {
+		type: CLEAR_SEARCH_RESULT,
+		payload: {}
+	};
+}
+
+export function search(text, category) {
+	return {
+		types: [SEARCH, SEARCH_SUCCESS, SEARCH_FAIL],
+		promise: (client) => client.post('/nutritionSearch', {
+			data: {
+				text,
+				category,
+				currentPage: 1
+			}
+		})
+	};
+}
+
+export function loadMoreSearchResult(text, category, currentPage) {
+	return {
+		types: [SEARCH_MORE, SEARCH_MORE_SUCCESS, SEARCH_MORE_FAIL],
+		promise: (client) => client.post('/nutritionSearch', {
+			data: {
+				text,
+				category,
 				currentPage: currentPage + 1
 			}
 		})

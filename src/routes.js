@@ -95,7 +95,7 @@ export default (store) => {
 				<Route path="feed/filter" component={containers.FeedFilter}/>
 				<Route path="feed/search" component={containers.FeedSearch}/>
 				<Route path="podcast-player" component={containers.PodcastPlayer}/>
-				<Route path="feed/search" component={containers.Search}/>
+				<Route path="nutrition/search" component={containers.NutritionBlogSearch}/>
 				<Route path="nutrition/help" component={containers.NutritionHelp}/>
 				<Route path="nutrition/calculator" component={containers.NutritionCalculator}/>
 			</Route>
