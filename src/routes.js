@@ -98,6 +98,7 @@ export default (store) => {
 				<Route path="nutrition/search" component={containers.NutritionBlogSearch}/>
 				<Route path="nutrition/help" component={containers.NutritionHelp}/>
 				<Route path="nutrition/calculator" component={containers.NutritionCalculator}/>
+				<Route path="nutrition/calculator/result" component={containers.NutritionCalculatorResult}/>
 			</Route>
 
 			{/*logged out*/}
