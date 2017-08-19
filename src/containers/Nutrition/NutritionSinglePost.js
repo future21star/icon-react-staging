@@ -42,7 +42,6 @@ export default class NutritionSinglePost extends Component {
 
 	render() {
 		const {browser, activePost} = this.props;
-		const defaultImage = require('../../../static/feed-default.jpg');
 
 		return (
 			<ReactCSSTransitionGroup
@@ -54,13 +53,13 @@ export default class NutritionSinglePost extends Component {
 				transitionLeave={true}
 				transitionLeaveTimeout={500}
 			>
-				<Helmet title="Single Nutrition"/>
+				<Helmet title="Nutrition"/>
 
 				<div
 					className={`${browser.is.mobile ? 'feed-page-wrapper bottom-padding' : 'feed-page-desktop-wrapper bottom-padding'}`}>
 
 					<Menubar
-						className={`menu-color-white ${browser.is.desktop ? 'feed-wrapper' : ''}`}
+						className="menu-bar-red"
 						title="Single Nutrition"
 						backButton={true}
 					/>
