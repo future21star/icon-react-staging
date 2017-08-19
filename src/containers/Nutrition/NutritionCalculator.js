@@ -60,10 +60,9 @@ export default class NutritionCalculator extends Component {
 
 					<Menubar
 						title="Nutrition Calculator"
-						leftSideContent={<Link to="/nutrition"><span className="icon-arrow-left" style={{fontSize: 16+'px'}}/>
-						</Link>}
-						className="gradient-turquoise menu-color-white">
-					</Menubar>
+						className="gradient-red"
+						backButton={true}
+					/>
 
 					<div className="nutrition-calculator-page-content-wrapper">
 						<div className="nutrition-calculator-page-content">
@@ -71,7 +70,7 @@ export default class NutritionCalculator extends Component {
 								<h3>fill in your information</h3>
 								<p>The results are based on the track you chose to set your goals.</p>
 							</div>
-							<div className="calculator-section">
+							<div className="calculator-section container container-small">
 								<form action="">
 									<div className="form-group block">
 										<div className="input-effect">
@@ -181,17 +180,23 @@ export default class NutritionCalculator extends Component {
 							</div>
 						</div>
 
-						<div className="bottom-button">
+						<div className="text-center">
 							{nutritionCalculatorStore.validForm ? (
 								<Link
-									className="btn btn-primary btn-lg btn-block btn-fixed-mobile"
+									className="btn btn-lg btn-icon btn-icon-lg btn-icon-icon"
 									to="/nutrition/calculator/result"
-								>Calculate My Goals</Link>
+								>
+									<span className="icon-nutrition-calculator" />
+									Calculate My Goals
+								</Link>
 							) : (
 								<Link
-									className="btn btn-primary btn-lg btn-block btn-fixed-mobile"
+									className="btn btn-lg btn-icon btn-icon-lg btn-icon-icon"
 									to="/nutrition/calculator"
-								>Calculate My Goals</Link>
+								>
+									<span className="icon-nutrition-calculator" />
+									Calculate My Goals
+								</Link>
 							)}
 						</div>
 					</div>

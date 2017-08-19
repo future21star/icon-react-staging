@@ -14,11 +14,12 @@ export default class Menubar extends Component {
 		leftSideContent: PropTypes.object,
 		rightSideContent: PropTypes.object,
 		className: PropTypes.string,
-		backButton: PropTypes.bool
+		backButton: PropTypes.bool,
+		showHome: PropTypes.bool
 	};
 
 	render() {
-		const {user, title, leftSideContent, rightSideContent, className, backButton} = this.props;
+		const {user, title, leftSideContent, rightSideContent, className, backButton, showHome} = this.props;
 
 		let leftSideConditionalContent = <div/>;
 		if (!user) {
@@ -32,6 +33,15 @@ export default class Menubar extends Component {
 		} else {
 			leftSideConditionalContent = leftSideContent;
 		}
+		let rightSideConditionalContent = <div/>;
+		if(showHome){
+			rightSideConditionalContent = <Link to="/">
+				<span className="mobile-hide">Home</span>
+				<span className="icon-nav-home"/>
+			</Link>
+		} else {
+			rightSideConditionalContent = rightSideContent;
+		}
 
 		return (
 			<div className={`menu-bar ${className}`}>
@@ -41,7 +51,7 @@ export default class Menubar extends Component {
 							{leftSideConditionalContent}
 						</div>
 						<div className="col-xs-8 col-sm-6 menu-bar-title">{title}</div>
-						<div className="col-xs-2 col-sm-3 menu-bar-right-side-content">{rightSideContent}</div>
+						<div className="col-xs-2 col-sm-3 menu-bar-right-side-content">{rightSideConditionalContent}</div>
 					</div>
 					{this.props.children}
 				</div>

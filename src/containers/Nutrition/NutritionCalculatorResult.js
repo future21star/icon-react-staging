@@ -158,14 +158,13 @@ export default class NutritionCalculatorResult extends Component {
 					<Helmet title="Nutrition - Result"/>
 
 					<Menubar
-						title="Nutrition Result"
+						title="Calculator Results"
 						backButton={true}
-						className="gradient-turquoise menu-color-white">
+                        showHome={true}
+						className="menu-bar-red">
 					</Menubar>
 
 					<div className="container">
-						<h2 className="text-center">Result</h2>
-
 						{lean && perfector && gainer ? (
 							<div>
 								<h4>The Lean Machine:</h4>

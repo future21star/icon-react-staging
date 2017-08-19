@@ -75,6 +75,7 @@ export default class EditTracks extends Component {
 						title="Edit Tracks"
 						className="menu-bar-transparent menu-color-white"
 						backButton={true}
+						rightSideContent={<Link to="/programming">DONE</Link>}
 					/>
 
 					<div className="menu-head-buffer edit-tracks-list-wrapper bottom-padding">
