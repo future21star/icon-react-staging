@@ -53,7 +53,7 @@ export default class NutritionFoundations extends Component {
 
 					<Menubar
 						title="Nutrition Foundations"
-						leftSideContent={<Link to="nutrition"><span className="icon-arrow-left" style={{fontSize: 16+'px'}}/>
+						leftSideContent={<Link to="/nutrition"><span className="icon-arrow-left" style={{fontSize: 16+'px'}}/>
 						</Link>}
 						className="gradient-turquoise menu-color-white">
 					</Menubar>
