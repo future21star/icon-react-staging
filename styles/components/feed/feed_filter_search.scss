@@ -88,6 +88,7 @@
     background-color: $greyLight;
   }
 
+
   .feed-search-desktop {
     height: 75px;
     background: $greyLight;
@@ -121,13 +122,12 @@
 .search-selector-desktop {
   margin-bottom: 40px;
   .Select-control {
-    background-color: transparent !important;
+
   }
   .pretty-select.search-selector-input.Select--single > .Select-control .Select-value {
     //font-size: 1.3em;
   }
   .input-effect {
-    border-bottom-color: $grey;
     .search-text-input {
       font-size: 1.8em;
       font-weight: 400;

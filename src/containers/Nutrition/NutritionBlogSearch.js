@@ -13,7 +13,8 @@ import {
 	search,
 	loadMoreSearchResult,
 	isCategoriesLoaded,
-	loadCategories
+	loadCategories,
+	NutritionNav
 } from "../../redux/modules/nutritionBlogStore";
 //import checkAccessLevel from '../HOC/CheckAccessLevel'
 
@@ -126,7 +127,10 @@ export default class NutritionBlogSearch extends Component {
 						<div className="feed-body-desktop">
 							<div className="feed-body-desktop-content">
 								<div className="row no-margin-left-right">
-									<div className="col-md-offset-2 col-md-8 feed-body-right overflow-custom-scroll">
+									<div className="col-md-4 col-lg-3 feed-body-left overflow-custom-scroll">
+										<NutritionNav/>
+									</div>
+									<div className="col-md-8 feed-body-right overflow-custom-scroll">
 										<div className="feed-posts-section">
 											{this.renderSearch()}
 										</div>

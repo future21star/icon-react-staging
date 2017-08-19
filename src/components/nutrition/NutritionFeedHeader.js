@@ -25,7 +25,7 @@ export default class NutritionFeedHeader extends Component {
 		const {redirectToSearchOnInputPress, onChangeSearchText, searchText, user} = this.props;
 
 		return (
-			<div className="feed-header-desktop navbar-fixed-top">
+			<div className="feed-header-desktop navbar-fixed-top nutrition-header-desktop">
 				<div className="row no-margin-left-right">
 
 					<div className={user ? "col-md-4 col-lg-3 header-desktop" : "col-md-12 col-lg-12 header-desktop"}>
@@ -47,7 +47,7 @@ export default class NutritionFeedHeader extends Component {
 								<input
 									type="text"
 									className="form-control feed-search-desktop"
-									placeholder="Search the Vault"
+									placeholder="Search & Filter"
 									onClick={redirectToSearchOnInputPress ? this.goToSearchPage : undefined}
 									value={searchText}
 									onChange={onChangeSearchText}

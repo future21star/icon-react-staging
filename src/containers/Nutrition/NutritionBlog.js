@@ -106,7 +106,7 @@ export default class NutritionBlog extends Component {
 							<div className={user ? "feed-body-desktop" : "feed-body-desktop-guest"}>
 								<div className="feed-body-desktop-content">
 									<div className="row no-margin-left-right">
-										<div className={user ? "col-md-offset-2 col-md-8 feed-body-right overflow-custom-scroll": "col-md-offset-2 col-md-8 feed-body-right overflow-custom-scroll"} ref="overflowCustomScroll">
+										<div className="col-xs-12 feed-body-right overflow-custom-scroll" ref="overflowCustomScroll">
 											<div className="feed-posts-section">
 												{posts.map((post, index) => {
 													return <NutritionPostPreview key={index} post={post}/>;

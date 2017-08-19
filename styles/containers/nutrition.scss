@@ -3,6 +3,9 @@
 @import "../components/nutrition/nutrition-nav";
 @import "../components/nutrition/nutrition-banner";
 
+//BLOG
+@import "../components/nutrition/nutrition-feed-header";
+
 .nutrition-page-content-wrapper{
   background-color: $greyLight;
   .nutrition-featured-news-section{
