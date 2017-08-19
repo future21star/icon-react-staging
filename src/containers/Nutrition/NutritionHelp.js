@@ -42,27 +42,43 @@ export default class NutritionHelp extends Component {
 					<div className="nutrition-help-page-content-wrapper">
 						<div className="nutrition-help-page-content">
 							<div className="help-block">
-								<h3>sedentary lifestyle</h3>
+								<h3>1.2 sedentary lifestyle</h3>
 								<p>You might have a sedentary job (such as a desk job) and no exercise.</p>
 							</div>
 							<div className="help-block">
-								<h3>little daily activity</h3>
+								<h3>1.3 little daily activity</h3>
 								<p>You might have a sedentary job and go for a walk 1-3 times a week.</p>
 							</div>
 							<div className="help-block">
-								<h3>some activity</h3>
+								<h3>1.4 some activity</h3>
 								<p>You are somewhat active during the day and you're exercising 3-4 times a week for an hour or less at a time.</p>
 							</div>
 							<div className="help-block">
-								<h3>moderate activity</h3>
+								<h3>1.5 moderate activity</h3>
 								<p>
 									You exercise 4-5 times a week about an hour at a time with moderate activity levels during
 									the day outside of exercise.
 								</p>
 							</div>
 							<div className="help-block">
-								<h3>workout a little every day</h3>
+								<h3>1.6 workout a little every day</h3>
 								<p>You exercise 6 days a week, about an hour at a time.</p>
+							</div>
+							<div className="help-block">
+								<h3>1.7 Workout Moderately Every Day</h3>
+								<p>You exercise 1-1.5 hours a day, 6 days a week.</p>
+							</div>
+							<div className="help-block">
+								<h3>1.8 Active A Lot of the Day</h3>
+								<p>You exercise about 2 hours a day, 6 days a week.</p>
+							</div>
+							<div className="help-block">
+								<h3>1.9 Exteremly Active Every Day</h3>
+								<p>You exercise several hours a day, 6 days a week.</p>
+							</div>
+							<div className="help-block">
+								<h3>2 Exteremly Active Every Day</h3>
+								<p>You exercise several hours a day, 6 days a week.</p>
 							</div>
 						</div>
 					</div>
