@@ -70,6 +70,10 @@ export default (store) => {
 					<Route path="feed/topic/:id" component={containers.FeedFilteredByTopic}/>
 					<Route path="feed/:type/:id" component={containers.FeedSingle}/>
 					<Route path="nutrition" component={containers.Nutrition}/>
+					<Route path="nutrition/search" component={containers.NutritionBlogSearch}/>
+					<Route path="nutrition/help" component={containers.NutritionHelp}/>
+					<Route path="nutrition/calculator" component={containers.NutritionCalculator}/>
+					<Route path="nutrition/calculator/result" component={containers.NutritionCalculatorResult}/>
 					<Route path="nutrition/change-track" component={containers.NutritionChangeTrack}/>
 					<Route path="nutrition/foundations" component={containers.NutritionFoundations}/>
 					<Route path="nutrition/blog" component={containers.NutritionBlog}/>
@@ -95,10 +99,7 @@ export default (store) => {
 				<Route path="feed/filter" component={containers.FeedFilter}/>
 				<Route path="feed/search" component={containers.FeedSearch}/>
 				<Route path="podcast-player" component={containers.PodcastPlayer}/>
-				<Route path="nutrition/search" component={containers.NutritionBlogSearch}/>
-				<Route path="nutrition/help" component={containers.NutritionHelp}/>
-				<Route path="nutrition/calculator" component={containers.NutritionCalculator}/>
-				<Route path="nutrition/calculator/result" component={containers.NutritionCalculatorResult}/>
+				
 			</Route>
 
 			{/*logged out*/}
