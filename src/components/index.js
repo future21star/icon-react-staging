@@ -87,6 +87,7 @@ export NutritionBlogHeader from './nutrition/NutritionBlogHeader';
 export NutritionPostPreview from './nutrition/NutritionPostPreview';
 export NutritionPostSingle from './nutrition/NutritionPostSingle';
 export NutritionFeedHeader from './nutrition/NutritionFeedHeader';
+export NutritionTrack from './nutrition/NutritionTrack';
 
 
 

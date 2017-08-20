@@ -7,6 +7,9 @@
 @import "inc/animations";
 @import "typography";
 
+@import "custom";
+
+
 /**********
 COMPONENTS
 **********/
@@ -62,7 +65,5 @@ COMPONENTS
 @import "containers/assessment";
 @import "containers/faqs";
 @import "containers/helpful-links";
-
-@import "custom";
 
 @import "media_queries";

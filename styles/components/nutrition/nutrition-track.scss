@@ -1,0 +1,31 @@
+.nutrition-track-tabs-content{
+	background-color: $white;
+}
+
+.nutrition-track-header{
+	h4{
+		background-color: $whiteDark;
+		margin: 15px 0 5px;
+		padding: 5px;
+	}
+}
+
+.nutrition-track-header{
+	h2{
+		color: $red;
+	}
+	.icon{
+		color: $red;
+		margin-right: 5px;
+	}
+
+	.inline-list{
+		li{
+			margin-right: 5px;
+			a{
+				color: $red;
+				text-decoration: underline;
+			}
+		}
+	}
+}
