@@ -13,9 +13,6 @@ export default class NutritionPostPreview extends Component {
 		const {post} = this.props;
 		const defaultImage = require('../../../static/feed-default.jpg');
 
-		// @eli, uncomment this to see what properties the post variable has
-		console.log(post);
-
 
 		return (
 			<div className="col-sm-6 col-xs-12 feed-post">

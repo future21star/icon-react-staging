@@ -82,6 +82,9 @@ export default class NutritionBlogSearch extends Component {
 
 	performSearch = (searchText, searchCategory) => {
 		const {search, clearSearchResult} = this.props;
+		if (searchText.length == 0 && searchCategory) {
+			search(searchText, searchCategory);
+		}
 		if (searchText.length >= 3 && searchCategory) {
 			search(searchText, searchCategory);
 		} else {
