@@ -1,32 +1,28 @@
 import React, {Component, PropTypes} from 'react';
+import {
+    Targets
+} from '../../components/index';
 
 export default class NutritionTrack extends Component {
 	static propTypes = {
-		icon: PropTypes.string.isRequired,
-		header: PropTypes.string.isRequired,
-		goalsDesc: PropTypes.string.isRequired,
-		goals: PropTypes.array.isRequired,
-		expectations: PropTypes.array.isRequired,
-		desc: PropTypes.string.isRequired,
-		imageUrl: PropTypes.string
+		track: PropTypes.any.isRequired
 	};
 
 	render() {
-		const {icon,header, goalsDesc, goals, expectations, desc, imageUrl} = this.props;
+		const {track} = this.props;
 
-		let image = "";
-		if(imageUrl){
-			image = require(imageUrl);
-		}else{
-			image = require("../../../static/feed-default.jpg");
-		}
+		let header = trackName.replace(/-/g, ' ');
 		return(
 			<div className="nutriton-track-wrapper">	
-				<div className="nutrition-track-img-wrapper col-xs-12 col-sm-6">
-					<img src={image} width="100%"/>
+				<div className="nutrition-track-img-wrapper col-xs-12 col-sm-6" style={{backgroundImage:'url("../../nutrition-tracks/' + trackName + '.jpg")'}}>
+					<Targets
+						isTransparent={true}
+						cal={'99'}
+						
+					/>
 				</div>
 				<div className="nutrition-track-header col-xs-12 col-sm-6">
-					<h2><span className={`${icon} icon`}/>{header}</h2>
+					<h2><span className={`icon-track-${trackName} icon`}/>{header}</h2>
 					<p>{desc}</p>
 					<ul className="inline-list">
 						<li><a href="#">Goals</a></li>

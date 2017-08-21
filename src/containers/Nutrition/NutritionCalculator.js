@@ -59,12 +59,12 @@ export default class NutritionCalculator extends Component {
 					<Helmet title="Nutrition - Calculator"/>
 
 					<Menubar
-						title="Nutrition Calculator"
+						title="Calculator"
 						className="gradient-red"
 						backButton={true}
 					/>
 
-					<div className="nutrition-calculator-page-content-wrapper">
+					<div className="nutrition-calculator-page-content-wrapper menu-head-buffer">
 						<div className="nutrition-calculator-page-content">
 							<div className="calculator-header">
 								<h3>fill in your information</h3>
@@ -87,37 +87,37 @@ export default class NutritionCalculator extends Component {
 										</div>
 									</div>
 									<div className="form-group block">
-										<div className="input-group input-effect input-effect-less-padding">
-											<input
-											 	type="number"
-											 	name="age"
-												value={nutritionCalculatorStore.age}
-												onChange={e => changeCalculatorField(e.target.name, e.target.value)}
-												className="form-control"
-												placeholder="Your Age"
-											/>
-											<div className="underline"/>
-										</div>
-									</div>
-									<div className="form-group block">
 										<div className="row">
-											<div className="col-xs-6">
-												<div className="input-effect input-effect-less-padding">
+											<div className="col-xs-4">
+												<div className="input-group input-effect input-effect-less-padding">
 													<input
-													 	type="input"
-													 	name="height"
-														value={nutritionCalculatorStore.height}
+													 	type="number"
+													 	name="age"
+														value={nutritionCalculatorStore.age}
 														onChange={e => changeCalculatorField(e.target.name, e.target.value)}
 														className="form-control"
-														placeholder="Height"
+														placeholder="Age"
 													/>
 													<div className="underline"/>
 												</div>
-												{nutritionCalculatorStore.unit === 'pounds'
-													? <small className="text-center help-block">(in feet, If you are 5' 11" please add it as 5.11)</small>
-													: <small className="text-center help-block">(in meters)</small>}
 											</div>
-											<div className="col-xs-6">
+											<div className="col-xs-4">
+												<div className="input-effect input-effect-less-padding">
+														<input
+														 	type="input"
+														 	name="height"
+															value={nutritionCalculatorStore.height}
+															onChange={e => changeCalculatorField(e.target.name, e.target.value)}
+															className="form-control"
+															placeholder="Height"
+														/>
+														<div className="underline"/>
+													</div>
+													{nutritionCalculatorStore.unit === 'pounds'
+														? <small className="text-center help-block">(in Feet)<br/>If you are 5' 11" please add it as 5.11)</small>
+														: <small className="text-center help-block">(in meters)</small>}
+											</div>
+											<div className="col-xs-4">
 												<div className="input-effect input-effect-less-padding">
 													<input
 													 	type="input"
@@ -153,6 +153,10 @@ export default class NutritionCalculator extends Component {
 									</div>
 									<div className="form-group block">
 										<div className="row">
+											<div className="col-xs-12">
+												<h4>Activity Level</h4>
+												<p>Please select the activity level that best fits your day to day life.</p>
+											</div>
 											<div className="col-xs-10">
 												<div className="input-effect">
 													<Select

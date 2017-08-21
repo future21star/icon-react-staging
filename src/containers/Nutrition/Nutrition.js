@@ -64,7 +64,11 @@ export default class Nutrition extends Component {
 							</div>
 							<div className="col-xs-12 col-sm-6">
 								<JoinSlack/>
-								<Targets/>
+								<Targets
+									calories={'99'}
+									carbs={'123 - 199'}
+									protein={'99 -  110'}
+								/>
 								<NutritionNav/>
 							</div>
 						</div>

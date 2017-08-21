@@ -54,6 +54,12 @@
       }
     }
   }
+  &.nutrition-data-list-transparent{
+    background-color:transparent;
+    .list-title-wrapper{
+      background-color:transparent;
+    }
+  }
 }
 
 .nutrition-data-list-vertical{

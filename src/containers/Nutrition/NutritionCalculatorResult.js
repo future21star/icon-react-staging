@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {Menubar, BtnBottom} from '../../components/index';
+import {
+    Menubar, 
+    BtnBottom,
+    NutritionTrack
+} from '../../components/index';
 import {connect} from "react-redux";
 import {Link} from 'react-router';
 import Select from 'react-select';
@@ -158,30 +162,21 @@ export default class NutritionCalculatorResult extends Component {
 					<Helmet title="Nutrition - Result"/>
 
 					<Menubar
-						title="Calculator Results"
+						title="Results"
 						backButton={true}
                         showHome={true}
 						className="menu-bar-red">
 					</Menubar>
 
 					<div className="container">
-						{lean && perfector && gainer ? (
-							<div>
-								<h4>The Lean Machine:</h4>
-								<p>{lean.benedict} (Calories)</p>	
-								<p>{lean.cho} (GRAMS of Carbohydrates)</p>	
-								<p>{lean.protein} (GRAMS of protein)</p>	
-
-								<h4>The Perfector:</h4>
-								<p>{perfector.benedict} (Calories)</p>	
-								<p>{perfector.cho} (GRAMS of Carbohydrates)</p>	
-								<p>{perfector.protein} (GRAMS of protein)</p>
-
-								<h4>The Gainer</h4>
-								<p>{gainer.benedict} (Calories)</p>	
-								<p>{gainer.cho} (GRAMS of Carbohydrates)</p>	
-								<p>{gainer.protein} (GRAMS of protein)</p>
-							</div>
+                        <div className="col-xs-12 nutrition-track-header">
+                            <h2><span className="icon-track-perfector icon"/>Perfector</h2>
+                            <p>Based on our calculations these are you targets for the TRACK NAME track:</p>
+						</div>
+                        {lean && perfector && gainer ? (
+							 <NutritionTrack
+                                track={track}
+                            />
 						) : undefined}
 					</div>	
 				</div>

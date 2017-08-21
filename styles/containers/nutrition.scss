@@ -8,6 +8,9 @@
 @import "../components/nutrition/nutrition-feed-header";
 @import "../components/nutrition/nutrition-post-preview";
 
+//CALCULATOR
+@import "../components/nutrition/nutrition-calculator";
+
 .nutrition-page-content-wrapper{
   background-color: $greyLight;
   .nutrition-featured-news-section{
@@ -318,71 +321,6 @@
     .help-block:not(:first-child){
       h3{
         margin-top: 5px;
-      }
-    }
-  }
-}
-
-.nutrition-calculator-page-content{
-  padding: 20px 20px 30px 20px;
-  .calculator-header{
-    text-align: center;
-    margin-bottom: 30px;
-    h3{
-      color: #D1252E;
-      text-transform: uppercase;
-    }
-    p{
-      font-size: 16px;
-      font-weight: 400;
-    }
-  }
-  .calculator-section{
-    padding-left: 15px;
-    padding-right: 15px;
-    form{
-      .block {
-        margin-top: 10px;
-        margin-bottom: 10px;
-      }
-      .input-effect-less-padding .form-control{
-        padding-left: 7px!important;
-      }
-      .icon-arrow-down{
-        color: #747474;
-      }
-      .unit-radios{
-        text-align: center;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        .btn-white-left, .btn-white-right{
-          background: #fff;
-          color: black;
-          border: 1px solid #eeeeee;
-          padding-top: 12px;
-          padding-bottom: 12px;
-        }
-        .btn-white-left{
-          border-radius: 6px 0 0 6px;
-          width: 50%;
-        }
-        .btn-white-right{
-          border-radius: 0 6px 6px 0;
-          width: 50%;
-        }
-        .active{
-          background: #D1252E;
-          color: white;
-        }
-      }
-      .help-icon{
-        font-size: 20px;
-        color: #d1252e;
-        margin-left: -15px;
-        position: relative;
-        top: 5px;
-        cursor: pointer;
-        //font-weight: bold;
       }
     }
   }
