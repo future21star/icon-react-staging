@@ -316,6 +316,11 @@
   .nutrition-post-image{
     height: 200px !important;
   }
+  .meal-plan-wrapper{
+    .col-xs-12{
+      text-align: center;
+    }
+  }
 }
 
 @media screen and (max-width: 561px) {
