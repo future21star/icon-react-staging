@@ -30,11 +30,11 @@
       "desc": "Weight maintenance is the name of this game. These individuals are trying to perfect an already good thing. Nutrition recommendations will center around a balanced dietary approach that includes a focus on consistency of nutrient intake and allows the athlete to meet all of their nutrient needs through a balanced diet."
     },
     {
-      "name": "dynamic",
+      "track_name": "dynamic",
       "details": "Training sessions include multiple portions while still focusing on intensity over volume. For those of you looking for more in depth training, enjoy participating in CrossFit competitions, or want to take things to the next level with your fitness the Dynamic track delivers without overextending you. Many CrossFit enthusiasts use this track to bring themselves to the next level while still having time for life outside the gym."
     },
     {
-      "name": "gainer",
+      "track_name": "gainer",
       "goalsDesc":"A realistic goal is to see an increase in lean body mass; total body mass (weight) may also increase.",
       "goals":[
         "It is important to realize that to increase muscle mass, 2 things need to happen: you need to increase the stimulus placed on the muscle to achieve hypertrophy (increase in muscle size), and you need to increase the amount of calories you consume beyond what your body needs to maintain its weight.",

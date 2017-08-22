@@ -14,21 +14,23 @@ export default class Targets extends Component {
 
 	render() {
 		const{isCalculator, isTransparent, calories, carbs, protein} = this.props;
+		
 		let classes = isTransparent ? 'nutrition-data-list-transparent' : '';
+
 		return (
 			<div className={`nutrition-data-list row ${classes}`}>
 
-					{!isCalculator && (
+				{!isCalculator && (
 					<div className="list-title-wrapper row">
 						<p className="col-xs-6 list-title">Targets</p>
 							<div className="col-xs-6 text-right calculator-link-wrapper">
-						<Link to="nutrition/calculator">
-								Calculate
-								<span className="icon icon-nutrition-calculator"/>
-						</Link>
+							<Link to="/nutrition/calculator">
+									Calculate
+									<span className="icon icon-nutrition-calculator"/>
+							</Link>
 						</div>
 					</div>
-					)}
+				)}
 
 				<div className="col-xs-4 list-item calories">
 					<p>Calories</p>

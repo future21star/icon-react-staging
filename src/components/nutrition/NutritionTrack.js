@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {
     Targets
 } from '../../components/index';
+import nutritionTracks from '../../../api/nutritionTracks.json';
 
 export default class NutritionTrack extends Component {
 	static propTypes = {
@@ -11,19 +12,30 @@ export default class NutritionTrack extends Component {
 	render() {
 		const {track} = this.props;
 
-		let header = trackName.replace(/-/g, ' ');
+		const trackData = nutritionTracks.nutrition_tracks.filter(item => {
+			return item.track_name === track;
+		})[0];
+
+
+		if(!trackData) {
+			return <div className="alert alert-danger">Track not found</div>;
+		}
+
+		let header = trackData.track_name.replace(/-/g, ' ');
+
 		return(
 			<div className="nutriton-track-wrapper">	
-				<div className="nutrition-track-img-wrapper col-xs-12 col-sm-6" style={{backgroundImage:'url("../../nutrition-tracks/' + trackName + '.jpg")'}}>
+				<div className="nutrition-track-img-wrapper col-xs-12 col-sm-6" style={{backgroundImage:'url("../../nutrition-tracks/' + trackData.track_name + '.jpg")'}}>
 					<Targets
 						isTransparent={true}
-						cal={'99'}
-						
+						calories={'99'}
+						carbs={'100'}
+						protein={'101'}
 					/>
 				</div>
 				<div className="nutrition-track-header col-xs-12 col-sm-6">
-					<h2><span className={`icon-track-${trackName} icon`}/>{header}</h2>
-					<p>{desc}</p>
+					<h2><span className={`icon-track-${trackData.track_name} icon`}/>{header}</h2>
+					<p>{trackData.desc}</p>
 					<ul className="inline-list">
 						<li><a href="#">Goals</a></li>
 						<li><a href="#">Expectations</a></li>
@@ -35,18 +47,18 @@ export default class NutritionTrack extends Component {
 				</div>
 				<div className="hidden-md hidden-lg hidden-sm hidden-xs">
 					<h4>Goals</h4>
-					<p className="nutrition-track-goals-desc">{goalsDesc}</p>
+					<p className="nutrition-track-goals-desc">{trackData.goals_desc}</p>
 					<ul className="list-check nutrition-track-goals">
-					{goals.map(function(goal){
-				       return <li>{goal}</li>;
+					{trackData.goals.map((goal, i) => {
+				       return <li key={i}>{goal}</li>;
 				    })}
 					</ul>
 				</div>
 				<div className="hidden-md hidden-lg hidden-sm hidden-xs">
 					<h4>Expectations</h4>
 					<ul className="list-check nutrition-track-goals">
-					{expectations.map(function(expectation){
-				       return <li>{expectation}</li>;
+					{trackData.expectations.map((expectation, i) => {
+				       return <li key={i}>{expectation}</li>;
 				    })}
 					</ul>
 				</div>
