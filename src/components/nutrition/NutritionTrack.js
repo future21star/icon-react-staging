@@ -1,8 +1,18 @@
 import React, {Component, PropTypes} from 'react';
+import {connect} from 'react-redux';
 import {
     Targets
 } from '../../components/index';
 import nutritionTracks from '../../../api/nutritionTracks.json';
+import {updateSelectedNutritionTrack} from '../../redux/modules/authStore';
+
+
+@connect(
+	state => ({
+		user: state.authStore.user
+	}),
+	{updateSelectedNutritionTrack}
+)
 
 export default class NutritionTrack extends Component {
 
@@ -25,7 +35,11 @@ export default class NutritionTrack extends Component {
 	};
 
 	render() {
-		const {track} = this.props;
+		const {user, track, updateSelectedNutritionTrack} = this.props;
+
+		if(!user) return <div/>;
+
+		const {nutritionSelectedTrack} = user;
 
 		const trackData = nutritionTracks.nutrition_tracks.filter(item => {
 			return item.track_name === track;
@@ -46,10 +60,16 @@ export default class NutritionTrack extends Component {
 					<li><a href="javascript:;" onClick={e => this.changeContent('goal')}>Goals</a></li>
 					<li><a href="javascript:;" onClick={e => this.changeContent('expectation')}>Expectations</a></li>
 				</ul>
-				<button className="btn btn-lg btn-icon btn-icon-blue btn-icon-icon btn-icon-right">
-					Select Track
-					<span className="icon-nav-links"/>
-				</button>
+
+				{nutritionSelectedTrack === trackData.track_name ? (
+					<button className="btn btn-lg btn-icon btn-icon-blue btn-icon-icon btn-icon-right" disabled>
+						Selected Track <span className="icon-nav-links"/>
+					</button>
+				) : (
+					<button className="btn btn-lg btn-icon btn-icon-blue btn-icon-icon btn-icon-right" onClick={e => updateSelectedNutritionTrack(trackData.track_name)}>
+						Select Track <span className="icon-nav-links"/>
+					</button>
+				)}
 			</div>
 		);
 

@@ -14,6 +14,10 @@ module.exports = function (sequelize, DataTypes) {
 		wpSubscriptionId: {
 	        type: DataTypes.STRING,
 	        allowNull: true
+	    },
+	    nutritionSelectedTrack: {
+	        type: DataTypes.STRING,
+	        allowNull: true
 	    }
 	}, {
 		tableName: 'users',
