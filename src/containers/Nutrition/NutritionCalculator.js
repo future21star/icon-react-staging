@@ -129,7 +129,9 @@ export default class NutritionCalculator extends Component {
 													/>
 													<div className="underline"/>
 												</div>
-												<small className="text-center help-block">(in lbs)</small>
+												{nutritionCalculatorStore.unit === 'pounds'
+														? <small className="text-center help-block">(in lbs)</small>
+														: <small className="text-center help-block">(in kgs)</small>}
 											</div>
 										</div>
 									</div>
