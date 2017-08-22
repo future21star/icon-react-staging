@@ -17,7 +17,7 @@
     },
     {
       "track_name": "perfector",
-      "goalsDesc": "You can realistically expect to increase your lean body mass (muscle!) and perhaps see a decrease in fat mass, ultimately improving your tone and strength.",
+      "goals_desc": "You can realistically expect to increase your lean body mass (muscle!) and perhaps see a decrease in fat mass, ultimately improving your tone and strength.",
       "goals": [
         "Your weight may fluctuate mildly – a couple of pounds – or even more than that . Some athletes are able to decrease their percent body fat and see a 10 lb increase on the scale because they have increased their muscle mass. How impressive is that?",
         "Everyone’s body is different and each individual response will vary. Some individuals gain muscle mass at a more rapid rate than others; some individuals lose fat more rapidly.",
@@ -31,7 +31,7 @@
     },
     {
       "track_name": "gainer",
-      "goalsDesc":"A realistic goal is to see an increase in lean body mass; total body mass (weight) may also increase.",
+      "goals_desc":"A realistic goal is to see an increase in lean body mass; total body mass (weight) may also increase.",
       "goals":[
         "It is important to realize that to increase muscle mass, 2 things need to happen: you need to increase the stimulus placed on the muscle to achieve hypertrophy (increase in muscle size), and you need to increase the amount of calories you consume beyond what your body needs to maintain its weight.",
         "Eating more protein (or more of anything) without the stimulus of resistance exercise will not result in hypertrophy (just an increase in fat mass); conversely, strength training in the absence of excess calories (particularly the right types of calories) will result in muscle breakdown.",
