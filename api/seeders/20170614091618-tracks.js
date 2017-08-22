@@ -29,7 +29,7 @@ module.exports = {
 			name: "strength",
 			bgImgUrl: 'strengthBG.jpg',
 			iconUrl: "icon-track-strength",
-			details: '<p>For some of us fitness is our sport. Depending on your personal goals the Hyper track provides multiple parts for each training session. Frequent strength, conditioning, gymnastics, and endurance pieces provide the most demanding track. Sessions last 90 min – 3 hours depending on the time of year, cycle of training, and level of athlete. Our Icon ambassadors pursuing the podium at the CrossFit Games or making their first trip there utilize the Hyper programming.</p>' +
+			details: '<p>Increase your top end strength as well as the ability to cycle heavier barbells more efficiently.  Specific strength cycles are programmed throughout the year while focusing on maintaining GPP through CrossFit.</p>' +
 			'<br/><h4>For Those Who:</h4>' +
 			'<ol>' +
 			'<li>Are looking to focus only on strength.</li>' +
