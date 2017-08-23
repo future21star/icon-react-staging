@@ -48,6 +48,8 @@ export loadSingleNutritionPost from './nutrition/loadSingleNutritionPost';
 export loadNutritionCategories from './nutrition/loadNutritionCategories';
 export nutritionSearch from './nutrition/nutritionSearch';
 export updateSelectedNutritionTrack from './nutrition/updateSelectedNutritionTrack';
+export loadNutritionTrackResult from './nutrition/loadNutritionTrackResult';
+export saveNutritionTrackResult from './nutrition/saveNutritionTrackResult';
 
 
 

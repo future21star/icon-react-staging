@@ -9,7 +9,8 @@ import {updateSelectedNutritionTrack} from '../../redux/modules/authStore';
 
 @connect(
 	state => ({
-		user: state.authStore.user
+		user: state.authStore.user,
+		nutritionCalculatorStore: state.nutritionCalculatorStore
 	}),
 	{updateSelectedNutritionTrack}
 )
@@ -35,7 +36,7 @@ export default class NutritionTrack extends Component {
 	};
 
 	render() {
-		const {user, track, updateSelectedNutritionTrack} = this.props;
+		const {user, track, updateSelectedNutritionTrack, nutritionCalculatorStore} = this.props;
 
 		if(!user) return <div/>;
 
@@ -43,6 +44,12 @@ export default class NutritionTrack extends Component {
 
 		const trackData = nutritionTracks.nutrition_tracks.filter(item => {
 			return item.track_name === track;
+		})[0];
+
+		const targetResults = nutritionCalculatorStore.result;
+
+		const targetResult = targetResults.filter(item => {
+			return item.nutritionTrack === track;
 		})[0];
 
 
@@ -105,12 +112,17 @@ export default class NutritionTrack extends Component {
 		return(
 			<div className="nutriton-track-wrapper">	
 				<div className="nutrition-track-img-wrapper col-xs-12 col-sm-6" style={{backgroundImage:'url("../../nutrition-tracks/' + trackData.track_name + '.jpg")'}}>
-					<Targets
-						isTransparent={true}
-						calories={'99'}
-						carbs={'100'}
-						protein={'101'}
-					/>
+					{targetResult ? (
+						<Targets
+							isTransparent={true}
+							calories={targetResult.nutritionCalories}
+							carbs={targetResult.nutritionCarbs}
+							protein={targetResult.nutritionProtein}
+						/>) : (
+							<Targets
+							isTransparent={true}
+						/>
+					)}
 				</div>
 				<div className="nutrition-track-header col-xs-12 col-sm-6">
 					{this.state.showContent === 'main' && mainContent}

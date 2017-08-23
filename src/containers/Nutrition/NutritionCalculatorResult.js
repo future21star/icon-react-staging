@@ -10,16 +10,16 @@ import {connect} from "react-redux";
 import {Link} from 'react-router';
 import Select from 'react-select';
 import {range} from "lodash";
-// import {
-// 	changeCalculatorField
-// } from "../../redux/modules/nutritionCalculatorStore";
+import {
+	saveNutritionTrackResult
+} from "../../redux/modules/nutritionCalculatorStore";
 
 @connect(
 	state => ({
-		vaultAccess: state.authStore.user.vaultAccess,
+		user: state.authStore.user,
 		nutritionCalculatorStore: state.nutritionCalculatorStore,
 	}),
-	{}
+	{saveNutritionTrackResult}
 )
 
 export default class NutritionCalculatorResult extends Component {
@@ -56,7 +56,6 @@ export default class NutritionCalculatorResult extends Component {
     };
 
     calcCHOPro = (weight) => {
-        console.log(weight);
         let choProtein = {
                         "cho"       : [],
                         "protein"   : []
@@ -125,15 +124,13 @@ export default class NutritionCalculatorResult extends Component {
             	protein: choProteins.protein[1] + "-" + choProteins.protein[5]
             }
 
-            console.log(lean);
-            console.log(perfector);
-            console.log(gainer);
-
             this.setState({
             	lean,
             	perfector,
             	gainer
-            })
+            });
+
+            this.props.saveNutritionTrackResult(lean, perfector, gainer);
 
         }else{
             //Something went wrong
@@ -145,8 +142,16 @@ export default class NutritionCalculatorResult extends Component {
 
 
 	render() {
-		const {vaultAccess, nutritionCalculatorStore} = this.props;
+		const {user, nutritionCalculatorStore} = this.props;
+
+        if(!user) return <div/>;
+
+        const {vaultAccess, nutritionSelectedTrack} = user;
+
 		const {lean, perfector, gainer} = this.state;
+
+
+        let prettyTrackName = nutritionSelectedTrack.replace(/-/g, ' ');
 
 		return (
 			<ReactCSSTransitionGroup
@@ -170,12 +175,12 @@ export default class NutritionCalculatorResult extends Component {
 
 					<div className="container">
                         <div className="col-xs-12 nutrition-track-header">
-                            <h2><span className="icon-track-perfector icon"/>Perfector</h2>
-                            <p>Based on our calculations these are you targets for the TRACK NAME track:</p>
+                            <h2><span className="icon-track-perfector icon"/>{prettyTrackName}</h2>
+                            <p>Based on our calculations these are you targets for the {prettyTrackName} track:</p>
 						</div>
                         {lean && perfector && gainer ? (
 							 <NutritionTrack
-                                track={track}
+                                track={nutritionSelectedTrack}
                             />
 						) : undefined}
 					</div>	

@@ -6,9 +6,9 @@ export default class Targets extends Component {
 	static propTypes = {
 		isCalculator: PropTypes.bool,
 		isTransparent: PropTypes.bool,
-		calories: PropTypes.string.isRequired,
-		carbs: PropTypes.string.isRequired,
-		protein: PropTypes.string.isRequired
+		calories: PropTypes.string,
+		carbs: PropTypes.string,
+		protein: PropTypes.string
 	};
 
 
@@ -34,15 +34,15 @@ export default class Targets extends Component {
 
 				<div className="col-xs-4 list-item calories">
 					<p>Calories</p>
-					<h4>{calories}</h4>
+					<h4>{calories || '-'}</h4>
 				</div>
 				<div className="col-xs-4 list-item carbs">
 					<p>Gr Carbs</p>
-					<h4>{carbs}</h4>
+					<h4>{carbs || '-'}</h4>
 				</div>
 				<div className="col-xs-4 list-item protein">
 					<p>Gr Protein</p>
-					<h4>{protein}</h4>
+					<h4>{protein || '-'}</h4>
 				</div>
 			</div>
 		);
