@@ -35,9 +35,9 @@ export default class WorkoutBanner extends Component {
 				</span>);
 		}
 
-		else if (wod.track.iconUrl === 'icon-track-lifestyle') {
+		else if (wod.track.iconUrl === 'icon-track-unify') {
 			return (
-				<span className="icon-track-lifestyle">
+				<span className="icon-track-unify">
 					<span className="path1"/>
 					<span className="path2"/>
 					<span className="path3"/>

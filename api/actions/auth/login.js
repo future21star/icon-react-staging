@@ -205,13 +205,13 @@ export default function login(request) {
 		}
 
 		////////////////////////////////
-		///// set track to lifestyle if subscription is Unify
+		///// set track to unify if subscription is Unify
 		////////////////////////////////
 		if(wpSubscription.data.subscription_id === '2') {
 			try {
 				await models.UserTrack.findOrCreate({
 					where: {
-					    trackName: 'lifestyle',
+					    trackName: 'unify',
 						userId: reactUser.id
 					}
 				});

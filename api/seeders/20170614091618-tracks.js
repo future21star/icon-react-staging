@@ -38,12 +38,12 @@ module.exports = {
 			createdAt: new Date(),
 			updatedAt: new Date()
 		}, {
-			bgImgUrl: 'lifestyleBG.jpg',
-			name: "lifestyle",
-			iconUrl: "icon-track-lifestyle",
+			bgImgUrl: 'unifyBG.jpg',
+			name: "unify",
+			iconUrl: "icon-track-unify",
 			details: '<p>Seeking for adventure out your door? Warm Up, Workout, Goals for each Session, and Cool Down/Accessory work are always included.</p>' +
 			'<p>Sessions last no more than 1 hour so you can put your increased fitness to use outside the confines of the gym. Icon ambassadors that are professionals in other sports or adventure seekers need more time outside of the gym.</p>' +
-			'<p>The Lifestyle Track opens doors to better experiences with improved levels of general physical preparedness.</p>' +
+			'<p>The Unify Track opens doors to better experiences with improved levels of general physical preparedness.</p>' +
 			'<br/><h4>For Those Who:</h4>' +
 			'<ol>' +
 			'<li>Put increased fitness to use outside the confines of the gym.</li>' +
