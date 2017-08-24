@@ -20,7 +20,7 @@ export default class NutritionNav extends Component {
 					</Link>
 				</div>
 				<div className="nutrition-nav-item col-xs-12">
-					<Link to="/nutrition/foundations">
+					<Link to="/">
 						<span className="icon icon-nutrition-found icon-green"/>
 						<span className="text">
 							Nutrition Foundations
