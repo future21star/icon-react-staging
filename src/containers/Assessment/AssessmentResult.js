@@ -47,7 +47,7 @@ export default class AssessmentResult extends Component {
 		let answersAsArray = Object.values(answers);
 		let radarData = answersAsArray.slice(1, 8);
 		let totalScore = 0;
-		let lifestyleCount = 0;
+		let unifyCount = 0;
 
 		///////////////
 		// total score
@@ -55,14 +55,14 @@ export default class AssessmentResult extends Component {
 		radarData.map(value => totalScore += parseInt(value));
 
 		///////////////
-		// check lifestyle
+		// check unify
 		///////////////
 		radarData.map(value => {
-			if (value <= 4) lifestyleCount++;
+			if (value <= 4) unifyCount++;
 		});
 
-		if ((lifestyleCount > 4 || totalScore <= 27) || answers[8] === 'yes') {
-			recommendedTrackName = 'lifestyle';
+		if ((unifyCount > 4 || totalScore <= 27) || answers[8] === 'yes') {
+			recommendedTrackName = 'unify';
 			trackShown = true;
 		}
 
@@ -169,7 +169,7 @@ export default class AssessmentResult extends Component {
 
 		let hasAccessOfProgramming = false;
 		if (includes(vaultAccess, 'programming-all')) hasAccessOfProgramming = true;
-		else if (includes(vaultAccess, 'programming-lifestyle')) hasAccessOfProgramming = true;
+		else if (includes(vaultAccess, 'programming-unify')) hasAccessOfProgramming = true;
 		else if (includes(vaultAccess, 'programming-masters')) hasAccessOfProgramming = true;
 
 		return (

@@ -42,9 +42,9 @@ export default class EditTracksBanner extends Component {
 				</span>);
 		}
 
-		else if (trackIconClassName === 'icon-track-lifestyle') {
+		else if (trackIconClassName === 'icon-track-unify') {
 			return (
-				<span className="icon icon-track-lifestyle">
+				<span className="icon icon-track-unify">
 					<span className="path1"/>
 					<span className="path2"/>
 					<span className="path3"/>

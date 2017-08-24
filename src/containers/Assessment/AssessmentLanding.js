@@ -58,7 +58,7 @@ export default class AssessmentLanding extends Component {
 							</div>
 						</div>
 						<div className="row assessment-landing-icon-list">
-							<div className="col-xs-6 col-sm-3"><span className="icon icon-track-lifestyle">{iconTracksInner}</span><p className="track-title">Lifestyle</p></div>
+							<div className="col-xs-6 col-sm-3"><span className="icon icon-track-unify">{iconTracksInner}</span><p className="track-title">Unify</p></div>
 							<div className="col-xs-6 col-sm-3"><span className="icon icon-track-dynamic">{iconTracksInner}</span><p className="track-title">Dynamic</p></div>
 							<div className="col-xs-6 col-sm-3"><span className="icon icon-track-hyper">{iconTracksInner}</span><p className="track-title">Hyper</p></div>
 							<div className="col-xs-6 col-sm-3"><span className="icon icon-track-strength">{iconTracksInner}</span><p className="track-title">Strength</p></div>

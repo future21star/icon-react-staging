@@ -40,9 +40,9 @@ export default class RestDay extends Component {
 				</span>);
 		}
 
-		else if (track.iconUrl === 'icon-track-lifestyle') {
+		else if (track.iconUrl === 'icon-track-unify') {
 			return (
-				<span className="icon-track-lifestyle">
+				<span className="icon-track-unify">
 					<span className="path1"/>
 					<span className="path2"/>
 					<span className="path3"/>

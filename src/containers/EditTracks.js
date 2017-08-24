@@ -55,7 +55,7 @@ export default class EditTracks extends Component {
 
 		let accessOfProgrammingType = null;
 		if (includes(vaultAccess, 'programming-all')) accessOfProgrammingType = 'programming-all';
-		else if (includes(vaultAccess, 'programming-lifestyle')) accessOfProgrammingType = 'programming-lifestyle';
+		else if (includes(vaultAccess, 'programming-unify')) accessOfProgrammingType = 'programming-unify';
 		else if (includes(vaultAccess, 'programming-masters')) accessOfProgrammingType = 'programming-masters';
 
 		return (
@@ -82,7 +82,7 @@ export default class EditTracks extends Component {
 						{
 							accessOfProgrammingType
 								? this.renderEditTracks(accessOfProgrammingType)
-								: <NoAccessSubscriptionUpgradeCard permissionName='programming-lifestyle'/>
+								: <NoAccessSubscriptionUpgradeCard permissionName='programming-unify'/>
 						}
 					</div>
 
@@ -104,11 +104,11 @@ export default class EditTracks extends Component {
 
 		// find without masters tracks
 		let withoutMasterTracks = allTracks.filter(track => {
-			// ids of masters tracks
-			if (includes([1,2,3,4], track.id)) return track;
+			// name of non-masters tracks
+			if (includes(['dynamic','strength','unify','hyper'], track.name)) return track;
 		});
 
-		let isLifestyle = accessOfProgrammingType === 'programming-lifestyle';
+		let isUnify = accessOfProgrammingType === 'programming-unify';
 
 		return (
 			<div className="container">
@@ -127,9 +127,9 @@ export default class EditTracks extends Component {
 									/>
 									<div className="edit-tracks-btn-wrapper">
 										<div className="col-xs-12">
-											{ isLifestyle ? ( 
+											{ isUnify ? ( 
 												
-												track.name === 'lifestyle' ? 
+												track.name === 'unify' ? 
 													<button className="btn btn-lg btn-icon btn-icon-blue">
 														Subscribed
 													</button>
@@ -168,8 +168,8 @@ export default class EditTracks extends Component {
 
 		// find only masters tracks
 		let masterTracks = allTracks.filter(track => {
-			// ids of masters tracks
-			if (includes([5, 6, 7, 8, 9, 10], track.id)) return track;
+			// names of masters tracks
+			if (!includes(['dynamic','strength','unify','hyper'], track.name)) return track;
 		});	
 
 		return (
