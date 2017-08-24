@@ -22,7 +22,7 @@ export default function getWods(request) {
 			singleWpWod.categories.map(trackId => {
 				let trackName = null;
 				if (trackId === 29) trackName = 'dynamic';
-				else if (trackId === 30) trackName = 'lifestyle';
+				else if (trackId === 30) trackName = 'unify';
 				else if (trackId === 31) trackName = 'strength';
 				else if (trackId === 32) trackName = 'hyper';
 				else if (trackId === 35) trackName = 'masters-35-39';

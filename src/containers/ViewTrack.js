@@ -90,9 +90,9 @@ export default class ViewTrack extends Component {
 				</span>);
 		}
 
-		else if (trackIconClassName === 'icon-track-lifestyle') {
+		else if (trackIconClassName === 'icon-track-unify') {
 			return (
-				<span className="icon-track-lifestyle">
+				<span className="icon-track-unify">
 					<span className="path1"/>
 					<span className="path2"/>
 					<span className="path3"/>
@@ -133,7 +133,7 @@ export default class ViewTrack extends Component {
 
 		let accessOfProgrammingType = null;
 		if (includes(vaultAccess, 'programming-all')) accessOfProgrammingType = 'programming-all';
-		else if (includes(vaultAccess, 'programming-lifestyle')) accessOfProgrammingType = 'programming-lifestyle';
+		else if (includes(vaultAccess, 'programming-unify')) accessOfProgrammingType = 'programming-unify';
 		else if (includes(vaultAccess, 'programming-masters')) accessOfProgrammingType = 'programming-masters';
 
 		return (
@@ -158,7 +158,7 @@ export default class ViewTrack extends Component {
 					{
 						accessOfProgrammingType
 							? this.renderViewTrack(accessOfProgrammingType)
-							: <NoAccessSubscriptionUpgradeCard permissionName='programming-lifestyle'/>
+							: <NoAccessSubscriptionUpgradeCard permissionName='programming-unify'/>
 					}
 
 				</div>
@@ -194,7 +194,7 @@ export default class ViewTrack extends Component {
 								<h1 className="title">{track.name}</h1>
 								<div dangerouslySetInnerHTML={this.createMarkup(track.details)}/>
 								{accessOfProgrammingType === 'programming-all' ? this.renderButtonsForProgrammingAll(selectedTrackIsSubscribed) : undefined}
-								{accessOfProgrammingType === 'programming-lifestyle' ? this.renderButtonsForProgrammingLifeStyle(selectedTrackIsSubscribed) : undefined}
+								{accessOfProgrammingType === 'programming-unify' ? this.renderButtonsForProgrammingUnify(selectedTrackIsSubscribed) : undefined}
 								{accessOfProgrammingType === 'programming-masters' ? this.renderButtonsForProgrammingMasters(selectedTrackIsSubscribed) : undefined}
 							</div>
 						</div>
@@ -204,7 +204,7 @@ export default class ViewTrack extends Component {
 	}
 
 
-	renderButtonsForProgrammingLifeStyle(selectedTrackIsSubscribed) {
+	renderButtonsForProgrammingUnify(selectedTrackIsSubscribed) {
 		let visibleTrackStartsWithMasters = startsWith(this.props.params.name, 'masters');
 		const {subscription} = this.props.user;
 
@@ -219,7 +219,7 @@ export default class ViewTrack extends Component {
 					/> : undefined
 				}
 
-				{!selectedTrackIsSubscribed && (parseInt(subscription.subscription_id) === 2 || parseInt(subscription.subscription_id) === 3) && !visibleTrackStartsWithMasters && this.props.params.name !== 'lifestyle' ?
+				{!selectedTrackIsSubscribed && (parseInt(subscription.subscription_id) === 2 || parseInt(subscription.subscription_id) === 3) && !visibleTrackStartsWithMasters && this.props.params.name !== 'unify' ?
 					<NoAccessSubscriptionUpgradeButton
 						classNames="btn btn-block btn-lg btn-icon btn-icon-lg btn-icon-icon btn-fixed-mobile"
 						title="Update To Individual"

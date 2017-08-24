@@ -49,6 +49,10 @@ export loadNutritionCategories from './nutrition/loadNutritionCategories';
 export nutritionSearch from './nutrition/nutritionSearch';
 
 
+// TEMP
+export changeLifestyleToUnify from './temp/changeLifestyleToUnify';
+
+
 
 
 

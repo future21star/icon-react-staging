@@ -20,7 +20,7 @@ export default function loadDailyBrief(request) {
 		if (!wpDailyBriefs.data.length) {
 			return resolve({
 				dailyBriefs: {
-					lifestyle: null,
+					unify: null,
 					dynamic: null,
 					hyper: null,
 					masters: null,
@@ -38,7 +38,7 @@ export default function loadDailyBrief(request) {
 			if (!todayBrief) {
 				return resolve({
 					dailyBriefs: {
-						lifestyle: null,
+						unify: null,
 						dynamic: null,
 						hyper: null,
 						masters: null,
@@ -50,7 +50,7 @@ export default function loadDailyBrief(request) {
 			// return
 			return resolve({
 				dailyBriefs: {
-					lifestyle: todayBrief.brief_lifestyle,
+					unify: todayBrief.brief_lifestyle,
 					dynamic: todayBrief.brief_dynamic,
 					hyper: todayBrief.brief_hyper,
 					masters: todayBrief.brief_masters,

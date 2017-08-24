@@ -200,10 +200,7 @@ export default class EditProfile extends Component {
 										</div>
 									</div>
 									<div className="form-group block">
-										<div className="input-group input-effect">
-											<div className="input-group-addon">
-												<span className="icon-gender"/>
-											</div>
+										<div className="input-effect">
 											<Select
 												className="pretty-select"
 												value={editProfileStore.editingUser.gender}
