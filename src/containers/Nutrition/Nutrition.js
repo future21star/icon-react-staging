@@ -4,24 +4,35 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {connect} from "react-redux";
 import {includes} from 'lodash';
 import {Link} from 'react-router';
-
+import {hideWelcomeAfterLogin} from '../../redux/modules/loginStore';
+import {push} from 'react-router-redux';
 import {
 	Menubar,
 	Targets,
 	NutritionNav,
 	NutritionBanner,
 	JoinSlack
-} from '../../components/index';
+} from '../../components';
 
 
 @connect(
 	state => ({
-		user: state.authStore.user
+		user: state.authStore.user,
+		showWelcomeAfterLogin: state.loginStore.showWelcomeAfterLogin
 	}),
-	{}
+	{pushState: push, hideWelcomeAfterLogin}
 )
 
 export default class Nutrition extends Component {
+
+	componentDidMount() {
+		if(this.props.showWelcomeAfterLogin) {
+			this.props.pushState('/welcome');
+			this.props.hideWelcomeAfterLogin();
+		}
+	}
+
+
 	render() {
 		const {user} = this.props;
 
