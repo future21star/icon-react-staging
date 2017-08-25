@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {Menubar, BtnBottom} from '../../components/index';
+import {Menubar, BtnBottom, SelectNutritionTrack} from '../../components';
 import {connect} from "react-redux";
 import {Link} from 'react-router';
 import Select from 'react-select';
@@ -12,7 +12,7 @@ import {
 
 @connect(
 	state => ({
-		vaultAccess: state.authStore.user.vaultAccess,
+		user: state.authStore.user,
 		nutritionCalculatorStore: state.nutritionCalculatorStore,
 	}),
 	{changeCalculatorField}
@@ -43,7 +43,16 @@ export default class NutritionCalculator extends Component {
 	];
 
 	render() {
-		const {vaultAccess, nutritionCalculatorStore, changeCalculatorField, formIsValid} = this.props;
+		const {user, nutritionCalculatorStore, changeCalculatorField, formIsValid} = this.props;
+
+		if(!user) return <div/>;
+
+		// if track not select
+		if(!user.nutritionSelectedTrack) {
+			return (
+				<SelectNutritionTrack/>
+			);
+		}
 
 		return (
 			<ReactCSSTransitionGroup
@@ -129,7 +138,9 @@ export default class NutritionCalculator extends Component {
 													/>
 													<div className="underline"/>
 												</div>
-												<small className="text-center help-block">(in lbs)</small>
+												{nutritionCalculatorStore.unit === 'pounds'
+														? <small className="text-center help-block">(in lbs)</small>
+														: <small className="text-center help-block">(in kgs)</small>}
 											</div>
 										</div>
 									</div>

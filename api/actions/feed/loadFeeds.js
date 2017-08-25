@@ -11,7 +11,7 @@ export default function loadFeeds(request) {
 		// get feeds based on feedType
 		let url = null;
 		if (feedType === 'video') url = WP_API_URL + '/wp/v2/vimeo-video?page=' + currentPage;
-		else if (feedType === 'podcast') url = WP_API_URL + '/wp/v2/podcasts?page=' + currentPage;
+		else if (feedType === 'podcast') url = WP_API_URL + '/wp/v2/podcasts?categories_exclude=4&page=' + currentPage;
 		else if (feedType === 'mentality') url = WP_API_URL + '/wp/v2/mentality?page=' + currentPage;
 
 		let feed = null;

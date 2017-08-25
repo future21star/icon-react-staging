@@ -9,6 +9,10 @@ export const LOGOUT = 'auth/LOGOUT_REQUEST';
 export const LOGOUT_SUCCESS = 'auth/LOGOUT_SUCCESS';
 export const LOGOUT_FAIL = 'auth/LOGOUT_FAIL';
 
+const SELECT_NUTRITION_TRACK = 'auth/SELECT_NUTRITION_TRACK_REQUEST';
+const SELECT_NUTRITION_TRACK_SUCCESS = 'auth/SELECT_NUTRITION_TRACK_SUCCESS';
+const SELECT_NUTRITION_TRACK_FAIL = 'auth/SELECT_NUTRITION_TRACK_FAIL';
+
 const initialState = {
 	loaded: false,
 	loading: false,
@@ -75,6 +79,23 @@ export default function reducer(state = initialState, action = {}) {
 					profile_picture_url: action.result.new_profile_picture_url
 				}
 			};
+		case SELECT_NUTRITION_TRACK:
+			return {
+				...state,
+				loading: true
+			};
+		case SELECT_NUTRITION_TRACK_SUCCESS:
+			return {
+				...state,
+				user: {
+					...state.user,
+					nutritionSelectedTrack: action.result.nutritionSelectedTrack
+				}
+			};
+		case SELECT_NUTRITION_TRACK_FAIL:
+			return {
+				...state
+			};
 		default:
 			return state;
 	}
@@ -95,5 +116,16 @@ export function logout() {
 	return {
 		types: [LOGOUT, LOGOUT_SUCCESS, LOGOUT_FAIL],
 		promise: (client) => client.get('/logout')
+	};
+}
+
+export function updateSelectedNutritionTrack(track) {
+	return {
+		types: [SELECT_NUTRITION_TRACK, SELECT_NUTRITION_TRACK_SUCCESS, SELECT_NUTRITION_TRACK_FAIL],
+		promise: (client) => client.post('/updateSelectedNutritionTrack', {
+			data: {
+				track: track
+			}
+		})
 	};
 }

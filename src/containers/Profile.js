@@ -90,12 +90,14 @@ export default class Profile extends Component {
 					/>
 
 					<ProfileHeader user={user}/>
-
-					<div className="row subscription-upgrade-card-wrapper">
-						<div className="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6">
-							<SubscriptionUpgradeCard
-							extraButton={extraButton}
-							/>
+					
+					<div className="container-fluid subscription-upgrade-card-wrapper">
+						<div className="row">
+							<div className="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6">
+								<SubscriptionUpgradeCard
+								extraButton={extraButton}
+								/>
+							</div>
 						</div>
 					</div>
 				</div>
