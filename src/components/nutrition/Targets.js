@@ -15,10 +15,10 @@ export default class Targets extends Component {
 	render() {
 		const{isCalculator, isTransparent, calories, carbs, protein} = this.props;
 		
-		let classes = isTransparent ? 'nutrition-data-list-transparent' : '';
+		let classes = isTransparent ? 'nutrition-data-list-transparent' :'';
 
 		return (
-			<div className={`nutrition-data-list row ${classes}`}>
+			<div className={`nutrition-data-list ${classes}`}>
 
 				{!isCalculator && (
 					<div className="list-title-wrapper row">
@@ -32,17 +32,20 @@ export default class Targets extends Component {
 					</div>
 				)}
 
-				<div className="col-xs-4 list-item calories">
-					<p>Calories</p>
-					<h4>{calories || '-'}</h4>
-				</div>
-				<div className="col-xs-4 list-item carbs">
-					<p>Gr Carbs</p>
-					<h4>{carbs || '-'}</h4>
-				</div>
-				<div className="col-xs-4 list-item protein">
-					<p>Gr Protein</p>
-					<h4>{protein || '-'}</h4>
+				<div className="row no-margin-left-right">
+
+					<div className="col-xs-4 list-item calories">
+						<p>Calories</p>
+						<h4>{calories || '-'}</h4>
+					</div>
+					<div className="col-xs-4 list-item carbs">
+						<p>Gr Carbs</p>
+						<h4>{carbs || '-'}</h4>
+					</div>
+					<div className="col-xs-4 list-item protein">
+						<p>Gr Protein</p>
+						<h4>{protein || '-'}</h4>
+					</div>
 				</div>
 			</div>
 		);

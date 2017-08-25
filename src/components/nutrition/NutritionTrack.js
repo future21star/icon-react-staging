@@ -69,8 +69,8 @@ export default class NutritionTrack extends Component {
 				</ul>
 
 				{nutritionSelectedTrack === trackData.track_name ? (
-					<button className="btn btn-lg btn-icon btn-icon-blue btn-icon-icon btn-icon-right" disabled>
-						Selected Track <span className="icon-nav-links"/>
+					<button className="btn btn-lg btn-icon btn-icon-icon btn-icon-right" disabled>
+						Selected Track <span className="icon-checkmark"/>
 					</button>
 				) : (
 					<button className="btn btn-lg btn-icon btn-icon-blue btn-icon-icon btn-icon-right" onClick={e => updateSelectedNutritionTrack(trackData.track_name)}>
@@ -84,7 +84,7 @@ export default class NutritionTrack extends Component {
 			<div>
 				<h4>
 					Goals
-					<button className="btn btn-default btn-xs pull-right" onClick={e => this.changeContent('main')}>x</button>
+					<button className="btn pull-right" onClick={e => this.changeContent('main')}><span className="icon-close icon"/></button>
 				</h4>
 				<p className="nutrition-track-goals-desc">{trackData.goals_desc}</p>
 				<ul className="list-check nutrition-track-goals">
@@ -99,7 +99,7 @@ export default class NutritionTrack extends Component {
 			<div>
 				<h4>
 					Expectations
-					<button className="btn btn-default btn-xs pull-right" onClick={e => this.changeContent('main')}>x</button>
+					<button className="btn pull-right" onClick={e => this.changeContent('main')}><span className="icon-close icon"/></button>
 				</h4>
 				<ul className="list-check nutrition-track-goals">
 				{trackData.expectations.map((expectation, i) => {
@@ -111,7 +111,8 @@ export default class NutritionTrack extends Component {
 
 		return(
 			<div className="nutriton-track-wrapper">	
-				<div className="nutrition-track-img-wrapper col-xs-12 col-sm-6" style={{backgroundImage:'url("../../nutrition-tracks/' + trackData.track_name + '.jpg")'}}>
+				<div className="col-xs-12 col-sm-6">
+					<div className="nutrition-track-img-wrapper" style={{backgroundImage:'url("../../nutrition-tracks/' + trackData.track_name + '.jpg")'}}>
 					{targetResult ? (
 						<Targets
 							isTransparent={true}
@@ -123,6 +124,7 @@ export default class NutritionTrack extends Component {
 							isTransparent={true}
 						/>
 					)}
+					</div>
 				</div>
 				<div className="nutrition-track-header col-xs-12 col-sm-6">
 					{this.state.showContent === 'main' && mainContent}

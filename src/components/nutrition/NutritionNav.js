@@ -9,7 +9,7 @@ export default class NutritionNav extends Component {
 
 	render() {
 		return (
-			<div className="nutrition-nav assessment-tabs-nav row">
+			<div className="nutrition-nav assessment-tabs-nav">
 				<div className="nutrition-nav-item col-xs-12">
 					<Link to="/">
 						<span className="icon icon-nutrition"/>
@@ -64,7 +64,7 @@ export default class NutritionNav extends Component {
 						<span className="icon-arrow-right pull-right"/>
 					</Link>
 				</div>
-
+				<div className="clearfix"/>
 			</div>
 		);
 	}

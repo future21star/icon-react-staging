@@ -41,7 +41,13 @@ export default class NutritionBanner extends Component {
 				<div className="nutrition-banner-title text-center">
 					<h2>{header}</h2>
 					{trackData && <p>Goal: {trackData.goals_desc}</p>}
-					<Link to="/nutrition/change-track" className="block btn btn-lg btn-icon btn-icon-outline">Change Track</Link>
+					<Link to="/nutrition/change-track" className="block btn btn-lg btn-icon btn-icon-outline">
+						{!trackData ?
+							<span>Select </span>
+						:
+							<span>Change </span>
+						} 
+						Track</Link>
 				</div>
 				{!isLanding && (
 					<div className="nutrition-banner-content">

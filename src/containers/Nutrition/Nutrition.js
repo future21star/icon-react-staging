@@ -48,16 +48,6 @@ export default class Nutrition extends Component {
 
 		let accessToNutrition = includes(vaultAccess, 'nutrition');
 
-
-		// if track not select
-		if(!user.nutritionSelectedTrack) {
-			return (
-				<SelectNutritionTrack/>
-			);
-		}
-
-
-
 		const targetResults = nutritionCalculatorStore.result;
 
 		const targetResult = targetResults.filter(item => {
@@ -95,10 +85,11 @@ export default class Nutrition extends Component {
 									/>
 								</div>
 							</div>
-							<div className="col-xs-12 col-sm-6">
+							<div className="col-xs-12 col-sm-6 no-padding-left-right">
 								<JoinSlack/>
 								{targetResult ? (
 									<Targets
+
 										calories={targetResult.nutritionCalories}
 										carbs={targetResult.nutritionCarbs}
 										protein={targetResult.nutritionProtein}
