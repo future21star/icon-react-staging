@@ -43,7 +43,7 @@ export default class Nutrition extends Component {
 
 	componentDidMount() {
 		if(this.props.showWelcomeAfterLogin) {
-			this.props.pushState('/welcome');
+			this.props.pushState('/nutrition/welcome');
 			this.props.hideWelcomeAfterLogin();
 		}
 	}

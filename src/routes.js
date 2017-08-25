@@ -70,6 +70,7 @@ export default (store) => {
 					<Route path="feed/topic/:id" component={containers.FeedFilteredByTopic}/>
 					<Route path="feed/:type/:id" component={containers.FeedSingle}/>
 					<Route path="nutrition" component={containers.Nutrition}/>
+					<Route path="/nutrition/welcome" component={containers.NutritionWelcome}/>
 					<Route path="nutrition/search" component={containers.NutritionBlogSearch}/>
 					<Route path="nutrition/help" component={containers.NutritionHelp}/>
 					<Route path="nutrition/calculator" component={containers.NutritionCalculator}/>
