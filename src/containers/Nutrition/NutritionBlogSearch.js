@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {Menubar, NutritionPostPreview, NutritionFeedHeader, FeedLoadMore, BottomNav} from '../../components';
+import {Menubar, NutritionPostPreview, NutritionFeedHeader, FeedLoadMore, NutritionFeedSidebar, BottomNav} from '../../components';
 import {connect} from "react-redux";
 import {Link} from 'react-router';
 import Select from "react-select";
@@ -31,7 +31,6 @@ import {
 
 @connect(
 	state => ({
-		browser: state.browser,
 		loading: state.nutritionBlogStore.loading,
 		searchText: state.nutritionBlogStore.search.searchText,
 		searchCategory: state.nutritionBlogStore.search.searchCategory,
@@ -98,7 +97,6 @@ export default class NutritionBlogSearch extends Component {
 	};
 
 	render() {
-		const {browser} = this.props;
 		return (
 			<ReactCSSTransitionGroup
 				transitionName="react-anime"
@@ -110,81 +108,54 @@ export default class NutritionBlogSearch extends Component {
 				transitionLeaveTimeout={500}
 			>
 				<div className="feed-search-wrapper bottom-padding">
-					<Helmet title="Nutrition Blog Search"/>
+					<Helmet title="Nutrition - Search"/>
+					<Menubar
+						backButton={true}
+						className="menu-bar-white"
+					/>
 
-					{browser.is.mobile ? (
-						<Menubar
-							title="Nutrition Blog Search"
-							backButton={true}
-							className="menu-bar-white"
-						/>) : (
-						<div className='feed-content-wrapper-desktop'>
-							<div className='container-fluid container-fluid-full'>
-								<NutritionFeedHeader onChangeSearchText={this.changeSearchText}/>
-							</div>
-						</div>
-					)}
+					{this.renderSearch()}
 
-					{browser.is.mobile ? this.renderSearch() : (
-						<div className="feed-body-desktop">
-							<div className="feed-body-desktop-content">
-								<div className="row no-margin-left-right">
-									<div className="col-xs-12 feed-body-right overflow-custom-scroll">
-										<div className="feed-posts-section">
-											{this.renderSearch()}
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					)}
-
-					{browser.is.desktop && <BottomNav/>}
 				</div>
 			</ReactCSSTransitionGroup>
 		);
 	}
 
 	renderSearch() {
-		const {browser, loading, searchAllPagesCompleted, searchCategory, searchText, searchResultItems} = this.props;
+		const {loading, searchAllPagesCompleted, searchCategory, searchText, searchResultItems} = this.props;
 
 		return (
-			<div className={browser.is.mobile ? 'container' : ''}>
-				<div className="row">
-					<div className={!browser.is.mobile ? 'col-xs-4 search-selector-desktop' : 'col-xs-4 col-xs-offset-4'}>
-						<h3>Filter</h3>
-						<div className={!browser.is.mobile ? 'input-effect' : ''}>
-							<div className="search-selector-wrapper">
-								<Select
-									instanceId={"search-category"}
-									className="pretty-select search-selector-input"
-									value={searchCategory}
-									placeholder="Select"
-									options={this.state.categories}
-									onChange={this.changeSearchCategory}
-									clearable={false}
-									arrowRenderer={NutritionBlogSearch.arrowRenderer}
+			<div className="container nutrition-blog-search-container">
+					<div className="col-xs-12 col-sm-4 search-selector-desktop">
+						<div className="search-selector-wrapper">
+							<Select
+								instanceId={"search-category"}
+								className="pretty-select search-selector-input"
+								value={searchCategory}
+								placeholder="Select"
+								options={this.state.categories}
+								onChange={this.changeSearchCategory}
+								clearable={false}
+								arrowRenderer={NutritionBlogSearch.arrowRenderer}
+							/>
+							<span className="underline"/>
+						</div>
+					</div>
+					<div className="col-xs-12 col-sm-6">
+						<div className="form-group input-effect mobile-search-input">
+							<div>
+								<input
+									type="text"
+									value={searchText}
+									onChange={this.changeSearchText}
+									placeholder="Search..."
+									className="form-control search-text-input"
 								/>
 								<span className="underline"/>
 							</div>
 						</div>
 					</div>
-				</div>
-
-				{browser.is.mobile && (
-					<div className="form-group input-effect mobile-search-input">
-						<div>
-							<input
-								type="text"
-								value={searchText}
-								onChange={this.changeSearchText}
-								placeholder="Search..."
-								className="form-control search-text-input"
-							/>
-							<span className="underline"/>
-						</div>
-					</div>
-				)}
+				<div className="clearfix"/>
 
 				{searchResultItems.map((post, index) => {
 					return (

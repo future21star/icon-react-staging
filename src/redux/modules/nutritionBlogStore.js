@@ -55,6 +55,12 @@ const initialState = {
 		totalCount: 0,
 		allPagesCompleted: false
 	},
+	podcasts: {
+		items: [],
+		currentPage: 0,
+		totalCount: 0,
+		allPagesCompleted: false
+	},
 	activePostComments: {
 		items: [],
 		currentPage: 0,
@@ -84,13 +90,13 @@ export default function reducer(state = initialState, action = {}) {
 				currentPage: action.result.currentPage,
 				allPagesCompleted: action.result.allPagesCompleted,
 				totalCount: action.result.totalCount,
-				items: state.posts.items.concat(action.result.posts)
+				items: state[action.result.type].items.concat(action.result.posts)
 			};
 
 			return {
 				...state,
 				loading: false,
-				posts: newPostsData
+				[action.result.type]: newPostsData
 			};
 		case LOAD_FAIL:
 			return {
@@ -324,15 +330,16 @@ export default function reducer(state = initialState, action = {}) {
 }
 
 
-export function isLoaded(globalState) {
-	return globalState.nutritionBlogStore.posts.items.length > 0;
+export function isLoaded(globalState, type) {
+	return globalState.nutritionBlogStore[type].items.length > 0;
 }
 
-export function load(currentPage) {
+export function load(type, currentPage) {
 	return {
 		types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
 		promise: (client) => client.post('/loadNutritionPosts', {
 			data: {
+				type: type,
 				currentPage: currentPage + 1
 			}
 		})

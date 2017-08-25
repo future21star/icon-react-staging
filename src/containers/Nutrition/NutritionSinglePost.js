@@ -21,7 +21,6 @@ import {asyncConnect} from "redux-async-connect";
 
 @connect(
 	state => ({
-		browser: state.browser,
 		activePost: state.nutritionBlogStore.activePost
 	}),
 	{unsetSinglePost}
@@ -41,7 +40,7 @@ export default class NutritionSinglePost extends Component {
 	// };
 
 	render() {
-		const {browser, activePost} = this.props;
+		const {activePost} = this.props;
 
 		return (
 			<ReactCSSTransitionGroup
@@ -55,12 +54,11 @@ export default class NutritionSinglePost extends Component {
 			>
 				<Helmet title="Nutrition"/>
 
-				<div
-					className={`${browser.is.mobile ? 'feed-page-wrapper bottom-padding' : 'feed-page-desktop-wrapper bottom-padding'}`}>
+				<div className="feed-page-wrapper bottom-padding">
 
 					<Menubar
 						className="menu-bar-red"
-						title="Single Nutrition"
+						title="Nutrition Article"
 						backButton={true}
 					/>
 
