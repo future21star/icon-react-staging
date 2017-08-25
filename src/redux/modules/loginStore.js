@@ -5,6 +5,7 @@ export const LOGIN_SUCCESS = 'login/LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'login/LOGIN_FAIL';
 
 export const SHOW_WELCOME_AFTER_LOGIN = 'login/SHOW_WELCOME_AFTER_LOGIN';
+export const HIDE_WELCOME_AFTER_LOGIN = 'login/HIDE_WELCOME_AFTER_LOGIN';
 
 const initialState = {
 	loading: false,
@@ -47,6 +48,11 @@ export default function reducer(state = initialState, action = {}) {
 				...state,
 				showWelcomeAfterLogin: true
 			};
+		case HIDE_WELCOME_AFTER_LOGIN:
+			return {
+				...state,
+				showWelcomeAfterLogin: false
+			};
 		default:
 			return state;
 	}
@@ -65,5 +71,11 @@ export function login(email, password) {
 export function showWelcomeAfterLogin() {
 	return {
 		type: SHOW_WELCOME_AFTER_LOGIN
+	};
+}
+
+export function hideWelcomeAfterLogin() {
+	return {
+		type: HIDE_WELCOME_AFTER_LOGIN
 	};
 }
