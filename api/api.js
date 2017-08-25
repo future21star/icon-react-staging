@@ -7,6 +7,7 @@ import {mapUrl} from 'utils/url.js';
 import PrettyError from 'pretty-error';
 import http from 'http';
 import expressValidator from 'express-validator';
+import cron from 'node-cron';
 
 const pretty = new PrettyError();
 const app = express();
@@ -22,6 +23,15 @@ app.use(session({
 app.use(bodyParser.json());
 app.use(expressValidator());
 
+import refreshAdminJWT from './cronJobs/refreshAdminJWT';
+
+// initial call
+refreshAdminJWT();
+
+cron.schedule('* * */3 * *', function(){
+	// every 3 day
+	refreshAdminJWT();
+});
 
 app.use((req, res) => {
 	const splittedUrlPath = req.url.split('?')[0].split('/').slice(1);
