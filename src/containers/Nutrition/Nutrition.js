@@ -33,7 +33,7 @@ import {asyncConnect} from 'redux-async-connect';
 @connect(
 	state => ({
 		user: state.authStore.user,
-		showWelcomeAfterLogin: state.loginStore.showWelcomeAfterLogin
+		showWelcomeAfterLogin: state.loginStore.showWelcomeAfterLogin,
 		nutritionCalculatorStore: state.nutritionCalculatorStore
 	}),
 	{pushState: push, hideWelcomeAfterLogin}

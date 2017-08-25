@@ -23,3 +23,16 @@
     margin-top: 8px;
   }
 }
+
+.join-slack-form{
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom:15px;
+  background: $white;
+  iframe{
+    border: none;
+    p{
+      display: none;
+    }
+  }
+}

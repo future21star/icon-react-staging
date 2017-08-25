@@ -64,12 +64,11 @@ export default class NutritionPhilosophy extends Component {
 				<div>
 					<Helmet title={philosophy.title.rendered}/>
 					<Menubar
-						title={philosophy.title.rendered}
-						className="menu-bar-grey"
+						className="menu-bar-white"
 						backButton={true}
 					/>
 
-					<div className="container bottom-padding">
+					<div className="container container-small bottom-padding">
 						<div dangerouslySetInnerHTML={this.createMarkup(philosophy.content.rendered)}/>
 					</div>
 				</div>
