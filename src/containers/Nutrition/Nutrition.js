@@ -11,14 +11,30 @@ import {
 	Targets,
 	NutritionNav,
 	NutritionBanner,
-	JoinSlack
-} from '../../components';
+	JoinSlack,
+	SelectNutritionTrack
+} from '../../components/index';
 
+import {isResultLoaded, loadNutritionTrackResult} from "../../redux/modules/nutritionCalculatorStore";
+import {asyncConnect} from 'redux-async-connect';
+
+@asyncConnect([{
+	promise: ({store: {dispatch, getState}}) => {
+		const promises = [];
+
+		if (!isResultLoaded(getState())) {
+			promises.push(dispatch(loadNutritionTrackResult()));
+		}
+
+		return Promise.all(promises);
+	}
+}])
 
 @connect(
 	state => ({
 		user: state.authStore.user,
 		showWelcomeAfterLogin: state.loginStore.showWelcomeAfterLogin
+		nutritionCalculatorStore: state.nutritionCalculatorStore
 	}),
 	{pushState: push, hideWelcomeAfterLogin}
 )
@@ -34,7 +50,7 @@ export default class Nutrition extends Component {
 
 
 	render() {
-		const {user} = this.props;
+		const {user,nutritionCalculatorStore} = this.props;
 
 		if(!user) {
 			return <div/>;
@@ -42,6 +58,13 @@ export default class Nutrition extends Component {
 		const {vaultAccess} = this.props;
 
 		let accessToNutrition = includes(vaultAccess, 'nutrition');
+
+		const targetResults = nutritionCalculatorStore.result;
+
+		const targetResult = targetResults.filter(item => {
+			return item.nutritionTrack === user.nutritionSelectedTrack;
+		})[0];
+
 
 		return (
 			<ReactCSSTransitionGroup
@@ -73,13 +96,17 @@ export default class Nutrition extends Component {
 									/>
 								</div>
 							</div>
-							<div className="col-xs-12 col-sm-6">
+							<div className="col-xs-12 col-sm-6 no-padding-left-right">
 								<JoinSlack/>
-								<Targets
-									calories={'99'}
-									carbs={'123 - 199'}
-									protein={'99 -  110'}
-								/>
+								{targetResult ? (
+									<Targets
+
+										calories={targetResult.nutritionCalories}
+										carbs={targetResult.nutritionCarbs}
+										protein={targetResult.nutritionProtein}
+									/>) : (
+									<Targets/>
+								)}
 								<NutritionNav/>
 							</div>
 						</div>

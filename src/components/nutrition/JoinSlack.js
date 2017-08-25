@@ -6,7 +6,7 @@ export default class JoinSlack extends Component {
 	render() {
 	
 		return (
-			<div className="row slack-section">
+			<div className="slack-section">
 				<div className="col-xs-12">
 					<h4>
 						<img src={slackImg} alt="slack" className="img-responsive slack-img"/>
@@ -14,6 +14,7 @@ export default class JoinSlack extends Component {
 					</h4>
 					<a href="#" className="pull-right">Join Us</a>
 				</div>
+				<div className="clearfix"/>
 			</div>
 		);
 	}

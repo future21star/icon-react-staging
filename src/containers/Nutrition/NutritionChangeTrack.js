@@ -23,7 +23,7 @@ export default class NutritionChangeTrack extends Component {
 		super(props);
 
 		this.state = {
-			selectedTrack: 'lean'
+			selectedTrack: 'lean-machine'
 		}
 	}
 
@@ -61,7 +61,7 @@ export default class NutritionChangeTrack extends Component {
 					<div className="container-fluid">
 						<div className="assessment-tabs-nav row">
 							
-							<div onClick={e => this.selectTrack('lean-machine')} className={`col-xs-12 col-sm-4 col-md-4 ${selectedTrack === 'lean' ? "active" : ""}`}>
+							<div onClick={e => this.selectTrack('lean-machine')} className={`col-xs-12 col-sm-4 col-md-4 ${selectedTrack === 'lean-machine' ? "active" : ""}`}>
 								<a href="javascript:;">The Lean Machine</a>
 							</div>
 							<div onClick={e => this.selectTrack('perfector')} className={`col-xs-12 col-sm-4 col-md-4 ${selectedTrack === 'perfector' ? "active" : ""}`}>
