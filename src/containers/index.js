@@ -38,3 +38,4 @@ export NutritionFoundations from './Nutrition/NutritionFoundations';
 export NutritionHelp from './Nutrition/NutritionHelp';
 export NutritionCalculator from './Nutrition/NutritionCalculator';
 export NutritionCalculatorResult from './Nutrition/NutritionCalculatorResult';
+export NutritionPhilosophy from './Nutrition/NutritionPhilosophy';

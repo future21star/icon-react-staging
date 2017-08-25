@@ -50,6 +50,7 @@ export nutritionSearch from './nutrition/nutritionSearch';
 export updateSelectedNutritionTrack from './nutrition/updateSelectedNutritionTrack';
 export loadNutritionTrackResult from './nutrition/loadNutritionTrackResult';
 export saveNutritionTrackResult from './nutrition/saveNutritionTrackResult';
+export loadNutritionPhilosophy from './nutrition/loadNutritionPhilosophy';
 
 
 // TEMP
