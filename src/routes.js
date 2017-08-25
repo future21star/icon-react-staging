@@ -76,7 +76,10 @@ export default (store) => {
 					<Route path="nutrition/calculator/result" component={containers.NutritionCalculatorResult}/>
 					<Route path="nutrition/change-track" component={containers.NutritionChangeTrack}/>
 					<Route path="nutrition/foundations" component={containers.NutritionFoundations}/>
-					<Route path="nutrition/blog" component={containers.NutritionBlog}/>
+					<Route path="nutrition/blog" component={containers.NutritionBlog}>
+						<IndexRoute component={containers.NutritionBlogPosts}/>
+						<Route path="podcast" component={containers.NutritionBlogPodcast}/>
+					</Route>
 					<Route path="nutrition/blog/:id" component={containers.NutritionSinglePost}/>
 					<Route path="programming" component={containers.Programming}/>
 					<Route path="programming/list-view" component={containers.ProgrammingListView}/>

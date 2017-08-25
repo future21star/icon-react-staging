@@ -2,33 +2,15 @@ import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {connect} from "react-redux";
-import {Menubar, NutritionBlogHeader, DesktopFeedSidebar, FeedLoadMore, NutritionPostPreview} from "../../components";
+import {Menubar, NutritionBlogHeader, FeedLoadMore, NutritionPostPreview, NutritionFeedSidebar} from "../../components";
 import {Link} from "react-router";
-import {load as loadPosts, isLoaded as isPostsLoaded} from "../../redux/modules/nutritionBlogStore";
-import {asyncConnect} from 'redux-async-connect';
-
-@asyncConnect([{
-	promise: ({store: {dispatch, getState}}) => {
-		const promises = [];
-
-		if (!isPostsLoaded(getState())) {
-			promises.push(dispatch(loadPosts(getState().nutritionBlogStore.posts.currentPage)));
-		}
-
-		return Promise.all(promises);
-	}
-}])
 
 @connect(
 	state => ({
 		browser: state.browser,
-		user: state.authStore.user,
-		loading: state.nutritionBlogStore.loading,
-		posts: state.nutritionBlogStore.posts.items,
-		postsCurrentPageNo: state.nutritionBlogStore.posts.currentPage,
-		postsAllPagesCompleted: state.nutritionBlogStore.posts.allPagesCompleted
+		user: state.authStore.user
 	}), 
-	{loadPosts}
+
 )
 
 export default class NutritionBlog extends Component {
@@ -47,13 +29,8 @@ export default class NutritionBlog extends Component {
 		}
 	}
 
-	onClickLoadMoreButton = () => {
-		const {loadPosts, postsCurrentPageNo} = this.props;
-		loadPosts(postsCurrentPageNo);
-	};
-
 	render() {
-		const {browser, user, loading, posts, postsCurrentPageNo, postsAllPagesCompleted} = this.props;
+		const {browser, user} = this.props;
 
 		return (
 			<ReactCSSTransitionGroup
@@ -83,40 +60,26 @@ export default class NutritionBlog extends Component {
 						/>
 					)}
 
+
 					<div className={`${browser.is.mobile ? 'feed-content-wrapper' : 'feed-content-wrapper-desktop'}`}>
 						<div className={`${browser.is.mobile ? 'container-fluid' : 'container-fluid container-fluid-full'}`}>
 							<NutritionBlogHeader/>
 						</div>
 
-						{browser.is.mobile && (
-							<div className="container">	
-								{posts.map((post, index) => {
-									return <NutritionPostPreview key={index} post={post}/>;
-								})}
-								<div className="clearfix" />
-								<FeedLoadMore
-									loading={loading}
-									allPagesLoaded={postsAllPagesCompleted}
-									onClickLoadMore={this.onClickLoadMoreButton}
-								/>
-							</div>
-						)}
+						{browser.is.mobile && this.props.children}
 
 						{browser.is.desktop && (
 							<div className={user ? "feed-body-desktop" : "feed-body-desktop-guest"}>
 								<div className="feed-body-desktop-content">
 									<div className="row no-margin-left-right">
-										<div className="col-xs-12 feed-body-right overflow-custom-scroll" ref="overflowCustomScroll">
+										{user && (
+											<div className="col-md-4 col-lg-3 feed-body-left overflow-custom-scroll">
+												<NutritionFeedSidebar/>
+											</div>
+										)}
+										<div className={user ? "col-md-8 col-lg-9 feed-body-right overflow-custom-scroll": "col-md-offset-2 col-md-8 feed-body-right overflow-custom-scroll"} ref="overflowCustomScroll">
 											<div className="feed-posts-section">
-												{posts.map((post, index) => {
-													return <NutritionPostPreview key={index} post={post}/>;
-												})}
-												<div className="clearfix" />
-												<FeedLoadMore
-													loading={loading}
-													allPagesLoaded={postsAllPagesCompleted}
-													onClickLoadMore={this.onClickLoadMoreButton}
-												/>
+												{this.props.children}
 											</div>
 										</div>
 									</div>
@@ -125,7 +88,6 @@ export default class NutritionBlog extends Component {
 						)}
 					</div>
 				</div>
-
 			</ReactCSSTransitionGroup>
 		);
 	}

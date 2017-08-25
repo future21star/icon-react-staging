@@ -89,7 +89,6 @@ export default class Nutrition extends Component {
 								<JoinSlack/>
 								{targetResult ? (
 									<Targets
-
 										calories={targetResult.nutritionCalories}
 										carbs={targetResult.nutritionCarbs}
 										protein={targetResult.nutritionProtein}

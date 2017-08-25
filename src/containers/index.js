@@ -38,3 +38,5 @@ export NutritionFoundations from './Nutrition/NutritionFoundations';
 export NutritionHelp from './Nutrition/NutritionHelp';
 export NutritionCalculator from './Nutrition/NutritionCalculator';
 export NutritionCalculatorResult from './Nutrition/NutritionCalculatorResult';
+export NutritionBlogPosts from './Nutrition/Topic/NutritionBlogPosts';
+export NutritionBlogPodcast from './Nutrition/Topic/NutritionBlogPodcast';

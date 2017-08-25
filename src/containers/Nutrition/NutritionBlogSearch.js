@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {Menubar, NutritionPostPreview, NutritionFeedHeader, FeedLoadMore, BottomNav} from '../../components';
+import {Menubar, NutritionPostPreview, NutritionFeedHeader, FeedLoadMore, NutritionFeedSidebar, BottomNav} from '../../components';
 import {connect} from "react-redux";
 import {Link} from 'react-router';
 import Select from "react-select";
@@ -129,7 +129,10 @@ export default class NutritionBlogSearch extends Component {
 						<div className="feed-body-desktop">
 							<div className="feed-body-desktop-content">
 								<div className="row no-margin-left-right">
-									<div className="col-xs-12 feed-body-right overflow-custom-scroll">
+									<div className="col-md-4 col-lg-3 feed-body-left overflow-custom-scroll">
+										<NutritionFeedSidebar/>
+									</div>
+									<div className="col-md-8 col-lg-9 feed-body-right overflow-custom-scroll">
 										<div className="feed-posts-section">
 											{this.renderSearch()}
 										</div>
