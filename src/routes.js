@@ -71,12 +71,12 @@ export default (store) => {
 					<Route path="feed/:type/:id" component={containers.FeedSingle}/>
 					<Route path="nutrition" component={containers.Nutrition}/>
 					<Route path="/nutrition/welcome" component={containers.NutritionWelcome}/>
+					<Route path="nutrition/foundations" component={containers.NutritionFoundations}/>
 					<Route path="nutrition/search" component={containers.NutritionBlogSearch}/>
 					<Route path="nutrition/help" component={containers.NutritionHelp}/>
 					<Route path="nutrition/calculator" component={containers.NutritionCalculator}/>
 					<Route path="nutrition/calculator/result" component={containers.NutritionCalculatorResult}/>
 					<Route path="nutrition/change-track" component={containers.NutritionChangeTrack}/>
-					<Route path="nutrition/foundations" component={containers.NutritionFoundations}/>
 					<Route path="nutrition/blog" component={containers.NutritionBlog}/>
 					<Route path="nutrition/blog/:id" component={containers.NutritionSinglePost}/>
 					<Route path="nutrition/philosophy" component={containers.NutritionPhilosophy}/>

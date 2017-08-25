@@ -31,11 +31,11 @@ export FaqSingle from './Faqs/FaqSingle';
 
 export Nutrition from './Nutrition/Nutrition';
 export NutritionWelcome from './Nutrition/NutritionWelcome';
+export NutritionFoundations from './Nutrition/NutritionFoundations';
 export NutritionBlog from './Nutrition/NutritionBlog';
 export NutritionBlogSearch from './Nutrition/NutritionBlogSearch';
 export NutritionSinglePost from './Nutrition/NutritionSinglePost';
 export NutritionChangeTrack from './Nutrition/NutritionChangeTrack';
-export NutritionFoundations from './Nutrition/NutritionFoundations';
 export NutritionHelp from './Nutrition/NutritionHelp';
 export NutritionCalculator from './Nutrition/NutritionCalculator';
 export NutritionCalculatorResult from './Nutrition/NutritionCalculatorResult';
