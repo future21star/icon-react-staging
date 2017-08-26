@@ -51,6 +51,7 @@ export updateSelectedNutritionTrack from './nutrition/updateSelectedNutritionTra
 export loadNutritionTrackResult from './nutrition/loadNutritionTrackResult';
 export saveNutritionTrackResult from './nutrition/saveNutritionTrackResult';
 export loadNutritionPhilosophy from './nutrition/loadNutritionPhilosophy';
+export loadNutritionFoundations from './nutrition/loadNutritionFoundations';
 
 
 // TEMP
