@@ -89,6 +89,7 @@ export default class NutritionFoundations extends Component {
 					<Menubar
 						title="Foundations"
 						className="menu-bar-grey"
+						backButton={true}
 						rightSideContent={<a href="javascript:;" onClick={this.toggleMenu}>
 							<span className="mobile-hide">Menu</span>
 							<span className="icon-menu-more"/>

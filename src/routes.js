@@ -62,6 +62,7 @@ export default (store) => {
 					<IndexRoute component={containers.Home}/>
 					<Route path="welcome" component={containers.Welcome}/>
 					<Route path="profile" component={containers.Profile}/>
+					
 					<Route path="feed" component={containers.Feed}>
 						<IndexRoute component={containers.FeedVideo}/>
 						<Route path="podcast" component={containers.FeedPodcast}/>
@@ -70,10 +71,11 @@ export default (store) => {
 					<Route path="feed/topic/:id" component={containers.FeedFilteredByTopic}/>
 					<Route path="feed/:type/:id" component={containers.FeedSingle}/>
 					<Route path="nutrition" component={containers.Nutrition}/>
-					<Route path="/nutrition/welcome" component={containers.NutritionWelcome}/>
+					<Route path="nutrition/welcome" component={containers.NutritionWelcome}/>
 					<Route path="nutrition/foundations" component={containers.NutritionFoundations}/>
 					<Route path="nutrition/search" component={containers.NutritionBlogSearch}/>
 					<Route path="nutrition/help" component={containers.NutritionHelp}/>
+					<Route path="nutrition/meal-plans" component={containers.NutritionMealPlans}/>
 					<Route path="nutrition/calculator" component={containers.NutritionCalculator}/>
 					<Route path="nutrition/calculator/result" component={containers.NutritionCalculatorResult}/>
 					<Route path="nutrition/change-track" component={containers.NutritionChangeTrack}/>

@@ -52,10 +52,7 @@ export loadNutritionTrackResult from './nutrition/loadNutritionTrackResult';
 export saveNutritionTrackResult from './nutrition/saveNutritionTrackResult';
 export loadNutritionPhilosophy from './nutrition/loadNutritionPhilosophy';
 export loadNutritionFoundations from './nutrition/loadNutritionFoundations';
-
-
-// TEMP
-export changeLifestyleToUnify from './temp/changeLifestyleToUnify';
+export loadNutritionMealPlan from './nutrition/loadNutritionMealPlan';
 
 
 

@@ -8,7 +8,7 @@ export default class NutritionNav extends Component {
 		return (
 			<div className="nutrition-nav assessment-tabs-nav">
 				<NutritionNavItem
-					link="/"
+					link="nutrition/meal-plans"
 					text="Meal Planning"
 					icon="icon-nutrition"
 				/>

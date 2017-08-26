@@ -92,6 +92,7 @@ export NutritionTrack from './nutrition/NutritionTrack';
 export SelectNutritionTrack from './nutrition/SelectNutritionTrack';
 export NutritionBlogTabs from './nutrition/NutritionBlogTabs';
 export NutritionFeedSidebar from './nutrition/NutritionFeedSidebar';
+export MealPlan from './nutrition/MealPlan';
 
 
 

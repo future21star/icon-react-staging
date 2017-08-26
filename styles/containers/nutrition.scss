@@ -11,6 +11,9 @@
 //CALCULATOR
 @import "../components/nutrition/nutrition-calculator";
 
+//MEAL PLANS
+@import "../components/nutrition/meal-plans";
+
 .nutrition-page-content-wrapper{
   background-color: $greyLight;
   .nutrition-featured-news-section{
