@@ -20,6 +20,7 @@ import podcastPlayerStore from './podcastPlayerStore';
 import assessmentStore from './assessmentStore';
 import nutritionBlogStore from './nutritionBlogStore';
 import nutritionCalculatorStore from './nutritionCalculatorStore';
+import nutritionMealPlansStore from './nutritionMealPlansStore';
 
 export default combineReducers({
 	routing: routerReducer,
@@ -45,5 +46,6 @@ export default combineReducers({
 	podcastPlayerStore,
 	assessmentStore,
 	nutritionBlogStore,
-	nutritionCalculatorStore
+	nutritionCalculatorStore,
+	nutritionMealPlansStore
 });

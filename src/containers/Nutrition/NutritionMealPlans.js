@@ -9,23 +9,45 @@ import {
 import {connect} from "react-redux";
 import {includes} from 'lodash';
 import {Link} from 'react-router';
+import {asyncConnect} from 'redux-async-connect';
+
+
+import {
+	isLoaded as isNutritionMealPlansLoaded,
+	load as loadNutritionMealPlans,
+} from "../../redux/modules/nutritionMealPlansStore";
+
+
+@asyncConnect([{
+	promise: ({store: {dispatch, getState}}) => {
+		const promises = [];
+
+		//  filter topics
+		if (!isNutritionMealPlansLoaded(getState())) promises.push(dispatch(loadNutritionMealPlans()));
+
+		return Promise.all(promises);
+	}
+}])
+
 
 @connect(
 	state => ({
-		vaultAccess: state.authStore.user.vaultAccess
-	}),
-	{}
+		user: state.authStore.user,
+		mealPlans: state.nutritionMealPlansStore.mealPlans
+	})
 )
 
 export default class NutritionMealPlans extends Component {
-	constructor(props) {
-		super(props);
-	}
 
 	render() {
-		const {vaultAccess} = this.props;
+		const {user, mealPlans} = this.props;
+
+		if(!user) return <div/>;
+
+		const {vaultAccess} = user;
 
 		let accessToNutrition = includes(vaultAccess, 'nutrition');
+
 
 		return(
 			<ReactCSSTransitionGroup
@@ -48,25 +70,13 @@ export default class NutritionMealPlans extends Component {
 
 					<div className="container bottom-padding menu-head-buffer meal-plans-wrapper">
 						<div className="row">
-							<div className="col-xs-12 col-sm-6">
-								<MealPlan/>
-							</div>
-							<div className="col-xs-12 col-sm-6">
-								<MealPlan/>
-							</div>
-							<div className="col-xs-12 col-sm-6">
-								<MealPlan/>
-							</div>
-							<div className="col-xs-12 col-sm-6">
-								<MealPlan/>
-							</div>
-							<div className="col-xs-12 col-sm-6">
-								<MealPlan/>
-							</div>
-							<div className="col-xs-12 col-sm-6">
-								<MealPlan/>
-							</div>
-
+							{mealPlans.map((mealPlan, i) => {
+								return (
+									<div className="col-xs-12 col-sm-6" key={i}>
+										<MealPlan mealPlan={mealPlan}/>
+									</div>
+								);
+							})}
 						</div>
 					</div>
 
