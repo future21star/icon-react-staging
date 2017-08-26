@@ -80,6 +80,9 @@ export StepHoursInTheGym from './assessment/StepHoursInTheGym';
 //NUTRITION
 export Targets from './nutrition/Targets';
 export NutritionNav from './nutrition/NutritionNav';
+export NutritionNavFoundations from './nutrition/NutritionNavFoundations';
+export NutritionFoundationsPage from './nutrition/NutritionFoundationsPage';
+export NutritionNavItem from './nutrition/NutritionNavItem';
 export NutritionBanner from './nutrition/NutritionBanner';
 export NutritionBlogPost from './nutrition/NutritionBlogPost';
 export JoinSlack from './nutrition/JoinSlack';
