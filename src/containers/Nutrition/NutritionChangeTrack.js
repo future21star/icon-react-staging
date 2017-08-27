@@ -55,7 +55,7 @@ export default class NutritionChangeTrack extends Component {
 
 					<Menubar 
 						title="Change Track"
-						className="menu-bar-red"
+						className="menu-bar-white"
 						backButton={true}
 					/>
 					<div className="container-fluid">

@@ -106,8 +106,8 @@ export default class NutritionFoundations extends Component {
 								/>
 							</div>
 						)}
-						<div className="row">
-							<div className="col-xs-12 col-md-offset-2 col-md-10">
+						<div className="row block">
+							<div className="col-xs-12 col-md-offset-2 col-md-8">
 								<NutritionFoundationsPage foundation={selectedFoundationItem}/>
 							</div>
 						</div>

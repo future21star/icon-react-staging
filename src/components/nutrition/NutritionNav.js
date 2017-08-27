@@ -8,6 +8,11 @@ export default class NutritionNav extends Component {
 		return (
 			<div className="nutrition-nav assessment-tabs-nav">
 				<NutritionNavItem
+					link="/nutrition/philosophy"
+					text="Nutrition Philosophy"
+					icon="icon-philosophy icon-red"
+				/>
+				<NutritionNavItem
 					link="nutrition/meal-plans"
 					text="Meal Planning"
 					icon="icon-nutrition"
@@ -31,11 +36,6 @@ export default class NutritionNav extends Component {
 					link="/nutrition/faqs"
 					text="FAQ"
 					icon="icon-information icon-turquoise"
-				/>
-				<NutritionNavItem
-					link="/nutrition/philosophy"
-					text="Nutrition Philosophy"
-					icon="icon-philosophy icon-red"
 				/>
 				<div className="clearfix"/>
 			</div>

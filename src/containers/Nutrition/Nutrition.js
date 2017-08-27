@@ -80,7 +80,7 @@ export default class Nutrition extends Component {
 					<Helmet title="Nutrition"/>
 					<Menubar
 						title="Nutrition"
-						className="menu-bar-grey"
+						className="menu-bar-white"
 						leftSideContent={<Link to="/profile">
 							<span className="icon-user-profile"/>
 							<span className="mobile-hide">Profile</span>

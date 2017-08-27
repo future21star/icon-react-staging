@@ -132,7 +132,7 @@ export default class NutritionBlogSearch extends Component {
 								instanceId={"search-category"}
 								className="pretty-select search-selector-input"
 								value={searchCategory}
-								placeholder="Select"
+								placeholder="Filter"
 								options={this.state.categories}
 								onChange={this.changeSearchCategory}
 								clearable={false}

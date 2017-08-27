@@ -52,12 +52,12 @@ export default class NutritionSinglePost extends Component {
 				transitionLeave={true}
 				transitionLeaveTimeout={500}
 			>
-				<Helmet title="Nutrition"/>
+				<Helmet title="Nutrition - Article"/>
 
 				<div className="feed-page-wrapper bottom-padding">
 
 					<Menubar
-						className="menu-bar-red"
+						className="menu-bar-grey"
 						title="Nutrition Article"
 						backButton={true}
 					/>

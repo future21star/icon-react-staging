@@ -1,0 +1,22 @@
+.nutrition-foundations-track{
+	background-color: $whiteDark;
+	border: 1px solid $greyLight;
+	margin: 20px 0;
+	padding: 20px 15px;
+
+	h3{
+		margin-top:0;
+		color: $turquoise;
+
+		.icon{
+			margin-right: 5px;
+			color: $red;
+			vertical-align: bottom;
+		}
+	}
+
+	ol{
+		padding-left: 30px;
+	}
+
+}

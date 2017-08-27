@@ -4,7 +4,8 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {
     Menubar, 
     BtnBottom,
-    NutritionTrack
+    NutritionTrack,
+    ProblemHouston
 } from '../../components/index';
 import {connect} from "react-redux";
 import {Link} from 'react-router';
@@ -170,21 +171,22 @@ export default class NutritionCalculatorResult extends Component {
 						title="Results"
 						backButton={true}
                         showHome={true}
-						className="menu-bar-red">
+						className="menu-bar-white">
 					</Menubar>
-
-					<div className="container">
+                    {lean && perfector && gainer ? (
+                    <div className="container container-small calculator-result-container">
                         <div className="col-xs-12 nutrition-track-header">
-                            <h2><span className="icon-track-perfector icon"/>{prettyTrackName}</h2>
-                            <p>Based on our calculations these are you targets for the {prettyTrackName} track:</p>
-						</div>
-                        {lean && perfector && gainer ? (
-							 <NutritionTrack
-                                track={nutritionSelectedTrack}
-                            />
-						) : undefined}
-					</div>	
-				</div>
+                            <h3>Results for {prettyTrackName} track:</h3>
+                        </div>
+						 <NutritionTrack
+                            track={nutritionSelectedTrack}
+                            isCalculator={true}
+                        />
+                    </div>  
+					) : 
+                    <ProblemHouston/>
+                    }
+				 </div>
 			</ReactCSSTransitionGroup>
 		);
 	}

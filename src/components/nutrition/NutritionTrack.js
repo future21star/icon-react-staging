@@ -36,7 +36,7 @@ export default class NutritionTrack extends Component {
 	};
 
 	render() {
-		const {user, track, updateSelectedNutritionTrack, nutritionCalculatorStore} = this.props;
+		const {user, track, updateSelectedNutritionTrack, nutritionCalculatorStore, isCalculator} = this.props;
 
 		if(!user) return <div/>;
 
@@ -111,22 +111,24 @@ export default class NutritionTrack extends Component {
 
 		return(
 			<div className="nutriton-track-wrapper">	
-				<div className="col-xs-12 col-sm-6">
+				<div className={isCalculator ? 'col-xs-12' : 'col-xs-12 col-sm-6'}>
 					<div className="nutrition-track-img-wrapper" style={{backgroundImage:'url("../../nutrition-tracks/' + trackData.track_name + '.jpg")'}}>
 					{targetResult ? (
 						<Targets
 							isTransparent={true}
+							isCalculator={isCalculator}
 							calories={targetResult.nutritionCalories}
 							carbs={targetResult.nutritionCarbs}
 							protein={targetResult.nutritionProtein}
 						/>) : (
-							<Targets
+						<Targets
 							isTransparent={true}
+							isCalculator={isCalculator}
 						/>
 					)}
 					</div>
 				</div>
-				<div className="nutrition-track-header col-xs-12 col-sm-6">
+				<div className={isCalculator ? 'nutrition-track-header col-xs-12' : 'nutrition-track-header col-xs-12 col-sm-6'}>
 					{this.state.showContent === 'main' && mainContent}
 					{this.state.showContent === 'goal' && goalContent}
 					{this.state.showContent === 'expectation' && expectationContent}
