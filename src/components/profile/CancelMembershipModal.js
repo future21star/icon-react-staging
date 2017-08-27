@@ -50,6 +50,7 @@ export default class CancelMembershipModal extends Component {
 											<input type="hidden" name="jwt_token" value={jwtToken}/>
 											<input type="hidden" name="wp_id" value={wpUserId}/>
 											<input type="hidden" name="redirect_url" value={redirectUrl}/>
+											<input type="hidden" name="discount" value={true}/>
 											<input type="hidden" name="wp_username" value={username}/>
 											<button type="submit" className="btn btn-lg btn-icon btn-icon-lg btn-icon-icon"><span className="icon-update-sub" />I Want The Discount!</button>
 										</form>
@@ -60,7 +61,6 @@ export default class CancelMembershipModal extends Component {
 											<input type="hidden" name="wp_id" value={wpUserId}/>
 											<input type="hidden" name="redirect_url" value={redirectUrl}/>
 											<input type="hidden" name="wp_username" value={username}/>
-											<input type="hidden" name="discount" value={true}/>
 											<input type="hidden" name="is_cancel" value={true}/>
 											<button type="submit" className="btn btn-cancel">No, I do not want to take advantage of this awesome discount.</button>
 										</form>
