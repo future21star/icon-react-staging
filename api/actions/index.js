@@ -19,6 +19,7 @@ export removeTrack from './tracks/removeTrack';
 export loadWod from './wods/loadWod';
 export loadWodByTrackAndId from './wods/loadWodByTrackAndId';
 export loadListViewWods from './wods/loadListViewWods';
+export updateWod from './wods/updateWod';
 
 export loadHelpfulLinks from './helpfulLinks/loadHelpfulLinks';
 export loadFaqs from './helpfulLinks/loadFaqs';

@@ -41,7 +41,7 @@ export default function getWods(request) {
 						date: singleWpWod.wod_date,
 						notes: singleWpWod.notes,
 						duration: singleWpWod.duration,
-						intensity: singleWpWod.intensity[0],
+						intensity: singleWpWod.workout_goal,
 						focus: singleWpWod.focus,
 						warmUp: singleWpWod.warm_up,
 						mainWorkout: singleWpWod.main_workout,
