@@ -28,7 +28,7 @@ export default class NutritionNav extends Component {
 					icon="icon-nutrition-calculator icon-red"
 				/>
 				<NutritionNavItem
-					link="/"
+					link="/nutrition/faqs"
 					text="FAQ"
 					icon="icon-information icon-turquoise"
 				/>

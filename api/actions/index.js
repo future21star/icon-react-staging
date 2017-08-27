@@ -53,6 +53,7 @@ export saveNutritionTrackResult from './nutrition/saveNutritionTrackResult';
 export loadNutritionPhilosophy from './nutrition/loadNutritionPhilosophy';
 export loadNutritionFoundations from './nutrition/loadNutritionFoundations';
 export loadNutritionMealPlan from './nutrition/loadNutritionMealPlan';
+export loadNutritionFaqs from './nutrition/loadNutritionFaqs';
 
 
 

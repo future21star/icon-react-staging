@@ -86,6 +86,7 @@ export default (store) => {
 					</Route>
 					<Route path="nutrition/blog/:id" component={containers.NutritionSinglePost}/>
 					<Route path="nutrition/philosophy" component={containers.NutritionPhilosophy}/>
+					<Route path="nutrition/faqs" component={containers.NutritionFaqs}/>
 					<Route path="programming" component={containers.Programming}/>
 					<Route path="programming/list-view" component={containers.ProgrammingListView}/>
 					<Route path="edit-tracks" component={containers.EditTracks}/>
