@@ -62,7 +62,8 @@ export default (store) => {
 					<IndexRoute component={containers.Home}/>
 					<Route path="welcome" component={containers.Welcome}/>
 					<Route path="profile" component={containers.Profile}/>
-					
+					<Route path="help" component={containers.Help}/>
+
 					<Route path="feed" component={containers.Feed}>
 						<IndexRoute component={containers.FeedVideo}/>
 						<Route path="podcast" component={containers.FeedPodcast}/>

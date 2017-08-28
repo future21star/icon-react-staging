@@ -102,6 +102,12 @@ export default class Home extends Component {
 								<span className="icon-user-profile"/>
 								<span className="mobile-hide">Profile</span>
 							</Link>}
+						rightSideContent={
+							<Link to="help">
+								<span className="mobile-hide">Help</span>
+								<span className="icon-information"/>
+							</Link>
+						}
 						className="menu-color-white has-dot-list">
 						<DotList/>
 					</Menubar>

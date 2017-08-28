@@ -2,59 +2,21 @@ import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
 import {Menubar, NoAccessSubscriptionUpgradeCard} from '../components/index';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {setActiveLink, unsetActiveLink} from '../redux/modules/helpfulLinksStore';
 import {connect} from "react-redux";
 
 @connect(
 	state => ({
-		activeHelpfulLink: state.helpfulLinksStore.activeHelpfulLink,
 		user: state.authStore.user
-	}),
-	{setActiveLink, unsetActiveLink}
+	})
 )
 export default class Help extends Component {
 
-	componentDidMount() {
-		this.props.setActiveLink(this.props.params.slug);
-	}
-
-	componentWillUnmount() {
-		this.props.unsetActiveLink();
-	}
-
-	componentWillReceiveProps(nextProps) {
-		this.props.setActiveLink(nextProps.params.slug);
-	}
-
-	createMarkup = (html) => {
-		return {__html: html};
-	};
-
 	render() {
-		const {activeHelpfulLink, user} = this.props;
+		const { user} = this.props;
 		if(!user) {
 			return <div/>
 		}
 		
-		const {subscription} = user;
-
-		let content = activeHelpfulLink ? (
-			<div>
-				<h2 className="text-center" dangerouslySetInnerHTML={this.createMarkup(activeHelpfulLink.title)}/>
-				<hr/>
-				<div dangerouslySetInnerHTML={this.createMarkup(activeHelpfulLink.content)}/>
-			</div>
-		) : undefined;
-
-		// less than Unity OR is nutrition
-		if (parseInt(subscription.subscription_id) < 2 || parseInt(subscription.subscription_id) === 11) {
-			content = (
-				<div>
-					<NoAccessSubscriptionUpgradeCard permissionName="feed"/>
-				</div>
-			)
-		}
-
 		return (
 			<ReactCSSTransitionGroup
 				transitionName="react-anime"
@@ -66,17 +28,19 @@ export default class Help extends Component {
 				transitionLeaveTimeout={500}
 			>
 				<div className="help-page-wrapper bottom-padding">
-					<Helmet title="Helpful Links"/>
+					<Helmet title="Help"/>
 
 					<Menubar
-						title="Helpful Links"
+						className="menu-bar-white"
 						backButton={true}
 					/>
 
-					<div className="container">
+					<div className="container bottom-padding">
 						<div className="row">
-							<div className="col-xs-12">
-								{content}
+							<div className="col-xs-12 text-center">
+								<h3>Having some trouble?</h3>
+								<p>We will be addding a support center soon but for now feel free to just shoot us an email.</p>
+								<a href="mailTo:eli@iconathlete.com?subject=Help With the Vault&&cc=chris@iconathlete.com,kenzie@iconathlete.com" className="btn btn-lg btn-icon">Send Email</a>
 							</div>
 						</div>
 					</div>

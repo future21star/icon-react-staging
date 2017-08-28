@@ -6,13 +6,15 @@ export Home from './Home';
 export Welcome from './Welcome';
 export Profile from './Profile';
 export EditProfile from './EditProfile';
+export Help from './Help';
+//PROGRAMMING
 export ProgrammingListView from './ProgrammingListView';
 export Programming from './Programming';
 export WorkOutMode from './WorkOutMode';
 export WorkOutModeComments from './WorkOutModeComments';
 export EditTracks from './EditTracks';
 export ViewTrack from './ViewTrack';
-export Help from './Help';
+//FEED
 export Feed from './Feed/Feed';
 export FeedVideo from './Feed/Topic/FeedVideo';
 export FeedPodcast from './Feed/Topic/FeedPodcast';
@@ -22,13 +24,15 @@ export FeedFilter from './Feed/FeedFilter';
 export FeedSearch from './Feed/FeedSearch';
 export FeedFilteredByTopic from './Feed/FeedFilteredByTopic';
 export PodcastPlayer from './PodcastPlayer';
+//ASSESSMENT
 export AssessmentLanding from './Assessment/AssessmentLanding';
 export AssessmentWorkouts from './Assessment/AssessmentWorkouts';
 export AssessmentForm from './Assessment/AssessmentForm';
 export AssessmentResult from './Assessment/AssessmentResult';
+//FAQ
 export FaqsLanding from './Faqs/FaqsLanding';
 export FaqSingle from './Faqs/FaqSingle';
-
+//NUTRITION
 export Nutrition from './Nutrition/Nutrition';
 export NutritionWelcome from './Nutrition/NutritionWelcome';
 export NutritionFoundations from './Nutrition/NutritionFoundations';
