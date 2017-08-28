@@ -37,8 +37,6 @@ export default class Html extends Component {
 				<link href="/apple-touch-icon.png" rel="apple-touch-icon" />
 				<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
 
-				{/*Temp*/}
-				<link rel="stylesheet" href="https://i.icomoon.io/public/2aac31bad8/IconAthlete-Vault/style.css"/>
 
 				<link href={assets.styles.main} rel="stylesheet" type="text/css" charSet="UTF-8"/>
 
