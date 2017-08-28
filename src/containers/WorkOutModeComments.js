@@ -77,7 +77,7 @@ export default class WorkOutModeComments extends Component {
 								onClickLoadMore={this.onClickLoadMoreButton}
 							/> : undefined}
 
-						{wodCommentItems.length === 0 && <p className="text-center">No comment found</p>}
+						{wodCommentItems.length === 0 && <p className="text-center">No comments found.</p>}
 					</div>
 				</div>
 

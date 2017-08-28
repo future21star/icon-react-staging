@@ -27,11 +27,11 @@ export default class Note extends Component {
 				<div className="container-small">
 					<div className={classNames}>
 						<div className="note-header" onClick={this.toggleExpand}>
-							<h3 className="note-title">
+							<h4 className="note-title">
 								Workout Tips
 								{isOpened ? <i className="fa fa-minus pull-right"/> :
 									<span className="icon-nav-links pull-right"/>}
-							</h3>
+							</h4>
 						</div>
 
 						<Collapse isOpened={isOpened}>

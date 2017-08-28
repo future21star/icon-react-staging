@@ -94,25 +94,15 @@ export default class WorkoutBanner extends Component {
 							{!isWorkoutMode && this.getIcon()}
 							<h3>{wod.title}</h3>
 						</div>
-						<ul className={`workout-banner-list list-inline ${wod.notes ? 'workout-banner-list-with-note' : ''}`}>
-							<li>
-								<h4>{`${wod.duration} min` || '--'}</h4>
-								<p>Duration</p>
-							</li>
-							<li>
-								<h4>{wod.intensity || '--'}</h4>
-								<p>Intensity</p>
-							</li>
-							<li>
-								<h4>{wod.focus || '--'}</h4>
-								<p>Focus</p>
-							</li>
-						</ul>
-						{wod.notes ? (
+						<div className="duration text-center block">
+							<p>Duration: <b>{`${wod.duration} min` || '--'}</b></p>
+						</div>
+						{wod.notes && (
 							<Note
 								noteContent={wod.notes}
 								classNames="note note-has-margin-bottom"
-							/>) : undefined}
+							/>
+						)}
 					</div>
 
 					<div className="hidden-xs hidden-sm">

@@ -99,6 +99,9 @@
         }
       }
     }
+    .duration{
+      color:$white;
+    }
   }
   .workout-button {
     position: absolute;
@@ -128,38 +131,4 @@
       border-radius: 50%;
     }
   }
-}
-
-.workout-banner-list {
-  display: block;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 0;
-  li:not(:last-child) {
-    border-right: 1px solid #777676;
-  }
-  li {
-    margin-right: 7px;
-    padding-right: 10px;
-    width: 30%;
-    vertical-align: top;
-    h4, p {
-      color: $white;
-    }
-    p {
-      font-size: 14px;
-      font-weight: 300;
-      margin-bottom: 0;
-    }
-    h4 {
-      margin-bottom: 3px;
-      letter-spacing: 1px;
-      font-size: 18px;
-    }
-  }
-}
-
-.workout-banner-list-with-note {
-  padding-bottom: 15px !important;
 }

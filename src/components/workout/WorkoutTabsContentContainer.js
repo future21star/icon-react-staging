@@ -37,7 +37,7 @@ export default class WorkoutTabsContentContainer extends Component {
 
 		return (
 			<div className={`workout-tabs-content-container ${className}`}>
-				<div className="container">
+				<div className="container container-small">
 					<ul className="workout-tabs-list list-group">
 						{!content ? <li>No Workout</li> : undefined }
 						{parsedContentObj.map((chunk, i) => {
