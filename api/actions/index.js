@@ -1,5 +1,3 @@
-// for generating new admin JWT
-export refreshAdminJWT from './cronJobs/refreshAdminJWT';
 // for getting and storing wods
 export getWods from './cronJobs/getWods';
 // get daily brief
