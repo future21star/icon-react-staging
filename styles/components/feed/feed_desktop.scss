@@ -52,8 +52,8 @@
 
 .feed-body-desktop-guest {
   position: relative;
-  background-color: #F2F3F5;
-  top: 75px;
+  background-color: $whiteDark;
+  margin-top: 35px;
 
   .feed-body-right, .feed-body-left {
     height: 100vh;

@@ -15,11 +15,15 @@ import {Link} from "react-router";
 export default class Feed extends Component {
 
 	componentDidMount() {
-		document.body.classList.toggle('desktop-disable-scrolling');
+		if(this.props.user){
+			document.body.classList.add('desktop-disable-scrolling');
+		}
 	}
 
 	componentWillUnmount() {
-		document.body.classList.remove('desktop-disable-scrolling');
+		if(this.props.user){
+			document.body.classList.remove('desktop-disable-scrolling');
+		}
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -75,7 +79,7 @@ export default class Feed extends Component {
 												<DesktopFeedSidebar/>
 											</div>
 										)}
-										<div className={user ? "col-md-8 col-lg-9 feed-body-right overflow-custom-scroll": "col-md-offset-2 col-md-8 feed-body-right overflow-custom-scroll"} ref="overflowCustomScroll">
+										<div className={user ? "col-md-8 col-lg-9 feed-body-right overflow-custom-scroll": "col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8"} ref="overflowCustomScroll">
 											<div className="feed-posts-section">
 												{this.props.children}
 											</div>

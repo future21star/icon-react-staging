@@ -22,19 +22,20 @@ export default class Menubar extends Component {
 		const {user, title, leftSideContent, rightSideContent, className, backButton, showHome} = this.props;
 
 		let leftSideConditionalContent = <div/>;
-		if (!user) {
-			leftSideConditionalContent = <Link to="/login">Login</Link>;
-		}
-		else if (backButton) {
+
+		if (backButton) {
 			leftSideConditionalContent = <a href="javascript:history.back()">
 				<span className="icon-arrow-left back-icon"/>
 				<span className="back-text">Back</span>
 			</a>;
-		} else {
+		} else{
 			leftSideConditionalContent = leftSideContent;
 		}
+
 		let rightSideConditionalContent = <div/>;
-		if(showHome){
+		if (!user) {
+			rightSideConditionalContent = <Link to="/login">Login</Link>;
+		} else if(showHome){
 			rightSideConditionalContent = <Link to="/">
 				<span className="mobile-hide">Home</span>
 				<span className="icon-nav-home"/>
