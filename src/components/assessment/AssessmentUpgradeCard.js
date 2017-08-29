@@ -5,7 +5,7 @@ export default class AssessmentUpgradeCard extends Component {
 
 		let image = require("../../../static/assessment-iphone.jpg");
 		return (
-			<div className="subscription-upgrade-card">
+			<div className="subscription-upgrade-card assessment-upgrade-card">
 				<div className="col-xs-12 col-sm-8 col-md-6 text-left block">
 					<h3 className="subscription-title">The Icon Assessment</h3>
 					<p>Sign up for a Free Account to take the Assessment.</p>

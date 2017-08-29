@@ -19,7 +19,13 @@ export default class AssessmentLanding extends Component {
 		let {user} = this.props;
 
 		if(!user) {
-			return <AssessmentUpgradeCard/>;
+			return (
+			<div>
+				<Menubar
+					className="menu-bar-white"
+				/>
+				<AssessmentUpgradeCard/>
+			</div>);
 		}
 
 		let style = {backgroundImage: 'url(../../assessmentBG.jpg)'};
