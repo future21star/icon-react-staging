@@ -58,6 +58,9 @@ export default class EditTracks extends Component {
 		else if (includes(vaultAccess, 'programming-unify')) accessOfProgrammingType = 'programming-unify';
 		else if (includes(vaultAccess, 'programming-masters')) accessOfProgrammingType = 'programming-masters';
 
+		// all + masters
+		if (includes(vaultAccess, 'programming-all') && includes(vaultAccess, 'programming-masters')) accessOfProgrammingType = 'programming-all-plus-masters';
+
 		return (
 			<ReactCSSTransitionGroup
 				transitionName="react-anime"
@@ -94,6 +97,8 @@ export default class EditTracks extends Component {
 	renderEditTracks(accessOfProgrammingType) {
 		if (accessOfProgrammingType === 'programming-masters') {
 			return this.renderMastersTracks(accessOfProgrammingType);
+		} else if (accessOfProgrammingType === 'programming-all-plus-masters') {
+			return this.renderAllTracks(accessOfProgrammingType);
 		} else {
 			return this.renderWithoutMastersTracks(accessOfProgrammingType);
 		}
@@ -197,6 +202,50 @@ export default class EditTracks extends Component {
 												</button>}}
 											{!isSubscribed && 
 												<button className="btn btn-lg btn-icon btn-icon-bluer btn-icon-icon" onClick={e => this.props.addAsOnlyTrack(track.name)}>
+													<span className="icon-nav-links"/>
+													Add
+												</button>}
+
+										</div>
+									</div>
+								</div>
+							</div>
+						);
+					})}
+				</div>
+			</div>
+		);
+	}
+
+	renderAllTracks(accessOfProgrammingType) {
+		let {selectedTracks, allTracks} = this.props;
+
+
+		return (
+			<div className="container">
+				<div className="row">
+					{allTracks.map((track, i) => {
+
+						const isSubscribed = find(selectedTracks, selectedTrack => {
+							return selectedTrack.trackName === track.name;
+						});
+
+						return (
+							<div className="col-xs-12 col-sm-6 col-md-4" key={i}>
+								<div className="thumbnail">
+									<EditTracksBanner
+										track={track}
+										selectedTracks={selectedTracks}
+									/>
+									<div className="edit-tracks-btn-wrapper">
+										<div className="col-xs-12">
+											{isSubscribed && 
+												<button className="btn btn-lg btn-icon btn-icon-icon" onClick={e => this.props.removeTrack(track.name)}>
+													<span className="icon-trash"/>
+													Remove
+												</button>}}
+											{!isSubscribed && 
+												<button className="btn btn-lg btn-icon btn-icon-bluer btn-icon-icon" onClick={e => this.props.addToTrackList(track.name)}>
 													<span className="icon-nav-links"/>
 													Add
 												</button>}

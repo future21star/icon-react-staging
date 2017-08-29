@@ -6,6 +6,7 @@ import {includes} from 'lodash';
 import {Link} from 'react-router';
 import {hideWelcomeAfterLogin} from '../../redux/modules/loginStore';
 import {push} from 'react-router-redux';
+import checkAccessLevel from '../HOC/CheckAccessLevel';
 import {
 	Menubar,
 	Targets,
@@ -38,6 +39,8 @@ import {asyncConnect} from 'redux-async-connect';
 	}),
 	{pushState: push, hideWelcomeAfterLogin}
 )
+
+@checkAccessLevel('nutrition')
 
 export default class Nutrition extends Component {
 

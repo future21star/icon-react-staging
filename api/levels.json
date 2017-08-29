@@ -99,6 +99,31 @@
         "assessment",
         "nutrition"
       ]
+    },
+    {
+      "id": 12,
+      "name": "Masters + Individual + Nutrition",
+      "desc": "Access to the Unity programming track, the Feed, and Nutrition",
+      "upgrade_desc": "Upgrade to Individual + Nutrition to maximize your fitness.",
+      "vault_sections": [
+        "assessment",
+        "feed",
+        "programming-all",
+        "programming-masters",
+        "nutrition"
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Masters + Individual",
+      "desc": "Access to the Unity programming track, the Feed, and Nutrition",
+      "upgrade_desc": "Upgrade to Individual + Nutrition to maximize your fitness.",
+      "vault_sections": [
+        "assessment",
+        "feed",
+        "programming-all",
+        "programming-masters"
+      ]
     }
   ]
 }
