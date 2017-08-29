@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
-import {Menubar, NoAccessSubscriptionUpgradeCard} from '../components/index';
+import {Menubar, NoAccessSubscriptionUpgradeCard, AssessmentUpgradeCard} from '../components/index';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {connect} from "react-redux";
 
@@ -34,7 +34,7 @@ export default class Help extends Component {
 						className="menu-bar-white"
 						backButton={true}
 					/>
-
+					<AssessmentUpgradeCard/>
 					<div className="container bottom-padding">
 						<div className="row">
 							<div className="col-xs-12 text-center">

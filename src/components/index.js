@@ -66,6 +66,7 @@ export NewReply from './comment/NewReply';
 
 
 //ASSESSMENT
+export AssessmentUpgradeCard from './assessment/AssessmentUpgradeCard';
 export Step from './assessment/Step';
 export StepGender from './assessment/StepGender';
 export StepBackSquat from './assessment/StepBackSquat';
