@@ -56,6 +56,10 @@ export default class NutritionPostSingle extends Component {
 								<div className="feed-featured-post-date">Posted {moment(activePost.date).format('DD.MM.YYYY')}</div>
 							</header>
 
+							<div className="feed-featured-post-image">
+								<img width="100%" src={activePost.featured_image || defaultImage}/>
+							</div>
+
 							<div className="feed-featured-post-content" dangerouslySetInnerHTML={this.createMarkup(activePost.content.rendered)}/>
 							
 							<div className="feed-post-comments">

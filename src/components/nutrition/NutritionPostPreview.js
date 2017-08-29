@@ -17,7 +17,7 @@ export default class NutritionPostPreview extends Component {
 		return (
 			<div className="col-sm-6 col-xs-12 feed-post block">
 				<div className="col-xs-12 feed-post-image nutrition-post-image">
-					<img src={defaultImage} />
+					<img src={post.featured_image || defaultImage} />
 				</div>
 				<div className="col-xs-12">
 					<h3 className="feed-post-title">
