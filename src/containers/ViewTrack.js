@@ -136,6 +136,9 @@ export default class ViewTrack extends Component {
 		else if (includes(vaultAccess, 'programming-unify')) accessOfProgrammingType = 'programming-unify';
 		else if (includes(vaultAccess, 'programming-masters')) accessOfProgrammingType = 'programming-masters';
 
+		// all + masters
+		if (includes(vaultAccess, 'programming-all') && includes(vaultAccess, 'programming-masters')) accessOfProgrammingType = 'programming-all-plus-masters';
+
 		return (
 			<ReactCSSTransitionGroup
 				transitionName="react-anime"
@@ -196,6 +199,7 @@ export default class ViewTrack extends Component {
 								{accessOfProgrammingType === 'programming-all' ? this.renderButtonsForProgrammingAll(selectedTrackIsSubscribed) : undefined}
 								{accessOfProgrammingType === 'programming-unify' ? this.renderButtonsForProgrammingUnify(selectedTrackIsSubscribed) : undefined}
 								{accessOfProgrammingType === 'programming-masters' ? this.renderButtonsForProgrammingMasters(selectedTrackIsSubscribed) : undefined}
+								{accessOfProgrammingType === 'programming-all-plus-masters' ? this.renderButtonsForProgrammingAllPlusMasters(selectedTrackIsSubscribed) : undefined}
 							</div>
 						</div>
 				</div>
@@ -286,6 +290,28 @@ export default class ViewTrack extends Component {
 
 				{!selectedTrackIsSubscribed && !visibleTrackStartsWithMasters ?
 					undefined : undefined
+				}
+			</div>
+		)
+	}
+
+	renderButtonsForProgrammingAllPlusMasters(selectedTrackIsSubscribed) {
+		
+		return (
+			<div>
+
+				{selectedTrackIsSubscribed ?
+					<BtnBottom
+						classNames="btn btn-block btn-lg btn-icon btn-icon-icon btn-fixed-mobile"
+						title="Remove Track"
+						icon={<span className="icon-trash"/>}
+						onClick={this.removeTrack}
+					/> : <BtnBottom
+						classNames="btn btn-block btn-lg btn-icon btn-icon-blue btn-icon-icon btn-fixed-mobile"
+						title="Add Track"
+						icon={<span className="icon-nav-links"/>}
+						onClick={this.addToTrackList}
+					/>
 				}
 			</div>
 		)
