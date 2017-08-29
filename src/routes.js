@@ -93,7 +93,7 @@ export default (store) => {
 					<Route path="edit-tracks" component={containers.EditTracks}/>
 					<Route path="help/:slug" component={containers.Help}/>
 
-					<Route path="assessment" component={containers.AssessmentLanding}/>
+					
 					<Route path="assessment/workouts" component={containers.AssessmentWorkouts}/>
 					<Route path="assessment/form" component={containers.AssessmentForm}/>
 					<Route path="assessment/result" component={containers.AssessmentResult}/>
@@ -101,7 +101,7 @@ export default (store) => {
 					<Route path="faqs" component={containers.FaqsLanding}/>
 					<Route path="faqs/:slug" component={containers.FaqSingle}/>
 				</Route>
-				{/*logged in view without bottom nav*/}
+				{/*logged in view without bottom nav*/}				
 				<Route path="workout/:trackName/:id" component={containers.WorkOutMode}/>
 				<Route path="workout/:trackName/:id/comments" component={containers.WorkOutModeComments}/>
 				<Route path="edit-profile" component={containers.EditProfile}/>
@@ -111,6 +111,8 @@ export default (store) => {
 				<Route path="podcast-player" component={containers.PodcastPlayer}/>
 				
 			</Route>
+
+			<Route path="assessment" component={containers.AssessmentLanding}/>
 
 			{/*logged out*/}
 			<Route onEnter={requiresGuest}>

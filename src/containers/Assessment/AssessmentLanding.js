@@ -2,20 +2,26 @@ import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {connect} from "react-redux";
-import {Menubar} from '../../components/index';
+import {Menubar, AssessmentUpgradeCard} from '../../components';
 import {Link} from "react-router";
-import CheckAccessLevel from '../HOC/CheckAccessLevel';
 
 @connect(
-	state => ({}),
+	state => ({
+		user: state.authStore.user
+	}),
 	{}
 )
 
-@CheckAccessLevel('assessment')
 
 export default class AssessmentLanding extends Component {
 
 	render() {
+		let {user} = this.props;
+
+		if(!user) {
+			return <AssessmentUpgradeCard/>;
+		}
+
 		let style = {backgroundImage: 'url(../../assessmentBG.jpg)'};
 		let logoImg = '../../assessmentLogo.png';
 		let iconTracksInner = ([<span className="path1"/>,,<span className="path2"/>,<span className="path3"/>,<span className="path4"/>,<span className="path5"/>,<span className="path6"/>,<span className="path7"/>,<span className="path8"/>,<span className="path9"/>,<span className="path10"/>]);
