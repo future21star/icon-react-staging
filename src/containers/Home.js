@@ -103,7 +103,7 @@ export default class Home extends Component {
 								<span className="mobile-hide">Profile</span>
 							</Link>}
 						rightSideContent={
-							<Link to="help">
+							<Link to="support">
 								<span className="mobile-hide">Help</span>
 								<span className="icon-information"/>
 							</Link>

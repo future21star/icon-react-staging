@@ -52,6 +52,7 @@ export default class FaqsLanding extends Component {
 
 					<Menubar 
 						title="FAQ's" 
+						className="menu-bar-white"
 						backButton={true}
 					/>
 

@@ -95,7 +95,7 @@ export default class WorkoutBanner extends Component {
 							<h3>{wod.title}</h3>
 						</div>
 						<div className="duration text-center block">
-							<p>Duration: <b>{`${wod.duration} min` || '--'}</b></p>
+							<p>Duration: {(wod.duration !== 0 && wod.duration) ? `${wod.duration} min` : '--'}</p>
 						</div>
 						{wod.notes && (
 							<Note

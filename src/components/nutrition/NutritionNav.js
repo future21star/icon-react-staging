@@ -13,7 +13,7 @@ export default class NutritionNav extends Component {
 					icon="icon-philosophy icon-red"
 				/>
 				<NutritionNavItem
-					link="nutrition/meal-plans"
+					link="/nutrition/meal-plans"
 					text="Meal Planning"
 					icon="icon-nutrition"
 				/>

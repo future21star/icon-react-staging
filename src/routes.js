@@ -63,7 +63,7 @@ export default (store) => {
 					<Route path="welcome" component={containers.Welcome}/>
 					<Route path="profile" component={containers.Profile}/>
 					<Route path="help" component={containers.Help}/>
-
+					<Route path="support" component={containers.Support}/>
 					<Route path="feed" component={containers.Feed}>
 						<IndexRoute component={containers.FeedVideo}/>
 						<Route path="podcast" component={containers.FeedPodcast}/>

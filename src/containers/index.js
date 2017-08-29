@@ -7,6 +7,7 @@ export Welcome from './Welcome';
 export Profile from './Profile';
 export EditProfile from './EditProfile';
 export Help from './Help';
+export Support from './Support';
 //PROGRAMMING
 export ProgrammingListView from './ProgrammingListView';
 export Programming from './Programming';
