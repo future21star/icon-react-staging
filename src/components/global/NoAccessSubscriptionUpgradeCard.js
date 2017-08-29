@@ -18,8 +18,8 @@ export default class NoAccessSubscriptionUpgradeCard extends Component {
 
 		let subscriptionName = null;
 		if (this.props.permissionName === 'assessment') subscriptionName = 'Assessment';
-		else if (this.props.permissionName === 'feed') subscriptionName = 'Unity';
-		else if (this.props.permissionName === 'programming-unify') subscriptionName = 'Unity';
+		else if (this.props.permissionName === 'feed') subscriptionName = 'Unify';
+		else if (this.props.permissionName === 'programming-unify') subscriptionName = 'Unify';
 		else if (this.props.permissionName === 'nutrition') subscriptionName = 'Individual + Nutrition';
 		else if (this.props.permissionName === 'programming-all') subscriptionName = 'Individual';
 		else if (this.props.permissionName === 'programming-masters') subscriptionName = 'Masters';
