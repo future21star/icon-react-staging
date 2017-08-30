@@ -227,7 +227,7 @@ export default class AssessmentResult extends Component {
 							<div className="description" dangerouslySetInnerHTML={this.createMarkup(trackDetails.details || '')}/>
 							<div className="btn-wrap">
 								{(parseInt(subscription.subscription_id) === 1 || parseInt(subscription.subscription_id) === 11) && (
-									<a href="http://54.148.236.111/register/upgrade" target="_blank"
+									<a href="https://iconathlete.com/register/upgrade" target="_blank"
 										 className="btn btn-lg btn-icon btn-icon-icon">
 										<span className="icon-update-sub"/>Get Access
 									</a>

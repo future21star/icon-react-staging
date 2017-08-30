@@ -15,7 +15,7 @@ import levels from '../../../api/levels.json';
 export default class SubscriptionUpgradeCard extends Component {
 	render() {
 		const {subscription, jwtToken, wpUserId, username, routing, extraButton} = this.props;
-		const formActionUrl = 'http://54.148.236.111/register/prepare-upgrade';
+		const formActionUrl = 'https://iconathlete.com/register/prepare-upgrade';
 
 		let redirectUrl = null;
 		if (process.env.NODE_ENV !== 'production') {

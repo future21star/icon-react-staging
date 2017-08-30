@@ -19,7 +19,7 @@ export default class NoAccessSubscriptionUpgradeButton extends Component {
 
 	render() {
 		const {classNames, icon, title, jwtToken, wpUserId, username, routing} = this.props;
-		const formActionUrl = 'http://54.148.236.111/register/prepare-upgrade';
+		const formActionUrl = 'https://iconathlete.com/register/prepare-upgrade';
 
 		let redirectUrl = null;
 		if (process.env.NODE_ENV !== 'production') {

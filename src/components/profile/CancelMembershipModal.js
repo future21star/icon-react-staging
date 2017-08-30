@@ -21,7 +21,7 @@ export default class CancelMembershipModal extends Component {
 	render() {
 
 		const {subscription, jwtToken, wpUserId, username, isShown, onClose, routing} = this.props;
-		const formActionUrl = 'http://54.148.236.111/register/prepare-upgrade';
+		const formActionUrl = 'https://iconathlete.com/register/prepare-upgrade';
 
 		let redirectUrl = null;
 		if (process.env.NODE_ENV !== 'production') {

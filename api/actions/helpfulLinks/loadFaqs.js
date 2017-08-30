@@ -7,7 +7,7 @@ export default function loadFaqs(request) {
 	return new Promise(async (resolve, reject) => {
 
 		// load FAQ categories
-		// http://54.148.236.111/wp-json/wp/v2/categories?parent=10
+		// https://iconathlete.com/wp-json/wp/v2/categories?parent=10
 
 		// get faq categories
 		let faqCategories = null;
