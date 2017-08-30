@@ -7,12 +7,6 @@
 @import "typography";
 
 @import "custom";
-
-
-/**********
-COMPONENTS
-**********/
-
 //globals
 
 @import "components/global/bottom_nav";
@@ -21,47 +15,61 @@ COMPONENTS
 @import "components/global/loader";
 @import "components/global/dot_list";
 
+@import "components/menu-bar/menubar";
 
-//tracks
+//TRACKS
 @import "components/tracks/btn_bottom";
-
-
-
-//@import "components/headers-navs/programming_header";
-//@import "components/headers-navs/menubar_desktop";
-//@import "components/headers-navs/menubar";
-
-
-//random
-// @import "components/daily_brief";
-// @import "components/day_picker";
-// @import "components/dot_list";
-
-//workout
-// @import "components/workout/workout_banner";
-// @import "components/workout/workout_banner_desktop";
-
-// @import "components/workout/note";
-// @import "components/workout/rest_day";
-// @import "components/workout/workout_tabs";
-// @import "components/workout/workout_tabs_desktop";
-// @import "components/workout/work_out_mode_tabs";
-
-//tracks
 @import "components/tracks/edit_tracks";
 @import "components/tracks/view_track";
 @import "components/tracks/edit_tracks_banner";
 
-//containers
-@import "containers/login";
+//LOGIN
+@import "components/forms/show_password_input";
+@import "components/forms/facebook_button";
+.login-page--login-form {.btn:hover, .btn:focus, .btn.focus {color: $white;}}
+
 @import "containers/programming";
-@import "containers/feed";
-@import "containers/profile";
+//FEED
+@import "components/feed/feed_mobile_tabs";
+@import "components/feed/feed_post";
+@import "components/feed/feed_filter_search";
+@import "components/feed/feed_podcast";
+@import "components/feed/feed_desktop";
+@import "components/feed/feed_desktop_sidebar";
+@import "components/comments/comments";
 
-@import "containers/nutrition";
+//PROFILE
+@import "components/profile/profile_header";
+@import "components/profile/profile_card";
+@import "components/profile/profile-extra";
 
+//NUTRITION
+@import "components/nutrition/targets";
+@import "components/nutrition/join-slack";
+@import "components/nutrition/nutrition-nav";
+@import "components/nutrition/nutrition-banner";
+@import "components/nutrition/nutrition-track";
+	//BLOG
+	@import "components/nutrition/nutrition-feed-header";
+	@import "components/nutrition/nutrition-post-preview";
+	//CALCULATOR
+	@import "components/nutrition/nutrition-calculator";
+	//MEAL PLANS
+	@import "components/nutrition/meal-plans";
+	//FOUNDATIONS
+	@import "components/nutrition/foundations";
+	//EXTRA
+	@import "components/nutrition/nutrition-extra";
+
+//LIST VIEW
 @import "containers/workout-list-view";
-@import "containers/assessment";
+//ASSESSMENT
+@import "components/assessment/assessment-landing";
+@import "components/assessment/assessment-form";
+@import "components/assessment/assessment-step";
+@import "components/assessment/assessment-result";
+@import "components/assessment/assessment-workouts";
+//FAQ + HELPFUL LINK
 @import "containers/faqs";
 @import "containers/helpful-links";
 
