@@ -4,7 +4,6 @@ import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {login,showWelcomeAfterLogin} from '../redux/modules/loginStore';
 import {FacebookButton, ShowPasswordInput, ErrorMessage, SuccessMessage} from '../components/index';
-import {Link} from "react-router";
 
 @connect(
 	state => ({
@@ -94,11 +93,11 @@ export default class Login extends Component {
 
 				</form>
 				<div className="login-page--forgot-password-link-wrapper">
-					<a href="http://54.148.236.111/wp-login.php?action=lostpassword" target="_blank">Forgot?</a>
+					<a href="https://iconathlete.com/wp-login.php?action=lostpassword" target="_blank">Forgot?</a>
 				</div>
 
 				<div className="login-page--register-link-wrapper">
-					Don't have an account? <Link to="/">Create one</Link>
+					Don't have an account? <a href="https://iconathlete.com/register">Create one</a>
 				</div>
 			</div>
 		);

@@ -38,13 +38,13 @@ export default class NoAccessSubscriptionUpgradeCard extends Component {
 
 		const {jwtToken, wpUserId, username} = user;
 
-		const formActionUrl = 'http://54.148.236.111/register/prepare-upgrade';
+		const formActionUrl = 'https://iconathlete.com/register/prepare-upgrade';
 
 		let redirectUrl = null;
 		if (process.env.NODE_ENV !== 'production') {
 			redirectUrl = 'http://localhost:3000' + routing.locationBeforeTransitions.pathname;
 		} else {
-			redirectUrl = 'http://34.210.177.213' + routing.locationBeforeTransitions.pathname;
+			redirectUrl = 'https://vault.iconathlete.com' + routing.locationBeforeTransitions.pathname;
 		}
 
 		return (

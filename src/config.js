@@ -23,7 +23,7 @@ module.exports = Object.assign({
 				{name: 'description', content: 'Icon Athlete provides the tools and resources to elevate your fitness'},
 				{charset: 'utf-8'},
 				{property: 'og:site_name', content: 'Icon Athlete Vault'},
-				{property: 'og:image', content: 'http://34.210.177.213/logo.png'},
+				{property: 'og:image', content: 'https://vault.iconathlete.com/logo.png'},
 				{property: 'og:locale', content: 'en_US'},
 				{property: 'og:title', content: 'Icon Athlete Vault'},
 				{property: 'og:description', content: 'Icon Athlete provides the tools and resources to elevate your fitness'},

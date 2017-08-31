@@ -111,7 +111,7 @@ export default class EditProfile extends Component {
 		formData.append('file', file);
 		this.props.showLoading();
 
-		axios.post('http://54.148.236.111/wp-json/wp/v2/media', formData, {
+		axios.post('https://iconathlete.com/wp-json/wp/v2/media', formData, {
 			headers: {
 				'Content-Type': 'multipart/form-data',
 				Authorization: 'Bearer ' + this.props.user.jwtToken

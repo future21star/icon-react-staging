@@ -15,6 +15,6 @@
 12. Run `node_modules/.bin/sequelize db:migrate --env production` (Importing the database)
 13. Run `node_modules/.bin/sequelize db:seed:all --env production` (Seeding the database with some initial values)
 14. Run `NODE_PATH=./src NODE_ENV=production PORT=8080 APIPORT=3030 forever --max_old_space_size=800 start ./bin/server.js && NODE_PATH=./api NODE_ENV=production APIPORT=3030 forever --max_old_space_size=800 start ./bin/api.js` (Starting the node server with updated code)
-15. Browse [http://34.210.177.213/api/getWods](http://34.210.177.213/api/getWods) (Fetching wods from WP server and storing them in react side mysql server, this will be automatically done with cronjobs later)
-16. Browse [http://34.210.177.213](http://34.210.177.213) (Just to confirm that all is working fine)
+15. Browse [https://vault.iconathlete.com/api/getWods](https://vault.iconathlete.com/api/getWods) (Fetching wods from WP server and storing them in react side mysql server, this will be automatically done with cronjobs later)
+16. Browse [https://vault.iconathlete.com](https://vault.iconathlete.com) (Just to confirm that all is working fine)
 17. Run `exit` (Let's celebrate!)
