@@ -5,16 +5,22 @@ import {isLoaded as isAuthLoaded, load as loadAuth} from '../redux/modules/authS
 import {isLoaded as isHelpfulLinksLoaded, load as loadHelpfulLinks} from '../redux/modules/helpfulLinksStore';
 import {isLoaded as isAllTrackLoaded, load as loadAllTracks} from '../redux/modules/allTracksStore';
 import {isFilterTopicsLoaded, loadFilterTopics} from "../redux/modules/feedStore";
+import {setActiveDate as setActiveDateOnSwipeStore} from "../redux/modules/swipeStore";
+import {setActiveDate as setActiveDateOnDayPickerStore} from "../redux/modules/dayPickerStore";
 import {push} from 'react-router-redux';
 import config from '../config';
 import {asyncConnect} from 'redux-async-connect';
 import LoadingBar from 'react-redux-loading-bar';
 import {calculateResponsiveState} from 'redux-responsive'
 import {PodcastFloatingPlayerButton} from "../components";
+import moment from 'moment';
 
 @asyncConnect([{
 	promise: ({store: {dispatch, getState}}) => {
 		const promises = [];
+
+		promises.push(dispatch(setActiveDateOnSwipeStore(moment().format('YYYY-MM-DD'))));
+		promises.push(dispatch(setActiveDateOnDayPickerStore(moment().format('YYYY-MM-DD'))));
 
 		// load if user is logged in
 		if (!isAuthLoaded(getState())) promises.push(dispatch(loadAuth()));
@@ -27,7 +33,7 @@ import {PodcastFloatingPlayerButton} from "../components";
 
 		//  filter topics
 		if (!isFilterTopicsLoaded(getState())) promises.push(dispatch(loadFilterTopics()));
-
+		
 		return Promise.all(promises);
 	}
 }])

@@ -4,7 +4,7 @@ const SET_ACTIVE_DATE = 'dayPicker/SET_ACTIVE_DATE';
 const SET_ACTIVE_WEEK = 'dayPicker/SET_ACTIVE_WEEK';
 
 const initialState = {
-	activeDate: moment().format('YYYY-MM-DD'),
+	activeDate: null,
 	activeWeek: 'current'
 };
 
