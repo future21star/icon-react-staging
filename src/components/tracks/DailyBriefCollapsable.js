@@ -13,6 +13,10 @@ export default class DailyBriefCollapsable extends Component {
 		};
 	}
 
+	createMarkup = (html) => {
+        return {__html: html};
+    };
+
 	toggleBrief = () => {
 		this.setState({
 			isOpened: !this.state.isOpened
@@ -34,7 +38,7 @@ export default class DailyBriefCollapsable extends Component {
 						</div>
 					</div>
 					<Collapse isOpened={this.state.isOpened}>
-						<div className="daily-brief-body">{content || 'No daily brief found'}</div>
+						<div dangerouslySetInnerHTML={this.createMarkup(content)}/>
 					</Collapse>
 				</div>
 			</div>

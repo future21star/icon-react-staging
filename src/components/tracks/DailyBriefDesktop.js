@@ -5,6 +5,10 @@ export default class DailyBriefDesktop extends Component {
 		content: PropTypes.string
 	};
 
+	createMarkup = (html) => {
+        return {__html: html};
+    };
+
 	render() {
 		const {content} = this.props;
 
@@ -12,9 +16,7 @@ export default class DailyBriefDesktop extends Component {
 			<div className="daily-brief-wrapper">
 				<div className="daily-brief-desktop hidden-sm hidden-xs">
 					<h2>Daily Brief</h2>
-					<p>
-						{content || 'No daily brief found'}
-					</p>
+					<div dangerouslySetInnerHTML={this.createMarkup(content)}/>
 				</div>
 			</div>
 		);

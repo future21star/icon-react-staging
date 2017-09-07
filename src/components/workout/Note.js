@@ -17,6 +17,10 @@ export default class Note extends Component {
 		});
 	}
 
+	createMarkup = (html) => {
+        return {__html: html};
+    };
+
 	render() {
 
 		const {noteContent, classNames} = this.props;
@@ -36,7 +40,7 @@ export default class Note extends Component {
 
 						<Collapse isOpened={isOpened}>
 							<div className="note-body">
-								{noteContent}
+								<div dangerouslySetInnerHTML={this.createMarkup(noteContent)}/>
 							</div>
 						</Collapse>
 
