@@ -4,9 +4,17 @@ import {WP_API_URL} from "../../config/app";
 import {generalError, successMessage} from "../../utils/message";
 
 export default function getWods(request) {
+
 	return new Promise(async (resolve, reject) => {
 
-		// get all wods
+		let wods = [];
+		let collectedWods = [];
+		let collectedWodsLength = 100;
+		let page = 2;
+
+		//////////////////////////////////// 
+		// get first 100 wods
+		//////////////////////////////////// 
 		let wpWods = null;
 		try {
 			wpWods = await axios.get(WP_API_URL + '/wp/v2/wod?per_page=100&status=publish');
@@ -15,10 +23,36 @@ export default function getWods(request) {
 			return reject(generalError(e.response.data.message));
 		}
 
-		// build wods array
-		let wods = [];
+		collectedWods.push(...wpWods.data);
 
-		wpWods.data.map(singleWpWod => {
+
+		// total wods
+		let totalWodsCount = wpWods.headers['x-wp-total'];
+
+
+		//////////////////////////////////// 
+		// get the rest wods
+		//////////////////////////////////// 
+		while(collectedWodsLength < totalWodsCount) {
+		
+			let wpWods = null;
+			try {
+				wpWods = await axios.get(WP_API_URL + '/wp/v2/wod?per_page=100&status=publish&page='+page);
+			} catch (e) {
+				console.log(e);
+				return reject(generalError(e.response.data.message));
+			}
+
+			collectedWods.push(...wpWods.data);
+
+			collectedWodsLength += 100;
+			page++;
+		}
+
+		//////////////////////////////////// 
+		// format all wods
+		//////////////////////////////////// 
+		collectedWods.map(singleWpWod => {
 			singleWpWod.categories.map(trackId => {
 				let trackName = null;
 				if (trackId === 29) trackName = 'dynamic';
@@ -51,6 +85,18 @@ export default function getWods(request) {
 			});
 		});
 
+
+		//////////////////////////////////// 
+		// destory prev wods
+		//////////////////////////////////// 
+		await models.Wod.destroy({
+			where: {},
+  			truncate: true
+		});
+		
+		//////////////////////////////////// 
+		// bulk insert all wods
+		//////////////////////////////////// 
 		try {
 			await models.Wod.bulkCreate(wods);
 		} catch (e) {
@@ -59,6 +105,12 @@ export default function getWods(request) {
 		}
 
 
-		return resolve({...wpWods.data});
+		//////////////////////////////////// 
+		// response
+		//////////////////////////////////// 
+		return resolve({
+			status: 'Previous wods are deleted and ' + collectedWods.length + ' wods are inserted',
+			data: wods
+		});
 	});
 }
