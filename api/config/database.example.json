@@ -7,7 +7,7 @@
     "dialect": "mysql",
     "port": 3306
   },
-  "test": {
+  "staging": {
     "username": "root",
     "password": null,
     "database": "database_test",
