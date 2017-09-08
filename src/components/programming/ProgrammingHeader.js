@@ -48,21 +48,33 @@ export default class ProgrammingHeader extends Component {
 				<div className="container">
 					<div className="row">
 						<div className={showWeekNavOnMobile ? "col-xs-12 change-weeks-wrapper" : "col-xs-12 change-weeks-wrapper hidden-xs hidden-sm"}>
-							<div className="col-xs-3">
-								{isGym && (
+							<div className="col-xs-4">
+								{isGym && activeWeek == 'current' && (
 									<a href="javascript:;" className={`left ${activeWeek}`} onClick={e => setActiveWeek('previous')}>
-										<span className="icon icon-arrow-left"/>Prev
-									</a>)}
+										<span className="icon icon-arrow-left"/>Previous Week
+									</a>
+								)}
+
+								{activeWeek == 'next' && (
+									<a href="javascript:;" className={`left ${activeWeek}`} onClick={e => setActiveWeek('current')}>
+										<span className="icon icon-arrow-left"/>Current Week
+									</a>
+								)}
 							</div>
-							<div className="col-xs-6 text-center">
-								<a href="javascript:;" className={`center ${activeWeek}`} onClick={e => setActiveWeek('current')}>
-									Current Week	
-								</a>
-							</div>
-							<div className="col-xs-3 text-right">
-								<a href="javascript:;" className={`right ${activeWeek}`} onClick={e => setActiveWeek('next')}>
-									Next<span className="icon icon-arrow-right" />
-								</a>
+							<div className="col-xs-4" />
+							<div className="col-xs-4 text-right">
+								{activeWeek == 'current' && (
+									<a href="javascript:;" className={`right ${activeWeek}`} onClick={e => setActiveWeek('next')}>
+										Next Week<span className="icon icon-arrow-right" />
+									</a>
+								)}
+
+								{activeWeek == 'previous' && (
+									<a href="javascript:;" className={`right ${activeWeek}`} onClick={e => setActiveWeek('current')}>
+										Current Week<span className="icon icon-arrow-right" />
+									</a>
+								)}
+
 							</div>
 						</div>
 						<div className="col-xs-12 col-md-8">

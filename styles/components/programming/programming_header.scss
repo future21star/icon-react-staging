@@ -22,7 +22,7 @@
 
 .change-weeks-wrapper{
   a, .icon{
-    color: $turquoiseLight;
+    color: rgba(0,0,0,.3);
     text-decoration: none !important;
   }
 
@@ -34,31 +34,11 @@
     .icon{
       margin-right: 5px;
     }
-
-    &.previous{
-      color: $white !important;
-      .icon{
-        color: $white;
-      }
-    }
-  }
-
-  .center{
-    &.current{
-      color: $white !important;
-    }
   }
 
   .right{
     .icon{
       margin-left: 5px;
-    }
-
-    &.next{
-      color: $white !important;
-      .icon{
-        color: $white;
-      }
     }
   }
 }

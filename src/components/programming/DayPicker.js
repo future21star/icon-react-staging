@@ -68,7 +68,7 @@ export default class DayPicker extends Component {
 	render() {
 		const {week} = this.state;
 		const {activeWeek, activeDate, setActiveDate} = this.props;
-
+		console.log(activeDate);
 		return (
 			<div className="daypicker-wrapper">
 				<ul className="nav nav-pills nav-justified">
