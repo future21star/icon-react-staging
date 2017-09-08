@@ -72,6 +72,12 @@ export default class App extends Component {
 			// logout
 			this.props.pushState('/login');
 		}
+
+		// let GA know the new url only on production env
+		if (process.env.NODE_ENV === 'production' && nextProps.location.pathname !== this.props.location.pathname) {
+			ga('set', 'page', nextProps.location.pathname);
+			ga('send', 'pageview');
+		}
 	}
 
 	handleLogout = (event) => {

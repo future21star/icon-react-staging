@@ -20,6 +20,7 @@ module.exports = {
 	entry: {
 		'main': [
 			'./src/client.js',
+			'./src/helpers/globalScripts.js',
 			'./styles/main.scss',
 			'./styles/icomoon/style.css'
 		]
