@@ -18,11 +18,16 @@ export default function reducer(state = initialState, action = {}) {
 		case SET_ACTIVE_WEEK:
 			return {
 				...state,
+				activeDate: action.payload.activeDate,
 				activeWeek: action.payload.activeWeek
 			};
 		default:
 			return state;
 	}
+}
+
+export function hasActiveDateSelected(globalState) {
+	return globalState.dayPickerStore && globalState.dayPickerStore.activeDate;
 }
 
 export function setActiveDate(activeDate) {
@@ -34,11 +39,12 @@ export function setActiveDate(activeDate) {
 	};
 }
 
-export function setActiveWeek(activeWeek) {
+export function setActiveWeek(activeWeek, activeDate) {
 	return {
 		type: SET_ACTIVE_WEEK,
 		payload: {
-			activeWeek
+			activeWeek, 
+			activeDate
 		}
 	};
 }

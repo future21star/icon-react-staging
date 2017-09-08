@@ -16,31 +16,6 @@ export default class ProgrammingHeader extends Component {
 		const {isGym, showWeekNavOnMobile, setActiveWeek} = this.props;
 
 		let activeWeek = this.props.activeWeek;
-
-		// let leftSideContent = isGym ? (
-		// 	<div className="pull-left change-week change-week-left">
-		// 		{this.props.activeWeek === 'current' && (
-
-		// 		)}
-		// 		{this.props.activeWeek !== 'current' && (
-					
-		// 		)}
-		// 	</div>
-		// ) : undefined;
-
-		// let rightSideContent = (
-		// 	<div className="pull-right change-week change-week-right">
-		// 		{this.props.activeWeek === 'current' && (
-		// 			<a href="javascript:;" onClick={e => setActiveWeek('next')}>
-		// 				Next <span className="mobile-hide">Week</span>
-		// 				<span className="icon-arrow-right" />
-		// 			</a>
-		// 		)}
-		// 		{this.props.activeWeek === 'next' && (
-					
-		// 		)}
-		// 	</div>
-		// 	);
 		
 
 		return (
@@ -50,13 +25,13 @@ export default class ProgrammingHeader extends Component {
 						<div className={showWeekNavOnMobile ? "col-xs-12 change-weeks-wrapper" : "col-xs-12 change-weeks-wrapper hidden-xs hidden-sm"}>
 							<div className="col-xs-4">
 								{isGym && activeWeek == 'current' && (
-									<a href="javascript:;" className={`left ${activeWeek}`} onClick={e => setActiveWeek('previous')}>
+									<a href="javascript:;" className={`left ${activeWeek}`} onClick={e => setActiveWeek('previous', moment().startOf('week').day(-6).format('YYYY-MM-DD'))}>
 										<span className="icon icon-arrow-left"/>Previous Week
 									</a>
 								)}
 
 								{activeWeek == 'next' && (
-									<a href="javascript:;" className={`left ${activeWeek}`} onClick={e => setActiveWeek('current')}>
+									<a href="javascript:;" className={`left ${activeWeek}`} onClick={e => setActiveWeek('current', moment().startOf('week').day(1).format('YYYY-MM-DD'))}>
 										<span className="icon icon-arrow-left"/>Current Week
 									</a>
 								)}
@@ -64,13 +39,13 @@ export default class ProgrammingHeader extends Component {
 							<div className="col-xs-4" />
 							<div className="col-xs-4 text-right">
 								{activeWeek == 'current' && (
-									<a href="javascript:;" className={`right ${activeWeek}`} onClick={e => setActiveWeek('next')}>
+									<a href="javascript:;" className={`right ${activeWeek}`} onClick={e => setActiveWeek('next', moment().startOf('week').day(8).format('YYYY-MM-DD'))}>
 										Next Week<span className="icon icon-arrow-right" />
 									</a>
 								)}
 
 								{activeWeek == 'previous' && (
-									<a href="javascript:;" className={`right ${activeWeek}`} onClick={e => setActiveWeek('current')}>
+									<a href="javascript:;" className={`right ${activeWeek}`} onClick={e => setActiveWeek('current', moment().startOf('week').day(1).format('YYYY-MM-DD'))}>
 										Current Week<span className="icon icon-arrow-right" />
 									</a>
 								)}

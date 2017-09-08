@@ -5,8 +5,8 @@ import {isLoaded as isAuthLoaded, load as loadAuth} from '../redux/modules/authS
 import {isLoaded as isHelpfulLinksLoaded, load as loadHelpfulLinks} from '../redux/modules/helpfulLinksStore';
 import {isLoaded as isAllTrackLoaded, load as loadAllTracks} from '../redux/modules/allTracksStore';
 import {isFilterTopicsLoaded, loadFilterTopics} from "../redux/modules/feedStore";
-import {setActiveDate as setActiveDateOnSwipeStore} from "../redux/modules/swipeStore";
-import {setActiveDate as setActiveDateOnDayPickerStore} from "../redux/modules/dayPickerStore";
+import {setActiveDate as setActiveDateOnSwipeStore, hasActiveDateSelected as hasActiveDateSelectedOnSwipeStore} from "../redux/modules/swipeStore";
+import {setActiveDate as setActiveDateOnDayPickerStore, hasActiveDateSelected as hasActiveDateSelectedOnDayPickerStore} from "../redux/modules/dayPickerStore";
 import {push} from 'react-router-redux';
 import config from '../config';
 import {asyncConnect} from 'redux-async-connect';
@@ -19,8 +19,9 @@ import moment from 'moment';
 	promise: ({store: {dispatch, getState}}) => {
 		const promises = [];
 
-		promises.push(dispatch(setActiveDateOnSwipeStore(moment().format('YYYY-MM-DD'))));
-		promises.push(dispatch(setActiveDateOnDayPickerStore(moment().format('YYYY-MM-DD'))));
+		// load dates on store initial load
+		if(!hasActiveDateSelectedOnSwipeStore(getState())) promises.push(dispatch(setActiveDateOnSwipeStore(moment().format('YYYY-MM-DD'))));
+		if(!hasActiveDateSelectedOnDayPickerStore(getState())) promises.push(dispatch(setActiveDateOnDayPickerStore(moment().format('YYYY-MM-DD'))));
 
 		// load if user is logged in
 		if (!isAuthLoaded(getState())) promises.push(dispatch(loadAuth()));
