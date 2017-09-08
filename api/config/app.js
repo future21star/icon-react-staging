@@ -17,7 +17,7 @@ export const WP_API_URL = wpApiUrl;
 
 if(process.env.NODE_ENV !== 'production') {
 	console.log('=> -- using config --');
-	console.log('=> NODE_ENV', process.env.NODE_ENV);
+	console.log('=> NODE_ENV', process.env.NODE_ENV || 'development');
 	console.log('=> APP_URL', APP_URL);
 	console.log('=> WP_API_URL', WP_API_URL);
 }
