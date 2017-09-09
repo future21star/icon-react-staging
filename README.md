@@ -10,7 +10,7 @@
 7. Enter username and password of your github account (If terminal prompts to enter credentials)
 8. If it's the first time you are deploying, run `npm install` (It will fetch all npm modules and store them in `node_modules` folder, and will also `npm run build` to build the app, it you get a memory error, you need to build it yourself (wrote later))
 9. Else if a new npm package was added, run `npm update` (It will fetch the new npm module and store it in `node_modules` folder)
-10. Run `npm run build` to build
+10. Run `npm run build-staging` to build
 11. Run `sudo service mysqld start` (Starting the mysql server)
 12. Run `node_modules/.bin/sequelize db:migrate:undo:all --env staging` (If you want to fully destroy all the tables)
 13. Run `node_modules/.bin/sequelize db:migrate --env staging` (If you destroyed all the tables, it will create all the tables, otherwise it will only create the new tables that is not in staging database)
