@@ -65,8 +65,16 @@ export default class App extends Component {
 	componentWillReceiveProps(nextProps) {
 		if (!this.props.user && nextProps.user) {
 			// login
-			if(nextProps.showWelcomeAfterLogin) this.props.pushState('/welcome');
-			else this.props.pushState('/');
+			if(nextProps.showWelcomeAfterLogin) {
+				// welcome redirect
+				this.props.pushState('/welcome');
+			} else if(nextProps.location.query.redirectTo) {
+				// intended redirect
+				this.props.pushState(nextProps.location.query.redirectTo);
+			} else {
+				// default redirect
+				this.props.pushState('/')
+			}
 		} else if (this.props.user && !nextProps.user) {
 			if(this.props.podcastPlayer) this.props.podcastPlayer.stop();
 			// logout
