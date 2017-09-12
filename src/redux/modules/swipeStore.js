@@ -27,10 +27,6 @@ export default function reducer(state = initialState, action = {}) {
 	}
 }
 
-export function hasActiveDateSelected(globalState) {
-	return globalState.swipeStore && globalState.swipeStore.currentDate;
-}
-
 export function setActiveTrack(activeTrack, activeIndex) {
 	return {
 		type: SET_ACTIVE_TRACK,

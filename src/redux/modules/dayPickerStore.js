@@ -26,10 +26,6 @@ export default function reducer(state = initialState, action = {}) {
 	}
 }
 
-export function hasActiveDateSelected(globalState) {
-	return globalState.dayPickerStore && globalState.dayPickerStore.activeDate;
-}
-
 export function setActiveDate(activeDate) {
 	return {
 		type: SET_ACTIVE_DATE,
