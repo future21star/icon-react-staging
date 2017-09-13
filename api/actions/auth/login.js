@@ -205,9 +205,9 @@ export default function login(request) {
 		}
 
 		////////////////////////////////
-		///// set track to unify if subscription is Unify
+		///// set track to unify if subscription is Unify / Unify + Nutrition
 		////////////////////////////////
-		if(wpSubscription.data.subscription_id === '2') {
+		if(wpSubscription.data.subscription_id === '2' || wpSubscription.data.subscription_id === '3') {
 			try {
 				await models.UserTrack.findOrCreate({
 					where: {
