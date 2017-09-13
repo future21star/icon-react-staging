@@ -11,7 +11,7 @@
     },
     {
       "id": 2,
-      "name": "Unity",
+      "name": "Unify",
       "desc": "Access to the Unity programming track and the Feed",
       "upgrade_desc": "Upgrade to Individual to access all the programming tracks Icon has to offer.",
       "vault_sections": [
@@ -22,7 +22,7 @@
     },
     {
       "id": 3,
-      "name": "Unity + Nutrition",
+      "name": "Unify + Nutrition",
       "desc": "Access to the Unity programming track, the Feed, and Nutrition",
       "upgrade_desc": "Upgrade to Individual + Nutrition to maximize your fitness.",
       "vault_sections": [
