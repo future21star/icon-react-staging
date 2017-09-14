@@ -130,7 +130,7 @@ export default class Programming extends Component {
 		const {browser, user, selectedTracks, swipedActiveTrackName} = this.props;
 
 		if(!user) return <NoAccessSubscriptionUpgradeCard/>;
-		let isGym = parseInt(user.subscription.subscription_id) === 8;
+		let isGym = parseInt(user.subscription.subscription_id) === 8 || parseInt(user.subscription.subscription_id) === 14;
 
 		let rightSideContent = (
 			<div>
