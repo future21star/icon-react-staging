@@ -124,6 +124,18 @@
         "programming-all",
         "programming-masters"
       ]
+    },
+    {
+      "id": 14,
+      "name": "Gym + Masters",
+      "desc": "Access to the Unity programming track, the Feed, and Nutrition",
+      "upgrade_desc": "\"Find your weaknesses, make friends with them and beat them to death...\"",
+      "vault_sections": [
+        "assessment",
+        "feed",
+        "programming-all",
+        "programming-masters"
+      ]
     }
   ]
 }
