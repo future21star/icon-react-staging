@@ -128,7 +128,7 @@ export default class FeedPostSingle extends Component {
 						<article className="feed-featured-post">
 							<header className="feed-featured-post-header">
 								<h1 className="feed-featured-post-title" dangerouslySetInnerHTML={this.createMarkup(activeItem.title)}/>
-								<div className="feed-featured-post-date">Posted {moment(activeItem.date).format('DD.MM.YYYY')}</div>
+								<div className="feed-featured-post-date">Posted {moment(activeItem.date).format('MM/DD/YYYY')}</div>
 							</header>
 
 							{activeItemType === 'podcast' && (

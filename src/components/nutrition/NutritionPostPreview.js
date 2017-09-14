@@ -23,7 +23,7 @@ export default class NutritionPostPreview extends Component {
 					<h3 className="feed-post-title">
 						<Link to={`/nutrition/blog/${post.id}`} dangerouslySetInnerHTML={this.createMarkup(post.title.rendered)}/>
 					</h3>
-					<div className="feed-post-date">Posted {moment(post.date).format('DD.MM.YYYY')}</div>
+					<div className="feed-post-date">Posted {moment(post.date).format('MM/DD/YYYY')}</div>
 					<div className="nutrition-preview-description" dangerouslySetInnerHTML={this.createMarkup(post.excerpt.rendered)}/>
 
 					<div className="feed-featured-post-read-more">

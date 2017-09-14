@@ -53,7 +53,7 @@ export default class NutritionPostSingle extends Component {
 						<article className="feed-featured-post">
 							<header className="feed-featured-post-header">
 								<h1 className="feed-featured-post-title" dangerouslySetInnerHTML={this.createMarkup(activePost.title.rendered)}/>
-								<div className="feed-featured-post-date">Posted {moment(activePost.date).format('DD.MM.YYYY')}</div>
+								<div className="feed-featured-post-date">Posted {moment(activePost.date).format('MM/DD/YYYY')}</div>
 							</header>
 
 							<div className="feed-featured-post-image">

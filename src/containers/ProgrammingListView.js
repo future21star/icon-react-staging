@@ -130,7 +130,7 @@ export default class ProgrammingListView extends Component {
 									</div>
 								}
 								{wods[this.state.selectedTrack] && Object.keys(wods[this.state.selectedTrack]).length === 0
-									? <NoTracksFound/>
+									? <p className="text-center">No tracks found</p>
 									: undefined
 								}
 							</div>
