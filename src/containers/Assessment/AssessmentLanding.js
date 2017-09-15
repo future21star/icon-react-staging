@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {connect} from "react-redux";
-import {Menubar, AssessmentUpgradeCard} from '../../components';
+import {Menubar, BottomNav, AssessmentUpgradeCard} from '../../components';
 import {Link} from "react-router";
 
 @connect(
@@ -76,7 +76,10 @@ export default class AssessmentLanding extends Component {
 							<div className="col-xs-6 col-sm-3"><span className="icon icon-track-strength">{iconTracksInner}</span><p className="track-title">Strength</p></div>
 						</div>	
 					</div>
+	
+					<BottomNav/>
 				</div>
+
 			</ReactCSSTransitionGroup>
 		);
 	}

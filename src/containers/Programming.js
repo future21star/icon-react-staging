@@ -25,10 +25,8 @@ import {
 	load as loadWods
 } from '../redux/modules/wodsStore';
 
-import {
-	isLoaded as isDailyBriefLoaded,
-	load as loadDailyBrief
-} from '../redux/modules/dailyBriefStore';
+import {load as loadDailyBrief} from '../redux/modules/dailyBriefStore';
+import moment from "moment";
 
 @asyncConnect([{
 	promise: ({store: {dispatch, getState}}) => {
@@ -36,10 +34,6 @@ import {
 
 		if (!isSelectedTracksLoaded(getState())) {
 			promises.push(dispatch(loadSelectedTracks()));
-		}
-
-		if (!isDailyBriefLoaded(getState())) {
-			promises.push(dispatch(loadDailyBrief()));
 		}
 
 		return Promise.all(promises);
@@ -59,7 +53,7 @@ import {
 		activeDate: state.dayPickerStore.activeDate,
 		dailyBriefs: state.dailyBriefStore.dailyBriefs
 	}),
-	{setActiveTrack, setActiveDate}
+	{setActiveTrack, setActiveDate, loadDailyBrief}
 )
 export default class Programming extends Component {
 
@@ -78,7 +72,9 @@ export default class Programming extends Component {
 	};
 
 	componentDidMount() {
-		const {dispatch, selectedTracks, swipedActiveTrackIndex, setActiveTrack} = this.props;
+		const {dispatch, selectedTracks, swipedActiveTrackIndex, setActiveTrack, loadDailyBrief} = this.props;
+
+		loadDailyBrief(moment().format('YYYY-MM-DD'));
 
 		// if user has any selected track
 		if (selectedTracks.length) {
@@ -130,7 +126,7 @@ export default class Programming extends Component {
 		const {browser, user, selectedTracks, swipedActiveTrackName} = this.props;
 
 		if(!user) return <NoAccessSubscriptionUpgradeCard/>;
-		let isGym = parseInt(user.subscription.subscription_id) === 8;
+		let isGym = parseInt(user.subscription.subscription_id) === 8 || parseInt(user.subscription.subscription_id) === 14;
 
 		let rightSideContent = (
 			<div>
@@ -204,14 +200,17 @@ export default class Programming extends Component {
 		let wodForThisTrackAndDate = wodForThisTrack ? wods[track.name][activeDate] : null;
 		let nextTrackName = selectedTracks[i + 1] ? selectedTracks[i + 1].trackName : null;
 		let prevTrackName = selectedTracks[i - 1] ? selectedTracks[i - 1].trackName : null;
-		let dailyBrief = (dailyBriefs[track.name] ? <DailyBriefDesktop user={user} content={dailyBriefs[track.name]}/> : undefined);
+		let dailyBrief = null;
+		if(dailyBriefs) {
+			dailyBrief = (dailyBriefs[track.name] ? <DailyBriefDesktop user={user} content={dailyBriefs[track.name]}/> : undefined);
+		}
 
 		const logoImg = require('../../static/iconlogobg.jpg');
 
 		let desktopWorkoutContent = <DesktopWorkout track={wodForThisTrackAndDate}/>;
 
 		if(currentDate === activeDate) {
-			desktopWorkoutContent = <DesktopWorkout track={wodForThisTrackAndDate} dailyBriefContent={dailyBriefs[track.name]}/>;
+			desktopWorkoutContent = <DesktopWorkout track={wodForThisTrackAndDate} dailyBriefContent={dailyBriefs ? dailyBriefs[track.name] : null}/>;
 		}
 		
 		let content = null;

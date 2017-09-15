@@ -20,7 +20,6 @@ module.exports = {
 	entry: {
 		'main': [
 			'./src/client.js',
-			'./src/helpers/globalScripts.js',
 			'./styles/main.scss',
 			'./styles/icomoon/style.css'
 		]
@@ -60,7 +59,7 @@ module.exports = {
 		new ExtractTextPlugin('[name]-[chunkhash].css', {allChunks: true}),
 		new webpack.DefinePlugin({
 			'process.env': {
-				NODE_ENV: '"production"'
+				NODE_ENV: '"staging"'
 			},
 
 			__CLIENT__: true,

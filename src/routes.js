@@ -20,9 +20,19 @@ export default (store) => {
 
 		function checkAuth() {
 			const {authStore: {user}} = store.getState();
+
+			// not logged in
 			if (!user) {
-				// oops, not logged in, so can't be here!
-				replace('/login');
+				// get intended redirect url
+				let redirectTo = nextState.location.pathname;
+
+				// redirect
+				if(redirectTo === '/') {
+					replace('/login');						
+				} else {
+					replace('/login?redirectTo='+redirectTo);
+				}
+
 			}
 			cb();
 		}

@@ -1,12 +1,9 @@
 import * as models from "../../models";
-import moment from 'moment';
 import {generalError} from '../../utils/message'
 
 export default function loadListViewWods(request) {
 	return new Promise(async (resolve, reject) => {
-		const {trackName} = request.body;
-
-		let date = moment().format('YYYY-MM-DD');
+		const {trackName, date} = request.body;
 
 		let wods = null;
 		try {

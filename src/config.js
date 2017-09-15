@@ -4,6 +4,9 @@ const environment = {
 	development: {
 		isProduction: false
 	},
+	staging: {
+		isProduction: true
+	},
 	production: {
 		isProduction: true
 	}

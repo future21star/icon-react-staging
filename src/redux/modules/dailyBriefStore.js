@@ -39,13 +39,13 @@ export default function reducer(state = initialState, action = {}) {
 	}
 }
 
-export function isLoaded(globalState) {
-	return globalState.dailyBriefStore && globalState.dailyBriefStore.loaded;
-}
-
-export function load() {
+export function load(today) {
 	return {
 		types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-		promise: (client) => client.get('/loadDailyBrief')
+		promise: (client) => client.post('/loadDailyBrief', {
+			data: {
+				date: today
+			}
+		})
 	};
 }

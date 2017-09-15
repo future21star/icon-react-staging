@@ -102,12 +102,13 @@ export function load(trackName, date) {
 	};
 }
 
-export function loadListView(trackName) {
+export function loadListView(trackName, date) {
 	return {
 		types: [LOAD_LIST, LOAD_LIST_SUCCESS, LOAD_LIST_FAIL],
 		promise: (client) => client.post('/loadListViewWods', {
 			data: {
-				trackName
+				trackName,
+				date
 			}
 		})
 	};

@@ -10,12 +10,16 @@
     "start": "concurrent --kill-others \"npm run start-prod\" \"npm run start-prod-api\"",
     "start-prod": "better-npm-run start-prod",
     "start-prod-api": "better-npm-run start-prod-api",
+    "start-staging": "better-npm-run start-staging",
+    "start-staging-api": "better-npm-run start-staging-api",
     "build": "better-npm-run build",
+    "build-staging": "better-npm-run build-staging",
     "postinstall": "npm run build",
     "start-dev": "better-npm-run start-dev",
     "start-dev-api": "better-npm-run start-dev-api",
     "watch-client": "better-npm-run watch-client",
-    "dev": "concurrent --kill-others \"npm run watch-client\" \"npm run start-dev\" \"npm run start-dev-api\""
+    "dev": "concurrent --kill-others \"npm run watch-client\" \"npm run start-dev\" \"npm run start-dev-api\"",
+    "staging": "concurrent --kill-others \"npm run start-staging\" \"npm run start-staging-api\""
   },
   "betterScripts": {
     "start-prod": {
@@ -27,11 +31,28 @@
         "APIPORT": 3030
       }
     },
+    "start-staging": {
+      "command": "node --max_old_space_size=800 ./bin/server.js",
+      "env": {
+        "NODE_PATH": "./src",
+        "NODE_ENV": "staging",
+        "PORT": 8080,
+        "APIPORT": 3030
+      }
+    },
     "start-prod-api": {
       "command": "node --max_old_space_size=800 ./bin/api.js",
       "env": {
         "NODE_PATH": "./api",
         "NODE_ENV": "production",
+        "APIPORT": 3030
+      }
+    },
+    "start-staging-api": {
+      "command": "node --max_old_space_size=800 ./bin/api.js",
+      "env": {
+        "NODE_PATH": "./api",
+        "NODE_ENV": "staging",
         "APIPORT": 3030
       }
     },
@@ -65,6 +86,12 @@
       "command": "node --max_old_space_size=800 ./node_modules/webpack/bin/webpack.js --verbose --colors --display-error-details --config webpack/prod.config.js",
       "env": {
         "NODE_ENV": "production"
+      }
+    },
+    "build-staging": {
+      "command": "node --max_old_space_size=800 ./node_modules/webpack/bin/webpack.js --verbose --colors --display-error-details --config webpack/staging.config.js",
+      "env": {
+        "NODE_ENV": "staging"
       }
     }
   },

@@ -1,5 +1,3 @@
-import moment from 'moment';
-
 const SET_ACTIVE_TRACK = 'swipe/SET_ACTIVE_TRACK';
 const SET_ACTIVE_DATE = 'swipe/SET_ACTIVE_DATE';
 
@@ -25,10 +23,6 @@ export default function reducer(state = initialState, action = {}) {
 		default:
 			return state;
 	}
-}
-
-export function hasActiveDateSelected(globalState) {
-	return globalState.swipeStore && globalState.swipeStore.currentDate;
 }
 
 export function setActiveTrack(activeTrack, activeIndex) {

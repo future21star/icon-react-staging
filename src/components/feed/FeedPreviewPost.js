@@ -71,7 +71,7 @@ export default class FeedPreviewPost extends Component {
 							<h3 className="feed-featured-post-title">
 								<Link to={`/feed/${type}/${id}`} dangerouslySetInnerHTML={this.createMarkup(title)}/>
 							</h3>
-							<div className="feed-featured-post-date">Posted {moment(date).format('DD.MM.YYYY')}</div>
+							<div className="feed-featured-post-date">Posted {moment(date).format('MM/DD/YYYY')}</div>
 							{description && (
 								<div className="feed-featured-post-content">
 									{
@@ -110,7 +110,7 @@ export default class FeedPreviewPost extends Component {
 							<h3 className="feed-post-title">
 								<Link to={`/feed/${type}/${id}`} dangerouslySetInnerHTML={this.createMarkup(title)}/>
 							</h3>
-							<div className="feed-post-date">Posted {moment(date).format('DD.MM.YYYY')}</div>
+							<div className="feed-post-date">Posted {moment(date).format('MM/DD/YYYY')}</div>
 							{description && (
 								<div className="feed-post-content">
 									{

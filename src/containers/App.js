@@ -5,8 +5,8 @@ import {isLoaded as isAuthLoaded, load as loadAuth} from '../redux/modules/authS
 import {isLoaded as isHelpfulLinksLoaded, load as loadHelpfulLinks} from '../redux/modules/helpfulLinksStore';
 import {isLoaded as isAllTrackLoaded, load as loadAllTracks} from '../redux/modules/allTracksStore';
 import {isFilterTopicsLoaded, loadFilterTopics} from "../redux/modules/feedStore";
-import {setActiveDate as setActiveDateOnSwipeStore, hasActiveDateSelected as hasActiveDateSelectedOnSwipeStore} from "../redux/modules/swipeStore";
-import {setActiveDate as setActiveDateOnDayPickerStore, hasActiveDateSelected as hasActiveDateSelectedOnDayPickerStore} from "../redux/modules/dayPickerStore";
+import {setActiveDate as setActiveDateOnSwipeStore} from "../redux/modules/swipeStore";
+import {setActiveDate as setActiveDateOnDayPickerStore} from "../redux/modules/dayPickerStore";
 import {push} from 'react-router-redux';
 import config from '../config';
 import {asyncConnect} from 'redux-async-connect';
@@ -18,10 +18,6 @@ import moment from 'moment';
 @asyncConnect([{
 	promise: ({store: {dispatch, getState}}) => {
 		const promises = [];
-
-		// load dates on store initial load
-		if(!hasActiveDateSelectedOnSwipeStore(getState())) promises.push(dispatch(setActiveDateOnSwipeStore(moment().format('YYYY-MM-DD'))));
-		if(!hasActiveDateSelectedOnDayPickerStore(getState())) promises.push(dispatch(setActiveDateOnDayPickerStore(moment().format('YYYY-MM-DD'))));
 
 		// load if user is logged in
 		if (!isAuthLoaded(getState())) promises.push(dispatch(loadAuth()));
@@ -44,7 +40,12 @@ import moment from 'moment';
 		showWelcomeAfterLogin: state.loginStore.showWelcomeAfterLogin,
 		podcastPlayer: state.podcastPlayerStore.podcastPlayer
 	}),
-	{pushState: push, calculateResponsiveState}
+	{
+		pushState: push,
+		calculateResponsiveState,
+		setActiveDateOnSwipeStore,
+		setActiveDateOnDayPickerStore
+	}
 )
 export default class App extends Component {
 	static propTypes = {
@@ -60,17 +61,33 @@ export default class App extends Component {
 
 	componentDidMount() {
 		this.props.calculateResponsiveState(global);
+		this.props.setActiveDateOnSwipeStore(moment().format('YYYY-MM-DD'));
+		this.props.setActiveDateOnDayPickerStore(moment().format('YYYY-MM-DD'));
 	}
 
 	componentWillReceiveProps(nextProps) {
 		if (!this.props.user && nextProps.user) {
 			// login
-			if(nextProps.showWelcomeAfterLogin) this.props.pushState('/welcome');
-			else this.props.pushState('/');
+			if(nextProps.showWelcomeAfterLogin) {
+				// welcome redirect
+				this.props.pushState('/welcome');
+			} else if(nextProps.location.query.redirectTo) {
+				// intended redirect
+				this.props.pushState(nextProps.location.query.redirectTo);
+			} else {
+				// default redirect
+				this.props.pushState('/')
+			}
 		} else if (this.props.user && !nextProps.user) {
 			if(this.props.podcastPlayer) this.props.podcastPlayer.stop();
 			// logout
 			this.props.pushState('/login');
+		}
+
+		// let GA know the new url only on production env
+		if (process.env.NODE_ENV === 'production' && nextProps.location.pathname !== this.props.location.pathname) {
+			ga('set', 'page', nextProps.location.pathname);
+			ga('send', 'pageview');
 		}
 	}
 

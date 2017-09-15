@@ -1,5 +1,3 @@
-import moment from 'moment';
-
 const SET_ACTIVE_DATE = 'dayPicker/SET_ACTIVE_DATE';
 const SET_ACTIVE_WEEK = 'dayPicker/SET_ACTIVE_WEEK';
 
@@ -24,10 +22,6 @@ export default function reducer(state = initialState, action = {}) {
 		default:
 			return state;
 	}
-}
-
-export function hasActiveDateSelected(globalState) {
-	return globalState.dayPickerStore && globalState.dayPickerStore.activeDate;
 }
 
 export function setActiveDate(activeDate) {
