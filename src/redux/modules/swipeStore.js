@@ -1,5 +1,3 @@
-import moment from 'moment';
-
 const SET_ACTIVE_TRACK = 'swipe/SET_ACTIVE_TRACK';
 const SET_ACTIVE_DATE = 'swipe/SET_ACTIVE_DATE';
 

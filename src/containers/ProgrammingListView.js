@@ -7,13 +7,13 @@ import {loadListView} from '../redux/modules/wodsStore';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {
 	Menubar,
-	NoTracksFound, 
-	DesktopListWorkoutContainer, 
+	DesktopListWorkoutContainer,
 	DesktopListWorkoutHeader} from '../components/index';
 import {
 	isLoaded as isTracksLoaded,
 	load as loadTracks
 } from '../redux/modules/selectedTracksStore';
+import moment from "moment";
 
 @asyncConnect([{
 	promise: ({store: {dispatch, getState}}) => {
@@ -60,7 +60,7 @@ export default class ProgrammingListView extends Component {
 
 	loadListViewWods = () => {
 		const {dispatch} = this.props;
-		dispatch(loadListView(this.state.selectedTrack));
+		dispatch(loadListView(this.state.selectedTrack, moment().format('YYYY-MM-DD')));
 	};
 
 	render() {

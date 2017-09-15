@@ -1,5 +1,3 @@
-import moment from 'moment';
-
 const SET_ACTIVE_DATE = 'dayPicker/SET_ACTIVE_DATE';
 const SET_ACTIVE_WEEK = 'dayPicker/SET_ACTIVE_WEEK';
 

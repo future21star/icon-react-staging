@@ -6,7 +6,8 @@ import {generalError} from "../../utils/message";
 export default function loadDailyBrief(request) {
 	return new Promise(async (resolve, reject) => {
 
-		let yesterday = moment().days(-1).toISOString();
+		let today = moment(request.body.date, "YYYY-MM-DD");
+		let yesterday = today.clone().subtract(1, 'day').toISOString();
 
 		// get daily Brief
 		let wpDailyBriefs = null;
@@ -29,9 +30,8 @@ export default function loadDailyBrief(request) {
 			})
 		}
 		else {
-			let now = moment().format('YYYY-MM-DD');
 			let todayBrief = wpDailyBriefs.data.filter((dailyBrief) => {
-				return moment(now).isSame(moment(dailyBrief.date).format('YYYY-MM-DD'));
+				return today.isSame(moment(dailyBrief.date).format('YYYY-MM-DD'));
 			})[0];
 
 			// no brief found

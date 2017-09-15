@@ -15,10 +15,11 @@ import {connect} from "react-redux";
 import {asyncConnect} from 'redux-async-connect';
 import ReactSwipe from 'react-swipe';
 import {isLoaded as isSelectedTracksLoaded, load as loadSelectedTracks} from '../redux/modules/selectedTracksStore';
-import {isLoaded as isDailyBriefLoaded, load as loadDailyBrief} from '../redux/modules/dailyBriefStore';
+import {load as loadDailyBrief} from '../redux/modules/dailyBriefStore';
 import {isLoaded as isWodsLoaded, load as loadWods} from '../redux/modules/wodsStore';
 import {setActiveTrack} from "../redux/modules/swipeStore";
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import moment from "moment";
 
 @asyncConnect([{
 	promise: ({store: {dispatch, getState}}) => {
@@ -26,10 +27,6 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 		if (!isSelectedTracksLoaded(getState())) {
 			promises.push(dispatch(loadSelectedTracks()));
-		}
-
-		if (!isDailyBriefLoaded(getState())) {
-			promises.push(dispatch(loadDailyBrief()));
 		}
 
 		return Promise.all(promises);
@@ -48,11 +45,13 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 		wods: state.wodsStore.wods,
 		dailyBriefs: state.dailyBriefStore.dailyBriefs
 	}),
-	{setActiveTrack}
+	{setActiveTrack, loadDailyBrief}
 )
 export default class Home extends Component {
 	componentDidMount() {
-		const {dispatch, selectedTracks, swipedActiveTrackIndex, setActiveTrack} = this.props;
+		const {dispatch, selectedTracks, swipedActiveTrackIndex, setActiveTrack, loadDailyBrief} = this.props;
+
+		loadDailyBrief(moment().format('YYYY-MM-DD'));
 
 		// if user has any selected track
 		if (selectedTracks.length) {
@@ -149,7 +148,11 @@ export default class Home extends Component {
 		let nextTrackName = selectedTracks[i + 1] ? selectedTracks[i + 1].trackName : null;
 		let prevTrackName = selectedTracks[i - 1] ? selectedTracks[i - 1].trackName : null;
 
-		let dailyBrief = (dailyBriefs[track.name] ? <DailyBriefCollapsable user={user} content={dailyBriefs[track.name]}/> : undefined);
+		let dailyBrief = null;
+
+		if(dailyBrief) {
+		    dailyBrief = (dailyBriefs[track.name] ? <DailyBriefCollapsable user={user} content={dailyBriefs[track.name]}/> : undefined);
+		}
 
 
 		let content = null;
