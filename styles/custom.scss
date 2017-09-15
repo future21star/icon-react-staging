@@ -217,11 +217,43 @@
   
 }
 
-.loading-logo img{
-  max-width: 600px;
-  width: 100%;
-  height: auto;
+.loading-logo{
+  margin-top: 20%;
+  margin-top: 20vh;
+  height: 200px;
+  img{
+    margin-top: 50px;
+    max-width: 100px;
+    width: 100%;
+    height: auto;
+  }
 }
+
+.lds-eclipse div {
+  position: absolute;
+  -webkit-animation: lds-eclipse 1.7s linear infinite;
+  animation: lds-eclipse 1.7s linear infinite;
+  width: 160px;
+  height: 160px;
+  top: 0;
+  left: 20px;
+  border-radius: 50%;
+  box-shadow: 0 4px 0 0 #4AB3BF;
+  -webkit-transform-origin: 80px 82px;
+  transform-origin: 80px 82px;
+}
+.lds-eclipse {
+  position: relative;
+  width:100%;
+  height:100%;
+  max-width: 200px !important;
+  max-height: 200px !important;
+  margin: 0 auto;
+  -webkit-transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+  transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+}
+
+
 
 .welcome-block-bg{
   padding: 20px 15px;
