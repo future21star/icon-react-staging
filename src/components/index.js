@@ -6,7 +6,7 @@ export BottomNav from './global/BottomNav';
 export DotList from './global/DotList';
 export PodcastFloatingPlayerButton from './global/PodcastFloatingPlayerButton';
 export ProblemHouston from './global/ProblemHouston';
-
+export LoadingLogo from './global/LoadingLogo';
 
 //MENUBAR
 export Menubar from './menu-bar/Menubar';

@@ -10,7 +10,8 @@ import {
 	DesktopWorkout,
 	RestDay,
 	NoAccessSubscriptionUpgradeCard,
-	NoTracksFound
+	NoTracksFound,
+	LoadingLogo
 } from '../components/index';
 import {Link} from "react-router";
 import {connect} from "react-redux";
@@ -207,7 +208,7 @@ export default class Programming extends Component {
 			dailyBrief = (dailyBriefs[track.name] ? <DailyBriefDesktop user={user} content={dailyBriefs[track.name]}/> : undefined);
 		}
 
-		const logoImg = require('../../static/iconlogobg.jpg');
+		const logoImg = require('../../static/iconlogobg.png');
 
 		let desktopWorkoutContent = <DesktopWorkout track={wodForThisTrackAndDate}/>;
 
@@ -218,15 +219,11 @@ export default class Programming extends Component {
 		let content = null;
 		if(!wodForThisTrack) {
 			content = (
-				<div className="loading-logo">
-					<img src={logoImg} alt="logo"/>
-				</div>
+				<LoadingLogo/>
 			);
 		} else if(wodForThisTrack && typeof wods[track.name][activeDate] === 'undefined') {
 			content = (
-				<div className="loading-logo">
-					<img src={logoImg} alt="logo" width="100%"/>
-				</div>
+				<LoadingLogo/>
 			);
 		} else if(wodForThisTrack && wodForThisTrackAndDate) {
 			content = (

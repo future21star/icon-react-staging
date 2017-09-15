@@ -8,7 +8,8 @@ import {
 	RestDay,
 	DotList,
 	DesktopWorkout,
-	NoTracksFound
+	NoTracksFound,
+	LoadingLogo
 } from '../components/index';
 import {Link} from "react-router";
 import {connect} from "react-redux";
@@ -142,7 +143,7 @@ export default class Home extends Component {
 	renderEachTrack(selectedTrack, i) {
 		const {browser, user, selectedTracks, wods, wodsStore, currentDate, dailyBriefs} = this.props;
 
-		const logoImg = require('../../static/iconlogobg.jpg');
+		const logoImg = require('../../static/iconlogobg.png');
 
 		let track = selectedTrack.track;
 		let wodForThisTrack = wods[track.name];
@@ -160,20 +161,12 @@ export default class Home extends Component {
 		let content = null;
 		if(!wodForThisTrack) {
 			content = (
-				<div className="row">
-					<div className="col-xs-12 col-md-offset-4 col-md-4">
-						<div className="loading-logo">
-							<img src={logoImg} alt="logo" width="100%"/>
-						</div>
-					</div>
-				</div>
+				<LoadingLogo/>
 			);
 		}
 		else if(wodForThisTrack && typeof wods[track.name][currentDate] === 'undefined') {
 			content = (
-				<div className="loading-logo">
-					<img src={logoImg} alt="logo"/>
-				</div>
+				<LoadingLogo/>
 			);
 		} else if(wodForThisTrack && wodForThisTrackAndDate) {
 			content = (
