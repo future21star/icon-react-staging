@@ -68,7 +68,9 @@ export default class Home extends Component {
 	}
 
 	loadTodaysWod = (trackName) => {
-		const {wodsStore, dispatch, currentDate} = this.props;
+		const {wodsStore, dispatch} = this.props;
+
+		let currentDate = moment().format('YYYY-MM-DD');
 
 		if (!isWodsLoaded(wodsStore, trackName, currentDate)) {
 			dispatch(loadWods(trackName, currentDate));
