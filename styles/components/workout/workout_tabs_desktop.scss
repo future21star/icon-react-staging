@@ -31,11 +31,23 @@
     margin-top: 0;
   }
 }
+
+.tracks-list-view-container-content .list-view-workout:nth-child(3n+1){
+  clear:left;
+}
+
 .tab-contents-area-desktop {
-
-  background: $whiteDark;
-  padding-bottom: 15px;
-
+  max-height: 300px;
+  overflow-y: scroll;
+  background-color: $whiteDark;
+  .workout-copy-wrapper{
+    padding-top: 5px;
+    a{
+      span{
+        margin-left: 5px;
+      }
+    }
+  }
   .tab-item-desktop {
     padding: 20px 20px 20px 45px;
   }
@@ -50,12 +62,10 @@
   }
   .tab-item-container-desktop {
     .item-desktop {
-      background: #edebec;
-      padding: 23px 10px 3px 0;
+      padding:  0 10px 0 0;
       position: relative;
       margin-bottom: 20px;
       div {
-
         display: inline-block;
         margin-left: 80px;
         position: relative;
@@ -63,6 +73,7 @@
         p {
           margin-bottom: 6px;
           font-size: 1.1em;
+          font-weight: 700;
           &.title{
             font-weight: 700;
             letter-spacing: 1px;
@@ -76,10 +87,10 @@
         }
       }
       .red-hyphen {
-              color: #d12022;
-            }
+        color: $red;
+      }
       .item-number-desktop {
-        background: #5dc7d4;
+        background: $turquoise;
         margin-right: 20px;
         padding: 15px 20px 14px 20px;
         color: white;

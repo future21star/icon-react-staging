@@ -39,42 +39,42 @@ export default class DesktopListWorkoutTabContainer extends Component {
 		const {track} = this.props;
 
 		return (
-			<div className="track-list-tabs-desktop">
-				<div className="track-list-tabs-list">
-					<ul className="nav nav-tabs">
-						{track.warmUp ? (
-							<li>
+			<div className="workout-tabs">
+				<div className="container-fluid">
+					<div className="assessment-tabs-nav workout-tabs-nav row">
+						<div className="col-xs-4">
+							{track.warmUp ? (
 								<a
 									href="#"
 									onClick={e => this.changeTab(e, 'warmUp')}
-									className={this.state.activeTab === 'warmUp' ? 'active' : ''}
+									className={this.state.activeTab === 'warmUp' ? 'active-black' : ''}
 								>
 									WARM-UP
 								</a>
-							</li>) : undefined }
-						{track.mainWorkout ? (
-							<li>
+							) : undefined }
+						</div>
+						<div className="col-xs-4">
+							{track.mainWorkout ? (
 								<a
 									href="#"
 									onClick={e => this.changeTab(e, 'mainWorkout')}
-									className={this.state.activeTab === 'mainWorkout' ? 'active' : ''}
+									className={this.state.activeTab === 'mainWorkout' ? 'active-black' : ''}
 								>
-									MAIN WORKOUT
+									WORKOUT
 								</a>
-							</li>) : undefined }
-						{track.coolDown ? (
-							<li>
+							) : undefined }
+						</div>
+						<div className="col-xs-4">
+							{track.coolDown ? (
 								<a
 									href="#"
 									onClick={e => this.changeTab(e, 'coolDown')}
-									className={this.state.activeTab === 'coolDown' ? 'active' : ''}
-								>
-									COOL DOWN
-								</a>
-							</li>) : undefined }
-					</ul>
+									className={this.state.activeTab === 'coolDown' ? 'active-black' : ''}
+								>COOL DOWN</a>
+							) : undefined }
+						</div>
+					</div>
 				</div>
-
 				<div className="tab-content">
 					<div className={`tab-pane ${this.state.activeTab === 'warmUp' ? 'active' : ''}`}>
 						<DesktopListWorkoutTab
@@ -98,7 +98,6 @@ export default class DesktopListWorkoutTabContainer extends Component {
 						/>
 					</div>
 				</div>
-
 			</div>
 		);
 	}

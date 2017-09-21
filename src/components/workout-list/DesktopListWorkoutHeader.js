@@ -39,10 +39,10 @@ export default class DesktopListWorkoutHeader extends Component{
 		return(
 			<div className="page-list-workout-header">
 				<a href="/" onClick={this.toggleTracks} className="track-popover-title">
-					<h3>
-					{this.state.selectedTrack + ' Track'}
+					<p>
+					{this.state.selectedTrack}
 					<span className="icon icon-arrow-down"/>
-					</h3>
+					</p>
 				</a>
 
 				<div
@@ -54,7 +54,7 @@ export default class DesktopListWorkoutHeader extends Component{
 
 									return (<a key={index} href="#" className="list-group-item" onClick={(e) => {
 										this.hidePopOverAndSetDisplayName(e, track.trackName)
-									}}>{track.trackName + " Track"}</a>);
+									}}>{track.trackName}</a>);
 
 								})
 							}

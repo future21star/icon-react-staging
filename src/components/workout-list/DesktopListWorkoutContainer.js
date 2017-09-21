@@ -21,38 +21,39 @@ export default class DesktopListWorkoutContainer extends Component {
 				transitionLeave={true}
 				transitionLeaveTimeout={500}
 			>
+	
+			{wod ? (
 				<div className="track-list-item-desktop">
-					{wod ? (
-						<div className="row">
-							<div className={`col-md-4 track-list-banner-desktop ${wod.format}`}
-									 style={{backgroundImage: 'url(../' + wod.track.bgImgUrl + ')'}}>
-								<div className="overlay-desktop"/>
-								<div className="title-desktop">
-									<span className="day pull-left">{moment.utc(wod.date).local().format('dd')}</span>
-									<h3>{wod.title}</h3>
+					<div className={`col-xs-12 track-list-banner-desktop ${wod.format}`}
+							 style={{backgroundImage: 'url(../' + wod.track.bgImgUrl + ')'}}>
+						<div className="overlay-desktop"/>
+						<div className="title-desktop">
+							<span className="day pull-left">{moment.utc(wod.date).local().format('dd')}</span>
+							<h3>{wod.title}</h3>
 
-									<ul className="track-data-list-desktop list-inline">
-										<li>
-											<p>{`${wod.duration} min` || '--'}</p>
-											<p>Duration</p>
-										</li>
-										<li>
-											<p>{wod.intensity || '--'}</p>
-											<p>Intensity</p>
-										</li>
-										<li>
-											<p>{wod.focus || '--'}</p>
-											<p>Focus</p>
-										</li>
-									</ul>
-								</div>
-							</div>
+							<ul className="track-data-list-desktop list-inline">
+								<li>
+									<p>{`${wod.duration} min` || '--'}</p>
+									<p>Duration</p>
+								</li>
+								<li>
+									<p>{wod.intensity || '--'}</p>
+									<p>Intensity</p>
+								</li>
+								<li>
+									<p>{wod.focus || '--'}</p>
+									<p>Focus</p>
+								</li>
+							</ul>
+						</div>
+					</div>
 
-							<div className="col-md-8 track-list-tabs-area-desktop">
-								<DesktopListWorkoutTabContainer track={wod}/>
-							</div>
-						</div> ) : undefined }
-				</div>
+					<div className="col-xs-12 track-list-tabs-area-desktop no-padding-left-right">
+						<DesktopListWorkoutTabContainer track={wod}/>
+					</div>
+				</div> 
+			) : undefined }
+			
 			</ReactCSSTransitionGroup>
 		);
 	}

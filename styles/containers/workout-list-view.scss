@@ -1,9 +1,8 @@
 .programming-page-list-view-wrapper-desktop{
-  background: $whiteDark;
 
 }
 .tracks-list-view-container-desktop {
-  padding: 80px 50px 50px 50px;
+  padding: 20px 0 50px;
 
   .subscription-upgrade-card{
     margin: 0 auto !important;
@@ -12,8 +11,7 @@
 
 .page-list-workout-header{
   max-width: 350px;
-  margin: 0 auto;
-  text-align: center;
+  margin-left: 30px;
   position: relative;
 
   .track-popover-wrapper{
@@ -29,20 +27,58 @@
   .list-group-item{
     font-size: 16px !important;
   }
+
+  .popover{
+    top: 56px;
+    border: none;
+    box-shadow:none;
+    background: $turquoise;
+  }
+
+  .popover-content{
+    padding: 0;
+    border: none;
+  }
+
+  .popover-content a{
+    background: $turquoise;
+    border: none;
+    border-bottom: 1px solid $turquoiseDark;
+    padding: 10px 8px;
+    color: $white;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
 }
-.track-popover-title{
-    
+.track-popover-title{    
     &:hover, &:focus{
       text-decoration: none !important;
-      h3{
-        color: $red;
+      p{
+        color: $white;
       }
     }
 
-  h3{
-    @include transition(.3s ease color);
+  p{
+    background: $turquoise;
+    border: 1px solid $turquoiseDark;
+    padding: 10px 8px;
+    color: $white;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+
     .icon-arrow-down{
-      font-size: 10px;
+      position: absolute;
+      right:0;
+      top:0;
+      padding: 0 8px;
+      line-height: 45px;
+      height: 100%;
+      text-align: center;
+      background-color: $turquoiseDark;
+      color: $turquoiseLight;
+      font-size: 8px;
       margin-left: 10px;
       vertical-align: middle;
     }
@@ -131,11 +167,11 @@
         outline: none;
       }
       .active{
-        background: #efebec;
+        background: $greyLight;
         color: black;
       }
       .active:hover{
-        border-color: #efebec;
+        border-color: $greyLight;
       }
     }
   }
@@ -170,7 +206,7 @@
     }
 
     .tab-content-section-desktop{
-      background: #efebec;
+      background: $white;
       min-height: 190px;
       max-height: 190px;
       overflow-y: scroll;
@@ -204,7 +240,11 @@
         }
       }
       .tab-content-body-desktop{
+        .tab-list-item-desktop-wrapper:first-child{
+          margin-top: 10px;
+        }
         .tab-item-container-desktop{
+
           .item-desktop{
             background: #edebec;
             padding: 23px 10px 3px 0;
