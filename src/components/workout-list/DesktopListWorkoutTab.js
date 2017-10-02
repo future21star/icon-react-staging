@@ -58,7 +58,7 @@ export default class TabContentSectionDesktop extends Component {
 				</div>
 				<div className="clearfix"/>
 				<div className="tab-content-body-desktop">
-					<div className="tab-content-list-item-desktop">
+					<div className="tab-content-list-item-desktop list-view-tab-content-item">
 						<div className="tab-list-item-desktop-wrapper">
 							<div className="tab-list-item-desktop">
 								<div className="tab-item-container-desktop">
@@ -66,7 +66,7 @@ export default class TabContentSectionDesktop extends Component {
 									{parsedContentObj.map((chunk, i) => {
 										let number = padStart((i + 1).toString(), 2, '0');
 										return (
-											<div className="item-desktop" key={i}>
+											<div className="item-desktop list-view-item" key={i}>
 												<span className="item-number-desktop">{number}</span>
 
 												<div className={`${chunk.optional ? 'wod-optional' : ''}`}>

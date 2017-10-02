@@ -116,7 +116,7 @@ export default class ProgrammingListView extends Component {
 								<div className="container-fluid tracks-list-view-container-content">
 									{Object.keys(wods[this.state.selectedTrack]).map((key, i) => {
 										return (
-											<div key={i} className="col-xs-12 col-sm-6 col-md-4 list-view-workout">
+											<div key={i} className="col-xs-12 col-sm-6 col-md-6 list-view-workout">
 												<DesktopListWorkoutContainer
 													wod={wods[this.state.selectedTrack][key]}
 												/>

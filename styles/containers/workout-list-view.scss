@@ -8,6 +8,9 @@
     margin: 0 auto !important;
   }
 }
+.tracks-list-view-container-content{
+  padding: 0;
+}
 
 .page-list-workout-header{
   max-width: 350px;
@@ -85,8 +88,12 @@
   }
 }
 
+.list-view-workout{
+  padding-left: 5px; 
+  padding-right: 5px;
+}
 .track-list-item-desktop{
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 
 .track-list-banner-desktop{
@@ -144,146 +151,30 @@
     }
   }
 }
-
-.track-list-tabs-desktop{
-  margin-left: -15px;
-  .track-list-tabs-list{
-    .nav-tabs{
-      border-bottom: none;
-    }
-    li{
-      a{
-        min-width: 150px;
-        text-align: center;
-        color: white;
-        background: #82dae4;
-        margin-right: 0;
-        font-family: 'Oswald', sans-serif;
-      }
-      a:hover{
-        border-color: #82dae4;
-      }
-      a:focus{
-        outline: none;
-      }
-      .active{
-        background: $greyLight;
-        color: black;
-      }
-      .active:hover{
-        border-color: $greyLight;
-      }
-    }
+.list-view-track-list-banner{
+  min-height: 210px !important;
+}
+.list-view-data-list{
+  margin-bottom: 0 !important;
+}
+.list-view-tab-content-item{
+  margin-top: 0 !important;
+}
+.list-view-item{
+  margin-left: 0 !important;
+  margin-bottom: 0 !important;
+  
+  div{
+    margin-left: 25px !important;
   }
-  .tab-content{
-    @-webkit-keyframes fadeIn {
-      from {
-        opacity: 0.1
-      }
-
-      to {
-        opacity: 1;
-      }
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0.1
-      }
-
-      to {
-        opacity: 1;
-      }
-    }
-
-    .active{
-      -webkit-animation-name: fadeIn;
-      animation-name: fadeIn;
-      -webkit-animation-duration: 1s;
-      animation-duration: 1s;
-      -webkit-animation-fill-mode: both;
-      animation-fill-mode: both;
-    }
-
-    .tab-content-section-desktop{
-      background: $white;
-      min-height: 190px;
-      max-height: 190px;
-      overflow-y: scroll;
-      padding: 10px 50px 20px 50px;
-      .tab-content-header-desktop{
-        h2{
-          color: black;
-          font-family: 'Lato', sans-serif;
-          font-size: 24px;
-          margin-bottom: 15px;
-        }
-
-        .workout-copy-wrapper {
-          padding: 20px 0;
-          text-align: right;
-          a{
-            text-decoration: none;
-            font-size: 16px;
-            
-            &:first-child {
-              margin-right: 15px;
-            }
-
-            [class^="icon-"], [class*=" icon-"] {
-              color: red;
-              margin-left: 10px;
-            }
-
-
-          }
-        }
-      }
-      .tab-content-body-desktop{
-        .tab-list-item-desktop-wrapper:first-child{
-          margin-top: 10px;
-        }
-        .tab-item-container-desktop{
-
-          .item-desktop{
-            background: #edebec;
-            padding: 23px 10px 3px 0;
-            position: relative;
-            margin-bottom: 5px;
-            div{
-              display: inline-block;
-              margin-left: 55px;
-              position: relative;
-              top: -12px;
-              p{
-                font-size: 16px;
-                margin-bottom: 6px;
-              }
-              ul{
-                margin-bottom: 0;
-                li{
-                  list-style-type: none;
-                  font-size: 16px;
-                  margin-bottom:6px;
-                  .red-hyphen{
-                    color: #d12022;
-                  }
-                }
-              }
-            }
-            .item-number-desktop {
-              background: #5dc7d4;
-              margin-right: 20px;
-              padding: 8px 10px 8px 10px;
-              color: white;
-              font-family: 'Oswald', sans-serif;
-              font-size: 18px;
-              position: absolute;
-              top: 0;
-            }
-          }
-        }
-      }
-    }
+  .item-number-desktop{
+    position: relative !important;
+    display: block;
+    background-color: transparent !important;
+    color: $turquoise !important;
+    padding: 5px !important;
+    margin: 0 25px 10px 15px !important;
+    width: 100%;
+    border-bottom: 2px solid $greyLight;
   }
 }

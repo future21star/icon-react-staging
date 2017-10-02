@@ -39,6 +39,7 @@
 .tab-contents-area-desktop {
   max-height: 300px;
   overflow-y: scroll;
+  overflow-x: hidden;
   background-color: $whiteDark;
   .workout-copy-wrapper{
     padding-top: 5px;

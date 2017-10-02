@@ -24,14 +24,14 @@ export default class DesktopListWorkoutContainer extends Component {
 	
 			{wod ? (
 				<div className="track-list-item-desktop">
-					<div className={`col-xs-12 track-list-banner-desktop ${wod.format}`}
+					<div className={`col-xs-12 track-list-banner-desktop list-view-track-list-banner ${wod.format}`}
 							 style={{backgroundImage: 'url(../' + wod.track.bgImgUrl + ')'}}>
 						<div className="overlay-desktop"/>
 						<div className="title-desktop">
 							<span className="day pull-left">{moment.utc(wod.date).local().format('dd')}</span>
 							<h3>{wod.title}</h3>
 
-							<ul className="track-data-list-desktop list-inline">
+							<ul className="track-data-list-desktop list-view-data-list list-inline">
 								<li>
 									<p>{`${wod.duration} min` || '--'}</p>
 									<p>Duration</p>
