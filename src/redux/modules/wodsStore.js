@@ -25,6 +25,8 @@ export default function reducer(state = initialState, action = {}) {
 		case LOAD_SUCCESS:
 			const {trackName, date, wod, commentsCount} = action.result;
 
+			if(trackName === null || date === null) return state;
+
 			let wods = {...state.wods};
 
 			let tracks = state.wods[trackName];
