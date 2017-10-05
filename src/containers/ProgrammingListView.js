@@ -71,7 +71,7 @@ export default class ProgrammingListView extends Component {
 				<span>
 					<i className="icon-edit-track"/>
 				</span>
-				<span className="mobile-hide">Edit Track</span>
+				<span className="mobile-hide">Edit Tracks</span>
 			</Link>
 		);
 
@@ -101,39 +101,34 @@ export default class ProgrammingListView extends Component {
 					<Menubar
 						leftSideContent={leftSideContent}
 						rightSideContent={rightSideContent}
-						title="List View"
-						className="menu-color-white menu-bar-red"
+						className="menu-bar-grey"
 					/>
 					<div className="full-height-menu-header-scroll overflow-custom-scroll">
-						{selectedTracks.length ?
+						<div className="tracks-list-view-container-desktop">
+							{selectedTracks.length ?
 							<DesktopListWorkoutHeader
-								tracks={selectedTracks}
-								onSelectTrack={this.selectTrack}
-							/> : undefined
-						}
+									tracks={selectedTracks}
+									onSelectTrack={this.selectTrack}
+								/> : undefined
+							}
 
-						<div className="tracks-list-view-container-wrapper-desktop">
-							<div className="tracks-list-view-container-desktop">
-
-
-								{wodsStore.loading || !wods[this.state.selectedTrack] ? undefined :
-									<div className="container-fluid">
-										{Object.keys(wods[this.state.selectedTrack]).map((key, i) => {
-											return (
-												<div key={i}>
-													<DesktopListWorkoutContainer
-														wod={wods[this.state.selectedTrack][key]}
-													/>
-												</div>
-											)
-										})}
-									</div>
-								}
-								{wods[this.state.selectedTrack] && Object.keys(wods[this.state.selectedTrack]).length === 0
-									? <p className="text-center">No tracks found</p>
-									: undefined
-								}
-							</div>
+							{wodsStore.loading || !wods[this.state.selectedTrack] ? undefined :
+								<div className="container-fluid tracks-list-view-container-content">
+									{Object.keys(wods[this.state.selectedTrack]).map((key, i) => {
+										return (
+											<div key={i} className="col-xs-12 col-sm-6 col-md-6 list-view-workout">
+												<DesktopListWorkoutContainer
+													wod={wods[this.state.selectedTrack][key]}
+												/>
+											</div>
+										)
+									})}
+								</div>
+							}
+							{wods[this.state.selectedTrack] && Object.keys(wods[this.state.selectedTrack]).length === 0
+								? <p className="text-center">No tracks found</p>
+								: undefined
+							}
 						</div>
 					</div>
 				</div>

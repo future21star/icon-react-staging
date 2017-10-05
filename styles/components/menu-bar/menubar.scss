@@ -173,7 +173,26 @@
       color: $white;
     }
   }
+
+  &.menu-bar-guest-user{
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top:0;
+    z-index: 9999999;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    .logo-img-container{
+  
+      img{
+
+        width:100px;
+        height:auto;
+      }
+    }
+  }
 }
+
 
 .programming-menu-bar {
 

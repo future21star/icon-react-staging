@@ -7,8 +7,8 @@
 @import "typography";
 
 @import "custom";
-//globals
 
+//globals
 @import "components/global/bottom_nav";
 @import "components/global/cards";
 @import "components/global/page-404";
@@ -27,7 +27,7 @@
 @import "components/forms/show_password_input";
 @import "components/forms/facebook_button";
 .login-page--login-form {.btn:hover, .btn:focus, .btn.focus {color: $white;}}
-
+//programming
 @import "containers/programming";
 //FEED
 @import "components/feed/feed_mobile_tabs";

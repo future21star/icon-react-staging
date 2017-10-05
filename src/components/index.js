@@ -10,6 +10,7 @@ export LoadingLogo from './global/LoadingLogo';
 
 //MENUBAR
 export Menubar from './menu-bar/Menubar';
+export MenubarGuest from './menu-bar/MenubarGuest';
 
 //FORMS
 export ErrorMessage from './forms/ErrorMessage';
@@ -49,7 +50,6 @@ export NoTracksFound from './tracks/NoTracksFound';
 
 //FEED
 export FeedPostSingle from './feed/FeedPostSingle';
-export FeedHeader from './feed/FeedHeader';
 export FeedLoadMore from './feed/FeedLoadMore';
 export MobileFeedTabs from './feed/MobileFeedTabs';
 export FeedPreviewPost from './feed/FeedPreviewPost';

@@ -49,28 +49,16 @@ export default class TabContentSectionDesktop extends Component {
 		});
 
 		return (
-			<div className="tab-content-section-desktop overflow-custom-scroll">
-				<div className="tab-content-header-desktop">
-					<div className="row">
-						<div className="col-xs-6">
-							<h2>{title}</h2>
-						</div>
-						<div className="col-xs-6">
-							<div className="workout-copy-wrapper">
-								<Link to={`/workout/${track.trackName}/${track.id}`}>
-									Workout Mode
-									<span className="icon icon-workout-mode"/>
-								</Link>
-								<a href="javascript:;" onClick={this.copyContent}>
-									{this.state.copyText}
-									<span className="icon icon-copy"/>
-								</a>
-							</div>
-						</div>
-					</div>
+			<div className="tab-contents-area-desktop overflow-custom-scroll">
+				<div className="col-xs-12 workout-copy-wrapper text-right">
+					<a href="javascript:;" onClick={this.copyContent}>
+						{this.state.copyText}
+						<span className="icon icon-copy"/>
+					</a>
 				</div>
+				<div className="clearfix"/>
 				<div className="tab-content-body-desktop">
-					<div className="tab-content-list-item-desktop">
+					<div className="tab-content-list-item-desktop list-view-tab-content-item">
 						<div className="tab-list-item-desktop-wrapper">
 							<div className="tab-list-item-desktop">
 								<div className="tab-item-container-desktop">
@@ -78,7 +66,7 @@ export default class TabContentSectionDesktop extends Component {
 									{parsedContentObj.map((chunk, i) => {
 										let number = padStart((i + 1).toString(), 2, '0');
 										return (
-											<div className="item-desktop" key={i}>
+											<div className="item-desktop list-view-item" key={i}>
 												<span className="item-number-desktop">{number}</span>
 
 												<div className={`${chunk.optional ? 'wod-optional' : ''}`}>
