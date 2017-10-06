@@ -59,7 +59,7 @@ export default function reducer(state = initialState, action = {}) {
 			let listNewTrackData = {...state[trackName]};
 
 			listWods.map((wodOfList) => {
-				listNewTrackData[moment(wodOfList.date).format('YYYY-MM-DD')] = wodOfList;
+				listNewTrackData[moment(wodOfList.date.substring(0, 10)).format('YYYY-MM-DD')] = wodOfList;
 			});
 
 			let newWods = {...state.wods};
