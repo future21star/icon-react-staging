@@ -52,3 +52,4 @@ export NutritionFaqs from './Nutrition/NutritionFaqs';
 
 export SpecialityProgramsLanding from './SpecialityPrograms/SpecialityProgramsLanding';
 export SpecialityProgramsView from './SpecialityPrograms/SpecialityProgramsView';
+export SpecialityProgramsAssessment from './SpecialityPrograms/SpecialityProgramsAssessment';
