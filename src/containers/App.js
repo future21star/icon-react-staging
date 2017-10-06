@@ -97,6 +97,7 @@ export default class App extends Component {
 	};
 
 	render() {
+		console.log("clients time: "+ moment().format('YYYY-MM-DD hh:mm:ss a'));
 		return (
 			<div>
 				<Helmet {...config.app.head}/>

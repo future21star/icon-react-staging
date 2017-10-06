@@ -10,7 +10,7 @@ import {Link} from "react-router";
 
 export default class Menubar extends Component {
 	static propTypes = {
-		title: PropTypes.string.isRequired,
+		title: PropTypes.string,
 		leftSideContent: PropTypes.object,
 		rightSideContent: PropTypes.object,
 		className: PropTypes.string,

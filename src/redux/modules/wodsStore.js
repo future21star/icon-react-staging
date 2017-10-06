@@ -93,6 +93,7 @@ export function isLoaded(wodsStore, trackName, date) {
 }
 
 export function load(trackName, date) {
+	console.log("getting wod of date: "+ date +" for track: " + trackName);
 	return {
 		types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
 		promise: (client) => client.post('/loadWod', {
@@ -105,6 +106,7 @@ export function load(trackName, date) {
 }
 
 export function loadListView(trackName, date) {
+	console.log("getting programming list view date >= : "+ date +" for track: " + trackName);
 	return {
 		types: [LOAD_LIST, LOAD_LIST_SUCCESS, LOAD_LIST_FAIL],
 		promise: (client) => client.post('/loadListViewWods', {
