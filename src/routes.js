@@ -110,6 +110,10 @@ export default (store) => {
 					
 					<Route path="faqs" component={containers.FaqsLanding}/>
 					<Route path="faqs/:slug" component={containers.FaqSingle}/>
+
+
+					<Route path="speciality-programs" component={containers.SpecialityProgramsLanding}/>
+					<Route path="speciality-programs/view" component={containers.SpecialityProgramsView}/>
 				</Route>
 				{/*logged in view without bottom nav*/}				
 				<Route path="workout/:trackName/:id" component={containers.WorkOutMode}/>

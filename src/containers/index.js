@@ -49,3 +49,6 @@ export NutritionPhilosophy from './Nutrition/NutritionPhilosophy';
 export NutritionBlogPosts from './Nutrition/Topic/NutritionBlogPosts';
 export NutritionBlogPodcast from './Nutrition/Topic/NutritionBlogPodcast';
 export NutritionFaqs from './Nutrition/NutritionFaqs';
+
+export SpecialityProgramsLanding from './SpecialityPrograms/SpecialityProgramsLanding';
+export SpecialityProgramsView from './SpecialityPrograms/SpecialityProgramsView';
