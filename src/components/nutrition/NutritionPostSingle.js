@@ -44,7 +44,6 @@ export default class NutritionPostSingle extends Component {
 	render() {
 		const {browser, activePost, postId, activePostCommentItems, activePostCommentLoading, activePostCommentAllPagesCompleted} = this.props;
 		const defaultImage = require('../../../static/feed-default.jpg');
-		console.log(activePost);
 		return (
 			activePost ? (
 
