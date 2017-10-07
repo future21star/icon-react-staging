@@ -16,12 +16,35 @@ import {Menubar} from '../../components/index';
 
 export default class SpecialtyProgramsAssessment extends Component {
 
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			selectedGender: '',
+			selectedEvaluation: 'strength'
+		}
+	}
+
 	answerOptions = [
 		{value: 'male', label: 'Male'},
 		{value: 'female', label: 'Female'},
 	];
 
+	selectGender = (gender) => {
+		this.setState({
+			selectedGender: gender
+		});
+	};
+
+	selectEvaluation = (evaluation) => {
+		this.setState({
+			selectedEvaluation: evaluation
+		});
+	};
+
 	render() {
+		const {selectedGender, selectedEvaluation} = this.state;
+
 		return (
 			<ReactCSSTransitionGroup
 				transitionName="react-anime"
@@ -33,17 +56,17 @@ export default class SpecialtyProgramsAssessment extends Component {
 				transitionLeaveTimeout={500}
 			>
 				<div className="assessment-form-container bottom-padding">
-					<Helmet title="Specialty Program - Assessment"/>
+					<Helmet title="Specialty Program - Calculate Your Track"/>
 
 					<Menubar
-						title="Specialty Program - Assessment"
+						title="Calculate Your Track"
 						backButton={true}
 					/>
 					<div className="container container-small">
-						<h1 className="assessment-form-title text-center">Calculate Your Track</h1>
 						<div className="assessment-form-wrapper">
 
 							<div className="step-content">
+								<h3 className="text-center">Gender</h3>
 								<p>Please select which of the following you are:</p>
 								<form className="form-radio">
 									{this.answerOptions.map((item, i) => {
@@ -54,8 +77,8 @@ export default class SpecialtyProgramsAssessment extends Component {
 															type="radio"
 															name="gender"
 															value={item.value}
-															// checked={answer === item.value}
-															// onChange={e => setAnswer(e.target.value)}
+															checked={selectedGender === item.value}
+															onChange={e => this.selectGender(e.target.value)}
 													/>
 													<p className="input-label">{item.label}</p>
 												</label>
@@ -66,19 +89,50 @@ export default class SpecialtyProgramsAssessment extends Component {
 							</div>
 
 							<div className="btn-group btn-group-lg btn-group-justified">
-								<a href="#" className="btn btn-primary">Strength Evaluation</a>
-								<a href="#" className="btn btn-default">Technique Evaluation</a>
-								<a href="#" className="btn btn-default">Flexibility Evaluation</a>
+								<a href="javascript:;" onClick={e => this.selectEvaluation('strength')} className={selectedEvaluation === 'strength' ? "btn btn-primary" : "btn btn-default"}>Strength Evaluation</a>
+								<a href="javascript:;" onClick={e => this.selectEvaluation('technique')} className={selectedEvaluation === 'technique' ? "btn btn-primary" : "btn btn-default"}>Technique Evaluation</a>
+								<a href="javascript:;" onClick={e => this.selectEvaluation('flexibility')} className={selectedEvaluation === 'flexibility' ? "btn btn-primary" : "btn btn-default"}>Flexibility Evaluation</a>
 							</div>
 
-							<div className="step-content">
-								<form className="form-select">
-									<select className="form-control">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-									</select>
-								</form>
+							{selectedEvaluation === 'strength' && (
+								<div className="step-content">
+									Options for strength
+									<form className="form-select">
+										<select className="form-control">
+											<option value="1">S 1</option>
+											<option value="2">S 2</option>
+											<option value="3">S 3</option>
+										</select>
+									</form>
+								</div>
+							)}
+							{selectedEvaluation === 'technique' && (
+									<div className="step-content">
+										Options for technique
+										<form className="form-select">
+											<select className="form-control">
+												<option value="1">T 1</option>
+												<option value="2">T 2</option>
+												<option value="3">T 3</option>
+											</select>
+										</form>
+									</div>
+							)}
+							{selectedEvaluation === 'flexibility' && (
+									<div className="step-content">
+										Options for flexibility
+										<form className="form-select">
+											<select className="form-control">
+												<option value="1">F 1</option>
+												<option value="2">F 2</option>
+												<option value="3">F 3</option>
+											</select>
+										</form>
+									</div>
+							)}
+
+							<div className="bottom-padding text-center">
+								<button className="btn btn-primary btn-lg">Evaluate</button>
 							</div>
 						</div>
 					</div>
