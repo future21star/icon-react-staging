@@ -4,6 +4,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {connect} from "react-redux";
 import CheckAccessLevel from '../HOC/CheckAccessLevel'
 import {Menubar} from '../../components/index';
+import {Link} from "react-router";
 
 @connect(
 	state => ({
@@ -132,7 +133,7 @@ export default class SpecialtyProgramsAssessment extends Component {
 							)}
 
 							<div className="bottom-padding text-center">
-								<button className="btn btn-primary btn-lg">Evaluate</button>
+								<Link to="/specialty-programs/assessment/result" className="btn btn-primary btn-lg">Evaluate</Link>
 							</div>
 						</div>
 					</div>
