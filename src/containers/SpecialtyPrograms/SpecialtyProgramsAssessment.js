@@ -14,7 +14,7 @@ import {Menubar} from '../../components/index';
 
 @CheckAccessLevel('assessment')
 
-export default class SpecialityProgramsAssessment extends Component {
+export default class SpecialtyProgramsAssessment extends Component {
 
 	answerOptions = [
 		{value: 'male', label: 'Male'},
@@ -33,14 +33,14 @@ export default class SpecialityProgramsAssessment extends Component {
 				transitionLeaveTimeout={500}
 			>
 				<div className="assessment-form-container bottom-padding">
-					<Helmet title="Assessment - Calculate"/>
+					<Helmet title="Specialty Program - Assessment"/>
 
 					<Menubar
-						title="Icon Assessment"
+						title="Specialty Program - Assessment"
 						backButton={true}
 					/>
 					<div className="container container-small">
-						<h1 className="assessment-form-title">Calculate Your Track</h1>
+						<h1 className="assessment-form-title text-center">Calculate Your Track</h1>
 						<div className="assessment-form-wrapper">
 
 							<div className="step-content">

@@ -29,7 +29,7 @@ import CheckAccessLevel from '../HOC/CheckAccessLevel';
 
 @CheckAccessLevel('assessment')
 
-export default class SpecialityProgramsView extends Component {
+export default class SpecialtyProgramsView extends Component {
 
 	constructor(props) {
 		super(props);

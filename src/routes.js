@@ -112,9 +112,9 @@ export default (store) => {
 					<Route path="faqs/:slug" component={containers.FaqSingle}/>
 
 
-					<Route path="speciality-programs" component={containers.SpecialityProgramsLanding}/>
-					<Route path="speciality-programs/view" component={containers.SpecialityProgramsView}/>
-					<Route path="speciality-programs/assessment" component={containers.SpecialityProgramsAssessment}/>
+					<Route path="specialty-programs" component={containers.SpecialtyProgramsLanding}/>
+					<Route path="specialty-programs/view" component={containers.SpecialtyProgramsView}/>
+					<Route path="specialty-programs/assessment" component={containers.SpecialtyProgramsAssessment}/>
 				</Route>
 				{/*logged in view without bottom nav*/}				
 				<Route path="workout/:trackName/:id" component={containers.WorkOutMode}/>

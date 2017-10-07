@@ -13,7 +13,7 @@ import {Link} from "react-router";
 )
 
 
-export default class SpecialityProgramsLanding extends Component {
+export default class SpecialtyProgramsLanding extends Component {
 
 	render() {
 		let {user} = this.props;
@@ -40,7 +40,7 @@ export default class SpecialityProgramsLanding extends Component {
 						transitionLeaveTimeout={500}
 				>
 					<div className="assessment-landing-wrapper bottom-padding full-height-header menu-head-buffer" style={style}>
-						<Helmet title="Speciality Program"/>
+						<Helmet title="Specialty Programs"/>
 						<header className="row">
 							<div className="col-xs-12 text-center">
 								<div className="sp-program-header">
@@ -54,16 +54,16 @@ export default class SpecialityProgramsLanding extends Component {
 								<div className="action-button row sp-program-actions">
 									<div className="col-xs-12 col-sm-6">
 										<h2>Find Your Track</h2>
-										<Link to="speciality-programs/assessment" className="btn btn-lg btn-icon">
+										<Link to="specialty-programs/assessment" className="btn btn-lg btn-icon">
 											Take Assessment
 										</Link>
 									</div>
 									<div className="col-xs-12 col-sm-6">
 										<h2>Programming</h2>
-										<Link to="/speciality-programs/view" className="btn btn-lg btn-icon">
+										<Link to="/specialty-programs/view" className="btn btn-lg btn-icon">
 											Strength
 										</Link>
-										<Link to="/speciality-programs/view" className="btn btn-lg btn-icon" style={{'margin-left': '5px'}}>
+										<Link to="/specialty-programs/view" className="btn btn-lg btn-icon" style={{'margin-left': '5px'}}>
 											Technique
 										</Link>
 									</div>
