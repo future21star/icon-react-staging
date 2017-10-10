@@ -49,3 +49,7 @@ export NutritionPhilosophy from './Nutrition/NutritionPhilosophy';
 export NutritionBlogPosts from './Nutrition/Topic/NutritionBlogPosts';
 export NutritionBlogPodcast from './Nutrition/Topic/NutritionBlogPodcast';
 export NutritionFaqs from './Nutrition/NutritionFaqs';
+
+
+export CategorySelection from './FreeWeek/CategorySelection'
+export CategoryWodView from './FreeWeek/CategoryWodView'
