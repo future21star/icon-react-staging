@@ -121,11 +121,12 @@ export default (store) => {
 				<Route path="podcast-player" component={containers.PodcastPlayer}/>
 				
 			</Route>
-
-			<Route path="assessment" component={containers.AssessmentLanding}/>
-			<Route path="free-week" component={containers.CategorySelection}/>
-			<Route path="free-week/:categoryId" component={containers.CategoryWodView}/>
-
+			{/*non logged in users with bottom nav guest */}
+			<Route component={containers.GuestLayout}>
+				<Route path="assessment" component={containers.AssessmentLanding}/>
+				<Route path="free-week" component={containers.CategorySelection}/>
+				<Route path="free-week/:categoryId" component={containers.CategoryWodView}/>
+			</Route>
 			{/*logged out*/}
 			<Route onEnter={requiresGuest}>
 				<Route path="login" component={containers.Login}/>

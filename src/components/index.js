@@ -3,6 +3,7 @@ export NoAccessSubscriptionUpgradeButton from './global/NoAccessSubscriptionUpgr
 export NoAccessSubscriptionUpgradeCard from './global/NoAccessSubscriptionUpgradeCard';
 export SubscriptionUpgradeCard from './global/SubscriptionUpgradeCard';
 export BottomNav from './global/BottomNav';
+export BottomNavGuest from './global/BottomNavGuest';
 export DotList from './global/DotList';
 export PodcastFloatingPlayerButton from './global/PodcastFloatingPlayerButton';
 export ProblemHouston from './global/ProblemHouston';

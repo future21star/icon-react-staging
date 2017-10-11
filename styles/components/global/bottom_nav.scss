@@ -24,6 +24,17 @@
 }
 
 .bottom-nav-wrapper {
+
+  &.bottom-nav-guest{
+    .logo-img-wrapper{
+      padding: 5px;
+      text-align: left;
+      img{
+        width: auto;
+        height: 40px;
+      }
+    }
+  }
   .bottom-nav {
     background: $white;
     &.nav-justified > li {
@@ -62,35 +73,6 @@
         background-color: #ffffff;
         border-color: #5DC6D2;
       }
-
-      // &.helpful-links-item {
-      //   span {
-      //     color: #ffffff;
-
-      //   }
-
-      //   &:hover, &:focus{
-      //     border-color: #bbbbbb;
-      //   }
-      // }
-
-      //&.helpful-links-item:before {
-      //   content: "\E90F";
-      //   font-family: 'icomoon', sans-serif;
-      //   background: #D1252E;
-      //   top: -26px;
-      //   border-radius: 50%;
-      //   padding: 15px 16px;
-      //   color: #ffffff;
-      //   font-size: 20px;
-      //   left: 50%;
-      //   position: absolute;
-      //   margin-left: -25px;
-
-      //   span {
-      //     color: #ffffff;
-      //   }
-      // }
     }
     li.active a {
       border-color: #5DC6D2;
