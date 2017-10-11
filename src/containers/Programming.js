@@ -96,8 +96,10 @@ export default class Programming extends Component {
 	loadActiveDaysWod = (trackName) => {
 		const {wodsStore, dispatch, activeDate} = this.props;
 
-		if (!isWodsLoaded(wodsStore, trackName, activeDate)) {
-			dispatch(loadWods(trackName, activeDate));
+		let activeOrDefaultDate = activeDate || moment().format('YYYY-MM-DD');
+
+		if (!isWodsLoaded(wodsStore, trackName, activeOrDefaultDate)) {
+			dispatch(loadWods(trackName, activeOrDefaultDate));
 		}
 	};
 
