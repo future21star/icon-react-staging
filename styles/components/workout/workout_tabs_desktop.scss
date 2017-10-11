@@ -32,15 +32,15 @@
   }
 }
 
-.tracks-list-view-container-content .list-view-workout:nth-child(3n+1){
-  clear:left;
-}
-
 .tab-contents-area-desktop {
-  height: 300px;
-  overflow-y: scroll;
-  overflow-x: hidden;
+
   background-color: $whiteDark;
+
+  &.overflow-custom-scroll{
+    height: 300px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
   .workout-copy-wrapper{
     padding-top: 5px;
     a{
@@ -62,9 +62,10 @@
   }
   .tab-item-container-desktop {
     .item-desktop {
-      padding:  0 10px 0 0;
+      padding: 23px 10px 3px 0;
       position: relative;
       margin-bottom: 20px;
+      background-color: $greyLight;
       div {
         display: inline-block;
         margin-left: 80px;

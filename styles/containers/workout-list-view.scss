@@ -91,6 +91,15 @@
 .list-view-workout{
   padding-left: 5px; 
   padding-right: 5px;
+  min-height: 600px;
+
+  span.day{
+    color: #cbcbcd;
+    border: 2px solid #cbcbcd;
+    border-radius: 30px;
+    padding: 5px 5px 5px 5px;
+    margin-left: 5px;
+  }
 }
 .track-list-item-desktop{
   margin-bottom: 20px;
@@ -112,13 +121,6 @@
   .title-desktop{
     text-align: center;
     position: relative;
-    span.day{
-      color: #cbcbcd;
-      border: 2px solid #cbcbcd;
-      border-radius: 30px;
-      padding: 5px 5px 5px 5px;
-      margin-left: 5px;
-    }
     h3{
       text-transform: uppercase;
       color: #5dc7d4;
@@ -178,3 +180,22 @@
     border-bottom: 2px solid $greyLight;
   }
 }
+
+.rest-day-list-view{
+  margin-top: 20px;
+  min-height: 580px;
+  border: 2px solid $whiteDark;
+
+  span.day{
+    position: absolute;
+    left: 15px;
+    top: 15px;
+  }
+  h1{
+    font-size: 58px;
+    color: $grey;
+    margin-top: 40px
+  }
+}
+
+
