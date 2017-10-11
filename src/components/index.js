@@ -95,6 +95,8 @@ export NutritionBlogTabs from './nutrition/NutritionBlogTabs';
 export NutritionFeedSidebar from './nutrition/NutritionFeedSidebar';
 export MealPlan from './nutrition/MealPlan';
 
+export FreeWeeksDayPicker from './freeWeeks/FreeWeeksDayPicker';
+
 
 
 

@@ -13,7 +13,7 @@ import {
 import {connect} from "react-redux";
 import {asyncConnect} from 'redux-async-connect';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {loadWods} from "../../redux/modules/freeWeekStore";
+import {loadWods, clearCategoryAndWods} from "../../redux/modules/freeWeekStore";
 
 @asyncConnect([{
 	promise: ({store: {dispatch, getState}, params}) => {
@@ -29,8 +29,10 @@ import {loadWods} from "../../redux/modules/freeWeekStore";
 		state => ({
 			browser: state.browser,
 			category: state.freeWeekStore.selectedCategory,
-			wods: state.freeWeekStore.selectedCategoryWods
-		})
+			wods: state.freeWeekStore.selectedCategoryWods,
+			currentDay: state.freeWeekStore.currentDay
+		}),
+		{clearCategoryAndWods}
 )
 export default class CategoryWodView extends Component {
 
@@ -53,12 +55,11 @@ export default class CategoryWodView extends Component {
 	}
 
 	componentWillUnmount() {
+		this.props.clearCategoryAndWods();
 		document.body.classList.remove('desktop-disable-scrolling');
 	}
 
 	render() {
-		const {browser, category} = this.props;
-
 		return (
 				<ReactCSSTransitionGroup
 						transitionName="react-anime"
@@ -70,15 +71,15 @@ export default class CategoryWodView extends Component {
 						transitionLeaveTimeout={500}
 				>
 					<div className="programming-page-wrapper bottom-padding">
-						<Helmet title="Programming"/>
+						<Helmet title="Free Week"/>
 						<div className="desktop-menu-fixed">
 							<Menubar
-									title="Programming"
+									title="Free Week"
 									backButton={true}
 									className="text-white programming-menu-bar"
 							/>
 
-							<ProgrammingHeader showWeekNavOnMobile={this.state.showWeekNavOnMobile}/>
+							<ProgrammingHeader freeWeek={true} showWeekNavOnMobile={this.state.showWeekNavOnMobile}/>
 						</div>
 
 						{this.renderWod()}
@@ -89,14 +90,22 @@ export default class CategoryWodView extends Component {
 	}
 
 	renderWod() {
-		const {browser, wods, category} = this.props;
+		const {browser, wods, category, currentDay} = this.props;
 		let content = null;
+
+		let wod = wods.filter(w => {
+			return w.day === currentDay;
+		});
+
+		if (wod.length) {
+			wod = wod[0];
+		} else {
+			wod = null;
+		}
 
 		if (!category) {
 			content = <LoadingLogo/>;
-		} else if (wods.length) {
-			// todo: select
-			let wod = wods[0];
+		} else if (category && wod) {
 
 			let desktopWorkoutContent = <DesktopWorkout track={wod}/>;
 

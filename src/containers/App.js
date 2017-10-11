@@ -7,6 +7,7 @@ import {isLoaded as isAllTrackLoaded, load as loadAllTracks} from '../redux/modu
 import {isFilterTopicsLoaded, loadFilterTopics} from "../redux/modules/feedStore";
 import {setActiveDate as setActiveDateOnSwipeStore} from "../redux/modules/swipeStore";
 import {setActiveDate as setActiveDateOnDayPickerStore} from "../redux/modules/dayPickerStore";
+import {setActiveDay as setActiveDayOnFreeWeekStore} from "../redux/modules/freeWeekStore";
 import {push} from 'react-router-redux';
 import config from '../config';
 import {asyncConnect} from 'redux-async-connect';
@@ -44,7 +45,8 @@ import moment from 'moment';
 		pushState: push,
 		calculateResponsiveState,
 		setActiveDateOnSwipeStore,
-		setActiveDateOnDayPickerStore
+		setActiveDateOnDayPickerStore,
+		setActiveDayOnFreeWeekStore
 	}
 )
 export default class App extends Component {
@@ -63,6 +65,7 @@ export default class App extends Component {
 		this.props.calculateResponsiveState(global);
 		this.props.setActiveDateOnSwipeStore(moment().format('YYYY-MM-DD'));
 		this.props.setActiveDateOnDayPickerStore(moment().format('YYYY-MM-DD'));
+		this.props.setActiveDayOnFreeWeekStore(moment().format('dd'));
 	}
 
 	componentWillReceiveProps(nextProps) {

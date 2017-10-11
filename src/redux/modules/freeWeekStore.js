@@ -1,17 +1,25 @@
-const LOAD_CATEGORIES = 'freeWeek/LOAD_CATEGORIES';
+import moment from "moment";
+
+const LOAD_CATEGORIES = 'freeWeek/LOAD_CATEGORIES_REQUEST';
 const LOAD_CATEGORIES_SUCCESS = 'freeWeek/LOAD_CATEGORIES_SUCCESS';
 const LOAD_CATEGORIES_FAIL = 'freeWeek/LOAD_CATEGORIES_FAIL';
 
-const LOAD_WODS = 'freeWeek/LOAD_WODS';
+const LOAD_WODS = 'freeWeek/LOAD_WODS_REQUEST';
 const LOAD_WODS_SUCCESS = 'freeWeek/LOAD_WODS_SUCCESS';
 const LOAD_WODS_FAIL = 'freeWeek/LOAD_WODS_FAIL';
+
+const CLEAR_SELECTED_CATEGORY_AND_WODS = 'freeWeek/CLEAR_SELECTED_CATEGORY_AND_WODS';
+
+const SET_ACTIVE_DAY = 'freeWeek/SET_ACTIVE_DAY';
+
 
 const initialState = {
 	loaded: false,
 	loading: false,
 	categories: [],
 	selectedCategory: null,
-	selectedCategoryWods: []
+	selectedCategoryWods: [],
+	currentDay: null
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -48,6 +56,7 @@ export default function reducer(state = initialState, action = {}) {
 
 			wods.map((wod, i) => {
 				wods[i].track = selectedCategory;
+				wods[i].day = moment(wod.date).format('dd');
 			});
 
 			return {
@@ -61,6 +70,17 @@ export default function reducer(state = initialState, action = {}) {
 				...state,
 				loading: false,
 				loaded: true
+			};
+		case SET_ACTIVE_DAY:
+			return {
+				...state,
+				currentDay: action.payload.day
+			};
+		case CLEAR_SELECTED_CATEGORY_AND_WODS:
+			return {
+				...state,
+				selectedCategory: null,
+				selectedCategoryWods: []
 			};
 		default:
 			return state;
@@ -86,5 +106,23 @@ export function loadWods(categoryId) {
 				categoryId: categoryId
 			}
 		})
+	};
+}
+
+export function setActiveDay(day) {
+	return {
+		type: SET_ACTIVE_DAY,
+		payload: {
+			day
+		}
+	};
+}
+
+export function clearCategoryAndWods() {
+	return {
+		type: CLEAR_SELECTED_CATEGORY_AND_WODS,
+		payload: {
+
+		}
 	};
 }
