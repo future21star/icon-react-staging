@@ -115,13 +115,35 @@ export default class ProgrammingListView extends Component {
 							{wodsStore.loading || !wods[this.state.selectedTrack] ? undefined :
 								<div className="container-fluid tracks-list-view-container-content">
 									{Object.keys(wods[this.state.selectedTrack]).map((key, i) => {
-										return (
-											<div key={i} className="col-xs-12 col-sm-6 col-md-6 list-view-workout">
-												<DesktopListWorkoutContainer
-													wod={wods[this.state.selectedTrack][key]}
-												/>
-											</div>
-										)
+
+										let nextDate = moment(key).add(1, 'days').format('YYYY-MM-DD');
+
+										if(typeof wods[this.state.selectedTrack][nextDate] === 'undefined') {
+											return (
+													<div key={i}>
+														<div className="col-xs-12 col-sm-6 col-md-6 list-view-workout">
+															<DesktopListWorkoutContainer
+																	wod={wods[this.state.selectedTrack][key]}
+															/>
+														</div>
+														<div className="col-xs-12 col-sm-6 col-md-6 list-view-workout">
+															<div style={{padding: '50px', border: '1px solid green'}}>
+																<h1>REST DAY</h1>
+																<h4>Date: {nextDate}</h4>
+																<h4>Day: {moment(nextDate, "YYYY-MM-DD").format('dd')}</h4>
+															</div>
+														</div>
+													</div>
+											);
+										} else {
+											return (
+												<div key={i} className="col-xs-12 col-sm-6 col-md-6 list-view-workout">
+													<DesktopListWorkoutContainer
+														wod={wods[this.state.selectedTrack][key]}
+													/>
+												</div>
+											);
+										}
 									})}
 								</div>
 							}
