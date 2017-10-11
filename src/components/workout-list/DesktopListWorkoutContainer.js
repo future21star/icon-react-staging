@@ -21,7 +21,7 @@ export default class DesktopListWorkoutContainer extends Component {
 				transitionLeave={true}
 				transitionLeaveTimeout={500}
 			>
-	
+			
 			{wod ? (
 				<div className="track-list-item-desktop">
 					<div className={`col-xs-12 track-list-banner-desktop list-view-track-list-banner ${wod.format}`}
@@ -52,7 +52,7 @@ export default class DesktopListWorkoutContainer extends Component {
 						<DesktopListWorkoutTabContainer track={wod}/>
 					</div>
 				</div> 
-			) : undefined }
+			) : undefined}
 			
 			</ReactCSSTransitionGroup>
 		);

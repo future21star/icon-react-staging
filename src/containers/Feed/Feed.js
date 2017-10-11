@@ -58,17 +58,17 @@ export default class Feed extends Component {
 
 				<div
 					className={`${browser.is.mobile ? 'feed-page-wrapper bottom-padding' : 'feed-page-desktop-wrapper bottom-padding'}`}>
-
-					{browser.is.mobile && user ? 
+					
+					{ !user &&  !browser.is.desktop && (<MenubarGuest/>)}
+					
+					{browser.is.mobile && user &&( 
 						<Menubar
 							className="menu-bar-white"
 							title="Feed"
 							leftSideContent={<Link to="/profile"><span className="icon-user-profile"/><span className="mobile-hide">Profile</span></Link>}
 							rightSideContent={<Link to="/feed/search"><span className="mobile-hide">Search</span><span className="icon-search"/></Link> }
 						/>
-					:
-						<MenubarGuest/>
-					}
+					)}
 
 					<div className={`${browser.is.mobile ? 'feed-content-wrapper' : 'feed-content-wrapper-desktop'}`}>
 						{user && (
