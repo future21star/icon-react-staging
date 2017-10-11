@@ -123,6 +123,8 @@ export default (store) => {
 			</Route>
 
 			<Route path="assessment" component={containers.AssessmentLanding}/>
+			<Route path="free-week" component={containers.CategorySelection}/>
+			<Route path="free-week/:categoryId" component={containers.CategoryWodView}/>
 
 			{/*logged out*/}
 			<Route onEnter={requiresGuest}>

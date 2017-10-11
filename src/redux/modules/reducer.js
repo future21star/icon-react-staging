@@ -24,6 +24,7 @@ import nutritionPhilosophyStore from './nutritionPhilosophyStore';
 import nutritionFoundationsStore from './nutritionFoundationsStore';
 import nutritionMealPlansStore from './nutritionMealPlansStore';
 import nutritionFaqsStore from './nutritionFaqsStore';
+import freeWeekStore from './freeWeekStore';
 
 export default combineReducers({
 	routing: routerReducer,
@@ -53,5 +54,6 @@ export default combineReducers({
 	nutritionPhilosophyStore,
 	nutritionFoundationsStore,
 	nutritionMealPlansStore,
-	nutritionFaqsStore
+	nutritionFaqsStore,
+	freeWeekStore
 });
