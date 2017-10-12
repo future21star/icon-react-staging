@@ -87,7 +87,7 @@ const initialState = {
 	},
 	search: {
 		searchText: '',
-		searchTopic: 'podcast',
+		searchTopic: 'video',
 		currentPage: 0,
 		allPagesCompleted: false,
 		items: []
