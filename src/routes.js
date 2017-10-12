@@ -23,12 +23,20 @@ export default (store) => {
 
 			// not logged in
 			if (!user) {
+
+				// redirect to feed/podcast if guest user visits /feed
+				if (nextState.location.pathname === '/feed') {
+					replace('/feed/podcast');
+					cb();
+					return;
+				}
+
 				// get intended redirect url
 				let redirectTo = nextState.location.pathname;
 
 				// redirect
 				if(redirectTo === '/') {
-					replace('/login');						
+					replace('/login');
 				} else {
 					replace('/login?redirectTo='+redirectTo);
 				}

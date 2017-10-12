@@ -9,10 +9,10 @@ import {
 	MenubarGuest, 
 	DesktopFeedSidebar, 
 	MobileFeedTabs, 
-	DesktopFeedHeader
+	DesktopFeedHeader,
+	BottomNavGuest
 } 
 from "../../components/index";
-
 
 @connect(
 	state => ({
@@ -102,6 +102,8 @@ export default class Feed extends Component {
 						)}
 					</div>
 				</div>
+
+				{!user && <BottomNavGuest/>}
 
 			</ReactCSSTransitionGroup>
 		);
