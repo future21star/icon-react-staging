@@ -120,10 +120,15 @@ export default class ProgrammingListView extends Component {
 
 										if(typeof wods[this.state.selectedTrack][nextDate] === 'undefined') {
 											return (
-												<div key={i} className="col-xs-12 col-sm-6 col-md-6 list-view-workout rest-day-list-view text-center">
-													<span className="day">{moment(nextDate, "YYYY-MM-DD").format('dd')}</span>
-													<h1>REST DAY</h1>
-													<h4>{nextDate}</h4>
+												<div key={i}>
+													<div className="col-xs-12 col-sm-6 col-md-6 list-view-workout">
+														<DesktopListWorkoutContainer wod={wods[this.state.selectedTrack][key]}/>
+													</div>
+													<div className="col-xs-12 col-sm-6 col-md-6 list-view-workout rest-day-list-view text-center">
+														<span className="day">{moment(nextDate, "YYYY-MM-DD").format('dd')}</span>
+														<h1>REST DAY</h1>
+														<h4>{moment(nextDate, "YYYY-MM-DD").format('MM/DD/YYYY')}</h4>
+													</div>
 												</div>
 											);
 										} else {
