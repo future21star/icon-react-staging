@@ -54,6 +54,9 @@ export loadNutritionFoundations from './nutrition/loadNutritionFoundations';
 export loadNutritionMealPlan from './nutrition/loadNutritionMealPlan';
 export loadNutritionFaqs from './nutrition/loadNutritionFaqs';
 
+export loadFreeWeekCategories from './freeWeek/loadFreeWeekCategories';
+export loadFreeWeekWods from './freeWeek/loadFreeWeekWods';
+
 
 
 

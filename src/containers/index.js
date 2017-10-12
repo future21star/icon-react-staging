@@ -2,6 +2,7 @@ export App from './App';
 export Login from './Login';
 export NotFound from './NotFound';
 export AuthLayout from './AuthLayout';
+export GuestLayout from './GuestLayout';
 export Home from './Home';
 export Welcome from './Welcome';
 export Profile from './Profile';
@@ -49,3 +50,7 @@ export NutritionPhilosophy from './Nutrition/NutritionPhilosophy';
 export NutritionBlogPosts from './Nutrition/Topic/NutritionBlogPosts';
 export NutritionBlogPodcast from './Nutrition/Topic/NutritionBlogPodcast';
 export NutritionFaqs from './Nutrition/NutritionFaqs';
+
+
+export CategorySelection from './FreeWeek/CategorySelection'
+export CategoryWodView from './FreeWeek/CategoryWodView'

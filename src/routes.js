@@ -23,12 +23,20 @@ export default (store) => {
 
 			// not logged in
 			if (!user) {
+
+				// redirect to feed/podcast if guest user visits /feed
+				if (nextState.location.pathname === '/feed') {
+					replace('/feed/podcast');
+					cb();
+					return;
+				}
+
 				// get intended redirect url
 				let redirectTo = nextState.location.pathname;
 
 				// redirect
 				if(redirectTo === '/') {
-					replace('/login');						
+					replace('/login');
 				} else {
 					replace('/login?redirectTo='+redirectTo);
 				}
@@ -121,9 +129,12 @@ export default (store) => {
 				<Route path="podcast-player" component={containers.PodcastPlayer}/>
 				
 			</Route>
-
-			<Route path="assessment" component={containers.AssessmentLanding}/>
-
+			{/*non logged in users with bottom nav guest */}
+			<Route component={containers.GuestLayout}>
+				<Route path="assessment" component={containers.AssessmentLanding}/>
+				<Route path="free-week" component={containers.CategorySelection}/>
+				<Route path="free-week/:categoryId" component={containers.CategoryWodView}/>
+			</Route>
 			{/*logged out*/}
 			<Route onEnter={requiresGuest}>
 				<Route path="login" component={containers.Login}/>

@@ -7,7 +7,8 @@ export default class EditTracksBanner extends Component {
 	static propTypes = {
 		track: PropTypes.object.isRequired,
 		selectedTracks: PropTypes.array,
-		singleTrackView: PropTypes.bool
+		singleTrackView: PropTypes.bool,
+		hideInfo: PropTypes.bool
 	};
 
 	getIcon() {
@@ -78,7 +79,7 @@ export default class EditTracksBanner extends Component {
 	}
 
 	render() {
-		const {track, selectedTracks, singleTrackView} = this.props;
+		const {track, selectedTracks, singleTrackView, hideInfo} = this.props;
 		const isSubscribed = find(selectedTracks, selectedTrack => {
 			return selectedTrack.trackName === track.name;
 		});
@@ -94,10 +95,12 @@ export default class EditTracksBanner extends Component {
 						{!singleTrackView ? (
 							<div>
 								<h1>{track.name}</h1>
-								<Link to={`/edit-tracks/${track.name}`}>
-									<span className="icon-information"/>
-								</Link>
-								{this.getIcon()} 
+								{!hideInfo && (
+									<Link to={`/edit-tracks/${track.name}`}>
+										<span className="icon-information"/>
+									</Link>
+								)}
+								{this.getIcon()}
 							</div>
 							): undefined}
 					</div>

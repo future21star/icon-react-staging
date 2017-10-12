@@ -9,10 +9,10 @@ import {
 	MenubarGuest, 
 	DesktopFeedSidebar, 
 	MobileFeedTabs, 
-	DesktopFeedHeader
+	DesktopFeedHeader,
+	BottomNavGuest
 } 
 from "../../components/index";
-
 
 @connect(
 	state => ({
@@ -59,7 +59,7 @@ export default class Feed extends Component {
 				<div
 					className={`${browser.is.mobile ? 'feed-page-wrapper bottom-padding' : 'feed-page-desktop-wrapper bottom-padding'}`}>
 					
-					{ !user &&  !browser.is.desktop && (<MenubarGuest/>)}
+					{ !user &&  browser.is.desktop && (<MenubarGuest/>)}
 					
 					{browser.is.mobile && user &&( 
 						<Menubar
@@ -102,6 +102,8 @@ export default class Feed extends Component {
 						)}
 					</div>
 				</div>
+
+				{!user && <BottomNavGuest/>}
 
 			</ReactCSSTransitionGroup>
 		);

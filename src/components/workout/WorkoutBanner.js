@@ -71,23 +71,30 @@ export default class WorkoutBanner extends Component {
 	}
 
 	render() {
-		const {nextTrack, prevTrack, onSelectNextTrack, onSelectPrevTrack, wod, isWorkoutMode} = this.props;
+		const {nextTrack, prevTrack, onSelectNextTrack, onSelectPrevTrack, wod, isWorkoutMode, freeWeek} = this.props;
 
 		let bannerBg = (!isWorkoutMode ? wod.track.bgImgUrl : '');
+
+		if(freeWeek) {
+			bannerBg = '../'+bannerBg;
+		}
 
 		return (
 			<div className="workout-banner-wrapper">
 				<div className={`workout-banner ${wod.track.format} workout-banner-${wod.track.name}`} style={{backgroundImage: 'url(' + bannerBg + ')'}}>
 					<div className="overlay"/>
-					<div className="workout-button">
-						<Link to={`/workout/${wod.track.name}/${wod.id}/comments`} className="text-white">
-							<span className="icon-comment"/>
-							<div className="comment-count">{wod.commentsCount}</div>
-						</Link>
-						<Link to={`/workout/${wod.track.name}/${wod.id}`} className="text-white">
-							<span className="icon-workout-mode"/>
-						</Link>
-					</div>
+					{!freeWeek && (
+						<div className="workout-button">
+
+							<Link to={`/workout/${wod.track.name}/${wod.id}/comments`} className="text-white">
+								<span className="icon-comment"/>
+								<div className="comment-count">{wod.commentsCount}</div>
+							</Link>
+							<Link to={`/workout/${wod.track.name}/${wod.id}`} className="text-white">
+								<span className="icon-workout-mode"/>
+							</Link>
+						</div>
+					)}
 					<div className="mid-content">
 						<div className="mid-content-section">
 							<h2>{wod.track.name}</h2>
