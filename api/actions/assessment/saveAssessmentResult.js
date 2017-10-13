@@ -6,6 +6,12 @@ import _ from "lodash";
 
 export default function saveAssessmentResult(request) {
 	return new Promise(async (resolve, reject) => {
+
+		if(!request.session.user) {
+			return resolve({
+				assessment: null
+			});
+		}
 	
 		// remove previous result
 		try {

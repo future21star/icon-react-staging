@@ -5,7 +5,6 @@ import {connect} from "react-redux";
 import {Link} from "react-router";
 import {asyncConnect} from 'redux-async-connect';
 import {includes, find} from 'lodash';
-import CheckAccessLevel from './HOC/CheckAccessLevel'
 import {
 	isLoaded as isTracksLoaded,
 	load as loadTracks,
@@ -40,8 +39,6 @@ import {
 	}),
 	{addAsOnlyTrack, addToTrackList, removeTrack}
 )
-
-@CheckAccessLevel('assessment')
 
 export default class EditTracks extends Component {
 

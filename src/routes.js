@@ -110,11 +110,6 @@ export default (store) => {
 					<Route path="programming/list-view" component={containers.ProgrammingListView}/>
 					<Route path="edit-tracks" component={containers.EditTracks}/>
 					<Route path="help/:slug" component={containers.Help}/>
-
-					
-					<Route path="assessment/workouts" component={containers.AssessmentWorkouts}/>
-					<Route path="assessment/form" component={containers.AssessmentForm}/>
-					<Route path="assessment/result" component={containers.AssessmentResult}/>
 					
 					<Route path="faqs" component={containers.FaqsLanding}/>
 					<Route path="faqs/:slug" component={containers.FaqSingle}/>
@@ -132,6 +127,9 @@ export default (store) => {
 			{/*non logged in users with bottom nav guest */}
 			<Route component={containers.GuestLayout}>
 				<Route path="assessment" component={containers.AssessmentLanding}/>
+				<Route path="assessment/workouts" component={containers.AssessmentWorkouts}/>
+				<Route path="assessment/form" component={containers.AssessmentForm}/>
+				<Route path="assessment/result" component={containers.AssessmentResult}/>
 				<Route path="free-week" component={containers.CategorySelection}/>
 				<Route path="free-week/:categoryId" component={containers.CategoryWodView}/>
 			</Route>

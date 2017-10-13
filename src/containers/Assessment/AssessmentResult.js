@@ -10,7 +10,6 @@ import {Polar} from 'react-chartjs-2';
 import {Link} from "react-router";
 import {includes} from 'lodash';
 import assessmentResults from '../../../api/assessmentResults.json';
-import CheckAccessLevel from '../HOC/CheckAccessLevel';
 import {saveAssessmentResult} from "../../redux/modules/assessmentStore";
 
 @connect(
@@ -22,7 +21,6 @@ import {saveAssessmentResult} from "../../redux/modules/assessmentStore";
 	{saveAssessmentResult}
 )
 
-@CheckAccessLevel('assessment')
 
 export default class AssessmentResult extends Component {
 
@@ -150,12 +148,6 @@ export default class AssessmentResult extends Component {
 		};
 
 		const {totalScore, radarData, recommendedTrackName, recommendedTrack, addStrength} = this.state;
-		const {user} = this.props;
-		if(!user) {
-			return <div/>
-		}
-		
-		const {subscription, vaultAccess} = user;
 
 		if (!totalScore || radarData.length === 0 || !recommendedTrackName || !recommendedTrack) {
 			return (<ProblemHouston/>);
@@ -165,12 +157,43 @@ export default class AssessmentResult extends Component {
 			return result.name === recommendedTrackName;
 		})[0];
 
+		const {user} = this.props;
 		let style = {backgroundImage: 'url(../../' + recommendedTrack.bgImgUrl + ')'};
+		let actionContent = null;
 
-		let hasAccessOfProgramming = false;
-		if (includes(vaultAccess, 'programming-all')) hasAccessOfProgramming = true;
-		else if (includes(vaultAccess, 'programming-unify')) hasAccessOfProgramming = true;
-		else if (includes(vaultAccess, 'programming-masters')) hasAccessOfProgramming = true;
+		if(user) {
+			const {subscription, vaultAccess} = user;
+			let hasAccessOfProgramming = false;
+			if (includes(vaultAccess, 'programming-all')) hasAccessOfProgramming = true;
+			else if (includes(vaultAccess, 'programming-unify')) hasAccessOfProgramming = true;
+			else if (includes(vaultAccess, 'programming-masters')) hasAccessOfProgramming = true;
+
+			actionContent = (
+					<div className="btn-wrap">
+						{(parseInt(subscription.subscription_id) === 1 || parseInt(subscription.subscription_id) === 11) && (
+								<a href="https://iconathlete.com/register/upgrade" target="_blank"
+								   className="btn btn-lg btn-icon btn-icon-icon">
+									<span className="icon-update-sub"/>Get Access
+								</a>
+						)}
+
+						{hasAccessOfProgramming && (
+								<Link to="/edit-tracks" className="btn btn-lg btn-icon btn-icon-icon"><span
+										className="icon-nav-links"/>
+									Add Track
+								</Link>
+						)}
+					</div>
+			);
+		} else {
+			actionContent = (
+					<div className="btn-wrap">
+						<a href="https://iconathlete.com/register" target="_blank" className="btn btn-lg btn-icon btn-icon-icon">
+							<span className="icon-update-sub"/> Join Now
+						</a>
+					</div>
+			);
+		}
 
 		return (
 			<ReactCSSTransitionGroup
@@ -225,21 +248,7 @@ export default class AssessmentResult extends Component {
 									</h1>
 								)}
 							<div className="description" dangerouslySetInnerHTML={this.createMarkup(trackDetails.details || '')}/>
-							<div className="btn-wrap">
-								{(parseInt(subscription.subscription_id) === 1 || parseInt(subscription.subscription_id) === 11) && (
-									<a href="https://iconathlete.com/register/upgrade" target="_blank"
-										 className="btn btn-lg btn-icon btn-icon-icon">
-										<span className="icon-update-sub"/>Get Access
-									</a>
-								)}
-
-								{hasAccessOfProgramming && (
-									<Link to="/edit-tracks" className="btn btn-lg btn-icon btn-icon-icon"><span
-										className="icon-nav-links"/>
-										Add Track
-									</Link>
-								)}
-							</div>
+							{actionContent}
 						</div>
 					</div>
 				</div>

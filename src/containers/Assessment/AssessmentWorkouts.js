@@ -6,7 +6,6 @@ import {Menubar} from '../../components/index';
 import {Link} from "react-router";
 import {asyncConnect} from 'redux-async-connect';
 import {load as loadWorkouts, isLoaded as isWorkoutsLoaded} from "../../redux/modules/assessmentStore";
-import CheckAccessLevel from '../HOC/CheckAccessLevel';
 
 @asyncConnect([{
 	promise: ({store: {dispatch, getState}}) => {
@@ -26,8 +25,6 @@ import CheckAccessLevel from '../HOC/CheckAccessLevel';
 	}),
 	{}
 )
-
-@CheckAccessLevel('assessment')
 
 export default class AssessmentWorkouts extends Component {
 
