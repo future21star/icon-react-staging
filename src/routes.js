@@ -73,10 +73,10 @@ export default (store) => {
 	return (
 		<Route path="/" component={containers.App}>
 
-			{/*logged in*/}
+			{/* only auth user*/}
 			<Route onEnter={requiresAuth}>
-				{/*logged in view with bottom nav*/}
-				<Route component={containers.AuthLayout}>
+				{/* only auth user with bottom nav*/}
+				<Route component={containers.MasterLayout}>
 					<IndexRoute component={containers.Home}/>
 					<Route path="welcome" component={containers.Welcome}/>
 					<Route path="profile" component={containers.Profile}/>
@@ -114,7 +114,8 @@ export default (store) => {
 					<Route path="faqs" component={containers.FaqsLanding}/>
 					<Route path="faqs/:slug" component={containers.FaqSingle}/>
 				</Route>
-				{/*logged in view without bottom nav*/}				
+
+				{/* only auth user without bottom nav*/}
 				<Route path="workout/:trackName/:id" component={containers.WorkOutMode}/>
 				<Route path="workout/:trackName/:id/comments" component={containers.WorkOutModeComments}/>
 				<Route path="edit-profile" component={containers.EditProfile}/>
@@ -122,10 +123,10 @@ export default (store) => {
 				<Route path="feed/filter" component={containers.FeedFilter}/>
 				<Route path="feed/search" component={containers.FeedSearch}/>
 				<Route path="podcast-player" component={containers.PodcastPlayer}/>
-				
 			</Route>
-			{/*non logged in users with bottom nav guest */}
-			<Route component={containers.GuestLayout}>
+
+			{/* both auth/guest user with bottom nav */}
+			<Route component={containers.MasterLayout}>
 				<Route path="assessment" component={containers.AssessmentLanding}/>
 				<Route path="assessment/workouts" component={containers.AssessmentWorkouts}/>
 				<Route path="assessment/form" component={containers.AssessmentForm}/>
@@ -133,12 +134,13 @@ export default (store) => {
 				<Route path="free-week" component={containers.CategorySelection}/>
 				<Route path="free-week/:categoryId" component={containers.CategoryWodView}/>
 			</Route>
-			{/*logged out*/}
+
+			{/* only guest user */}
 			<Route onEnter={requiresGuest}>
 				<Route path="login" component={containers.Login}/>
 			</Route>
 
-			{/*404*/}
+			{/* 404 */}
 			<Route path="*" component={containers.NotFound} status={404}/>
 		</Route>
 	);

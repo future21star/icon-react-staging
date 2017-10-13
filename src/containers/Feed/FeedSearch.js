@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {Menubar, FeedPreviewPost, DesktopFeedHeader, FeedLoadMore, DesktopFeedSidebar, BottomNav} from '../../components';
+import {Menubar, FeedPreviewPost, DesktopFeedHeader, FeedLoadMore, DesktopFeedSidebar} from '../../components';
 import {connect} from "react-redux";
-import {Link} from 'react-router';
 import Select from "react-select";
 import {
 	setSearchTopic,
@@ -115,8 +114,6 @@ export default class FeedSearch extends Component {
 							</div>
 						</div>
 					)}
-
-					{browser.is.desktop && <BottomNav/>}
 				</div>
 			</ReactCSSTransitionGroup>
 		);

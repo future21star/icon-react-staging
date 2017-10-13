@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {Menubar, NutritionPostPreview, NutritionFeedHeader, FeedLoadMore, NutritionFeedSidebar, BottomNav} from '../../components';
+import {Menubar, NutritionPostPreview, NutritionFeedHeader, FeedLoadMore} from '../../components';
 import {connect} from "react-redux";
 import {Link} from 'react-router';
 import Select from "react-select";
