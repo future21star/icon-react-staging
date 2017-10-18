@@ -31,14 +31,14 @@ export default function saveAssessmentResult(request) {
 			assessment = await models.Assessment.create({
 				userId: request.session.user.reactUserId,
 				gender: request.body[0],
-				backSquat: request.body[1],
-				fiveK: request.body[2],
-				pullingPushing: request.body[3],
-				overheadSquat: request.body[4],
-				wallballs: request.body[5],
-				snatch: request.body[6],
-				cleanAndJerk: request.body[7],
-				hoursInTheGym: request.body[8],
+				backSquat: request.body[2],
+				fiveK: request.body[3],
+				pullingPushing: request.body[4],
+				overheadSquat: request.body[5],
+				wallballs: request.body[6],
+				snatch: request.body[7],
+				cleanAndJerk: request.body[8],
+				hoursInTheGym: request.body[9],
 				totalScore: request.body.totalScore,
 				recommandedTrack: request.body.recommendedTrack
 			});

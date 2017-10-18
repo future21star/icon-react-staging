@@ -29,7 +29,7 @@ export default class Step extends Component {
 						<button className="btn btn-lg btn-icon btn-icon-blue btn-icon-icon" onClick={goToPrevStep} disabled={currentStep < 1}><span className="icon-arrow-left" />Previous</button>
 					</div>
 					<div className="col-xs-6 text-right">
-						{currentStep < 8 ? (
+						{currentStep < 9 ? (
 							<button
 								className="btn btn-lg btn-icon btn-icon-blue btn-icon-icon btn-icon-right"
 								onClick={goToNextStep}

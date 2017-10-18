@@ -70,6 +70,7 @@ export NewReply from './comment/NewReply';
 export AssessmentUpgradeCard from './assessment/AssessmentUpgradeCard';
 export Step from './assessment/Step';
 export StepGender from './assessment/StepGender';
+export StepAge from './assessment/StepAge';
 export StepBackSquat from './assessment/StepBackSquat';
 export Step5k from './assessment/Step5k';
 export StepPullingPushing from './assessment/StepPullingPushing';

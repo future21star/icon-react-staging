@@ -8,7 +8,7 @@ import {
 } from '../../components/index';
 import {Polar} from 'react-chartjs-2';
 import {Link} from "react-router";
-import {includes} from 'lodash';
+import {includes, startsWith} from 'lodash';
 import assessmentResults from '../../../api/assessmentResults.json';
 import {saveAssessmentResult} from "../../redux/modules/assessmentStore";
 
@@ -43,7 +43,8 @@ export default class AssessmentResult extends Component {
 		let trackShown = false;
 		let addStrength = false;
 		let answersAsArray = Object.values(answers);
-		let radarData = answersAsArray.slice(1, 8);
+		let radarData = answersAsArray.slice(1, 9);
+		radarData = radarData.slice(1, 9);
 		let totalScore = 0;
 		let unifyCount = 0;
 
@@ -53,13 +54,21 @@ export default class AssessmentResult extends Component {
 		radarData.map(value => totalScore += parseInt(value));
 
 		///////////////
+		// check masters
+		///////////////
+		if(parseInt(answersAsArray[1]) > 35) {
+			recommendedTrackName = 'masters';
+			trackShown = true;
+		}
+
+		///////////////
 		// check unify
 		///////////////
 		radarData.map(value => {
 			if (value <= 4) unifyCount++;
 		});
 
-		if ((unifyCount > 4 || totalScore <= 27) || answers[8] === 'yes') {
+		if (!trackShown && ((unifyCount > 4 || totalScore <= 27) || answers[9] === 'yes')) {
 			recommendedTrackName = 'unify';
 			trackShown = true;
 		}
@@ -92,18 +101,27 @@ export default class AssessmentResult extends Component {
 		// radar
 		///////////////
 		let newRadarData = [
-			parseInt(answersAsArray[1]),
-			Math.floor((parseInt(answersAsArray[6]) + parseInt(answersAsArray[7])) / 2),
-			parseInt(answersAsArray[5]),
-			parseInt(answersAsArray[3]),
 			parseInt(answersAsArray[2]),
-			parseInt(answersAsArray[1])
+			Math.floor((parseInt(answersAsArray[7]) + parseInt(answersAsArray[8])) / 2),
+			parseInt(answersAsArray[6]),
+			parseInt(answersAsArray[4]),
+			parseInt(answersAsArray[3]),
+			parseInt(answersAsArray[2])
 		];
 
+		console.log(this.props.allTracks);
+		console.log(recommendedTrackName);
 		if (recommendedTrackName) {
 			recommendedTrack = this.props.allTracks.filter(track => {
 				return track.name === recommendedTrackName;
 			})[0];
+
+			if(!recommendedTrack) {
+				recommendedTrack = this.props.allTracks.filter(track => {
+					// masters
+					return startsWith(track.name, recommendedTrackName);
+				})[0];
+			}
 		}
 
 		this.setState({
@@ -240,7 +258,9 @@ export default class AssessmentResult extends Component {
 						</div>
 						<div className="col-xs-12 col-sm-6">
 							<h1 className="title title-desc">Track Best Suited For You:</h1>
-							<h1 className="title title-track-name">{recommendedTrack.name}</h1>
+							<h1 className="title title-track-name">
+								{ trackDetails.name === 'masters' ? 'Masters' : recommendedTrack.name}
+								</h1>
 								{addStrength && (
 									<h1 className="title track-strength">
 										<span className="icon icon-nav-links"/>

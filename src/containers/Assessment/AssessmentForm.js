@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import {
 	Menubar,
 	StepGender,
+	StepAge,
 	StepBackSquat,
 	Step5k,
 	StepPullingPushing,
@@ -48,14 +49,15 @@ export default class AssessmentForm extends Component {
 							{this.renderSteps()}
 
 							{currentStep === 0 && <StepGender/>}
-							{currentStep === 1 && <StepBackSquat/>}
-							{currentStep === 2 && <Step5k/>}
-							{currentStep === 3 && <StepPullingPushing/>}
-							{currentStep === 4 && <StepOverheadSquat/>}
-							{currentStep === 5 && <StepWallballs/>}
-							{currentStep === 6 && <StepSnatch/>}
-							{currentStep === 7 && <StepCleanAndJerk/>}
-							{currentStep === 8 && <StepHoursInTheGym/>}
+							{currentStep === 1 && <StepAge/>}
+							{currentStep === 2 && <StepBackSquat/>}
+							{currentStep === 3 && <Step5k/>}
+							{currentStep === 4 && <StepPullingPushing/>}
+							{currentStep === 5 && <StepOverheadSquat/>}
+							{currentStep === 6 && <StepWallballs/>}
+							{currentStep === 7 && <StepSnatch/>}
+							{currentStep === 8 && <StepCleanAndJerk/>}
+							{currentStep === 9 && <StepHoursInTheGym/>}
 						</div>
 					</div>
 				</div>
@@ -68,7 +70,7 @@ export default class AssessmentForm extends Component {
 
 		return (
 			<ul className="assessment-steps-list inline-list">
-				{[1, 2, 3, 4, 5, 6, 7, 8].map(i => {
+				{[1, 2, 3, 4, 5, 6, 7, 8, 9].map(i => {
 					return <li key={i} className={currentStep === i ? "active" : ""}>{i}</li>
 				})}
 			</ul>

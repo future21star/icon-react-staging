@@ -6,7 +6,7 @@ import {setAnswer} from "../../redux/modules/assessmentStore";
 @connect(
 	state => ({
 		gender: state.assessmentStore.answers[0],
-		answer: state.assessmentStore.answers[6]
+		answer: state.assessmentStore.answers[7]
 	}),
 	{setAnswer}
 )
