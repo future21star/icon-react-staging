@@ -10,7 +10,12 @@ export default function loadFreeWeekCategories(request) {
 		////////////////////////////////////
 		let categories = null;
 		try {
-			categories = await axios.get(WP_API_URL + '/wp/v2/categories?parent=52&per_page=100');
+			// 52 for test, 63 for live
+			let freeWeekCategoryId = 52;
+			if (process.env.NODE_ENV === 'production') {
+				freeWeekCategoryId = 63;
+			}
+			categories = await axios.get(WP_API_URL + '/wp/v2/categories?parent=' + freeWeekCategoryId + '&per_page=100');
 		} catch (e) {
 			console.log(e);
 			return reject(generalError(e.response.data.message));

@@ -14,7 +14,7 @@ import {logout} from "../../redux/modules/authStore";
 	{logout}
 )
 
-export default class BottomNav extends Component {
+export default class BottomNavAuth extends Component {
 	constructor(props) {
 		super(props);
 
@@ -82,12 +82,12 @@ export default class BottomNav extends Component {
 						</div>
 					</div>
 					<ul className="nav nav-pills nav-justified navbar-fixed-bottom bottom-nav">
-						{BottomNav.renderLinkItem('/', 'icon-nav-home', currentUri)}
-						{BottomNav.renderLinkItem('/feed', 'icon-nav-feed', currentUri)}
+						{BottomNavAuth.renderLinkItem('/', 'icon-nav-home', currentUri)}
+						{BottomNavAuth.renderLinkItem('/feed', 'icon-nav-feed', currentUri)}
 						<li><a href="#" onClick={this.toggleHelpfulLinksPopUp} className="helpful-links-item"><span
 							className="icon-menu-more"/></a></li>
-						{BottomNav.renderLinkItem('/nutrition', 'icon-nav-nutrition', currentUri)}
-						{BottomNav.renderLinkItem('/programming', 'icon-nav-programming', currentUri)}
+						{BottomNavAuth.renderLinkItem('/nutrition', 'icon-nav-nutrition', currentUri)}
+						{BottomNavAuth.renderLinkItem('/programming', 'icon-nav-programming', currentUri)}
 					</ul>
 				</div>
 			)
@@ -131,10 +131,10 @@ export default class BottomNav extends Component {
 						</div>
 						<div className="pull-right">
 							<ul className="nav nav-pills">
-								{BottomNav.renderLinkItem('/', 'icon-nav-home', currentUri)}
-								{BottomNav.renderLinkItem('/feed', 'icon-nav-feed', currentUri)}
-								{BottomNav.renderLinkItem('/nutrition', 'icon-nav-nutrition', currentUri)}
-								{BottomNav.renderLinkItem('/programming', 'icon-nav-programming', currentUri)}
+								{BottomNavAuth.renderLinkItem('/', 'icon-nav-home', currentUri)}
+								{BottomNavAuth.renderLinkItem('/feed', 'icon-nav-feed', currentUri)}
+								{BottomNavAuth.renderLinkItem('/nutrition', 'icon-nav-nutrition', currentUri)}
+								{BottomNavAuth.renderLinkItem('/programming', 'icon-nav-programming', currentUri)}
 								<li className="helpful-links-desktop-li"><a href="#" onClick={this.toggleHelpfulLinksPopUp}
 																														className="helpful-links-item"><span
 									className="icon-menu-more"/></a></li>
