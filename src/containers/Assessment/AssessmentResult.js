@@ -56,8 +56,23 @@ export default class AssessmentResult extends Component {
 		///////////////
 		// check masters
 		///////////////
-		if(parseInt(answersAsArray[1]) > 35) {
-			recommendedTrackName = 'masters';
+		if(parseInt(answersAsArray[1]) >= 35 && parseInt(answersAsArray[1]) < 40) {
+			recommendedTrackName = 'masters-35-39';
+			trackShown = true;
+		} else if(parseInt(answersAsArray[1]) >= 40 && parseInt(answersAsArray[1]) < 45) {
+			recommendedTrackName = 'masters-40-44';
+			trackShown = true;
+		} else if(parseInt(answersAsArray[1]) >= 45 && parseInt(answersAsArray[1]) < 50) {
+			recommendedTrackName = 'masters-45-49';
+			trackShown = true;
+		} else if(parseInt(answersAsArray[1]) >= 50 && parseInt(answersAsArray[1]) < 55) {
+			recommendedTrackName = 'masters-50-54';
+			trackShown = true;
+		} else if(parseInt(answersAsArray[1]) >= 55 && parseInt(answersAsArray[1]) < 60) {
+			recommendedTrackName = 'masters-55-59';
+			trackShown = true;
+		} else if(parseInt(answersAsArray[1]) >= 60) {
+			recommendedTrackName = 'masters-60+';
 			trackShown = true;
 		}
 
@@ -109,19 +124,10 @@ export default class AssessmentResult extends Component {
 			parseInt(answersAsArray[2])
 		];
 
-		console.log(this.props.allTracks);
-		console.log(recommendedTrackName);
 		if (recommendedTrackName) {
 			recommendedTrack = this.props.allTracks.filter(track => {
 				return track.name === recommendedTrackName;
 			})[0];
-
-			if(!recommendedTrack) {
-				recommendedTrack = this.props.allTracks.filter(track => {
-					// masters
-					return startsWith(track.name, recommendedTrackName);
-				})[0];
-			}
 		}
 
 		this.setState({
@@ -258,9 +264,7 @@ export default class AssessmentResult extends Component {
 						</div>
 						<div className="col-xs-12 col-sm-6">
 							<h1 className="title title-desc">Track Best Suited For You:</h1>
-							<h1 className="title title-track-name">
-								{ trackDetails.name === 'masters' ? 'Masters' : recommendedTrack.name}
-								</h1>
+							<h1 className="title title-track-name">{recommendedTrack.name}</h1>
 								{addStrength && (
 									<h1 className="title track-strength">
 										<span className="icon icon-nav-links"/>
