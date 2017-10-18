@@ -52,7 +52,7 @@ export default class EditTracks extends Component {
 
 		const {vaultAccess} = user;
 
-
+		console.log(user);
 		let accessOfProgrammingType = null;
 		if (includes(vaultAccess, 'programming-all')) accessOfProgrammingType = 'programming-all';
 		else if (includes(vaultAccess, 'programming-unify')) accessOfProgrammingType = 'programming-unify';
@@ -114,7 +114,6 @@ export default class EditTracks extends Component {
 		});
 
 		let isUnify = accessOfProgrammingType === 'programming-unify';
-
 		return (
 			<div className="container">
 				<div className="row">
