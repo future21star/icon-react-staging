@@ -5,7 +5,7 @@ import checkAccessLevel from '../HOC/CheckAccessLevel'
 import {connect} from "react-redux";
 import {
 	Menubar,
-	FeedHeader,
+	DesktopFeedHeader,
 	DesktopFeedSidebar,
 	FeedPreviewPost,
 	FeedLoadMore,
@@ -87,7 +87,7 @@ export default class FeedFilteredByTopic extends Component {
 
 					<div className={`${browser.is.mobile ? 'feed-content-wrapper' : 'feed-content-wrapper-desktop'}`}>
 						<div className={`${browser.is.mobile ? '' : 'container-fluid container-fluid-full'}`}>
-							<FeedHeader/>
+							{browser.is.desktop && <DesktopFeedHeader/>}
 						</div>
 
 
