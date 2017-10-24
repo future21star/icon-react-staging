@@ -38,6 +38,7 @@ import moment from 'moment';
 @connect(
 	state => ({
 		user: state.authStore.user,
+		redirectToWP: state.loginStore.redirectToWP,
 		showWelcomeAfterLogin: state.loginStore.showWelcomeAfterLogin,
 		podcastPlayer: state.podcastPlayerStore.podcastPlayer
 	}),
@@ -69,6 +70,10 @@ export default class App extends Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
+		if(nextProps.redirectToWP) {
+			global.location.href = 'https://iconathlete.com';
+			return;
+		}
 		if (!this.props.user && nextProps.user) {
 			// login
 			if(nextProps.showWelcomeAfterLogin) {

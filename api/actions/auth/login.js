@@ -25,6 +25,14 @@ export default function login(request) {
 				username: email,
 				password: password
 			});
+
+			// expired or cancelled
+			if(jwtResponse.data.status === 'expired' || jwtResponse.data.status === 'cancelled') {
+				return resolve({
+					user: null,
+					redirectToWP: true
+				});
+			}
 		} catch (e) {
 			console.log(e);
 			return reject(generalError("Error in email or password"));
