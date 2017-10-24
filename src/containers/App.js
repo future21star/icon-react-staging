@@ -71,7 +71,7 @@ export default class App extends Component {
 
 	componentWillReceiveProps(nextProps) {
 		if(nextProps.redirectToWP) {
-			global.location.href = 'https://iconathlete.com';
+			global.location.href = nextProps.redirectToWP;
 			return;
 		}
 		if (!this.props.user && nextProps.user) {

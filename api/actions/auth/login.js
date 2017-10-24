@@ -26,11 +26,15 @@ export default function login(request) {
 				password: password
 			});
 
-			// expired or cancelled
-			if(jwtResponse.data.status === 'expired' || jwtResponse.data.status === 'cancelled') {
+			if(jwtResponse.data.status === 'expired') {
 				return resolve({
 					user: null,
-					redirectToWP: true
+					redirectToWP: 'https://iconathlete.com/register/member-expired'
+				});
+			} else if(jwtResponse.data.status === 'cancelled') {
+				return resolve({
+					user: null,
+					redirectToWP: 'https://iconathlete.com/register/member-cancelled'
 				});
 			}
 		} catch (e) {
