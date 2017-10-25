@@ -50,6 +50,11 @@ export NutritionBlogPosts from './Nutrition/Topic/NutritionBlogPosts';
 export NutritionBlogPodcast from './Nutrition/Topic/NutritionBlogPodcast';
 export NutritionFaqs from './Nutrition/NutritionFaqs';
 
-
 export CategorySelection from './FreeWeek/CategorySelection'
 export CategoryWodView from './FreeWeek/CategoryWodView'
+
+export SpecialtyProgramsLanding from './SpecialtyPrograms/SpecialtyProgramsLanding';
+export SpecialtyProgramsView from './SpecialtyPrograms/SpecialtyProgramsView';
+export SpecialtyProgramsAssessment from './SpecialtyPrograms/SpecialtyProgramsAssessment';
+export SpecialtyProgramsResult from './SpecialtyPrograms/SpecialtyProgramsResult';
+

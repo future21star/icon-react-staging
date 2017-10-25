@@ -113,6 +113,12 @@ export default (store) => {
 					
 					<Route path="faqs" component={containers.FaqsLanding}/>
 					<Route path="faqs/:slug" component={containers.FaqSingle}/>
+
+
+					<Route path="specialty-programs" component={containers.SpecialtyProgramsLanding}/>
+					<Route path="specialty-programs/view" component={containers.SpecialtyProgramsView}/>
+					<Route path="specialty-programs/assessment" component={containers.SpecialtyProgramsAssessment}/>
+					<Route path="specialty-programs/assessment/result" component={containers.SpecialtyProgramsResult}/>
 				</Route>
 
 				{/* only auth user without bottom nav*/}

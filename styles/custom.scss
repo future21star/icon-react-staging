@@ -36,12 +36,12 @@
   }
 }
 
-.no-padding-left-right{
-  padding-left:0;
-  padding-right:0;
+.no-padding-left-right {
+  padding-left: 0;
+  padding-right: 0;
 }
 
-.row-margin{
+.row-margin {
   margin-right: -15px;
   margin-left: -15px;
 }
@@ -100,7 +100,7 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f7f7f7', GradientType=0); /* IE6-9 */
 }
 
-.bg-logo-img{
+.bg-logo-img {
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -125,14 +125,15 @@
   color: $white;
 }
 
-.overlay-dark{
+.overlay-dark {
   position: absolute;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,.7);
+  background-color: rgba(0, 0, 0, .7);
 }
+
 .overlay-gradient, .overlay-gradient-absolute {
   background-image: linear-gradient(0deg, rgb(93, 199, 211) 0%, rgb(163, 8, 55) 99%);
   opacity: 0.9;
@@ -151,7 +152,6 @@
   padding-bottom: 100px;
 }
 
-
 .menu-head-buffer {
   padding-top: 77px;
 }
@@ -161,23 +161,24 @@
   margin: 0 auto;
 }
 
-.full-height-header{
+.full-height-header {
   min-height: calc(100vh - 102px);
-} 
+}
 
-.full-height-menu-header{
+.full-height-menu-header {
   min-height: calc(100vh - 179px);
 }
 
-.full-height-menu-header-scroll{
-  height: calc(100vh - 179px); 
+.full-height-menu-header-scroll {
+  height: calc(100vh - 179px);
 }
+
 .avatar {
   width: 120px;
   height: 120px;
   position: relative;
   border-radius: 50%;
-  border: 3px solid rgba(0,0,0,.1);
+  border: 3px solid rgba(0, 0, 0, .1);
   overflow: hidden;
   margin: 0 auto;
   img {
@@ -187,41 +188,41 @@
     height: 100%;
     left: 0;
     top: 0;
-   
+
   }
 }
 
-.inline-list{
-  list-style:none;
+.inline-list {
+  list-style: none;
   padding-left: 0;
 
-  li{
+  li {
     display: inline-block;
   }
 }
 
-.cancel-membership-wrapper{
+.cancel-membership-wrapper {
   margin-top: 20px;
   display: block;
 
-  button{
+  button {
     background: transparent !important;
     border: none;
     color: $grey;
   }
 }
 
-.btn-cancel{
+.btn-cancel {
   background-color: transparent !important;
   color: $greyDark;
-  
+
 }
 
-.loading-logo{
+.loading-logo {
   margin-top: 20%;
   margin-top: 20vh;
   height: 200px;
-  img{
+  img {
     margin-top: 50px;
     max-width: 100px;
     width: 100%;
@@ -242,10 +243,11 @@
   -webkit-transform-origin: 80px 82px;
   transform-origin: 80px 82px;
 }
+
 .lds-eclipse {
   position: relative;
-  width:100%;
-  height:100%;
+  width: 100%;
+  height: 100%;
   max-width: 200px !important;
   max-height: 200px !important;
   margin: 0 auto;
@@ -253,30 +255,29 @@
   transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
 }
 
-
-
-.welcome-block-bg{
+.welcome-block-bg {
   padding: 20px 15px;
   margin-top: 20px;
   background-color: $whiteDark;
   border: 1px solid $greyLight;
   min-height: 280px;
 
-  .icon{
+  .icon {
     font-size: 3em;
   }
 }
+
 /******************************
 TABS
 ******************************/
-.assessment-tabs-nav{
+.assessment-tabs-nav {
   text-align: center;
   background-color: $greyLight;
   padding: 10px;
-  .col-xs-12, .col-xs-4{
+  .col-xs-12, .col-xs-4 {
     padding: 0 5px;
   }
-  a{
+  a {
     display: block;
     padding: 20px 0;
     background-color: $white;
@@ -286,40 +287,40 @@ TABS
 
     @include transition(.3s ease color, .3s ease background-color);
 
-    &:hover{
+    &:hover {
       color: $greyDark;
       background-color: $greyLight;
     }
   }
-  .active a, a:focus{
+  .active a, a:focus {
     color: $white;
     background-color: $turquoise;
     outline: none;
   }
 }
 
-.assessment-tabs-content{
+.assessment-tabs-content {
   background-color: $greyLight;
 
-  .tab{
+  .tab {
     display: none !important;
 
-    &.active{
+    &.active {
       display: block !important;
     }
   }
-  .row{
+  .row {
     margin-top: 20px;
     margin-bottom: 20px;
   }
-  .assessment-section-bg{
+  .assessment-section-bg {
     margin-bottom: 30px;
     background-color: $white;
 
-    & > div{
+    & > div {
       padding: 30px 15px;
     }
-    h2{
+    h2 {
       text-align: center;
       margin: 0;
       padding: 10px 0;
@@ -333,39 +334,40 @@ TABS
 /******************************
 WELCOME
 ******************************/
-.welcome-tabs-nav{
-  .icon{
+.welcome-tabs-nav {
+  .icon {
     margin-right: 5px;
   }
 
-  .active{
-    .icon{
+  .active {
+    .icon {
       color: $white;
     }
   }
 }
-.welcome-tabs-content{
+
+.welcome-tabs-content {
   background-color: $white;
   max-width: 600px;
   border-bottom: 1px solid $greyLight;
   margin: 0 auto;
-  
-  .col-sm-3{
+
+  .col-sm-3 {
     text-align: center;
     padding-top: 20px;
   }
-  .icon{
+  .icon {
     font-size: 3.5em;
   }
 }
 
-.add-homescreen{
-  h2{
+.add-homescreen {
+  h2 {
     border-bottom: 1px solid $greyLight;
-    padding-bottom:5px;
+    padding-bottom: 5px;
   }
-  .screenshot-container{
-    img{
+  .screenshot-container {
+    img {
       width: 100%;
       height: auto;
     }
@@ -547,7 +549,6 @@ LOGIN & PASSWORDS
   }
 }
 
-
 .react-swipe-container {
   //height: 90vh;
   & > div {
@@ -559,9 +560,9 @@ LOGIN & PASSWORDS
   // styles for help page goes here
 }
 
-  .has-value.Select--single > .Select-control .Select-value .Select-value-label, .has-value.is-pseudo-focused.Select--single > .Select-control .Select-value .Select-value-label{
-    color: $greyDark;
-  }
+.has-value.Select--single > .Select-control .Select-value .Select-value-label, .has-value.is-pseudo-focused.Select--single > .Select-control .Select-value .Select-value-label {
+  color: $greyDark;
+}
 
 // pretty select
 .pretty-select {
@@ -609,7 +610,7 @@ LOGIN & PASSWORDS
     box-shadow: none;
   }
 
-  .input-effect{
+  .input-effect {
     border-bottom: none;
   }
 }
@@ -652,10 +653,11 @@ LOGIN & PASSWORDS
     top: -15px;
     right: 90px;
   }
-  
+
   .programming-next-week {
     position: absolute;
     top: 15px;
     right: 90px;
   }
 }
+

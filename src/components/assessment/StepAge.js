@@ -23,7 +23,6 @@ export default class StepAge extends Component {
 					       value={answer}
 					       onChange={e => setAnswer(e.target.value)}
 					       className="form-control"/>
-					<span className="icon-range"/>
 				</div>
 			</Step>
 		);

@@ -1,0 +1,56 @@
+// speciality programs CSS (For now)
+.sp-programs-bg{
+  background-size: cover;
+  background-position:  center;
+  min-height: 100vh;
+  padding: 0;
+}
+
+
+.sp-program-actions {
+  margin-top: 20vh;
+}
+
+.sp-program-collapsible-content {
+  padding: 15px!important;
+}
+.sp-program-collapsible-content-title {
+  font-size: 1.3em;
+  font-weight: 800;
+  border-bottom: 1px solid #dddddd;
+  padding: 10px 0;
+}
+
+.sp-program-collapsible-content-list {
+  padding-left: 0;
+  counter-reset: item;
+
+  li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    display: block;
+  }
+  li:before {
+    content: counter(item) ". ";
+    counter-increment: item;
+    color: $blueLight;
+    font-weight: 800;
+    font-size: 1.2em;
+    margin-right: 5px;
+  }
+}
+
+.sp-program-result-header {
+  font-size: 1.5em;
+  padding: 20px 0;
+  font-weight: 800;
+  line-height: 1.5em;
+}
+
+.sp-program-result-intro-content {
+  padding: 40px 0;
+
+  img {
+    border: 10px solid #ccc;
+  }
+}
