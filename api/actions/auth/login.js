@@ -25,6 +25,18 @@ export default function login(request) {
 				username: email,
 				password: password
 			});
+
+			if(jwtResponse.data.status === 'expired') {
+				return resolve({
+					user: null,
+					redirectToWP: 'https://iconathlete.com/register/member-expired'
+				});
+			} else if(jwtResponse.data.status === 'cancelled') {
+				return resolve({
+					user: null,
+					redirectToWP: 'https://iconathlete.com/register/member-cancelled'
+				});
+			}
 		} catch (e) {
 			console.log(e);
 			return reject(generalError("Error in email or password"));
