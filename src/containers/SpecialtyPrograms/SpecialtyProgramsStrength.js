@@ -2,6 +2,13 @@ import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {Menubar} from '../../components/index';
+import {connect} from "react-redux";
+
+@connect(
+	state => ({
+		user: state.authStore.user
+	})
+)
 
 export default class SpecialtyProgramsStrength extends Component {
 
@@ -45,39 +52,54 @@ export default class SpecialtyProgramsStrength extends Component {
 	];
 
 	render() {
+		const {user} = this.props;
+
+		return (
+			<ReactCSSTransitionGroup
+				transitionName="react-anime"
+				transitionAppear={true}
+				transitionAppearTimeout={5000}
+				transitionEnter={true}
+				transitionEnterTimeout={500}
+				transitionLeave={true}
+				transitionLeaveTimeout={500}
+			>
+				<div className="assessment-landing-wrapper bottom-padding">
+					<Helmet title="Strength"/>
+
+					<Menubar
+						title="Strength"
+						className="menu-bar-white"
+						backButton={true}
+					/>
+
+					{
+						(user.specialty_programs && user.specialty_programs === 'muscle-up')
+						? this.renderContent()
+						: <h1 className="text-center">Oops...</h1>
+					}
+				</div>
+			</ReactCSSTransitionGroup>
+		);
+	}
+
+	renderContent() {
 		const {selectedWeek, collapsedDay} = this.state;
 
 		return (
-				<ReactCSSTransitionGroup
-						transitionName="react-anime"
-						transitionAppear={true}
-						transitionAppearTimeout={5000}
-						transitionEnter={true}
-						transitionEnterTimeout={500}
-						transitionLeave={true}
-						transitionLeaveTimeout={500}
-				>
-					<div className="assessment-landing-wrapper bottom-padding">
-						<Helmet title="Strength"/>
-
-						<Menubar
-								title="Strength"
-								className="menu-bar-white"
-								backButton={true}
-						/>
-						<div className="container-fluid">
-							<div className="assessment-tabs-nav row">
-								{this.weeks.map((week, index) => {
-									return (
-											<div key={index} onClick={e => this.selectWeek(week)} className={`col-xs-12 col-md-4  ${selectedWeek.key === week.key ? "active" : ""}`}>
-												<a href="javascript:;">{week.value}</a>
-											</div>
-									);
-								})}
-							</div>
-						</div>
-
-						<div className="container-fluid assessment-tabs-content">
+			<div>
+				<div className="container-fluid">
+					<div className="assessment-tabs-nav row">
+						{this.weeks.map((week, index) => {
+							return (
+									<div key={index} onClick={e => this.selectWeek(week)} className={`col-xs-12 col-md-4  ${selectedWeek.key === week.key ? "active" : ""}`}>
+										<a href="javascript:;">{week.value}</a>
+									</div>
+							);
+						})}
+					</div>
+				</div>
+				<div className="container-fluid assessment-tabs-content">
 							<div className="row">
 
 								{/*week 1*/}
@@ -260,9 +282,7 @@ export default class SpecialtyProgramsStrength extends Component {
 
 							</div>
 						</div>
-
-					</div>
-				</ReactCSSTransitionGroup>
+			</div>
 		);
 	}
 }
