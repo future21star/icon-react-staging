@@ -11,7 +11,8 @@ const initialState = {
 	loading: false,
 	success: null,
 	error: null,
-	showWelcomeAfterLogin: false
+	showWelcomeAfterLogin: false,
+	redirectToWP: false
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -26,7 +27,8 @@ export default function reducer(state = initialState, action = {}) {
 				...state,
 				loading: false,
 				success: null,
-				error: null
+				error: null,
+				redirectToWP: action.result.redirectToWP || false
 			};
 		case LOGIN_FAIL:
 			return {
