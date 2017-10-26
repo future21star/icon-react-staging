@@ -1,14 +1,29 @@
 // speciality programs CSS (For now)
 .sp-programs-bg{
+  position: relative;
   background-size: cover;
   background-position:  center;
   min-height: 100vh;
-  padding: 0;
+  padding: 30vh 0 80px;
+  &:before{
+    content: "";
+    background-color: rgba($black, .8);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+  }
+  
+  & > *{
+    position: relative;
+  }
 }
 
 
-.sp-program-actions {
-  margin-top: 20vh;
+.sp-programs-about{
+  padding-top: 15vh;
 }
 
 .sp-program-collapsible-content {
