@@ -9,10 +9,14 @@ export default function nutritionSearch(request) {
 		let currentPage = request.body.currentPage || 1;
 		let allPagesCompleted = false;
 
-		// get result
-		let url = WP_API_URL + '/wp/v2/posts?search=' + text +"&categories=" + category +"&page=" + currentPage;
-	
+		// default parent category
+		let url = WP_API_URL + '/wp/v2/posts?search=' + text +"&categories=41&page=" + currentPage;
 
+		// specific category
+		if(category)
+			url = WP_API_URL + '/wp/v2/posts?search=' + text +"&categories=" + category +"&page=" + currentPage;
+
+		
 		let result = null;
 		try {
 			result = await axios.get(url);
