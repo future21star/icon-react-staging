@@ -48,10 +48,10 @@ export default class SpecialtyProgramsLanding extends Component {
 								<h1 className="text-white">MUSCLE UP</h1>
 								<h1 className="text-red">DEVELOPMENT PROGRAM</h1>
 								<div className="action-button sp-program-actions">
-									<Link to="/specialty-programs/view" className="btn btn-lg btn-icon">
+									<Link to="/specialty-programs/strength" className="btn btn-lg btn-icon">
 										Strength
 									</Link>
-									<Link to="/specialty-programs/view" className="btn btn-lg btn-icon-blue btn-icon" style={{'margin-left': '5px'}}>
+									<Link to="/specialty-programs/technique" className="btn btn-lg btn-icon-blue btn-icon" style={{'marginLeft': '5px'}}>
 										Technique
 									</Link>
 								</div>
