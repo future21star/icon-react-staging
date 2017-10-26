@@ -1,35 +1,9 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {connect} from "react-redux";
 import {Menubar} from '../../components/index';
-import {Link} from "react-router";
-import {asyncConnect} from 'redux-async-connect';
-import {load as loadWorkouts, isLoaded as isWorkoutsLoaded} from "../../redux/modules/assessmentStore";
-import CheckAccessLevel from '../HOC/CheckAccessLevel';
 
-@asyncConnect([{
-	promise: ({store: {dispatch, getState}}) => {
-		const promises = [];
-
-		if (!isWorkoutsLoaded(getState())) {
-			promises.push(dispatch(loadWorkouts()));
-		}
-
-		return Promise.all(promises);
-	}
-}])
-
-@connect(
-		state => ({
-			workouts: state.assessmentStore.workouts
-		}),
-		{}
-)
-
-@CheckAccessLevel('assessment')
-
-export default class SpecialtyProgramsView extends Component {
+export default class SpecialtyProgramsTechnique extends Component {
 
 	constructor(props) {
 		super(props);
@@ -43,7 +17,6 @@ export default class SpecialtyProgramsView extends Component {
 		}
 	}
 
-
 	selectWeek = (selectedWeek) => {
 		this.setState({
 			selectedWeek: selectedWeek
@@ -55,10 +28,6 @@ export default class SpecialtyProgramsView extends Component {
 			collapsedDay: this.state.collapsedDay === day ? !this.state.collapsedDay : day
 		});
 	};
-
-	// createMarkup = (html) => {
-	// 	return {__html: html};
-	// };
 
 	weeks = [
 		{
@@ -75,7 +44,6 @@ export default class SpecialtyProgramsView extends Component {
 		}
 	];
 
-
 	render() {
 		const {selectedWeek, collapsedDay} = this.state;
 
@@ -90,10 +58,10 @@ export default class SpecialtyProgramsView extends Component {
 						transitionLeaveTimeout={500}
 				>
 					<div className="assessment-landing-wrapper bottom-padding">
-						<Helmet title="Strength / Technique"/>
+						<Helmet title="Technique"/>
 
 						<Menubar
-								title="Strength / Technique"
+								title="Technique"
 								className="menu-bar-white"
 								backButton={true}
 						/>
@@ -117,14 +85,12 @@ export default class SpecialtyProgramsView extends Component {
 									<div>
 										<div className="col-xs-12 col-sm-12 col-md-6">
 											<div className="assessment-section-bg">
-												<h2 onClick={e => this.toggleCollapsedDay(113)}>Day 1 (Weeks 1-3)</h2>
+												<h2 onClick={e => this.toggleCollapsedDay(113)}>Day 1</h2>
 												{ collapsedDay !== 113 &&
 													<div className="sp-program-collapsible-content">
-														<div className="sp-program-collapsible-content-title">Pull</div>
 														<ol className="sp-program-collapsible-content-list">
-															<li>3x10 Strict chin-up (5+)</li>
-															<li>3x10 Banded chin-up (2-5)</li>
-															<li>3x10 Jumping eccentric chin-up (1) (break into as few sets as possible).</li>
+															<li>3x12 low ring transition feet under rings w/ false grip into :5 low ring dip static hold</li>
+															<li>3x8 false grip ring pull-ups</li>
 														</ol>
 													</div>
 												}
@@ -132,14 +98,12 @@ export default class SpecialtyProgramsView extends Component {
 										</div>
 										<div className="col-xs-12 col-sm-12 col-md-6">
 											<div className="assessment-section-bg">
-												<h2 onClick={e => this.toggleCollapsedDay(213)}>Day 2 (Weeks 1-3)</h2>
+												<h2 onClick={e => this.toggleCollapsedDay(213)}>Day 2</h2>
 												{ collapsedDay !== 213 &&
 													<div className="sp-program-collapsible-content">
-														<div className="sp-program-collapsible-content-title">Pull</div>
 														<ol className="sp-program-collapsible-content-list">
-															<li>3x10 Strict chin-up (5+)</li>
-															<li>3x10 Banded chin-up (2-5)</li>
-															<li>3x10 Jumping eccentric chin-up (1) (break into as few sets as possible).</li>
+															<li>3x10 slow low ring transition to bottom of ring dip (5 seconds from extended to bottom of transition)</li>
+															<li>3x max rep full ROM kipping ring dip</li>
 														</ol>
 													</div>
 												}
@@ -153,14 +117,13 @@ export default class SpecialtyProgramsView extends Component {
 										<div>
 											<div className="col-xs-12 col-sm-12 col-md-6">
 												<div className="assessment-section-bg">
-													<h2 onClick={e => this.toggleCollapsedDay(147)}>Day 1 (Weeks 4-7)</h2>
+													<h2 onClick={e => this.toggleCollapsedDay(147)}>Day 1</h2>
 													{ collapsedDay !== 147 &&
 														<div className="sp-program-collapsible-content">
-															<div className="sp-program-collapsible-content-title">Pull</div>
 															<ol className="sp-program-collapsible-content-list">
-																<li>3x10 Strict chin-up (5+)</li>
-																<li>3x10 Banded chin-up (2-5)</li>
-																<li>3x10 Jumping eccentric chin-up (1) (break into as few sets as possible).</li>
+																<li>Accumulate 30 low ring transition with feet 24 inches in front of hanging rings at approximately hip height. Ensure proper grip and rings tracing the chest.</li>
+																<li>2x max repetitions bar chin-up. Rest as needed between efforts.</li>
+																<li>3x10 kipping ring pull-up</li>
 															</ol>
 														</div>
 													}
@@ -168,14 +131,12 @@ export default class SpecialtyProgramsView extends Component {
 											</div>
 											<div className="col-xs-12 col-sm-12 col-md-6">
 												<div className="assessment-section-bg">
-													<h2 onClick={e => this.toggleCollapsedDay(247)}>Day 2 (Weeks 4-7)</h2>
+													<h2 onClick={e => this.toggleCollapsedDay(247)}>Day 2</h2>
 													{ collapsedDay !== 247 &&
 														<div className="sp-program-collapsible-content">
-															<div className="sp-program-collapsible-content-title">Pull</div>
 															<ol className="sp-program-collapsible-content-list">
-																<li>3x10 Strict chin-up (5+)</li>
-																<li>3x10 Banded chin-up (2-5)</li>
-																<li>3x10 Jumping eccentric chin-up (1) (break into as few sets as possible).</li>
+																<li>Accumulate 30 transitions with bottom of ring at top of shoulder height while standing. Ensure proper grip and ring tracing the chest.</li>
+																<li>3x max repetition strict ring dip, rest as needed between efforts.</li>
 															</ol>
 														</div>
 													}
@@ -189,14 +150,12 @@ export default class SpecialtyProgramsView extends Component {
 										<div>
 											<div className="col-xs-12 col-sm-12 col-md-6">
 												<div className="assessment-section-bg">
-													<h2 onClick={e => this.toggleCollapsedDay(179)}>Day 1 (Weeks 7-9)</h2>
+													<h2 onClick={e => this.toggleCollapsedDay(179)}>Day 1</h2>
 													{ collapsedDay !== 179 &&
 														<div className="sp-program-collapsible-content">
-															<div className="sp-program-collapsible-content-title">Pull</div>
 															<ol className="sp-program-collapsible-content-list">
-																<li>3x10 Strict chin-up (5+)</li>
-																<li>3x10 Banded chin-up (2-5)</li>
-																<li>3x10 Jumping eccentric chin-up (1) (break into as few sets as possible).</li>
+																<li>Accumulate 20 reps of the following complex: 3 false grip ring row with feet 24 inches in front of hanging rings at shoulder height while standing into 1 full low ring transition.</li>
+																<li>3x8 false grip kipping ring pull-up</li>
 															</ol>
 														</div>
 													}
@@ -204,14 +163,11 @@ export default class SpecialtyProgramsView extends Component {
 											</div>
 											<div className="col-xs-12 col-sm-12 col-md-6">
 												<div className="assessment-section-bg">
-													<h2 onClick={e => this.toggleCollapsedDay(279)}>Day 2 (Weeks 7-9)</h2>
+													<h2 onClick={e => this.toggleCollapsedDay(279)}>Day 2</h2>
 													{ collapsedDay !== 279 &&
 														<div className="sp-program-collapsible-content">
-															<div className="sp-program-collapsible-content-title">Pull</div>
 															<ol className="sp-program-collapsible-content-list">
-																<li>3x10 Strict chin-up (5+)</li>
-																<li>3x10 Banded chin-up (2-5)</li>
-																<li>3x10 Jumping eccentric chin-up (1) (break into as few sets as possible).</li>
+																<li>Accumulate 20 reps of ‘up and down muscle-up + dips’. Feet under rings, complete 1 full transition to bottom of ring dip, reverse to the starting position fully extended and repeat to bottom of dip and complete 2 ring dips.</li>
 															</ol>
 														</div>
 													}
