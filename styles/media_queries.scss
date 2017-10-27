@@ -329,6 +329,10 @@
   .sp-programs-bg{
     min-height: auto;
     padding-top: 80px;
+
+    &.sp-programs-result{
+      min-height: 100vh;
+    }
   }
   .sp-programs-about{
     padding-top: 60px;

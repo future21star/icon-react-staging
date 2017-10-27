@@ -89,14 +89,20 @@ export default class SpecialtyProgramsAssessment extends Component {
 								</form>
 							</div>
 
-							<div className="btn-group btn-group-lg btn-group-justified">
-								<a href="javascript:;" onClick={e => this.selectEvaluation('strength')} className={selectedEvaluation === 'strength' ? "btn btn-primary" : "btn btn-default"}>Strength Evaluation</a>
-								<a href="javascript:;" onClick={e => this.selectEvaluation('technique')} className={selectedEvaluation === 'technique' ? "btn btn-primary" : "btn btn-default"}>Technique Evaluation</a>
-								<a href="javascript:;" onClick={e => this.selectEvaluation('flexibility')} className={selectedEvaluation === 'flexibility' ? "btn btn-primary" : "btn btn-default"}>Flexibility Evaluation</a>
+							<div className="assessment-tabs-nav row sp-assessment-tabs-nav">
+								<div onClick={e => this.selectEvaluation('strength')} className={`col-xs-12 col-md-4 ${selectedEvaluation === 'strength' ? 'active' : ''}`}>
+									<a href="javascript:;">Strength</a>
+								</div>
+								<div onClick={e => this.selectEvaluation('technique')} className={`col-xs-12 col-md-4 ${selectedEvaluation === 'technique' ? 'active' : ''}`}>
+									<a href="javascript:;">Technique</a>
+								</div>
+								<div onClick={e => this.selectEvaluation('flexibility')} className={`col-xs-12 col-md-4 ${selectedEvaluation === 'flexibility' ? 'active' : ''}`}>
+									<a href="javascript:;">Flexibility</a>
+								</div>
 							</div>
 
 							{selectedEvaluation === 'strength' && (
-								<div className="step-content">
+								<div className="step-content sp-assesment-content">
 									<p>How many strict pull-ups can you complete?</p>
 									<form className="form-select">
 										<select className="form-control">
@@ -118,7 +124,7 @@ export default class SpecialtyProgramsAssessment extends Component {
 								</div>
 							)}
 							{selectedEvaluation === 'technique' && (
-								<div className="step-content">
+								<div className="step-content sp-assesment-content">
 									<p>Please select your False Grip ability:</p>
 									<form className="form-select">
 										<select className="form-control">
@@ -137,7 +143,7 @@ export default class SpecialtyProgramsAssessment extends Component {
 								</div>									
 							)}
 							{selectedEvaluation === 'flexibility' && (
-								<div className="step-content">
+								<div className="step-content sp-assesment-content">
 									<p>Please select your current Shoulder position when performing a ring dip:</p>
 									<form className="form-select">
 										<select className="form-control">

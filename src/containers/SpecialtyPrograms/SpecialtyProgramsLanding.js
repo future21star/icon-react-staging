@@ -2,7 +2,10 @@ import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {connect} from "react-redux";
-import {Menubar, BottomNavAuth, AssessmentUpgradeCard} from '../../components';
+import {
+	Menubar, 
+	BottomNavAuth, 
+	AssessmentUpgradeCard} from '../../components';
 import {Link} from "react-router";
 
 @connect(
@@ -18,17 +21,6 @@ export default class SpecialtyProgramsLanding extends Component {
 
 	render() {
 		let {user} = this.props;
-
-		if(!user) {
-			return (
-					<div>
-						<Menubar
-								className="menu-bar-white"
-						/>
-						<AssessmentUpgradeCard/>
-					</div>);
-		}
-
 		let style = {backgroundImage: 'url(../../muscle-bg-lower.jpg)'};
 		return (
 				<ReactCSSTransitionGroup
@@ -62,9 +54,7 @@ export default class SpecialtyProgramsLanding extends Component {
 									<p>We offer two routes to help improve your Muscle Up:</p>
 									<p><b>1. Stamina / Strength Track:</b> The Stamina and Strength track is a pull and push focused program to develop the strength required to perform a muscle-up while also reinforcing and developing proper technique. This track is ideal for an athlete with adequate technique on the low rings but also lacks the strength to perform a muscle-up.</p>
 									<p><b>2. Technique Track:</b> The Technique track will prioritize development of the skills and techniques required to perform a muscle-up while reinforcing strength. Ideal for an athlete who needs development of these skills and flexibility.</p>
-									<Link to="specialty-programs/assessment" className="btn btn-lg btn-icon">
-										Take Assessment
-									</Link>
+									<Link to="/specialty-programs/assessment" className="btn btn-lg btn-icon-lg btn-icon btn-icon-icon"><span className="icon-workout-mode"/>Take Assessment</Link>
 								</div>
 							</div>
 						</div>

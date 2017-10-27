@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {Menubar} from '../../components/index';
+import {
+	Menubar,
+	SPNoAccess
+} from '../../components/index';
 import {connect} from "react-redux";
 
 @connect(
@@ -65,20 +68,19 @@ export default class SpecialtyProgramsTechnique extends Component {
 				transitionLeaveTimeout={500}
 			>
 				<div className="assessment-landing-wrapper bottom-padding">
-					<Helmet title="Technique"/>
+					<Helmet title="Muscle Up - Technique"/>
 
 					<Menubar
-						title="Technique"
-						className="menu-bar-white"
+						title="Muscle Up - Technique"
+						className=""
 						backButton={true}
 					/>
 
 					{
 						(user.specialty_programs && user.specialty_programs === 'muscle-up')
-							? this.renderContent()
-							: <h1 className="text-center">Oops...</h1>
+						? this.renderContent()
+						: <SPNoAccess/>
 					}
-
 				</div>
 			</ReactCSSTransitionGroup>
 		)

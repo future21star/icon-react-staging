@@ -37,6 +37,9 @@ export DesktopListWorkoutHeader from './workout-list/DesktopListWorkoutHeader';
 export ProgrammingHeader from './programming/ProgrammingHeader';
 export DayPicker from './programming/DayPicker';
 
+//SPECIALTY PROGRAMMING
+export SPNoAccess from './specialty-programs/SPNoAccess';
+
 //PROFILE
 export ProfileHeader from './profile/ProfileHeader';
 export EditProfileCard from './profile/EditProfileCard';

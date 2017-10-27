@@ -4,7 +4,11 @@
   background-size: cover;
   background-position:  center;
   min-height: 100vh;
-  padding: 30vh 0 80px;
+  padding: 30vh 0 120px;
+
+  &.sp-programs-result{
+    padding-top: 30px;
+  }
   &:before{
     content: "";
     background-color: rgba($black, .8);
@@ -19,8 +23,8 @@
   & > *{
     position: relative;
   }
+  
 }
-
 
 .sp-programs-about{
   padding: 15vh 30px 40px;
@@ -55,11 +59,26 @@
   }
 }
 
-.sp-program-result-header {
-  font-size: 1.5em;
-  padding: 20px 0;
-  font-weight: 800;
-  line-height: 1.5em;
+.sp-program-result-item{
+  margin: 0 0 30px;
+  padding: 0;
+  
+  h2{
+    color: $white;
+    border-bottom: 1px solid rgba($white, .4);
+    padding: 10px 0;
+  }
+  .icon{
+    margin-right: 5px;
+    color: $white;
+  }
+  ul{
+    padding-top: 10px;
+  }
+  .list-check li:before{
+    color: $turquoise;
+    border-right-color: rgba($white, .4);
+  }
 }
 
 .sp-program-result-intro-content {
@@ -68,4 +87,10 @@
   img {
     border: 10px solid #ccc;
   }
+}
+
+.sp-assessment-tabs-nav{
+  margin-bottom: 30px;
+}
+.sp-assesment-content{
 }
