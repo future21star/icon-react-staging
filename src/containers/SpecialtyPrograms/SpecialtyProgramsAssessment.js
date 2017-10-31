@@ -3,24 +3,43 @@ import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {connect} from "react-redux";
 import {Menubar} from '../../components/index';
-import {Link} from "react-router";
+import {push} from 'react-router-redux';
+import {asyncConnect} from 'redux-async-connect';
+import {
+	markAsNewForm,
+	isLoaded as isSpAssessmentResultLoaded,
+	load as loadSpAssessmentResult,
+	changeInput,
+	save as saveSpAssessmentResult
+} from '../../redux/modules/spAssessmentStore';
 
+@asyncConnect([{
+	promise: ({store: {dispatch, getState}}) => {
+		const promises = [];
+
+		promises.push(dispatch(markAsNewForm()));
+
+		if (!isSpAssessmentResultLoaded(getState())) promises.push(dispatch(loadSpAssessmentResult()));
+
+		return Promise.all(promises);
+	}
+}])
 @connect(
 	state => ({
-
+		saved: state.spAssessmentStore.saved,
+		form: state.spAssessmentStore.form
 	}),
-	{}
+	{
+		pushState: push,
+		changeInput,
+		saveSpAssessmentResult
+	}
 )
 
 export default class SpecialtyProgramsAssessment extends Component {
 
 	constructor(props) {
 		super(props);
-
-		this.state = {
-			selectedGender: '',
-			selectedEvaluation: 'strength'
-		}
 	}
 
 	answerOptions = [
@@ -28,20 +47,21 @@ export default class SpecialtyProgramsAssessment extends Component {
 		{value: 'female', label: 'Female'},
 	];
 
-	selectGender = (gender) => {
-		this.setState({
-			selectedGender: gender
-		});
+	saveSpAssessment = () => {
+		if(this.props.form.gender) {
+			this.props.saveSpAssessmentResult(this.props.form);
+		}
 	};
 
-	selectEvaluation = (evaluation) => {
-		this.setState({
-			selectedEvaluation: evaluation
-		});
-	};
+	componentWillUpdate(nextProps) {
+		if(nextProps.saved !== this.props.saved) {
+			// redirect
+			this.props.pushState('/specialty-programs/assessment/result');
+		}
+	}
 
 	render() {
-		const {selectedGender, selectedEvaluation} = this.state;
+		const {form, changeInput} = this.props;
 
 		return (
 			<ReactCSSTransitionGroup
@@ -75,8 +95,8 @@ export default class SpecialtyProgramsAssessment extends Component {
 															type="radio"
 															name="gender"
 															value={item.value}
-															checked={selectedGender === item.value}
-															onChange={e => this.selectGender(e.target.value)}
+															checked={form.gender === item.value}
+															onChange={e => changeInput(e.target.name, e.target.value)}
 													/>
 													<p className="input-label">{item.label}</p>
 												</label>
@@ -87,31 +107,34 @@ export default class SpecialtyProgramsAssessment extends Component {
 							</div>
 
 							<div className="assessment-tabs-nav row sp-assessment-tabs-nav">
-								<div onClick={e => this.selectEvaluation('strength')} className={`col-xs-12 col-md-4 ${selectedEvaluation === 'strength' ? 'active' : ''}`}>
+								<div onClick={e => changeInput('evaluation', 'strength')} className={`col-xs-12 col-md-4 ${form.evaluation === 'strength' ? 'active' : ''}`}>
 									<a href="javascript:;">Strength</a>
 								</div>
-								<div onClick={e => this.selectEvaluation('technique')} className={`col-xs-12 col-md-4 ${selectedEvaluation === 'technique' ? 'active' : ''}`}>
+								<div onClick={e => changeInput('evaluation', 'technique')} className={`col-xs-12 col-md-4 ${form.evaluation === 'technique' ? 'active' : ''}`}>
 									<a href="javascript:;">Technique</a>
 								</div>
-								<div onClick={e => this.selectEvaluation('flexibility')} className={`col-xs-12 col-md-4 ${selectedEvaluation === 'flexibility' ? 'active' : ''}`}>
+								<div onClick={e => changeInput('evaluation', 'flexibility')} className={`col-xs-12 col-md-4 ${form.evaluation === 'flexibility' ? 'active' : ''}`}>
 									<a href="javascript:;">Flexibility</a>
 								</div>
 							</div>
 
-							{selectedEvaluation === 'strength' && (
+							{form.evaluation === 'strength' && (
 								<div className="step-content sp-assesment-content">
 									<p>How many strict pull-ups can you complete?</p>
+									{/* q1 */}
 									<form className="form-select">
-										<select className="form-control">
+										<select className="form-control" value={form.q1} onChange={e => changeInput('q1', e.target.value)}>
 											<option value="1">0 strict pull-ups</option>
 											<option value="3">2 strict pull-ups</option>
 											<option value="5">5 strict pull-ups</option>
 											<option value="10">12 strict pull-ups</option>
 										</select>
 									</form>
+
+									{/* q2 */}
 									<p>How many strict dips can you complete?</p>
 									<form className="form-select">
-										<select className="form-control">
+										<select className="form-control" value={form.q2} onChange={e => changeInput('q2', e.target.value)}>
 											<option value="1">0 strict dips</option>
 											<option value="3">2 strict dips</option>
 											<option value="5">5 strict dips</option>
@@ -120,18 +143,21 @@ export default class SpecialtyProgramsAssessment extends Component {
 									</form>
 								</div>
 							)}
-							{selectedEvaluation === 'technique' && (
+							{form.evaluation === 'technique' && (
 								<div className="step-content sp-assesment-content">
 									<p>Please select your False Grip ability:</p>
+									{/* q1 */}
 									<form className="form-select">
-										<select className="form-control">
+										<select className="form-control" value={form.q1} onChange={e => changeInput('q1', e.target.value)}>
 											<option value="1">Not able to use false grip on low rings.</option>
 											<option value="5">Can apply false grip low rings, not high rings.</option>
 											<option value="10">False grip pull up while hanging on high rings.</option>
 										</select>
 									</form>
+
+									{/* q2 */}
 									<form className="form-select">
-										<select className="form-control">
+										<select className="form-control" value={form.q2} onChange={e => changeInput('q2', e.target.value)}>
 											<option value="1">Rings pull to the armpits instead of the sternum and athlete skips steps during transition on low rings.</option>
 											<option value="5">Transition rings to sternum low feet under rings, rings go to armpits feet extended in front of the body.</option>
 											<option value="10">Athlete can successfully perform an l-sit transition on low rings while rings pull to sternum and trace the bottom pecs.</option>
@@ -139,19 +165,22 @@ export default class SpecialtyProgramsAssessment extends Component {
 									</form>
 								</div>									
 							)}
-							{selectedEvaluation === 'flexibility' && (
+							{form.evaluation === 'flexibility' && (
 								<div className="step-content sp-assesment-content">
 									<p>Please select your current Shoulder position when performing a ring dip:</p>
+									{/* q1 */}
 									<form className="form-select">
-										<select className="form-control">
+										<select className="form-control" value={form.q1} onChange={e => changeInput('q1', e.target.value)}>
 											<option value="1">Shoulder remains above elbow at bottom of ring dip hold.</option>
 											<option value="5">Shoulder at parallel in bottom of dip position.</option>
 											<option value="10">Shoulder below elbow ring dip hang.</option>
 										</select>
 									</form>
+
+									{/* q2 */}
 									<p>Please select the movement of the rings during transition</p>
 									<form className="form-select">
-										<select className="form-control">
+										<select className="form-control" value={form.q2} onChange={e => changeInput('q2', e.target.value)}>
 											<option value="1">Rings cannot come to sternum with feet supporting on low rings.</option>
 											<option value="5">Rings trace nipple line in transition.</option>
 											<option value="10">Rings trace under pecs through transition.</option>
@@ -161,24 +190,12 @@ export default class SpecialtyProgramsAssessment extends Component {
 							)}
 
 							<div className="bottom-padding text-center">
-								<Link to="/specialty-programs/assessment/result" className="btn btn-primary btn-lg">Evaluate</Link>
+								<button onClick={this.saveSpAssessment} disabled={!form.gender} className="btn btn-primary btn-lg">Evaluate</button>
 							</div>
 						</div>
 					</div>
 				</div>
 			</ReactCSSTransitionGroup>
-		);
-	}
-
-	renderSteps() {
-		const {currentStep} = this.props;
-
-		return (
-			<ul className="assessment-steps-list inline-list">
-				{[1, 2, 3, 4, 5, 6, 7, 8].map(i => {
-					return <li key={i} className={currentStep === i ? "active" : ""}>{i}</li>
-				})}
-			</ul>
 		);
 	}
 }

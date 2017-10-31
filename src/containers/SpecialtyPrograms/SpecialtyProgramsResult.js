@@ -3,11 +3,10 @@ import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {connect} from "react-redux";
 import {Menubar} from '../../components/index';
-import {Link} from "react-router";
-
 
 @connect(
 		state => ({
+			result: state.spAssessmentStore.result
 		}),
 		{}
 )
@@ -18,14 +17,18 @@ export default class SpecialtyProgramsResult extends Component {
 		super(props);
 	}
 
-
-	// createMarkup = (html) => {
-	// 	return {__html: html};
-	// };
-
-
 	render() {
-		// const {} = this.state;
+		const {result} = this.props;
+		const answers = result[result.evaluation];
+
+		console.log('Selected evaluation : %s', result.evaluation);
+		console.log("answers:");
+		console.table(answers);
+
+		console.log('q1 question text: %s', answers.q1.questionText);
+		console.log('q1 answer value: %s', answers.q1.answerValue);
+		console.log('q1 answer text: %s', answers.q1.answerText);
+
 		let style = {backgroundImage: 'url(../../muscle-bg-lower.jpg)'};
 
 		return (
