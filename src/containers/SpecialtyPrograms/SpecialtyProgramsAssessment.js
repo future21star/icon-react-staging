@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {connect} from "react-redux";
-import CheckAccessLevel from '../HOC/CheckAccessLevel'
 import {Menubar} from '../../components/index';
 import {Link} from "react-router";
 
@@ -12,8 +11,6 @@ import {Link} from "react-router";
 	}),
 	{}
 )
-
-@CheckAccessLevel('assessment')
 
 export default class SpecialtyProgramsAssessment extends Component {
 
