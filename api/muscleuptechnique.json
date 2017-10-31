@@ -1,0 +1,50 @@
+{
+  "1-3": {
+    "1": {
+      "videoID": 240581564,
+      "workouts": [
+        "3x12 low ring transition feet under rings w/ false grip into :5 low ring dip static hold",
+        "3x8 false grip ring pull-ups"
+      ]
+    },
+    "2": {
+      "videoID": 240581564,
+      "workouts": [
+        "3x10 slow low ring transition to bottom of ring dip (5 seconds from extended to bottom of transition)",
+        "3x max rep full ROM kipping ring dip"
+      ]
+    }
+  },
+  "4-7": {
+    "1": {
+      "videoID": 240581564,
+      "workouts": [
+        "Accumulate 30 low ring transition with feet 24 inches in front of hanging rings at approximately hip height. Ensure proper grip and rings tracing the chest.",
+        "2x max repetitions bar chin-up. Rest as needed between efforts.",
+        "3x10 kipping ring pull-up"
+      ]
+    },
+    "2": {
+      "videoID": 240581564,
+      "workouts": [
+        "Accumulate 30 transitions with bottom of ring at top of shoulder height while standing. Ensure proper grip and ring tracing the chest.",
+        "3x max repetition strict ring dip, rest as needed between efforts."
+      ]
+    }
+  },
+  "7-9": {
+    "1": {
+      "videoID": 240581564,
+      "workouts": [
+        "Accumulate 20 reps of the following complex: 3 false grip ring row with feet 24 inches in front of hanging rings at shoulder height while standing into 1 full low ring transition.",
+        "3x8 false grip kipping ring pull-up"
+      ]
+    },
+    "2": {
+      "videoID": 240581564,
+      "workouts": [
+        "Accumulate 20 reps of ‘up and down muscle-up + dips’. Feet under rings, complete 1 full transition to bottom of ring dip, reverse to the starting position fully extended and repeat to bottom of dip and complete 2 ring dips."
+      ]
+    }
+  }
+}
