@@ -93,7 +93,7 @@ export default class SpecialtyProgramsWorkout extends Component {
 						backButton={true}
 					/>
 
-					{hasAccess ? this.renderContent() : <SPNoAccess/>}
+					{hasAccess ? this.renderContent() : <SPNoAccess isFree={isMuscleUpFreeUser}/>}
 				</div>
 			</ReactCSSTransitionGroup>
 		);
