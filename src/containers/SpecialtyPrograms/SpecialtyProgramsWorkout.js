@@ -39,8 +39,8 @@ export default class SpecialtyProgramsWorkout extends Component {
 			value: 'Weeks 1-3'
 		},
 		{
-			key: 'weeks-4-7',
-			value: 'Weeks 4-7'
+			key: 'weeks-4-6',
+			value: 'Weeks 4-6'
 		},
 		{
 			key: 'weeks-7-9',
@@ -111,7 +111,7 @@ export default class SpecialtyProgramsWorkout extends Component {
 					</div>
 				</div>
 
-				<div className="container-fluid assessment-tabs-content">
+				<div className="container-fluid assessment-tabs-content sp-days-tab-content">
 					{this.state.workoutType === 'strength' && this.renderStrengthWorkouts()}
 					{this.state.workoutType === 'technique' && this.renderTechniqueWorkouts()}
 				</div>
@@ -131,10 +131,10 @@ export default class SpecialtyProgramsWorkout extends Component {
 					</div>
 				)}
 
-				{selectedWeek.key === 'weeks-4-7' && (
+				{selectedWeek.key === 'weeks-4-6' && (
 					<div>
-						<SingleDay day={1} type="strength" workouts={strengthData['4-7']['1'].workouts} videoID={strengthData['4-7']['1'].videoID}/>
-						<SingleDay day={2} type="strength" workouts={strengthData['4-7']['2'].workouts} videoID={strengthData['4-7']['2'].videoID}/>
+						<SingleDay day={1} type="strength" workouts={strengthData['4-6']['1'].workouts} videoID={strengthData['4-6']['1'].videoID}/>
+						<SingleDay day={2} type="strength" workouts={strengthData['4-6']['2'].workouts} videoID={strengthData['4-6']['2'].videoID}/>
 					</div>
 				)}
 
@@ -160,10 +160,10 @@ export default class SpecialtyProgramsWorkout extends Component {
 					</div>
 				)}
 
-				{selectedWeek.key === 'weeks-4-7' && (
+				{selectedWeek.key === 'weeks-4-6' && (
 					<div>
-						<SingleDay day={1} type="technique" workouts={techniqueData['4-7']['1'].workouts} videoID={techniqueData['4-7']['1'].videoID}/>
-						<SingleDay day={2} type="technique" workouts={techniqueData['4-7']['2'].workouts} videoID={techniqueData['4-7']['2'].videoID}/>
+						<SingleDay day={1} type="technique" workouts={techniqueData['4-6']['1'].workouts} videoID={techniqueData['4-6']['1'].videoID}/>
+						<SingleDay day={2} type="technique" workouts={techniqueData['4-6']['2'].workouts} videoID={techniqueData['4-6']['2'].videoID}/>
 					</div>
 				)}
 

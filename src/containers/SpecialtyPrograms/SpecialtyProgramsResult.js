@@ -19,17 +19,33 @@ export default class SpecialtyProgramsResult extends Component {
 
 	render() {
 		const {result} = this.props;
-		const answers = result[result.evaluation];
+		const singleResult = result.evaluation;
+		const answers = result[singleResult];
 
-		console.log('Selected evaluation : %s', result.evaluation);
-		console.log("answers:");
-		console.table(answers);
-
-		console.log('q1 question text: %s', answers.q1.questionText);
-		console.log('q1 answer value: %s', answers.q1.answerValue);
-		console.log('q1 answer text: %s', answers.q1.answerText);
 
 		let style = {backgroundImage: 'url(../../muscle-bg-lower.jpg)'};
+
+		let trackName = "Strength Track";
+		let trackDescription = "The Stamina and Strength track is a pull and push focused program to develop the strength required to perform a muscle-up while also reinforcing and developing proper technique. This track is ideal for an athlete with adequate technique on the low rings but also lacks the strength to perform a muscle-up.";
+		let isBoth = false;
+
+		if(singleResult === 'technique' || singleResult === 'flexibility' && answers.q1.answerValue == 1){
+			trackName = "Technique Track";
+			trackDescription = "The Technique track will prioritize development of the skills and techniques required to perform a muscle-up while reinforcing strength. Ideal for an athlete who needs development of these skills and flexibility.";
+		}else{
+			//is strength
+			if(answers.q1.answerValue == 1){
+				trackName = "Technique + Strength Tracks";
+				isBoth = true;
+			}else if(answers.q1.answerValue == 10){
+				trackName = "Technique Track";
+				trackDescription = "The Technique track will prioritize development of the skills and techniques required to perform a muscle-up while reinforcing strength. Ideal for an athlete who needs development of these skills and flexibility.";
+			}
+		}
+
+		console.log(answers.q1.answerValue);
+
+
 
 		return (
 				<ReactCSSTransitionGroup
@@ -49,37 +65,15 @@ export default class SpecialtyProgramsResult extends Component {
 						/>
 						<div className="container container-small">
 							<div className="row">
-								<div className="col-md-12">
-									<div className="sp-program-result-header text-center text-white">
-										<h1>Your Assessment Results</h1>
-									</div>
-								</div>
-							</div>
-							<div className="row">
 								<div className="col-xs-12">
-									<div className="sp-program-result-item">	
-										<h2><span className="icon-track-gainer icon"/>Strength</h2>
-										<ul className="list-check text-white">
-											<li>Follow strength muscle-up program to achieve 1 muscle-up.</li>
-											<li>Follow technique track to improve the number of muscle-ups.</li>
-										</ul>
-									</div>
-								</div>
-								<div className="col-xs-12">
-									<div className="sp-program-result-item">
-										<h2><span className="icon-track-lean-machine icon"/>Technique</h2>
-										<ul className="list-check text-white">
-											<li>Transition rings to strenum low feet under rings, rings go to armpits, feet extended in front of the body</li>
-											<li>Athele can successfully perform an I-sit transition on low rings while rings pull to sternum and trace the bottom pecs.</li>
-										</ul>
-									</div>
-								</div>
-								<div className="col-xs-12">
-									<div className="sp-program-result-item">	
-										<h2><span className="icon-track-perfector icon"/>Flexibility</h2>
-										<ul className="list-check text-white">
-											<li>Rings trace nipple line in transition.</li>
-											<li>Rings trace under pecs through transition.</li>
+									<div className="sp-program-result-item text-white">
+										<h3>Based on the {singleResult} evaluation we recommend:</h3>
+										<h2>{trackName}</h2>
+										<ul className="list-check">
+											<li>{trackDescription}</li>
+											{isBoth && (
+												<li>The Technique track will prioritize development of the skills and techniques required to perform a muscle-up while reinforcing strength. Ideal for an athlete who needs development of these skills and flexibility.</li>
+											)}
 										</ul>
 									</div>
 								</div>
