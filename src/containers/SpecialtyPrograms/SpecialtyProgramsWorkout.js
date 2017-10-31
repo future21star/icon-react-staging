@@ -3,6 +3,7 @@ import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {Menubar, SPNoAccess} from '../../components/index';
 import {connect} from "react-redux";
+import {includes} from 'lodash';
 
 @connect(
 	state => ({
@@ -59,6 +60,20 @@ export default class SpecialtyProgramsWorkout extends Component {
 		if(this.state.workoutType === 'strength') workoutTitle = 'Strength';
 		else if(this.state.workoutType === 'technique') workoutTitle = 'Technique';
 
+		let hasAccess = false;
+
+		const specialty_programs = user.specialty_programs;
+
+		if(specialty_programs) {
+			const isMuscleUpFreeUser = includes(specialty_programs.split(' '), 'muscle-up-free');
+			const isMuscleUpUser = includes(specialty_programs.split(' '), 'muscle-up');
+			if(isMuscleUpFreeUser) {
+				hasAccess = user.subscription.status === 'active';
+			} else if(isMuscleUpUser) {
+				hasAccess = true;
+			}
+		}
+
 		return (
 			<ReactCSSTransitionGroup
 				transitionName="react-anime"
@@ -78,11 +93,7 @@ export default class SpecialtyProgramsWorkout extends Component {
 						backButton={true}
 					/>
 
-					{
-						(user.specialty_programs && user.specialty_programs === 'muscle-up')
-						? this.renderContent()
-						: <SPNoAccess/>
-					}
+					{hasAccess ? this.renderContent() : <SPNoAccess/>}
 				</div>
 			</ReactCSSTransitionGroup>
 		);
