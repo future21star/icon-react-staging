@@ -54,8 +54,7 @@ export CategorySelection from './FreeWeek/CategorySelection'
 export CategoryWodView from './FreeWeek/CategoryWodView'
 
 export SpecialtyProgramsLanding from './SpecialtyPrograms/SpecialtyProgramsLanding';
-export SpecialtyProgramsStrength from './SpecialtyPrograms/SpecialtyProgramsStrength';
-export SpecialtyProgramsTechnique from './SpecialtyPrograms/SpecialtyProgramsTechnique';
+export SpecialtyProgramsWorkout from './SpecialtyPrograms/SpecialtyProgramsWorkout';
 export SpecialtyProgramsAssessment from './SpecialtyPrograms/SpecialtyProgramsAssessment';
 export SpecialtyProgramsResult from './SpecialtyPrograms/SpecialtyProgramsResult';
 

@@ -116,8 +116,7 @@ export default (store) => {
 
 
 					<Route path="specialty-programs" component={containers.SpecialtyProgramsLanding}/>
-					<Route path="specialty-programs/strength" component={containers.SpecialtyProgramsStrength}/>
-					<Route path="specialty-programs/technique" component={containers.SpecialtyProgramsTechnique}/>
+					<Route path="specialty-programs/:type" component={containers.SpecialtyProgramsWorkout}/>
 					<Route path="specialty-programs/assessment" component={containers.SpecialtyProgramsAssessment}/>
 					<Route path="specialty-programs/assessment/result" component={containers.SpecialtyProgramsResult}/>
 				</Route>
