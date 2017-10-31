@@ -80,32 +80,30 @@ export default class SpecialtyProgramsAssessment extends Component {
 						title="Calculate Your Track"
 						backButton={true}
 					/>
-					<div className="container container-small">
-						<div className="assessment-form-wrapper">
-
-							<div className="step-content">
-								<h3 className="text-center">Gender</h3>
-								<p>Please select which of the following you are:</p>
-								<form className="form-radio">
-									{this.answerOptions.map((item, i) => {
-										return (
-											<div className="radio-inline" key={i}>
-												<label>
-													<input
-															type="radio"
-															name="gender"
-															value={item.value}
-															checked={form.gender === item.value}
-															onChange={e => changeInput(e.target.name, e.target.value)}
-													/>
-													<p className="input-label">{item.label}</p>
-												</label>
-											</div>
-										)
-									})}
-								</form>
-							</div>
-
+					<div className="assessment-form-wrapper container">
+						<div className="step-content">
+							<h3 className="text-center">Gender</h3>
+							<p>Please select which of the following you are:</p>
+							<form className="form-radio">
+								{this.answerOptions.map((item, i) => {
+									return (
+										<div className="radio-inline" key={i}>
+											<label>
+												<input
+														type="radio"
+														name="gender"
+														value={item.value}
+														checked={form.gender === item.value}
+														onChange={e => changeInput(e.target.name, e.target.value)}
+												/>
+												<p className="input-label">{item.label}</p>
+											</label>
+										</div>
+									)
+								})}
+							</form>
+						</div>
+						<div className="container-small">
 							<div className="assessment-tabs-nav row sp-assessment-tabs-nav">
 								<div onClick={e => changeInput('evaluation', 'strength')} className={`col-xs-12 col-md-4 ${form.evaluation === 'strength' ? 'active' : ''}`}>
 									<a href="javascript:;">Strength</a>
@@ -117,81 +115,88 @@ export default class SpecialtyProgramsAssessment extends Component {
 									<a href="javascript:;">Flexibility</a>
 								</div>
 							</div>
+						</div>
 
-							{form.evaluation === 'strength' && (
-								<div className="step-content sp-assesment-content">
-									<p>How many strict pull-ups can you complete?</p>
-									{/* q1 */}
-									<form className="form-select">
-										<select className="form-control" value={form.q1} onChange={e => changeInput('q1', e.target.value)}>
-											<option value="1">0 strict pull-ups</option>
-											<option value="3">2 strict pull-ups</option>
-											<option value="5">5 strict pull-ups</option>
-											<option value="10">12 strict pull-ups</option>
-										</select>
-									</form>
-
-									{/* q2 */}
-									<p>How many strict dips can you complete?</p>
-									<form className="form-select">
-										<select className="form-control" value={form.q2} onChange={e => changeInput('q2', e.target.value)}>
-											<option value="1">0 strict dips</option>
-											<option value="3">2 strict dips</option>
-											<option value="5">5 strict dips</option>
-											<option value="10">12 strict dips</option>
-										</select>
-									</form>
+						{form.evaluation === 'strength' && (
+							<div className="step-content sp-assesment-content row">
+								<div className="col-xs-12 col-md-6 pull-right pull-right-desktop">
+									<iframe src="https://player.vimeo.com/video/240592544" width="100%" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 								</div>
-							)}
-							{form.evaluation === 'technique' && (
-								<div className="step-content sp-assesment-content">
-									<p>Please select your False Grip ability:</p>
-									{/* q1 */}
-									<form className="form-select">
-										<select className="form-control" value={form.q1} onChange={e => changeInput('q1', e.target.value)}>
-											<option value="1">Not able to use false grip on low rings.</option>
-											<option value="5">Can apply false grip low rings, not high rings.</option>
-											<option value="10">False grip pull up while hanging on high rings.</option>
-										</select>
-									</form>
+								<div className="col-xs-12 col-md-6 pull-left pull-left-desktop">
+									<div className="sp-assessment-form-wrapper">
+										<p>How many strict pull-ups can you complete?</p>
+										{/* q1 */}
+										<form className="form-select">
+											<select className="form-control" value={form.q1} onChange={e => changeInput('q1', e.target.value)}>
+												<option value="1">0 strict pull-ups</option>
+												<option value="3">2 strict pull-ups</option>
+												<option value="5">5 strict pull-ups</option>
+												<option value="10">12 strict pull-ups</option>
+											</select>
+										</form>
 
-									{/* q2 */}
-									<form className="form-select">
-										<select className="form-control" value={form.q2} onChange={e => changeInput('q2', e.target.value)}>
-											<option value="1">Rings pull to the armpits instead of the sternum and athlete skips steps during transition on low rings.</option>
-											<option value="5">Transition rings to sternum low feet under rings, rings go to armpits feet extended in front of the body.</option>
-											<option value="10">Athlete can successfully perform an l-sit transition on low rings while rings pull to sternum and trace the bottom pecs.</option>
-										</select>
-									</form>
-								</div>									
-							)}
-							{form.evaluation === 'flexibility' && (
-								<div className="step-content sp-assesment-content">
-									<p>Please select your current Shoulder position when performing a ring dip:</p>
-									{/* q1 */}
-									<form className="form-select">
-										<select className="form-control" value={form.q1} onChange={e => changeInput('q1', e.target.value)}>
-											<option value="1">Shoulder remains above elbow at bottom of ring dip hold.</option>
-											<option value="5">Shoulder at parallel in bottom of dip position.</option>
-											<option value="10">Shoulder below elbow ring dip hang.</option>
-										</select>
-									</form>
-
-									{/* q2 */}
-									<p>Please select the movement of the rings during transition</p>
-									<form className="form-select">
-										<select className="form-control" value={form.q2} onChange={e => changeInput('q2', e.target.value)}>
-											<option value="1">Rings cannot come to sternum with feet supporting on low rings.</option>
-											<option value="5">Rings trace nipple line in transition.</option>
-											<option value="10">Rings trace under pecs through transition.</option>
-										</select>
-									</form>
+										{/* q2 */}
+										<p>How many strict dips can you complete?</p>
+										<form className="form-select">
+											<select className="form-control" value={form.q2} onChange={e => changeInput('q2', e.target.value)}>
+												<option value="1">0 strict dips</option>
+												<option value="3">2 strict dips</option>
+												<option value="5">5 strict dips</option>
+												<option value="10">12 strict dips</option>
+											</select>
+										</form>
+									</div>
 								</div>
-							)}
-
-							<div className="bottom-padding text-center">
-								<button onClick={this.saveSpAssessment} disabled={!form.gender} className="btn btn-primary btn-lg">Evaluate</button>
 							</div>
+						)}
+						{form.evaluation === 'technique' && (
+							<div className="step-content sp-assesment-content">
+								<p>Please select your False Grip ability:</p>
+								{/* q1 */}
+								<form className="form-select">
+									<select className="form-control" value={form.q1} onChange={e => changeInput('q1', e.target.value)}>
+										<option value="1">Not able to use false grip on low rings.</option>
+										<option value="5">Can apply false grip low rings, not high rings.</option>
+										<option value="10">False grip pull up while hanging on high rings.</option>
+									</select>
+								</form>
+
+								{/* q2 */}
+								<form className="form-select">
+									<select className="form-control" value={form.q2} onChange={e => changeInput('q2', e.target.value)}>
+										<option value="1">Rings pull to the armpits instead of the sternum and athlete skips steps during transition on low rings.</option>
+										<option value="5">Transition rings to sternum low feet under rings, rings go to armpits feet extended in front of the body.</option>
+										<option value="10">Athlete can successfully perform an l-sit transition on low rings while rings pull to sternum and trace the bottom pecs.</option>
+									</select>
+								</form>
+							</div>									
+						)}
+						{form.evaluation === 'flexibility' && (
+							<div className="step-content sp-assesment-content">
+								<p>Please select your current Shoulder position when performing a ring dip:</p>
+								{/* q1 */}
+								<form className="form-select">
+									<select className="form-control" value={form.q1} onChange={e => changeInput('q1', e.target.value)}>
+										<option value="1">Shoulder remains above elbow at bottom of ring dip hold.</option>
+										<option value="5">Shoulder at parallel in bottom of dip position.</option>
+										<option value="10">Shoulder below elbow ring dip hang.</option>
+									</select>
+								</form>
+
+								{/* q2 */}
+								<p>Please select the movement of the rings during transition</p>
+								<form className="form-select">
+									<select className="form-control" value={form.q2} onChange={e => changeInput('q2', e.target.value)}>
+										<option value="1">Rings cannot come to sternum with feet supporting on low rings.</option>
+										<option value="5">Rings trace nipple line in transition.</option>
+										<option value="10">Rings trace under pecs through transition.</option>
+									</select>
+								</form>
+							</div>
+						)}
+
+						<div className="bottom-padding text-center">
+							<button onClick={this.saveSpAssessment} disabled={!form.gender} className="btn btn-primary btn-lg">Evaluate</button>
 						</div>
 					</div>
 				</div>
