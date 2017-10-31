@@ -1,0 +1,168 @@
+{
+  "1-3": {
+    "1": {
+      "videoID": 240581564,
+      "workouts": [
+        {
+          "title": "pull",
+          "description": [
+            "3x10 Strict chin-up (5+)",
+            "0 Banded chin-up (2-5)",
+            "3x10 Jumping eccentric chin-up (1) (break into as few sets as possible)."
+          ]
+        },
+        {
+          "title": "push",
+          "description": [
+            "3x12 Slider push-up from toes (5+)",
+            "3x12 Perfect push-up (2-5)",
+            "Push-up from knees (1)"
+          ]
+        },
+        {
+          "title": "technique",
+          "description": [
+            "3x5 low ring transition while maintaining a false grip and feet under rings (all levels)"
+          ]
+        }
+      ]
+    },
+    "2": {
+      "videoID": 240581564,
+      "workouts": [
+        {
+          "title": "pull",
+          "description": [
+            "3x10 Strict ring row with body parallel to floor (5+)",
+            "3x10 Strict ring row with body at 45 degrees (2-5)",
+            "3x10 Strict ring row with body at more than 45 degrees (1)"
+          ]
+        },
+        {
+          "title": "push",
+          "description": [
+            "3x15 bar dip (5+)",
+            "3x20 bench dip feet elevated on bench (2-5)",
+            "3x20 bench dip with feet on the floor (1)"
+          ]
+        },
+        {
+          "title": "technique",
+          "description": [
+            "3x5 low ring transition while maintaining a false grip and feet under rings (all levels)"
+          ]
+        }
+      ]
+    }
+  },
+  "4-7": {
+    "1": {
+      "videoID": 240581564,
+      "workouts": [
+        {
+          "title": "pull",
+          "description": [
+            "3x10 false grip ring row to sternum elbows in knuckles together with body parallel to floor",
+            "3x10 false grip ring row to sternum elbows in knuckles together with body at 45 degrees to the floor.",
+            "3x10 false grip ring row to sternum elbows in knuckles together with body at greater than 45 degrees"
+          ]
+        },
+        {
+          "title": "push",
+          "description": [
+            "3x8 Diamond push-up",
+            "3x8 Diamond push-up from knees",
+            "3x5 Push-up w/ narrow hands on dumbbells from knee"
+          ]
+        },
+        {
+          "title": "technique",
+          "description": [
+            "3x8 ring shoulder height jumping transition"
+          ]
+        }
+      ]
+    },
+    "2": {
+      "videoID": 240581564,
+      "workouts": [
+        {
+          "title": "pull",
+          "description": [
+            "3x10 false grip bar pull-up",
+            "3x10 bar pull-up",
+            "3x10 jumping eccentric pull-up"
+          ]
+        },
+        {
+          "title": "push",
+          "description": [
+            "3x10 Kipping Ring dip",
+            "3x10 banded ring dip",
+            "3x10 jumping ring dip w/ eccentric lower"
+          ]
+        },
+        {
+          "title": "technique",
+          "description": [
+            "3x8 ring shoulder height jumping transition"
+          ]
+        }
+      ]
+    }
+  },
+  "7-9": {
+    "1": {
+      "videoID": 240581564,
+      "workouts": [
+        {
+          "title": "pull",
+          "description": [
+            "3x8 false grip ring pull-up to sternum",
+            "3x3 false grip ring pull-up to sternum",
+            "3x3 false grip ring pull-up to sternum"
+          ]
+        },
+        {
+          "title": "push",
+          "description": [
+            "3x12 Diamond push-up",
+            "3x10 Diamond push-up from knees",
+            "3x8 Push-up with narrow hands on dumbbells from knees"
+          ]
+        },
+        {
+          "title": "technique",
+          "description": [
+            "3x8 low ring transition with feet one foot in front of rings without dip completion"
+          ]
+        }
+      ]
+    },
+    "2": {
+      "videoID": 240581564,
+      "workouts": [
+        {
+          "title": "pull",
+          "description": [
+            "3x max Chin-up on bar"
+          ]
+        },
+        {
+          "title": "push",
+          "description": [
+            "3x10 Strict ring dip",
+            "3x5 strict ring dip + 5 kipping ring dip",
+            "3x5 Ring dip"
+          ]
+        },
+        {
+          "title": "technique",
+          "description": [
+            "3x8 low ring transition with feet one foot in front of rings without dip completion"
+          ]
+        }
+      ]
+    }
+  }
+}
