@@ -116,9 +116,9 @@ export default (store) => {
 
 
 					<Route path="specialty-programs" component={containers.SpecialtyProgramsLanding}/>
-					<Route path="specialty-programs/:type" component={containers.SpecialtyProgramsWorkout}/>
 					<Route path="specialty-programs/assessment" component={containers.SpecialtyProgramsAssessment}/>
 					<Route path="specialty-programs/assessment/result" component={containers.SpecialtyProgramsResult}/>
+					<Route path="specialty-programs/:type" component={containers.SpecialtyProgramsWorkout}/>
 				</Route>
 
 				{/* only auth user without bottom nav*/}
