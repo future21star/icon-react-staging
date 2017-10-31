@@ -39,6 +39,7 @@ export DayPicker from './programming/DayPicker';
 
 //SPECIALTY PROGRAMMING
 export SPNoAccess from './specialty-programs/SPNoAccess';
+export SingleDay from './specialty-programs/SingleDay';
 
 //PROFILE
 export ProfileHeader from './profile/ProfileHeader';
