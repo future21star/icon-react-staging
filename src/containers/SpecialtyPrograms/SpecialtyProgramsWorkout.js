@@ -58,9 +58,9 @@ export default class SpecialtyProgramsWorkout extends Component {
 		let hasAccess = false;
 
 		const specialty_programs = user.specialty_programs;
-
+		let isMuscleUpFreeUser = false;
 		if(specialty_programs) {
-			const isMuscleUpFreeUser = includes(specialty_programs.split(' '), 'muscle-up-free');
+			isMuscleUpFreeUser = includes(specialty_programs.split(' '), 'muscle-up-free');
 			const isMuscleUpUser = includes(specialty_programs.split(' '), 'muscle-up');
 			if(isMuscleUpFreeUser) {
 				hasAccess = user.subscription.status === 'active';
