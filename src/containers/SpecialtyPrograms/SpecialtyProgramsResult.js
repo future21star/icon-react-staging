@@ -6,7 +6,8 @@ import {Menubar} from '../../components/index';
 
 @connect(
 		state => ({
-			result: state.spAssessmentStore.result
+			form: state.spAssessmentStore.form,
+			mu: state.spAssessmentStore.mu
 		}),
 		{}
 )
@@ -18,18 +19,20 @@ export default class SpecialtyProgramsResult extends Component {
 	}
 
 	render() {
-		const {result} = this.props;
-		const singleResult = result.evaluation;
-		const answers = result[singleResult];
+		const {form, mu} = this.props;
+		const evaluation = form.evaluation;
+
+		console.log(form, mu);
 
 
 		let style = {backgroundImage: 'url(../../muscle-bg-lower.jpg)'};
+
 
 		let trackName = "Strength Track";
 		let trackDescription = "The Stamina and Strength track is a pull and push focused program to develop the strength required to perform a muscle-up while also reinforcing and developing proper technique. This track is ideal for an athlete with adequate technique on the low rings but also lacks the strength to perform a muscle-up.";
 		let isBoth = false;
 
-		if(singleResult === 'technique' || singleResult === 'flexibility' && answers.q1.answerValue == 1){
+		if(evaluation === 'technique' || evaluation === 'flexibility' && answers.q1.answerValue == 1){
 			trackName = "Technique Track";
 			trackDescription = "The Technique track will prioritize development of the skills and techniques required to perform a muscle-up while reinforcing strength. Ideal for an athlete who needs development of these skills and flexibility.";
 		}else{
@@ -42,10 +45,6 @@ export default class SpecialtyProgramsResult extends Component {
 				trackDescription = "The Technique track will prioritize development of the skills and techniques required to perform a muscle-up while reinforcing strength. Ideal for an athlete who needs development of these skills and flexibility.";
 			}
 		}
-
-		console.log(answers.q1.answerValue);
-
-
 
 		return (
 				<ReactCSSTransitionGroup
@@ -67,7 +66,7 @@ export default class SpecialtyProgramsResult extends Component {
 							<div className="row">
 								<div className="col-xs-12">
 									<div className="sp-program-result-item text-white">
-										<h3>Based on the {singleResult} evaluation we recommend:</h3>
+										<h3>Based on the {evaluation} evaluation we recommend:</h3>
 										<h2>{trackName}</h2>
 										<ul className="list-check">
 											<li>{trackDescription}</li>

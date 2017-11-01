@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  const SpAssessment = sequelize.define('SpAssessment', {
+  const MU = sequelize.define('mu', {
 	  id: {
 		  allowNull: false,
 		  autoIncrement: true,
@@ -17,26 +17,22 @@ module.exports = function(sequelize, DataTypes) {
 		  onUpdate: 'cascade',
 		  onDelete: 'cascade'
 	  },
-	  evaluation: {
+	  q1: {
 		  type: DataTypes.STRING
 	  },
-	  questionSerial: {
-		  type: DataTypes.STRING(3)
+	  createdAt: {
+		  allowNull: false,
+		  type: DataTypes.DATE
 	  },
-	  questionText: {
-		  type: DataTypes.STRING
-	  },
-	  answerValue: {
-		  type: DataTypes.STRING(20)
-	  },
-	  answerText: {
-		  type: DataTypes.STRING
+	  updatedAt: {
+		  allowNull: false,
+		  type: DataTypes.DATE
 	  }
   }, {
-    tableName: 'spAssessments',
+    tableName: 'mu',
     classMethods: {
       associate: function (models) {
-	      SpAssessment.belongsTo(models.User, {
+	      MU.belongsTo(models.User, {
           foreignKey: 'userId',
           as: 'user',
         });
@@ -44,5 +40,5 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
-  return SpAssessment;
+  return MU;
 };

@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
 	up: function(queryInterface, Sequelize) {
-		return queryInterface.createTable('spAssessments', {
+		return queryInterface.createTable('mu', {
 			id: {
 				allowNull: false,
 				autoIncrement: true,
@@ -18,19 +18,7 @@ module.exports = {
 				onUpdate: 'cascade',
 				onDelete: 'cascade'
 			},
-			evaluation: {
-				type: Sequelize.STRING
-			},
-			questionSerial: {
-				type: Sequelize.STRING(3)
-			},
-			questionText: {
-				type: Sequelize.STRING
-			},
-			answerValue: {
-				type: Sequelize.STRING(20)
-			},
-			answerText: {
+			q1: {
 				type: Sequelize.STRING
 			},
 			createdAt: {
@@ -44,6 +32,6 @@ module.exports = {
 		});
 	},
 	down: function(queryInterface, Sequelize) {
-		return queryInterface.dropTable('spAssessments');
+		return queryInterface.dropTable('mu');
 	}
 };

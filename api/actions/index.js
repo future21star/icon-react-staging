@@ -58,8 +58,8 @@ export loadFreeWeekCategories from './freeWeek/loadFreeWeekCategories';
 export loadFreeWeekWods from './freeWeek/loadFreeWeekWods';
 
 
-export getSpAssessmentResult from './spAssessement/getSpAssessmentResult';
-export saveSpAssessmentResult from './spAssessement/saveSpAssessmentResult';
+export getMUResult from './spAssessement/getMUResult';
+export saveMUResult from './spAssessement/saveMUResult';
 
 
 

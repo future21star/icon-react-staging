@@ -1,58 +1,33 @@
-const LOAD_SP_ASSESSMENT = 'spAssessment/LOAD_SP_ASSESSMENT_REQUEST';
-const LOAD_SP_ASSESSMENT_SUCCESS = 'spAssessment/LOAD_SP_ASSESSMENT_SUCCESS';
-const LOAD_SP_ASSESSMENT_FAIL = 'spAssessment/LOAD_SP_ASSESSMENT_FAIL';
+const MARK_MU_AS_NEW_FORM = 'spAssessment/MARK_MU_AS_NEW_FORM';
 
-const MARK_AS_NEW_FORM = 'spAssessment/MARK_AS_NEW_FORM';
+const CHANGE_MU_FORM_INPUT = 'spAssessment/CHANGE_MU_FORM_INPUT';
 
-const CHANGE_FORM_INPUT = 'spAssessment/CHANGE_FORM_INPUT';
-
-const SAVE_SP_ASSESSMENT = 'spAssessment/SAVE_SP_ASSESSMENT_REQUEST';
-const SAVE_SP_ASSESSMENT_SUCCESS = 'spAssessment/SAVE_SP_ASSESSMENT_SUCCESS';
-const SAVE_SP_ASSESSMENT_FAIL = 'spAssessment/SAVE_SP_ASSESSMENT_FAIL';
+const SAVE_MU = 'spAssessment/SAVE_MU_REQUEST';
+const SAVE_MU_SUCCESS = 'spAssessment/SAVE_MU_SUCCESS';
+const SAVE_MU_FAIL = 'spAssessment/SAVE_MU_FAIL';
 
 const initialState = {
 	loading: false,
-	result: {
-		evaluation: null
-	},
+	mu: null,
 	form: {
-		gender: null,
 		evaluation: 'strength',
-		q1: '1',
-		q2: '1'
+		q1: '1'
 	},
 	saved: false
 };
 
 export default function reducer(state = initialState, action = {}) {
 	switch (action.type) {
-		case LOAD_SP_ASSESSMENT:
-			return {
-				...state,
-				loading: true
-			};
-		case LOAD_SP_ASSESSMENT_SUCCESS:
-			return {
-				...state,
-				loading: false,
-				result: action.result.spAssessmentResult
-			};
-		case LOAD_SP_ASSESSMENT_FAIL:
-			return {
-				...state,
-				loading: false
-			};
-		case MARK_AS_NEW_FORM:
+		case MARK_MU_AS_NEW_FORM:
 			return {
 				...state,
 				saved: false
 			};
-		case CHANGE_FORM_INPUT:
+		case CHANGE_MU_FORM_INPUT:
 			let newForm = {};
 
 			if(action.payload.key === 'evaluation') {
 				newForm.q1 = '1';
-				newForm.q2 = '1';
 			}
 
 			newForm[action.payload.key] = action.payload.value;
@@ -64,25 +39,19 @@ export default function reducer(state = initialState, action = {}) {
 					...newForm
 				}
 			};
-		case SAVE_SP_ASSESSMENT:
+		case SAVE_MU:
 			return {
 				...state,
 				loading: true
 			};
-		case SAVE_SP_ASSESSMENT_SUCCESS:
+		case SAVE_MU_SUCCESS:
 			return {
 				...state,
-				result: action.result.spAssessmentResult,
-				form: {
-					gender: null,
-					evaluation: 'strength',
-					q1: '1',
-					q2: '1'
-				},
+				mu: action.result.mu,
 				loading: false,
 				saved: true
 			};
-		case SAVE_SP_ASSESSMENT_FAIL:
+		case SAVE_MU_FAIL:
 			return {
 				...state,
 				loading: false
@@ -92,26 +61,15 @@ export default function reducer(state = initialState, action = {}) {
 	}
 }
 
-export function isLoaded(globalState) {
-	return globalState.spAssessmentStore.evaluation;
-}
-
-export function load() {
+export function markMUAsNewForm() {
 	return {
-		types: [LOAD_SP_ASSESSMENT, LOAD_SP_ASSESSMENT_SUCCESS, LOAD_SP_ASSESSMENT_FAIL],
-		promise: (client) => client.get('/getSpAssessmentResult')
+		type: MARK_MU_AS_NEW_FORM
 	};
 }
 
-export function markAsNewForm() {
+export function changeMUInput(key, value) {
 	return {
-		type: MARK_AS_NEW_FORM
-	};
-}
-
-export function changeInput(key, value) {
-	return {
-		type: CHANGE_FORM_INPUT,
+		type: CHANGE_MU_FORM_INPUT,
 		payload: {
 			key,
 			value
@@ -119,10 +77,10 @@ export function changeInput(key, value) {
 	};
 }
 
-export function save(form) {
+export function saveMU(form) {
 	return {
-		types: [SAVE_SP_ASSESSMENT, SAVE_SP_ASSESSMENT_SUCCESS, SAVE_SP_ASSESSMENT_FAIL],
-		promise: (client) => client.post('/saveSpAssessmentResult', {
+		types: [SAVE_MU, SAVE_MU_SUCCESS, SAVE_MU_FAIL],
+		promise: (client) => client.post('/saveMUResult', {
 			data: {
 				...form
 			}
