@@ -19,10 +19,11 @@ export default class SpecialtyProgramsResult extends Component {
 	}
 
 	render() {
-		const {form, mu} = this.props;
+		const {form} = this.props;
 		const evaluation = form.evaluation;
 
-		console.log(form, mu);
+		console.log(form);
+		console.log(evaluation);
 
 
 		let style = {backgroundImage: 'url(../../muscle-bg-lower.jpg)'};
@@ -32,15 +33,15 @@ export default class SpecialtyProgramsResult extends Component {
 		let trackDescription = "The Stamina and Strength track is a pull and push focused program to develop the strength required to perform a muscle-up while also reinforcing and developing proper technique. This track is ideal for an athlete with adequate technique on the low rings but also lacks the strength to perform a muscle-up.";
 		let isBoth = false;
 
-		if(evaluation === 'technique' || evaluation === 'flexibility' && answers.q1.answerValue == 1){
+		if((evaluation == 'technique' || evaluation == 'flexibility') && form.q1 == 1){
 			trackName = "Technique Track";
 			trackDescription = "The Technique track will prioritize development of the skills and techniques required to perform a muscle-up while reinforcing strength. Ideal for an athlete who needs development of these skills and flexibility.";
-		}else{
+		}else if(evaluation == 'strength'){
 			//is strength
-			if(answers.q1.answerValue == 1){
+			if(form.q1  == 1){
 				trackName = "Technique + Strength Tracks";
 				isBoth = true;
-			}else if(answers.q1.answerValue == 10){
+			}else if(form.q1  == 10){
 				trackName = "Technique Track";
 				trackDescription = "The Technique track will prioritize development of the skills and techniques required to perform a muscle-up while reinforcing strength. Ideal for an athlete who needs development of these skills and flexibility.";
 			}
